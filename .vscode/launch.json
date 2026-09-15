@@ -1,0 +1,28 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "0057_dog",
+            "type": "debugpy",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/Self-Forcing_StreamEdit",
+            "program": "inference_edit_streamedit.py",
+            "args": [
+                "--data_path", "/home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/videos/0057_dog.mp4",
+                "--save_path", "./outputs/A_dog.mp4",
+                "--src_prompt","A golden retriever is sniffing the ground in a dry, grassy yard with a wooden fence in the background. The camera follows the dog slowly as it moves across the yard.",
+                "--trg_prompt", "A robotic dog is sniffing the ground in a dry, grassy yard with a wooden fence in the background. The camera follows the robotic dog slowly as it moves across the yard.",
+                "--src_word", "a golden retriever",
+                "--trg_word", "A robotic dog",
+                "--fg_boost_factor", "4",
+                "--blend_power", "2",
+                "--step", "15",
+                "--first_frame_edit", "/projects/dataggen/outputs/five_bench/anchors/edit2/0057_dog.png",
+            ],
+        },
+    ]
+}

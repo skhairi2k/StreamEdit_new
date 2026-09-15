@@ -1,0 +1,64 @@
+[r27_infer] node=node57 CUDA_VISIBLE_DEVICES=0
+[r27_infer] SLURM_JOB_GPUS=0 LD_LIBRARY_PATH=/home/ids/skhairi/anaconda3/envs/streamgve/lib:/home/ids/skhairi/anaconda3/envs/streamgve/lib64:
+GPU 0: NVIDIA L40S (UUID: GPU-f3271a82-cfa7-97c3-b3bf-c8a57846ca6b)
+[r27_infer] torch 2.8.0+cu128 cuda_ok True n 1
+[r27_infer] job=972542_1 edit_type=2 arm=depth method=r27_depth_vp
+[r27_infer] tau_map=/home/ids/skhairi/Code/StreamEdit_bigchantier/evaluation/csv/r27_tau_map.csv cases=/home/ids/skhairi/Code/StreamEdit_bigchantier/evaluation/cases.json expect 13 clip(s)
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] tau_map: 22 pairs loaded, 13 needed for edit2
+[run_fivebench] edit_type=2 method=r27_depth_vp pairs=13 vp_mode=vp blend_sched=paper(eq4) out=/projects/dataggen/outputs/five_bench/r27_depth_tau/r27_depth_vp/edit2
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.38975763320923 GB
+[[0, 1, 2, 3, 4, 5]] [[0, 1, 2]]
+[ok] 0011_lucia: 69 frames  tau=5.7789
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.072444438934326 GB
+[[0, 1, 2]] [[0, 1, 2]]
+[ok] 0014_burnout: 69 frames  tau=2.7803
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.07356023788452 GB
+[[0, 1, 2, 3, 4]] [[0, 1, 2, 3]]
+[ok] 0016_horsejump-high: 45 frames  tau=2.6481
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.179561138153076 GB
+[[0, 1]] [[1, 2]]
+[ok] 0028_kite-walk: 69 frames  tau=6.1283
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.06913900375366 GB
+[[0, 1, 2, 3, 4]] [[0, 1]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.06560564041138 GB
+[[0, 1, 2, 3, 4]] [[0, 1]]
+[ok] 0034_cows: 93 frames  tau=4.6425
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 34.963374614715576 GB
+[[0, 1, 2]] [[0, 1]]
+[ok] 0040_tennis: 69 frames  tau=3.7621
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.071049213409424 GB
+[[0, 1, 2, 3]] [[0, 1, 2]]
+[ok] 0057_dog: 57 frames  tau=5.8363
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.125486850738525 GB
+[[0, 1, 2, 3, 4]] [[0, 1, 2, 3]]
+[ok] 0068_planes-water: 33 frames  tau=3.4505
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.23020887374878 GB
+[[0, 1, 2, 3, 4]] [[0, 1, 2, 3]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.226675510406494 GB
+[[0, 1, 2, 3, 4]] [[0, 1, 2, 3]]
+[ok] 0074_rhino: 81 frames  tau=4.1915
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.01558065414429 GB
+[[0, 1]] [[0, 1]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.012047290802 GB
+[[0, 1]] [[0, 1]]
+[ok] 0075_A_bicycle: 81 frames  tau=4.2032
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.01597547531128 GB
+[[0, 1, 2]] [[0, 1]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.012442111968994 GB
+[[0, 1, 2]] [[0, 1]]
+[ok] 0076_A_rabbit: 81 frames  tau=2.868
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.01558065414429 GB
+[[0, 1, 2]] [[0, 1, 2]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.012047290802 GB
+[[0, 1, 2]] [[0, 1, 2]]
+[ok] 0090_A_deer: 81 frames  tau=2.6075
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.01597547531128 GB
+[[0, 1, 2]] [[0, 1, 2, 3, 4]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.012442111968994 GB
+[[0, 1, 2]] [[0, 1, 2, 3, 4]]
+[ok] 0091_A_hawk: 81 frames  tau=4.5919
+[run_fivebench] done edit2: 13/13 ok -> /projects/dataggen/outputs/five_bench/r27_depth_tau/r27_depth_vp/edit2/_manifest.csv
+[r27_infer] edit2 frame dirs: 13 (expected 13)
+[r27_infer] failures: 0

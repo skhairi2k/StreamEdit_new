@@ -1,0 +1,76 @@
+[r31_stage1] job=989942_1 edit_type=2
+[r31_stage1] method=r31_unblended steps=15 blend_sched=zero (Q/K blend OFF)
+[r31_stage1] dump_steps=7,14 measure_index=7
+[r31_stage1] frames -> /projects/dataggen/outputs/five_bench/r31_stage1/r31_unblended   latents -> /projects/dataggen/outputs/five_bench/r31_latents/edit2
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[r31_stage1] edit_type=2 method=r31_unblended pairs=13 vp_mode=vp steps=15 blend_sched=zero (Q/K blend OFF) dump_steps=[7, 14] measure_index=7
+[r31_stage1] frames -> /projects/dataggen/outputs/five_bench/r31_stage1/r31_unblended
+[r31_stage1] latents -> /projects/dataggen/outputs/five_bench/r31_latents/edit2
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.38975763320923 GB
+[[0, 1, 2, 3, 4, 5]] [[0, 1, 2]]
+[r31_stage1] GATE1 PASS 0011_lucia: step[14] == final latent (shape (15, 1, 18, 16, 60, 104))
+[ok] 0011_lucia: 2 steps x 69 frames + latents -> 0011_lucia.npz
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.32489347457886 GB
+[[0, 1, 2]] [[0, 1, 2]]
+[r31_stage1] GATE1 PASS 0014_burnout: step[14] == final latent (shape (15, 1, 18, 16, 60, 104))
+[ok] 0014_burnout: 2 steps x 69 frames + latents -> 0014_burnout.npz
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.32600927352905 GB
+[[0, 1, 2, 3, 4]] [[0, 1, 2, 3]]
+[r31_stage1] GATE1 PASS 0016_horsejump-high: step[14] == final latent (shape (15, 1, 12, 16, 60, 104))
+[ok] 0016_horsejump-high: 2 steps x 45 frames + latents -> 0016_horsejump-high.npz
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.34274625778198 GB
+[[0, 1]] [[1, 2]]
+[r31_stage1] GATE1 PASS 0028_kite-walk: step[14] == final latent (shape (15, 1, 18, 16, 60, 104))
+[ok] 0028_kite-walk: 2 steps x 69 frames + latents -> 0028_kite-walk.npz
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.32354116439819 GB
+[[0, 1, 2, 3, 4]] [[0, 1]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.266756534576416 GB
+[[0, 1, 2, 3, 4]] [[0, 1]]
+[r31_stage1] GATE1 PASS 0034_cows: step[14] == final latent (shape (15, 1, 24, 16, 60, 104))
+[ok] 0034_cows: 2 steps x 93 frames + latents -> 0034_cows.npz
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.306804180145264 GB
+[[0, 1, 2]] [[0, 1]]
+[r31_stage1] GATE1 PASS 0040_tennis: step[14] == final latent (shape (15, 1, 18, 16, 60, 104))
+[ok] 0040_tennis: 2 steps x 69 frames + latents -> 0040_tennis.npz
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.325451374053955 GB
+[[0, 1, 2, 3]] [[0, 1, 2]]
+[r31_stage1] GATE1 PASS 0057_dog: step[14] == final latent (shape (15, 1, 15, 16, 60, 104))
+[ok] 0057_dog: 2 steps x 57 frames + latents -> 0057_dog.npz
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.335257053375244 GB
+[[0, 1, 2, 3, 4]] [[0, 1, 2, 3]]
+[r31_stage1] GATE1 PASS 0068_planes-water: step[14] == final latent (shape (15, 1, 9, 16, 60, 104))
+[ok] 0068_planes-water: 2 steps x 33 frames + latents -> 0068_planes-water.npz
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.350435733795166 GB
+[[0, 1, 2, 3, 4]] [[0, 1, 2, 3]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.2939019203186 GB
+[[0, 1, 2, 3, 4]] [[0, 1, 2, 3]]
+[r31_stage1] GATE1 PASS 0074_rhino: step[14] == final latent (shape (15, 1, 21, 16, 60, 104))
+[ok] 0074_rhino: 2 steps x 81 frames + latents -> 0074_rhino.npz
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.313820362091064 GB
+[[0, 1]] [[0, 1]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.2572865486145 GB
+[[0, 1]] [[0, 1]]
+[r31_stage1] GATE1 PASS 0075_A_bicycle: step[14] == final latent (shape (15, 1, 21, 16, 60, 104))
+[ok] 0075_A_bicycle: 2 steps x 81 frames + latents -> 0075_A_bicycle.npz
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.31421518325806 GB
+[[0, 1, 2]] [[0, 1]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.25729417800903 GB
+[[0, 1, 2]] [[0, 1]]
+[r31_stage1] GATE1 PASS 0076_A_rabbit: step[14] == final latent (shape (15, 1, 21, 16, 60, 104))
+[ok] 0076_A_rabbit: 2 steps x 81 frames + latents -> 0076_A_rabbit.npz
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.313820362091064 GB
+[[0, 1, 2]] [[0, 1, 2]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.2572865486145 GB
+[[0, 1, 2]] [[0, 1, 2]]
+[r31_stage1] GATE1 PASS 0090_A_deer: step[14] == final latent (shape (15, 1, 21, 16, 60, 104))
+[ok] 0090_A_deer: 2 steps x 81 frames + latents -> 0090_A_deer.npz
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.31421518325806 GB
+[[0, 1, 2]] [[0, 1, 2, 3, 4]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.25729417800903 GB
+[[0, 1, 2]] [[0, 1, 2, 3, 4]]
+[r31_stage1] GATE1 PASS 0091_A_hawk: step[14] == final latent (shape (15, 1, 21, 16, 60, 104))
+[ok] 0091_A_hawk: 2 steps x 81 frames + latents -> 0091_A_hawk.npz
+[r31_stage1] done edit2: 13/13 ok -> /projects/dataggen/outputs/five_bench/r31_stage1/r31_unblended/_manifest_edit2.csv
+[r31_stage1] edit2: npz=13 frame_dirs=26 (expect npz x 2) GATE1=13
+[r31_stage1] failures: 0

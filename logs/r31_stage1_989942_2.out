@@ -1,0 +1,20 @@
+[r31_stage1] job=989942_2 edit_type=3
+[r31_stage1] method=r31_unblended steps=15 blend_sched=zero (Q/K blend OFF)
+[r31_stage1] dump_steps=7,14 measure_index=7
+[r31_stage1] frames -> /projects/dataggen/outputs/five_bench/r31_stage1/r31_unblended   latents -> /projects/dataggen/outputs/five_bench/r31_latents/edit3
+Free VRAM 43.96807861328125 GB
+KV inference with 3 frames per block
+[r31_stage1] edit_type=3 method=r31_unblended pairs=2 vp_mode=vp steps=15 blend_sched=zero (Q/K blend OFF) dump_steps=[7, 14] measure_index=7
+[r31_stage1] frames -> /projects/dataggen/outputs/five_bench/r31_stage1/r31_unblended
+[r31_stage1] latents -> /projects/dataggen/outputs/five_bench/r31_latents/edit3
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.388423442840576 GB
+[[0, 1, 2]] [[4, 5, 6]]
+[r31_stage1] GATE1 PASS 0017_kid-football: step[14] == final latent (shape (15, 1, 15, 16, 60, 104))
+[ok] 0017_kid-football: 2 steps x 57 frames + latents -> 0017_kid-football.npz
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.33192777633667 GB
+[[0, 1, 2, 3]] [[0, 1, 2, 3]]
+[r31_stage1] GATE1 PASS 0058_boat: step[14] == final latent (shape (15, 1, 18, 16, 60, 104))
+[ok] 0058_boat: 2 steps x 69 frames + latents -> 0058_boat.npz
+[r31_stage1] done edit3: 2/2 ok -> /projects/dataggen/outputs/five_bench/r31_stage1/r31_unblended/_manifest_edit3.csv
+[r31_stage1] edit3: npz=2 frame_dirs=4 (expect npz x 2) GATE1=2
+[r31_stage1] failures: 0

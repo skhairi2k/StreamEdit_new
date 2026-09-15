@@ -1,0 +1,7 @@
+[anchor-sim] 0057_dog               e2 none           f0=0.598 mean=0.557 slope=-0.09
+[anchor-sim] 0057_dog               e2 all            f0=0.949 mean=0.813 slope=-0.11
+[anchor-sim] 0057_dog               e2 spatial        f0=0.686 mean=0.565 slope=-0.18
+[anchor-sim] 0057_dog               e2 temporal       f0=0.593 mean=0.532 slope=-0.14
+[anchor-sim] 0057_dog               e2 r7_vp          f0=0.763 mean=0.390 slope=-0.24
+[anchor-sim] 5 arm x clip rows -> /tmp/anchor_smoke.csv
+[anchor-sim] 145 per-frame rows -> /tmp/anchor_smoke_per_frame.csv

@@ -1,0 +1,19 @@
+[r26_dump] node=node39 CUDA_VISIBLE_DEVICES=0
+[r26_dump] SLURM_JOB_GPUS=3 LD_LIBRARY_PATH=/home/ids/skhairi/anaconda3/envs/loraedit/lib:/home/ids/skhairi/anaconda3/envs/loraedit/lib64:/home/ids/skhairi/anaconda3/envs/loraedit/lib:/home/ids/skhairi/anaconda3/envs/loraedit/lib64:
+GPU 0: NVIDIA L40S (UUID: GPU-25914df1-99ab-e6a7-5f87-359345c089bf)
+[r26_dump] torch 2.8.0+cu128 cuda_ok True n 1
+[r26_dump] job=960715_5 edit_type=6 method=r26_dump
+[r26_dump] cases=/home/ids/skhairi/Code/StreamEdit_bigchantier/evaluation/cases.json masks->/projects/dataggen/outputs/five_bench/r26_masks/edit6/ expect 1 clip(s)
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=6 method=r26_dump pairs=1 vp_mode=vp blend_sched=zero out=/projects/dataggen/outputs/five_bench/r26_masks_render/r26_dump/edit6
+[run_fivebench] R26 pass 1: dumping M_f -> /projects/dataggen/outputs/five_bench/r26_masks/edit6/
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.38975763320923 GB
+[[0, 1]] [[6, 7, 8, 9, 10]]
+[ok] 0042_gym-ball: 69 frames  tau=2.0
+[run_fivebench] done edit6: 1/1 ok -> /projects/dataggen/outputs/five_bench/r26_masks_render/r26_dump/edit6/_manifest.csv
+[r26_dump] edit6 frame dirs: 1 (expected 1)
+[r26_dump] edit6 mask npz: 1 (expected 1)
+  0042_gym-ball.npz                shape=(18,1560) distinct=1/18 fg_frac min=1.000 med=1.000 max=1.000  <-- BAD: mask entirely full (inverted or defaulted to ones)
+[r26_dump] npz sanity: 1 bad
+[r26_dump] failures: 1

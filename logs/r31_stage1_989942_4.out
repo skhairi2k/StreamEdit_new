@@ -1,0 +1,24 @@
+[r31_stage1] job=989942_4 edit_type=5
+[r31_stage1] method=r31_unblended steps=15 blend_sched=zero (Q/K blend OFF)
+[r31_stage1] dump_steps=7,14 measure_index=7
+[r31_stage1] frames -> /projects/dataggen/outputs/five_bench/r31_stage1/r31_unblended   latents -> /projects/dataggen/outputs/five_bench/r31_latents/edit5
+Free VRAM 43.96807861328125 GB
+KV inference with 3 frames per block
+[r31_stage1] edit_type=5 method=r31_unblended pairs=3 vp_mode=vp steps=15 blend_sched=zero (Q/K blend OFF) dump_steps=[7, 14] measure_index=7
+[r31_stage1] frames -> /projects/dataggen/outputs/five_bench/r31_stage1/r31_unblended
+[r31_stage1] latents -> /projects/dataggen/outputs/five_bench/r31_latents/edit5
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.388981342315674 GB
+[[0, 1]] [[0, 1, 2, 3, 4]]
+[r31_stage1] GATE1 PASS 0007_guitar-violin: step[14] == final latent (shape (15, 1, 12, 16, 60, 104))
+[ok] 0007_guitar-violin: 2 steps x 45 frames + latents -> 0007_guitar-violin.npz
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.34085416793823 GB
+[[0, 1, 2, 3, 4, 5]] [[7, 8, 9, 10, 11]]
+[r31_stage1] GATE1 PASS 0011_lucia: step[14] == final latent (shape (15, 1, 18, 16, 60, 104))
+[ok] 0011_lucia: 2 steps x 69 frames + latents -> 0011_lucia.npz
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.32300138473511 GB
+[[0, 1, 2]] [[4, 5, 6, 7, 8, 9, 10]]
+[r31_stage1] GATE1 PASS 0069_car-turn: step[14] == final latent (shape (15, 1, 18, 16, 60, 104))
+[ok] 0069_car-turn: 2 steps x 69 frames + latents -> 0069_car-turn.npz
+[r31_stage1] done edit5: 3/3 ok -> /projects/dataggen/outputs/five_bench/r31_stage1/r31_unblended/_manifest_edit5.csv
+[r31_stage1] edit5: npz=3 frame_dirs=6 (expect npz x 2) GATE1=3
+[r31_stage1] failures: 0

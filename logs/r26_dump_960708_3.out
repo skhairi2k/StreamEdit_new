@@ -1,0 +1,12 @@
+[r26_dump] node=node39 CUDA_VISIBLE_DEVICES=0
+[r26_dump] SLURM_JOB_GPUS=3 LD_LIBRARY_PATH=/home/ids/skhairi/anaconda3/envs/loraedit/lib:/home/ids/skhairi/anaconda3/envs/loraedit/lib64:/home/ids/skhairi/anaconda3/envs/loraedit/lib:/home/ids/skhairi/anaconda3/envs/loraedit/lib64:
+GPU 0: NVIDIA L40S (UUID: GPU-25914df1-99ab-e6a7-5f87-359345c089bf)
+[r26_dump] torch 2.8.0+cu128 cuda_ok True n 1
+[r26_dump] job=960708_3 edit_type=4 method=r26_dump
+[r26_dump] cases=/home/ids/skhairi/Code/StreamEdit_bigchantier/evaluation/cases.json masks->/projects/dataggen/outputs/five_bench/r26_masks/edit4/ expect 2 clip(s)
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=4 method=r26_dump pairs=2 vp_mode=vp blend_sched=zero out=/projects/dataggen/outputs/five_bench/r26_masks_render/r26_dump/edit4
+[run_fivebench] R26 pass 1: dumping M_f -> /projects/dataggen/outputs/five_bench/r26_masks/edit4/
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.38975763320923 GB
+[[0, 1]] [[0, 1, 2]]

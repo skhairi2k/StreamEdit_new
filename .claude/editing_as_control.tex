@@ -1,0 +1,289 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,hyperref}
+\title{Editing as Control: Online Injection Scheduling for Causal Streaming Video Editors}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+
+\section{Motivation and problem statement}
+
+We edit video with a \emph{frozen, pre-trained causal streaming generator} (the StreamEdit
+setting): a few-step generator that emits frames left-to-right, each conditioned on the
+realized past through a rolling KV cache. Editing is performed by a dual-branch scheme in
+which source-video information is injected into the target branch through a self-attention
+bridge (plus cross-attention grounding/boosting).
+
+\textbf{The gap.} The injection strength is currently an \emph{open-loop} schedule: a fixed
+function of diffusion timestep (and, optionally, a spatial mask), committed before generation
+begins. A non-causal two-branch editor \emph{must} be open-loop, because all frames are
+denoised jointly and there is no realized past to react to. Empirically, no single schedule is
+best: the injection curve that maximizes quality depends on the clip and on the edit type
+(local structure-preserving edit vs.\ global appearance/style vs.\ motion change). A fixed
+schedule therefore leaves quality on the table, and hand-selecting a schedule per edit type
+does not scale.
+
+\textbf{What causality buys us.} After emitting frame $t$, a causal generator exposes a
+realized state --- the decoded frame and the KV cache --- that can be \emph{measured}, so the
+injection strength for frame $t{+}1$ can be a \emph{function of that measurement}. This closes
+a feedback loop that is cheap precisely because generation is causal and few-step. The claim
+is not that only causal models can obtain feedback (a non-causal editor could iterate over
+multiple passes) but that causality makes \emph{single-pass, online, state-dependent} control
+affordable.
+
+\textbf{Problem.} Given a frozen streaming editor, a source video, and an edit instruction,
+produce the injection control signal $u_t$ (per-frame, and ideally per-region and per-layer)
+that maximizes edit quality --- jointly: source preservation in non-edited regions, edit
+fidelity in edited regions, and temporal consistency --- \emph{online}, within the latency
+budget that motivates streaming in the first place.
+
+\section{Method}
+
+We treat injection scheduling as \textbf{sequential decision-making over the injection control
+variable}, conditioned on causal state. The paper has two coupled contributions, deliberately
+ordered.
+
+\subsection*{(1) The phenomenon: a training-free online rule (analysis + lower bound)}
+
+A cheap, hand-designed feedback law that already beats every fixed schedule. At each streaming
+step, compute a low-cost observation $o_t$ from the frozen model's own signals:
+\begin{itemize}
+  \item source-preservation error in the non-edited region (e.g.\ feature/statistic distance
+        between source and target branch outside the edit mask);
+  \item edit-prompt alignment in the edited region (e.g.\ cross-attention energy on the edit
+        tokens, or a light CLIP-style score);
+  \item temporal drift vs.\ the previous edited frame.
+\end{itemize}
+A fixed control law $u_{t+1} = g(o_t)$ (PID-like, or a small monotone rule) maps the
+observation to the next injection strength. This is \emph{training-free and plug-and-play};
+its role is to establish that the closed-loop gap is real and not a training artifact, and to
+serve as an ablation baseline. \textbf{(speculative)} the exact observation set is unvalidated;
+the design constraint is that computing $o_t$ must be cheap relative to a generation step.
+
+\textbf{Where the proof lands.} Beating the dataset-averaged \emph{fixed-best} schedule is
+necessary but \emph{not sufficient}: two gaps hide in ``online beats fixed.'' (i) A
+\emph{per-clip adaptation} gap --- the schedule should depend on the clip --- is already
+captured by cheaply \emph{selecting} the best fixed curve per clip, and has nothing to do with
+causality. (ii) The \emph{within-clip closed-loop} gap is what a per-frame reactive controller
+gets \emph{beyond any single fixed curve}, and only this requires state feedback. Since the
+oracle per-clip schedule is still one fixed curve replayed on every frame, the rule's proof of
+the closed-loop gap lands \emph{only against oracle-per-clip}, not against fixed-best: a
+single-pass rule that beats the hindsight-chosen best fixed curve is clean evidence that
+reacting to realized state buys something no fixed curve can. Beating only fixed-best collapses
+the thesis into ``tune the schedule per clip,'' which needs no causality.
+
+\subsection*{(2) The method: a learned injection-control policy}
+
+A lightweight policy $\pi_\theta$ that reads causal state and outputs $u_t$ per frame (and per
+region/layer), realizing the full potential the rule only approximates. Formulation:
+\begin{itemize}
+  \item \textbf{State.} The controller's observation is drawn from the streaming-specific
+        state --- the KV cache summary and the decoded-so-far frames --- not just the diffusion
+        timestep. \emph{This is the load-bearing use of causality and must remain so.}
+  \item \textbf{Action.} $u_t$: injection gain(s), resolved per region and per attention layer.
+  \item \textbf{Reward.} A trade-off of source preservation, edit fidelity, and temporal
+        consistency, evaluated on the realized stream. \textbf{(speculative)} terminal vs.\
+        dense reward shaping is unresolved; sparse terminal reward is the honest default but
+        credit assignment over a long stream is a risk. The flag is about \emph{when} the policy
+        receives reward during a rollout:
+        \begin{itemize}
+          \item \textbf{Terminal (sparse).} Score the edit \emph{once}, at clip end (final
+                CLIP + preservation + temporal); one scalar per rollout. \emph{Pro:} the honest
+                objective --- exactly what we care about, no per-frame proxy to game.
+                \emph{Con:} credit assignment --- a single terminal scalar spread over $\sim$40
+                per-frame $u_t$ decisions gives high-variance gradients and slow/unstable
+                training (classic sparse-reward RL, worsened by the long horizon).
+          \item \textbf{Dense (shaped).} Hand out a per-frame $r_t$ (e.g.\ this frame's
+                preservation error + edit alignment). \emph{Pro:} easier credit assignment,
+                faster convergence. \emph{Con:} optimizes a \emph{proxy} that may not sum to
+                true perceptual quality --- a policy can maximize the shaped reward while
+                degrading the edit (reward hacking; cf.\ ``Reward reliability'' below).
+        \end{itemize}
+        Default: sparse terminal reward (intellectually honest, matches GINH's setup), while
+        acknowledging the long-horizon credit-assignment risk is real and may force some shaping.
+  \item \textbf{Optional lookahead (MPC-lite).} Because the model is few-step, a cheap 1-step
+        rollout under a few candidate settings lets the policy pick $u_t$ minimizing predicted
+        next-frame error. \textbf{(speculative)} whether the lookahead cost is worth it under
+        the latency budget is an open experiment. The flag is about whether to add a
+        model-predictive-control step on top of (or instead of) the reactive policy:
+        \begin{itemize}
+          \item \textbf{The idea.} Since the generator is few-step, simulating one frame ahead
+                is cheap. For frame $t$, try a handful of candidate injection values
+                $\{u^{(1)}, u^{(2)}, \dots\}$, do a cheap 1-step rollout for each, measure
+                predicted next-frame error, and pick the best --- planning rather than pure
+                reaction. ``MPC-lite'' = a shallow (1-step, few-candidate) model-predictive
+                control.
+          \item \textbf{Spectrum point.} It sits \emph{between} the training-free rule and the
+                learned policy, and can itself be \emph{training-free} (no $\pi_\theta$, just
+                try-and-pick) --- a third rung on the fallback ladder (rule $\to$ MPC-lite $\to$
+                imitation $\to$ RL).
+          \item \textbf{Unresolved --- latency tension.} $K$ candidates means $K$ extra partial
+                rollouts per frame; if that approaches the cost of a real generation step it
+                eats the streaming latency budget --- the entire justification for a streaming
+                editor. The quality gain may be real, but whether it survives the latency
+                constraint is an open experiment (cf.\ ``Latency tension (existential)'' below),
+                not a settled design choice.
+        \end{itemize}
+\end{itemize}
+The generator stays frozen throughout; only $\pi_\theta$ is trained.
+
+\subsection*{Design components (shared by both)}
+\begin{itemize}
+  \item \textbf{Per-region / per-layer resolution} of the injection gain, rather than a single
+        global scalar per frame.
+  \item \textbf{Drift-aware re-anchoring:} monitor divergence from the source's temporal
+        structure and transiently boost source injection when drift is detected --- the
+        test-time, injection-knob analog of trained drift correction.
+\end{itemize}
+
+\section{Novelty claims}
+
+\begin{enumerate}
+  \item \textbf{Closed-loop beats open-loop.} An online, state-dependent injection schedule
+        strictly outperforms the best fixed schedule on a frozen streaming editor, across edit
+        types. \emph{Falsifiable:} beating dataset-averaged fixed-best is only necessary; the
+        real bar is \emph{oracle-per-clip} (the hindsight-chosen best fixed curve per clip). If
+        online $\approx$ oracle-per-clip, the gain is mere per-clip tuning --- capturable by
+        cheap selection, needing no causality --- and this claim fails.
+  \item \textbf{Learned approaches oracle.} A learned policy conditioned on causal state
+        approaches the oracle per-clip schedule (the upper bound), which the training-free rule
+        does not fully reach. \emph{Falsifiable:} if the learned policy $\approx$ the
+        training-free rule, the learned contribution is not justified.
+  \item \textbf{Causality is load-bearing, not incidental.} Conditioning the controller on
+        streaming-specific state (KV cache / realized frames) and/or cheap causal lookahead
+        yields gains that a schedule ignoring that state cannot. This is what converts our
+        contribution from an \emph{efficiency} claim (causality makes single-pass feedback
+        cheap --- true but reducible to ``a cheaper application of GINH'') into a
+        \emph{method-novelty} claim (the specific causal state is \emph{necessary}, not merely
+        convenient). \emph{Falsifiable:} if a controller that sees only the diffusion timestep
+        (GINH-shaped conditioning) matches the state-conditioned one, the streaming framing adds
+        nothing over generic adaptive-guidance work and we are GINH on a new knob. \emph{This
+        ablation --- timestep-only $<$ state-conditioned --- is the paper.}
+  \item \textbf{Training-free, plug-and-play at the method level.} The whole approach sits on a
+        frozen generator with no distillation or generator fine-tuning --- distinguishing it
+        from trained streaming editors.
+\end{enumerate}
+
+\section{Relation to prior work}
+
+\textbf{Adaptive/feedback control of guidance (mechanism precedent, wrong domain).}
+CFG-Ctrl frames a guidance-weight scheduler as a time-varying proportional feedback controller
+(gain scheduling). Feedback Guidance (FBG) uses a state-dependent coefficient to self-regulate
+guidance. Adaptive Diffusion Guidance via Stochastic Optimal Control (Azangulov et al., 2505.19367)
+casts scheduling as control selecting strength from time/sample/class. ``Guidance Is Not a
+Hyperparameter'' (2605.07701) learns the schedule via RL as sequential decision-making under
+sparse terminal reward. \emph{Difference:} all control the \emph{CFG guidance scalar} in
+image / non-streaming diffusion. We control the \emph{source-injection strength} on a
+streaming editor's self-attention bridge, conditioned on \emph{causal state}. This distinction
+is the whole novelty --- if it blurs, claim 3 falls (see Open questions).
+
+\textbf{Why GINH is the threat, precisely.} Strip the domain and our headline method (2) \emph{is}
+GINH's abstraction: a learned policy setting a guidance-like scalar, framed as sequential
+decision-making under sparse terminal reward, conditioned on state, generator frozen. The
+one-line reviewer reduction is ``GINH applied to a different knob (injection vs.\ CFG) in a
+different modality (streaming video edit vs.\ image gen).'' Crucially, \textbf{``we condition on
+causal state'' is not the escape}: GINH already conditions its policy on state (sample, class,
+time), and ``use realized state so far to set the next control step'' is exactly its move ---
+ours merely runs the autoregression over frames rather than denoising steps. Our genuinely
+distinct contribution is therefore an \emph{efficiency} one --- causality makes single-pass,
+online, state-dependent feedback \emph{cheap}, where a non-causal editor would need multi-pass
+iteration to obtain the same signal. That efficiency claim only upgrades to a \emph{method-novelty}
+claim if the causal state is shown \emph{necessary}: a policy seeing only the diffusion timestep
+(GINH-shaped conditioning) must fail to match the state-conditioned one (claim 3). That ablation
+is the paper.
+
+\textbf{Causal / streaming video editing (direct competitors, all trained).}
+LiveEdit (ECCV 2026): causal frame-by-frame editing via three-stage distillation from a
+bidirectional teacher, plus an AR-oriented mask cache. JoyAI-Video-Edit: 16B AR editor with
+Source-Anchored DMD and long-horizon AR distillation to preserve source fidelity and mitigate
+drift. AnchorEdit (2606.11751): AR-diffusion multi-turn \emph{image} editing with self-rollout
+and anchor memory. \emph{Difference:} these train/distill the editor; we place a controller on
+a \emph{frozen} generator and act at test time. Their existence makes the field crowded ---
+our defensible niche is training-free test-time control.
+
+\textbf{Drift / exposure bias in AR video (scaffolding for re-anchoring).}
+Self Forcing (NeurIPS 2025) conditions each frame on self-generated outputs to fix exposure
+bias; TetherCache is a training-free cache-management strategy that aligns recalled memory
+tokens to a trusted distribution to reduce drift; Resampling Forcing / Self-Forcing++ extend
+the toolkit. \emph{Difference:} these address drift in \emph{generation} via training or cache
+edits; we address editing-time drift at test time via the injection knob.
+
+\section{Open questions and risks}
+
+\begin{itemize}
+  \item \textbf{Latency tension (existential).} The justification for streaming is low latency.
+        If computing $o_t$ / the reward / the lookahead costs near a generation step, the
+        advantage is eaten. Controller and measurements must be cheap; this is a design
+        constraint, not a footnote.
+  \item \textbf{The oracle gap (make-or-break).} Required experiment: fixed-best schedule vs.\
+        oracle per-clip schedule (upper bound) vs.\ training-free rule vs.\ learned policy. The
+        load-bearing comparison is \emph{rule/policy vs.\ oracle-per-clip}, not vs.\ fixed-best:
+        beating fixed-best only proves the schedule should be clip-dependent, which cheap
+        best-of-$K$ selection already achieves without any feedback loop. To isolate the
+        \emph{within-clip} closed-loop gap, the rule must beat oracle-per-clip single-pass (or
+        an ablation freezing the rule to its clip-average $u$ must degrade). If online
+        $\approx$ oracle-per-clip, the thesis collapses into per-clip hyperparameter sweeping.
+  \item \textbf{Novelty vs.\ RL-guidance work (the central threat).} Our headline method \emph{is}
+        GINH's abstraction (state-conditioned RL policy over a guidance-like scalar, sparse
+        terminal reward, frozen model); ``we condition on causal state'' is not an escape, since
+        GINH already conditions on state. The only distinct contribution is \emph{cheap
+        single-pass feedback} (an efficiency axis GINH does not touch), and it upgrades to
+        method-novelty \emph{only} by proving the causal state necessary: timestep-only $<$
+        state-conditioned (claim 3). Absent that ablation, we are GINH applied to video editing.
+  \item \textbf{``Only causal'' overclaim.} Frame the causal advantage as efficiency/latency
+        (single-pass feedback), never as impossibility for non-causal editors.
+  \item \textbf{RL instability.} Learning a policy on top of a video diffusion model is finicky
+        (reward hacking, credit assignment over long streams, training cost). Fallback: if the
+        learned pipeline is unstable, the training-free rule is a shippable result on its own,
+        though a weaker CVPR contribution.
+  \item \textbf{Reward reliability.} The online reward proxies (source preservation, edit
+        alignment, temporal consistency) may be gameable or mis-calibrated; a policy that
+        maximizes a bad proxy can degrade perceptual quality.
+\end{itemize}
+
+\section{Changelog}
+
+\subsection*{2026-08-11 --- Initial idea seeded}
+Established the core proposal: treat source-injection scheduling in a frozen causal streaming
+video editor (StreamEdit setting) as a closed-loop control problem, exploiting the realized
+causal state (decoded frames + KV cache) that a non-causal two-branch editor cannot access
+single-pass. Chose a two-part structure: (1) a training-free online feedback rule as the
+\emph{phenomenon / lower bound / ablation}, and (2) a \emph{learned injection-control policy}
+as the headline method. Rationale for favoring the learned controller as the CVPR candidate:
+the training-free-only version is vulnerable to the ``just a hand-tuned heuristic schedule''
+objection and offers a thin mechanism, whereas the learned policy can make and test the strong
+claim of approaching the oracle per-clip schedule. Recorded the oracle-schedule comparison as
+the designated falsifier for the central claim, and flagged that causality must be load-bearing
+in the controller's state or the contribution reduces to existing RL-over-guidance work
+(``Guidance Is Not a Hyperparameter''). Seeded relation-to-prior-work from a verified
+literature search (adaptive-guidance-control line; trained streaming editors LiveEdit /
+JoyAI-Video-Edit / AnchorEdit; drift/exposure-bias line Self Forcing / TetherCache).
+Open direction not yet committed: speculative/anytime ``draft-and-verify'' editing over the
+injection knob, deferred as a possible second act.
+
+\subsection*{2026-08-11 --- Sharpened falsifiers: oracle-per-clip bar and the GINH reduction}
+Tightened three positioning points after a critique pass. (i) \emph{Corrected the falsifier for
+the closed-loop claim}: beating dataset-averaged fixed-best is necessary but not sufficient, as
+it only proves the schedule should be clip-dependent (capturable by cheap best-of-$K$ selection,
+no causality). The proof of the \emph{within-clip} closed-loop gap lands only against
+oracle-per-clip; updated claim 1, the method's subsection (1), and the oracle-gap open question
+accordingly. (ii) \emph{Named GINH as the central threat explicitly}: the headline learned policy
+\emph{is} GINH's abstraction (state-conditioned RL policy over a guidance-like scalar, sparse
+terminal reward, frozen generator), so a reviewer can reduce it to ``GINH on a new knob in a new
+modality.'' (iii) \emph{Reframed the causal-state defense}: ``we condition on causal state'' is
+not an escape because GINH already conditions on state; our distinct contribution is the
+\emph{efficiency} of cheap single-pass feedback, which upgrades to method-novelty only if the
+causal state is shown \emph{necessary} (timestep-only $<$ state-conditioned). Elevated that
+ablation to ``the paper'' in claim 3 and the relation-to-prior-work and open-questions sections.
+No change to the method mechanism; these edits harden the novelty spine against the GINH
+reduction.
+
+\subsection*{2026-08-11 --- Expanded the two speculative flags in Method (2)}
+Unpacked the reward-shaping and lookahead \textbf{(speculative)} flags inline with their pro/con
+reasoning, so the design forks are legible without the transcript. Reward: terminal (sparse,
+honest, hard credit assignment) vs.\ dense (shaped, easier, proxy/reward-hacking risk), default
+sparse-terminal. Lookahead (MPC-lite): the try-$K$-candidates-and-pick idea, its place on the
+fallback ladder (can be training-free), and the latency tension that makes it an open
+experiment. Both forks remain undecided --- flags kept, no default committed beyond the reward
+one.
+\end{document}

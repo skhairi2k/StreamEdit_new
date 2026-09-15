@@ -1,0 +1,4 @@
+[r30_stage2] === render task 5: arm=depth ===
+[r30_stage2] SKIP depth -- no b map at /home/ids/skhairi/Code/StreamEdit_bigchantier/evaluation/csv/r30_b_map_depth.csv.
+[r30_stage2]   r30_b_map.py refused to write one for this arm (see
+[r30_stage2]   logs/r30_stage1_*.out); it does not cover all 22 clips.

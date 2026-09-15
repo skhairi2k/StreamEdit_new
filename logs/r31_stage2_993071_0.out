@@ -1,0 +1,18 @@
+[r31_stage2] job=993071_0 arm=lpips
+[r31_stage2] target=/projects/dataggen/outputs/five_bench/r31_stage1/r31_unblended_s7/step06
+[r31_stage2] latents=/projects/dataggen/outputs/five_bench/r31_latents_s7  ->  /projects/dataggen/outputs/five_bench/r31_div/lpips
+[r31_stage2] stage-1 latents found: 22 (expect 22)
+[r31_stage2] --- lpips / edit1 ---
+[r31_stage2] FAILED lpips / edit1
+[r31_stage2] --- lpips / edit2 ---
+[r31_stage2] FAILED lpips / edit2
+[r31_stage2] --- lpips / edit3 ---
+[r31_stage2] FAILED lpips / edit3
+[r31_stage2] --- lpips / edit4 ---
+[r31_stage2] FAILED lpips / edit4
+[r31_stage2] --- lpips / edit5 ---
+[r31_stage2] FAILED lpips / edit5
+[r31_stage2] --- lpips / edit6 ---
+[r31_stage2] FAILED lpips / edit6
+[r31_stage2] arm=lpips: 0 npz (expect 22) failures=6
+[r31_stage2] 18/88 npz present -- another arm is still running; grids skipped

@@ -1,0 +1,37 @@
+=== R25 step 3: IoU -> tau (budget_linear) ===
+iou_csv     evaluation/csv/r25_iou.csv (22 cases)
+IoU range   [0.0000, 0.9077]  span 0.9077
+assign      reversed
+tau range   [2.0, 20.0]  (Eq.4 baseline blend_power = 2.0)
+schedule    --step 15, --flow_shift 1.0
+budget      A(2) = 4.5062   A(20) = 0.3200
+
+video_name               type      iou      tau  vs Eq.4
+0042_gym-ball               6   0.0000   2.0000  +0.00
+0011_lucia                  5   0.0228   2.1419  +0.14
+0069_car-turn               5   0.0263   2.8752  +0.88
+0075_A_bicycle              2   0.0652   3.6721  +1.67
+0091_A_hawk                 2   0.1065   3.7008  +1.70
+0007_guitar-violin          5   0.1184   4.1169  +2.12
+0011_lucia                  2   0.2117   4.1518  +2.15
+0090_A_deer                 2   0.2274   4.4899  +2.49
+0040_tennis                 2   0.2310   5.1326  +3.13
+0068_planes-water           2   0.2551   5.4381  +3.44
+0016_horsejump-high         2   0.2812   6.1083  +4.11
+0028_kite-walk              2   0.2861   6.1876  +4.19
+0014_burnout                2   0.3329   6.6364  +4.64
+0034_cows                   2   0.3577   7.1064  +5.11
+0074_rhino                  2   0.4190   7.1820  +5.18
+0076_A_rabbit               2   0.4575   7.5269  +5.53
+0001_bus                    1   0.4618  10.4281  +8.43
+0057_dog                    2   0.5175  10.9568  +8.96
+0028_kite-walk              4   0.5217  13.2706  +11.27
+0089_A_dog                  4   0.6639  16.5635  +14.56
+0058_boat                   3   0.8589  16.9526  +14.95
+0017_kid-football           3   0.9077  20.0000  +18.00
+
+realized tau spread: [2.0000, 20.0000]  span 18.0000
+cases routed FASTER than Eq.4 (tau > 2.0): 21/22
+
+wrote evaluation/csv/r25_tau_map_reversed.csv  (22 rows)
+wrote evaluation/csv/r25_tau_map_reversed.meta.json

@@ -1,0 +1,79 @@
+[r26_dump] node=node39 CUDA_VISIBLE_DEVICES=0
+[r26_dump] SLURM_JOB_GPUS=3 LD_LIBRARY_PATH=/home/ids/skhairi/anaconda3/envs/loraedit/lib:/home/ids/skhairi/anaconda3/envs/loraedit/lib64:/home/ids/skhairi/anaconda3/envs/loraedit/lib:/home/ids/skhairi/anaconda3/envs/loraedit/lib64:
+GPU 0: NVIDIA L40S (UUID: GPU-25914df1-99ab-e6a7-5f87-359345c089bf)
+[r26_dump] torch 2.8.0+cu128 cuda_ok True n 1
+[r26_dump] job=960715_1 edit_type=2 method=r26_dump
+[r26_dump] cases=/home/ids/skhairi/Code/StreamEdit_bigchantier/evaluation/cases.json masks->/projects/dataggen/outputs/five_bench/r26_masks/edit2/ expect 13 clip(s)
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=2 method=r26_dump pairs=13 vp_mode=vp blend_sched=zero out=/projects/dataggen/outputs/five_bench/r26_masks_render/r26_dump/edit2
+[run_fivebench] R26 pass 1: dumping M_f -> /projects/dataggen/outputs/five_bench/r26_masks/edit2/
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.38975763320923 GB
+[[0, 1, 2, 3, 4, 5]] [[0, 1, 2]]
+[ok] 0011_lucia: 69 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.072444438934326 GB
+[[0, 1, 2]] [[0, 1, 2]]
+[ok] 0014_burnout: 69 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.07356023788452 GB
+[[0, 1, 2, 3, 4]] [[0, 1, 2, 3]]
+[ok] 0016_horsejump-high: 45 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.179561138153076 GB
+[[0, 1]] [[1, 2]]
+[ok] 0028_kite-walk: 69 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.06913900375366 GB
+[[0, 1, 2, 3, 4]] [[0, 1]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.06560564041138 GB
+[[0, 1, 2, 3, 4]] [[0, 1]]
+[ok] 0034_cows: 93 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 34.963374614715576 GB
+[[0, 1, 2]] [[0, 1]]
+[ok] 0040_tennis: 69 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.071049213409424 GB
+[[0, 1, 2, 3]] [[0, 1, 2]]
+[ok] 0057_dog: 57 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.125486850738525 GB
+[[0, 1, 2, 3, 4]] [[0, 1, 2, 3]]
+[ok] 0068_planes-water: 33 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.23020887374878 GB
+[[0, 1, 2, 3, 4]] [[0, 1, 2, 3]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.226675510406494 GB
+[[0, 1, 2, 3, 4]] [[0, 1, 2, 3]]
+[ok] 0074_rhino: 81 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.01558065414429 GB
+[[0, 1]] [[0, 1]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.012047290802 GB
+[[0, 1]] [[0, 1]]
+[ok] 0075_A_bicycle: 81 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.01597547531128 GB
+[[0, 1, 2]] [[0, 1]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.012442111968994 GB
+[[0, 1, 2]] [[0, 1]]
+[ok] 0076_A_rabbit: 81 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.01558065414429 GB
+[[0, 1, 2]] [[0, 1, 2]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.012047290802 GB
+[[0, 1, 2]] [[0, 1, 2]]
+[ok] 0090_A_deer: 81 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.01597547531128 GB
+[[0, 1, 2]] [[0, 1, 2, 3, 4]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.012442111968994 GB
+[[0, 1, 2]] [[0, 1, 2, 3, 4]]
+[ok] 0091_A_hawk: 81 frames  tau=2.0
+[run_fivebench] done edit2: 13/13 ok -> /projects/dataggen/outputs/five_bench/r26_masks_render/r26_dump/edit2/_manifest.csv
+[r26_dump] edit2 frame dirs: 13 (expected 13)
+[r26_dump] edit2 mask npz: 13 (expected 13)
+  0011_lucia.npz                   shape=(18,1560) distinct=18/18 fg_frac min=0.253 med=0.286 max=0.375
+  0014_burnout.npz                 shape=(18,1560) distinct=18/18 fg_frac min=0.222 med=0.315 max=0.376
+  0016_horsejump-high.npz          shape=(12,1560) distinct=12/12 fg_frac min=0.144 med=0.163 max=0.238
+  0028_kite-walk.npz               shape=(18,1560) distinct=18/18 fg_frac min=0.085 med=0.100 max=0.183
+  0034_cows.npz                    shape=(24,1560) distinct=24/24 fg_frac min=0.571 med=0.626 max=0.774
+  0040_tennis.npz                  shape=(18,1560) distinct=18/18 fg_frac min=0.256 med=0.320 max=0.436
+  0057_dog.npz                     shape=(15,1560) distinct=15/15 fg_frac min=0.192 med=0.303 max=0.346
+  0068_planes-water.npz            shape=(9,1560) distinct=9/9 fg_frac min=0.252 med=0.258 max=0.433
+  0074_rhino.npz                   shape=(21,1560) distinct=21/21 fg_frac min=0.274 med=0.308 max=0.506
+  0075_A_bicycle.npz               shape=(21,1560) distinct=21/21 fg_frac min=0.428 med=0.472 max=0.577
+  0076_A_rabbit.npz                shape=(21,1560) distinct=21/21 fg_frac min=0.271 med=0.385 max=0.522
+  0090_A_deer.npz                  shape=(21,1560) distinct=21/21 fg_frac min=0.431 med=0.614 max=0.715
+  0091_A_hawk.npz                  shape=(21,1560) distinct=21/21 fg_frac min=0.112 med=0.131 max=0.288
+[r26_dump] npz sanity: 0 bad
+[r26_dump] failures: 0

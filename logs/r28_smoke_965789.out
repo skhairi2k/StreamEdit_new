@@ -1,0 +1,7 @@
+[r28_smoke] node=node04 CUDA_VISIBLE_DEVICES=0
+GPU 0: NVIDIA A100-PCIE-40GB (UUID: GPU-ba544fc8-16fd-b35e-f451-5f243a74e8e0)
+[r28_smoke] torch 2.8.0+cu128 cuda_ok True
+=== dumping target masks for 2 arms on the smoke clips ===
+[r28_masks] 22 case(s), stride 8, arm root /projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg2_taufg2_vp
+[r28_masks] GroundingDINO + SAM2 loaded on cuda
+GATE0-FAIL mask dump failed for taubg2_taufg2_vp

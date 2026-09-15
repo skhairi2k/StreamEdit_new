@@ -1,0 +1,10 @@
+[r10] arm=none: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python evaluate.py --per_frame --config_path config.yaml --src_image_folder /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark --annotation_mapping_files /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit1_FiVE.json /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit2_FiVE.json /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit3_FiVE.json /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit4_FiVE.json /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit5_FiVE.json /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit6_FiVE.json --tgt_methods /projects/dataggen/outputs/five_bench/r10_vp_arms/none --tgt_layout edit_video --tgt_key none --cases_json /home/ids/skhairi/Code/StreamEdit_bigchantier/evaluation/cases.json --frame_stride 2 --metrics motion_fidelity_score_edit_part --device cuda --result_path /home/ids/skhairi/Code/StreamEdit_bigchantier/evaluation/csv/editpart/r10_none.csv
+evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit1_FiVE.json ...
+
+
+evaluating method: none
+
+evaluating metric: motion_fidelity_score_edit_part
+processing file_id
+processing none|motion_fidelity_score_edit_part
+evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit2_FiVE.json ...

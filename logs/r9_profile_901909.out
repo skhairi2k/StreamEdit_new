@@ -1,0 +1,8 @@
+[r9_profile] job=901909 case=0034_cows
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[r9] case=0034_cows latent_frames=21 blocks=7 steps=[1000, 932, 866, 800, 733, 666, 599, 533, 466, 400, 333, 266, 200, 133, 66]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.38877725601196 GB
+[[0, 1, 2, 3, 4]] [[0, 1, 2, 3, 4]]
+[r9] saved /projects/dataggen/outputs/five_bench/r9_head_profile/0034_cows/r9_scalars.npz (35 block-step points, maps=yes)
+[r9_profile] done: 5/5 npz present

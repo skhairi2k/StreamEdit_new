@@ -1,0 +1,16 @@
+[r25_infer] node=node39 CUDA_VISIBLE_DEVICES=0
+[r25_infer] SLURM_JOB_GPUS=0 LD_LIBRARY_PATH=/home/ids/skhairi/anaconda3/envs/streamgve/lib:/home/ids/skhairi/anaconda3/envs/streamgve/lib64:
+GPU 0: NVIDIA L40S (UUID: GPU-36ee7421-9dcc-be9f-5194-33d81d0cd6b5)
+[r25_infer] torch 2.8.0+cu128 cuda_ok True n 1
+[r25_infer] job=962628_0 edit_type=1 arm=reversed method=r25_reversed_vp
+[r25_infer] tau_map=/home/ids/skhairi/Code/StreamEdit_bigchantier/evaluation/csv/r25_tau_map_reversed.csv cases=/home/ids/skhairi/Code/StreamEdit_bigchantier/evaluation/cases.json expect 1 clip(s)
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] tau_map: 22 pairs loaded, 1 needed for edit1
+[run_fivebench] edit_type=1 method=r25_reversed_vp pairs=1 vp_mode=vp blend_sched=paper(eq4) out=/projects/dataggen/outputs/five_bench/r25_adaptive_tau/r25_reversed_vp/edit1
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.38975763320923 GB
+[[0, 1, 2]] [[0, 1, 2]]
+[ok] 0001_bus: 69 frames  tau=7.6506
+[run_fivebench] done edit1: 1/1 ok -> /projects/dataggen/outputs/five_bench/r25_adaptive_tau/r25_reversed_vp/edit1/_manifest.csv
+[r25_infer] edit1 frame dirs: 1 (expected 1)
+[r25_infer] failures: 0

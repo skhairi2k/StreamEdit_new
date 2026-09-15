@@ -1,0 +1,107 @@
+[smoke] wrote smoke_e5.json (2 clips) and smoke_e2.json (1 multi-window clip)
+=== pass 1: dump the grounding-mask union (--blend_sched zero) ===
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=5 method=dump_e5 pairs=2 vp_mode=vp blend_sched=zero out=/projects/dataggen/outputs/five_bench/r26_smoke/dump_e5/edit5
+[run_fivebench] R26 pass 1: dumping M_f -> /projects/dataggen/outputs/five_bench/r26_smoke/_masks/edit5/
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.390873432159424 GB
+[[0, 1]] [[0, 1, 2, 3, 4]]
+[ok] 0007_guitar-violin: 45 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.179561138153076 GB
+[[0, 1, 2]] [[4, 5, 6, 7, 8, 9, 10]]
+[ok] 0069_car-turn: 69 frames  tau=2.0
+[run_fivebench] done edit5: 2/2 ok -> /projects/dataggen/outputs/five_bench/r26_smoke/dump_e5/edit5/_manifest.csv
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=2 method=dump_e2 pairs=1 vp_mode=vp blend_sched=zero out=/projects/dataggen/outputs/five_bench/r26_smoke/dump_e2/edit2
+[run_fivebench] R26 pass 1: dumping M_f -> /projects/dataggen/outputs/five_bench/r26_smoke/_masks/edit2/
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.388405323028564 GB
+[[0, 1, 2, 3, 4]] [[0, 1]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.37551927566528 GB
+[[0, 1, 2, 3, 4]] [[0, 1]]
+[ok] 0034_cows: 93 frames  tau=2.0
+[run_fivebench] done edit2: 1/1 ok -> /projects/dataggen/outputs/five_bench/r26_smoke/dump_e2/edit2/_manifest.csv
+=== reference and spatial arms ===
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=5 method=eq4_vp pairs=2 vp_mode=vp blend_sched=paper(eq4) out=/projects/dataggen/outputs/five_bench/r26_smoke/eq4_vp/edit5
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.390873432159424 GB
+[[0, 1]] [[0, 1, 2, 3, 4]]
+[ok] 0007_guitar-violin: 45 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.179561138153076 GB
+[[0, 1, 2]] [[4, 5, 6, 7, 8, 9, 10]]
+[ok] 0069_car-turn: 69 frames  tau=2.0
+[run_fivebench] done edit5: 2/2 ok -> /projects/dataggen/outputs/five_bench/r26_smoke/eq4_vp/edit5/_manifest.csv
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=5 method=tau_2_2 pairs=2 vp_mode=vp blend_sched=paper(eq4) out=/projects/dataggen/outputs/five_bench/r26_smoke/tau_2_2/edit5
+[run_fivebench] R26 pass 2: spatial tau from /projects/dataggen/outputs/five_bench/r26_smoke/_masks/edit5/ tau_bg=2.0 tau_fg=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.39085578918457 GB
+[[0, 1]] [[0, 1, 2, 3, 4]]
+[ok] 0007_guitar-violin: 45 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.177581787109375 GB
+[[0, 1, 2]] [[4, 5, 6, 7, 8, 9, 10]]
+[ok] 0069_car-turn: 69 frames  tau=2.0
+[run_fivebench] done edit5: 2/2 ok -> /projects/dataggen/outputs/five_bench/r26_smoke/tau_2_2/edit5/_manifest.csv
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=5 method=tau_1_1 pairs=2 vp_mode=vp blend_sched=paper(eq4) out=/projects/dataggen/outputs/five_bench/r26_smoke/tau_1_1/edit5
+[run_fivebench] R26 pass 2: spatial tau from /projects/dataggen/outputs/five_bench/r26_smoke/_masks/edit5/ tau_bg=1.0 tau_fg=1.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.39085578918457 GB
+[[0, 1]] [[0, 1, 2, 3, 4]]
+[ok] 0007_guitar-violin: 45 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.177581787109375 GB
+[[0, 1, 2]] [[4, 5, 6, 7, 8, 9, 10]]
+[ok] 0069_car-turn: 69 frames  tau=2.0
+[run_fivebench] done edit5: 2/2 ok -> /projects/dataggen/outputs/five_bench/r26_smoke/tau_1_1/edit5/_manifest.csv
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=2 method=eq4_vp pairs=1 vp_mode=vp blend_sched=paper(eq4) out=/projects/dataggen/outputs/five_bench/r26_smoke/eq4_vp/edit2
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.388405323028564 GB
+[[0, 1, 2, 3, 4]] [[0, 1]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.37551927566528 GB
+[[0, 1, 2, 3, 4]] [[0, 1]]
+[ok] 0034_cows: 93 frames  tau=2.0
+[run_fivebench] done edit2: 1/1 ok -> /projects/dataggen/outputs/five_bench/r26_smoke/eq4_vp/edit2/_manifest.csv
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=2 method=tau_2_2 pairs=1 vp_mode=vp blend_sched=paper(eq4) out=/projects/dataggen/outputs/five_bench/r26_smoke/tau_2_2/edit2
+[run_fivebench] R26 pass 2: spatial tau from /projects/dataggen/outputs/five_bench/r26_smoke/_masks/edit2/ tau_bg=2.0 tau_fg=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.38837003707886 GB
+[[0, 1, 2, 3, 4]] [[0, 1]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.375483989715576 GB
+[[0, 1, 2, 3, 4]] [[0, 1]]
+[ok] 0034_cows: 93 frames  tau=2.0
+[run_fivebench] done edit2: 1/1 ok -> /projects/dataggen/outputs/five_bench/r26_smoke/tau_2_2/edit2/_manifest.csv
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=5 method=defaults pairs=2 vp_mode=novp blend_sched=paper(eq4) out=/projects/dataggen/outputs/five_bench/r26_smoke/defaults/edit5
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.39124536514282 GB
+[[0, 1]] [[0, 1, 2, 3, 4]]
+[ok] 0007_guitar-violin: 45 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.179933071136475 GB
+[[0, 1, 2]] [[4, 5, 6, 7, 8, 9, 10]]
+[ok] 0069_car-turn: 69 frames  tau=2.0
+[run_fivebench] done edit5: 2/2 ok -> /projects/dataggen/outputs/five_bench/r26_smoke/defaults/edit5/_manifest.csv
+=== GATE1: uniform tau(2,2) == Eq. 4 blend_power=2 ===
+  0069_car-turn  eq4=9328d68034701faeccecb8db48116db0c467302352c454bfe84e35c43be4e55b  tau22=9328d68034701faeccecb8db48116db0c467302352c454bfe84e35c43be4e55b
+  0007_guitar-violin  eq4=ace67409945bfcabc04453ad7558345011b838f42d2dc0fb57afb50aa068814f  tau22=ace67409945bfcabc04453ad7558345011b838f42d2dc0fb57afb50aa068814f
+IDENTICAL gate1: tau_bg=tau_fg=2 reproduces Eq. 4 bit-for-bit on both clips
+=== GATE2: defaults still match the stored baseline ===
+  0069_car-turn  baseline=a197417a55689e98bd191725801e060ffd2d2b9a33ad881b04ff43a3829e152d  defaults=a197417a55689e98bd191725801e060ffd2d2b9a33ad881b04ff43a3829e152d
+  0007_guitar-violin  baseline=cb539585ce0bff8f75949e3990cdb711cf88500872a15f94892004fcb4feb3c9  defaults=cb539585ce0bff8f75949e3990cdb711cf88500872a15f94892004fcb4feb3c9
+IDENTICAL gate2: defaults == five_bench/baseline
+=== GATE3: uniform tau(1,1) must DIFFER from Eq. 4 ===
+  0069_car-turn  eq4=9328d68034701faeccecb8db48116db0c467302352c454bfe84e35c43be4e55b  tau11=82ffe210e4da98c4b0de93f105250ccc35f0703b681cab1879b4c69ff5be6f0a
+  0007_guitar-violin  eq4=ace67409945bfcabc04453ad7558345011b838f42d2dc0fb57afb50aa068814f  tau11=822bfa399e3631b7b1622c51cc305a76135c48f536e7a364a97030c30ee41935
+DIFFERS gate3: tau=1 changes the render, so the field is not being ignored
+=== GATE4/GATE5: dumped masks are per-frame and window-complete ===
+  0069_car-turn M shape=(18, 1560) distinct_rows=18 fg_fraction min=0.1019 max=0.4660
+PERFRAME-OK gate4: M_f varies across 18/18 latent frames
+  0034_cows M shape=(24, 1560) distinct_rows=24
+MULTIWINDOW-OK gate5: 24 latent frames stitched across the window boundary
+  0034_cows  eq4=f281446cb9ca0f3a37206b2626c6e3c20fe6ffbd57263f6a6246c237d1772de9  tau22=f281446cb9ca0f3a37206b2626c6e3c20fe6ffbd57263f6a6246c237d1772de9
+IDENTICAL gate5b: tau(2,2) reproduces Eq. 4 across a window boundary too
+=== GATE6: incompatible flag combinations must SystemExit without rendering ===
+CROSSVAL-OK gate6: both incompatible combinations raised SystemExit
+--- r26_smoke done ---

@@ -1,0 +1,11 @@
+[r26_dump] node=node52 CUDA_VISIBLE_DEVICES=0
+[r26_dump] SLURM_JOB_GPUS=1 LD_LIBRARY_PATH=/home/ids/skhairi/anaconda3/envs/loraedit/lib:/home/ids/skhairi/anaconda3/envs/loraedit/lib64:/home/ids/skhairi/anaconda3/envs/loraedit/lib:/home/ids/skhairi/anaconda3/envs/loraedit/lib64:
+No devices found.
+  return torch._C._cuda_getDeviceCount() > 0
+[r26_dump] torch 2.8.0+cu128 cuda_ok False n 0
+[r26_dump] job=960708_0 edit_type=1 method=r26_dump
+[r26_dump] cases=/home/ids/skhairi/Code/StreamEdit_bigchantier/evaluation/cases.json masks->/projects/dataggen/outputs/five_bench/r26_masks/edit1/ expect 1 clip(s)
+[r26_dump] FAILED edit1
+[r26_dump] edit1 frame dirs: 0 (expected 1)
+[r26_dump] edit1 mask npz: 0 (expected 1)
+[r26_dump] failures: 1

@@ -1,0 +1,27 @@
+[r26_dump] node=node39 CUDA_VISIBLE_DEVICES=0
+[r26_dump] SLURM_JOB_GPUS=3 LD_LIBRARY_PATH=/home/ids/skhairi/anaconda3/envs/loraedit/lib:/home/ids/skhairi/anaconda3/envs/loraedit/lib64:/home/ids/skhairi/anaconda3/envs/loraedit/lib:/home/ids/skhairi/anaconda3/envs/loraedit/lib64:
+GPU 0: NVIDIA L40S (UUID: GPU-25914df1-99ab-e6a7-5f87-359345c089bf)
+[r26_dump] torch 2.8.0+cu128 cuda_ok True n 1
+[r26_dump] job=960715_4 edit_type=5 method=r26_dump
+[r26_dump] cases=/home/ids/skhairi/Code/StreamEdit_bigchantier/evaluation/cases.json masks->/projects/dataggen/outputs/five_bench/r26_masks/edit5/ expect 3 clip(s)
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=5 method=r26_dump pairs=3 vp_mode=vp blend_sched=zero out=/projects/dataggen/outputs/five_bench/r26_masks_render/r26_dump/edit5
+[run_fivebench] R26 pass 1: dumping M_f -> /projects/dataggen/outputs/five_bench/r26_masks/edit5/
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.390873432159424 GB
+[[0, 1]] [[0, 1, 2, 3, 4]]
+[ok] 0007_guitar-violin: 45 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.179561138153076 GB
+[[0, 1, 2, 3, 4, 5]] [[7, 8, 9, 10, 11]]
+[ok] 0011_lucia: 69 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.072444438934326 GB
+[[0, 1, 2]] [[4, 5, 6, 7, 8, 9, 10]]
+[ok] 0069_car-turn: 69 frames  tau=2.0
+[run_fivebench] done edit5: 3/3 ok -> /projects/dataggen/outputs/five_bench/r26_masks_render/r26_dump/edit5/_manifest.csv
+[r26_dump] edit5 frame dirs: 3 (expected 3)
+[r26_dump] edit5 mask npz: 3 (expected 3)
+  0007_guitar-violin.npz           shape=(12,1560) distinct=12/12 fg_frac min=0.172 med=0.227 max=0.331
+  0011_lucia.npz                   shape=(18,1560) distinct=18/18 fg_frac min=0.090 med=0.104 max=0.115
+  0069_car-turn.npz                shape=(18,1560) distinct=18/18 fg_frac min=0.102 med=0.219 max=0.466
+[r26_dump] npz sanity: 0 bad
+[r26_dump] failures: 0

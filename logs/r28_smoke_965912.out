@@ -1,0 +1,96 @@
+[r28_smoke] node=node50 CUDA_VISIBLE_DEVICES=0
+GPU 0: NVIDIA L40S (UUID: GPU-bc991228-330e-965c-3b75-7cf253e70da1)
+[r28_smoke] torch 2.8.0+cu128 cuda_ok True
+=== dumping target masks for 2 arms on the smoke clips ===
+[r28_masks] 22 case(s), stride 8, arm root /projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg2_taufg2_vp
+[r28_masks] GroundingDINO + SAM2 loaded on cuda
+[r28_masks] edit1/0001_bus               n=  9 fired=  9/9 tgt_fg=0.132 union_fg=0.180
+[r28_masks] edit2/0028_kite-walk         n=  9 fired=  8/9 tgt_fg=0.023 union_fg=0.037
+[r28_masks] edit2/0040_tennis            n=  9 fired=  9/9 tgt_fg=0.040 union_fg=0.048
+[r28_masks] edit2/0057_dog               n=  8 fired=  8/8 tgt_fg=0.084 union_fg=0.118
+[r28_masks] edit2/0011_lucia             n=  9 fired=  9/9 tgt_fg=0.044 union_fg=0.059
+[r28_masks] edit2/0014_burnout           n=  9 fired=  9/9 tgt_fg=0.061 union_fg=0.083
+[r28_masks] edit2/0016_horsejump-high    n=  6 fired=  6/6 tgt_fg=0.034 union_fg=0.056
+[r28_masks] edit2/0068_planes-water      n=  5 fired=  5/5 tgt_fg=0.108 union_fg=0.151
+[r28_masks] edit2/0074_rhino             n= 11 fired= 11/11 tgt_fg=0.135 union_fg=0.170
+[r28_masks] edit2/0075_A_bicycle         n= 11 fired= 11/11 tgt_fg=0.014 union_fg=0.061
+[r28_masks] edit2/0076_A_rabbit          n= 11 fired= 11/11 tgt_fg=0.074 union_fg=0.117
+[r28_masks] edit2/0090_A_deer            n= 11 fired= 11/11 tgt_fg=0.033 union_fg=0.066
+[r28_masks] edit2/0091_A_hawk            n= 11 fired= 11/11 tgt_fg=0.012 union_fg=0.019
+[r28_masks] edit5/0007_guitar-violin     n=  6 fired=  6/6 tgt_fg=0.275 union_fg=0.275
+[r28_masks] edit5/0069_car-turn          n=  9 fired=  9/9 tgt_fg=0.084 union_fg=0.084
+[r28_masks] edit5/0011_lucia             n=  9 fired=  9/9 tgt_fg=0.053 union_fg=0.053
+[r28_masks] edit6/0042_gym-ball          n=  9 fired=  0/9 tgt_fg=0.000 union_fg=0.114
+[r28_masks] edit2/0034_cows              n= 12 fired= 12/12 tgt_fg=0.111 union_fg=0.135
+[r28_masks] edit3/0017_kid-football      n=  8 fired=  8/8 tgt_fg=0.022 union_fg=0.182
+[r28_masks] edit3/0058_boat              n=  9 fired=  9/9 tgt_fg=0.065 union_fg=0.076
+[r28_masks] edit4/0089_A_dog             n= 11 fired= 11/11 tgt_fg=0.184 union_fg=0.201
+[r28_masks] edit4/0028_kite-walk         n=  9 fired=  9/9 tgt_fg=0.025 union_fg=0.035
+[r28_masks] failures: 0
+[r28_masks] 22 case(s), stride 8, arm root /projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg2_taufg10_vp
+[r28_masks] GroundingDINO + SAM2 loaded on cuda
+[r28_masks] edit1/0001_bus               n=  9 fired=  9/9 tgt_fg=0.095 union_fg=0.185
+[r28_masks] edit2/0028_kite-walk         n=  9 fired=  9/9 tgt_fg=0.047 union_fg=0.055
+[r28_masks] edit2/0040_tennis            n=  9 fired=  9/9 tgt_fg=0.061 union_fg=0.075
+[r28_masks] edit2/0057_dog               n=  8 fired=  8/8 tgt_fg=0.084 union_fg=0.139
+[r28_masks] edit2/0011_lucia             n=  9 fired=  9/9 tgt_fg=0.133 union_fg=0.145
+[r28_masks] edit2/0014_burnout           n=  9 fired=  9/9 tgt_fg=0.067 union_fg=0.104
+[r28_masks] edit2/0016_horsejump-high    n=  6 fired=  6/6 tgt_fg=0.034 union_fg=0.063
+[r28_masks] edit2/0068_planes-water      n=  5 fired=  5/5 tgt_fg=0.120 union_fg=0.164
+[r28_masks] edit2/0074_rhino             n= 11 fired= 11/11 tgt_fg=0.136 union_fg=0.195
+[r28_masks] edit2/0075_A_bicycle         n= 11 fired= 11/11 tgt_fg=0.018 union_fg=0.071
+[r28_masks] edit2/0076_A_rabbit          n= 11 fired= 11/11 tgt_fg=0.062 union_fg=0.130
+[r28_masks] edit2/0090_A_deer            n= 11 fired= 11/11 tgt_fg=0.031 union_fg=0.078
+[r28_masks] edit2/0091_A_hawk            n= 11 fired=  9/11 tgt_fg=0.065 union_fg=0.071
+[r28_masks] edit5/0007_guitar-violin     n=  6 fired=  6/6 tgt_fg=0.279 union_fg=0.279
+[r28_masks] edit5/0069_car-turn          n=  9 fired=  9/9 tgt_fg=0.107 union_fg=0.107
+[r28_masks] edit5/0011_lucia             n=  9 fired=  9/9 tgt_fg=0.052 union_fg=0.052
+[r28_masks] edit6/0042_gym-ball          n=  9 fired=  0/9 tgt_fg=0.000 union_fg=0.114
+[r28_masks] edit2/0034_cows              n= 12 fired= 12/12 tgt_fg=0.158 union_fg=0.179
+[r28_masks] edit3/0017_kid-football      n=  8 fired=  8/8 tgt_fg=0.023 union_fg=0.183
+[r28_masks] edit3/0058_boat              n=  9 fired=  9/9 tgt_fg=0.071 union_fg=0.084
+[r28_masks] edit4/0089_A_dog             n= 11 fired= 11/11 tgt_fg=0.216 union_fg=0.239
+[r28_masks] edit4/0028_kite-walk         n=  9 fired=  9/9 tgt_fg=0.025 union_fg=0.037
+[r28_masks] failures: 0
+=== building the fixed union over both arms ===
+[r28_union] 2 arms: taubg2_taufg10_vp, taubg2_taufg2_vp
+[r28_union] 22 cases, stride 8 -> /projects/dataggen/outputs/five_bench/r28_smoke/masks/_fixed_union
+[r28_union] edit1/0001_bus               n=  9 union_fg=0.185 (src 0.178)
+[r28_union] edit2/0028_kite-walk         n=  9 union_fg=0.055 (src 0.034)
+[r28_union] edit2/0040_tennis            n=  9 union_fg=0.077 (src 0.044)
+[r28_union] edit2/0057_dog               n=  8 union_fg=0.140 (src 0.117)
+[r28_union] edit2/0011_lucia             n=  9 union_fg=0.146 (src 0.052)
+[r28_union] edit2/0014_burnout           n=  9 union_fg=0.105 (src 0.078)
+[r28_union] edit2/0016_horsejump-high    n=  6 union_fg=0.064 (src 0.053)
+[r28_union] edit2/0068_planes-water      n=  5 union_fg=0.169 (src 0.139)
+[r28_union] edit2/0074_rhino             n= 11 union_fg=0.198 (src 0.164)
+[r28_union] edit2/0075_A_bicycle         n= 11 union_fg=0.073 (src 0.059)
+[r28_union] edit2/0076_A_rabbit          n= 11 union_fg=0.131 (src 0.116)
+[r28_union] edit2/0090_A_deer            n= 11 union_fg=0.079 (src 0.063)
+[r28_union] edit2/0091_A_hawk            n= 11 union_fg=0.071 (src 0.011)
+[r28_union] edit5/0007_guitar-violin     n=  6 union_fg=0.279 (src 0.275)
+[r28_union] edit5/0069_car-turn          n=  9 union_fg=0.107 (src 0.083)
+[r28_union] edit5/0011_lucia             n=  9 union_fg=0.053 (src 0.052)
+[r28_union] edit6/0042_gym-ball          n=  9 union_fg=0.114 (src 0.114)
+[r28_union] edit2/0034_cows              n= 12 union_fg=0.181 (src 0.126)
+[r28_union] edit3/0017_kid-football      n=  8 union_fg=0.183 (src 0.182)
+[r28_union] edit3/0058_boat              n=  9 union_fg=0.085 (src 0.073)
+[r28_union] edit4/0089_A_dog             n= 11 union_fg=0.239 (src 0.196)
+[r28_union] edit4/0028_kite-walk         n=  9 union_fg=0.037 (src 0.034)
+
+[r28_union] wrote 22 clips, failures: 0
+[r28_union] mean marginal contribution per arm (fraction of pixels ONLY that arm adds; a large value = that arm is driving the union, the signature of an over-firing grounding):
+    taubg2_taufg10_vp            0.02045
+    taubg2_taufg2_vp             0.00111
+GATE5-OK subset: fixed union contains every per-arm union (asserted in the reducer)
+=== GATE1: defaults unchanged (no --tgt_mask_dir) ===
+    lpips_unedit_part: max relative diff 2.600e-04
+    ssim_unedit_part: max relative diff 0.000e+00
+    structure_distance: max relative diff 1.344e-07
+GATE1-OK nonreg: existing metrics match the stored r26 control within 0.001 (worst 2.600e-04); the R28 change is additive
+=== GATE2/GATE3: union metrics fire, and differ from _unedit_part ===
+GATE2-OK fires: all four union columns are populated
+GATE3-OK differs: on 0034_cows part=0.17285346713933078 union=0.16733758253130046 fixed=0.15386308932846243
+=== GATE4: per-type construction rules ===
+GATE4-OK typerules: edit5 contains M_src, edit6 empty
+--- r28_smoke done ---

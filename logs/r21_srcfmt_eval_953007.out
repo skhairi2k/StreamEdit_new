@@ -1,0 +1,109 @@
+[srcfmt_eval] === src_video (official jpg reference) ===
+evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit1_FiVE.json ...
+
+
+evaluating method: src_video
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+
+evaluating method: src_video
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+
+evaluating method: src_video
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+processing file_id
+processing src_video|structure_distance
+processing src_video|psnr_unedit_part
+processing src_video|lpips_unedit_part
+processing src_video|mse_unedit_part
+processing src_video|ssim_unedit_part
+final averaging file_id
+final averaging src_video|structure_distance
+final averaging src_video|psnr_unedit_part
+final averaging src_video|lpips_unedit_part
+final averaging src_video|mse_unedit_part
+final averaging src_video|ssim_unedit_part
+[evaluate] overall metrics -> evaluation/csv/r21sf_src_video_avg.csv
+[srcfmt_eval] === src_images (official jpg reference) ===
+evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit1_FiVE.json ...
+
+
+evaluating method: src_images
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+
+evaluating method: src_images
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+
+evaluating method: src_images
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+processing file_id
+processing src_images|structure_distance
+processing src_images|psnr_unedit_part
+processing src_images|lpips_unedit_part
+processing src_images|mse_unedit_part
+processing src_images|ssim_unedit_part
+final averaging file_id
+final averaging src_images|structure_distance
+final averaging src_images|psnr_unedit_part
+final averaging src_images|lpips_unedit_part
+final averaging src_images|mse_unedit_part
+final averaging src_images|ssim_unedit_part
+[evaluate] overall metrics -> evaluation/csv/r21sf_src_images_avg.csv
+[srcfmt_eval] done

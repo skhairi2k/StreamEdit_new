@@ -1,0 +1,4263 @@
+Loading weights:   0%|          | 0/590 [00:00<?, ?it/s]Loading weights: 100%|██████████| 590/590 [00:00<00:00, 20674.72it/s]
+[1mCLIPModel LOAD REPORT[0m from: openai/clip-vit-large-patch14
+Key                                  | Status     |  | 
+-------------------------------------+------------+--+-
+text_model.embeddings.position_ids   | UNEXPECTED |  | 
+vision_model.embeddings.position_ids | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+The image processor of type `CLIPImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/functional/image/lpips.py:332: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.load_state_dict(torch.load(model_path, map_location="cpu"), strict=False)
+Using cache found in /home/ids/skhairi/.cache/torch/hub/facebookresearch_dino_main
+/home/ids/skhairi/Code/co-tracker/cotracker/models/build_cotracker.py:41: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state_dict = torch.load(f, map_location="cpu")
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 11834.94it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights:   0%|          | 2/729 [00:00<01:15,  9.57it/s]Loading weights:   3%|▎         | 22/729 [00:00<00:08, 85.42it/s]Loading weights:   6%|▋         | 46/729 [00:00<00:04, 140.85it/s]Loading weights:  10%|▉         | 70/729 [00:00<00:03, 173.32it/s]Loading weights:  13%|█▎        | 94/729 [00:00<00:03, 193.66it/s]Loading weights:  16%|█▌        | 118/729 [00:00<00:02, 207.70it/s]Loading weights:  19%|█▉        | 142/729 [00:00<00:02, 217.05it/s]Loading weights:  23%|██▎       | 166/729 [00:00<00:02, 223.64it/s]Loading weights:  26%|██▌       | 190/729 [00:01<00:02, 227.10it/s]Loading weights:  29%|██▉       | 214/729 [00:01<00:02, 230.61it/s]Loading weights:  33%|███▎      | 238/729 [00:01<00:02, 230.81it/s]Loading weights:  36%|███▌      | 263/729 [00:01<00:01, 235.35it/s]Loading weights:  39%|███▉      | 287/729 [00:01<00:01, 232.34it/s]Loading weights:  43%|████▎     | 311/729 [00:01<00:01, 232.45it/s]Loading weights:  46%|████▌     | 335/729 [00:01<00:01, 212.98it/s]Loading weights:  72%|███████▏  | 525/729 [00:01<00:00, 678.06it/s]Loading weights:  99%|█████████▊| 719/729 [00:01<00:00, 1031.34it/s]Loading weights: 100%|██████████| 729/729 [00:01<00:00, 385.96it/s] 
+The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+Evaluating annotation mapping files:   0%|          | 0/6 [00:00<?, ?it/s]evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit1_FiVE.json ...
+
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   1%|          | 1/100 [00:13<22:49, 13.83s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   2%|▏         | 2/100 [00:29<24:36, 15.07s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   3%|▎         | 3/100 [00:36<18:03, 11.17s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   4%|▍         | 4/100 [00:48<18:30, 11.57s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   5%|▌         | 5/100 [01:04<20:35, 13.00s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   6%|▌         | 6/100 [01:15<19:30, 12.45s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   7%|▋         | 7/100 [01:24<17:30, 11.30s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   8%|▊         | 8/100 [01:35<17:06, 11.16s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   9%|▉         | 9/100 [01:47<17:35, 11.60s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+Error: motion_fidelity_score_edit_part: min(): Expected reduction dim to be specified for input.numel() == 0. Specify the reduction dim with the 'dim' argument.
+
+Evaluating videos:  10%|█         | 10/100 [02:01<18:29, 12.33s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  11%|█         | 11/100 [02:11<17:20, 11.69s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  12%|█▏        | 12/100 [02:25<17:55, 12.22s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  13%|█▎        | 13/100 [02:35<16:50, 11.62s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  14%|█▍        | 14/100 [02:46<16:12, 11.31s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  15%|█▌        | 15/100 [02:51<13:31,  9.55s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  16%|█▌        | 16/100 [02:59<12:49,  9.16s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  17%|█▋        | 17/100 [03:12<13:53, 10.04s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  18%|█▊        | 18/100 [03:25<15:00, 10.98s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+Token indices sequence length is longer than the specified maximum sequence length for this model (80 > 77). Running this sequence through the model will result in indexing errors
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Encountered caption longer than max_position_embeddings=77. Will truncate captions to thislength. If longer captions are needed, initialize argument `model_name_or_path` with a model thatsupports longer sequences.
+  warnings.warn(*args, **kwargs)
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  19%|█▉        | 19/100 [03:37<15:29, 11.47s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  20%|██        | 20/100 [03:52<16:39, 12.50s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  21%|██        | 21/100 [03:59<14:08, 10.74s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  22%|██▏       | 22/100 [04:09<13:51, 10.67s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  23%|██▎       | 23/100 [04:21<13:59, 10.91s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  24%|██▍       | 24/100 [04:33<14:18, 11.30s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  25%|██▌       | 25/100 [04:50<16:04, 12.86s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  26%|██▌       | 26/100 [05:01<15:31, 12.59s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  27%|██▋       | 27/100 [05:12<14:34, 11.98s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  28%|██▊       | 28/100 [05:24<14:23, 11.99s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  29%|██▉       | 29/100 [05:35<13:44, 11.61s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  30%|███       | 30/100 [05:43<12:16, 10.52s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  31%|███       | 31/100 [05:50<11:04,  9.63s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  32%|███▏      | 32/100 [06:03<11:52, 10.48s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  33%|███▎      | 33/100 [06:13<11:43, 10.50s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  34%|███▍      | 34/100 [06:30<13:27, 12.23s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  35%|███▌      | 35/100 [06:37<11:45, 10.86s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  36%|███▌      | 36/100 [06:53<13:05, 12.28s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  37%|███▋      | 37/100 [07:01<11:30, 10.96s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  38%|███▊      | 38/100 [07:07<09:52,  9.56s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  39%|███▉      | 39/100 [07:24<11:52, 11.69s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  40%|████      | 40/100 [07:36<11:54, 11.91s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  41%|████      | 41/100 [07:45<10:41, 10.88s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  42%|████▏     | 42/100 [07:57<10:59, 11.37s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  43%|████▎     | 43/100 [08:14<12:26, 13.09s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  44%|████▍     | 44/100 [08:26<11:53, 12.73s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  45%|████▌     | 45/100 [08:39<11:44, 12.81s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  46%|████▌     | 46/100 [08:48<10:22, 11.53s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  47%|████▋     | 47/100 [08:54<08:51, 10.03s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  48%|████▊     | 48/100 [09:05<09:00, 10.40s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  49%|████▉     | 49/100 [09:20<09:48, 11.53s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  50%|█████     | 50/100 [09:31<09:32, 11.45s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  51%|█████     | 51/100 [09:41<09:02, 11.07s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  52%|█████▏    | 52/100 [09:54<09:18, 11.63s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  53%|█████▎    | 53/100 [10:04<08:37, 11.01s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  54%|█████▍    | 54/100 [10:16<08:47, 11.47s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  55%|█████▌    | 55/100 [10:30<09:13, 12.29s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  56%|█████▌    | 56/100 [10:48<10:12, 13.91s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  57%|█████▋    | 57/100 [10:59<09:26, 13.17s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  58%|█████▊    | 58/100 [11:11<08:54, 12.74s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  59%|█████▉    | 59/100 [11:20<07:53, 11.56s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  60%|██████    | 60/100 [11:33<07:55, 11.89s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  61%|██████    | 61/100 [11:42<07:19, 11.28s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  62%|██████▏   | 62/100 [11:55<07:19, 11.57s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  63%|██████▎   | 63/100 [12:07<07:11, 11.65s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  64%|██████▍   | 64/100 [12:13<06:06, 10.17s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  65%|██████▌   | 65/100 [12:27<06:32, 11.22s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  66%|██████▌   | 66/100 [12:41<06:54, 12.20s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  67%|██████▋   | 67/100 [12:54<06:49, 12.39s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  68%|██████▊   | 68/100 [13:01<05:42, 10.71s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  69%|██████▉   | 69/100 [13:13<05:46, 11.16s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  70%|███████   | 70/100 [13:28<06:07, 12.25s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  71%|███████   | 71/100 [13:40<05:53, 12.19s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  72%|███████▏  | 72/100 [13:44<04:35,  9.83s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  73%|███████▎  | 73/100 [13:58<04:56, 10.98s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  74%|███████▍  | 74/100 [14:11<05:02, 11.65s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  75%|███████▌  | 75/100 [14:23<04:53, 11.75s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  76%|███████▌  | 76/100 [14:38<05:05, 12.74s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  77%|███████▋  | 77/100 [14:51<04:50, 12.64s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  78%|███████▊  | 78/100 [15:04<04:38, 12.68s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  79%|███████▉  | 79/100 [15:17<04:32, 12.96s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  80%|████████  | 80/100 [15:29<04:12, 12.62s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  81%|████████  | 81/100 [15:42<04:03, 12.80s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  82%|████████▏ | 82/100 [15:58<04:05, 13.63s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  83%|████████▎ | 83/100 [16:11<03:47, 13.39s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  84%|████████▍ | 84/100 [16:26<03:45, 14.11s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  85%|████████▌ | 85/100 [16:41<03:36, 14.41s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  86%|████████▌ | 86/100 [16:55<03:17, 14.14s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  87%|████████▋ | 87/100 [17:08<02:57, 13.68s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  88%|████████▊ | 88/100 [17:23<02:52, 14.35s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  89%|████████▉ | 89/100 [17:38<02:37, 14.33s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  90%|█████████ | 90/100 [17:50<02:17, 13.79s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  91%|█████████ | 91/100 [18:02<01:58, 13.20s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  92%|█████████▏| 92/100 [18:15<01:44, 13.06s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  93%|█████████▎| 93/100 [18:30<01:35, 13.60s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  94%|█████████▍| 94/100 [18:43<01:20, 13.35s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  95%|█████████▌| 95/100 [18:57<01:08, 13.75s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  96%|█████████▌| 96/100 [19:10<00:53, 13.39s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  97%|█████████▋| 97/100 [19:22<00:39, 13.01s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  98%|█████████▊| 98/100 [19:35<00:26, 13.13s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  99%|█████████▉| 99/100 [19:49<00:13, 13.40s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos: 100%|██████████| 100/100 [20:04<00:00, 13.92s/it][AEvaluating videos: 100%|██████████| 100/100 [20:04<00:00, 12.05s/it]
+processing file_id
+processing r7_visual_prompting|clip_similarity_source_image
+processing r7_visual_prompting|motion_fidelity_score
+processing r7_visual_prompting|motion_fidelity_score_edit_part
+Evaluating annotation mapping files:  17%|█▋        | 1/6 [20:04<1:40:24, 1204.95s/it]evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit2_FiVE.json ...
+
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   1%|          | 1/100 [00:13<22:26, 13.60s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   2%|▏         | 2/100 [00:29<24:23, 14.94s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   3%|▎         | 3/100 [00:35<17:53, 11.07s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   4%|▍         | 4/100 [00:48<18:27, 11.54s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   5%|▌         | 5/100 [01:03<20:35, 13.01s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   6%|▌         | 6/100 [01:16<20:09, 12.87s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   7%|▋         | 7/100 [01:26<18:28, 11.92s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   8%|▊         | 8/100 [01:38<18:12, 11.88s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   9%|▉         | 9/100 [01:52<19:09, 12.63s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+Error: motion_fidelity_score_edit_part: min(): Expected reduction dim to be specified for input.numel() == 0. Specify the reduction dim with the 'dim' argument.
+
+Evaluating videos:  10%|█         | 10/100 [02:07<20:09, 13.43s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  11%|█         | 11/100 [02:18<18:54, 12.74s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  12%|█▏        | 12/100 [02:33<19:41, 13.42s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  13%|█▎        | 13/100 [02:45<18:33, 12.80s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  14%|█▍        | 14/100 [02:57<17:57, 12.52s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  15%|█▌        | 15/100 [03:02<14:53, 10.51s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  16%|█▌        | 16/100 [03:11<13:45,  9.83s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  17%|█▋        | 17/100 [03:23<14:40, 10.61s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  18%|█▊        | 18/100 [03:36<15:34, 11.39s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  19%|█▉        | 19/100 [03:49<15:52, 11.75s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  20%|██        | 20/100 [04:04<17:00, 12.76s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  21%|██        | 21/100 [04:11<14:19, 10.87s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  22%|██▏       | 22/100 [04:21<13:59, 10.77s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  23%|██▎       | 23/100 [04:33<14:07, 11.00s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  24%|██▍       | 24/100 [04:45<14:21, 11.34s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  25%|██▌       | 25/100 [05:01<15:57, 12.77s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  26%|██▌       | 26/100 [05:12<15:20, 12.44s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  27%|██▋       | 27/100 [05:23<14:23, 11.83s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  28%|██▊       | 28/100 [05:35<14:15, 11.88s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  29%|██▉       | 29/100 [05:46<13:41, 11.57s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  30%|███       | 30/100 [05:54<12:14, 10.49s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  31%|███       | 31/100 [06:01<10:50,  9.42s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  32%|███▏      | 32/100 [06:12<11:20, 10.00s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  33%|███▎      | 33/100 [06:22<11:12, 10.03s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  34%|███▍      | 34/100 [06:38<13:02, 11.86s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  35%|███▌      | 35/100 [06:46<11:31, 10.63s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  36%|███▌      | 36/100 [07:02<12:56, 12.14s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  37%|███▋      | 37/100 [07:09<11:22, 10.83s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  38%|███▊      | 38/100 [07:15<09:39,  9.34s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  39%|███▉      | 39/100 [07:31<11:23, 11.21s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  40%|████      | 40/100 [07:43<11:29, 11.49s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  41%|████      | 41/100 [07:51<10:23, 10.56s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  42%|████▏     | 42/100 [08:04<10:39, 11.03s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  43%|████▎     | 43/100 [08:20<12:02, 12.68s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  44%|████▍     | 44/100 [08:30<11:11, 11.99s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  45%|████▌     | 45/100 [08:43<11:14, 12.27s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  46%|████▌     | 46/100 [08:51<09:43, 10.81s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  47%|████▋     | 47/100 [08:57<08:22,  9.49s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  48%|████▊     | 48/100 [09:08<08:36,  9.93s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  49%|████▉     | 49/100 [09:23<09:38, 11.35s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  50%|█████     | 50/100 [09:35<09:36, 11.52s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  51%|█████     | 51/100 [09:45<09:04, 11.11s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  52%|█████▏    | 52/100 [09:58<09:17, 11.62s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  53%|█████▎    | 53/100 [10:07<08:39, 11.04s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  54%|█████▍    | 54/100 [10:20<08:44, 11.40s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  55%|█████▌    | 55/100 [10:32<08:52, 11.83s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  56%|█████▌    | 56/100 [10:50<09:56, 13.56s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  57%|█████▋    | 57/100 [11:01<09:10, 12.81s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  58%|█████▊    | 58/100 [11:13<08:42, 12.43s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  59%|█████▉    | 59/100 [11:22<07:46, 11.38s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  60%|██████    | 60/100 [11:33<07:40, 11.52s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  61%|██████    | 61/100 [11:43<07:02, 10.82s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  62%|██████▏   | 62/100 [11:53<06:49, 10.78s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  63%|██████▎   | 63/100 [12:04<06:38, 10.76s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  64%|██████▍   | 64/100 [12:10<05:36,  9.36s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  65%|██████▌   | 65/100 [12:22<05:56, 10.18s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  66%|██████▌   | 66/100 [12:35<06:10, 10.88s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  67%|██████▋   | 67/100 [12:46<06:02, 11.00s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  68%|██████▊   | 68/100 [12:52<05:02,  9.46s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  69%|██████▉   | 69/100 [13:03<05:10, 10.03s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  70%|███████   | 70/100 [13:16<05:28, 10.95s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  71%|███████   | 71/100 [13:27<05:12, 10.79s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  72%|███████▏  | 72/100 [13:30<04:02,  8.67s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  73%|███████▎  | 73/100 [13:44<04:30, 10.03s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  74%|███████▍  | 74/100 [13:57<04:43, 10.89s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  75%|███████▌  | 75/100 [14:09<04:41, 11.27s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  76%|███████▌  | 76/100 [14:25<05:03, 12.63s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  77%|███████▋  | 77/100 [14:38<04:57, 12.92s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  78%|███████▊  | 78/100 [14:52<04:53, 13.36s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  79%|███████▉  | 79/100 [15:06<04:42, 13.43s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  80%|████████  | 80/100 [15:19<04:26, 13.32s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  81%|████████  | 81/100 [15:34<04:19, 13.64s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  82%|████████▏ | 82/100 [15:49<04:16, 14.23s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  83%|████████▎ | 83/100 [16:01<03:49, 13.51s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  84%|████████▍ | 84/100 [16:16<03:42, 13.91s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  85%|████████▌ | 85/100 [16:29<03:27, 13.81s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  86%|████████▌ | 86/100 [16:41<03:04, 13.16s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  87%|████████▋ | 87/100 [16:53<02:45, 12.74s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  88%|████████▊ | 88/100 [17:09<02:44, 13.67s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  89%|████████▉ | 89/100 [17:22<02:29, 13.63s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  90%|█████████ | 90/100 [17:36<02:16, 13.65s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  91%|█████████ | 91/100 [17:48<01:58, 13.18s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  92%|█████████▏| 92/100 [18:02<01:47, 13.42s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  93%|█████████▎| 93/100 [18:18<01:39, 14.27s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  94%|█████████▍| 94/100 [18:33<01:26, 14.41s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  95%|█████████▌| 95/100 [18:51<01:18, 15.63s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  96%|█████████▌| 96/100 [19:05<01:00, 15.15s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  97%|█████████▋| 97/100 [19:18<00:43, 14.39s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  98%|█████████▊| 98/100 [19:31<00:28, 14.11s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  99%|█████████▉| 99/100 [19:44<00:13, 13.74s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos: 100%|██████████| 100/100 [19:58<00:00, 13.65s/it][AEvaluating videos: 100%|██████████| 100/100 [19:58<00:00, 11.98s/it]
+processing file_id
+processing r7_visual_prompting|clip_similarity_source_image
+processing r7_visual_prompting|motion_fidelity_score
+processing r7_visual_prompting|motion_fidelity_score_edit_part
+Evaluating annotation mapping files:  33%|███▎      | 2/6 [40:03<1:20:04, 1201.04s/it]evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit3_FiVE.json ...
+
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   1%|          | 1/100 [00:12<20:50, 12.63s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   2%|▏         | 2/100 [00:26<22:01, 13.48s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   3%|▎         | 3/100 [00:32<16:08,  9.98s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   4%|▍         | 4/100 [00:43<16:25, 10.27s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   5%|▌         | 5/100 [00:57<18:25, 11.63s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   6%|▌         | 6/100 [01:09<18:44, 11.96s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   7%|▋         | 7/100 [01:19<17:30, 11.29s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   8%|▊         | 8/100 [01:31<17:43, 11.56s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   9%|▉         | 9/100 [01:44<18:10, 11.99s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+Error: motion_fidelity_score_edit_part: min(): Expected reduction dim to be specified for input.numel() == 0. Specify the reduction dim with the 'dim' argument.
+
+Evaluating videos:  10%|█         | 10/100 [01:58<18:54, 12.61s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  11%|█         | 11/100 [02:09<17:35, 11.86s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  12%|█▏        | 12/100 [02:22<18:13, 12.43s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  13%|█▎        | 13/100 [02:32<17:02, 11.75s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  14%|█▍        | 14/100 [02:43<16:26, 11.47s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  15%|█▌        | 15/100 [02:49<13:35,  9.60s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  16%|█▌        | 16/100 [02:56<12:32,  8.96s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  17%|█▋        | 17/100 [03:07<13:13,  9.57s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  18%|█▊        | 18/100 [03:19<14:06, 10.32s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  19%|█▉        | 19/100 [03:31<14:24, 10.67s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  20%|██        | 20/100 [03:44<15:19, 11.49s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  21%|██        | 21/100 [03:50<12:49,  9.74s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  22%|██▏       | 22/100 [03:59<12:41,  9.76s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  23%|██▎       | 23/100 [04:10<12:44,  9.92s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  24%|██▍       | 24/100 [04:21<13:02, 10.30s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  25%|██▌       | 25/100 [04:36<14:42, 11.77s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  26%|██▌       | 26/100 [04:47<14:11, 11.50s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  27%|██▋       | 27/100 [04:56<13:16, 10.91s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  28%|██▊       | 28/100 [05:07<13:03, 10.88s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  29%|██▉       | 29/100 [05:17<12:26, 10.52s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  30%|███       | 30/100 [05:24<11:05,  9.50s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  31%|███       | 31/100 [05:32<10:13,  8.89s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  32%|███▏      | 32/100 [05:43<11:05,  9.78s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  33%|███▎      | 33/100 [05:53<10:56,  9.80s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  34%|███▍      | 34/100 [06:08<12:22, 11.25s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  35%|███▌      | 35/100 [06:15<10:45,  9.93s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  36%|███▌      | 36/100 [06:29<11:50, 11.09s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  37%|███▋      | 37/100 [06:36<10:22,  9.88s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  38%|███▊      | 38/100 [06:41<08:53,  8.60s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  39%|███▉      | 39/100 [06:56<10:40, 10.50s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  40%|████      | 40/100 [07:07<10:42, 10.70s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  41%|████      | 41/100 [07:15<09:31,  9.68s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  42%|████▏     | 42/100 [07:26<09:44, 10.08s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  43%|████▎     | 43/100 [07:41<10:58, 11.56s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  44%|████▍     | 44/100 [07:52<10:35, 11.35s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  45%|████▌     | 45/100 [08:03<10:32, 11.50s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  46%|████▌     | 46/100 [08:11<09:19, 10.36s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  47%|████▋     | 47/100 [08:17<07:59,  9.05s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  48%|████▊     | 48/100 [08:27<08:05,  9.33s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  49%|████▉     | 49/100 [08:41<08:59, 10.57s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  50%|█████     | 50/100 [08:52<08:57, 10.75s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  51%|█████     | 51/100 [09:02<08:40, 10.62s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  52%|█████▏    | 52/100 [09:15<09:04, 11.33s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  53%|█████▎    | 53/100 [09:25<08:37, 11.02s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  54%|█████▍    | 54/100 [09:39<09:03, 11.81s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  55%|█████▌    | 55/100 [09:53<09:24, 12.55s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  56%|█████▌    | 56/100 [10:11<10:18, 14.06s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  57%|█████▋    | 57/100 [10:22<09:27, 13.19s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  58%|█████▊    | 58/100 [10:34<08:54, 12.73s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  59%|█████▉    | 59/100 [10:42<07:54, 11.57s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  60%|██████    | 60/100 [10:54<07:38, 11.47s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  61%|██████    | 61/100 [11:02<06:53, 10.61s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  62%|██████▏   | 62/100 [11:13<06:43, 10.63s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  63%|██████▎   | 63/100 [11:23<06:31, 10.58s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  64%|██████▍   | 64/100 [11:30<05:32,  9.23s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  65%|██████▌   | 65/100 [11:42<05:54, 10.13s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  66%|██████▌   | 66/100 [11:55<06:12, 10.94s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  67%|██████▋   | 67/100 [12:06<06:06, 11.10s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  68%|██████▊   | 68/100 [12:13<05:13,  9.78s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  69%|██████▉   | 69/100 [12:24<05:18, 10.26s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  70%|███████   | 70/100 [12:38<05:41, 11.37s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  71%|███████   | 71/100 [12:49<05:22, 11.13s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  72%|███████▏  | 72/100 [12:53<04:14,  9.09s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  73%|███████▎  | 73/100 [13:08<04:49, 10.72s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  74%|███████▍  | 74/100 [13:23<05:17, 12.20s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  75%|███████▌  | 75/100 [13:37<05:13, 12.53s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  76%|███████▌  | 76/100 [13:53<05:31, 13.81s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  77%|███████▋  | 77/100 [14:06<05:08, 13.41s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  78%|███████▊  | 78/100 [14:18<04:49, 13.17s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  79%|███████▉  | 79/100 [14:30<04:28, 12.78s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  80%|████████  | 80/100 [14:42<04:08, 12.43s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  81%|████████  | 81/100 [14:55<03:59, 12.58s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  82%|████████▏ | 82/100 [15:10<04:01, 13.43s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  83%|████████▎ | 83/100 [15:22<03:40, 12.96s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  84%|████████▍ | 84/100 [15:37<03:37, 13.61s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  85%|████████▌ | 85/100 [15:51<03:24, 13.64s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  86%|████████▌ | 86/100 [16:03<03:04, 13.20s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  87%|████████▋ | 87/100 [16:14<02:42, 12.54s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  88%|████████▊ | 88/100 [16:28<02:35, 12.95s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  89%|████████▉ | 89/100 [16:42<02:24, 13.12s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  90%|█████████ | 90/100 [16:54<02:08, 12.89s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  91%|█████████ | 91/100 [17:06<01:52, 12.55s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  92%|█████████▏| 92/100 [17:18<01:40, 12.58s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  93%|█████████▎| 93/100 [17:33<01:32, 13.23s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  94%|█████████▍| 94/100 [17:46<01:18, 13.06s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  95%|█████████▌| 95/100 [18:00<01:07, 13.56s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  96%|█████████▌| 96/100 [18:13<00:52, 13.16s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  97%|█████████▋| 97/100 [18:25<00:38, 12.80s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  98%|█████████▊| 98/100 [18:38<00:25, 12.92s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  99%|█████████▉| 99/100 [18:51<00:13, 13.06s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos: 100%|██████████| 100/100 [19:05<00:00, 13.31s/it][AEvaluating videos: 100%|██████████| 100/100 [19:05<00:00, 11.46s/it]
+processing file_id
+processing r7_visual_prompting|clip_similarity_source_image
+processing r7_visual_prompting|motion_fidelity_score
+processing r7_visual_prompting|motion_fidelity_score_edit_part
+Evaluating annotation mapping files:  50%|█████     | 3/6 [59:08<58:47, 1175.73s/it]  evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit4_FiVE.json ...
+
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   1%|          | 1/100 [00:12<19:50, 12.02s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   2%|▏         | 2/100 [00:26<21:33, 13.20s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   3%|▎         | 3/100 [00:31<15:45,  9.74s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   4%|▍         | 4/100 [00:42<16:08, 10.08s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   5%|▌         | 5/100 [00:56<18:07, 11.45s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   6%|▌         | 6/100 [01:07<17:55, 11.44s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   7%|▋         | 7/100 [01:16<16:30, 10.65s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   8%|▊         | 8/100 [01:27<16:21, 10.67s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:   9%|▉         | 9/100 [01:39<17:05, 11.27s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+Error: motion_fidelity_score_edit_part: min(): Expected reduction dim to be specified for input.numel() == 0. Specify the reduction dim with the 'dim' argument.
+
+Evaluating videos:  10%|█         | 10/100 [01:53<18:08, 12.09s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  11%|█         | 11/100 [02:04<17:11, 11.59s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  12%|█▏        | 12/100 [02:17<17:51, 12.17s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  13%|█▎        | 13/100 [02:27<16:45, 11.55s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  14%|█▍        | 14/100 [02:38<16:07, 11.25s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  15%|█▌        | 15/100 [02:43<13:18,  9.39s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  16%|█▌        | 16/100 [02:50<12:16,  8.77s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  17%|█▋        | 17/100 [03:01<13:02,  9.43s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  18%|█▊        | 18/100 [03:13<13:56, 10.20s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  19%|█▉        | 19/100 [03:25<14:14, 10.55s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  20%|██        | 20/100 [03:38<15:13, 11.42s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  21%|██        | 21/100 [03:44<12:45,  9.68s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  22%|██▏       | 22/100 [03:53<12:26,  9.58s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  23%|██▎       | 23/100 [04:03<12:34,  9.80s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  24%|██▍       | 24/100 [04:14<12:51, 10.15s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  25%|██▌       | 25/100 [04:30<14:40, 11.74s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  26%|██▌       | 26/100 [04:40<14:02, 11.38s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  27%|██▋       | 27/100 [04:50<13:06, 10.78s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  28%|██▊       | 28/100 [05:00<12:53, 10.74s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  29%|██▉       | 29/100 [05:10<12:16, 10.38s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  30%|███       | 30/100 [05:17<10:57,  9.39s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  31%|███       | 31/100 [05:24<09:53,  8.60s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  32%|███▏      | 32/100 [05:35<10:35,  9.35s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  33%|███▎      | 33/100 [05:44<10:28,  9.38s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  34%|███▍      | 34/100 [05:59<12:00, 10.91s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  35%|███▌      | 35/100 [06:06<10:27,  9.66s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  36%|███▌      | 36/100 [06:19<11:35, 10.87s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  37%|███▋      | 37/100 [06:28<10:44, 10.23s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  38%|███▊      | 38/100 [06:35<09:36,  9.30s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  39%|███▉      | 39/100 [06:51<11:22, 11.19s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  40%|████      | 40/100 [07:02<11:11, 11.19s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  41%|████      | 41/100 [07:09<09:50, 10.01s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  42%|████▏     | 42/100 [07:20<09:55, 10.27s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  43%|████▎     | 43/100 [07:35<11:06, 11.69s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  44%|████▍     | 44/100 [07:46<10:34, 11.34s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  45%|████▌     | 45/100 [07:57<10:30, 11.46s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  46%|████▌     | 46/100 [08:05<09:11, 10.22s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  47%|████▋     | 47/100 [08:10<07:48,  8.83s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  48%|████▊     | 48/100 [08:20<07:55,  9.14s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  49%|████▉     | 49/100 [08:34<08:53, 10.45s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  50%|█████     | 50/100 [08:45<08:55, 10.71s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  51%|█████     | 51/100 [08:55<08:36, 10.55s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  52%|█████▏    | 52/100 [09:08<09:01, 11.28s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  53%|█████▎    | 53/100 [09:18<08:25, 10.76s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  54%|█████▍    | 54/100 [09:30<08:38, 11.26s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  55%|█████▌    | 55/100 [09:43<08:49, 11.76s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  56%|█████▌    | 56/100 [09:59<09:33, 13.04s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  57%|█████▋    | 57/100 [10:09<08:40, 12.11s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  58%|█████▊    | 58/100 [10:19<08:08, 11.63s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  59%|█████▉    | 59/100 [10:27<07:12, 10.54s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  60%|██████    | 60/100 [10:39<07:10, 10.76s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  61%|██████    | 61/100 [10:47<06:35, 10.14s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  62%|██████▏   | 62/100 [10:58<06:32, 10.33s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  63%|██████▎   | 63/100 [11:09<06:24, 10.39s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  64%|██████▍   | 64/100 [11:15<05:27,  9.09s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  65%|██████▌   | 65/100 [11:27<05:51, 10.05s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  66%|██████▌   | 66/100 [11:40<06:08, 10.82s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  67%|██████▋   | 67/100 [11:51<06:03, 11.00s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  68%|██████▊   | 68/100 [11:57<05:02,  9.46s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  69%|██████▉   | 69/100 [12:08<05:07,  9.91s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  70%|███████   | 70/100 [12:21<05:26, 10.87s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  71%|███████   | 71/100 [12:32<05:12, 10.78s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  72%|███████▏  | 72/100 [12:35<04:02,  8.67s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  73%|███████▎  | 73/100 [12:49<04:30, 10.03s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  74%|███████▍  | 74/100 [13:02<04:45, 10.99s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  75%|███████▌  | 75/100 [13:14<04:45, 11.42s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  76%|███████▌  | 76/100 [13:30<05:02, 12.62s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  77%|███████▋  | 77/100 [13:42<04:48, 12.53s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  78%|███████▊  | 78/100 [13:55<04:36, 12.58s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  79%|███████▉  | 79/100 [14:07<04:20, 12.39s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  80%|████████  | 80/100 [14:18<04:04, 12.24s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  81%|████████  | 81/100 [14:32<03:57, 12.48s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  82%|████████▏ | 82/100 [14:47<04:01, 13.41s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  83%|████████▎ | 83/100 [14:59<03:40, 12.96s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  84%|████████▍ | 84/100 [15:16<03:45, 14.07s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  85%|████████▌ | 85/100 [15:30<03:33, 14.22s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  86%|████████▌ | 86/100 [15:42<03:09, 13.50s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  87%|████████▋ | 87/100 [15:53<02:46, 12.79s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  88%|████████▊ | 88/100 [16:07<02:38, 13.17s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  89%|████████▉ | 89/100 [16:21<02:26, 13.30s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  90%|█████████ | 90/100 [16:33<02:10, 13.06s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  91%|█████████ | 91/100 [16:45<01:54, 12.78s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  92%|█████████▏| 92/100 [16:58<01:42, 12.79s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  93%|█████████▎| 93/100 [17:13<01:33, 13.40s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  94%|█████████▍| 94/100 [17:26<01:20, 13.38s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  95%|█████████▌| 95/100 [17:41<01:09, 13.84s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  96%|█████████▌| 96/100 [17:54<00:53, 13.39s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  97%|█████████▋| 97/100 [18:06<00:39, 13.03s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  98%|█████████▊| 98/100 [18:19<00:26, 13.14s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  99%|█████████▉| 99/100 [18:32<00:13, 13.10s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos: 100%|██████████| 100/100 [18:46<00:00, 13.19s/it][AEvaluating videos: 100%|██████████| 100/100 [18:46<00:00, 11.26s/it]
+processing file_id
+processing r7_visual_prompting|clip_similarity_source_image
+processing r7_visual_prompting|motion_fidelity_score
+processing r7_visual_prompting|motion_fidelity_score_edit_part
+Evaluating annotation mapping files:  67%|██████▋   | 4/6 [1:17:55<38:32, 1156.19s/it]evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit5_FiVE.json ...
+
+Evaluating videos:   0%|          | 0/9 [00:00<?, ?it/s][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  11%|█         | 1/9 [00:08<01:10,  8.84s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  22%|██▏       | 2/9 [00:21<01:17, 11.05s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  33%|███▎      | 3/9 [00:31<01:04, 10.68s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  44%|████▍     | 4/9 [00:43<00:54, 10.95s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  56%|█████▌    | 5/9 [00:57<00:48, 12.19s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  67%|██████▋   | 6/9 [01:11<00:38, 12.99s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  78%|███████▊  | 7/9 [01:22<00:24, 12.12s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  89%|████████▉ | 8/9 [01:33<00:11, 11.84s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos: 100%|██████████| 9/9 [01:47<00:00, 12.40s/it][AEvaluating videos: 100%|██████████| 9/9 [01:47<00:00, 11.91s/it]
+processing file_id
+processing r7_visual_prompting|clip_similarity_source_image
+processing r7_visual_prompting|motion_fidelity_score
+processing r7_visual_prompting|motion_fidelity_score_edit_part
+Evaluating annotation mapping files:  83%|████████▎ | 5/6 [1:19:42<12:57, 777.91s/it] evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit6_FiVE.json ...
+
+Evaluating videos:   0%|          | 0/10 [00:00<?, ?it/s][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  10%|█         | 1/10 [00:15<02:16, 15.16s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  20%|██        | 2/10 [00:27<01:46, 13.30s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  30%|███       | 3/10 [00:43<01:42, 14.64s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  40%|████      | 4/10 [00:51<01:12, 12.12s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  50%|█████     | 5/10 [01:04<01:01, 12.21s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  60%|██████    | 6/10 [01:15<00:47, 11.85s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  70%|███████   | 7/10 [01:25<00:33, 11.33s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  80%|████████  | 8/10 [01:38<00:23, 11.83s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos:  90%|█████████ | 9/10 [01:51<00:12, 12.09s/it][A
+
+evaluating method: r7_visual_prompting
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: motion_fidelity_score
+
+evaluating metric: motion_fidelity_score_edit_part
+
+Evaluating videos: 100%|██████████| 10/10 [02:05<00:00, 12.71s/it][AEvaluating videos: 100%|██████████| 10/10 [02:05<00:00, 12.51s/it]
+processing file_id
+processing r7_visual_prompting|clip_similarity_source_image
+processing r7_visual_prompting|motion_fidelity_score
+processing r7_visual_prompting|motion_fidelity_score_edit_part
+Evaluating annotation mapping files: 100%|██████████| 6/6 [1:21:47<00:00, 555.95s/it]Evaluating annotation mapping files: 100%|██████████| 6/6 [1:21:47<00:00, 817.90s/it]
+final averaging file_id
+final averaging r7_visual_prompting|clip_similarity_source_image
+final averaging r7_visual_prompting|motion_fidelity_score
+final averaging r7_visual_prompting|motion_fidelity_score_edit_part
+[evaluate] overall metrics -> evaluation/csv/r21mf_mp4_ref_vp_avg.csv

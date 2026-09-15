@@ -1,0 +1,16 @@
+[r25_infer] node=node39 CUDA_VISIBLE_DEVICES=0
+[r25_infer] SLURM_JOB_GPUS=3 LD_LIBRARY_PATH=/home/ids/skhairi/anaconda3/envs/streamgve/lib:/home/ids/skhairi/anaconda3/envs/streamgve/lib64:
+GPU 0: NVIDIA L40S (UUID: GPU-25914df1-99ab-e6a7-5f87-359345c089bf)
+[r25_infer] torch 2.8.0+cu128 cuda_ok True n 1
+[r25_infer] job=960704_5 edit_type=6 method=r25_adaptive_vp
+[r25_infer] tau_map=/home/ids/skhairi/Code/StreamEdit_bigchantier/evaluation/csv/r25_tau_map.csv cases=/home/ids/skhairi/Code/StreamEdit_bigchantier/evaluation/cases.json expect 1 clip(s)
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] tau_map: 22 pairs loaded, 1 needed for edit6
+[run_fivebench] edit_type=6 method=r25_adaptive_vp pairs=1 vp_mode=vp blend_sched=paper(eq4) out=/projects/dataggen/outputs/five_bench/r25_adaptive_tau/r25_adaptive_vp/edit6
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.38975763320923 GB
+[[0, 1]] [[6, 7, 8, 9, 10]]
+[ok] 0042_gym-ball: 69 frames  tau=10.0
+[run_fivebench] done edit6: 1/1 ok -> /projects/dataggen/outputs/five_bench/r25_adaptive_tau/r25_adaptive_vp/edit6/_manifest.csv
+[r25_infer] edit6 frame dirs: 1 (expected 1)
+[r25_infer] failures: 0

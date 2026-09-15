@@ -1,0 +1,825 @@
+[r26_eval] node=node55 CUDA_VISIBLE_DEVICES=0
+GPU 0: NVIDIA A100-PCIE-40GB (UUID: GPU-4c59e47c-26e2-76cf-abaa-86c66bdcea13)
+[r26_eval] job=976470_15 arm=taubg0_taufg20_vp stem=r26_taubg0_taufg20_vp
+[r26_eval] PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+[r26_eval] real frame dirs in /projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp: 22  # expect 22
+Loading weights:   0%|          | 0/590 [00:00<?, ?it/s]Loading weights:  76%|███████▌  | 449/590 [00:00<00:00, 4489.51it/s]Loading weights: 100%|██████████| 590/590 [00:00<00:00, 5636.04it/s]
+[1mCLIPModel LOAD REPORT[0m from: openai/clip-vit-large-patch14
+Key                                  | Status     |  | 
+-------------------------------------+------------+--+-
+vision_model.embeddings.position_ids | UNEXPECTED |  | 
+text_model.embeddings.position_ids   | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+The image processor of type `CLIPImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/functional/image/lpips.py:332: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.load_state_dict(torch.load(model_path, map_location="cpu"), strict=False)
+Using cache found in /home/ids/skhairi/.cache/torch/hub/facebookresearch_dino_main
+/home/ids/skhairi/Code/co-tracker/cotracker/models/build_cotracker.py:41: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state_dict = torch.load(f, map_location="cpu")
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 3456.08it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights:   0%|          | 1/729 [00:02<29:10,  2.40s/it]Loading weights:   1%|          | 4/729 [00:02<05:58,  2.02it/s]Loading weights:   1%|          | 6/729 [00:02<04:10,  2.88it/s]Loading weights:   2%|▏         | 16/729 [00:03<01:21,  8.78it/s]Loading weights:   2%|▏         | 18/729 [00:03<01:16,  9.31it/s]Loading weights:   4%|▍         | 28/729 [00:03<00:48, 14.55it/s]Loading weights:   4%|▍         | 30/729 [00:03<00:48, 14.33it/s]Loading weights:   5%|▌         | 40/729 [00:04<00:31, 21.74it/s]Loading weights:   6%|▌         | 43/729 [00:04<00:39, 17.58it/s]Loading weights:   7%|▋         | 52/729 [00:04<00:34, 19.70it/s]Loading weights:   8%|▊         | 55/729 [00:05<00:35, 19.23it/s]Loading weights:   9%|▉         | 64/729 [00:05<00:27, 24.40it/s]Loading weights:   9%|▉         | 67/729 [00:05<00:34, 19.16it/s]Loading weights:  10%|█         | 76/729 [00:05<00:26, 24.34it/s]Loading weights:  11%|█         | 79/729 [00:06<00:33, 19.35it/s]Loading weights:  12%|█▏        | 88/729 [00:06<00:31, 20.44it/s]Loading weights:  12%|█▏        | 91/729 [00:06<00:32, 19.75it/s]Loading weights:  14%|█▎        | 100/729 [00:06<00:25, 24.94it/s]Loading weights:  14%|█▍        | 103/729 [00:07<00:31, 19.75it/s]Loading weights:  15%|█▌        | 112/729 [00:07<00:29, 21.06it/s]Loading weights:  16%|█▌        | 115/729 [00:07<00:29, 20.68it/s]Loading weights:  17%|█▋        | 124/729 [00:08<00:24, 24.30it/s]Loading weights:  17%|█▋        | 127/729 [00:08<00:31, 19.38it/s]Loading weights:  19%|█▊        | 136/729 [00:08<00:24, 24.52it/s]Loading weights:  19%|█▉        | 139/729 [00:08<00:30, 19.24it/s]Loading weights:  20%|██        | 148/729 [00:09<00:23, 24.53it/s]Loading weights:  21%|██        | 151/729 [00:09<00:29, 19.70it/s]Loading weights:  22%|██▏       | 160/729 [00:09<00:27, 20.87it/s]Loading weights:  22%|██▏       | 163/729 [00:10<00:27, 20.74it/s]Loading weights:  24%|██▎       | 172/729 [00:10<00:25, 21.93it/s]Loading weights:  24%|██▍       | 175/729 [00:10<00:26, 21.26it/s]Loading weights:  25%|██▌       | 184/729 [00:11<00:29, 18.34it/s]Loading weights:  27%|██▋       | 196/729 [00:11<00:23, 22.97it/s]Loading weights:  27%|██▋       | 199/729 [00:11<00:23, 22.52it/s]Loading weights:  29%|██▊       | 208/729 [00:12<00:22, 23.14it/s]Loading weights:  29%|██▉       | 211/729 [00:12<00:23, 22.47it/s]Loading weights:  29%|██▉       | 215/729 [00:12<00:21, 24.29it/s]Loading weights:  30%|███       | 219/729 [00:12<00:20, 24.83it/s]Loading weights:  30%|███       | 222/729 [00:12<00:28, 17.87it/s]Loading weights:  32%|███▏      | 232/729 [00:13<00:21, 23.09it/s]Loading weights:  32%|███▏      | 235/729 [00:13<00:32, 15.11it/s]Loading weights:  33%|███▎      | 239/729 [00:13<00:27, 17.76it/s]Loading weights:  33%|███▎      | 243/729 [00:14<00:28, 17.06it/s]Loading weights:  34%|███▎      | 246/729 [00:14<00:46, 10.46it/s]Loading weights:  35%|███▍      | 252/729 [00:14<00:31, 15.24it/s]Loading weights:  35%|███▌      | 256/729 [00:15<00:30, 15.71it/s]Loading weights:  36%|███▌      | 259/729 [00:15<00:42, 11.00it/s]Loading weights:  36%|███▌      | 264/729 [00:15<00:31, 15.00it/s]Loading weights:  37%|███▋      | 268/729 [00:15<00:30, 15.24it/s]Loading weights:  37%|███▋      | 271/729 [00:16<00:40, 11.20it/s]Loading weights:  38%|███▊      | 280/729 [00:16<00:33, 13.50it/s]Loading weights:  39%|███▊      | 282/729 [00:17<00:35, 12.64it/s]Loading weights:  40%|███▉      | 290/729 [00:17<00:21, 19.99it/s]Loading weights:  40%|████      | 294/729 [00:17<00:34, 12.47it/s]Loading weights:  42%|████▏     | 304/729 [00:18<00:25, 16.74it/s]Loading weights:  42%|████▏     | 307/729 [00:18<00:34, 12.40it/s]Loading weights:  43%|████▎     | 312/729 [00:19<00:26, 15.45it/s]Loading weights:  43%|████▎     | 316/729 [00:19<00:43,  9.60it/s]Loading weights:  44%|████▍     | 322/729 [00:20<00:30, 13.41it/s]Loading weights:  45%|████▍     | 328/729 [00:20<00:26, 15.20it/s]Loading weights:  45%|████▌     | 331/729 [00:20<00:33, 11.92it/s]Loading weights:  47%|████▋     | 343/729 [00:20<00:17, 22.32it/s]Loading weights:  50%|█████     | 367/729 [00:21<00:07, 48.33it/s]Loading weights:  54%|█████▎    | 391/729 [00:21<00:04, 75.21it/s]Loading weights:  57%|█████▋    | 415/729 [00:21<00:03, 101.82it/s]Loading weights:  59%|█████▉    | 432/729 [00:21<00:02, 113.58it/s]Loading weights:  62%|██████▏   | 451/729 [00:21<00:02, 127.89it/s]Loading weights:  64%|██████▍   | 468/729 [00:21<00:01, 135.27it/s]Loading weights:  67%|██████▋   | 487/729 [00:21<00:01, 145.32it/s]Loading weights:  69%|██████▉   | 504/729 [00:21<00:01, 149.84it/s]Loading weights:  72%|███████▏  | 525/729 [00:21<00:01, 161.41it/s]Loading weights:  75%|███████▌  | 547/729 [00:22<00:01, 168.73it/s]Loading weights:  78%|███████▊  | 569/729 [00:22<00:00, 177.33it/s]Loading weights:  82%|████████▏ | 595/729 [00:22<00:00, 194.81it/s]Loading weights:  85%|████████▍ | 619/729 [00:22<00:00, 203.81it/s]Loading weights:  88%|████████▊ | 640/729 [00:22<00:00, 194.18it/s]Loading weights:  91%|█████████ | 660/729 [00:22<00:00, 179.13it/s]Loading weights:  93%|█████████▎| 679/729 [00:22<00:00, 172.83it/s]Loading weights:  96%|█████████▌| 697/729 [00:22<00:00, 164.61it/s]Loading weights:  98%|█████████▊| 714/729 [00:22<00:00, 160.31it/s]Loading weights: 100%|██████████| 729/729 [00:23<00:00, 31.48it/s] 
+The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+Evaluating annotation mapping files:   0%|          | 0/6 [00:00<?, ?it/s]evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit1_FiVE.json ...
+
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+
+evaluating method: taubg0_taufg20_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+evaluating metric: niqe_target_image
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit1/0001_bus_resize/00000.png" --save_file "evaluation/csv/edit1_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit1/0001_bus_resize/00008.png" --save_file "evaluation/csv/edit1_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit1/0001_bus_resize/00016.png" --save_file "evaluation/csv/edit1_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit1/0001_bus_resize/00024.png" --save_file "evaluation/csv/edit1_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit1/0001_bus_resize/00032.png" --save_file "evaluation/csv/edit1_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit1/0001_bus_resize/00040.png" --save_file "evaluation/csv/edit1_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit1/0001_bus_resize/00048.png" --save_file "evaluation/csv/edit1_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit1/0001_bus_resize/00056.png" --save_file "evaluation/csv/edit1_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit1/0001_bus_resize/00064.png" --save_file "evaluation/csv/edit1_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Total Number of Frames: 9, Average NIQE Score: 4.649923431114446
+
+Evaluating videos:   1%|          | 1/100 [01:00<1:39:20, 60.21s/it][AEvaluating videos: 100%|██████████| 100/100 [01:00<00:00,  1.66it/s]
+processing file_id
+processing taubg0_taufg20_vp|structure_distance
+processing taubg0_taufg20_vp|psnr_unedit_part
+processing taubg0_taufg20_vp|lpips_unedit_part
+processing taubg0_taufg20_vp|mse_unedit_part
+processing taubg0_taufg20_vp|ssim_unedit_part
+processing taubg0_taufg20_vp|clip_similarity_source_image
+processing taubg0_taufg20_vp|clip_similarity_target_image
+processing taubg0_taufg20_vp|clip_similarity_target_image_edit_part
+processing taubg0_taufg20_vp|niqe_target_image
+Evaluating annotation mapping files:  17%|█▋        | 1/6 [01:00<05:01, 60.22s/it]evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit2_FiVE.json ...
+
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+
+evaluating method: taubg0_taufg20_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+evaluating metric: niqe_target_image
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0011_lucia_resize/00000.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0011_lucia_resize/00008.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0011_lucia_resize/00016.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0011_lucia_resize/00024.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0011_lucia_resize/00032.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0011_lucia_resize/00040.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0011_lucia_resize/00048.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0011_lucia_resize/00056.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0011_lucia_resize/00064.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Total Number of Frames: 9, Average NIQE Score: 4.10344299977425
+
+Evaluating videos:  11%|█         | 11/100 [00:56<07:40,  5.17s/it][A
+
+evaluating method: taubg0_taufg20_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+evaluating metric: niqe_target_image
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0014_burnout_resize/00000.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0014_burnout_resize/00008.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0014_burnout_resize/00016.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0014_burnout_resize/00024.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0014_burnout_resize/00032.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0014_burnout_resize/00040.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0014_burnout_resize/00048.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0014_burnout_resize/00056.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0014_burnout_resize/00064.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Total Number of Frames: 9, Average NIQE Score: 4.36984763500217
+
+Evaluating videos:  14%|█▍        | 14/100 [01:54<13:05,  9.13s/it][A
+
+evaluating method: taubg0_taufg20_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+evaluating metric: niqe_target_image
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0016_horsejump-high_resize/00000.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0016_horsejump-high_resize/00008.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0016_horsejump-high_resize/00016.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0016_horsejump-high_resize/00024.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0016_horsejump-high_resize/00032.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0016_horsejump-high_resize/00040.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Total Number of Frames: 6, Average NIQE Score: 4.267407776934686
+
+Evaluating videos:  16%|█▌        | 16/100 [02:34<15:55, 11.38s/it][A
+
+evaluating method: taubg0_taufg20_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+evaluating metric: niqe_target_image
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0028_kite-walk_resize/00000.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0028_kite-walk_resize/00008.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0028_kite-walk_resize/00016.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0028_kite-walk_resize/00024.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0028_kite-walk_resize/00032.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0028_kite-walk_resize/00040.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0028_kite-walk_resize/00048.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0028_kite-walk_resize/00056.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0028_kite-walk_resize/00064.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Total Number of Frames: 9, Average NIQE Score: 4.66279774244464
+
+Evaluating videos:  28%|██▊       | 28/100 [03:32<08:36,  7.17s/it][A
+
+evaluating method: taubg0_taufg20_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+evaluating metric: niqe_target_image
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0034_cows_resize/00000.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0034_cows_resize/00008.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0034_cows_resize/00016.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0034_cows_resize/00024.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0034_cows_resize/00032.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0034_cows_resize/00040.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0034_cows_resize/00048.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0034_cows_resize/00056.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0034_cows_resize/00064.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0034_cows_resize/00072.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0034_cows_resize/00080.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0034_cows_resize/00088.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Total Number of Frames: 12, Average NIQE Score: 3.6343549652611062
+
+Evaluating videos:  34%|███▍      | 34/100 [04:49<09:51,  8.97s/it][A
+
+evaluating method: taubg0_taufg20_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: clip_similarity_source_image
+Token indices sequence length is longer than the specified maximum sequence length for this model (85 > 77). Running this sequence through the model will result in indexing errors
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Encountered caption longer than max_position_embeddings=77. Will truncate captions to thislength. If longer captions are needed, initialize argument `model_name_or_path` with a model thatsupports longer sequences.
+  warnings.warn(*args, **kwargs)
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+evaluating metric: niqe_target_image
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0040_tennis_resize/00000.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0040_tennis_resize/00008.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0040_tennis_resize/00016.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0040_tennis_resize/00024.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0040_tennis_resize/00032.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0040_tennis_resize/00040.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0040_tennis_resize/00048.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0040_tennis_resize/00056.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0040_tennis_resize/00064.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Total Number of Frames: 9, Average NIQE Score: 4.255246715749162
+
+Evaluating videos:  40%|████      | 40/100 [05:47<09:11,  9.19s/it][A
+
+evaluating method: taubg0_taufg20_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+evaluating metric: niqe_target_image
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0057_dog_resize/00000.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0057_dog_resize/00008.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0057_dog_resize/00016.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0057_dog_resize/00024.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0057_dog_resize/00032.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0057_dog_resize/00040.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0057_dog_resize/00048.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0057_dog_resize/00056.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Total Number of Frames: 8, Average NIQE Score: 4.608777387720568
+
+Evaluating videos:  57%|█████▋    | 57/100 [06:38<04:07,  5.75s/it][A
+
+evaluating method: taubg0_taufg20_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+evaluating metric: niqe_target_image
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0068_planes-water_resize/00000.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0068_planes-water_resize/00008.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0068_planes-water_resize/00016.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0068_planes-water_resize/00024.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0068_planes-water_resize/00032.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Total Number of Frames: 5, Average NIQE Score: 5.83059272234168
+
+Evaluating videos:  68%|██████▊   | 68/100 [07:12<02:34,  4.82s/it][A
+
+evaluating method: taubg0_taufg20_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+evaluating metric: niqe_target_image
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0074_rhino_resize/00000.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0074_rhino_resize/00008.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0074_rhino_resize/00016.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0074_rhino_resize/00024.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0074_rhino_resize/00032.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0074_rhino_resize/00040.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0074_rhino_resize/00048.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0074_rhino_resize/00056.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0074_rhino_resize/00064.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0074_rhino_resize/00072.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0074_rhino_resize/00080.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Total Number of Frames: 11, Average NIQE Score: 3.0528867893067626
+
+Evaluating videos:  74%|███████▍  | 74/100 [08:22<02:42,  6.26s/it][A
+
+evaluating method: taubg0_taufg20_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+evaluating metric: niqe_target_image
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0075_A_bicycle_resize/00000.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0075_A_bicycle_resize/00008.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0075_A_bicycle_resize/00016.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0075_A_bicycle_resize/00024.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0075_A_bicycle_resize/00032.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0075_A_bicycle_resize/00040.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0075_A_bicycle_resize/00048.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0075_A_bicycle_resize/00056.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0075_A_bicycle_resize/00064.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0075_A_bicycle_resize/00072.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0075_A_bicycle_resize/00080.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Total Number of Frames: 11, Average NIQE Score: 3.603383851206974
+
+Evaluating videos:  75%|███████▌  | 75/100 [09:32<03:52,  9.31s/it][A
+
+evaluating method: taubg0_taufg20_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+evaluating metric: niqe_target_image
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0076_A_rabbit_resize/00000.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0076_A_rabbit_resize/00008.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0076_A_rabbit_resize/00016.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0076_A_rabbit_resize/00024.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0076_A_rabbit_resize/00032.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0076_A_rabbit_resize/00040.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0076_A_rabbit_resize/00048.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0076_A_rabbit_resize/00056.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0076_A_rabbit_resize/00064.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0076_A_rabbit_resize/00072.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0076_A_rabbit_resize/00080.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Total Number of Frames: 11, Average NIQE Score: 5.706344754065581
+
+Evaluating videos:  76%|███████▌  | 76/100 [10:43<05:17, 13.23s/it][A
+
+evaluating method: taubg0_taufg20_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+evaluating metric: niqe_target_image
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0090_A_deer_resize/00000.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0090_A_deer_resize/00008.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0090_A_deer_resize/00016.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0090_A_deer_resize/00024.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0090_A_deer_resize/00032.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0090_A_deer_resize/00040.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0090_A_deer_resize/00048.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0090_A_deer_resize/00056.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0090_A_deer_resize/00064.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0090_A_deer_resize/00072.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0090_A_deer_resize/00080.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Total Number of Frames: 11, Average NIQE Score: 5.14200804991928
+
+Evaluating videos:  90%|█████████ | 90/100 [11:54<01:26,  8.65s/it][A
+
+evaluating method: taubg0_taufg20_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+evaluating metric: niqe_target_image
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0091_A_hawk_resize/00000.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0091_A_hawk_resize/00008.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0091_A_hawk_resize/00016.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0091_A_hawk_resize/00024.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0091_A_hawk_resize/00032.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0091_A_hawk_resize/00040.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0091_A_hawk_resize/00048.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0091_A_hawk_resize/00056.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0091_A_hawk_resize/00064.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0091_A_hawk_resize/00072.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit2/0091_A_hawk_resize/00080.png" --save_file "evaluation/csv/edit2_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Total Number of Frames: 11, Average NIQE Score: 3.80487350262589
+
+Evaluating videos:  91%|█████████ | 91/100 [13:04<01:47, 11.98s/it][AEvaluating videos: 100%|██████████| 100/100 [13:04<00:00,  7.85s/it]
+processing file_id
+processing taubg0_taufg20_vp|structure_distance
+processing taubg0_taufg20_vp|psnr_unedit_part
+processing taubg0_taufg20_vp|lpips_unedit_part
+processing taubg0_taufg20_vp|mse_unedit_part
+processing taubg0_taufg20_vp|ssim_unedit_part
+processing taubg0_taufg20_vp|clip_similarity_source_image
+processing taubg0_taufg20_vp|clip_similarity_target_image
+processing taubg0_taufg20_vp|clip_similarity_target_image_edit_part
+processing taubg0_taufg20_vp|niqe_target_image
+Evaluating annotation mapping files:  33%|███▎      | 2/6 [14:04<32:25, 486.43s/it]evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit3_FiVE.json ...
+
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+
+evaluating method: taubg0_taufg20_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+evaluating metric: niqe_target_image
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit3/0017_kid-football_resize/00000.png" --save_file "evaluation/csv/edit3_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit3/0017_kid-football_resize/00008.png" --save_file "evaluation/csv/edit3_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit3/0017_kid-football_resize/00016.png" --save_file "evaluation/csv/edit3_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit3/0017_kid-football_resize/00024.png" --save_file "evaluation/csv/edit3_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit3/0017_kid-football_resize/00032.png" --save_file "evaluation/csv/edit3_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit3/0017_kid-football_resize/00040.png" --save_file "evaluation/csv/edit3_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit3/0017_kid-football_resize/00048.png" --save_file "evaluation/csv/edit3_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit3/0017_kid-football_resize/00056.png" --save_file "evaluation/csv/edit3_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Total Number of Frames: 8, Average NIQE Score: 4.717873207788422
+
+Evaluating videos:  17%|█▋        | 17/100 [00:53<04:19,  3.13s/it][A
+
+evaluating method: taubg0_taufg20_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+evaluating metric: niqe_target_image
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit3/0058_boat_resize/00000.png" --save_file "evaluation/csv/edit3_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit3/0058_boat_resize/00008.png" --save_file "evaluation/csv/edit3_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit3/0058_boat_resize/00016.png" --save_file "evaluation/csv/edit3_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit3/0058_boat_resize/00024.png" --save_file "evaluation/csv/edit3_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit3/0058_boat_resize/00032.png" --save_file "evaluation/csv/edit3_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit3/0058_boat_resize/00040.png" --save_file "evaluation/csv/edit3_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit3/0058_boat_resize/00048.png" --save_file "evaluation/csv/edit3_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit3/0058_boat_resize/00056.png" --save_file "evaluation/csv/edit3_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit3/0058_boat_resize/00064.png" --save_file "evaluation/csv/edit3_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Total Number of Frames: 9, Average NIQE Score: 5.09236887974075
+
+Evaluating videos:  58%|█████▊    | 58/100 [01:50<01:15,  1.79s/it][AEvaluating videos: 100%|██████████| 100/100 [01:50<00:00,  1.11s/it]
+processing file_id
+processing taubg0_taufg20_vp|structure_distance
+processing taubg0_taufg20_vp|psnr_unedit_part
+processing taubg0_taufg20_vp|lpips_unedit_part
+processing taubg0_taufg20_vp|mse_unedit_part
+processing taubg0_taufg20_vp|ssim_unedit_part
+processing taubg0_taufg20_vp|clip_similarity_source_image
+processing taubg0_taufg20_vp|clip_similarity_target_image
+processing taubg0_taufg20_vp|clip_similarity_target_image_edit_part
+processing taubg0_taufg20_vp|niqe_target_image
+Evaluating annotation mapping files:  50%|█████     | 3/6 [15:55<15:44, 314.90s/it]evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit4_FiVE.json ...
+
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+
+evaluating method: taubg0_taufg20_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+evaluating metric: niqe_target_image
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit4/0028_kite-walk_resize/00000.png" --save_file "evaluation/csv/edit4_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit4/0028_kite-walk_resize/00008.png" --save_file "evaluation/csv/edit4_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit4/0028_kite-walk_resize/00016.png" --save_file "evaluation/csv/edit4_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit4/0028_kite-walk_resize/00024.png" --save_file "evaluation/csv/edit4_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit4/0028_kite-walk_resize/00032.png" --save_file "evaluation/csv/edit4_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit4/0028_kite-walk_resize/00040.png" --save_file "evaluation/csv/edit4_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit4/0028_kite-walk_resize/00048.png" --save_file "evaluation/csv/edit4_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit4/0028_kite-walk_resize/00056.png" --save_file "evaluation/csv/edit4_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit4/0028_kite-walk_resize/00064.png" --save_file "evaluation/csv/edit4_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Total Number of Frames: 9, Average NIQE Score: 4.996757790191187
+
+Evaluating videos:  28%|██▊       | 28/100 [00:58<02:30,  2.09s/it][A
+
+evaluating method: taubg0_taufg20_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+evaluating metric: niqe_target_image
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit4/0089_A_dog_resize/00000.png" --save_file "evaluation/csv/edit4_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit4/0089_A_dog_resize/00008.png" --save_file "evaluation/csv/edit4_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit4/0089_A_dog_resize/00016.png" --save_file "evaluation/csv/edit4_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit4/0089_A_dog_resize/00024.png" --save_file "evaluation/csv/edit4_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit4/0089_A_dog_resize/00032.png" --save_file "evaluation/csv/edit4_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit4/0089_A_dog_resize/00040.png" --save_file "evaluation/csv/edit4_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit4/0089_A_dog_resize/00048.png" --save_file "evaluation/csv/edit4_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit4/0089_A_dog_resize/00056.png" --save_file "evaluation/csv/edit4_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit4/0089_A_dog_resize/00064.png" --save_file "evaluation/csv/edit4_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit4/0089_A_dog_resize/00072.png" --save_file "evaluation/csv/edit4_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit4/0089_A_dog_resize/00080.png" --save_file "evaluation/csv/edit4_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Total Number of Frames: 11, Average NIQE Score: 3.2801035263120664
+
+Evaluating videos:  89%|████████▉ | 89/100 [02:09<00:15,  1.39s/it][AEvaluating videos: 100%|██████████| 100/100 [02:09<00:00,  1.29s/it]
+processing file_id
+processing taubg0_taufg20_vp|structure_distance
+processing taubg0_taufg20_vp|psnr_unedit_part
+processing taubg0_taufg20_vp|lpips_unedit_part
+processing taubg0_taufg20_vp|mse_unedit_part
+processing taubg0_taufg20_vp|ssim_unedit_part
+processing taubg0_taufg20_vp|clip_similarity_source_image
+processing taubg0_taufg20_vp|clip_similarity_target_image
+processing taubg0_taufg20_vp|clip_similarity_target_image_edit_part
+processing taubg0_taufg20_vp|niqe_target_image
+Evaluating annotation mapping files:  67%|██████▋   | 4/6 [18:05<08:03, 241.60s/it]evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit5_FiVE.json ...
+
+Evaluating videos:   0%|          | 0/9 [00:00<?, ?it/s][A
+
+evaluating method: taubg0_taufg20_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+evaluating metric: niqe_target_image
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit5/0007_guitar-violin_resize/00000.png" --save_file "evaluation/csv/edit5_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit5/0007_guitar-violin_resize/00008.png" --save_file "evaluation/csv/edit5_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit5/0007_guitar-violin_resize/00016.png" --save_file "evaluation/csv/edit5_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit5/0007_guitar-violin_resize/00024.png" --save_file "evaluation/csv/edit5_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit5/0007_guitar-violin_resize/00032.png" --save_file "evaluation/csv/edit5_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit5/0007_guitar-violin_resize/00040.png" --save_file "evaluation/csv/edit5_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Total Number of Frames: 6, Average NIQE Score: 5.346610623541404
+
+Evaluating videos:  11%|█         | 1/9 [00:39<05:13, 39.21s/it][A
+
+evaluating method: taubg0_taufg20_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+evaluating metric: niqe_target_image
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit5/0011_lucia_resize/00000.png" --save_file "evaluation/csv/edit5_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit5/0011_lucia_resize/00008.png" --save_file "evaluation/csv/edit5_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit5/0011_lucia_resize/00016.png" --save_file "evaluation/csv/edit5_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit5/0011_lucia_resize/00024.png" --save_file "evaluation/csv/edit5_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit5/0011_lucia_resize/00032.png" --save_file "evaluation/csv/edit5_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit5/0011_lucia_resize/00040.png" --save_file "evaluation/csv/edit5_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit5/0011_lucia_resize/00048.png" --save_file "evaluation/csv/edit5_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit5/0011_lucia_resize/00056.png" --save_file "evaluation/csv/edit5_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit5/0011_lucia_resize/00064.png" --save_file "evaluation/csv/edit5_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Total Number of Frames: 9, Average NIQE Score: 4.509686221883122
+
+Evaluating videos:  33%|███▎      | 3/9 [01:37<03:10, 31.83s/it][A
+
+evaluating method: taubg0_taufg20_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+evaluating metric: niqe_target_image
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit5/0069_car-turn_resize/00000.png" --save_file "evaluation/csv/edit5_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit5/0069_car-turn_resize/00008.png" --save_file "evaluation/csv/edit5_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit5/0069_car-turn_resize/00016.png" --save_file "evaluation/csv/edit5_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit5/0069_car-turn_resize/00024.png" --save_file "evaluation/csv/edit5_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit5/0069_car-turn_resize/00032.png" --save_file "evaluation/csv/edit5_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit5/0069_car-turn_resize/00040.png" --save_file "evaluation/csv/edit5_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit5/0069_car-turn_resize/00048.png" --save_file "evaluation/csv/edit5_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit5/0069_car-turn_resize/00056.png" --save_file "evaluation/csv/edit5_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit5/0069_car-turn_resize/00064.png" --save_file "evaluation/csv/edit5_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Total Number of Frames: 9, Average NIQE Score: 3.9595929101887473
+
+Evaluating videos:  89%|████████▉ | 8/9 [02:36<00:17, 17.28s/it][AEvaluating videos: 100%|██████████| 9/9 [02:36<00:00, 17.40s/it]
+processing file_id
+processing taubg0_taufg20_vp|structure_distance
+processing taubg0_taufg20_vp|psnr_unedit_part
+processing taubg0_taufg20_vp|lpips_unedit_part
+processing taubg0_taufg20_vp|mse_unedit_part
+processing taubg0_taufg20_vp|ssim_unedit_part
+processing taubg0_taufg20_vp|clip_similarity_source_image
+processing taubg0_taufg20_vp|clip_similarity_target_image
+processing taubg0_taufg20_vp|clip_similarity_target_image_edit_part
+processing taubg0_taufg20_vp|niqe_target_image
+Evaluating annotation mapping files:  83%|████████▎ | 5/6 [20:41<03:30, 210.95s/it]evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit6_FiVE.json ...
+
+Evaluating videos:   0%|          | 0/10 [00:00<?, ?it/s][A
+
+evaluating method: taubg0_taufg20_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+evaluating metric: niqe_target_image
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit6/0042_gym-ball_resize/00000.png" --save_file "evaluation/csv/edit6_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit6/0042_gym-ball_resize/00008.png" --save_file "evaluation/csv/edit6_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit6/0042_gym-ball_resize/00016.png" --save_file "evaluation/csv/edit6_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit6/0042_gym-ball_resize/00024.png" --save_file "evaluation/csv/edit6_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit6/0042_gym-ball_resize/00032.png" --save_file "evaluation/csv/edit6_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit6/0042_gym-ball_resize/00040.png" --save_file "evaluation/csv/edit6_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit6/0042_gym-ball_resize/00048.png" --save_file "evaluation/csv/edit6_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit6/0042_gym-ball_resize/00056.png" --save_file "evaluation/csv/edit6_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Running command: /home/ids/skhairi/anaconda3/envs/five-bench/bin/python /home/ids/skhairi/Code/iqa_cli/inference_iqa.py -m niqe -t "/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg20_vp/edit6/0042_gym-ball_resize/00064.png" --save_file "evaluation/csv/edit6_FiVE_r26_taubg0_taufg20_vp_frame_stride8_niqe_taubg0_taufg20_vp_tgt.txt"
+Total Number of Frames: 9, Average NIQE Score: 5.237020764664867
+
+Evaluating videos:  50%|█████     | 5/10 [00:58<00:58, 11.64s/it][AEvaluating videos: 100%|██████████| 10/10 [00:58<00:00,  5.82s/it]
+processing file_id
+processing taubg0_taufg20_vp|structure_distance
+processing taubg0_taufg20_vp|psnr_unedit_part
+processing taubg0_taufg20_vp|lpips_unedit_part
+processing taubg0_taufg20_vp|mse_unedit_part
+processing taubg0_taufg20_vp|ssim_unedit_part
+processing taubg0_taufg20_vp|clip_similarity_source_image
+processing taubg0_taufg20_vp|clip_similarity_target_image
+processing taubg0_taufg20_vp|clip_similarity_target_image_edit_part
+processing taubg0_taufg20_vp|niqe_target_image
+Evaluating annotation mapping files: 100%|██████████| 6/6 [21:39<00:00, 159.01s/it]Evaluating annotation mapping files: 100%|██████████| 6/6 [21:39<00:00, 216.63s/it]
+final averaging file_id
+final averaging taubg0_taufg20_vp|structure_distance
+final averaging taubg0_taufg20_vp|psnr_unedit_part
+final averaging taubg0_taufg20_vp|lpips_unedit_part
+final averaging taubg0_taufg20_vp|mse_unedit_part
+final averaging taubg0_taufg20_vp|ssim_unedit_part
+final averaging taubg0_taufg20_vp|clip_similarity_source_image
+final averaging taubg0_taufg20_vp|clip_similarity_target_image
+final averaging taubg0_taufg20_vp|clip_similarity_target_image_edit_part
+final averaging taubg0_taufg20_vp|niqe_target_image
+[evaluate] overall metrics -> evaluation/csv/r26_taubg0_taufg20_vp_avg.csv
+[r26_eval] r26_taubg0_taufg20_vp exit=0 error_lines=0 oom_lines=0
+[r26_eval] OK r26_taubg0_taufg20_vp -> evaluation/csv/r26_taubg0_taufg20_vp_avg.csv

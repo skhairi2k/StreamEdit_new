@@ -1,0 +1,6 @@
+=== R25 figures: 22 cases from evaluation/csv/r25_adaptive.csv ===
+wrote evaluation/figures/r25_tau_iou.pdf
+wrote evaluation/figures/r25_delta.pdf
+wrote 22 per-video grids to evaluation/figures/r25_grids
+  delta|clip_similarity_target_image           vs |tau-2|:  r=+0.076  p=0.736  n=22
+  delta|lpips_unedit_part                      vs |tau-2|:  r=+0.778  p=0.000  n=22

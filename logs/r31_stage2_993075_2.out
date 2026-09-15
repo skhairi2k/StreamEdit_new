@@ -1,0 +1,69 @@
+[r31_stage2] job=993075_2 arm=normals
+[r31_stage2] target=/projects/dataggen/outputs/five_bench/r31_stage1/r31_unblended_s7/step06
+[r31_stage2] latents=/projects/dataggen/outputs/five_bench/r31_latents_s7  ->  /projects/dataggen/outputs/five_bench/r31_div/normals
+[r31_stage2] stage-1 latents found: 22 (expect 22)
+[r31_stage2] --- normals / edit1 ---
+[r31_div] arm=normals edit_type=1 cases=1 temporal=mean -> /projects/dataggen/outputs/five_bench/r31_div/normals/edit1
+[ok] 0001_bus: d=[0.12356, 90.58592] frac(m>0.5)=0.109 native=(18, 480, 832) 
+[r31_div] done arm=normals edit1: 1/1 ok
+[r31_stage2] --- normals / edit2 ---
+[r31_div] arm=normals edit_type=2 cases=13 temporal=mean -> /projects/dataggen/outputs/five_bench/r31_div/normals/edit2
+[ok] 0028_kite-walk: d=[1.08368, 120.48364] frac(m>0.5)=0.009 native=(18, 480, 832) 
+[ok] 0040_tennis: d=[0.61524, 121.54147] frac(m>0.5)=0.025 native=(18, 480, 832) 
+[ok] 0057_dog: d=[2.42750, 109.52187] frac(m>0.5)=0.072 native=(15, 480, 832) 
+[ok] 0011_lucia: d=[0.79796, 94.96001] frac(m>0.5)=0.067 native=(18, 480, 832) 
+[ok] 0014_burnout: d=[0.08037, 139.12744] frac(m>0.5)=0.056 native=(18, 480, 832) 
+[ok] 0016_horsejump-high: d=[0.16870, 111.27893] frac(m>0.5)=0.041 native=(12, 480, 832) 
+[ok] 0068_planes-water: d=[0.26550, 109.90620] frac(m>0.5)=0.050 native=(9, 480, 832) 
+[ok] 0074_rhino: d=[0.66883, 118.45718] frac(m>0.5)=0.055 native=(21, 480, 832) 
+[ok] 0075_A_bicycle: d=[0.24467, 119.31645] frac(m>0.5)=0.055 native=(21, 480, 832) 
+[ok] 0076_A_rabbit: d=[0.84076, 106.54836] frac(m>0.5)=0.028 native=(21, 480, 832) 
+[ok] 0090_A_deer: d=[1.07767, 121.66823] frac(m>0.5)=0.064 native=(21, 480, 832) 
+[ok] 0091_A_hawk: d=[0.38452, 95.53859] frac(m>0.5)=0.017 native=(21, 480, 832) 
+[ok] 0034_cows: d=[0.94876, 120.91286] frac(m>0.5)=0.113 native=(24, 480, 832) 
+[r31_div] done arm=normals edit2: 13/13 ok
+[r31_stage2] --- normals / edit3 ---
+[r31_div] arm=normals edit_type=3 cases=2 temporal=mean -> /projects/dataggen/outputs/five_bench/r31_div/normals/edit3
+[ok] 0017_kid-football: d=[0.79329, 107.08008] frac(m>0.5)=0.020 native=(15, 480, 832) 
+[ok] 0058_boat: d=[0.06866, 98.21634] frac(m>0.5)=0.014 native=(18, 480, 832) 
+[r31_div] done arm=normals edit3: 2/2 ok
+[r31_stage2] --- normals / edit4 ---
+[r31_div] arm=normals edit_type=4 cases=2 temporal=mean -> /projects/dataggen/outputs/five_bench/r31_div/normals/edit4
+[ok] 0089_A_dog: d=[0.23407, 124.11252] frac(m>0.5)=0.090 native=(21, 480, 832) 
+[ok] 0028_kite-walk: d=[1.07074, 84.18394] frac(m>0.5)=0.032 native=(18, 480, 832) 
+[r31_div] done arm=normals edit4: 2/2 ok
+[r31_stage2] --- normals / edit5 ---
+[r31_div] arm=normals edit_type=5 cases=3 temporal=mean -> /projects/dataggen/outputs/five_bench/r31_div/normals/edit5
+[ok] 0007_guitar-violin: d=[0.47597, 98.64659] frac(m>0.5)=0.056 native=(12, 480, 832) 
+[ok] 0069_car-turn: d=[0.25235, 128.30734] frac(m>0.5)=0.086 native=(18, 480, 832) 
+[ok] 0011_lucia: d=[1.45913, 82.42394] frac(m>0.5)=0.011 native=(18, 480, 832) 
+[r31_div] done arm=normals edit5: 3/3 ok
+[r31_stage2] --- normals / edit6 ---
+[r31_div] arm=normals edit_type=6 cases=1 temporal=mean -> /projects/dataggen/outputs/five_bench/r31_div/normals/edit6
+[ok] 0042_gym-ball: d=[0.10296, 119.26538] frac(m>0.5)=0.007 native=(18, 480, 832) 
+[r31_div] done arm=normals edit6: 1/1 ok
+[r31_stage2] arm=normals: 22 npz (expect 22) failures=0
+[r31_stage2] all 88 npz present (4 arms x 22) -> building the 12-row image/latent grids
+[ok] 0001_bus_edit1.png: 12x18
+[ok] 0028_kite-walk_edit2.png: 12x18
+[ok] 0040_tennis_edit2.png: 12x18
+[ok] 0057_dog_edit2.png: 12x15
+[ok] 0011_lucia_edit2.png: 12x18
+[ok] 0014_burnout_edit2.png: 12x18
+[ok] 0016_horsejump-high_edit2.png: 12x12
+[ok] 0068_planes-water_edit2.png: 12x9
+[ok] 0074_rhino_edit2.png: 12x21
+[ok] 0075_A_bicycle_edit2.png: 12x21
+[ok] 0076_A_rabbit_edit2.png: 12x21
+[ok] 0090_A_deer_edit2.png: 12x21
+[ok] 0091_A_hawk_edit2.png: 12x21
+[ok] 0007_guitar-violin_edit5.png: 12x12
+[ok] 0069_car-turn_edit5.png: 12x18
+[ok] 0011_lucia_edit5.png: 12x18
+[ok] 0042_gym-ball_edit6.png: 12x18
+[ok] 0034_cows_edit2.png: 12x24
+[ok] 0017_kid-football_edit3.png: 12x15
+[ok] 0058_boat_edit3.png: 12x18
+[ok] 0089_A_dog_edit4.png: 12x21
+[ok] 0028_kite-walk_edit4.png: 12x18
+[r31_grid] 22/22 pages -> /home/ids/skhairi/Code/StreamEdit_bigchantier/evaluation/figures/r31_div_grids

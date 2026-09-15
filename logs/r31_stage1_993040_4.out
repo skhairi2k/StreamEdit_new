@@ -1,0 +1,26 @@
+[r31_stage1] job=993040_4 edit_type=5
+[r31_stage1] method=r31_unblended_s7 steps=7 blend_sched=zero (Q/K blend OFF)
+[r31_stage1] measured index 6 is POST-injection (len//2=3)
+[r31_stage1] dump_steps=6 measure_index=6
+[r31_stage1] frames -> /projects/dataggen/outputs/five_bench/r31_stage1/r31_unblended_s7   latents -> /projects/dataggen/outputs/five_bench/r31_latents_s7/edit5
+[r31_stage1] measure_kind=post_injection__final_render: len//2 = 3, so the mask union is injected at index 3 and the bg source-KV at indices > 3.
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[r31_stage1] edit_type=5 method=r31_unblended_s7 pairs=3 vp_mode=vp steps=7 blend_sched=zero (Q/K blend OFF) src_kv=bg_half dump_steps=[6] measure_index=6
+[r31_stage1] frames -> /projects/dataggen/outputs/five_bench/r31_stage1/r31_unblended_s7
+[r31_stage1] latents -> /projects/dataggen/outputs/five_bench/r31_latents_s7/edit5
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.390873432159424 GB
+[[0, 1]] [[0, 1, 2, 3, 4]]
+[r31_stage1] GATE1 PASS 0007_guitar-violin: step[6] == final latent (shape (7, 1, 12, 16, 60, 104))
+[ok] 0007_guitar-violin: 1 steps x 45 frames + latents -> 0007_guitar-violin.npz
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.36449956893921 GB
+[[0, 1, 2, 3, 4, 5]] [[7, 8, 9, 10, 11]]
+[r31_stage1] GATE1 PASS 0011_lucia: step[6] == final latent (shape (7, 1, 18, 16, 60, 104))
+[ok] 0011_lucia: 1 steps x 69 frames + latents -> 0011_lucia.npz
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.355571269989014 GB
+[[0, 1, 2]] [[4, 5, 6, 7, 8, 9, 10]]
+[r31_stage1] GATE1 PASS 0069_car-turn: step[6] == final latent (shape (7, 1, 18, 16, 60, 104))
+[ok] 0069_car-turn: 1 steps x 69 frames + latents -> 0069_car-turn.npz
+[r31_stage1] done edit5: 3/3 ok -> /projects/dataggen/outputs/five_bench/r31_stage1/r31_unblended_s7/_manifest_edit5.csv
+[r31_stage1] edit5: npz=3 frame_dirs=3 (expect npz x 1) GATE1=3
+[r31_stage1] failures: 0

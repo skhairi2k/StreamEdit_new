@@ -1,0 +1,122 @@
+[r20_smoke] job=907447 out=/projects/dataggen/outputs/five_bench/r20_smoke
+[r20_smoke] ===== stage 1: bit-parity against R1 / R7 =====
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=1 method=parity_novp pairs=1 vp_mode=novp blend_sched=paper(eq4) out=/projects/dataggen/outputs/five_bench/r20_smoke/parity_novp/edit1
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.39012956619263 GB
+[[0, 1, 2]] [[0, 1, 2]]
+[ok] 0001_bus: 69 frames
+[run_fivebench] done edit1: 1/1 ok -> /projects/dataggen/outputs/five_bench/r20_smoke/parity_novp/edit1/_manifest.csv
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=6 method=parity_novp pairs=2 vp_mode=novp blend_sched=paper(eq4) out=/projects/dataggen/outputs/five_bench/r20_smoke/parity_novp/edit6
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.38877725601196 GB
+[[20, 21, 22, 23, 24, 25, 26, 27]] [[20, 21, 22, 23, 24, 25, 26, 27, 28]]
+[ok] 0002_girl-dog: 81 frames
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.01925802230835 GB
+[[0, 1]] [[6, 7, 8, 9, 10]]
+[ok] 0042_gym-ball: 69 frames
+[run_fivebench] done edit6: 2/2 ok -> /projects/dataggen/outputs/five_bench/r20_smoke/parity_novp/edit6/_manifest.csv
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=1 method=parity_vp pairs=1 vp_mode=vp blend_sched=paper(eq4) out=/projects/dataggen/outputs/five_bench/r20_smoke/parity_vp/edit1
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.38975763320923 GB
+[[0, 1, 2]] [[0, 1, 2]]
+[ok] 0001_bus: 69 frames
+[run_fivebench] done edit1: 1/1 ok -> /projects/dataggen/outputs/five_bench/r20_smoke/parity_vp/edit1/_manifest.csv
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=6 method=parity_vp pairs=2 vp_mode=vp blend_sched=paper(eq4) out=/projects/dataggen/outputs/five_bench/r20_smoke/parity_vp/edit6
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.388405323028564 GB
+[[20, 21, 22, 23, 24, 25, 26, 27]] [[20, 21, 22, 23, 24, 25, 26, 27, 28]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.37551927566528 GB
+[[20, 21, 22, 23, 24, 25, 26, 27]] [[20, 21, 22, 23, 24, 25, 26, 27, 28]]
+[ok] 0002_girl-dog: 81 frames
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.01693296432495 GB
+[[0, 1]] [[6, 7, 8, 9, 10]]
+[ok] 0042_gym-ball: 69 frames
+[run_fivebench] done edit6: 2/2 ok -> /projects/dataggen/outputs/five_bench/r20_smoke/parity_vp/edit6/_manifest.csv
+[r20_smoke] ----- comparing against stored references -----
+IDENTICAL parity_novp/edit1/0001_bus (json idx 0) vs baseline
+SKIPPED  parity_novp/edit6/0042_gym-ball -- reference absent (re-render pending)
+SKIPPED  parity_novp/edit6/0002_girl-dog -- reference absent (re-render pending)
+SKIPPED  parity_vp/edit1/0001_bus -- reference absent (re-render pending)
+SKIPPED  parity_vp/edit6/0042_gym-ball -- reference absent (re-render pending)
+SKIPPED  parity_vp/edit6/0002_girl-dog -- reference absent (re-render pending)
+[parity] 0 mismatch(es) among index-0 pairs (SKIPPED lines mean no reference existed -- gate 1 proved nothing there)
+[r20_smoke] ===== gate 2: subset independence (edit6 subset vs full) =====
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=6 method=subset_2 pairs=2 vp_mode=novp blend_sched=paper(eq4) out=/projects/dataggen/outputs/five_bench/r20_smoke/subset_2/edit6
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.38877725601196 GB
+[[20, 21, 22, 23, 24, 25, 26, 27]] [[20, 21, 22, 23, 24, 25, 26, 27, 28]]
+[ok] 0002_girl-dog: 81 frames
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.01925802230835 GB
+[[0, 1]] [[6, 7, 8, 9, 10]]
+[ok] 0042_gym-ball: 69 frames
+[run_fivebench] done edit6: 2/2 ok -> /projects/dataggen/outputs/five_bench/r20_smoke/subset_2/edit6/_manifest.csv
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=6 method=subset_all pairs=10 vp_mode=novp blend_sched=paper(eq4) out=/projects/dataggen/outputs/five_bench/r20_smoke/subset_all/edit6
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.38877725601196 GB
+[[20, 21, 22, 23, 24, 25, 26, 27]] [[20, 21, 22, 23, 24, 25, 26, 27, 28]]
+[ok] 0002_girl-dog: 81 frames
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.01981592178345 GB
+[[0, 1, 2]] [[23, 24, 25]]
+[ok] 0017_kid-football: 57 frames
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.12541723251343 GB
+[[1, 2]] [[8, 9, 10, 11, 12]]
+[ok] 0025_baseball: 81 frames
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.020373821258545 GB
+[[0, 1, 2, 3, 4, 5]] [[9]]
+[ok] 0041_longboard: 45 frames
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.179933071136475 GB
+[[0, 1]] [[6, 7, 8, 9, 10]]
+[ok] 0042_gym-ball: 69 frames
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.072816371917725 GB
+[[0, 1, 2, 3, 4]] [[4]]
+[ok] 0048_hike: 69 frames
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.07337427139282 GB
+[[8, 9]] [[8, 9, 10]]
+[ok] 0051_dogs-jump: 57 frames
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.1263747215271 GB
+[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]] [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]]
+[ok] 0055_pigs: 69 frames
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.07185888290405 GB
+[[0, 1]] [[8, 9]]
+[ok] 0078_A_cat: 81 frames
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.017905712127686 GB
+[[0, 1, 2]] [[6, 7]]
+[ok] 0088_A_cyclist: 81 frames
+[run_fivebench] done edit6: 10/10 ok -> /projects/dataggen/outputs/five_bench/r20_smoke/subset_all/edit6/_manifest.csv
+SUBSET-INDEPENDENT 0042_gym-ball: 1381dd11c6d169ce
+SUBSET-INDEPENDENT 0002_girl-dog: 2d92a0558133ef0a
+[subset] 0 mismatch(es)
+[r20_smoke] ===== stage 3: cos_full renders on all 3 VP modes (edit1, 1 clip) =====
+[r20_smoke] --- vp_mode=novp sched=cos_full ---
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=1 method=sched_cos_full_novp pairs=1 vp_mode=novp blend_sched=cos_full out=/projects/dataggen/outputs/five_bench/r20_smoke/sched_cos_full_novp/edit1
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.39012956619263 GB
+[[0, 1, 2]] [[0, 1, 2]]
+[ok] 0001_bus: 69 frames
+[run_fivebench] done edit1: 1/1 ok -> /projects/dataggen/outputs/five_bench/r20_smoke/sched_cos_full_novp/edit1/_manifest.csv
+[r20_smoke] --- vp_mode=vp sched=cos_full ---
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=1 method=sched_cos_full_vp pairs=1 vp_mode=vp blend_sched=cos_full out=/projects/dataggen/outputs/five_bench/r20_smoke/sched_cos_full_vp/edit1
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.38975763320923 GB
+[[0, 1, 2]] [[0, 1, 2]]
+[ok] 0001_bus: 69 frames
+[run_fivebench] done edit1: 1/1 ok -> /projects/dataggen/outputs/five_bench/r20_smoke/sched_cos_full_vp/edit1/_manifest.csv
+[r20_smoke] --- vp_mode=pvp sched=cos_full ---
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=1 method=sched_cos_full_pvp pairs=1 vp_mode=pvp blend_sched=cos_full out=/projects/dataggen/outputs/five_bench/r20_smoke/sched_cos_full_pvp/edit1
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.38994359970093 GB
+[[0, 1, 2]] [[0, 1, 2]]
+[r10] vp_bank built: 30 layers x 1560 tokens (1 latent frame(s))
+[ok] 0001_bus: 69 frames
+[run_fivebench] done edit1: 1/1 ok -> /projects/dataggen/outputs/five_bench/r20_smoke/sched_cos_full_pvp/edit1/_manifest.csv
+[r20_smoke] frame dirs: 21
+[r20_smoke] done -- parity clean (index-0), subset-independent, all 3 VP modes render.

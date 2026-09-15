@@ -1,0 +1,24 @@
+[r31_stage1] job=993040_3 edit_type=4
+[r31_stage1] method=r31_unblended_s7 steps=7 blend_sched=zero (Q/K blend OFF)
+[r31_stage1] measured index 6 is POST-injection (len//2=3)
+[r31_stage1] dump_steps=6 measure_index=6
+[r31_stage1] frames -> /projects/dataggen/outputs/five_bench/r31_stage1/r31_unblended_s7   latents -> /projects/dataggen/outputs/five_bench/r31_latents_s7/edit4
+[r31_stage1] measure_kind=post_injection__final_render: len//2 = 3, so the mask union is injected at index 3 and the bg source-KV at indices > 3.
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[r31_stage1] edit_type=4 method=r31_unblended_s7 pairs=2 vp_mode=vp steps=7 blend_sched=zero (Q/K blend OFF) src_kv=bg_half dump_steps=[6] measure_index=6
+[r31_stage1] frames -> /projects/dataggen/outputs/five_bench/r31_stage1/r31_unblended_s7
+[r31_stage1] latents -> /projects/dataggen/outputs/five_bench/r31_latents_s7/edit4
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.38975763320923 GB
+[[0, 1]] [[0, 1, 2]]
+[r31_stage1] GATE1 PASS 0028_kite-walk: step[6] == final latent (shape (7, 1, 18, 16, 60, 104))
+[ok] 0028_kite-walk: 1 steps x 69 frames + latents -> 0028_kite-walk.npz
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.355571269989014 GB
+[[0, 1]] [[1, 2]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.32730436325073 GB
+[[0, 1]] [[1, 2]]
+[r31_stage1] GATE1 PASS 0089_A_dog: step[6] == final latent (shape (7, 1, 21, 16, 60, 104))
+[ok] 0089_A_dog: 1 steps x 81 frames + latents -> 0089_A_dog.npz
+[r31_stage1] done edit4: 2/2 ok -> /projects/dataggen/outputs/five_bench/r31_stage1/r31_unblended_s7/_manifest_edit4.csv
+[r31_stage1] edit4: npz=2 frame_dirs=2 (expect npz x 1) GATE1=2
+[r31_stage1] failures: 0

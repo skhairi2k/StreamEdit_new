@@ -1,0 +1,13 @@
+[r21_infer] job=908230_0 arm=cos_third_vp sched=cos_third vp_mode=vp edit1
+[r21_infer] -> /projects/dataggen/outputs/five_bench/r21_blend_full/cos_third_vp/edit1/ (full bench, no --cases_json)
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=1 method=cos_third_vp pairs=100 vp_mode=vp blend_sched=cos_third out=/projects/dataggen/outputs/five_bench/r21_blend_full/cos_third_vp/edit1
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.38975763320923 GB
+[[0, 1, 2]] [[0, 1, 2]]
+[ok] 0001_bus: 69 frames
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.069533824920654 GB
+[[22, 23, 24]] [[22, 23, 24, 25]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.06600046157837 GB
+[[22, 23, 24]] [[22, 23, 24, 25]]
+[ok] 0002_girl-dog: 81 frames

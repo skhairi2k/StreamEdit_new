@@ -1,0 +1,945 @@
+[r28_eval] node=node51 task=23 arm=taubg2_taufg50_vp stem=r28_taubg2_taufg50_vp
+Skipping import of cpp extensions due to incompatible torch version. Please upgrade to torch >= 2.11.0 (found 2.8.0+cu128).
+No found cotracker, skipped!
+Loading weights:   0%|          | 0/590 [00:00<?, ?it/s]Loading weights: 100%|██████████| 590/590 [00:00<00:00, 16537.73it/s]
+Using cache found in /home/ids/skhairi/.cache/torch/hub/facebookresearch_dino_main
+Warning: MotionFidelityScore unavailable: name 'CoTrackerPredictor' is not defined
+Failed to load MotionFidelityScore! motion_fidelity_score{,_edit_part} will report nan if requested.
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 4493.58it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights:   0%|          | 1/729 [00:00<01:33,  7.78it/s]Loading weights:   4%|▍         | 30/729 [00:00<00:04, 155.23it/s]Loading weights:   9%|▉         | 66/729 [00:00<00:02, 240.30it/s]Loading weights:  14%|█▍        | 102/729 [00:00<00:02, 282.80it/s]Loading weights:  19%|█▉        | 138/729 [00:00<00:01, 300.46it/s]Loading weights:  24%|██▎       | 172/729 [00:00<00:01, 307.88it/s]Loading weights:  28%|██▊       | 204/729 [00:00<00:01, 295.02it/s]Loading weights:  32%|███▏      | 234/729 [00:00<00:01, 276.08it/s]Loading weights:  37%|███▋      | 267/729 [00:00<00:01, 288.20it/s]Loading weights:  41%|████      | 297/729 [00:01<00:01, 283.60it/s]Loading weights:  45%|████▌     | 329/729 [00:01<00:01, 286.70it/s]Loading weights:  85%|████████▌ | 621/729 [00:01<00:00, 1032.37it/s]Loading weights: 100%|██████████| 729/729 [00:01<00:00, 538.99it/s] 
+Evaluating annotation mapping files:   0%|          | 0/6 [00:00<?, ?it/s]evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit1_FiVE.json ...
+
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:   1%|          | 1/100 [00:05<08:42,  5.28s/it][AEvaluating videos: 100%|██████████| 100/100 [00:05<00:00, 18.94it/s]
+Evaluating annotation mapping files:  17%|█▋        | 1/6 [00:05<00:26,  5.28s/it]
+
+evaluating method: taubg2_taufg50_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: psnr_unedit_union
+
+evaluating metric: lpips_unedit_union
+
+evaluating metric: mse_unedit_union
+
+evaluating metric: ssim_unedit_union
+
+evaluating metric: psnr_unedit_union_fixed
+
+evaluating metric: lpips_unedit_union_fixed
+
+evaluating metric: mse_unedit_union_fixed
+
+evaluating metric: ssim_unedit_union_fixed
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+processing file_id
+processing taubg2_taufg50_vp|structure_distance
+processing taubg2_taufg50_vp|psnr_unedit_part
+processing taubg2_taufg50_vp|lpips_unedit_part
+processing taubg2_taufg50_vp|mse_unedit_part
+processing taubg2_taufg50_vp|ssim_unedit_part
+processing taubg2_taufg50_vp|psnr_unedit_union
+processing taubg2_taufg50_vp|lpips_unedit_union
+processing taubg2_taufg50_vp|mse_unedit_union
+processing taubg2_taufg50_vp|ssim_unedit_union
+processing taubg2_taufg50_vp|psnr_unedit_union_fixed
+processing taubg2_taufg50_vp|lpips_unedit_union_fixed
+processing taubg2_taufg50_vp|mse_unedit_union_fixed
+processing taubg2_taufg50_vp|ssim_unedit_union_fixed
+processing taubg2_taufg50_vp|clip_similarity_source_image
+processing taubg2_taufg50_vp|clip_similarity_target_image
+processing taubg2_taufg50_vp|clip_similarity_target_image_edit_part
+evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit2_FiVE.json ...
+
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 11/100 [00:04<00:38,  2.32it/s][A
+Evaluating videos:  14%|█▍        | 14/100 [00:09<01:07,  1.27it/s][A
+Evaluating videos:  16%|█▌        | 16/100 [00:13<01:21,  1.03it/s][A
+Evaluating videos:  28%|██▊       | 28/100 [00:18<00:45,  1.57it/s][A
+Evaluating videos:  34%|███▍      | 34/100 [00:24<00:49,  1.33it/s][A[transformers] Token indices sequence length is longer than the specified maximum sequence length for this model (85 > 77). Running this sequence through the model will result in indexing errors
+/home/ids/skhairi/anaconda3/envs/streamgve/lib/python3.12/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Encountered caption longer than max_position_embeddings=77. Will truncate captions to thislength. If longer captions are needed, initialize argument `model_name_or_path` with a model thatsupports longer sequences.
+  warnings.warn(*args, **kwargs)
+
+Evaluating videos:  40%|████      | 40/100 [00:29<00:47,  1.27it/s][A
+Evaluating videos:  57%|█████▋    | 57/100 [00:34<00:21,  2.01it/s][A
+Evaluating videos:  68%|██████▊   | 68/100 [00:36<00:13,  2.45it/s][A
+Evaluating videos:  74%|███████▍  | 74/100 [00:42<00:13,  1.90it/s][A
+Evaluating videos:  75%|███████▌  | 75/100 [00:48<00:19,  1.28it/s][A
+Evaluating videos:  76%|███████▌  | 76/100 [00:55<00:27,  1.15s/it][A
+
+evaluating method: taubg2_taufg50_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: psnr_unedit_union
+
+evaluating metric: lpips_unedit_union
+
+evaluating metric: mse_unedit_union
+
+evaluating metric: ssim_unedit_union
+
+evaluating metric: psnr_unedit_union_fixed
+
+evaluating metric: lpips_unedit_union_fixed
+
+evaluating metric: mse_unedit_union_fixed
+
+evaluating metric: ssim_unedit_union_fixed
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+
+evaluating method: taubg2_taufg50_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: psnr_unedit_union
+
+evaluating metric: lpips_unedit_union
+
+evaluating metric: mse_unedit_union
+
+evaluating metric: ssim_unedit_union
+
+evaluating metric: psnr_unedit_union_fixed
+
+evaluating metric: lpips_unedit_union_fixed
+
+evaluating metric: mse_unedit_union_fixed
+
+evaluating metric: ssim_unedit_union_fixed
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+
+evaluating method: taubg2_taufg50_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: psnr_unedit_union
+
+evaluating metric: lpips_unedit_union
+
+evaluating metric: mse_unedit_union
+
+evaluating metric: ssim_unedit_union
+
+evaluating metric: psnr_unedit_union_fixed
+
+evaluating metric: lpips_unedit_union_fixed
+
+evaluating metric: mse_unedit_union_fixed
+
+evaluating metric: ssim_unedit_union_fixed
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+
+evaluating method: taubg2_taufg50_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: psnr_unedit_union
+
+evaluating metric: lpips_unedit_union
+
+evaluating metric: mse_unedit_union
+
+evaluating metric: ssim_unedit_union
+
+evaluating metric: psnr_unedit_union_fixed
+
+evaluating metric: lpips_unedit_union_fixed
+
+evaluating metric: mse_unedit_union_fixed
+
+evaluating metric: ssim_unedit_union_fixed
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+
+evaluating method: taubg2_taufg50_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: psnr_unedit_union
+
+evaluating metric: lpips_unedit_union
+
+evaluating metric: mse_unedit_union
+
+evaluating metric: ssim_unedit_union
+
+evaluating metric: psnr_unedit_union_fixed
+
+evaluating metric: lpips_unedit_union_fixed
+
+evaluating metric: mse_unedit_union_fixed
+
+evaluating metric: ssim_unedit_union_fixed
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+
+evaluating method: taubg2_taufg50_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: psnr_unedit_union
+
+evaluating metric: lpips_unedit_union
+
+evaluating metric: mse_unedit_union
+
+evaluating metric: ssim_unedit_union
+
+evaluating metric: psnr_unedit_union_fixed
+
+evaluating metric: lpips_unedit_union_fixed
+
+evaluating metric: mse_unedit_union_fixed
+
+evaluating metric: ssim_unedit_union_fixed
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+
+evaluating method: taubg2_taufg50_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: psnr_unedit_union
+
+evaluating metric: lpips_unedit_union
+
+evaluating metric: mse_unedit_union
+
+evaluating metric: ssim_unedit_union
+
+evaluating metric: psnr_unedit_union_fixed
+
+evaluating metric: lpips_unedit_union_fixed
+
+evaluating metric: mse_unedit_union_fixed
+
+evaluating metric: ssim_unedit_union_fixed
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+
+evaluating method: taubg2_taufg50_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: psnr_unedit_union
+
+evaluating metric: lpips_unedit_union
+
+evaluating metric: mse_unedit_union
+
+evaluating metric: ssim_unedit_union
+
+evaluating metric: psnr_unedit_union_fixed
+
+evaluating metric: lpips_unedit_union_fixed
+
+evaluating metric: mse_unedit_union_fixed
+
+evaluating metric: ssim_unedit_union_fixed
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+
+evaluating method: taubg2_taufg50_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: psnr_unedit_union
+
+evaluating metric: lpips_unedit_union
+
+evaluating metric: mse_unedit_union
+
+evaluating metric: ssim_unedit_union
+
+evaluating metric: psnr_unedit_union_fixed
+
+evaluating metric: lpips_unedit_union_fixed
+
+evaluating metric: mse_unedit_union_fixed
+
+evaluating metric: ssim_unedit_union_fixed
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+
+evaluating method: taubg2_taufg50_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: psnr_unedit_union
+
+evaluating metric: lpips_unedit_union
+
+evaluating metric: mse_unedit_union
+
+evaluating metric: ssim_unedit_union
+
+evaluating metric: psnr_unedit_union_fixed
+
+evaluating metric: lpips_unedit_union_fixed
+
+evaluating metric: mse_unedit_union_fixed
+
+evaluating metric: ssim_unedit_union_fixed
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+
+evaluating method: taubg2_taufg50_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: psnr_unedit_union
+
+evaluating metric: lpips_unedit_union
+
+evaluating metric: mse_unedit_union
+
+evaluating metric: ssim_unedit_union
+
+evaluating metric: psnr_unedit_union_fixed
+
+evaluating metric: lpips_unedit_union_fixed
+
+evaluating metric: mse_unedit_union_fixed
+
+evaluating metric: ssim_unedit_union_fixed
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+
+evaluating method: taubg2_taufg50_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: psnr_unedit_union
+
+evaluating metric: lpips_unedit_union
+
+evaluating metric: mse_unedit_union
+
+evaluating metric: ssim_unedit_union
+Evaluating videos:  90%|█████████ | 90/100 [01:01<00:07,  1.33it/s][A
+Evaluating videos:  91%|█████████ | 91/100 [01:06<00:09,  1.02s/it][AEvaluating videos: 100%|██████████| 100/100 [01:06<00:00,  1.49it/s]
+Evaluating annotation mapping files:  33%|███▎      | 2/6 [01:12<02:46, 41.58s/it]
+
+evaluating metric: psnr_unedit_union_fixed
+
+evaluating metric: lpips_unedit_union_fixed
+
+evaluating metric: mse_unedit_union_fixed
+
+evaluating metric: ssim_unedit_union_fixed
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+
+evaluating method: taubg2_taufg50_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: psnr_unedit_union
+
+evaluating metric: lpips_unedit_union
+
+evaluating metric: mse_unedit_union
+
+evaluating metric: ssim_unedit_union
+
+evaluating metric: psnr_unedit_union_fixed
+
+evaluating metric: lpips_unedit_union_fixed
+
+evaluating metric: mse_unedit_union_fixed
+
+evaluating metric: ssim_unedit_union_fixed
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+processing file_id
+processing taubg2_taufg50_vp|structure_distance
+processing taubg2_taufg50_vp|psnr_unedit_part
+processing taubg2_taufg50_vp|lpips_unedit_part
+processing taubg2_taufg50_vp|mse_unedit_part
+processing taubg2_taufg50_vp|ssim_unedit_part
+processing taubg2_taufg50_vp|psnr_unedit_union
+processing taubg2_taufg50_vp|lpips_unedit_union
+processing taubg2_taufg50_vp|mse_unedit_union
+processing taubg2_taufg50_vp|ssim_unedit_union
+processing taubg2_taufg50_vp|psnr_unedit_union_fixed
+processing taubg2_taufg50_vp|lpips_unedit_union_fixed
+processing taubg2_taufg50_vp|mse_unedit_union_fixed
+processing taubg2_taufg50_vp|ssim_unedit_union_fixed
+processing taubg2_taufg50_vp|clip_similarity_source_image
+processing taubg2_taufg50_vp|clip_similarity_target_image
+processing taubg2_taufg50_vp|clip_similarity_target_image_edit_part
+evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit3_FiVE.json ...
+
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:  17%|█▋        | 17/100 [00:04<00:21,  3.80it/s][A
+Evaluating videos:  58%|█████▊    | 58/100 [00:09<00:06,  6.47it/s][AEvaluating videos: 100%|██████████| 100/100 [00:09<00:00, 10.50it/s]
+Evaluating annotation mapping files:  50%|█████     | 3/6 [01:21<01:20, 26.94s/it]
+
+evaluating method: taubg2_taufg50_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: psnr_unedit_union
+
+evaluating metric: lpips_unedit_union
+
+evaluating metric: mse_unedit_union
+
+evaluating metric: ssim_unedit_union
+
+evaluating metric: psnr_unedit_union_fixed
+
+evaluating metric: lpips_unedit_union_fixed
+
+evaluating metric: mse_unedit_union_fixed
+
+evaluating metric: ssim_unedit_union_fixed
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+
+evaluating method: taubg2_taufg50_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: psnr_unedit_union
+
+evaluating metric: lpips_unedit_union
+
+evaluating metric: mse_unedit_union
+
+evaluating metric: ssim_unedit_union
+
+evaluating metric: psnr_unedit_union_fixed
+
+evaluating metric: lpips_unedit_union_fixed
+
+evaluating metric: mse_unedit_union_fixed
+
+evaluating metric: ssim_unedit_union_fixed
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+processing file_id
+processing taubg2_taufg50_vp|structure_distance
+processing taubg2_taufg50_vp|psnr_unedit_part
+processing taubg2_taufg50_vp|lpips_unedit_part
+processing taubg2_taufg50_vp|mse_unedit_part
+processing taubg2_taufg50_vp|ssim_unedit_part
+processing taubg2_taufg50_vp|psnr_unedit_union
+processing taubg2_taufg50_vp|lpips_unedit_union
+processing taubg2_taufg50_vp|mse_unedit_union
+processing taubg2_taufg50_vp|ssim_unedit_union
+processing taubg2_taufg50_vp|psnr_unedit_union_fixed
+processing taubg2_taufg50_vp|lpips_unedit_union_fixed
+processing taubg2_taufg50_vp|mse_unedit_union_fixed
+processing taubg2_taufg50_vp|ssim_unedit_union_fixed
+processing taubg2_taufg50_vp|clip_similarity_source_image
+processing taubg2_taufg50_vp|clip_similarity_target_image
+processing taubg2_taufg50_vp|clip_similarity_target_image_edit_part
+evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit4_FiVE.json ...
+
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:  28%|██▊       | 28/100 [00:05<00:14,  5.01it/s][A
+Evaluating videos:  89%|████████▉ | 89/100 [00:11<00:01,  8.12it/s][AEvaluating videos: 100%|██████████| 100/100 [00:11<00:00,  8.62it/s]
+Evaluating annotation mapping files:  67%|██████▋   | 4/6 [01:33<00:41, 20.89s/it]
+
+evaluating method: taubg2_taufg50_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: psnr_unedit_union
+
+evaluating metric: lpips_unedit_union
+
+evaluating metric: mse_unedit_union
+
+evaluating metric: ssim_unedit_union
+
+evaluating metric: psnr_unedit_union_fixed
+
+evaluating metric: lpips_unedit_union_fixed
+
+evaluating metric: mse_unedit_union_fixed
+
+evaluating metric: ssim_unedit_union_fixed
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+
+evaluating method: taubg2_taufg50_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: psnr_unedit_union
+
+evaluating metric: lpips_unedit_union
+
+evaluating metric: mse_unedit_union
+
+evaluating metric: ssim_unedit_union
+
+evaluating metric: psnr_unedit_union_fixed
+
+evaluating metric: lpips_unedit_union_fixed
+
+evaluating metric: mse_unedit_union_fixed
+
+evaluating metric: ssim_unedit_union_fixed
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+processing file_id
+processing taubg2_taufg50_vp|structure_distance
+processing taubg2_taufg50_vp|psnr_unedit_part
+processing taubg2_taufg50_vp|lpips_unedit_part
+processing taubg2_taufg50_vp|mse_unedit_part
+processing taubg2_taufg50_vp|ssim_unedit_part
+processing taubg2_taufg50_vp|psnr_unedit_union
+processing taubg2_taufg50_vp|lpips_unedit_union
+processing taubg2_taufg50_vp|mse_unedit_union
+processing taubg2_taufg50_vp|ssim_unedit_union
+processing taubg2_taufg50_vp|psnr_unedit_union_fixed
+processing taubg2_taufg50_vp|lpips_unedit_union_fixed
+processing taubg2_taufg50_vp|mse_unedit_union_fixed
+processing taubg2_taufg50_vp|ssim_unedit_union_fixed
+processing taubg2_taufg50_vp|clip_similarity_source_image
+processing taubg2_taufg50_vp|clip_similarity_target_image
+processing taubg2_taufg50_vp|clip_similarity_target_image_edit_part
+evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit5_FiVE.json ...
+
+Evaluating videos:   0%|          | 0/9 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 1/9 [00:03<00:25,  3.14s/it][A
+Evaluating videos:  33%|███▎      | 3/9 [00:08<00:15,  2.64s/it][A
+Evaluating videos:  89%|████████▉ | 8/9 [00:13<00:01,  1.49s/it][AEvaluating videos: 100%|██████████| 9/9 [00:13<00:00,  1.49s/it]
+Evaluating annotation mapping files:  83%|████████▎ | 5/6 [01:46<00:18, 18.18s/it]
+
+evaluating method: taubg2_taufg50_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: psnr_unedit_union
+
+evaluating metric: lpips_unedit_union
+
+evaluating metric: mse_unedit_union
+
+evaluating metric: ssim_unedit_union
+
+evaluating metric: psnr_unedit_union_fixed
+
+evaluating metric: lpips_unedit_union_fixed
+
+evaluating metric: mse_unedit_union_fixed
+
+evaluating metric: ssim_unedit_union_fixed
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+
+evaluating method: taubg2_taufg50_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: psnr_unedit_union
+
+evaluating metric: lpips_unedit_union
+
+evaluating metric: mse_unedit_union
+
+evaluating metric: ssim_unedit_union
+
+evaluating metric: psnr_unedit_union_fixed
+
+evaluating metric: lpips_unedit_union_fixed
+
+evaluating metric: mse_unedit_union_fixed
+
+evaluating metric: ssim_unedit_union_fixed
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+
+
+evaluating method: taubg2_taufg50_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: psnr_unedit_union
+
+evaluating metric: lpips_unedit_union
+
+evaluating metric: mse_unedit_union
+
+evaluating metric: ssim_unedit_union
+
+evaluating metric: psnr_unedit_union_fixed
+
+evaluating metric: lpips_unedit_union_fixed
+
+evaluating metric: mse_unedit_union_fixed
+
+evaluating metric: ssim_unedit_union_fixed
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+processing file_id
+processing taubg2_taufg50_vp|structure_distance
+processing taubg2_taufg50_vp|psnr_unedit_part
+processing taubg2_taufg50_vp|lpips_unedit_part
+processing taubg2_taufg50_vp|mse_unedit_part
+processing taubg2_taufg50_vp|ssim_unedit_part
+processing taubg2_taufg50_vp|psnr_unedit_union
+processing taubg2_taufg50_vp|lpips_unedit_union
+processing taubg2_taufg50_vp|mse_unedit_union
+processing taubg2_taufg50_vp|ssim_unedit_union
+processing taubg2_taufg50_vp|psnr_unedit_union_fixed
+processing taubg2_taufg50_vp|lpips_unedit_union_fixed
+processing taubg2_taufg50_vp|mse_unedit_union_fixed
+processing taubg2_taufg50_vp|ssim_unedit_union_fixed
+processing taubg2_taufg50_vp|clip_similarity_source_image
+processing taubg2_taufg50_vp|clip_similarity_target_image
+processing taubg2_taufg50_vp|clip_similarity_target_image_edit_part
+evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit6_FiVE.json ...
+
+Evaluating videos:   0%|          | 0/10 [00:00<?, ?it/s][A
+Evaluating videos:  50%|█████     | 5/10 [00:05<00:05,  1.06s/it][AEvaluating videos: 100%|██████████| 10/10 [00:05<00:00,  1.89it/s]
+Evaluating annotation mapping files: 100%|██████████| 6/6 [01:52<00:00, 13.80s/it]Evaluating annotation mapping files: 100%|██████████| 6/6 [01:52<00:00, 18.68s/it]
+
+
+evaluating method: taubg2_taufg50_vp
+
+evaluating metric: structure_distance
+
+evaluating metric: psnr_unedit_part
+
+evaluating metric: lpips_unedit_part
+
+evaluating metric: mse_unedit_part
+
+evaluating metric: ssim_unedit_part
+
+evaluating metric: psnr_unedit_union
+
+evaluating metric: lpips_unedit_union
+
+evaluating metric: mse_unedit_union
+
+evaluating metric: ssim_unedit_union
+
+evaluating metric: psnr_unedit_union_fixed
+
+evaluating metric: lpips_unedit_union_fixed
+
+evaluating metric: mse_unedit_union_fixed
+
+evaluating metric: ssim_unedit_union_fixed
+
+evaluating metric: clip_similarity_source_image
+
+evaluating metric: clip_similarity_target_image
+
+evaluating metric: clip_similarity_target_image_edit_part
+processing file_id
+processing taubg2_taufg50_vp|structure_distance
+processing taubg2_taufg50_vp|psnr_unedit_part
+processing taubg2_taufg50_vp|lpips_unedit_part
+processing taubg2_taufg50_vp|mse_unedit_part
+processing taubg2_taufg50_vp|ssim_unedit_part
+processing taubg2_taufg50_vp|psnr_unedit_union
+processing taubg2_taufg50_vp|lpips_unedit_union
+processing taubg2_taufg50_vp|mse_unedit_union
+processing taubg2_taufg50_vp|ssim_unedit_union
+processing taubg2_taufg50_vp|psnr_unedit_union_fixed
+processing taubg2_taufg50_vp|lpips_unedit_union_fixed
+processing taubg2_taufg50_vp|mse_unedit_union_fixed
+processing taubg2_taufg50_vp|ssim_unedit_union_fixed
+processing taubg2_taufg50_vp|clip_similarity_source_image
+processing taubg2_taufg50_vp|clip_similarity_target_image
+processing taubg2_taufg50_vp|clip_similarity_target_image_edit_part
+final averaging file_id
+final averaging taubg2_taufg50_vp|structure_distance
+final averaging taubg2_taufg50_vp|psnr_unedit_part
+final averaging taubg2_taufg50_vp|lpips_unedit_part
+final averaging taubg2_taufg50_vp|mse_unedit_part
+final averaging taubg2_taufg50_vp|ssim_unedit_part
+final averaging taubg2_taufg50_vp|psnr_unedit_union
+final averaging taubg2_taufg50_vp|lpips_unedit_union
+final averaging taubg2_taufg50_vp|mse_unedit_union
+final averaging taubg2_taufg50_vp|ssim_unedit_union
+final averaging taubg2_taufg50_vp|psnr_unedit_union_fixed
+final averaging taubg2_taufg50_vp|lpips_unedit_union_fixed
+final averaging taubg2_taufg50_vp|mse_unedit_union_fixed
+final averaging taubg2_taufg50_vp|ssim_unedit_union_fixed
+final averaging taubg2_taufg50_vp|clip_similarity_source_image
+final averaging taubg2_taufg50_vp|clip_similarity_target_image
+final averaging taubg2_taufg50_vp|clip_similarity_target_image_edit_part
+[evaluate] overall metrics -> evaluation/csv/r28_taubg2_taufg50_vp_avg.csv
+[r28_eval] r28_taubg2_taufg50_vp exit=0 error_lines=0 oom_lines=0
+[r28_eval] OK r28_taubg2_taufg50_vp -> evaluation/csv/r28_taubg2_taufg50_vp_avg.csv

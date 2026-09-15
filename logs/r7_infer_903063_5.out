@@ -1,0 +1,43 @@
+[r7_infer] job=903063 array_task=5 -> edit_type=6
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=6 method=r7_visual_prompting pairs=10 out=/projects/dataggen/outputs/five_bench/r7_visual_prompting/edit6
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.388405323028564 GB
+[[20, 21, 22, 23, 24, 25, 26, 27]] [[20, 21, 22, 23, 24, 25, 26, 27, 28]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.37551927566528 GB
+[[20, 21, 22, 23, 24, 25, 26, 27]] [[20, 21, 22, 23, 24, 25, 26, 27, 28]]
+[ok] 0002_girl-dog: 81 frames
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.01749086380005 GB
+[[0, 1, 2]] [[23, 24, 25]]
+[ok] 0017_kid-football: 57 frames
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.12309217453003 GB
+[[1, 2]] [[8, 9, 10, 11, 12]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.119558811187744 GB
+[[1, 2]] [[8, 9, 10, 11, 12]]
+[ok] 0025_baseball: 81 frames
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.01804876327515 GB
+[[0, 1, 2, 3, 4, 5]] [[9]]
+[ok] 0041_longboard: 45 frames
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.177608013153076 GB
+[[0, 1]] [[6, 7, 8, 9, 10]]
+[ok] 0042_gym-ball: 69 frames
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.070491313934326 GB
+[[0, 1, 2, 3, 4]] [[4]]
+[ok] 0048_hike: 69 frames
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.071049213409424 GB
+[[8, 9]] [[8, 9, 10]]
+[ok] 0051_dogs-jump: 57 frames
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.1240496635437 GB
+[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]] [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]]
+[ok] 0055_pigs: 69 frames
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.069533824920654 GB
+[[0, 1]] [[8, 9]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.06600046157837 GB
+[[0, 1]] [[8, 9]]
+[ok] 0078_A_cat: 81 frames
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.01558065414429 GB
+[[0, 1, 2]] [[6, 7]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.012047290802 GB
+[[0, 1, 2]] [[6, 7]]
+[ok] 0088_A_cyclist: 81 frames
+[run_fivebench] done edit6: 10/10 ok -> /projects/dataggen/outputs/five_bench/r7_visual_prompting/edit6/_manifest.csv

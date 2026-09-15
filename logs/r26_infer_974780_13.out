@@ -1,0 +1,130 @@
+[r26_infer] node=node51 CUDA_VISIBLE_DEVICES=0
+[r26_infer] SLURM_JOB_GPUS=3
+GPU 0: NVIDIA L40S (UUID: GPU-f298644f-ba38-3874-3c7f-c5469e0e514f)
+[r26_infer] torch 2.8.0+cu128 cuda_ok True n 1
+[r26_infer] job=974780_13 arm=taubg0_taufg4_vp tau_bg=0 tau_fg=4
+[r26_infer] masks edit1: 1 (expected 1)
+[r26_infer] masks edit2: 13 (expected 13)
+[r26_infer] masks edit3: 2 (expected 2)
+[r26_infer] masks edit4: 2 (expected 2)
+[r26_infer] masks edit5: 3 (expected 3)
+[r26_infer] masks edit6: 1 (expected 1)
+--- [r26_infer] taubg0_taufg4_vp edit1 (expect 1 clip(s)) ---
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=1 method=taubg0_taufg4_vp pairs=1 vp_mode=vp blend_sched=paper(eq4) out=/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg4_vp/edit1
+[run_fivebench] R26 pass 2: spatial tau from /projects/dataggen/outputs/five_bench/r26_masks/edit1/ tau_bg=0.0 tau_fg=4.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.38973140716553 GB
+[[0, 1, 2]] [[0, 1, 2]]
+[ok] 0001_bus: 69 frames  tau=2.0
+[run_fivebench] done edit1: 1/1 ok -> /projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg4_vp/edit1/_manifest.csv
+--- [r26_infer] taubg0_taufg4_vp edit2 (expect 13 clip(s)) ---
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=2 method=taubg0_taufg4_vp pairs=13 vp_mode=vp blend_sched=paper(eq4) out=/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg4_vp/edit2
+[run_fivebench] R26 pass 2: spatial tau from /projects/dataggen/outputs/five_bench/r26_masks/edit2/ tau_bg=0.0 tau_fg=4.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.38973140716553 GB
+[[0, 1, 2, 3, 4, 5]] [[0, 1, 2]]
+[ok] 0011_lucia: 69 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.070465087890625 GB
+[[0, 1, 2]] [[0, 1, 2]]
+[ok] 0014_burnout: 69 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.07158946990967 GB
+[[0, 1, 2, 3, 4]] [[0, 1, 2, 3]]
+[ok] 0016_horsejump-high: 45 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.177581787109375 GB
+[[0, 1]] [[1, 2]]
+[ok] 0028_kite-walk: 69 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.069103717803955 GB
+[[0, 1, 2, 3, 4]] [[0, 1]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.06557035446167 GB
+[[0, 1, 2, 3, 4]] [[0, 1]]
+[ok] 0034_cows: 93 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 34.963348388671875 GB
+[[0, 1, 2]] [[0, 1]]
+[ok] 0040_tennis: 69 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.07102727890015 GB
+[[0, 1, 2, 3]] [[0, 1, 2]]
+[ok] 0057_dog: 57 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.125473499298096 GB
+[[0, 1, 2, 3, 4]] [[0, 1, 2, 3]]
+[ok] 0068_planes-water: 33 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.230178356170654 GB
+[[0, 1, 2, 3, 4]] [[0, 1, 2, 3]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.22664499282837 GB
+[[0, 1, 2, 3, 4]] [[0, 1, 2, 3]]
+[ok] 0074_rhino: 81 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.01555013656616 GB
+[[0, 1]] [[0, 1]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.01201677322388 GB
+[[0, 1]] [[0, 1]]
+[ok] 0075_A_bicycle: 81 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.015944957733154 GB
+[[0, 1, 2]] [[0, 1]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.01241159439087 GB
+[[0, 1, 2]] [[0, 1]]
+[ok] 0076_A_rabbit: 81 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.01555013656616 GB
+[[0, 1, 2]] [[0, 1, 2]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.01201677322388 GB
+[[0, 1, 2]] [[0, 1, 2]]
+[ok] 0090_A_deer: 81 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.015944957733154 GB
+[[0, 1, 2]] [[0, 1, 2, 3, 4]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.01241159439087 GB
+[[0, 1, 2]] [[0, 1, 2, 3, 4]]
+[ok] 0091_A_hawk: 81 frames  tau=2.0
+[run_fivebench] done edit2: 13/13 ok -> /projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg4_vp/edit2/_manifest.csv
+--- [r26_infer] taubg0_taufg4_vp edit3 (expect 2 clip(s)) ---
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=3 method=taubg0_taufg4_vp pairs=2 vp_mode=vp blend_sched=paper(eq4) out=/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg4_vp/edit3
+[run_fivebench] R26 pass 2: spatial tau from /projects/dataggen/outputs/five_bench/r26_masks/edit3/ tau_bg=0.0 tau_fg=4.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.39029359817505 GB
+[[0, 1, 2]] [[4, 5, 6]]
+[ok] 0017_kid-football: 57 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.1240234375 GB
+[[0, 1, 2, 3]] [[0, 1, 2, 3]]
+[ok] 0058_boat: 69 frames  tau=2.0
+[run_fivebench] done edit3: 2/2 ok -> /projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg4_vp/edit3/_manifest.csv
+--- [r26_infer] taubg0_taufg4_vp edit4 (expect 2 clip(s)) ---
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=4 method=taubg0_taufg4_vp pairs=2 vp_mode=vp blend_sched=paper(eq4) out=/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg4_vp/edit4
+[run_fivebench] R26 pass 2: spatial tau from /projects/dataggen/outputs/five_bench/r26_masks/edit4/ tau_bg=0.0 tau_fg=4.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.38973140716553 GB
+[[0, 1]] [[0, 1, 2]]
+[ok] 0028_kite-walk: 69 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.06950330734253 GB
+[[0, 1]] [[1, 2]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.065969944000244 GB
+[[0, 1]] [[1, 2]]
+[ok] 0089_A_dog: 81 frames  tau=2.0
+[run_fivebench] done edit4: 2/2 ok -> /projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg4_vp/edit4/_manifest.csv
+--- [r26_infer] taubg0_taufg4_vp edit5 (expect 3 clip(s)) ---
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=5 method=taubg0_taufg4_vp pairs=3 vp_mode=vp blend_sched=paper(eq4) out=/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg4_vp/edit5
+[run_fivebench] R26 pass 2: spatial tau from /projects/dataggen/outputs/five_bench/r26_masks/edit5/ tau_bg=0.0 tau_fg=4.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.39085578918457 GB
+[[0, 1]] [[0, 1, 2, 3, 4]]
+[ok] 0007_guitar-violin: 45 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.177581787109375 GB
+[[0, 1, 2, 3, 4, 5]] [[7, 8, 9, 10, 11]]
+[ok] 0011_lucia: 69 frames  tau=2.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.070465087890625 GB
+[[0, 1, 2]] [[4, 5, 6, 7, 8, 9, 10]]
+[ok] 0069_car-turn: 69 frames  tau=2.0
+[run_fivebench] done edit5: 3/3 ok -> /projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg4_vp/edit5/_manifest.csv
+--- [r26_infer] taubg0_taufg4_vp edit6 (expect 1 clip(s)) ---
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=6 method=taubg0_taufg4_vp pairs=1 vp_mode=vp blend_sched=paper(eq4) out=/projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg4_vp/edit6
+[run_fivebench] R26 pass 2: spatial tau from /projects/dataggen/outputs/five_bench/r26_masks/edit6/ tau_bg=0.0 tau_fg=4.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.38973140716553 GB
+[[0, 1]] [[6, 7, 8, 9, 10]]
+[ok] 0042_gym-ball: 69 frames  tau=2.0
+[run_fivebench] done edit6: 1/1 ok -> /projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg4_vp/edit6/_manifest.csv
+[r26_infer] taubg0_taufg4_vp total frame dirs: 22 (expected 22)
+[r26_infer] taubg0_taufg4_vp non-ok manifest rows: 0
+[r26_infer] failures: 0

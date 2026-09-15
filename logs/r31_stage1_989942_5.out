@@ -1,0 +1,16 @@
+[r31_stage1] job=989942_5 edit_type=6
+[r31_stage1] method=r31_unblended steps=15 blend_sched=zero (Q/K blend OFF)
+[r31_stage1] dump_steps=7,14 measure_index=7
+[r31_stage1] frames -> /projects/dataggen/outputs/five_bench/r31_stage1/r31_unblended   latents -> /projects/dataggen/outputs/five_bench/r31_latents/edit6
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[r31_stage1] edit_type=6 method=r31_unblended pairs=1 vp_mode=vp steps=15 blend_sched=zero (Q/K blend OFF) dump_steps=[7, 14] measure_index=7
+[r31_stage1] frames -> /projects/dataggen/outputs/five_bench/r31_stage1/r31_unblended
+[r31_stage1] latents -> /projects/dataggen/outputs/five_bench/r31_latents/edit6
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.38975763320923 GB
+[[0, 1]] [[6, 7, 8, 9, 10]]
+[r31_stage1] GATE1 PASS 0042_gym-ball: step[14] == final latent (shape (15, 1, 18, 16, 60, 104))
+[ok] 0042_gym-ball: 2 steps x 69 frames + latents -> 0042_gym-ball.npz
+[r31_stage1] done edit6: 1/1 ok -> /projects/dataggen/outputs/five_bench/r31_stage1/r31_unblended/_manifest_edit6.csv
+[r31_stage1] edit6: npz=1 frame_dirs=2 (expect npz x 2) GATE1=1
+[r31_stage1] failures: 0

@@ -1,0 +1,1072 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,hyperref,verbatim}
+\title{Head-Typed Attention Routing for Training-Free Editing\\ on Streaming Video Generators}
+\date{}
+\begin{document}
+\maketitle
+
+\noindent\textbf{Audience note.} This document is written to be self-contained
+for an implementing agent working inside the \texttt{DSL-Lab/StreamEdit}
+repository. It restates the StreamEdit baseline in full before stating the
+delta. Items marked \texttt{CHECK} must be verified against the source code, not
+assumed. Items marked \texttt{UNVALIDATED} are design choices with no evidence
+behind them yet.
+
+\section{Motivation and problem statement}
+
+\textbf{Task.} Training-free text-driven video editing on a video DiT. Inputs:
+source video $V^{s}$, source prompt $p^{s}$, target prompt $p^{t}$, and
+optionally an edited first frame $I^{\mathrm{ref}}$. Output: an edited video
+adopting the appearance change specified by $p^{t}$ (and $I^{\mathrm{ref}}$)
+while retaining the motion and structure of $V^{s}$. No per-video finetuning.
+
+\textbf{Goal (primary, measurable).} On FiVE-Bench: raise edit success
+(FiVE-Acc, edit-region CLIP) at equal-or-better background/structure
+preservation and \emph{unchanged NFE and s/frame} relative to StreamEdit, and
+preserve in-region motion on the non-rigid substitution split --- by replacing
+StreamEdit's head-agnostic anchoring with head-typed routing. Every experiment
+on the board serves this sentence; anything that does not is out of scope.
+
+\textbf{Gap.} Appearance/motion decoupling is the central mechanism of video
+editing. On UNet backbones it is free: spatial self-attention (SA-S) and
+temporal self-attention (SA-T) are separate blocks, so one can inject
+reconstruction features through SA-S and motion features through SA-T (UniEdit).
+Video DiTs replace this with unified 3D full attention, so the split does not
+exist to route through. DiT editing methods therefore route along surrogate
+axes: \emph{where} (spatial masks), \emph{when} (timestep-dependent blend
+ratios), \emph{which layer} (heuristics inherited from UNets). No \emph{editing} method routes along
+\emph{what} the injected signal carries. (Head-typed routing has now appeared
+for \emph{motion transfer} --- HALO, see prior work --- but on bidirectional
+50-step backbones with inner-loop optimization, and with editing only as a
+side demo.)
+
+Two consequences:
+\begin{enumerate}
+  \item A spatial mask cannot preserve the motion of an object it is
+        regenerating: inside the mask, source appearance and source motion are
+        discarded together.
+  \item Preserving structure requires anchoring to the source \emph{everywhere},
+        which drags the edited region's appearance back toward the source.
+        This is \textbf{under-editing / over-anchoring}, the dominant failure
+        mode of StreamEdit and its lineage. Existing systems treat it as a
+        tradeoff dialled by $r_{t_i}$ and $\rho$. We claim it is separable.
+\end{enumerate}
+
+\textbf{Thesis (revised 2026-07-17).} StreamEdit's anchoring does two jobs at
+once. Geometric stability is a \emph{correspondence} constraint and lives in
+the temporal heads' attention \emph{map}. Appearance anchoring is a
+\emph{value} constraint and lives in the spatial heads' $V$. They are
+conflated only because the bridge is head-agnostic. That head type \emph{can}
+separate motion from structure in a video DiT is no longer ours to claim ---
+HALO demonstrates it training-free on bidirectional backbones, with 50-step
+sampling and inner-loop latent optimization. The surviving open cell, and our
+claim: \textbf{the separation survives block-causal few-step distillation and
+is exploitable by routing alone} --- no optimization, no training, zero extra
+NFE --- \textbf{inside an editing pipeline with dual appearance authorities
+(source outside $m$, $I^{\mathrm{ref}}$ inside $m$) and background-preservation
+constraints}. At 15/5-step streaming budgets, optimization-based head control
+is structurally unavailable; routing is the only instrument left, and whether
+it suffices is exactly claim~1.
+
+\textbf{Structural evidence that StreamEdit under-edits.} It contains two
+independent compensations for weak edits: cross-attention boosting (multiplying
+trigger-word attention by $\omega$ inside the edit region) and source-oriented
+guidance. An edit-strength amplifier is only added when edits come out weak.
+
+\section{Method}
+
+\subsection{Notation}
+
+\textbf{Self-Forcing architecture (confirmed against \texttt{causal\_model.py}).}
+A \textbf{block} is the atomic generation unit: 3 latent frames, attended
+\emph{bidirectionally} among themselves. A \textbf{window} is one
+\texttt{inference()} call; blocks are generated \emph{sequentially} within it
+(block $b$ denoised over its steps, committed to the KV cache at clean $t=0$,
+then block $b{+}1$ begins). \texttt{rollout\_inference()} repeats
+\texttt{inference()} on overlapping windows for long video.
+
+Crucially, when block $b$ is denoised its query is the current 3 frames and its
+keys/values are the \emph{entire visible window} --- all committed frames of
+blocks $0,\ldots,b{-}1$ (from the cache) plus block $b$ itself --- attended with
+\texttt{causal=False}, i.e.\ \emph{no intra-call mask}. So the current block
+attends bidirectionally and directly to every visible past frame, up to
+\texttt{local\_attn\_size} frames. The block-causal behaviour comes from
+generation order and cache contents, not from a mask inside the attention call.
+The asymmetry that ``past cannot attend forward'' concerns earlier blocks'
+\emph{queries}, which are frozen and never recomputed; it does not shorten the
+current block's attentional reach.
+
+\textbf{Consequence for us:} the stride-$h_l w_l$ temporal stripe is present in
+the current block's \emph{actual} attention map, spanning the whole visible
+window --- there is no need to construct a separate bidirectional pass to reveal
+it. Its \emph{length} equals the number of currently visible frames
+$= \min(\text{frames generated in window}, \texttt{local\_attn\_size})$.
+
+\textbf{Cache mechanics (corrected 2026-07-17).} Default
+\texttt{local\_attn\_size} $= -1$ $\Rightarrow$ \texttt{max\_attention\_size}
+$= 32760$ tokens $= 21$ latent frames of \emph{global} reach; the eviction
+branch never triggers. For standard-length runs (FiVE-Bench), one
+\texttt{inference()} call covers the whole clip: the cache fills block-by-block
+with clean ($t=0$) committed KVs, reach ramps $3 \to 21$ frames monotonically,
+and there is no reset --- \textbf{the first cache-saturated block is the last
+block of the clip}. The per-window ramp-and-reset model applies only to
+long-video \texttt{rollout\_inference()}, whose fresh windows are seeded with
+the last overlap block via \texttt{src/trg\_initial\_latent} (overlap frames
+cached as clean context, not regenerated). Side effect: the reference frame
+conditions \emph{only} window~1; from window~2 the initial-latent slot is
+overwritten by the overlap (see risk~5).
+
+Layer $\ell \in [L]$, head $h \in [H]$; $\ell$ suppressed. $S_b = 3 h_l w_l$ =
+current block's query tokens. $S_{\mathrm{vis}} =
+\min(\text{gen frames},\texttt{local\_attn\_size})\cdot h_l w_l$ = visible key
+length. Superscripts $s$, $t$, $\mathrm{ref}$: source, target, reference.
+Subscript $p$: cache of prior blocks in the visible window.
+
+$m \in \{0,1\}^{S_{\mathrm{vis}}}$ is the \textbf{edit mask}; $m_j = 1$ iff
+token $j$ is in the edit region. (Confirmed: StreamEdit's
+\texttt{mask\_bin = mask\_soft > 0}, True $=$ foreground $=$ edit region; the
+cached mask is the src$\cup$trg union.)
+
+$r_i = 1 - t_{i-1}^{\rho}$: StreamEdit blend ratio. $t^{*} = 0.5$: injection
+threshold. Denoising steps: 15 (standard) / 5 (long-video). $\tau_h$: head
+type, \texttt{tau[30,12]} ($L = 30$ layers, $H = 12$ heads).
+
+\subsection{Baseline: what StreamEdit computes}
+
+Dual-branch sampling with shared noise $\epsilon_{t_i}$:
+\[
+  x^{s}_{t_i} = (1-t_i)\,x^{s}_0 + t_i \epsilon_{t_i}, \qquad
+  x^{t}_{t_i} = (1-t_i)\,z^{t}_{t_i} + t_i \epsilon_{t_i}.
+\]
+The source branch is denoised with $p^{s}$; the target branch with $p^{t}$,
+conditioned on the source branch through a self-attention bridge applied
+\textbf{identically to every head}:
+\[
+  \tilde{Q} = r_i Q^{t} + (1-r_i) Q^{s}, \qquad
+  \tilde{K} = r_i K^{t} + (1-r_i) K^{s},
+\]
+\[
+  \tilde{K}_p = m_p \odot \big(r_i K^{t}_p + (1-r_i) K^{s}_p\big)
+                + \bar m_p \odot K^{t}_p,
+\]
+\[
+  K = \big[\,\tilde{K},\; \tilde{K}_p,\; \mathbb{1}[t<t^{*}]\cdot(\bar m \odot K^{s})\,\big],
+  \qquad
+  V = \big[\,V^{t},\; V^{t}_p,\; \mathbb{1}[t<t^{*}]\cdot(\bar m \odot V^{s})\,\big],
+\]
+\[
+  O = \mathrm{softmax}\!\big(\tilde{Q}K^{\top}/\sqrt{d}\big)\,V .
+\]
+The edit mask $m$ comes from cross-attention grounding (thresholded difference
+between trigger-word and non-trigger-word attention, unioned over branches).
+Cross-attention boosting and source-oriented guidance sit outside the bridge and
+are \textbf{left untouched by this proposal}.
+
+Three observations drive the method. $\tilde{Q}$ drags \emph{every} query toward
+the source, including inside $m$. $\tilde{K}_p$ drags cache keys toward the
+source \emph{inside} $m$. The third block imports source content. The first two
+are geometric anchoring bleeding into appearance.
+
+\subsection{Step 1: head classification on the source branch}
+
+\textbf{Where to classify --- block.} Reach ramps $3 \to 21$ frames over the
+clip (standard runs; see cache mechanics), so \textbf{classify at the last
+block of the clip}, where the temporal stripe spans the full reach. Never
+classify at block~0, where a long-range temporal head is indistinguishable from
+a spatial one.
+
+\textbf{Sequencing (resolved 2026-07-17).} Routing is needed from block~0 of
+the target branch, but the classification signal peaks at the last block ---
+after the edit would already have run. The source branch is target-independent
+(vanilla \texttt{attention(src\_q, src\_k, src\_v)}), so v1 runs a
+\textbf{source-only pre-pass} over the clip to classify, then the dual-branch
+edit ($\approx$ half of one extra pass, once per edit). If E1 shows cross-input
+stability, replace with per-model offline classification and drop the
+pre-pass.
+
+\textbf{Two-axis diagnostic (E1).} The reach ramp confounds a naive flip-rate
+measurement, so separate it: (i) \emph{within-window ramp} --- block~0 vs.\ last
+block of window~1; head types \emph{will} differ here purely from truncated
+reach, which is expected and not a finding; (ii) \emph{across-window stability}
+--- last block of window~1 vs.\ last blocks of windows $2,3,\ldots$ (all
+saturated); if head type is structural this is near-constant, and drift here is a
+genuine signal that forces per-window reclassification. Only axis (ii) tests the
+freeze assumption. (Axis (ii) applies to long-video rollout only; standard runs
+have a single window.)
+
+\textbf{Where to classify --- denoising step.} The cached past-block keys are
+\emph{clean} (committed at $t=0$). The most representative attention map is
+clean-query $\times$ clean-key, which occurs only at the \textbf{final
+(lowest-noise) step} of the chosen block --- the sole point where the current
+block's queries match the clean content the cache holds. High-noise queries are
+near-Gaussian and least structured. Classify at the last step; optionally
+majority-vote over the last 2--3 steps. (This corrects an earlier draft that
+said highest-noise step --- backwards.)
+
+\textbf{No synthetic pass needed.} Because the real forward call already attends
+bidirectionally over the full visible window (\texttt{causal=False}), the stripe
+is present in the actual attention map. Classify on the source branch's real
+attention call; do not build a separate bidirectional reconstruction pass. The
+classifying call has the same structure as the calls used during editing, so the
+frozen label is valid at apply-time.
+
+\textbf{Freeze.} Classify once at the last block of the first window and freeze
+$\tau$ for the whole edit (all blocks, all windows), subject to axis-(ii)
+validation above.
+
+\textbf{Criterion.} At the chosen block, sample $\mathcal{P} \subset [S_b]$
+current-block query rows, $|\mathcal{P}| = \lceil 0.01\,S_b \rceil$. Define two
+candidate key-sets over the visible window: $\mathcal{B}^{\mathrm{spat}}(j)$ =
+visible keys in the same latent frame as $j$; $\mathcal{B}^{\mathrm{temp}}(j)$ =
+visible keys at the same spatial position $(x,y)$ across all visible frames
+(stride $h_l w_l$, up to the visible reach). Wan self-attention contains no
+text tokens (text enters via cross-attention), so both sets are purely visual.
+Then
+\[
+  \tau_h = \arg\min_{c \in \{\mathrm{spat},\mathrm{temp}\}}
+  \big\|\,\mathrm{Attn}_{\mathcal{B}^{c}}(Q^{s}_{\mathcal{P},h}, K^{s}_h, V^{s}_h)
+       - \mathrm{Attn}_{\mathrm{full}}(Q^{s}_{\mathcal{P},h}, K^{s}_h, V^{s}_h)\,\big\|_2^2 ,
+\]
+where $\mathrm{Attn}_{\mathrm{full}}$ is the real full-visible-window attention.
+SVG's output-reconstruction criterion, $\approx 3\%$ overhead, no $O(S^2)$
+materialisation. Deliberately \emph{not} FYM's map-shape criterion.
+
+Classification runs on the \textbf{source branch only}; $Q^s, K^s, V^s$ are
+already computed in the bridge, so profiling adds no extra forward passes.
+
+\subsection{Step 2: query routing}
+
+\[
+  \text{temporal:}\quad Q_h \leftarrow (1-r^{T}_i)\,Q^{s}_h + r^{T}_i\,Q^{t}_h,
+  \qquad r^{T}_i := 0 .
+\]
+\[
+  \text{spatial:}\quad \varrho_j = m_j + (1-m_j)\,r_i,
+  \qquad Q_{h,j} \leftarrow \varrho_j\,Q^{t}_{h,j} + (1-\varrho_j)\,Q^{s}_{h,j}.
+\]
+The spatial rule is the under-editing fix: $\varrho_j = 1$ inside the edit
+region gives a pure target query with no source anchoring, and outside it
+degrades to StreamEdit's schedule, preserving the background.
+
+\subsection{Step 3: key/value routing}
+
+\textbf{Temporal heads} --- correspondence carriers. Keys from source, values
+from target, index-aligned:
+\[
+  K_h = [\,K^{s}_h,\; K^{s}_{p,h}\,], \qquad
+  V_h = [\,V^{t}_h,\; V^{t}_{p,h}\,]
+  \qquad\Longrightarrow\qquad
+  O_h = A^{s}_h V^{t}_h .
+\]
+The source video's attention map applied to target content. No mask, no
+source-$KV$ concat block, no appearance crossing. $A^{s}_h$ is never
+materialised: this runs through the same fused SDPA kernel, which matters since
+$S \approx 32$k makes explicit map transfer infeasible.
+
+\textbf{Spatial heads} --- appearance carriers. Two appearance authorities,
+selected by the mask. Write the concatenated key set as
+$\mathcal{K} = \mathcal{K}^{t} \cup \mathcal{K}^{t}_{p} \cup \mathcal{K}^{s}
+\cup \mathcal{K}^{\mathrm{ref}}$ and define an \emph{additive} bias (not
+elementwise multiplication --- see implementation note below):
+\[
+  B(j, k) =
+  \begin{cases}
+    0 & k \in \mathcal{K}^{t} \cup \mathcal{K}^{t}_{p} \\
+    0 & k \in \mathcal{K}^{s},\;\; m_k = 0,\;\; t < t^{*} \\
+    0 & k \in \mathcal{K}^{\mathrm{ref}},\;\; m_j = 1,\;\; t < t^{*} \\
+    -\infty & \text{otherwise,}
+  \end{cases}
+  \qquad
+  O_h = \mathrm{softmax}\!\Big(\tfrac{Q_h \mathcal{K}_h^{\top}}{\sqrt d} + B\Big) \mathcal{V}_h .
+\]
+$B$ has shape $[B, H_{\mathrm{spat}}, S_q, S_k^{\mathrm{full}}]$ where
+$S_k^{\mathrm{full}} = S_q + S_{\mathrm{prev}} + S_q + P$. In code it is three
+tensor-index assignments (no loops); see pseudocode.
+
+The asymmetry is load-bearing and invisible in the $\odot$ form:
+\textbf{source keys are gated by key index $m_k$; reference keys are gated by
+query index $m_j$.} Source keys inside the edit region are denied to
+\emph{all} queries ($m_k=1 \Rightarrow -\infty$). Reference keys are denied to
+background queries ($m_j=0 \Rightarrow -\infty$). Target keys are always
+visible.
+
+\textbf{The mask $m$ is 3D.} $m \in \{0,1\}^{F_{\mathrm{vis}} \times h_l \times w_l}$
+where $F_{\mathrm{vis}} = \min(\text{gen frames}, \texttt{local\_attn\_size})$,
+flattened to $[S_{\mathrm{vis}}]$ token indices. It is \textbf{not} a static 2D
+spatial mask
+replicated across frames --- the edited object moves. Three strategies in
+increasing cost:
+\begin{enumerate}
+  \item \emph{Dilated 3D mask (v1 default).} Derive from
+        $|\mathrm{VAE}(I^{\mathrm{ref}}) - \mathrm{VAE}(I^{s}_1)|$, threshold,
+        then dilate $\times 4$ in both spatial and temporal dimensions within
+        each chunk. The 4$\times$ temporal compression of Wan's VAE means one
+        latent frame $\approx 4$ pixel frames; a generous spatial dilation absorbs
+        within-chunk motion. Crude but avoids external dependencies.
+  \item \emph{Flow-warped mask.} Warp the frame-1 mask to each subsequent frame
+        using optical flow (RAFT or similar). Offline, per-edit, adds $\sim 2$s.
+        Use if v1 degrades on motion-heavy cases.
+  \item \emph{Per-chunk re-derived mask.} Diff source-branch latents against the
+        reference. Avoids a flow model but introduces drift after chunk~1.
+        Avoid unless both above fail.
+\end{enumerate}
+
+\textbf{Why spatial heads are the type-correct consumer of $I^{\mathrm{ref}}$.}
+A single reference frame has no temporal extent. A temporal head attends to the
+same spatial position \emph{across} frames; a one-frame bank gives it nothing to
+mix. A spatial head attends \emph{within} a frame, and $I^{\mathrm{ref}}$ is a
+frame. The routing is forced by the shape of the operation, not chosen. This
+predicts (claim~4) that reference injection into temporal heads actively
+degrades results.
+
+\subsection{Step 4: the reference KV bank}
+
+One extra DiT forward on $\mathrm{VAE}(I^{\mathrm{ref}})$ yields
+$K^{\mathrm{ref}}, V^{\mathrm{ref}}$ per layer per head, $h_l w_l$ tokens,
+cached once.
+
+Confirmed (2026-07-17): computed \textbf{once}, as a clean context forward at
+\texttt{context\_noise} $= 0$ --- the same convention as committed cache
+blocks. Cache at $t = 0$, not $t^{*}$. Bonus finding from code verification:
+current code drops the reference frame after rollout window~1, so the
+persistent bank is also the \emph{structural fix for long-video edit fading}
+(risk~5) --- a contribution-adjacent property worth stating.
+
+\texttt{UNVALIDATED} --- \textbf{RoPE for reference keys.} Assigning them frame
+index $0$ lets 3D RoPE's temporal decay suppress their influence in later frames.
+Default v1: replicate the reference keys $F_{\mathrm{vis}}$ times, giving each
+copy the querying frame's own temporal index (so the relative temporal rotation
+is zero). Cost: $F_{\mathrm{vis}} \cdot h_l w_l$ extra keys, bounded by
+\texttt{local\_attn\_size}. Ablate against frame-$0$ indexing.
+Note: setting the key's temporal rotation to identity is \emph{not} equivalent
+--- 3D RoPE contributes a \emph{relative} rotation $R(\theta_{f'} - \theta_f)$,
+so a zero key-rotation still produces a growing relative angle with the querying
+frame. True temporal neutrality requires $\theta_{f'} = \theta_f$, i.e.\
+replication.
+
+\subsection{Step 5: pseudocode}
+
+\textbf{Implementation notes.}
+
+\textbf{(a) Never implement key masking as $\odot$.} An excluded key multiplied
+by zero scores $q\cdot 0 = 0$, and $\exp(0)=1$: excluded keys absorb real
+softmax mass and act as attention sinks. Always use $-\infty$ additive bias
+passed as \texttt{attn\_mask} to \texttt{F.scaled\_dot\_product\_attention}.
+
+\textbf{(b) Head routing is two separate SDPA calls.} Softmax is per-head;
+heads never share denominator or interact inside the attention operator.
+Temporal and spatial heads run separate \texttt{sdpa} calls with different key
+lengths and then their outputs are scattered back into a $[B,H,S,D]$ tensor:
+\begin{verbatim}
+O = torch.empty_like(Qt)  # [B,H,S,D]
+O[:, T]  = O_temporal     # temporal heads to their index positions
+O[:, ~T] = O_spatial      # spatial heads to theirs
+\end{verbatim}
+No interpolation, no mixing. The downstream $W_o$ projection sees an ordinary
+$[B,H,S,D]$ output. This is mathematically identical to running all heads in one
+call if the key sets were equal; they are not, which is the only difference.
+
+\textbf{(c) OOD key-length risk.} Wan was trained with temporal and spatial
+heads seeing the same key set. Temporal heads now see $\approx 2S$ keys;
+spatial heads $\approx 3S+P$. Softmax normalises by row sum regardless of
+length, so there is no obvious numerical instability. The risk is
+\emph{attention entropy collapse}: a head collapsing onto a single key (near
+one-hot softmax), producing pixel artifacts. Monitor per-head entropy in first
+runs. If collapse occurs, mild temperature adjustment ($\sqrt{d'} > \sqrt{d}$
+for spatial, i.e.\ divide scores by a slightly larger constant) resolves it
+without changing the method. The deeper OOD risk is for temporal heads
+specifically: $K$ and $V$ come from different branches ($K^s$, $V^t$), a
+combination Wan never saw. L2 ablation is the test.
+
+\textbf{(d) Cross-attention boosting is kept and made diagnostic.} The boosting
+factor $\omega$ (multiplying trigger-word cross-attention scores inside $m$)
+compensates for under-editing. If head routing fixes under-editing structurally,
+the optimal $\omega$ should fall toward $1$. Sweep $\omega \in \{1, 1.5, 2, 3\}$
+and report the optimum. $\omega\gg1$ still required $\Rightarrow$ under-editing
+persists $\Rightarrow$ spatial-head routing is insufficient.
+
+\textbf{(e) Concrete bias construction for spatial heads.}
+\begin{verbatim}
+# After concatenation along key dim:
+# [K_tgt | K_tgt_prev | K_src | K_ref]
+#   S_q      S_prev      S_q     P
+s0, s1 = 0,    S_q
+s1, s2 = s1,   s1 + S_prev
+s2, s3 = s2,   s2 + S_q       # K_src block
+s3, s4 = s3,   s3 + P         # K_ref block
+
+B = torch.zeros(bsz, H_spat, S_q, s4)
+if t < t_star:
+    # K_src: deny to edit-region queries (key-index gate)
+    B[:, :, :,  s2:s3][:, :, m_flat, :] = -torch.inf
+    # K_ref: deny to background queries (query-index gate)
+    B[:, :, :,  s3:s4][:, :, ~m_flat,:] = -torch.inf
+else:
+    B[:, :, :, s2:s4] = -torch.inf   # both blocks off
+\end{verbatim}
+\texttt{m\_flat} is the 3D mask
+$m \in \{0,1\}^{F_{\mathrm{vis}} \times h_l \times w_l}$
+flattened to $[S_q]$. Not a static 2D mask; see mask strategy in Step~3.
+
+{\small
+\begin{verbatim}
+# ---- once per edit ----
+# ---- once per edit ----
+tau         = classify_heads(src_branch,   # [L,H] bool, True = temporal
+                block=first_saturated,     # or last block if clip short
+                step=final)                # lowest-noise: clean q x clean cache
+K_ref,V_ref = encode_reference(I_ref)      # [L,H,P,D], cached
+m_flat      = compute_3d_mask()            # [S_vis] bool, True = edit region
+
+# ---- per block, over its denoising steps (N per config; CHECK 5 vs 15) ----
+for i in range(N):
+    Qs,Ks,Vs = run_source_branch(x_src, t_i)   # cache QKV per layer
+    run_target_branch(x_tgt, t_i, patched_attn)
+
+def patched_attn(l, Qt,Kt,Vt, Qs,Ks,Vs, prev_t, prev_s, t):
+    T = tau[l]                         # [H] bool, True = temporal
+    r = 1.0 - t_prev ** rho            # StreamEdit schedule
+
+    # --- queries [B,H,S,D] ---
+    Q = torch.empty_like(Qt)
+    Q[:,  T] = Qs[:, T]                # temporal: full source query (r_T=0)
+    rho_q = torch.where(m_flat, 1.0, r).view(1,1,-1,1)
+    Q[:, ~T] = rho_q*Qt[:,~T] + (1-rho_q)*Qs[:,~T]  # spatial: free inside m
+
+    # --- temporal heads: source pattern, target content ---
+    Kh = cat([Ks[:,T], prev_s.K[:,T]], dim=2)  # source keys
+    Vh = cat([Vt[:,T], prev_t.V[:,T]], dim=2)  # target values
+    O_T = sdpa(Q[:,T], Kh, Vh, attn_mask=causal_bias())
+
+    # --- spatial heads: target self + src(bg) + ref(edit) ---
+    Kh = cat([Kt[:,~T], prev_t.K[:,~T], Ks[:,~T], K_ref[l][:,~T]], dim=2)
+    Vh = cat([Vt[:,~T], prev_t.V[:,~T], Vs[:,~T], V_ref[l][:,~T]], dim=2)
+    B  = build_spatial_bias(m_flat, S_q, S_prev, P, t)   # see note (e)
+    O_S = sdpa(Q[:,~T], Kh, Vh, attn_mask=B)
+
+    O = torch.empty_like(Qt)           # scatter back
+    O[:,  T] = O_T
+    O[:, ~T] = O_S
+    return O
+\end{verbatim}
+}
+
+\subsection{Ablation ladder}
+
+Each rung adds one change. L0 must reproduce StreamEdit numerically --- that is
+the correctness test for the patch.
+
+\begin{center}
+\begin{tabular}{llllll}
+\hline
+ & $r^{T}$ & $\varrho$ & source $KV$ & ref bank & \\
+\hline
+L0 & $r_i$ & $r_i$ & all heads & none & = StreamEdit \\
+L1 & $0$ & $r_i$ & all heads & none & + head-typed $Q$ \\
+L2 & $0$ & $r_i$ & spatial, $\bar m$ & none & + head-typed $KV$ \\
+L3 & $0$ & $m + \bar m r_i$ & spatial, $\bar m$ & spatial, $m$ & \textbf{full} \\
+L* & \multicolumn{4}{l}{L3 with \texttt{tau} randomly permuted, size-matched} & control \\
+\hline
+\end{tabular}
+\end{center}
+
+Variant A $=$ L2 (head routing only, $I^{\mathrm{ref}}$ left in StreamEdit's
+prev-chunk cache). Variant B $=$ L3. Reporting only B makes the gain
+unattributable.
+
+\section{Novelty claims}
+
+\begin{enumerate}
+  \item \textbf{(Reworded 2026-07-17, post-HALO.) The head-typed separation of
+        geometric and appearance anchoring survives block-causal few-step
+        distillation and is exploitable by routing alone --- no inner-loop
+        optimization, no training, zero extra NFE.} HALO establishes head-typed
+        motion/structure control on bidirectional 50-step backbones \emph{with}
+        latent optimization; at 15/5-step streaming budgets that instrument is
+        structurally unavailable, and no head-aware method does editing under
+        preservation constraints. Operationally: freeing spatial heads inside
+        $m$ while fully anchoring temporal heads yields stronger edits at equal
+        or better structural stability than StreamEdit, at unchanged NFE and
+        s/frame. \emph{Falsified} if structure degrades once spatial heads are
+        freed even with temporal heads fully anchored --- geometry not cleanly
+        localised in temporal heads under this distillation. \textbf{Primary
+        claim and primary falsifier.} Tested by L2/L3 vs L0, supported by a
+        cost table against optimization-based head control (HALO-style) and
+        trained streaming editing (LiveEdit).
+  \item \textbf{Head type is a usable routing variable, not a proxy for
+        injecting less.} \emph{Falsified} if L* (size-matched random head
+        permutation) matches L3.
+  \item \textbf{Head-conditional injection preserves in-region motion for
+        non-rigid object substitution, which mask-conditional injection
+        structurally cannot.} Measured as tracklet-similarity motion fidelity
+        restricted to $m$, on FiVE-Bench's non-rigid substitution split.
+  \item \textbf{A single reference frame can only be read by spatial heads.}
+        Injecting $K^{\mathrm{ref}},V^{\mathrm{ref}}$ into temporal heads should
+        \emph{degrade} results, not merely fail to help. \emph{Falsified} if it
+        is neutral or beneficial, which would indicate the head taxonomy does
+        not correspond to the operations it is named for.
+  \item \textbf{Head type is stable enough across steps, prompts, and branches
+        to be a fixed per-input assignment.}
+        \texttt{SCREENING-VALIDATED (R9, 2026-07-18)}: bimodal margins; 10-head
+        core ($m > 0.4$) with step-flip $0$ and video-flip $4/100$ head-pairs
+        (95\% CI $\approx [1\%, 10\%]$, $n = 5$ videos --- point-estimate pass,
+        not certification). Frozen per-model \texttt{tau} adopted; no noise
+        gating; per-edit pre-pass retained as fallback. Full validation
+        accumulates ride-along (criterion $\approx 3\%$ overhead on the source
+        forward) across R10/R12 runs before this claim is printed.
+\end{enumerate}
+
+\section{Relation to prior work}
+
+\textbf{HALO} (2607.11081, ECCV 2026; posted 2026-07-13, verified 2026-07-17).
+\emph{Closest prior art; displaces GenHOI.} Training-free head-typed control
+in video DiTs: motion heads identified via optical-flow-aligned displacement
+maps, structure heads via attention entropy ($\tau < 7$); reference $V$
+injected through structure heads, motion imposed by \emph{latent optimization}
+on motion-head cues (50 steps, optimization in 12). CogVideoX $+$ Wan,
+bidirectional. Includes an editing \emph{demo} (subject swap, layout kept) ---
+no masks, no preservation metrics, no reference frame, no benchmark. Differs
+from us: optimization-based, bidirectional multi-step, generation-first. It
+hands us the taxonomy-existence prior on Wan (de-risks E0) and takes ``first
+head-typed training-free routing in a video DiT'' off the table --- claim~1 is
+now regime-specific (see 2026-07-17 changelog).
+
+\textbf{LiveEdit} (ECCV 2026; repo verified 2026-07-17). Streaming
+chunk-causal editing built on Wan2.1/Self-Forcing --- \emph{trained} (three
+stages: foundation tuning, teacher-forced causal adaptation, DMD compression).
+The streaming-editing niche now has a tuned occupant; StreamEdit and this
+proposal remain the training-free side. Cite as the trained baseline.
+
+\textbf{MotionAdapter} (2601.01955). Attention-derived motion fields
+rearranged via DINO semantic correspondence to guide DiT denoising. Not
+head-typed; relevant as the candidate mechanism for softening the
+positional-correspondence assumption of our temporal-head map transfer
+(risk~3).
+
+\textbf{UniEdit} (2402.13185). Tuning-free video motion+appearance editing;
+injects source features through SA-S and motion through SA-T. \emph{Same routing
+idea, on a UNet where SA-S/SA-T are separate blocks.} Our contribution is not the
+routing but its \emph{recovery} in a backbone where the split does not exist.
+State it that way; the reverse framing is sunk by UniEdit.
+
+\textbf{Sparse VideoGen} (2502.01776, ICML 2025). Source of the spatial/temporal
+head taxonomy and of the classification criterion we adopt. Used there for
+inference acceleration only. Classifies \emph{online} because patterns are
+dynamic across steps and prompts.
+
+\textbf{Follow-Your-Motion} (2506.05207, ICLR 2026). Applies the taxonomy to
+\emph{tuned} motion transfer via head-typed LoRAs. We take its channel-surgery
+construction as reference and reject its offline count-balanced classifier and
+its dual-attention-fusion re-parameterisation. Its ablation omits our claim~2.
+
+\textbf{StreamEdit / StreamGVE} (2605.21466, ECCV 2026). Our base. Routes on
+\emph{where} and \emph{when}; no component is head-aware. Our delta is the
+\emph{what} axis, plus a dedicated path for $I^{\mathrm{ref}}$.
+
+\textbf{GenHOI} (2603.06048; abstract verified 2026-07-17). Injects reference
+tokens into video tokens through self-attention with Head-Sliding RoPE
+(head-specific temporal offsets countering 3D RoPE decay) and a spatial
+attention gate. Trained, domain-specific (hand-object interaction); its
+head-specific offsets are positional bookkeeping, not a functional taxonomy.
+Displaced by HALO as closest prior art; still cite for the reference-key RoPE
+question it raised (Step~4).
+
+\textbf{Analysis of Attention in VDiTs} (2504.10317). Zero-shot editing by
+self-attention map transfer on Wan2.1-T2V-1.3B; identifies layers with distinct
+roles. Our idea at \emph{layer} granularity. We must argue head granularity is
+the right one.
+
+\textbf{ContextFlow} (2509.17818). Argues UNet layer-selection heuristics are
+unsuitable in DiTs and that direct transplant causes geometric and temporal
+artifacts. Third-party support for our motivation.
+
+\textbf{LoRA-Edit} (2506.10082). First-frame-guided editing via mask-aware LoRA
+on Wan2.1-I2V. Already performs the appearance/motion decomposition --- it trains
+on isolated edited frames ``to avoid including motion information'' --- but
+routes it with \emph{masks}, in one monolithic LoRA. Relevant if the tuned
+variant is revived.
+
+\textbf{FREE-Edit} (2603.01164). Training-free image-driven video editing with
+adaptive key replacement; reports cross-attention masks fail to localise object
+addition. Motivates our alternative mask derivation.
+
+\section{Open questions and risks}
+
+\begin{enumerate}
+  \item \textbf{PRIMARY RISK. Five denoising steps may require the anchoring we
+        are removing.} StreamEdit anchors aggressively because a few-step sampler
+        has little room to recover. Freeing spatial heads inside $m$ may trade
+        under-editing for an unanchored blob: wrong placement, unclosed edges,
+        chunk-to-chunk incoherence. The thesis is that temporal-head
+        correspondence supplies the geometric scaffold alone. If it does not,
+        the method reduces to a worse tradeoff dial. \emph{Test with L2 before
+        building the reference bank.}
+  \item \textbf{Does the head taxonomy survive block-causal attention?}
+        Self-Forcing and LongLive are chunked-KV-cache, block-causal, few-step
+        distillations. SVG's temporal-head slash signature at stride $h_l w_l$
+        was characterised on \emph{bidirectional dense} attention. It may be
+        truncated or absent. \emph{Step 0: dump raw $Q,K$ per head per step for
+        a few FiVE-Bench cases and look at the maps before writing a
+        classifier.} If deformed, re-deriving the pseudo-masks for the chunked
+        layout is itself a contribution. \emph{Update 2026-07-17:} HALO confirms
+        head specialization on (bidirectional) Wan, raising the prior that the
+        taxonomy exists; what remains untested --- and is now the actual claim
+        --- is its survival under causal few-step distillation.
+  \item \textbf{Temporal-head map transfer assumes positional, not semantic,
+        correspondence.} $A^{s}_h$ encodes ``token at $(x,y,f)$ pulls from
+        $(x,y,f\pm 1)$ with these weights.'' Applying it to $V^{t}$ presumes the
+        edited object occupies the source object's coordinates. Holds for rigid
+        substitution with matched silhouette (bus $\to$ jeep); exactly what fails
+        for non-rigid (dancer $\to$ horse), which is where claim~3 promises most.
+        \emph{Test rigid first.} A dilated mask on temporal heads may be
+        needed; MotionAdapter's DINO-correspondence rearrangement is the
+        candidate soft fix if dilation is insufficient.
+  \item \textbf{$Q^{s}$ and $Q^{t}$ may not be comparable.} StreamEdit's $r_i$
+        ramps from $0$, so its query swap is strongest at high noise where the
+        latents are most alike. $r^{T}=0$ throughout removes that safety. Measure
+        the constant first; then try a slow ramp.
+  \item \textbf{Single-frame reference drifts over long video.} Over 470 frames
+        the object rotates and disoccludes; a frame-1 bank cannot say what its
+        back looks like (LoRA-Edit \S3.3.2's motivation). Plan a multi-frame
+        bank. Do \emph{not} re-anchor on generated chunks --- that compounds
+        drift.
+  \item \textbf{The previous-chunk KV cache should already be head-typed.}
+        Spatial heads attend within-frame and should have little use for the
+        previous chunk. If the classifier agrees, head-conditional cache
+        treatment is a free extra result and evidence the taxonomy is real. If it
+        disagrees, that is evidence for risk~2.
+  \item \textbf{(Rollout only.) Temporal reach is bounded per window.} Standard
+        runs have global 21-frame reach (see cache mechanics), so this risk is
+        confined to long-video rollout: there, source motion with period
+        exceeding the window cannot be captured by temporal-head injection
+        inside one window, and cross-window coherence rides on the 3-frame
+        overlap and the target branch's own continuity. Inherited from
+        StreamEdit. Upside: bounded reach caps the spatial-head key length, so
+        the two-SDPA cost does not grow with total video length.
+  \item \textbf{Recombination objection, now concrete (revised 2026-07-17).}
+        The steelman a reviewer will write: ``SVG's taxonomy $+$ UniEdit's
+        routing $+$ HALO's training-free head-typed demonstration $+$
+        StreamEdit's scaffold --- what did you discover?'' Answerable only by
+        results, on three legs: (i) a \emph{capability} neither parent shows
+        --- non-rigid in-region motion preservation with strong edits at
+        streaming speed (claims 1 and 3); (ii) the L* control showing head
+        identity is causal (neither HALO nor FYM ran it); (iii) the cost table
+        showing optimization-based head control is orders of magnitude off the
+        streaming budget. If L2/L3 merely match StreamEdit on FiVE-Bench, there
+        is no paper on this thesis --- with HALO public, the framing fallback
+        is gone. Concurrent-work pressure (two adjacent ECCV'26 papers, one
+        posted this week) argues for pace.
+\end{enumerate}
+
+\subsection*{Code-verification TODO (do before implementing)}
+
+All items resolved 2026-07-17 against the Self-Forcing build; see the
+2026-07-17 changelog entry for consequences. File references are to
+\texttt{Self-Forcing\_StreamEdit/}.
+
+\begin{enumerate}
+  \item \emph{Resolved.} Seeded, not regenerated:
+        \texttt{rollout\_inference} feeds the last overlap frames as
+        \texttt{src/trg\_initial\_latent} to the next \texttt{inference()} call
+        (\texttt{edit\_causal\_inference.py:180--181}), which caches them as
+        clean context. Overlap frames are stripped from the output. Default
+        overlap $=$ 1 block (3 latent frames). \textbf{Side finding: the
+        reference frame is dropped after window~1} --- \texttt{initial\_latent}
+        is overwritten by the overlap for windows $\ge 2$. Sharpens risk~5; the
+        dedicated ref bank fixes it structurally.
+  \item \emph{Resolved.} \texttt{local\_attn\_size} $= -1$ by default
+        (\texttt{utils/wan\_wrapper.py:121}) $\Rightarrow$
+        \texttt{max\_attention\_size} $= 32760$ tokens $= 21$ latent frames of
+        \textbf{global} reach (\texttt{causal\_model.py:127}); the eviction
+        branch requires \texttt{local\_attn\_size} $\ne -1$, so standard runs
+        have no rolling window and no reset. Steps: 15 (standard) / 5
+        (long-video). \texttt{num\_frame\_per\_block} $= 3$
+        (\texttt{configs/self\_forcing\_dmd.yaml:48}).
+  \item \emph{Resolved.} \texttt{mask\_bin = mask\_soft > 0}
+        (\texttt{edit\_causal\_inference.py:755}); \textbf{True $=$ foreground
+        $=$ edit region}. The cached \texttt{trg\_fg\_mask} is the union
+        $\mathrm{src} \cup \mathrm{trg}$ fg.
+  \item \emph{Resolved.} Head-agnostic confirmed: every bridge term
+        (\texttt{causal\_model.py:315--375}) indexes batch/token dims only;
+        \texttt{blender\_rate} is scalar.
+  \item \emph{Resolved.} $V^{s}$ is used: masked background
+        \texttt{src\_current\_value} is appended alongside keys
+        (\texttt{causal\_model.py:355}).
+  \item \emph{Resolved.} Gather $+$ concat and in-place blend on masked rows;
+        \textbf{no $\odot$ zeroing anywhere} --- the speculated attention-sink
+        bug does not exist in the baseline. Note~(a) applies only to our new
+        bias-based implementation.
+  \item \emph{Resolved.} Once. Context/VP KV is a single clean forward at
+        \texttt{timestep = context\_noise} $= 0$
+        (\texttt{configs/default\_config.yaml:10},
+        \texttt{edit\_causal\_inference.py:322--376}), same convention as
+        committed cache blocks. Cache the ref bank at $t=0$, not $t^{*}$.
+  \item \emph{Resolved.} With \texttt{sink\_size} $= 0$ (the live path), the
+        cache stores \textbf{unroped} keys; RoPE is re-applied to the whole
+        visible cache at every attention call with frames indexed from 0 and the
+        query re-based via \texttt{last\_chunk\_start\_frame}
+        (\texttt{causal\_model.py:280--295}). The reference bank's frame-index
+        assignment (replication scheme and frame-$0$ arm) is therefore rope-time
+        bookkeeping, not a cache-format change.
+  \item \emph{Resolved.} $H = 12$, $L = 30$
+        (\texttt{wan/configs/wan\_t2v\_1\_3B.py}); \texttt{tau} is $[30, 12]$
+        --- 360 heads total, small enough for greedy per-head oracle search as
+        an analysis experiment.
+\end{enumerate}
+
+\section{Changelog}
+
+\subsection*{2026-07-10 --- Initial document; anchored on StreamEdit}
+
+Seeded from Follow-Your-Motion (2506.05207), LoRA-Edit (2506.10082), StreamEdit
+(2605.21466).
+
+Two directions considered. \emph{(a) Tuned}: extend LoRA-Edit with head-typed
+LoRAs --- appearance LoRA on spatial heads trained on $I^{\mathrm{ref}}$, motion
+LoRA on temporal heads trained on $V^{s}$, both loaded at inference (inverting
+Follow-Your-Motion, which discards its spatial LoRA). \emph{(b) Training-free}:
+make StreamEdit's bridge head-conditional.
+
+\textbf{(a) set aside.} Its delta is thin: LoRA-Edit already performs the
+appearance/motion decomposition (its \S3.3.2 trains on isolated edited frames
+``to avoid including motion information'' --- Follow-Your-Motion's single-frame
+spatial stage under another name) and routes it with masks. The only difference
+(a) offers is head routing instead of mask routing, which is the \emph{same
+question} (b) asks, bundled with per-video tuning cost, and with
+Follow-Your-Motion already holding the flag on head-typed LoRA in a DiT. Revive
+only if (b) establishes head routing works and stronger reference-frame
+appearance control is wanted.
+
+\textbf{(b) adopted.} Base: StreamEdit, Self-Forcing variant, Wan2.1-T2V-1.3B.
+Classification via SVG's output-reconstruction criterion rather than
+Follow-Your-Motion's map-shape criterion --- functional rather than cosmetic
+definition; avoids materialising the $O(S^2)$ map; already online and per-step,
+which the dual-branch setting needs. Classification on the source branch only.
+Evaluation on FiVE-Bench.
+
+\textbf{Dropped:} hand-specifying injection rules per edit type (``inject spatial
+for colour change, not for object substitution''). With six edit types and a
+binary switch it is a hyperparameter fitted to FiVE-Bench, not a mechanism. If
+the decomposition is real, edit-type behaviour should fall out of the
+mask~$\times$~head-type~$\times$~timestep product. If it does not, that is
+evidence \emph{against} the decomposition and should be reported as such.
+
+\subsection*{2026-07-10 --- Integration mechanism: map-vs-values, not fusion}
+
+\textbf{Follow-Your-Motion's dual attention fusion rejected.} It is an exact
+identity re-parameterisation of the attention block whose sole function is to
+expose per-head-type linear layers for LoRA. Training-free, it computes the same
+function at extra cost. Revive only with direction (a).
+
+\textbf{A flaw in the initial entry was corrected.} It proposed injecting source
+$K$ \emph{and} $V$ for temporal heads everywhere including inside $m$. Since $V$
+carries content, this would import the source object's appearance into the edited
+region --- the exact failure the method exists to avoid. Corrected routing:
+the attention map is correspondence, the values are appearance. Temporal heads
+take $Q^{s},K^{s},V^{t}$ (implicit head-selective map transfer through the fused
+kernel, no $O(S^2)$ materialisation).
+
+Formulated as per-head-type blend coefficients so StreamEdit is strictly nested,
+making the size-matched random-head control a one-line permutation.
+
+\subsection*{2026-07-10 --- Reframed around under-editing; reference frame given its own path}
+
+\textbf{Error 1: $I^{\mathrm{ref}}$ was omitted entirely.} It is not a peripheral
+input but a second appearance authority. In StreamEdit it enters only as a
+previously generated chunk in $K^{t}_p,V^{t}_p$, where $\tilde{K}_p$ blending
+dilutes it back toward $K^{s}_p$ inside the mask. It now gets a dedicated path:
+spatial heads read $I^{\mathrm{ref}}$ inside $m$, the source video outside $m$.
+
+\textbf{Error 2: spatial heads were left on StreamEdit's recipe.} That recipe ---
+query blending toward $Q^{s}$ everywhere, masked source-$KV$ concat --- \emph{is}
+the cause of under-editing/over-anchoring. Leaving it intact would have preserved
+the exact pathology the method exists to remove. Spatial heads inside $m$ now
+receive no source anchoring of any kind.
+
+\textbf{Thesis reframed.} StreamEdit's anchoring does two jobs at once:
+geometric stability (correspondence, in temporal heads' attention map) and
+appearance anchoring (values, in spatial heads' $V$), conflated only because the
+bridge is head-agnostic. The contribution is that head type separates them.
+Separability is now the primary novelty claim and the primary falsifier,
+demoting the earlier ``orthogonal routing variable'' framing.
+
+\textbf{New: type-correctness argument.} A single reference frame has no temporal
+extent, so only within-frame heads can read it. The routing of $I^{\mathrm{ref}}$
+to spatial heads is forced by the shape of the operation. Yields the falsifiable
+prediction that reference injection into temporal heads actively degrades.
+
+\textbf{New prior art: GenHOI} (2603.06048), head-wise treatment of
+reference-token self-attention injection (Head-Sliding RoPE). Trained and
+domain-specific, so it does not scoop the proposal, but it is the closest
+mechanism-level precedent and it raises the RoPE question for reference keys,
+previously unconsidered.
+
+\subsection*{2026-07-10 --- Restructured for implementation handoff}
+
+Document reorganised for an agent working in the StreamEdit repo. No decision
+was changed. \S2 now runs notation $\to$ baseline $\to$ classification $\to$
+query routing $\to$ KV routing $\to$ reference bank $\to$ pseudocode $\to$
+ablation ladder; the StreamEdit baseline is restated in full so the file stands
+alone. Prior-work entries reduced to one-liners stating the \emph{difference}.
+Earlier changelog prose tightened; no recorded decision or reason removed.
+
+Added: the L0--L3/L* ablation ladder, with L0 required to reproduce StreamEdit
+numerically as the patch correctness test. Added a Code-verification TODO list.
+Added two implementation warnings: (i) key masking must be an additive $-\infty$
+bias or a gather, never $\odot$ --- zeroed keys score $0$, so $\exp(0)=1$ and
+they absorb softmax mass as degenerate sinks, which may be a latent bug in the
+baseline itself; (ii) head routing is an index over an existing axis, requiring
+no architectural change. Added the frame-aligned reference-key replication scheme
+as the v1 answer to RoPE decay, to be ablated against frame-$0$ indexing.
+
+\subsection*{2026-07-10 --- Spatial-head gating disambiguated; RoPE default corrected}
+
+Two fixes to the implementation spec, no change to the thesis.
+
+\textbf{Gating asymmetry made explicit.} The previous $K^{s}|_{\bar m}$,
+$K^{\mathrm{ref}}|_{m}$ restriction notation was ambiguous: it read as if both
+blocks were subset by key index, but reference keys carry no mask index. Replaced
+by an explicit additive bias $B(j,k)$. Source keys are denied by \emph{key} index
+($m_k = 1 \Rightarrow -\infty$); reference keys are denied by \emph{query} index
+($m_j = 0 \Rightarrow -\infty$). Both directions are required: the first stops
+source appearance re-entering the edit region, the second stops the edited object
+leaking into the background. Only the first was previously stated.
+
+\textbf{RoPE for reference keys.} A tempting shortcut --- set the reference keys'
+temporal rotation to the identity so they appear ``frame-neutral'' --- is
+\emph{wrong}. 3D RoPE contributes $q^{\top} R(\theta_{f'} - \theta_{f})\,k$, a
+\emph{relative} rotation. An identity rotation on the key leaves the relative
+angle equal to $-\theta_f$, which still grows with the querying frame index, so
+the decay is not removed, merely re-signed. True temporal neutrality requires
+$\theta_{f'} = \theta_{f}$, i.e.\ replicating the reference keys per querying
+frame. That is the v1 default in Step 4 and it stands; the identity-rotation
+variant is not a valid ablation arm and has been struck.
+
+\subsection*{2026-07-10 --- Step-by-step clarifications: classification schedule, 3D mask, bias, two-SDPA}
+
+Fifth iteration. No change to the method; four implementation ambiguities
+resolved.
+
+\textbf{Classification schedule.} Classify once at $t_N$ of the first window,
+at the last block of that window (see sixth iteration below for the correction).
+Freeze for the entire edit.
+
+\textbf{3D mask.} $m \in \{0,1\}^{S_w}$ over the window's token sequence
+(not a 2D spatial mask replicated across frames). v1: dilated VAE-diff mask.
+v2: flow-warped mask. v3: per-block re-derived (avoid). Flattened to $[S_w]$
+token indices for the bias construction.
+
+\textbf{Bias construction.} Concrete tensor-index assignments added in note~(e)
+and pseudocode. Key asymmetry: source-block denial is a \emph{key}-index gate
+($m_k$); reference-block denial is a \emph{query}-index gate ($m_j$). Two
+index expressions, no loops.
+
+\textbf{Two-SDPA design.} \texttt{scatter\_heads} is two index assignments into
+an empty $[B,H,S,D]$ tensor. No softmax interaction between head groups; the
+output is in-distribution for $W_o$. The real OOD risk is in temporal heads
+seeing a cross-branch $(K^s, V^t)$ pairing Wan never trained on; L2 is the test.
+
+\textbf{Cross-attention boosting} kept and made diagnostic: if optimal $\omega$
+falls toward 1 after head routing, that is supporting evidence for claim~1.
+
+\subsection*{2026-07-10 --- Block/window/rollout terminology fixed; Step~1 classification point corrected}
+
+Sixth iteration. ``Chunk'' was used inconsistently for both the 3-frame block
+and the multi-block window. Now standardised: \textbf{block} = 3 latent frames,
+bidirectional within; \textbf{window} = $B_w$ causally-ordered blocks in one
+\texttt{inference()} call; \textbf{rollout} = repeated overlapping windows.
+
+\textbf{Classification point corrected.} The fifth-iteration entry said
+``full window, bidirectionally.'' This was wrong. Within a window, blocks are
+causally ordered via KV cache: block $b$'s queries see blocks $0,\ldots,b$ as
+keys but not the other way. The temporal stripe pattern (stride $h_l w_l$) lives
+in the accumulated KV cache, not in the local $QK$ square of a single block.
+Correct recommendation: classify at the \emph{last block} of the first window,
+where the cache spans all prior frames and the temporal pattern is maximally
+expressed. The E1 diagnostic (flip rate across blocks) is now concrete:
+$<5\%$ flip rate $\Rightarrow$ early classification suffices.
+
+Open question marked \texttt{CHECK}: whether Self-Forcing's \texttt{inference()}
+uses a sequential growing-cache architecture (assumed above) or a full
+within-window bidirectional mask. The classification recommendation changes
+depending on the answer.
+
+\subsection*{2026-07-10 --- Attentional reach corrected: full visible window, not 3-frame block}
+
+Seventh iteration. The sixth-iteration model of within-window attention was
+wrong and is corrected against \texttt{causal\_model.py}.
+
+\textbf{Correction.} Blocks are generated sequentially, but when a block is
+denoised it attends with \texttt{causal=False} over the \emph{entire visible
+window} (own 3 frames + all committed past frames, up to
+\texttt{local\_attn\_size}), with no intra-call mask. The sixth-iteration claim
+that a block sees past frames ``only as cache keys, pattern truncated to 3
+frames'' was false: the current block's attentional reach is the full visible
+window. The ``past cannot attend forward'' asymmetry concerns frozen earlier
+\emph{queries} and does not shorten the current block's stripe.
+
+\textbf{Three consequences.}
+(1) \emph{No synthetic bidirectional pass is needed.} The temporal stripe is
+present in the real forward attention map. Classify on the actual call. Removes
+a chunk of planned complexity.
+(2) \emph{Classification block $=$ first cache-saturated block} (visible frames
+$= \texttt{local\_attn\_size}$), not ``last block of first window.'' Reach grows
+until saturation, then holds; block~0 gives a 3-frame reach that misclassifies
+long-range temporal heads as spatial. Short clips: last block.
+(3) \emph{Classification step $=$ final (lowest-noise) step}, not highest-noise
+as the fifth/sixth iterations stated. Cached keys are clean; only the last step
+gives clean-query $\times$ clean-key. This reverses the earlier instruction.
+
+Notation updated: $S_c/F_c$ (chunk) replaced by $S_{\mathrm{vis}}/F_{\mathrm{vis}}$
+(visible window, bounded by \texttt{local\_attn\_size}). Per-block step count
+flagged \texttt{CHECK} ($5$ assumed earlier vs.\ $15$ read from code).
+
+\subsection*{2026-07-10 --- Cache mechanics: per-window, ramps to \texttt{local\_attn\_size}, resets}
+
+Eighth iteration. Clarified that the window spans exactly
+\texttt{local\_attn\_size} frames; the KV cache has matching capacity, is
+allocated per window, fills block-by-block with clean committed KVs, and resets
+each (overlapping) window. No sliding within a window --- fill reaches capacity
+at the last block.
+
+\textbf{Reconciles iterations 6 and 7.} The classification location ``last block
+of the first window'' (iteration~6) and ``first cache-saturated block''
+(iteration~7) are the \emph{same} block here, because window length $=$
+\texttt{local\_attn\_size}. Iteration~6 had the right location for the wrong
+reason (it wrongly believed local attention could not see the cross-frame
+pattern); iteration~7's saturation argument is the correct justification. No open
+contradiction.
+
+\textbf{Added.} (i) Bounded-reach limitation: temporal receptive field $\le
+\texttt{local\_attn\_size}$, ramps per window, resets per window; source motion
+with longer period is uncapturable within one window. Upside: bounds spatial-head
+key length, so two-SDPA cost is independent of total video length. (ii) E1 split
+into within-window ramp (expected drift, not a finding) and across-window
+stability (the real freeze test). (iii) \texttt{CHECK} on overlap-seeding vs.\
+regeneration at window reset, and on the \texttt{local\_attn\_size} value ---
+a small value would weaken the taxonomy itself.
+
+\subsection*{2026-07-17 --- Code verification closed (T0/R8); cache model corrected for standard runs}
+
+Ninth iteration. All nine Code-verification TODO items resolved against
+\texttt{Self-Forcing\_StreamEdit}; answers recorded inline in the TODO list.
+Method unchanged; four consequences for the spec:
+
+\textbf{(1) The eighth-iteration cache model only describes the rollout path.}
+Default \texttt{local\_attn\_size} $= -1$ maps to a 21-latent-frame
+\emph{global} attention budget with no eviction and no per-window reset.
+For standard-length runs (FiVE-Bench), one \texttt{inference()} call covers the
+whole clip: reach ramps $3 \to 21$ frames monotonically and \textbf{the first
+cache-saturated block is the last block of the clip}. Risk~7's ``small
+\texttt{local\_attn\_size} weakens the taxonomy'' is moot for standard runs and
+relevant only to long-video rollout. E1's across-window axis applies to rollout
+only.
+
+\textbf{(2) Classification sequencing gap made explicit, and its resolution.}
+Routing is needed from block~0 of the target branch, but the classification
+signal is fully expressed only at the last block, final step --- after the edit
+would already have run. Resolution: the source branch is target-independent
+(vanilla \texttt{attention(src\_q, src\_k, src\_v)},
+\texttt{causal\_model.py:332}), so a \textbf{source-only pre-pass} over the clip
+can classify before the dual-branch edit ($\approx$ half of one extra pass, once
+per edit). The cheaper alternative --- per-model offline classification frozen
+across inputs --- is admissible iff E1 shows cross-input stability; keep the
+pre-pass as fallback.
+
+\textbf{(3) Baseline exonerated on the $\odot$ question.} Masking is
+gather$+$concat and in-place blends; no zeroed keys, no attention-sink bug to
+report. Note~(a) remains binding for our bias-based reimplementation only.
+
+\textbf{(4) Risk 5 is worse than stated, and the ref bank is its fix.} In
+current code the reference frame conditions \emph{only window 1}; from window 2
+onward \texttt{initial\_latent} is overwritten by the rollout overlap, so
+long-video appearance persistence rides entirely on 3 overlap frames. The
+dedicated persistent ref bank (Step~4) is therefore not just a routing
+convenience but the structural fix for long-video edit fading --- worth stating
+as a contribution-adjacent property.
+
+Also recorded: cache keys are stored unroped and re-roped per call (so the
+replication RoPE scheme is rope-time bookkeeping); ref/context KV is cached once
+at \texttt{context\_noise} $= 0$ (cache the ref bank at $t = 0$, not
+$t^{*}$ --- corrects Step~4's fallback suggestion); $H{\times}L = 12 \times 30 =
+360$ heads, small enough for a greedy per-head oracle-routing search as an
+analysis experiment (upper-bounds any classifier).
+
+\subsection*{2026-07-17 --- Literature refresh: HALO forces repositioning; goal restated; body consistency pass}
+
+Tenth iteration. A litsearch pass (run under a novelty check) found three works
+the 2026-07-10 scan missed:
+
+\textbf{HALO} (2607.11081, ECCV'26, posted 2026-07-13 --- four days before
+this entry): training-free head-typed motion/structure control in video DiTs
+--- motion heads via flow-aligned displacement, structure heads via attention
+entropy, reference-$V$ injection through structure heads, latent optimization
+on motion-head cues; CogVideoX $+$ Wan, bidirectional, 50 steps; editing shown
+as a demo. \textbf{LiveEdit} (ECCV'26): \emph{trained} streaming editing on
+Self-Forcing (three-stage distillation) --- the streaming-editing niche now
+has a tuned occupant. \textbf{MotionAdapter} (2601.01955):
+DINO-correspondence motion-field rearrangement --- candidate risk-3
+mitigation. GenHOI verified and displaced as closest prior art.
+
+\textbf{Repositioning.} ``Head type separates motion from structure,
+training-free, in a video DiT'' is no longer claimable --- HALO holds it.
+Claim~1 reworded to the surviving cell: the separation \emph{survives
+block-causal few-step distillation} and is exploitable by \emph{routing alone}
+(no optimization, zero extra NFE) in an \emph{editing} pipeline under
+preservation constraints. ``Optimization-free / few-step-compatible'' promoted
+from implementation detail to headline; title extended to name the streaming
+regime; an explicit measurable Goal added to \S1. Risk~8 rewritten as the
+concrete HALO-recombination steelman (answer: capability $+$ L* control $+$
+cost table; no framing fallback remains). Upside recorded: HALO confirms head
+specialization on Wan, de-risking E0. Claim~1's evidence plan gains a cost
+table vs.\ optimization-based head control and trained streaming editing.
+
+\textbf{Body consistency pass} (declared restructuring, no method change):
+T0-resolved answers folded inline --- cache mechanics rewritten for standard
+runs (global 21-frame reach; ramp-and-reset applies to rollout only);
+classification point $=$ last block of clip; the block-0 sequencing gap and its
+source-only pre-pass resolution added to Step~1; mask-sign, step-count,
+ref-KV-once, and no-text-tokens corrections applied; risk~7 scoped to rollout.
+Prior-work section reordered to lead with HALO.
+
+\subsection*{2026-07-18 --- R9/E0 executed: taxonomy survives distillation; GO at screening level}
+
+Eleventh iteration. E0 (workboard R9) ran on 5 FiVE clips, all blocks $\times$
+steps $\{0,7,12,13,14\}$, SVG output-reconstruction criterion, source branch of
+a degenerate edit. \textbf{Verdict: GO.}
+
+\textbf{Results.} Margins bimodal: 281/360 heads strongly spatial
+($m < -0.2$), 26 temporal-side, thin middle ($\sim$53). Temporal heads
+concentrate at layers 0--9 and 28--29; layers 10--27 essentially empty.
+Mechanistic probe confirms semantics: L29H09 is a near-pure
+\emph{copy-previous-frame} head (100\% mass on same position, one frame back,
+one-hot); L01H04 a soft temporal kernel ($\sim$0.9 stripe mass over recent
+frames); the ambiguous band is genuinely spatiotemporal-local. Stability
+decomposes by margin strength: $m > 0.4$ core (10 heads) has step-flip 0 and
+video-flip $4/100$ pairs; instability is confined to the weak tail
+($m \in [0.15, 0.3]$) and the ambiguous band. Block ramp shows margin
+compression, not sign flips.
+
+\textbf{Adopted for Step 2/3 (routing spec).} Three-way routing: temporal
+recipe only for the $m > 0.4$ core; spatial recipe for $m < -0.2$ (281 heads);
+middle $\sim$69 heads stay on the L0 recipe. \textbf{Frozen per-model
+\texttt{tau}}, no noise gating, no per-block tables; the source-only
+classification pre-pass (Step~1 sequencing) is demoted from v1 default to
+fallback. Risk~2 (taxonomy survival) is closed; claim~5 moves to
+screening-validated with the CI caveat recorded in the claim itself.
+
+\textbf{Measurement caveats carried forward.} (i) The 47 sampled query rows
+are a \emph{fixed panel} (same seeded positions across all captures) ---
+positional bias would not average out; extremes are immune, boundary margins
+soft. Rows-robustness arm (10\% rows, alternate seeds, one clip) scheduled with
+R10. (ii) $n = 5$ videos quantizes per-head flip rates to tenths; the
+$< 5\%$ criterion is met at point estimate only. Mitigation: ride-along
+profiling in all subsequent runs. (iii) The $m > 0.4$ threshold was chosen on
+the data that validates it --- treat as hyperparameter downstream.
+
+Full report with figures: R9 artifact page (margin histogram, 30$\times$12
+census grid, stability tables, mechanism probes); raw outputs under
+\texttt{five\_bench/r9\_head\_profile/}, \texttt{tau} tensors in
+\texttt{evaluation/}.
+
+\end{document}

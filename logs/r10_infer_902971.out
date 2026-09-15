@@ -1,0 +1,138 @@
+[r10_infer] job=902971 cases=8 -> /projects/dataggen/outputs/five_bench/r10_vp_arms
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[r10] cases=8 arms=['none', 'all', 'spatial', 'temporal'] blend_off=True seed=0 out=/projects/dataggen/outputs/five_bench/r10_vp_arms
+[r10] anchors from /projects/dataggen/outputs/five_bench/anchors/edit{T}/ (shared with the SS4.5/R7 arm)
+[r10]   gate all: 360/360 heads
+[r10]   gate spatial: 281/360 heads
+[r10]   gate temporal: 10/360 heads
+[r10] 0001_bus: 69 frames -> latents (1, 18, 16, 60, 104), vp (1, 1, 16, 60, 104)
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.38994359970093 GB
+[[0, 1, 2]] [[0, 1, 2]]
+[ok] 0001_bus / none: 69 frames in 85.7s
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.07262992858887 GB
+[[0, 1, 2]] [[0, 1, 2]]
+[r10] vp_bank built: 30 layers x 1560 tokens (1 latent frame(s))
+[ok] 0001_bus / all: 69 frames in 88.2s
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.07067680358887 GB
+[[0, 1, 2]] [[0, 1, 2]]
+[r10] vp_bank built: 30 layers x 1560 tokens (1 latent frame(s))
+[ok] 0001_bus / spatial: 69 frames in 95.6s
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.07067680358887 GB
+[[0, 1, 2]] [[0, 1, 2]]
+[r10] vp_bank built: 30 layers x 1560 tokens (1 latent frame(s))
+[ok] 0001_bus / temporal: 69 frames in 87.6s
+[r10] 0028_kite-walk: 69 frames -> latents (1, 18, 16, 60, 104), vp (1, 1, 16, 60, 104)
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.070677280426025 GB
+[[0, 1]] [[1, 2]]
+[ok] 0028_kite-walk / none: 69 frames in 81.2s
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.07067680358887 GB
+[[0, 1]] [[1, 2]]
+[r10] vp_bank built: 30 layers x 1560 tokens (1 latent frame(s))
+[ok] 0028_kite-walk / all: 69 frames in 83.8s
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.07067680358887 GB
+[[0, 1]] [[1, 2]]
+[r10] vp_bank built: 30 layers x 1560 tokens (1 latent frame(s))
+[ok] 0028_kite-walk / spatial: 69 frames in 90.5s
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.07067680358887 GB
+[[0, 1]] [[1, 2]]
+[r10] vp_bank built: 30 layers x 1560 tokens (1 latent frame(s))
+[ok] 0028_kite-walk / temporal: 69 frames in 84.1s
+[r10] 0040_tennis: 69 frames -> latents (1, 18, 16, 60, 104), vp (1, 1, 16, 60, 104)
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.070677280426025 GB
+[[0, 1, 2]] [[0, 1]]
+[ok] 0040_tennis / none: 69 frames in 63.3s
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.07067680358887 GB
+[[0, 1, 2]] [[0, 1]]
+[r10] vp_bank built: 30 layers x 1560 tokens (1 latent frame(s))
+[ok] 0040_tennis / all: 69 frames in 65.8s
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.07067680358887 GB
+[[0, 1, 2]] [[0, 1]]
+[r10] vp_bank built: 30 layers x 1560 tokens (1 latent frame(s))
+[ok] 0040_tennis / spatial: 69 frames in 72.1s
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.07067680358887 GB
+[[0, 1, 2]] [[0, 1]]
+[r10] vp_bank built: 30 layers x 1560 tokens (1 latent frame(s))
+[ok] 0040_tennis / temporal: 69 frames in 65.5s
+[r10] 0046_blackswan: 45 frames -> latents (1, 12, 16, 60, 104), vp (1, 1, 16, 60, 104)
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.07179307937622 GB
+[[0, 1, 2, 3]] [[0, 1]]
+[ok] 0046_blackswan / none: 45 frames in 47.7s
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.17890930175781 GB
+[[0, 1, 2, 3]] [[0, 1]]
+[r10] vp_bank built: 30 layers x 1560 tokens (1 latent frame(s))
+[ok] 0046_blackswan / all: 45 frames in 49.4s
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.17890930175781 GB
+[[0, 1, 2, 3]] [[0, 1]]
+[r10] vp_bank built: 30 layers x 1560 tokens (1 latent frame(s))
+[ok] 0046_blackswan / spatial: 45 frames in 52.1s
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.17890930175781 GB
+[[0, 1, 2, 3]] [[0, 1]]
+[r10] vp_bank built: 30 layers x 1560 tokens (1 latent frame(s))
+[ok] 0046_blackswan / temporal: 45 frames in 49.4s
+[r10] 0086_A_red_sports_car: 81 frames -> latents (1, 21, 16, 60, 104), vp (1, 1, 16, 60, 104)
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.1768364906311 GB
+[[0, 1, 2, 3]] [[0, 1, 2]]
+[ok] 0086_A_red_sports_car / none: 81 frames in 99.3s
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.01616096496582 GB
+[[0, 1, 2, 3]] [[0, 1, 2]]
+[r10] vp_bank built: 30 layers x 1560 tokens (1 latent frame(s))
+[ok] 0086_A_red_sports_car / all: 81 frames in 101.8s
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.01616096496582 GB
+[[0, 1, 2, 3]] [[0, 1, 2]]
+[r10] vp_bank built: 30 layers x 1560 tokens (1 latent frame(s))
+[ok] 0086_A_red_sports_car / spatial: 81 frames in 110.5s
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.01616096496582 GB
+[[0, 1, 2, 3]] [[0, 1, 2]]
+[r10] vp_bank built: 30 layers x 1560 tokens (1 latent frame(s))
+[ok] 0086_A_red_sports_car / temporal: 81 frames in 103.4s
+[r10] 0007_guitar-violin: 45 frames -> latents (1, 12, 16, 60, 104), vp (1, 1, 16, 60, 104)
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.017773151397705 GB
+[[0, 1]] [[0, 1, 2, 3, 4]]
+[ok] 0007_guitar-violin / none: 45 frames in 48.0s
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.17844772338867 GB
+[[0, 1]] [[0, 1, 2, 3, 4]]
+[r10] vp_bank built: 30 layers x 1560 tokens (1 latent frame(s))
+[ok] 0007_guitar-violin / all: 45 frames in 49.2s
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.17844772338867 GB
+[[0, 1]] [[0, 1, 2, 3, 4]]
+[r10] vp_bank built: 30 layers x 1560 tokens (1 latent frame(s))
+[ok] 0007_guitar-violin / spatial: 45 frames in 53.0s
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.17844772338867 GB
+[[0, 1]] [[0, 1, 2, 3, 4]]
+[r10] vp_bank built: 30 layers x 1560 tokens (1 latent frame(s))
+[ok] 0007_guitar-violin / temporal: 45 frames in 49.5s
+[r10] 0069_car-turn: 69 frames -> latents (1, 18, 16, 60, 104), vp (1, 1, 16, 60, 104)
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.17779207229614 GB
+[[0, 1, 2]] [[4, 5, 6, 7, 8, 9, 10]]
+[ok] 0069_car-turn / none: 69 frames in 80.9s
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.070674896240234 GB
+[[0, 1, 2]] [[4, 5, 6, 7, 8, 9, 10]]
+[r10] vp_bank built: 30 layers x 1560 tokens (1 latent frame(s))
+[ok] 0069_car-turn / all: 69 frames in 83.5s
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.070674896240234 GB
+[[0, 1, 2]] [[4, 5, 6, 7, 8, 9, 10]]
+[r10] vp_bank built: 30 layers x 1560 tokens (1 latent frame(s))
+[ok] 0069_car-turn / spatial: 69 frames in 90.3s
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.070674896240234 GB
+[[0, 1, 2]] [[4, 5, 6, 7, 8, 9, 10]]
+[r10] vp_bank built: 30 layers x 1560 tokens (1 latent frame(s))
+[ok] 0069_car-turn / temporal: 69 frames in 83.6s
+[r10] 0042_gym-ball: 69 frames -> latents (1, 18, 16, 60, 104), vp (1, 1, 16, 60, 104)
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.07067537307739 GB
+[[0, 1]] [[6, 7, 8, 9, 10]]
+[ok] 0042_gym-ball / none: 69 frames in 80.1s
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.070674896240234 GB
+[[0, 1]] [[6, 7, 8, 9, 10]]
+[r10] vp_bank built: 30 layers x 1560 tokens (1 latent frame(s))
+[ok] 0042_gym-ball / all: 69 frames in 82.8s
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.070674896240234 GB
+[[0, 1]] [[6, 7, 8, 9, 10]]
+[r10] vp_bank built: 30 layers x 1560 tokens (1 latent frame(s))
+[ok] 0042_gym-ball / spatial: 69 frames in 88.5s
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.070674896240234 GB
+[[0, 1]] [[6, 7, 8, 9, 10]]
+[r10] vp_bank built: 30 layers x 1560 tokens (1 latent frame(s))
+[ok] 0042_gym-ball / temporal: 69 frames in 82.7s
+[r10] done: 32/32 ok -> /projects/dataggen/outputs/five_bench/r10_vp_arms/_manifest.csv
+[r10_infer] frame dirs present: 32 (expect 4 arms x 8 cases)

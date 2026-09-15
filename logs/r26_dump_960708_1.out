@@ -1,0 +1,11 @@
+[r26_dump] node=node52 CUDA_VISIBLE_DEVICES=0
+[r26_dump] SLURM_JOB_GPUS=5 LD_LIBRARY_PATH=/home/ids/skhairi/anaconda3/envs/loraedit/lib:/home/ids/skhairi/anaconda3/envs/loraedit/lib64:/home/ids/skhairi/anaconda3/envs/loraedit/lib:/home/ids/skhairi/anaconda3/envs/loraedit/lib64:
+GPU 0: NVIDIA L40S (UUID: GPU-b9d75409-0b39-adee-ee0b-2cc664762f40)
+  return torch._C._cuda_getDeviceCount() > 0
+[r26_dump] torch 2.8.0+cu128 cuda_ok False n 1
+[r26_dump] job=960708_1 edit_type=2 method=r26_dump
+[r26_dump] cases=/home/ids/skhairi/Code/StreamEdit_bigchantier/evaluation/cases.json masks->/projects/dataggen/outputs/five_bench/r26_masks/edit2/ expect 13 clip(s)
+[r26_dump] FAILED edit2
+[r26_dump] edit2 frame dirs: 0 (expected 13)
+[r26_dump] edit2 mask npz: 0 (expected 13)
+[r26_dump] failures: 1

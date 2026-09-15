@@ -1,0 +1,13 @@
+[r25_reeval] START arm=adaptive dir=/projects/dataggen/outputs/five_bench/r25_adaptive_tau/r25_adaptive_vp 2026-09-01T14:07:46+02:00
+[r25_reeval] arm=adaptive real frame dirs: 22 (expect 22)
+[r25_reeval] arm=adaptive exit=0 error_lines=0 oom_lines=0 avg_csv=6 elapsed=855s
+[r25_reeval] OK   arm=adaptive
+[r25_reeval] START arm=reversed dir=/projects/dataggen/outputs/five_bench/r25_adaptive_tau/r25_reversed_vp 2026-09-01T14:22:01+02:00
+[r25_reeval] arm=reversed real frame dirs: 22 (expect 22)
+[r25_reeval] arm=reversed exit=0 error_lines=0 oom_lines=0 avg_csv=6 elapsed=843s
+[r25_reeval] OK   arm=reversed
+[r25_reeval] START arm=constant dir=/projects/dataggen/outputs/five_bench/r25_adaptive_tau/r25_constant_vp 2026-09-01T14:36:04+02:00
+[r25_reeval] arm=constant real frame dirs: 22 (expect 22)
+[r25_reeval] arm=constant exit=0 error_lines=0 oom_lines=0 avg_csv=6 elapsed=853s
+[r25_reeval] OK   arm=constant
+[r25_reeval] DONE total_failures=0 2026-09-01T14:50:17+02:00

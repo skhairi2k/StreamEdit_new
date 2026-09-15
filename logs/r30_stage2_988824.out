@@ -1,0 +1,128 @@
+[r30_stage2] === render task 3: arm=clip_image ===
+[r30_stage2] node=node55 CUDA_VISIBLE_DEVICES=0
+GPU 0: NVIDIA A100-PCIE-40GB (UUID: GPU-4c59e47c-26e2-76cf-abaa-86c66bdcea13)
+--- [r30_stage2] clip_image edit1 (expect 1 clip(s)) ---
+Free VRAM 39.07861328125 GB
+KV inference with 3 frames per block
+[run_fivebench] tau_map: 22 pairs loaded, 1 needed for edit1
+[run_fivebench] edit_type=1 method=clip_image pairs=1 vp_mode=vp blend_sched=paper(eq4) out=/projects/dataggen/outputs/five_bench/r30_arms/clip_image/edit1
+[run_fivebench] R26/R30 pass 2: spatial tau from /projects/dataggen/outputs/five_bench/r26_masks/edit1/ tau_bg=0.0 per-pair from /home/ids/skhairi/Code/StreamEdit_bigchantier/evaluation/csv/r30_b_map_clip_image.csv
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.49851894378662 GB
+[[0, 1, 2]] [[0, 1, 2]]
+[ok] 0001_bus: 69 frames  tau=6.3663
+[run_fivebench] done edit1: 1/1 ok -> /projects/dataggen/outputs/five_bench/r30_arms/clip_image/edit1/_manifest.csv
+--- [r30_stage2] clip_image edit2 (expect 13 clip(s)) ---
+Free VRAM 39.07861328125 GB
+KV inference with 3 frames per block
+[run_fivebench] tau_map: 22 pairs loaded, 13 needed for edit2
+[run_fivebench] edit_type=2 method=clip_image pairs=13 vp_mode=vp blend_sched=paper(eq4) out=/projects/dataggen/outputs/five_bench/r30_arms/clip_image/edit2
+[run_fivebench] R26/R30 pass 2: spatial tau from /projects/dataggen/outputs/five_bench/r26_masks/edit2/ tau_bg=0.0 per-pair from /home/ids/skhairi/Code/StreamEdit_bigchantier/evaluation/csv/r30_b_map_clip_image.csv
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.49851894378662 GB
+[[0, 1, 2, 3, 4, 5]] [[0, 1, 2]]
+[ok] 0011_lucia: 69 frames  tau=5.9653
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.17925262451172 GB
+[[0, 1, 2]] [[0, 1, 2]]
+[ok] 0014_burnout: 69 frames  tau=11.2572
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.18037700653076 GB
+[[0, 1, 2, 3, 4]] [[0, 1, 2, 3]]
+[ok] 0016_horsejump-high: 45 frames  tau=3.7001
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.28636932373047 GB
+[[0, 1]] [[1, 2]]
+[ok] 0028_kite-walk: 69 frames  tau=6.7824
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.178127765655518 GB
+[[0, 1, 2, 3, 4]] [[0, 1]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.174594402313232 GB
+[[0, 1, 2, 3, 4]] [[0, 1]]
+[ok] 0034_cows: 93 frames  tau=9.8811
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.07213592529297 GB
+[[0, 1, 2]] [[0, 1]]
+[ok] 0040_tennis: 69 frames  tau=6.2587
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.17981481552124 GB
+[[0, 1, 2, 3]] [[0, 1, 2]]
+[ok] 0057_dog: 57 frames  tau=50.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.234497547149658 GB
+[[0, 1, 2, 3, 4]] [[0, 1, 2, 3]]
+[ok] 0068_planes-water: 33 frames  tau=16.5521
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.339365482330322 GB
+[[0, 1, 2, 3, 4]] [[0, 1, 2, 3]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.335832118988037 GB
+[[0, 1, 2, 3, 4]] [[0, 1, 2, 3]]
+[ok] 0074_rhino: 81 frames  tau=18.8616
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.125132083892822 GB
+[[0, 1]] [[0, 1]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.121598720550537 GB
+[[0, 1]] [[0, 1]]
+[ok] 0075_A_bicycle: 81 frames  tau=6.7484
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.125132083892822 GB
+[[0, 1, 2]] [[0, 1]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.121598720550537 GB
+[[0, 1, 2]] [[0, 1]]
+[ok] 0076_A_rabbit: 81 frames  tau=25.4599
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.125132083892822 GB
+[[0, 1, 2]] [[0, 1, 2]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.121598720550537 GB
+[[0, 1, 2]] [[0, 1, 2]]
+[ok] 0090_A_deer: 81 frames  tau=8.036
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.125132083892822 GB
+[[0, 1, 2]] [[0, 1, 2, 3, 4]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.121598720550537 GB
+[[0, 1, 2]] [[0, 1, 2, 3, 4]]
+[ok] 0091_A_hawk: 81 frames  tau=5.844
+[run_fivebench] done edit2: 13/13 ok -> /projects/dataggen/outputs/five_bench/r30_arms/clip_image/edit2/_manifest.csv
+--- [r30_stage2] clip_image edit3 (expect 2 clip(s)) ---
+Free VRAM 39.07861328125 GB
+KV inference with 3 frames per block
+[run_fivebench] tau_map: 22 pairs loaded, 2 needed for edit3
+[run_fivebench] edit_type=3 method=clip_image pairs=2 vp_mode=vp blend_sched=paper(eq4) out=/projects/dataggen/outputs/five_bench/r30_arms/clip_image/edit3
+[run_fivebench] R26/R30 pass 2: spatial tau from /projects/dataggen/outputs/five_bench/r26_masks/edit3/ tau_bg=0.0 per-pair from /home/ids/skhairi/Code/StreamEdit_bigchantier/evaluation/csv/r30_b_map_clip_image.csv
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.499081134796143 GB
+[[0, 1, 2]] [[4, 5, 6]]
+[ok] 0017_kid-football: 57 frames  tau=2.1648
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.232810974121094 GB
+[[0, 1, 2, 3]] [[0, 1, 2, 3]]
+[ok] 0058_boat: 69 frames  tau=2.8303
+[run_fivebench] done edit3: 2/2 ok -> /projects/dataggen/outputs/five_bench/r30_arms/clip_image/edit3/_manifest.csv
+--- [r30_stage2] clip_image edit4 (expect 2 clip(s)) ---
+Free VRAM 39.07861328125 GB
+KV inference with 3 frames per block
+[run_fivebench] tau_map: 22 pairs loaded, 2 needed for edit4
+[run_fivebench] edit_type=4 method=clip_image pairs=2 vp_mode=vp blend_sched=paper(eq4) out=/projects/dataggen/outputs/five_bench/r30_arms/clip_image/edit4
+[run_fivebench] R26/R30 pass 2: spatial tau from /projects/dataggen/outputs/five_bench/r26_masks/edit4/ tau_bg=0.0 per-pair from /home/ids/skhairi/Code/StreamEdit_bigchantier/evaluation/csv/r30_b_map_clip_image.csv
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.49851894378662 GB
+[[0, 1]] [[0, 1, 2]]
+[ok] 0028_kite-walk: 69 frames  tau=3.6373
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.178690433502197 GB
+[[0, 1]] [[1, 2]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.175157070159912 GB
+[[0, 1]] [[1, 2]]
+[ok] 0089_A_dog: 81 frames  tau=4.5006
+[run_fivebench] done edit4: 2/2 ok -> /projects/dataggen/outputs/five_bench/r30_arms/clip_image/edit4/_manifest.csv
+--- [r30_stage2] clip_image edit5 (expect 3 clip(s)) ---
+Free VRAM 39.07861328125 GB
+KV inference with 3 frames per block
+[run_fivebench] tau_map: 22 pairs loaded, 3 needed for edit5
+[run_fivebench] edit_type=5 method=clip_image pairs=3 vp_mode=vp blend_sched=paper(eq4) out=/projects/dataggen/outputs/five_bench/r30_arms/clip_image/edit5
+[run_fivebench] R26/R30 pass 2: spatial tau from /projects/dataggen/outputs/five_bench/r26_masks/edit5/ tau_bg=0.0 per-pair from /home/ids/skhairi/Code/StreamEdit_bigchantier/evaluation/csv/r30_b_map_clip_image.csv
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.499643325805664 GB
+[[0, 1]] [[0, 1, 2, 3, 4]]
+[ok] 0007_guitar-violin: 45 frames  tau=2.0828
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.28636932373047 GB
+[[0, 1, 2, 3, 4, 5]] [[7, 8, 9, 10, 11]]
+[ok] 0011_lucia: 69 frames  tau=3.0628
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.17925262451172 GB
+[[0, 1, 2]] [[4, 5, 6, 7, 8, 9, 10]]
+[ok] 0069_car-turn: 69 frames  tau=2.0
+[run_fivebench] done edit5: 3/3 ok -> /projects/dataggen/outputs/five_bench/r30_arms/clip_image/edit5/_manifest.csv
+--- [r30_stage2] clip_image edit6 (expect 1 clip(s)) ---
+Free VRAM 39.07861328125 GB
+KV inference with 3 frames per block
+[run_fivebench] tau_map: 22 pairs loaded, 1 needed for edit6
+[run_fivebench] edit_type=6 method=clip_image pairs=1 vp_mode=vp blend_sched=paper(eq4) out=/projects/dataggen/outputs/five_bench/r30_arms/clip_image/edit6
+[run_fivebench] R26/R30 pass 2: spatial tau from /projects/dataggen/outputs/five_bench/r26_masks/edit6/ tau_bg=0.0 per-pair from /home/ids/skhairi/Code/StreamEdit_bigchantier/evaluation/csv/r30_b_map_clip_image.csv
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.49851894378662 GB
+[[0, 1]] [[6, 7, 8, 9, 10]]
+[ok] 0042_gym-ball: 69 frames  tau=2.1139
+[run_fivebench] done edit6: 1/1 ok -> /projects/dataggen/outputs/five_bench/r30_arms/clip_image/edit6/_manifest.csv
+[r30_stage2] clip_image total frame dirs: 22 (expected 22)
+[r30_stage2] clip_image non-ok manifest rows: 0
+[r30_stage2] clip_image failures: 0

@@ -1,0 +1,30 @@
+[r28_dump] node=nodeaudible01 task=50 arm=taubg20_taufg50_vp
+GPU 0: NVIDIA A100-SXM4-40GB (UUID: GPU-a5154c34-486c-8788-7885-d7534f9d0e28)
+[r28_dump] torch 2.8.0+cu128 cuda_ok True
+[r28_masks] 22 case(s), stride 8, arm root /projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg20_taufg50_vp
+[r28_masks] GroundingDINO + SAM2 loaded on cuda
+[r28_masks] edit1/0001_bus               n=  9 fired=  9/9 tgt_fg=0.088 union_fg=0.187
+[r28_masks] edit2/0028_kite-walk         n=  9 fired=  8/9 tgt_fg=0.064 union_fg=0.075
+[r28_masks] edit2/0040_tennis            n=  9 fired=  9/9 tgt_fg=0.199 union_fg=0.213
+[r28_masks] edit2/0057_dog               n=  8 fired=  8/8 tgt_fg=0.142 union_fg=0.194
+[r28_masks] edit2/0011_lucia             n=  9 fired=  9/9 tgt_fg=0.201 union_fg=0.216
+[r28_masks] edit2/0014_burnout           n=  9 fired=  9/9 tgt_fg=0.121 union_fg=0.160
+[r28_masks] edit2/0016_horsejump-high    n=  6 fired=  6/6 tgt_fg=0.062 union_fg=0.089
+[r28_masks] edit2/0068_planes-water      n=  5 fired=  5/5 tgt_fg=0.188 union_fg=0.233
+[r28_masks] edit2/0074_rhino             n= 11 fired= 11/11 tgt_fg=0.191 union_fg=0.235
+[r28_masks] edit2/0075_A_bicycle         n= 11 fired= 11/11 tgt_fg=0.040 union_fg=0.092
+[r28_masks] edit2/0076_A_rabbit          n= 11 fired= 11/11 tgt_fg=0.111 union_fg=0.172
+[r28_masks] edit2/0090_A_deer            n= 11 fired= 11/11 tgt_fg=0.119 union_fg=0.154
+[r28_masks] edit2/0091_A_hawk            n= 11 fired= 11/11 tgt_fg=0.071 union_fg=0.077
+[r28_masks] edit5/0007_guitar-violin     n=  6 fired=  6/6 tgt_fg=0.282 union_fg=0.282
+[r28_masks] edit5/0069_car-turn          n=  9 fired=  9/9 tgt_fg=0.141 union_fg=0.141
+[r28_masks] edit5/0011_lucia             n=  9 fired=  9/9 tgt_fg=0.092 union_fg=0.092
+[r28_masks] edit6/0042_gym-ball          n=  9 fired=  0/9 tgt_fg=0.000 union_fg=0.114
+[r28_masks] edit2/0034_cows              n= 12 fired= 12/12 tgt_fg=0.295 union_fg=0.318
+[r28_masks] edit3/0017_kid-football      n=  8 fired=  8/8 tgt_fg=0.022 union_fg=0.194
+[r28_masks] edit3/0058_boat              n=  9 fired=  9/9 tgt_fg=0.068 union_fg=0.091
+[r28_masks] edit4/0089_A_dog             n= 11 fired= 11/11 tgt_fg=0.314 union_fg=0.325
+[r28_masks] edit4/0028_kite-walk         n=  9 fired=  9/9 tgt_fg=0.038 union_fg=0.060
+[r28_masks] failures: 0
+[r28_dump] taubg20_taufg50_vp: 22 npz written (expected 22)
+[r28_dump] failures: 0

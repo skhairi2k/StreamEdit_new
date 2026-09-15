@@ -1,0 +1,937 @@
+/bin/bash: /home/ids/skhairi/anaconda3/envs/streamgve/lib/libtinfo.so.6: no version information available (required by /bin/bash)
+Loading weights:   0%|          | 0/590 [00:00<?, ?it/s]Loading weights: 100%|██████████| 590/590 [00:00<00:00, 61183.78it/s]
+[1mCLIPModel LOAD REPORT[0m from: openai/clip-vit-large-patch14
+Key                                  | Status     |  | 
+-------------------------------------+------------+--+-
+vision_model.embeddings.position_ids | UNEXPECTED |  | 
+text_model.embeddings.position_ids   | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+The image processor of type `CLIPImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/functional/image/lpips.py:332: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.load_state_dict(torch.load(model_path, map_location="cpu"), strict=False)
+Using cache found in /home/ids/skhairi/.cache/torch/hub/facebookresearch_dino_main
+/home/ids/skhairi/Code/co-tracker/cotracker/models/build_cotracker.py:41: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state_dict = torch.load(f, map_location="cpu")
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 10449.19it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights:   0%|          | 1/729 [00:00<01:34,  7.69it/s]Loading weights:   4%|▍         | 30/729 [00:00<00:04, 152.07it/s]Loading weights:   9%|▉         | 65/729 [00:00<00:02, 231.30it/s]Loading weights:  14%|█▍        | 102/729 [00:00<00:02, 279.62it/s]Loading weights:  19%|█▉        | 138/729 [00:00<00:01, 300.89it/s]Loading weights:  24%|██▍       | 174/729 [00:00<00:01, 315.40it/s]Loading weights:  29%|██▊       | 208/729 [00:00<00:02, 248.80it/s]Loading weights:  32%|███▏      | 236/729 [00:01<00:02, 198.98it/s]Loading weights:  36%|███▌      | 259/729 [00:01<00:03, 147.81it/s]Loading weights:  38%|███▊      | 278/729 [00:01<00:03, 135.31it/s]Loading weights:  40%|████      | 294/729 [00:01<00:03, 109.57it/s]Loading weights:  42%|████▏     | 307/729 [00:01<00:04, 97.16it/s] Loading weights:  45%|████▌     | 329/729 [00:02<00:03, 116.92it/s]Loading weights:  78%|███████▊  | 571/729 [00:02<00:00, 572.08it/s]Loading weights: 100%|██████████| 729/729 [00:02<00:00, 326.08it/s]
+The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+Evaluating annotation mapping files:   0%|          | 0/4 [00:00<?, ?it/s]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:   1%|          | 1/100 [00:51<1:25:37, 51.89s/it][AEvaluating videos: 100%|██████████| 100/100 [00:51<00:00,  1.93it/s]
+Evaluating annotation mapping files:  25%|██▌       | 1/4 [00:51<02:35, 51.90s/it]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 11/100 [00:48<06:28,  4.37s/it][A
+Evaluating videos:  14%|█▍        | 14/100 [01:36<11:02,  7.70s/it][A
+Evaluating videos:  16%|█▌        | 16/100 [02:09<13:21,  9.54s/it][A
+Evaluating videos:  28%|██▊       | 28/100 [02:58<07:11,  5.99s/it][A
+Evaluating videos:  34%|███▍      | 34/100 [03:54<07:47,  7.08s/it][AToken indices sequence length is longer than the specified maximum sequence length for this model (85 > 77). Running this sequence through the model will result in indexing errors
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Encountered caption longer than max_position_embeddings=77. Will truncate captions to thislength. If longer captions are needed, initialize argument `model_name_or_path` with a model thatsupports longer sequences.
+  warnings.warn(*args, **kwargs)
+
+Evaluating videos:  40%|████      | 40/100 [04:44<07:26,  7.45s/it][A
+Evaluating videos:  45%|████▌     | 45/100 [05:35<07:31,  8.20s/it][A
+Evaluating videos:  57%|█████▋    | 57/100 [06:20<04:19,  6.04s/it][A
+Evaluating videos:  68%|██████▊   | 68/100 [06:47<02:29,  4.66s/it][A
+Evaluating videos:  72%|███████▏  | 72/100 [07:04<02:08,  4.59s/it][A
+Evaluating videos:  74%|███████▍  | 74/100 [07:55<02:57,  6.84s/it][A
+Evaluating videos:  75%|███████▌  | 75/100 [08:45<04:07,  9.89s/it][A
+Evaluating videos:  76%|███████▌  | 76/100 [09:40<05:37, 14.07s/it][A
+Evaluating videos:  79%|███████▉  | 79/100 [10:30<05:10, 14.78s/it][A
+Evaluating videos:  90%|█████████ | 90/100 [11:21<01:27,  8.71s/it][A
+Evaluating videos:  91%|█████████ | 91/100 [12:10<01:44, 11.64s/it][AEvaluating videos: 100%|██████████| 100/100 [12:10<00:00,  7.31s/it]
+Evaluating annotation mapping files:  50%|█████     | 2/4 [13:02<15:02, 451.19s/it]
+Evaluating videos:   0%|          | 0/9 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 1/9 [00:34<04:33, 34.23s/it][A
+Evaluating videos:  33%|███▎      | 3/9 [01:21<02:38, 26.38s/it][A
+Evaluating videos:  89%|████████▉ | 8/9 [02:09<00:14, 14.17s/it][AEvaluating videos: 100%|██████████| 9/9 [02:09<00:00, 14.36s/it]
+Evaluating annotation mapping files:  75%|███████▌  | 3/4 [15:11<05:04, 304.18s/it]
+Evaluating videos:   0%|          | 0/10 [00:00<?, ?it/s][A
+Evaluating videos:  10%|█         | 1/10 [00:52<07:56, 52.98s/it][A
+Evaluating videos:  50%|█████     | 5/10 [01:42<01:32, 18.47s/it][AEvaluating videos: 100%|██████████| 10/10 [01:42<00:00, 10.27s/it]
+Evaluating annotation mapping files: 100%|██████████| 4/4 [16:54<00:00, 224.65s/it]Evaluating annotation mapping files: 100%|██████████| 4/4 [16:54<00:00, 253.64s/it]
+Loading weights:   0%|          | 0/590 [00:00<?, ?it/s]Loading weights: 100%|██████████| 590/590 [00:00<00:00, 46976.71it/s]
+[1mCLIPModel LOAD REPORT[0m from: openai/clip-vit-large-patch14
+Key                                  | Status     |  | 
+-------------------------------------+------------+--+-
+vision_model.embeddings.position_ids | UNEXPECTED |  | 
+text_model.embeddings.position_ids   | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+The image processor of type `CLIPImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/functional/image/lpips.py:332: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.load_state_dict(torch.load(model_path, map_location="cpu"), strict=False)
+Using cache found in /home/ids/skhairi/.cache/torch/hub/facebookresearch_dino_main
+/home/ids/skhairi/Code/co-tracker/cotracker/models/build_cotracker.py:41: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state_dict = torch.load(f, map_location="cpu")
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 10939.76it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights:   0%|          | 1/729 [00:00<01:35,  7.62it/s]Loading weights:   4%|▍         | 30/729 [00:00<00:04, 152.16it/s]Loading weights:   9%|▉         | 66/729 [00:00<00:02, 236.12it/s]Loading weights:  14%|█▍        | 102/729 [00:00<00:02, 278.69it/s]Loading weights:  19%|█▉        | 138/729 [00:00<00:01, 299.97it/s]Loading weights:  24%|██▍       | 174/729 [00:00<00:01, 314.61it/s]Loading weights:  29%|██▊       | 209/729 [00:00<00:01, 324.27it/s]Loading weights:  33%|███▎      | 242/729 [00:00<00:01, 311.61it/s]Loading weights:  38%|███▊      | 274/729 [00:01<00:01, 284.17it/s]Loading weights:  42%|████▏     | 304/729 [00:01<00:01, 283.55it/s]Loading weights:  46%|████▌     | 333/729 [00:01<00:01, 269.93it/s]Loading weights:  84%|████████▎ | 609/729 [00:01<00:00, 953.04it/s]Loading weights: 100%|██████████| 729/729 [00:01<00:00, 527.15it/s]
+The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+Evaluating annotation mapping files:   0%|          | 0/4 [00:00<?, ?it/s]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:   1%|          | 1/100 [00:50<1:23:52, 50.84s/it][AEvaluating videos: 100%|██████████| 100/100 [00:50<00:00,  1.97it/s]
+Evaluating annotation mapping files:  25%|██▌       | 1/4 [00:50<02:32, 50.84s/it]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 11/100 [00:48<06:29,  4.38s/it][A
+Evaluating videos:  14%|█▍        | 14/100 [01:36<11:03,  7.71s/it][A
+Evaluating videos:  16%|█▌        | 16/100 [02:09<13:21,  9.54s/it][A
+Evaluating videos:  28%|██▊       | 28/100 [02:58<07:12,  6.01s/it][A
+Evaluating videos:  34%|███▍      | 34/100 [03:54<07:47,  7.08s/it][AToken indices sequence length is longer than the specified maximum sequence length for this model (85 > 77). Running this sequence through the model will result in indexing errors
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Encountered caption longer than max_position_embeddings=77. Will truncate captions to thislength. If longer captions are needed, initialize argument `model_name_or_path` with a model thatsupports longer sequences.
+  warnings.warn(*args, **kwargs)
+
+Evaluating videos:  40%|████      | 40/100 [04:44<07:27,  7.46s/it][A
+Evaluating videos:  45%|████▌     | 45/100 [05:35<07:29,  8.18s/it][A
+Evaluating videos:  57%|█████▋    | 57/100 [06:19<04:18,  6.01s/it][A
+Evaluating videos:  68%|██████▊   | 68/100 [06:46<02:28,  4.64s/it][A
+Evaluating videos:  72%|███████▏  | 72/100 [07:03<02:07,  4.57s/it][A
+Evaluating videos:  74%|███████▍  | 74/100 [07:54<02:56,  6.81s/it][A
+Evaluating videos:  75%|███████▌  | 75/100 [08:44<04:06,  9.84s/it][A
+Evaluating videos:  76%|███████▌  | 76/100 [09:39<05:36, 14.03s/it][A
+Evaluating videos:  79%|███████▉  | 79/100 [10:29<05:10, 14.79s/it][A
+Evaluating videos:  90%|█████████ | 90/100 [11:20<01:27,  8.73s/it][A
+Evaluating videos:  91%|█████████ | 91/100 [12:10<01:45, 11.69s/it][AEvaluating videos: 100%|██████████| 100/100 [12:10<00:00,  7.31s/it]
+Evaluating annotation mapping files:  50%|█████     | 2/4 [13:01<15:01, 450.69s/it]
+Evaluating videos:   0%|          | 0/9 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 1/9 [00:34<04:36, 34.51s/it][A
+Evaluating videos:  33%|███▎      | 3/9 [01:21<02:38, 26.44s/it][A
+Evaluating videos:  89%|████████▉ | 8/9 [02:09<00:14, 14.25s/it][AEvaluating videos: 100%|██████████| 9/9 [02:09<00:00, 14.44s/it]
+Evaluating annotation mapping files:  75%|███████▌  | 3/4 [15:11<05:04, 304.25s/it]
+Evaluating videos:   0%|          | 0/10 [00:00<?, ?it/s][A
+Evaluating videos:  10%|█         | 1/10 [00:53<07:58, 53.15s/it][A
+Evaluating videos:  50%|█████     | 5/10 [01:42<01:32, 18.50s/it][AEvaluating videos: 100%|██████████| 10/10 [01:42<00:00, 10.29s/it]
+Evaluating annotation mapping files: 100%|██████████| 4/4 [16:54<00:00, 224.76s/it]Evaluating annotation mapping files: 100%|██████████| 4/4 [16:54<00:00, 253.58s/it]
+Loading weights:   0%|          | 0/590 [00:00<?, ?it/s]Loading weights: 100%|██████████| 590/590 [00:00<00:00, 61855.16it/s]
+[1mCLIPModel LOAD REPORT[0m from: openai/clip-vit-large-patch14
+Key                                  | Status     |  | 
+-------------------------------------+------------+--+-
+vision_model.embeddings.position_ids | UNEXPECTED |  | 
+text_model.embeddings.position_ids   | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+The image processor of type `CLIPImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/functional/image/lpips.py:332: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.load_state_dict(torch.load(model_path, map_location="cpu"), strict=False)
+Using cache found in /home/ids/skhairi/.cache/torch/hub/facebookresearch_dino_main
+/home/ids/skhairi/Code/co-tracker/cotracker/models/build_cotracker.py:41: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state_dict = torch.load(f, map_location="cpu")
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 8224.13it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights:   0%|          | 1/729 [00:00<01:36,  7.54it/s]Loading weights:   4%|▍         | 30/729 [00:00<00:04, 151.17it/s]Loading weights:   9%|▉         | 65/729 [00:00<00:02, 231.23it/s]Loading weights:  14%|█▍        | 102/729 [00:00<00:02, 279.08it/s]Loading weights:  19%|█▉        | 138/729 [00:00<00:01, 299.98it/s]Loading weights:  24%|██▍       | 174/729 [00:00<00:01, 313.11it/s]Loading weights:  29%|██▊       | 209/729 [00:00<00:01, 323.20it/s]Loading weights:  33%|███▎      | 242/729 [00:00<00:01, 310.61it/s]Loading weights:  38%|███▊      | 274/729 [00:01<00:01, 281.88it/s]Loading weights:  42%|████▏     | 304/729 [00:01<00:01, 283.51it/s]Loading weights:  46%|████▌     | 333/729 [00:01<00:01, 268.12it/s]Loading weights:  84%|████████▍ | 613/729 [00:01<00:00, 958.46it/s]Loading weights: 100%|██████████| 729/729 [00:01<00:00, 525.45it/s]
+The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+Evaluating annotation mapping files:   0%|          | 0/4 [00:00<?, ?it/s]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:   1%|          | 1/100 [00:51<1:24:26, 51.18s/it][AEvaluating videos: 100%|██████████| 100/100 [00:51<00:00,  1.95it/s]
+Evaluating annotation mapping files:  25%|██▌       | 1/4 [00:51<02:33, 51.18s/it]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 11/100 [00:48<06:30,  4.39s/it][A
+Evaluating videos:  14%|█▍        | 14/100 [01:36<11:02,  7.70s/it][A
+Evaluating videos:  16%|█▌        | 16/100 [02:09<13:23,  9.57s/it][A
+Evaluating videos:  28%|██▊       | 28/100 [02:58<07:13,  6.02s/it][A
+Evaluating videos:  34%|███▍      | 34/100 [03:55<07:48,  7.09s/it][AToken indices sequence length is longer than the specified maximum sequence length for this model (85 > 77). Running this sequence through the model will result in indexing errors
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Encountered caption longer than max_position_embeddings=77. Will truncate captions to thislength. If longer captions are needed, initialize argument `model_name_or_path` with a model thatsupports longer sequences.
+  warnings.warn(*args, **kwargs)
+
+Evaluating videos:  40%|████      | 40/100 [04:44<07:27,  7.47s/it][A
+Evaluating videos:  45%|████▌     | 45/100 [05:35<07:30,  8.20s/it][A
+Evaluating videos:  57%|█████▋    | 57/100 [06:20<04:19,  6.03s/it][A
+Evaluating videos:  68%|██████▊   | 68/100 [06:47<02:29,  4.67s/it][A
+Evaluating videos:  72%|███████▏  | 72/100 [07:04<02:08,  4.59s/it][A
+Evaluating videos:  74%|███████▍  | 74/100 [07:58<03:02,  7.00s/it][A
+Evaluating videos:  75%|███████▌  | 75/100 [08:44<04:03,  9.74s/it][A
+Evaluating videos:  76%|███████▌  | 76/100 [09:35<05:23, 13.50s/it][A
+Evaluating videos:  79%|███████▉  | 79/100 [10:21<04:54, 14.01s/it][A
+Evaluating videos:  90%|█████████ | 90/100 [11:07<01:21,  8.18s/it][A
+Evaluating videos:  91%|█████████ | 91/100 [11:54<01:38, 10.97s/it][AEvaluating videos: 100%|██████████| 100/100 [11:54<00:00,  7.15s/it]
+Evaluating annotation mapping files:  50%|█████     | 2/4 [12:46<14:43, 441.57s/it]
+Evaluating videos:   0%|          | 0/9 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 1/9 [00:32<04:18, 32.36s/it][A
+Evaluating videos:  33%|███▎      | 3/9 [01:15<02:25, 24.21s/it][A
+Evaluating videos:  89%|████████▉ | 8/9 [01:58<00:13, 13.01s/it][AEvaluating videos: 100%|██████████| 9/9 [01:58<00:00, 13.22s/it]
+Evaluating annotation mapping files:  75%|███████▌  | 3/4 [14:44<04:54, 294.26s/it]
+Evaluating videos:   0%|          | 0/10 [00:00<?, ?it/s][A
+Evaluating videos:  10%|█         | 1/10 [00:48<07:18, 48.77s/it][A
+Evaluating videos:  50%|█████     | 5/10 [01:33<01:24, 16.86s/it][AEvaluating videos: 100%|██████████| 10/10 [01:33<00:00,  9.39s/it]
+Evaluating annotation mapping files: 100%|██████████| 4/4 [16:18<00:00, 215.15s/it]Evaluating annotation mapping files: 100%|██████████| 4/4 [16:18<00:00, 244.72s/it]
+Loading weights:   0%|          | 0/590 [00:00<?, ?it/s]Loading weights: 100%|██████████| 590/590 [00:00<00:00, 63579.45it/s]
+[1mCLIPModel LOAD REPORT[0m from: openai/clip-vit-large-patch14
+Key                                  | Status     |  | 
+-------------------------------------+------------+--+-
+text_model.embeddings.position_ids   | UNEXPECTED |  | 
+vision_model.embeddings.position_ids | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+The image processor of type `CLIPImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/functional/image/lpips.py:332: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.load_state_dict(torch.load(model_path, map_location="cpu"), strict=False)
+Using cache found in /home/ids/skhairi/.cache/torch/hub/facebookresearch_dino_main
+/home/ids/skhairi/Code/co-tracker/cotracker/models/build_cotracker.py:41: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state_dict = torch.load(f, map_location="cpu")
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 12858.07it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights:   0%|          | 1/729 [00:00<01:35,  7.63it/s]Loading weights:   4%|▍         | 30/729 [00:00<00:04, 152.21it/s]Loading weights:   9%|▉         | 66/729 [00:00<00:02, 236.81it/s]Loading weights:  14%|█▍        | 102/729 [00:00<00:02, 277.95it/s]Loading weights:  19%|█▉        | 138/729 [00:00<00:01, 299.02it/s]Loading weights:  24%|██▍       | 174/729 [00:00<00:01, 314.02it/s]Loading weights:  29%|██▊       | 209/729 [00:00<00:01, 323.78it/s]Loading weights:  33%|███▎      | 242/729 [00:00<00:01, 311.54it/s]Loading weights:  38%|███▊      | 274/729 [00:01<00:01, 284.25it/s]Loading weights:  42%|████▏     | 304/729 [00:01<00:01, 283.42it/s]Loading weights:  46%|████▌     | 333/729 [00:01<00:01, 270.11it/s]Loading weights:  83%|████████▎ | 607/729 [00:01<00:00, 947.30it/s]Loading weights: 100%|██████████| 729/729 [00:01<00:00, 526.86it/s]
+The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+Evaluating annotation mapping files:   0%|          | 0/4 [00:00<?, ?it/s]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:   1%|          | 1/100 [00:51<1:24:52, 51.44s/it][AEvaluating videos: 100%|██████████| 100/100 [00:51<00:00,  1.94it/s]
+Evaluating annotation mapping files:  25%|██▌       | 1/4 [00:51<02:34, 51.44s/it]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 11/100 [00:49<06:38,  4.47s/it][A
+Evaluating videos:  14%|█▍        | 14/100 [01:40<11:28,  8.00s/it][A
+Evaluating videos:  16%|█▌        | 16/100 [02:14<13:50,  9.89s/it][A
+Evaluating videos:  28%|██▊       | 28/100 [03:05<07:29,  6.25s/it][A
+Evaluating videos:  34%|███▍      | 34/100 [04:03<08:03,  7.33s/it][AToken indices sequence length is longer than the specified maximum sequence length for this model (85 > 77). Running this sequence through the model will result in indexing errors
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Encountered caption longer than max_position_embeddings=77. Will truncate captions to thislength. If longer captions are needed, initialize argument `model_name_or_path` with a model thatsupports longer sequences.
+  warnings.warn(*args, **kwargs)
+
+Evaluating videos:  40%|████      | 40/100 [04:55<07:46,  7.77s/it][A
+Evaluating videos:  45%|████▌     | 45/100 [05:48<07:49,  8.53s/it][A
+Evaluating videos:  57%|█████▋    | 57/100 [06:34<04:29,  6.28s/it][A
+Evaluating videos:  68%|██████▊   | 68/100 [07:02<02:34,  4.84s/it][A
+Evaluating videos:  72%|███████▏  | 72/100 [07:19<02:12,  4.75s/it][A
+Evaluating videos:  74%|███████▍  | 74/100 [08:14<03:06,  7.17s/it][A
+Evaluating videos:  75%|███████▌  | 75/100 [09:00<04:07,  9.89s/it][A
+Evaluating videos:  76%|███████▌  | 76/100 [09:51<05:27, 13.65s/it][A
+Evaluating videos:  79%|███████▉  | 79/100 [10:37<04:56, 14.12s/it][A
+Evaluating videos:  90%|█████████ | 90/100 [11:24<01:22,  8.24s/it][A
+Evaluating videos:  91%|█████████ | 91/100 [12:10<01:38, 10.99s/it][AEvaluating videos: 100%|██████████| 100/100 [12:10<00:00,  7.31s/it]
+Evaluating annotation mapping files:  50%|█████     | 2/4 [13:02<15:01, 450.98s/it]
+Evaluating videos:   0%|          | 0/9 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 1/9 [00:31<04:12, 31.57s/it][A
+Evaluating videos:  33%|███▎      | 3/9 [01:14<02:25, 24.18s/it][A
+Evaluating videos:  89%|████████▉ | 8/9 [01:58<00:12, 13.00s/it][AEvaluating videos: 100%|██████████| 9/9 [01:58<00:00, 13.18s/it]
+Evaluating annotation mapping files:  75%|███████▌  | 3/4 [15:00<04:59, 299.22s/it]
+Evaluating videos:   0%|          | 0/10 [00:00<?, ?it/s][A
+Evaluating videos:  10%|█         | 1/10 [00:48<07:20, 48.92s/it][A
+Evaluating videos:  50%|█████     | 5/10 [01:36<01:26, 17.33s/it][AEvaluating videos: 100%|██████████| 10/10 [01:36<00:00,  9.61s/it]
+Evaluating annotation mapping files: 100%|██████████| 4/4 [16:36<00:00, 219.04s/it]Evaluating annotation mapping files: 100%|██████████| 4/4 [16:36<00:00, 249.21s/it]
+Loading weights:   0%|          | 0/590 [00:00<?, ?it/s]Loading weights: 100%|██████████| 590/590 [00:00<00:00, 62451.47it/s]
+[1mCLIPModel LOAD REPORT[0m from: openai/clip-vit-large-patch14
+Key                                  | Status     |  | 
+-------------------------------------+------------+--+-
+text_model.embeddings.position_ids   | UNEXPECTED |  | 
+vision_model.embeddings.position_ids | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+The image processor of type `CLIPImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/functional/image/lpips.py:332: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.load_state_dict(torch.load(model_path, map_location="cpu"), strict=False)
+Using cache found in /home/ids/skhairi/.cache/torch/hub/facebookresearch_dino_main
+/home/ids/skhairi/Code/co-tracker/cotracker/models/build_cotracker.py:41: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state_dict = torch.load(f, map_location="cpu")
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 12618.24it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights:   0%|          | 1/729 [00:00<01:35,  7.64it/s]Loading weights:   4%|▍         | 30/729 [00:00<00:04, 151.63it/s]Loading weights:   9%|▉         | 65/729 [00:00<00:02, 230.97it/s]Loading weights:  14%|█▍        | 102/729 [00:00<00:02, 278.36it/s]Loading weights:  19%|█▉        | 137/729 [00:00<00:02, 295.54it/s]Loading weights:  24%|██▍       | 174/729 [00:00<00:01, 314.64it/s]Loading weights:  29%|██▊       | 209/729 [00:00<00:01, 323.70it/s]Loading weights:  33%|███▎      | 242/729 [00:00<00:01, 311.20it/s]Loading weights:  38%|███▊      | 274/729 [00:01<00:01, 282.24it/s]Loading weights:  42%|████▏     | 304/729 [00:01<00:01, 283.94it/s]Loading weights:  46%|████▌     | 333/729 [00:01<00:01, 270.84it/s]Loading weights:  84%|████████▎ | 609/729 [00:01<00:00, 953.99it/s]Loading weights: 100%|██████████| 729/729 [00:01<00:00, 526.62it/s]
+The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+Evaluating annotation mapping files:   0%|          | 0/4 [00:00<?, ?it/s]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:   1%|          | 1/100 [00:51<1:24:23, 51.15s/it][AEvaluating videos: 100%|██████████| 100/100 [00:51<00:00,  1.96it/s]
+Evaluating annotation mapping files:  25%|██▌       | 1/4 [00:51<02:33, 51.15s/it]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 11/100 [00:48<06:34,  4.43s/it][A
+Evaluating videos:  14%|█▍        | 14/100 [01:38<11:17,  7.88s/it][A
+Evaluating videos:  16%|█▌        | 16/100 [02:13<13:47,  9.85s/it][A
+Evaluating videos:  28%|██▊       | 28/100 [03:02<07:22,  6.14s/it][A
+Evaluating videos:  34%|███▍      | 34/100 [03:59<07:54,  7.19s/it][AToken indices sequence length is longer than the specified maximum sequence length for this model (85 > 77). Running this sequence through the model will result in indexing errors
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Encountered caption longer than max_position_embeddings=77. Will truncate captions to thislength. If longer captions are needed, initialize argument `model_name_or_path` with a model thatsupports longer sequences.
+  warnings.warn(*args, **kwargs)
+
+Evaluating videos:  40%|████      | 40/100 [04:48<07:31,  7.52s/it][A
+Evaluating videos:  45%|████▌     | 45/100 [05:40<07:36,  8.30s/it][A
+Evaluating videos:  57%|█████▋    | 57/100 [06:25<04:21,  6.09s/it][A
+Evaluating videos:  68%|██████▊   | 68/100 [06:52<02:30,  4.70s/it][A
+Evaluating videos:  72%|███████▏  | 72/100 [07:09<02:09,  4.64s/it][A
+Evaluating videos:  74%|███████▍  | 74/100 [08:01<02:59,  6.91s/it][A
+Evaluating videos:  75%|███████▌  | 75/100 [08:51<04:08,  9.96s/it][A
+Evaluating videos:  76%|███████▌  | 76/100 [09:47<05:39, 14.13s/it][A
+Evaluating videos:  79%|███████▉  | 79/100 [10:37<05:12, 14.90s/it][A
+Evaluating videos:  90%|█████████ | 90/100 [11:28<01:27,  8.78s/it][A
+Evaluating videos:  91%|█████████ | 91/100 [12:19<01:46, 11.78s/it][AEvaluating videos: 100%|██████████| 100/100 [12:19<00:00,  7.39s/it]
+Evaluating annotation mapping files:  50%|█████     | 2/4 [13:10<15:11, 455.96s/it]
+Evaluating videos:   0%|          | 0/9 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 1/9 [00:34<04:38, 34.85s/it][A
+Evaluating videos:  33%|███▎      | 3/9 [01:22<02:39, 26.58s/it][A
+Evaluating videos:  89%|████████▉ | 8/9 [02:11<00:14, 14.37s/it][AEvaluating videos: 100%|██████████| 9/9 [02:11<00:00, 14.56s/it]
+Evaluating annotation mapping files:  75%|███████▌  | 3/4 [15:21<05:07, 307.59s/it]
+Evaluating videos:   0%|          | 0/10 [00:00<?, ?it/s][A
+Evaluating videos:  10%|█         | 1/10 [00:53<08:00, 53.38s/it][A
+Evaluating videos:  50%|█████     | 5/10 [01:43<01:33, 18.61s/it][AEvaluating videos: 100%|██████████| 10/10 [01:43<00:00, 10.35s/it]
+Evaluating annotation mapping files: 100%|██████████| 4/4 [17:05<00:00, 227.01s/it]Evaluating annotation mapping files: 100%|██████████| 4/4 [17:05<00:00, 256.25s/it]
+Loading weights:   0%|          | 0/590 [00:00<?, ?it/s]Loading weights: 100%|██████████| 590/590 [00:00<00:00, 59821.58it/s]
+[1mCLIPModel LOAD REPORT[0m from: openai/clip-vit-large-patch14
+Key                                  | Status     |  | 
+-------------------------------------+------------+--+-
+text_model.embeddings.position_ids   | UNEXPECTED |  | 
+vision_model.embeddings.position_ids | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+The image processor of type `CLIPImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/functional/image/lpips.py:332: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.load_state_dict(torch.load(model_path, map_location="cpu"), strict=False)
+Using cache found in /home/ids/skhairi/.cache/torch/hub/facebookresearch_dino_main
+/home/ids/skhairi/Code/co-tracker/cotracker/models/build_cotracker.py:41: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state_dict = torch.load(f, map_location="cpu")
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 11434.85it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights:   0%|          | 1/729 [00:00<01:36,  7.53it/s]Loading weights:   4%|▍         | 30/729 [00:00<00:04, 151.24it/s]Loading weights:   9%|▉         | 66/729 [00:00<00:02, 234.81it/s]Loading weights:  14%|█▍        | 102/729 [00:00<00:02, 277.02it/s]Loading weights:  19%|█▉        | 138/729 [00:00<00:01, 298.74it/s]Loading weights:  24%|██▍       | 174/729 [00:00<00:01, 313.79it/s]Loading weights:  29%|██▊       | 208/729 [00:00<00:01, 321.05it/s]Loading weights:  33%|███▎      | 241/729 [00:00<00:01, 309.68it/s]Loading weights:  37%|███▋      | 273/729 [00:01<00:01, 284.53it/s]Loading weights:  42%|████▏     | 304/729 [00:01<00:01, 284.11it/s]Loading weights:  46%|████▌     | 333/729 [00:01<00:01, 270.17it/s]Loading weights:  84%|████████▎ | 609/729 [00:01<00:00, 949.98it/s]Loading weights: 100%|██████████| 729/729 [00:01<00:00, 526.01it/s]
+The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+Evaluating annotation mapping files:   0%|          | 0/4 [00:00<?, ?it/s]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:   1%|          | 1/100 [00:51<1:24:37, 51.29s/it][AEvaluating videos: 100%|██████████| 100/100 [00:51<00:00,  1.95it/s]
+Evaluating annotation mapping files:  25%|██▌       | 1/4 [00:51<02:33, 51.29s/it]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 11/100 [00:49<06:36,  4.46s/it][A
+Evaluating videos:  14%|█▍        | 14/100 [01:38<11:16,  7.87s/it][A
+Evaluating videos:  16%|█▌        | 16/100 [02:12<13:34,  9.70s/it][A
+Evaluating videos:  28%|██▊       | 28/100 [03:01<07:19,  6.10s/it][A
+Evaluating videos:  34%|███▍      | 34/100 [03:58<07:54,  7.19s/it][AToken indices sequence length is longer than the specified maximum sequence length for this model (85 > 77). Running this sequence through the model will result in indexing errors
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Encountered caption longer than max_position_embeddings=77. Will truncate captions to thislength. If longer captions are needed, initialize argument `model_name_or_path` with a model thatsupports longer sequences.
+  warnings.warn(*args, **kwargs)
+
+Evaluating videos:  40%|████      | 40/100 [04:48<07:33,  7.56s/it][A
+Evaluating videos:  45%|████▌     | 45/100 [05:42<07:42,  8.40s/it][A
+Evaluating videos:  57%|█████▋    | 57/100 [06:26<04:23,  6.13s/it][A
+Evaluating videos:  68%|██████▊   | 68/100 [06:53<02:30,  4.71s/it][A
+Evaluating videos:  72%|███████▏  | 72/100 [07:10<02:09,  4.63s/it][A
+Evaluating videos:  74%|███████▍  | 74/100 [08:05<03:03,  7.05s/it][A
+Evaluating videos:  75%|███████▌  | 75/100 [08:51<04:05,  9.81s/it][A
+Evaluating videos:  76%|███████▌  | 76/100 [09:42<05:27, 13.63s/it][A
+Evaluating videos:  79%|███████▉  | 79/100 [10:28<04:56, 14.12s/it][A
+Evaluating videos:  90%|█████████ | 90/100 [11:15<01:22,  8.25s/it][A
+Evaluating videos:  91%|█████████ | 91/100 [12:01<01:38, 10.96s/it][AEvaluating videos: 100%|██████████| 100/100 [12:01<00:00,  7.22s/it]
+Evaluating annotation mapping files:  50%|█████     | 2/4 [12:52<14:51, 445.57s/it]
+Evaluating videos:   0%|          | 0/9 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 1/9 [00:33<04:25, 33.23s/it][A
+Evaluating videos:  33%|███▎      | 3/9 [01:18<02:31, 25.28s/it][A
+Evaluating videos:  89%|████████▉ | 8/9 [02:02<00:13, 13.33s/it][AEvaluating videos: 100%|██████████| 9/9 [02:02<00:00, 13.59s/it]
+Evaluating annotation mapping files:  75%|███████▌  | 3/4 [14:55<04:57, 297.95s/it]
+Evaluating videos:   0%|          | 0/10 [00:00<?, ?it/s][A
+Evaluating videos:  10%|█         | 1/10 [00:48<07:19, 48.84s/it][A
+Evaluating videos:  50%|█████     | 5/10 [01:34<01:24, 16.89s/it][AEvaluating videos: 100%|██████████| 10/10 [01:34<00:00,  9.40s/it]
+Evaluating annotation mapping files: 100%|██████████| 4/4 [16:29<00:00, 217.45s/it]Evaluating annotation mapping files: 100%|██████████| 4/4 [16:29<00:00, 247.29s/it]
+Loading weights:   0%|          | 0/590 [00:00<?, ?it/s]Loading weights: 100%|██████████| 590/590 [00:00<00:00, 63907.84it/s]
+[1mCLIPModel LOAD REPORT[0m from: openai/clip-vit-large-patch14
+Key                                  | Status     |  | 
+-------------------------------------+------------+--+-
+text_model.embeddings.position_ids   | UNEXPECTED |  | 
+vision_model.embeddings.position_ids | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+The image processor of type `CLIPImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/functional/image/lpips.py:332: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.load_state_dict(torch.load(model_path, map_location="cpu"), strict=False)
+Using cache found in /home/ids/skhairi/.cache/torch/hub/facebookresearch_dino_main
+/home/ids/skhairi/Code/co-tracker/cotracker/models/build_cotracker.py:41: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state_dict = torch.load(f, map_location="cpu")
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 16435.36it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights:   0%|          | 1/729 [00:00<01:33,  7.78it/s]Loading weights:   4%|▍         | 30/729 [00:00<00:04, 153.67it/s]Loading weights:   9%|▉         | 66/729 [00:00<00:02, 236.66it/s]Loading weights:  14%|█▍        | 102/729 [00:00<00:02, 279.09it/s]Loading weights:  19%|█▉        | 138/729 [00:00<00:01, 300.74it/s]Loading weights:  24%|██▍       | 174/729 [00:00<00:01, 315.19it/s]Loading weights:  29%|██▊       | 209/729 [00:00<00:01, 324.30it/s]Loading weights:  33%|███▎      | 242/729 [00:00<00:01, 311.16it/s]Loading weights:  38%|███▊      | 274/729 [00:01<00:01, 284.31it/s]Loading weights:  42%|████▏     | 304/729 [00:01<00:01, 283.35it/s]Loading weights:  46%|████▌     | 333/729 [00:01<00:01, 270.20it/s]Loading weights:  84%|████████▎ | 609/729 [00:01<00:00, 953.45it/s]Loading weights: 100%|██████████| 729/729 [00:01<00:00, 528.41it/s]
+The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+Evaluating annotation mapping files:   0%|          | 0/4 [00:00<?, ?it/s]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:   1%|          | 1/100 [00:51<1:25:15, 51.67s/it][AEvaluating videos: 100%|██████████| 100/100 [00:51<00:00,  1.94it/s]
+Evaluating annotation mapping files:  25%|██▌       | 1/4 [00:51<02:35, 51.68s/it]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 11/100 [00:49<06:38,  4.48s/it][A
+Evaluating videos:  14%|█▍        | 14/100 [01:42<11:43,  8.18s/it][A
+Evaluating videos:  16%|█▌        | 16/100 [02:17<14:10, 10.13s/it][A
+Evaluating videos:  28%|██▊       | 28/100 [03:07<07:34,  6.31s/it][A
+Evaluating videos:  34%|███▍      | 34/100 [04:05<08:06,  7.38s/it][AToken indices sequence length is longer than the specified maximum sequence length for this model (85 > 77). Running this sequence through the model will result in indexing errors
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Encountered caption longer than max_position_embeddings=77. Will truncate captions to thislength. If longer captions are needed, initialize argument `model_name_or_path` with a model thatsupports longer sequences.
+  warnings.warn(*args, **kwargs)
+
+Evaluating videos:  40%|████      | 40/100 [04:56<07:43,  7.73s/it][A
+Evaluating videos:  45%|████▌     | 45/100 [05:49<07:46,  8.48s/it][A
+Evaluating videos:  57%|█████▋    | 57/100 [06:35<04:28,  6.24s/it][A
+Evaluating videos:  68%|██████▊   | 68/100 [07:02<02:33,  4.80s/it][A
+Evaluating videos:  72%|███████▏  | 72/100 [07:19<02:11,  4.70s/it][A
+Evaluating videos:  74%|███████▍  | 74/100 [08:15<03:06,  7.17s/it][A
+Evaluating videos:  75%|███████▌  | 75/100 [09:02<04:09, 10.00s/it][A
+Evaluating videos:  76%|███████▌  | 76/100 [09:53<05:30, 13.78s/it][A
+Evaluating videos:  79%|███████▉  | 79/100 [10:39<04:59, 14.24s/it][A
+Evaluating videos:  90%|█████████ | 90/100 [11:26<01:22,  8.30s/it][A
+Evaluating videos:  91%|█████████ | 91/100 [12:12<01:39, 11.00s/it][AEvaluating videos: 100%|██████████| 100/100 [12:12<00:00,  7.33s/it]
+Evaluating annotation mapping files:  50%|█████     | 2/4 [13:04<15:04, 452.34s/it]
+Evaluating videos:   0%|          | 0/9 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 1/9 [00:31<04:12, 31.56s/it][A
+Evaluating videos:  33%|███▎      | 3/9 [01:14<02:23, 23.97s/it][A
+Evaluating videos:  89%|████████▉ | 8/9 [01:59<00:13, 13.08s/it][AEvaluating videos: 100%|██████████| 9/9 [01:59<00:00, 13.23s/it]
+Evaluating annotation mapping files:  75%|███████▌  | 3/4 [15:03<05:00, 300.15s/it]
+Evaluating videos:   0%|          | 0/10 [00:00<?, ?it/s][A
+Evaluating videos:  10%|█         | 1/10 [00:49<07:28, 49.79s/it][A
+Evaluating videos:  50%|█████     | 5/10 [01:36<01:27, 17.43s/it][AEvaluating videos: 100%|██████████| 10/10 [01:36<00:00,  9.69s/it]
+Evaluating annotation mapping files: 100%|██████████| 4/4 [16:40<00:00, 219.90s/it]Evaluating annotation mapping files: 100%|██████████| 4/4 [16:40<00:00, 250.10s/it]
+Loading weights:   0%|          | 0/590 [00:00<?, ?it/s]Loading weights: 100%|██████████| 590/590 [00:00<00:00, 63070.63it/s]
+[1mCLIPModel LOAD REPORT[0m from: openai/clip-vit-large-patch14
+Key                                  | Status     |  | 
+-------------------------------------+------------+--+-
+text_model.embeddings.position_ids   | UNEXPECTED |  | 
+vision_model.embeddings.position_ids | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+The image processor of type `CLIPImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/functional/image/lpips.py:332: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.load_state_dict(torch.load(model_path, map_location="cpu"), strict=False)
+Using cache found in /home/ids/skhairi/.cache/torch/hub/facebookresearch_dino_main
+/home/ids/skhairi/Code/co-tracker/cotracker/models/build_cotracker.py:41: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state_dict = torch.load(f, map_location="cpu")
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 9868.95it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights:   0%|          | 1/729 [00:00<01:35,  7.63it/s]Loading weights:   4%|▍         | 30/729 [00:00<00:04, 151.76it/s]Loading weights:   9%|▉         | 66/729 [00:00<00:02, 235.46it/s]Loading weights:  14%|█▍        | 102/729 [00:00<00:02, 277.50it/s]Loading weights:  19%|█▉        | 138/729 [00:00<00:01, 298.43it/s]Loading weights:  24%|██▍       | 174/729 [00:00<00:01, 313.65it/s]Loading weights:  29%|██▊       | 209/729 [00:00<00:01, 322.66it/s]Loading weights:  33%|███▎      | 242/729 [00:00<00:01, 310.67it/s]Loading weights:  38%|███▊      | 274/729 [00:01<00:01, 282.17it/s]Loading weights:  42%|████▏     | 303/729 [00:01<00:01, 270.87it/s]Loading weights:  45%|████▌     | 331/729 [00:01<00:01, 268.51it/s]Loading weights:  84%|████████▎ | 609/729 [00:01<00:00, 962.40it/s]Loading weights: 100%|██████████| 729/729 [00:01<00:00, 526.43it/s]
+The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+Evaluating annotation mapping files:   0%|          | 0/4 [00:00<?, ?it/s]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:   1%|          | 1/100 [00:50<1:23:52, 50.83s/it][AEvaluating videos: 100%|██████████| 100/100 [00:50<00:00,  1.97it/s]
+Evaluating annotation mapping files:  25%|██▌       | 1/4 [00:50<02:32, 50.83s/it]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 11/100 [00:48<06:35,  4.44s/it][A
+Evaluating videos:  14%|█▍        | 14/100 [01:38<11:12,  7.82s/it][A
+Evaluating videos:  16%|█▌        | 16/100 [02:11<13:31,  9.66s/it][A
+Evaluating videos:  28%|██▊       | 28/100 [03:00<07:17,  6.08s/it][A
+Evaluating videos:  34%|███▍      | 34/100 [03:57<07:52,  7.16s/it][AToken indices sequence length is longer than the specified maximum sequence length for this model (85 > 77). Running this sequence through the model will result in indexing errors
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Encountered caption longer than max_position_embeddings=77. Will truncate captions to thislength. If longer captions are needed, initialize argument `model_name_or_path` with a model thatsupports longer sequences.
+  warnings.warn(*args, **kwargs)
+
+Evaluating videos:  40%|████      | 40/100 [04:47<07:31,  7.52s/it][A
+Evaluating videos:  45%|████▌     | 45/100 [05:39<07:36,  8.30s/it][A
+Evaluating videos:  57%|█████▋    | 57/100 [06:24<04:21,  6.09s/it][A
+Evaluating videos:  68%|██████▊   | 68/100 [06:51<02:30,  4.69s/it][A
+Evaluating videos:  72%|███████▏  | 72/100 [07:07<02:09,  4.61s/it][A
+Evaluating videos:  74%|███████▍  | 74/100 [08:03<03:03,  7.08s/it][A
+Evaluating videos:  75%|███████▌  | 75/100 [08:49<04:05,  9.81s/it][A
+Evaluating videos:  76%|███████▌  | 76/100 [09:40<05:26, 13.59s/it][A
+Evaluating videos:  79%|███████▉  | 79/100 [10:25<04:54, 14.03s/it][A
+Evaluating videos:  90%|█████████ | 90/100 [11:12<01:22,  8.21s/it][A
+Evaluating videos:  91%|█████████ | 91/100 [11:58<01:38, 10.91s/it][AEvaluating videos: 100%|██████████| 100/100 [11:58<00:00,  7.18s/it]
+Evaluating annotation mapping files:  50%|█████     | 2/4 [12:49<14:47, 443.53s/it]
+Evaluating videos:   0%|          | 0/9 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 1/9 [00:31<04:10, 31.35s/it][A
+Evaluating videos:  33%|███▎      | 3/9 [01:13<02:22, 23.83s/it][A
+Evaluating videos:  89%|████████▉ | 8/9 [01:58<00:13, 13.02s/it][AEvaluating videos: 100%|██████████| 9/9 [01:58<00:00, 13.15s/it]
+Evaluating annotation mapping files:  75%|███████▌  | 3/4 [14:47<04:55, 295.06s/it]
+Evaluating videos:   0%|          | 0/10 [00:00<?, ?it/s][A
+Evaluating videos:  10%|█         | 1/10 [00:48<07:17, 48.56s/it][A
+Evaluating videos:  50%|█████     | 5/10 [01:33<01:24, 16.81s/it][AEvaluating videos: 100%|██████████| 10/10 [01:33<00:00,  9.36s/it]
+Evaluating annotation mapping files: 100%|██████████| 4/4 [16:21<00:00, 215.51s/it]Evaluating annotation mapping files: 100%|██████████| 4/4 [16:21<00:00, 245.30s/it]
+Loading weights:   0%|          | 0/590 [00:00<?, ?it/s]Loading weights: 100%|██████████| 590/590 [00:00<00:00, 60170.68it/s]
+[1mCLIPModel LOAD REPORT[0m from: openai/clip-vit-large-patch14
+Key                                  | Status     |  | 
+-------------------------------------+------------+--+-
+text_model.embeddings.position_ids   | UNEXPECTED |  | 
+vision_model.embeddings.position_ids | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+The image processor of type `CLIPImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/functional/image/lpips.py:332: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.load_state_dict(torch.load(model_path, map_location="cpu"), strict=False)
+Using cache found in /home/ids/skhairi/.cache/torch/hub/facebookresearch_dino_main
+/home/ids/skhairi/Code/co-tracker/cotracker/models/build_cotracker.py:41: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state_dict = torch.load(f, map_location="cpu")
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 12358.00it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights:   0%|          | 1/729 [00:00<01:33,  7.82it/s]Loading weights:   4%|▍         | 30/729 [00:00<00:04, 153.84it/s]Loading weights:   9%|▉         | 66/729 [00:00<00:02, 237.75it/s]Loading weights:  14%|█▍        | 102/729 [00:00<00:02, 278.53it/s]Loading weights:  19%|█▉        | 138/729 [00:00<00:01, 298.14it/s]Loading weights:  24%|██▍       | 174/729 [00:00<00:01, 312.53it/s]Loading weights:  29%|██▊       | 209/729 [00:00<00:01, 322.71it/s]Loading weights:  33%|███▎      | 242/729 [00:00<00:01, 310.28it/s]Loading weights:  38%|███▊      | 274/729 [00:01<00:01, 280.61it/s]Loading weights:  42%|████▏     | 304/729 [00:01<00:01, 282.68it/s]Loading weights:  46%|████▌     | 333/729 [00:01<00:01, 269.18it/s]Loading weights:  84%|████████▎ | 609/729 [00:01<00:00, 950.04it/s]Loading weights: 100%|██████████| 729/729 [00:01<00:00, 524.91it/s]
+The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+Evaluating annotation mapping files:   0%|          | 0/4 [00:00<?, ?it/s]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:   1%|          | 1/100 [00:51<1:24:45, 51.37s/it][AEvaluating videos: 100%|██████████| 100/100 [00:51<00:00,  1.95it/s]
+Evaluating annotation mapping files:  25%|██▌       | 1/4 [00:51<02:34, 51.37s/it]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 11/100 [00:50<06:47,  4.58s/it][A
+Evaluating videos:  14%|█▍        | 14/100 [01:40<11:28,  8.01s/it][A
+Evaluating videos:  16%|█▌        | 16/100 [02:14<13:47,  9.85s/it][A
+Evaluating videos:  28%|██▊       | 28/100 [03:03<07:24,  6.17s/it][A
+Evaluating videos:  34%|███▍      | 34/100 [04:01<07:58,  7.25s/it][AToken indices sequence length is longer than the specified maximum sequence length for this model (85 > 77). Running this sequence through the model will result in indexing errors
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Encountered caption longer than max_position_embeddings=77. Will truncate captions to thislength. If longer captions are needed, initialize argument `model_name_or_path` with a model thatsupports longer sequences.
+  warnings.warn(*args, **kwargs)
+
+Evaluating videos:  40%|████      | 40/100 [04:51<07:35,  7.59s/it][A
+Evaluating videos:  45%|████▌     | 45/100 [05:42<07:37,  8.32s/it][A
+Evaluating videos:  57%|█████▋    | 57/100 [06:27<04:22,  6.09s/it][A
+Evaluating videos:  68%|██████▊   | 68/100 [06:55<02:30,  4.72s/it][A
+Evaluating videos:  72%|███████▏  | 72/100 [07:11<02:09,  4.63s/it][A
+Evaluating videos:  74%|███████▍  | 74/100 [08:07<03:04,  7.09s/it][A
+Evaluating videos:  75%|███████▌  | 75/100 [08:53<04:07,  9.88s/it][A
+Evaluating videos:  76%|███████▌  | 76/100 [09:46<05:31, 13.81s/it][A
+Evaluating videos:  79%|███████▉  | 79/100 [10:34<05:02, 14.43s/it][A
+Evaluating videos:  90%|█████████ | 90/100 [11:23<01:24,  8.48s/it][A
+Evaluating videos:  91%|█████████ | 91/100 [12:09<01:40, 11.19s/it][AEvaluating videos: 100%|██████████| 100/100 [12:09<00:00,  7.30s/it]
+Evaluating annotation mapping files:  50%|█████     | 2/4 [13:00<15:00, 450.32s/it]
+Evaluating videos:   0%|          | 0/9 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 1/9 [00:32<04:22, 32.77s/it][A
+Evaluating videos:  33%|███▎      | 3/9 [01:15<02:25, 24.19s/it][A
+Evaluating videos:  89%|████████▉ | 8/9 [02:00<00:13, 13.25s/it][AEvaluating videos: 100%|██████████| 9/9 [02:00<00:00, 13.41s/it]
+Evaluating annotation mapping files:  75%|███████▌  | 3/4 [15:01<04:59, 299.81s/it]
+Evaluating videos:   0%|          | 0/10 [00:00<?, ?it/s][A
+Evaluating videos:  10%|█         | 1/10 [00:50<07:33, 50.44s/it][A
+Evaluating videos:  50%|█████     | 5/10 [01:37<01:27, 17.53s/it][AEvaluating videos: 100%|██████████| 10/10 [01:37<00:00,  9.75s/it]
+Evaluating annotation mapping files: 100%|██████████| 4/4 [16:39<00:00, 219.95s/it]Evaluating annotation mapping files: 100%|██████████| 4/4 [16:39<00:00, 249.79s/it]
+Loading weights:   0%|          | 0/590 [00:00<?, ?it/s]Loading weights: 100%|██████████| 590/590 [00:00<00:00, 62352.33it/s]
+[1mCLIPModel LOAD REPORT[0m from: openai/clip-vit-large-patch14
+Key                                  | Status     |  | 
+-------------------------------------+------------+--+-
+text_model.embeddings.position_ids   | UNEXPECTED |  | 
+vision_model.embeddings.position_ids | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+The image processor of type `CLIPImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/functional/image/lpips.py:332: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.load_state_dict(torch.load(model_path, map_location="cpu"), strict=False)
+Using cache found in /home/ids/skhairi/.cache/torch/hub/facebookresearch_dino_main
+/home/ids/skhairi/Code/co-tracker/cotracker/models/build_cotracker.py:41: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state_dict = torch.load(f, map_location="cpu")
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 6378.20it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights:   0%|          | 1/729 [00:00<01:35,  7.66it/s]Loading weights:   4%|▍         | 30/729 [00:00<00:04, 152.36it/s]Loading weights:   9%|▉         | 66/729 [00:00<00:02, 235.23it/s]Loading weights:  14%|█▍        | 101/729 [00:00<00:02, 272.84it/s]Loading weights:  19%|█▉        | 138/729 [00:00<00:01, 298.86it/s]Loading weights:  24%|██▍       | 174/729 [00:00<00:01, 313.96it/s]Loading weights:  29%|██▊       | 209/729 [00:00<00:01, 323.37it/s]Loading weights:  33%|███▎      | 242/729 [00:00<00:01, 310.77it/s]Loading weights:  38%|███▊      | 274/729 [00:01<00:01, 282.84it/s]Loading weights:  42%|████▏     | 304/729 [00:01<00:01, 282.33it/s]Loading weights:  46%|████▌     | 333/729 [00:01<00:01, 269.12it/s]Loading weights:  84%|████████▎ | 609/729 [00:01<00:00, 951.03it/s]Loading weights: 100%|██████████| 729/729 [00:01<00:00, 525.33it/s]
+The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+Evaluating annotation mapping files:   0%|          | 0/4 [00:00<?, ?it/s]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:   1%|          | 1/100 [00:51<1:25:23, 51.75s/it][AEvaluating videos: 100%|██████████| 100/100 [00:51<00:00,  1.93it/s]
+Evaluating annotation mapping files:  25%|██▌       | 1/4 [00:51<02:35, 51.75s/it]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 11/100 [00:49<06:37,  4.46s/it][A
+Evaluating videos:  14%|█▍        | 14/100 [01:38<11:16,  7.86s/it][A
+Evaluating videos:  16%|█▌        | 16/100 [02:12<13:36,  9.72s/it][A
+Evaluating videos:  28%|██▊       | 28/100 [03:01<07:19,  6.10s/it][A
+Evaluating videos:  34%|███▍      | 34/100 [04:00<08:01,  7.29s/it][AToken indices sequence length is longer than the specified maximum sequence length for this model (85 > 77). Running this sequence through the model will result in indexing errors
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Encountered caption longer than max_position_embeddings=77. Will truncate captions to thislength. If longer captions are needed, initialize argument `model_name_or_path` with a model thatsupports longer sequences.
+  warnings.warn(*args, **kwargs)
+
+Evaluating videos:  40%|████      | 40/100 [04:51<07:38,  7.64s/it][A
+Evaluating videos:  45%|████▌     | 45/100 [05:43<07:42,  8.41s/it][A
+Evaluating videos:  57%|█████▋    | 57/100 [06:28<04:25,  6.16s/it][A
+Evaluating videos:  68%|██████▊   | 68/100 [06:56<02:32,  4.77s/it][A
+Evaluating videos:  72%|███████▏  | 72/100 [07:13<02:11,  4.69s/it][A
+Evaluating videos:  74%|███████▍  | 74/100 [08:09<03:06,  7.17s/it][A
+Evaluating videos:  75%|███████▌  | 75/100 [08:56<04:09,  9.99s/it][A
+Evaluating videos:  76%|███████▌  | 76/100 [09:47<05:31, 13.79s/it][A
+Evaluating videos:  79%|███████▉  | 79/100 [10:33<04:57, 14.18s/it][A
+Evaluating videos:  90%|█████████ | 90/100 [11:20<01:22,  8.25s/it][A
+Evaluating videos:  91%|█████████ | 91/100 [12:05<01:38, 10.95s/it][AEvaluating videos: 100%|██████████| 100/100 [12:05<00:00,  7.26s/it]
+Evaluating annotation mapping files:  50%|█████     | 2/4 [12:57<14:56, 448.31s/it]
+Evaluating videos:   0%|          | 0/9 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 1/9 [00:31<04:13, 31.63s/it][A
+Evaluating videos:  33%|███▎      | 3/9 [01:15<02:25, 24.33s/it][A
+Evaluating videos:  89%|████████▉ | 8/9 [01:59<00:13, 13.07s/it][AEvaluating videos: 100%|██████████| 9/9 [01:59<00:00, 13.25s/it]
+Evaluating annotation mapping files:  75%|███████▌  | 3/4 [14:56<04:58, 298.05s/it]
+Evaluating videos:   0%|          | 0/10 [00:00<?, ?it/s][A
+Evaluating videos:  10%|█         | 1/10 [00:48<07:17, 48.65s/it][A
+Evaluating videos:  50%|█████     | 5/10 [01:33<01:23, 16.78s/it][AEvaluating videos: 100%|██████████| 10/10 [01:33<00:00,  9.35s/it]
+Evaluating annotation mapping files: 100%|██████████| 4/4 [16:30<00:00, 217.28s/it]Evaluating annotation mapping files: 100%|██████████| 4/4 [16:30<00:00, 247.59s/it]
+Loading weights:   0%|          | 0/590 [00:00<?, ?it/s]Loading weights: 100%|██████████| 590/590 [00:00<00:00, 36151.45it/s]
+[1mCLIPModel LOAD REPORT[0m from: openai/clip-vit-large-patch14
+Key                                  | Status     |  | 
+-------------------------------------+------------+--+-
+vision_model.embeddings.position_ids | UNEXPECTED |  | 
+text_model.embeddings.position_ids   | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+The image processor of type `CLIPImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/functional/image/lpips.py:332: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.load_state_dict(torch.load(model_path, map_location="cpu"), strict=False)
+Using cache found in /home/ids/skhairi/.cache/torch/hub/facebookresearch_dino_main
+/home/ids/skhairi/Code/co-tracker/cotracker/models/build_cotracker.py:41: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state_dict = torch.load(f, map_location="cpu")
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 9320.68it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights:   0%|          | 1/729 [00:00<01:34,  7.68it/s]Loading weights:   4%|▍         | 30/729 [00:00<00:04, 152.47it/s]Loading weights:   9%|▉         | 66/729 [00:00<00:02, 236.17it/s]Loading weights:  14%|█▍        | 102/729 [00:00<00:02, 278.11it/s]Loading weights:  19%|█▉        | 138/729 [00:00<00:01, 299.52it/s]Loading weights:  24%|██▍       | 174/729 [00:00<00:01, 314.30it/s]Loading weights:  29%|██▊       | 208/729 [00:00<00:01, 320.93it/s]Loading weights:  33%|███▎      | 241/729 [00:00<00:01, 308.64it/s]Loading weights:  37%|███▋      | 273/729 [00:01<00:01, 284.29it/s]Loading weights:  42%|████▏     | 304/729 [00:01<00:01, 284.44it/s]Loading weights:  46%|████▌     | 333/729 [00:01<00:01, 270.82it/s]Loading weights:  84%|████████▎ | 609/729 [00:01<00:00, 952.30it/s]Loading weights: 100%|██████████| 729/729 [00:01<00:00, 527.32it/s]
+The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+Evaluating annotation mapping files:   0%|          | 0/4 [00:00<?, ?it/s]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:   1%|          | 1/100 [00:51<1:24:52, 51.44s/it][AEvaluating videos: 100%|██████████| 100/100 [00:51<00:00,  1.94it/s]
+Evaluating annotation mapping files:  25%|██▌       | 1/4 [00:51<02:34, 51.44s/it]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 11/100 [00:48<06:36,  4.45s/it][A
+Evaluating videos:  14%|█▍        | 14/100 [01:38<11:14,  7.84s/it][A
+Evaluating videos:  16%|█▌        | 16/100 [02:11<13:34,  9.70s/it][A
+Evaluating videos:  28%|██▊       | 28/100 [03:01<07:19,  6.10s/it][A
+Evaluating videos:  34%|███▍      | 34/100 [03:58<07:54,  7.18s/it][AToken indices sequence length is longer than the specified maximum sequence length for this model (85 > 77). Running this sequence through the model will result in indexing errors
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Encountered caption longer than max_position_embeddings=77. Will truncate captions to thislength. If longer captions are needed, initialize argument `model_name_or_path` with a model thatsupports longer sequences.
+  warnings.warn(*args, **kwargs)
+
+Evaluating videos:  40%|████      | 40/100 [04:48<07:33,  7.56s/it][A
+Evaluating videos:  45%|████▌     | 45/100 [05:40<07:36,  8.30s/it][A
+Evaluating videos:  57%|█████▋    | 57/100 [06:24<04:22,  6.09s/it][A
+Evaluating videos:  68%|██████▊   | 68/100 [06:52<02:30,  4.70s/it][A
+Evaluating videos:  72%|███████▏  | 72/100 [07:09<02:09,  4.63s/it][A
+Evaluating videos:  74%|███████▍  | 74/100 [08:04<03:03,  7.07s/it][A
+Evaluating videos:  75%|███████▌  | 75/100 [08:50<04:05,  9.83s/it][A
+Evaluating videos:  76%|███████▌  | 76/100 [09:41<05:27, 13.63s/it][A
+Evaluating videos:  79%|███████▉  | 79/100 [10:28<04:57, 14.19s/it][A
+Evaluating videos:  90%|█████████ | 90/100 [11:16<01:23,  8.32s/it][A
+Evaluating videos:  91%|█████████ | 91/100 [12:03<01:39, 11.10s/it][AEvaluating videos: 100%|██████████| 100/100 [12:03<00:00,  7.23s/it]
+Evaluating annotation mapping files:  50%|█████     | 2/4 [12:54<14:53, 446.60s/it]
+Evaluating videos:   0%|          | 0/9 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 1/9 [00:31<04:15, 31.93s/it][A
+Evaluating videos:  33%|███▎      | 3/9 [01:14<02:25, 24.22s/it][A
+Evaluating videos:  89%|████████▉ | 8/9 [01:59<00:13, 13.04s/it][AEvaluating videos: 100%|██████████| 9/9 [01:59<00:00, 13.23s/it]
+Evaluating annotation mapping files:  75%|███████▌  | 3/4 [14:53<04:57, 297.04s/it]
+Evaluating videos:   0%|          | 0/10 [00:00<?, ?it/s][A
+Evaluating videos:  10%|█         | 1/10 [00:49<07:23, 49.29s/it][A
+Evaluating videos:  50%|█████     | 5/10 [01:35<01:25, 17.08s/it][AEvaluating videos: 100%|██████████| 10/10 [01:35<00:00,  9.51s/it]
+Evaluating annotation mapping files: 100%|██████████| 4/4 [16:28<00:00, 217.31s/it]Evaluating annotation mapping files: 100%|██████████| 4/4 [16:28<00:00, 247.20s/it]
+Loading weights:   0%|          | 0/590 [00:00<?, ?it/s]Loading weights: 100%|██████████| 590/590 [00:00<00:00, 62601.55it/s]
+[1mCLIPModel LOAD REPORT[0m from: openai/clip-vit-large-patch14
+Key                                  | Status     |  | 
+-------------------------------------+------------+--+-
+text_model.embeddings.position_ids   | UNEXPECTED |  | 
+vision_model.embeddings.position_ids | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+The image processor of type `CLIPImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/functional/image/lpips.py:332: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.load_state_dict(torch.load(model_path, map_location="cpu"), strict=False)
+Using cache found in /home/ids/skhairi/.cache/torch/hub/facebookresearch_dino_main
+/home/ids/skhairi/Code/co-tracker/cotracker/models/build_cotracker.py:41: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state_dict = torch.load(f, map_location="cpu")
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 34211.29it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights:   0%|          | 2/729 [00:00<00:47, 15.42it/s]Loading weights:   4%|▍         | 30/729 [00:00<00:04, 150.97it/s]Loading weights:   9%|▉         | 66/729 [00:00<00:02, 235.79it/s]Loading weights:  14%|█▍        | 102/729 [00:00<00:02, 277.54it/s]Loading weights:  19%|█▉        | 138/729 [00:00<00:01, 299.22it/s]Loading weights:  24%|██▍       | 174/729 [00:00<00:01, 315.06it/s]Loading weights:  29%|██▊       | 209/729 [00:00<00:01, 311.22it/s]Loading weights:  33%|███▎      | 241/729 [00:00<00:01, 312.36it/s]Loading weights:  37%|███▋      | 273/729 [00:01<00:01, 285.37it/s]Loading weights:  42%|████▏     | 304/729 [00:01<00:01, 285.00it/s]Loading weights:  46%|████▌     | 333/729 [00:01<00:01, 270.59it/s]Loading weights:  84%|████████▎ | 609/729 [00:01<00:00, 952.80it/s]Loading weights: 100%|██████████| 729/729 [00:01<00:00, 527.04it/s]
+The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+Evaluating annotation mapping files:   0%|          | 0/4 [00:00<?, ?it/s]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:   1%|          | 1/100 [00:51<1:24:57, 51.49s/it][AEvaluating videos: 100%|██████████| 100/100 [00:51<00:00,  1.94it/s]
+Evaluating annotation mapping files:  25%|██▌       | 1/4 [00:51<02:34, 51.49s/it]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 11/100 [00:49<06:36,  4.46s/it][A
+Evaluating videos:  14%|█▍        | 14/100 [01:38<11:12,  7.82s/it][A
+Evaluating videos:  16%|█▌        | 16/100 [02:11<13:31,  9.66s/it][A
+Evaluating videos:  28%|██▊       | 28/100 [03:00<07:18,  6.08s/it][A
+Evaluating videos:  34%|███▍      | 34/100 [03:58<07:54,  7.18s/it][AToken indices sequence length is longer than the specified maximum sequence length for this model (85 > 77). Running this sequence through the model will result in indexing errors
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Encountered caption longer than max_position_embeddings=77. Will truncate captions to thislength. If longer captions are needed, initialize argument `model_name_or_path` with a model thatsupports longer sequences.
+  warnings.warn(*args, **kwargs)
+
+Evaluating videos:  40%|████      | 40/100 [04:48<07:33,  7.56s/it][A
+Evaluating videos:  45%|████▌     | 45/100 [05:40<07:36,  8.30s/it][A
+Evaluating videos:  57%|█████▋    | 57/100 [06:25<04:24,  6.14s/it][A
+Evaluating videos:  68%|██████▊   | 68/100 [06:53<02:31,  4.74s/it][A
+Evaluating videos:  72%|███████▏  | 72/100 [07:10<02:10,  4.66s/it][A
+Evaluating videos:  74%|███████▍  | 74/100 [08:05<03:04,  7.09s/it][A
+Evaluating videos:  75%|███████▌  | 75/100 [08:51<04:06,  9.85s/it][A
+Evaluating videos:  76%|███████▌  | 76/100 [09:42<05:27, 13.64s/it][A
+Evaluating videos:  79%|███████▉  | 79/100 [10:28<04:55, 14.09s/it][A
+Evaluating videos:  90%|█████████ | 90/100 [11:14<01:22,  8.21s/it][A
+Evaluating videos:  91%|█████████ | 91/100 [12:00<01:38, 10.91s/it][AEvaluating videos: 100%|██████████| 100/100 [12:00<00:00,  7.21s/it]
+Evaluating annotation mapping files:  50%|█████     | 2/4 [12:52<14:50, 445.10s/it]
+Evaluating videos:   0%|          | 0/9 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 1/9 [00:32<04:21, 32.63s/it][A
+Evaluating videos:  33%|███▎      | 3/9 [01:15<02:25, 24.24s/it][A
+Evaluating videos:  89%|████████▉ | 8/9 [01:59<00:13, 13.02s/it][AEvaluating videos: 100%|██████████| 9/9 [01:59<00:00, 13.23s/it]
+Evaluating annotation mapping files:  75%|███████▌  | 3/4 [14:51<04:56, 296.25s/it]
+Evaluating videos:   0%|          | 0/10 [00:00<?, ?it/s][A
+Evaluating videos:  10%|█         | 1/10 [00:49<07:28, 49.88s/it][A
+Evaluating videos:  50%|█████     | 5/10 [01:35<01:25, 17.16s/it][AEvaluating videos: 100%|██████████| 10/10 [01:35<00:00,  9.56s/it]
+Evaluating annotation mapping files: 100%|██████████| 4/4 [16:26<00:00, 217.04s/it]Evaluating annotation mapping files: 100%|██████████| 4/4 [16:26<00:00, 246.71s/it]
+Loading weights:   0%|          | 0/590 [00:00<?, ?it/s]Loading weights: 100%|██████████| 590/590 [00:00<00:00, 63180.13it/s]
+[1mCLIPModel LOAD REPORT[0m from: openai/clip-vit-large-patch14
+Key                                  | Status     |  | 
+-------------------------------------+------------+--+-
+vision_model.embeddings.position_ids | UNEXPECTED |  | 
+text_model.embeddings.position_ids   | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+The image processor of type `CLIPImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/functional/image/lpips.py:332: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.load_state_dict(torch.load(model_path, map_location="cpu"), strict=False)
+Using cache found in /home/ids/skhairi/.cache/torch/hub/facebookresearch_dino_main
+/home/ids/skhairi/Code/co-tracker/cotracker/models/build_cotracker.py:41: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state_dict = torch.load(f, map_location="cpu")
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 56073.58it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights:   0%|          | 2/729 [00:00<00:47, 15.20it/s]Loading weights:   4%|▍         | 30/729 [00:00<00:04, 149.36it/s]Loading weights:   9%|▉         | 66/729 [00:00<00:02, 231.48it/s]Loading weights:  14%|█▍        | 102/729 [00:00<00:02, 273.16it/s]Loading weights:  19%|█▉        | 138/729 [00:00<00:02, 293.07it/s]Loading weights:  24%|██▍       | 174/729 [00:00<00:01, 308.35it/s]Loading weights:  29%|██▊       | 209/729 [00:00<00:01, 318.69it/s]Loading weights:  33%|███▎      | 242/729 [00:00<00:01, 303.83it/s]Loading weights:  37%|███▋      | 273/729 [00:01<00:01, 275.04it/s]Loading weights:  42%|████▏     | 304/729 [00:01<00:01, 275.62it/s]Loading weights:  46%|████▌     | 332/729 [00:01<00:01, 258.84it/s]Loading weights:  82%|████████▏ | 601/729 [00:01<00:00, 907.05it/s]Loading weights: 100%|██████████| 729/729 [00:01<00:00, 514.45it/s]
+The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+Evaluating annotation mapping files:   0%|          | 0/4 [00:00<?, ?it/s]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:   1%|          | 1/100 [00:51<1:24:50, 51.42s/it][AEvaluating videos: 100%|██████████| 100/100 [00:51<00:00,  1.94it/s]
+Evaluating annotation mapping files:  25%|██▌       | 1/4 [00:51<02:34, 51.42s/it]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 11/100 [00:49<06:37,  4.46s/it][A
+Evaluating videos:  14%|█▍        | 14/100 [01:38<11:13,  7.83s/it][A
+Evaluating videos:  16%|█▌        | 16/100 [02:12<13:37,  9.73s/it][A
+Evaluating videos:  28%|██▊       | 28/100 [03:01<07:19,  6.10s/it][A
+Evaluating videos:  34%|███▍      | 34/100 [03:59<07:56,  7.23s/it][AToken indices sequence length is longer than the specified maximum sequence length for this model (85 > 77). Running this sequence through the model will result in indexing errors
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Encountered caption longer than max_position_embeddings=77. Will truncate captions to thislength. If longer captions are needed, initialize argument `model_name_or_path` with a model thatsupports longer sequences.
+  warnings.warn(*args, **kwargs)
+
+Evaluating videos:  40%|████      | 40/100 [04:50<07:36,  7.61s/it][A
+Evaluating videos:  45%|████▌     | 45/100 [05:41<07:38,  8.34s/it][A
+Evaluating videos:  57%|█████▋    | 57/100 [06:26<04:23,  6.12s/it][A
+Evaluating videos:  68%|██████▊   | 68/100 [06:54<02:31,  4.73s/it][A
+Evaluating videos:  72%|███████▏  | 72/100 [07:11<02:10,  4.64s/it][A
+Evaluating videos:  74%|███████▍  | 74/100 [08:06<03:04,  7.09s/it][A
+Evaluating videos:  75%|███████▌  | 75/100 [08:52<04:06,  9.88s/it][A
+Evaluating videos:  76%|███████▌  | 76/100 [09:44<05:28, 13.69s/it][A
+Evaluating videos:  79%|███████▉  | 79/100 [10:30<04:57, 14.19s/it][A
+Evaluating videos:  90%|█████████ | 90/100 [11:17<01:22,  8.27s/it][A
+Evaluating videos:  91%|█████████ | 91/100 [12:04<01:39, 11.03s/it][AEvaluating videos: 100%|██████████| 100/100 [12:04<00:00,  7.24s/it]
+Evaluating annotation mapping files:  50%|█████     | 2/4 [12:55<14:54, 447.11s/it]
+Evaluating videos:   0%|          | 0/9 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 1/9 [00:31<04:13, 31.66s/it][A
+Evaluating videos:  33%|███▎      | 3/9 [01:14<02:24, 24.14s/it][A
+Evaluating videos:  89%|████████▉ | 8/9 [01:58<00:13, 13.04s/it][AEvaluating videos: 100%|██████████| 9/9 [01:58<00:00, 13.21s/it]
+Evaluating annotation mapping files:  75%|███████▌  | 3/4 [14:54<04:57, 297.24s/it]
+Evaluating videos:   0%|          | 0/10 [00:00<?, ?it/s][A
+Evaluating videos:  10%|█         | 1/10 [00:48<07:19, 48.82s/it][A
+Evaluating videos:  50%|█████     | 5/10 [01:33<01:24, 16.88s/it][AEvaluating videos: 100%|██████████| 10/10 [01:33<00:00,  9.40s/it]
+Evaluating annotation mapping files: 100%|██████████| 4/4 [16:28<00:00, 217.00s/it]Evaluating annotation mapping files: 100%|██████████| 4/4 [16:28<00:00, 247.10s/it]
+Loading weights:   0%|          | 0/590 [00:00<?, ?it/s]Loading weights: 100%|██████████| 590/590 [00:00<00:00, 57525.67it/s]
+[1mCLIPModel LOAD REPORT[0m from: openai/clip-vit-large-patch14
+Key                                  | Status     |  | 
+-------------------------------------+------------+--+-
+vision_model.embeddings.position_ids | UNEXPECTED |  | 
+text_model.embeddings.position_ids   | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+The image processor of type `CLIPImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/functional/image/lpips.py:332: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.load_state_dict(torch.load(model_path, map_location="cpu"), strict=False)
+Using cache found in /home/ids/skhairi/.cache/torch/hub/facebookresearch_dino_main
+/home/ids/skhairi/Code/co-tracker/cotracker/models/build_cotracker.py:41: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state_dict = torch.load(f, map_location="cpu")
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 9198.04it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights:   0%|          | 1/729 [00:00<01:37,  7.49it/s]Loading weights:   4%|▍         | 30/729 [00:00<00:04, 148.85it/s]Loading weights:   9%|▉         | 66/729 [00:00<00:02, 229.87it/s]Loading weights:  14%|█▍        | 102/729 [00:00<00:02, 270.89it/s]Loading weights:  19%|█▉        | 138/729 [00:00<00:02, 294.20it/s]Loading weights:  24%|██▎       | 172/729 [00:00<00:01, 304.25it/s]Loading weights:  28%|██▊       | 207/729 [00:00<00:01, 315.90it/s]Loading weights:  33%|███▎      | 239/729 [00:00<00:01, 303.07it/s]Loading weights:  37%|███▋      | 270/729 [00:01<00:01, 277.87it/s]Loading weights:  42%|████▏     | 304/729 [00:01<00:01, 287.48it/s]Loading weights:  46%|████▌     | 334/729 [00:01<00:01, 274.09it/s]Loading weights:  84%|████████▍ | 613/729 [00:01<00:00, 959.32it/s]Loading weights: 100%|██████████| 729/729 [00:01<00:00, 522.08it/s]
+The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+Evaluating annotation mapping files:   0%|          | 0/4 [00:00<?, ?it/s]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:   1%|          | 1/100 [00:51<1:24:45, 51.37s/it][AEvaluating videos: 100%|██████████| 100/100 [00:51<00:00,  1.95it/s]
+Evaluating annotation mapping files:  25%|██▌       | 1/4 [00:51<02:34, 51.37s/it]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 11/100 [00:48<06:35,  4.44s/it][A
+Evaluating videos:  14%|█▍        | 14/100 [01:38<11:10,  7.80s/it][A
+Evaluating videos:  16%|█▌        | 16/100 [02:11<13:32,  9.68s/it][A
+Evaluating videos:  28%|██▊       | 28/100 [03:01<07:19,  6.11s/it][A
+Evaluating videos:  34%|███▍      | 34/100 [03:58<07:55,  7.21s/it][AToken indices sequence length is longer than the specified maximum sequence length for this model (85 > 77). Running this sequence through the model will result in indexing errors
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Encountered caption longer than max_position_embeddings=77. Will truncate captions to thislength. If longer captions are needed, initialize argument `model_name_or_path` with a model thatsupports longer sequences.
+  warnings.warn(*args, **kwargs)
+
+Evaluating videos:  40%|████      | 40/100 [04:49<07:34,  7.58s/it][A
+Evaluating videos:  45%|████▌     | 45/100 [05:40<07:37,  8.31s/it][A
+Evaluating videos:  57%|█████▋    | 57/100 [06:26<04:24,  6.14s/it][A
+Evaluating videos:  68%|██████▊   | 68/100 [06:53<02:31,  4.74s/it][A
+Evaluating videos:  72%|███████▏  | 72/100 [07:10<02:10,  4.66s/it][A
+Evaluating videos:  74%|███████▍  | 74/100 [08:06<03:05,  7.12s/it][A
+Evaluating videos:  75%|███████▌  | 75/100 [08:53<04:08,  9.92s/it][A
+Evaluating videos:  76%|███████▌  | 76/100 [09:45<05:32, 13.84s/it][A
+Evaluating videos:  79%|███████▉  | 79/100 [10:32<05:00, 14.32s/it][A
+Evaluating videos:  90%|█████████ | 90/100 [11:19<01:23,  8.35s/it][A
+Evaluating videos:  91%|█████████ | 91/100 [12:06<01:40, 11.12s/it][AEvaluating videos: 100%|██████████| 100/100 [12:06<00:00,  7.27s/it]
+Evaluating annotation mapping files:  50%|█████     | 2/4 [12:57<14:57, 448.52s/it]
+Evaluating videos:   0%|          | 0/9 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 1/9 [00:31<04:13, 31.74s/it][A
+Evaluating videos:  33%|███▎      | 3/9 [01:15<02:26, 24.49s/it][A
+Evaluating videos:  89%|████████▉ | 8/9 [02:00<00:13, 13.18s/it][AEvaluating videos: 100%|██████████| 9/9 [02:00<00:00, 13.35s/it]
+Evaluating annotation mapping files:  75%|███████▌  | 3/4 [14:58<04:58, 298.59s/it]
+Evaluating videos:   0%|          | 0/10 [00:00<?, ?it/s][A
+Evaluating videos:  10%|█         | 1/10 [00:50<07:37, 50.82s/it][A
+Evaluating videos:  50%|█████     | 5/10 [01:36<01:25, 17.19s/it][AEvaluating videos: 100%|██████████| 10/10 [01:36<00:00,  9.60s/it]
+Evaluating annotation mapping files: 100%|██████████| 4/4 [16:34<00:00, 218.63s/it]Evaluating annotation mapping files: 100%|██████████| 4/4 [16:34<00:00, 248.53s/it]
+Loading weights:   0%|          | 0/590 [00:00<?, ?it/s]Loading weights: 100%|██████████| 590/590 [00:00<00:00, 57876.82it/s]
+[1mCLIPModel LOAD REPORT[0m from: openai/clip-vit-large-patch14
+Key                                  | Status     |  | 
+-------------------------------------+------------+--+-
+vision_model.embeddings.position_ids | UNEXPECTED |  | 
+text_model.embeddings.position_ids   | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+The image processor of type `CLIPImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/functional/image/lpips.py:332: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.load_state_dict(torch.load(model_path, map_location="cpu"), strict=False)
+Using cache found in /home/ids/skhairi/.cache/torch/hub/facebookresearch_dino_main
+/home/ids/skhairi/Code/co-tracker/cotracker/models/build_cotracker.py:41: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state_dict = torch.load(f, map_location="cpu")
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 7206.71it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights:   0%|          | 1/729 [00:00<01:36,  7.52it/s]Loading weights:   4%|▍         | 30/729 [00:00<00:04, 149.57it/s]Loading weights:   9%|▉         | 66/729 [00:00<00:02, 232.61it/s]Loading weights:  14%|█▍        | 102/729 [00:00<00:02, 274.39it/s]Loading weights:  19%|█▉        | 138/729 [00:00<00:01, 296.10it/s]Loading weights:  24%|██▍       | 174/729 [00:00<00:01, 312.11it/s]Loading weights:  29%|██▊       | 209/729 [00:00<00:01, 320.79it/s]Loading weights:  33%|███▎      | 242/729 [00:00<00:01, 308.55it/s]Loading weights:  38%|███▊      | 274/729 [00:01<00:01, 281.60it/s]Loading weights:  42%|████▏     | 304/729 [00:01<00:01, 281.39it/s]Loading weights:  46%|████▌     | 333/729 [00:01<00:01, 268.59it/s]Loading weights:  83%|████████▎ | 607/729 [00:01<00:00, 944.29it/s]Loading weights: 100%|██████████| 729/729 [00:01<00:00, 522.74it/s]
+The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+Evaluating annotation mapping files:   0%|          | 0/4 [00:00<?, ?it/s]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:   1%|          | 1/100 [00:51<1:24:55, 51.47s/it][AEvaluating videos: 100%|██████████| 100/100 [00:51<00:00,  1.94it/s]
+Evaluating annotation mapping files:  25%|██▌       | 1/4 [00:51<02:34, 51.47s/it]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 11/100 [00:49<06:38,  4.47s/it][A
+Evaluating videos:  14%|█▍        | 14/100 [01:38<11:15,  7.86s/it][A
+Evaluating videos:  16%|█▌        | 16/100 [02:13<13:51,  9.90s/it][A
+Evaluating videos:  28%|██▊       | 28/100 [03:04<07:30,  6.26s/it][A
+Evaluating videos:  34%|███▍      | 34/100 [04:04<08:08,  7.40s/it][AToken indices sequence length is longer than the specified maximum sequence length for this model (85 > 77). Running this sequence through the model will result in indexing errors
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Encountered caption longer than max_position_embeddings=77. Will truncate captions to thislength. If longer captions are needed, initialize argument `model_name_or_path` with a model thatsupports longer sequences.
+  warnings.warn(*args, **kwargs)
+
+Evaluating videos:  40%|████      | 40/100 [04:54<07:41,  7.69s/it][A
+Evaluating videos:  45%|████▌     | 45/100 [05:48<07:48,  8.53s/it][A
+Evaluating videos:  57%|█████▋    | 57/100 [06:34<04:30,  6.28s/it][A
+Evaluating videos:  68%|██████▊   | 68/100 [07:03<02:35,  4.86s/it][A
+Evaluating videos:  72%|███████▏  | 72/100 [07:20<02:13,  4.77s/it][A
+Evaluating videos:  74%|███████▍  | 74/100 [08:13<03:04,  7.08s/it][A
+Evaluating videos:  75%|███████▌  | 75/100 [09:05<04:17, 10.31s/it][A
+Evaluating videos:  76%|███████▌  | 76/100 [10:02<05:48, 14.53s/it][A
+Evaluating videos:  79%|███████▉  | 79/100 [10:52<05:18, 15.19s/it][A
+Evaluating videos:  90%|█████████ | 90/100 [11:43<01:28,  8.88s/it][A
+Evaluating videos:  91%|█████████ | 91/100 [12:34<01:47, 11.91s/it][AEvaluating videos: 100%|██████████| 100/100 [12:34<00:00,  7.54s/it]
+Evaluating annotation mapping files:  50%|█████     | 2/4 [13:25<15:29, 464.98s/it]
+Evaluating videos:   0%|          | 0/9 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 1/9 [00:34<04:39, 35.00s/it][A
+Evaluating videos:  33%|███▎      | 3/9 [01:22<02:40, 26.72s/it][A
+Evaluating videos:  89%|████████▉ | 8/9 [02:12<00:14, 14.51s/it][AEvaluating videos: 100%|██████████| 9/9 [02:12<00:00, 14.68s/it]
+Evaluating annotation mapping files:  75%|███████▌  | 3/4 [15:38<05:13, 313.00s/it]
+Evaluating videos:   0%|          | 0/10 [00:00<?, ?it/s][A
+Evaluating videos:  10%|█         | 1/10 [00:54<08:14, 54.90s/it][A
+Evaluating videos:  50%|█████     | 5/10 [01:45<01:34, 18.85s/it][AEvaluating videos: 100%|██████████| 10/10 [01:45<00:00, 10.51s/it]
+Evaluating annotation mapping files: 100%|██████████| 4/4 [17:23<00:00, 230.91s/it]Evaluating annotation mapping files: 100%|██████████| 4/4 [17:23<00:00, 260.78s/it]
+Loading weights:   0%|          | 0/590 [00:00<?, ?it/s]Loading weights: 100%|██████████| 590/590 [00:00<00:00, 63272.21it/s]
+[1mCLIPModel LOAD REPORT[0m from: openai/clip-vit-large-patch14
+Key                                  | Status     |  | 
+-------------------------------------+------------+--+-
+vision_model.embeddings.position_ids | UNEXPECTED |  | 
+text_model.embeddings.position_ids   | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+The image processor of type `CLIPImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/functional/image/lpips.py:332: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.load_state_dict(torch.load(model_path, map_location="cpu"), strict=False)
+Using cache found in /home/ids/skhairi/.cache/torch/hub/facebookresearch_dino_main
+/home/ids/skhairi/Code/co-tracker/cotracker/models/build_cotracker.py:41: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state_dict = torch.load(f, map_location="cpu")
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 11385.19it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights:   0%|          | 1/729 [00:00<01:36,  7.56it/s]Loading weights:   4%|▍         | 30/729 [00:00<00:04, 151.09it/s]Loading weights:   9%|▉         | 66/729 [00:00<00:02, 234.69it/s]Loading weights:  14%|█▍        | 102/729 [00:00<00:02, 276.62it/s]Loading weights:  19%|█▉        | 138/729 [00:00<00:01, 296.98it/s]Loading weights:  24%|██▍       | 174/729 [00:00<00:01, 312.68it/s]Loading weights:  29%|██▊       | 209/729 [00:00<00:01, 322.27it/s]Loading weights:  33%|███▎      | 242/729 [00:00<00:01, 310.37it/s]Loading weights:  38%|███▊      | 274/729 [00:01<00:01, 281.42it/s]Loading weights:  42%|████▏     | 304/729 [00:01<00:01, 283.27it/s]Loading weights:  46%|████▌     | 333/729 [00:01<00:01, 269.83it/s]Loading weights:  83%|████████▎ | 608/729 [00:01<00:00, 950.07it/s]Loading weights: 100%|██████████| 729/729 [00:01<00:00, 525.32it/s]
+The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+Evaluating annotation mapping files:   0%|          | 0/4 [00:00<?, ?it/s]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:   1%|          | 1/100 [00:51<1:25:02, 51.54s/it][AEvaluating videos: 100%|██████████| 100/100 [00:51<00:00,  1.94it/s]
+Evaluating annotation mapping files:  25%|██▌       | 1/4 [00:51<02:34, 51.54s/it]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 11/100 [00:49<06:38,  4.48s/it][A
+Evaluating videos:  14%|█▍        | 14/100 [01:39<11:17,  7.88s/it][A
+Evaluating videos:  16%|█▌        | 16/100 [02:12<13:38,  9.74s/it][A
+Evaluating videos:  28%|██▊       | 28/100 [03:01<07:20,  6.12s/it][A
+Evaluating videos:  34%|███▍      | 34/100 [04:00<07:59,  7.27s/it][AToken indices sequence length is longer than the specified maximum sequence length for this model (85 > 77). Running this sequence through the model will result in indexing errors
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Encountered caption longer than max_position_embeddings=77. Will truncate captions to thislength. If longer captions are needed, initialize argument `model_name_or_path` with a model thatsupports longer sequences.
+  warnings.warn(*args, **kwargs)
+
+Evaluating videos:  40%|████      | 40/100 [04:51<07:38,  7.63s/it][A
+Evaluating videos:  45%|████▌     | 45/100 [05:42<07:39,  8.35s/it][A
+Evaluating videos:  57%|█████▋    | 57/100 [06:27<04:23,  6.12s/it][A
+Evaluating videos:  68%|██████▊   | 68/100 [06:54<02:31,  4.72s/it][A
+Evaluating videos:  72%|███████▏  | 72/100 [07:11<02:10,  4.66s/it][A
+Evaluating videos:  74%|███████▍  | 74/100 [08:07<03:05,  7.13s/it][A
+Evaluating videos:  75%|███████▌  | 75/100 [08:54<04:08,  9.94s/it][A
+Evaluating videos:  76%|███████▌  | 76/100 [09:45<05:29, 13.74s/it][A
+Evaluating videos:  79%|███████▉  | 79/100 [10:32<04:59, 14.24s/it][A
+Evaluating videos:  90%|█████████ | 90/100 [11:19<01:23,  8.30s/it][A
+Evaluating videos:  91%|█████████ | 91/100 [12:05<01:39, 11.04s/it][AEvaluating videos: 100%|██████████| 100/100 [12:05<00:00,  7.26s/it]
+Evaluating annotation mapping files:  50%|█████     | 2/4 [12:57<14:56, 448.20s/it]
+Evaluating videos:   0%|          | 0/9 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 1/9 [00:31<04:11, 31.45s/it][A
+Evaluating videos:  33%|███▎      | 3/9 [01:14<02:24, 24.04s/it][A
+Evaluating videos:  89%|████████▉ | 8/9 [01:58<00:13, 13.00s/it][AEvaluating videos: 100%|██████████| 9/9 [01:58<00:00, 13.17s/it]
+Evaluating annotation mapping files:  75%|███████▌  | 3/4 [14:55<04:57, 297.66s/it]
+Evaluating videos:   0%|          | 0/10 [00:00<?, ?it/s][A
+Evaluating videos:  10%|█         | 1/10 [00:49<07:21, 49.09s/it][A
+Evaluating videos:  50%|█████     | 5/10 [01:34<01:25, 17.06s/it][AEvaluating videos: 100%|██████████| 10/10 [01:34<00:00,  9.49s/it]
+Evaluating annotation mapping files: 100%|██████████| 4/4 [16:30<00:00, 217.61s/it]Evaluating annotation mapping files: 100%|██████████| 4/4 [16:30<00:00, 247.71s/it]
+Loading weights:   0%|          | 0/590 [00:00<?, ?it/s]Loading weights: 100%|██████████| 590/590 [00:00<00:00, 63024.05it/s]
+[1mCLIPModel LOAD REPORT[0m from: openai/clip-vit-large-patch14
+Key                                  | Status     |  | 
+-------------------------------------+------------+--+-
+vision_model.embeddings.position_ids | UNEXPECTED |  | 
+text_model.embeddings.position_ids   | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+The image processor of type `CLIPImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/functional/image/lpips.py:332: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.load_state_dict(torch.load(model_path, map_location="cpu"), strict=False)
+Using cache found in /home/ids/skhairi/.cache/torch/hub/facebookresearch_dino_main
+/home/ids/skhairi/Code/co-tracker/cotracker/models/build_cotracker.py:41: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state_dict = torch.load(f, map_location="cpu")
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 11293.23it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights:   0%|          | 1/729 [00:00<01:37,  7.49it/s]Loading weights:   4%|▍         | 30/729 [00:00<00:04, 149.56it/s]Loading weights:   9%|▉         | 66/729 [00:00<00:02, 231.91it/s]Loading weights:  14%|█▍        | 102/729 [00:00<00:02, 273.13it/s]Loading weights:  19%|█▉        | 138/729 [00:00<00:02, 294.50it/s]Loading weights:  24%|██▍       | 174/729 [00:00<00:01, 311.11it/s]Loading weights:  29%|██▊       | 209/729 [00:00<00:01, 320.34it/s]Loading weights:  33%|███▎      | 242/729 [00:00<00:01, 305.39it/s]Loading weights:  37%|███▋      | 273/729 [00:01<00:01, 273.51it/s]Loading weights:  42%|████▏     | 304/729 [00:01<00:01, 275.77it/s]Loading weights:  46%|████▌     | 333/729 [00:01<00:01, 262.38it/s]Loading weights:  82%|████████▏ | 599/729 [00:01<00:00, 905.78it/s]Loading weights: 100%|██████████| 729/729 [00:01<00:00, 514.80it/s]
+The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+Evaluating annotation mapping files:   0%|          | 0/4 [00:00<?, ?it/s]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:   1%|          | 1/100 [00:51<1:25:34, 51.86s/it][AEvaluating videos: 100%|██████████| 100/100 [00:51<00:00,  1.93it/s]
+Evaluating annotation mapping files:  25%|██▌       | 1/4 [00:51<02:35, 51.87s/it]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 11/100 [00:49<06:38,  4.48s/it][A
+Evaluating videos:  14%|█▍        | 14/100 [01:40<11:26,  7.98s/it][A
+Evaluating videos:  16%|█▌        | 16/100 [02:14<13:49,  9.88s/it][A
+Evaluating videos:  28%|██▊       | 28/100 [03:05<07:31,  6.27s/it][A
+Evaluating videos:  34%|███▍      | 34/100 [04:04<08:09,  7.41s/it][AToken indices sequence length is longer than the specified maximum sequence length for this model (85 > 77). Running this sequence through the model will result in indexing errors
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Encountered caption longer than max_position_embeddings=77. Will truncate captions to thislength. If longer captions are needed, initialize argument `model_name_or_path` with a model thatsupports longer sequences.
+  warnings.warn(*args, **kwargs)
+
+Evaluating videos:  40%|████      | 40/100 [04:55<07:44,  7.73s/it][A
+Evaluating videos:  45%|████▌     | 45/100 [05:47<07:44,  8.45s/it][A
+Evaluating videos:  57%|█████▋    | 57/100 [06:32<04:26,  6.19s/it][A
+Evaluating videos:  68%|██████▊   | 68/100 [06:59<02:32,  4.76s/it][A
+Evaluating videos:  72%|███████▏  | 72/100 [07:17<02:11,  4.70s/it][A
+Evaluating videos:  74%|███████▍  | 74/100 [08:12<03:06,  7.16s/it][A
+Evaluating videos:  75%|███████▌  | 75/100 [08:59<04:08,  9.93s/it][A
+Evaluating videos:  76%|███████▌  | 76/100 [09:51<05:31, 13.79s/it][A
+Evaluating videos:  79%|███████▉  | 79/100 [10:38<05:01, 14.34s/it][A
+Evaluating videos:  90%|█████████ | 90/100 [11:26<01:24,  8.41s/it][A
+Evaluating videos:  91%|█████████ | 91/100 [12:13<01:40, 11.19s/it][AEvaluating videos: 100%|██████████| 100/100 [12:13<00:00,  7.34s/it]
+Evaluating annotation mapping files:  50%|█████     | 2/4 [13:05<15:05, 453.00s/it]
+Evaluating videos:   0%|          | 0/9 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 1/9 [00:32<04:16, 32.02s/it][A
+Evaluating videos:  33%|███▎      | 3/9 [01:15<02:26, 24.44s/it][A
+Evaluating videos:  89%|████████▉ | 8/9 [02:00<00:13, 13.27s/it][AEvaluating videos: 100%|██████████| 9/9 [02:00<00:00, 13.43s/it]
+Evaluating annotation mapping files:  75%|███████▌  | 3/4 [15:06<05:01, 301.33s/it]
+Evaluating videos:   0%|          | 0/10 [00:00<?, ?it/s][A
+Evaluating videos:  10%|█         | 1/10 [00:50<07:33, 50.34s/it][A
+Evaluating videos:  50%|█████     | 5/10 [01:37<01:27, 17.56s/it][AEvaluating videos: 100%|██████████| 10/10 [01:37<00:00,  9.76s/it]
+Evaluating annotation mapping files: 100%|██████████| 4/4 [16:44<00:00, 220.92s/it]Evaluating annotation mapping files: 100%|██████████| 4/4 [16:44<00:00, 251.04s/it]
+Loading weights:   0%|          | 0/590 [00:00<?, ?it/s]Loading weights: 100%|██████████| 590/590 [00:00<00:00, 63019.24it/s]
+[1mCLIPModel LOAD REPORT[0m from: openai/clip-vit-large-patch14
+Key                                  | Status     |  | 
+-------------------------------------+------------+--+-
+vision_model.embeddings.position_ids | UNEXPECTED |  | 
+text_model.embeddings.position_ids   | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+The image processor of type `CLIPImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/functional/image/lpips.py:332: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.load_state_dict(torch.load(model_path, map_location="cpu"), strict=False)
+Using cache found in /home/ids/skhairi/.cache/torch/hub/facebookresearch_dino_main
+/home/ids/skhairi/Code/co-tracker/cotracker/models/build_cotracker.py:41: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state_dict = torch.load(f, map_location="cpu")
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 11190.78it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights:   0%|          | 1/729 [00:00<01:37,  7.44it/s]Loading weights:   4%|▍         | 30/729 [00:00<00:04, 149.41it/s]Loading weights:   9%|▉         | 66/729 [00:00<00:02, 232.13it/s]Loading weights:  14%|█▍        | 102/729 [00:00<00:02, 274.80it/s]Loading weights:  19%|█▉        | 138/729 [00:00<00:01, 296.13it/s]Loading weights:  24%|██▍       | 174/729 [00:00<00:01, 311.50it/s]Loading weights:  29%|██▊       | 209/729 [00:00<00:01, 319.86it/s]Loading weights:  33%|███▎      | 242/729 [00:00<00:01, 304.97it/s]Loading weights:  37%|███▋      | 273/729 [00:01<00:01, 277.16it/s]Loading weights:  42%|████▏     | 304/729 [00:01<00:01, 278.69it/s]Loading weights:  46%|████▌     | 333/729 [00:01<00:01, 266.56it/s]Loading weights:  82%|████████▏ | 601/729 [00:01<00:00, 920.67it/s]Loading weights: 100%|██████████| 729/729 [00:01<00:00, 518.65it/s]
+The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+Evaluating annotation mapping files:   0%|          | 0/4 [00:00<?, ?it/s]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:   1%|          | 1/100 [00:51<1:25:15, 51.67s/it][AEvaluating videos: 100%|██████████| 100/100 [00:51<00:00,  1.94it/s]
+Evaluating annotation mapping files:  25%|██▌       | 1/4 [00:51<02:35, 51.68s/it]
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 11/100 [00:49<06:38,  4.48s/it][A
+Evaluating videos:  14%|█▍        | 14/100 [01:39<11:24,  7.95s/it][A
+Evaluating videos:  16%|█▌        | 16/100 [02:13<13:43,  9.80s/it][A
+Evaluating videos:  28%|██▊       | 28/100 [03:03<07:23,  6.16s/it][A
+Evaluating videos:  34%|███▍      | 34/100 [04:00<07:58,  7.25s/it][AToken indices sequence length is longer than the specified maximum sequence length for this model (85 > 77). Running this sequence through the model will result in indexing errors
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/utilities/prints.py:43: UserWarning: Encountered caption longer than max_position_embeddings=77. Will truncate captions to thislength. If longer captions are needed, initialize argument `model_name_or_path` with a model thatsupports longer sequences.
+  warnings.warn(*args, **kwargs)
+
+Evaluating videos:  40%|████      | 40/100 [04:51<07:36,  7.61s/it][A
+Evaluating videos:  45%|████▌     | 45/100 [05:44<07:44,  8.44s/it][A
+Evaluating videos:  57%|█████▋    | 57/100 [06:29<04:25,  6.17s/it][A
+Evaluating videos:  68%|██████▊   | 68/100 [06:57<02:33,  4.78s/it][A
+Evaluating videos:  72%|███████▏  | 72/100 [07:14<02:11,  4.69s/it][A
+Evaluating videos:  74%|███████▍  | 74/100 [08:11<03:08,  7.23s/it][A
+Evaluating videos:  75%|███████▌  | 75/100 [08:59<04:12, 10.09s/it][A
+Evaluating videos:  76%|███████▌  | 76/100 [09:51<05:34, 13.96s/it][A
+Evaluating videos:  79%|███████▉  | 79/100 [10:39<05:04, 14.51s/it][A
+Evaluating videos:  90%|█████████ | 90/100 [11:28<01:25,  8.53s/it][A
+Evaluating videos:  91%|█████████ | 91/100 [12:15<01:41, 11.32s/it][AEvaluating videos: 100%|██████████| 100/100 [12:15<00:00,  7.36s/it]
+Evaluating annotation mapping files:  50%|█████     | 2/4 [13:07<15:08, 454.18s/it]
+Evaluating videos:   0%|          | 0/9 [00:00<?, ?it/s][A
+Evaluating videos:  11%|█         | 1/9 [00:32<04:22, 32.79s/it][A
+Evaluating videos:  33%|███▎      | 3/9 [01:17<02:30, 25.00s/it][A
+Evaluating videos:  89%|████████▉ | 8/9 [02:03<00:13, 13.52s/it][AEvaluating videos: 100%|██████████| 9/9 [02:03<00:00, 13.69s/it]
+Evaluating annotation mapping files:  75%|███████▌  | 3/4 [15:10<05:03, 303.06s/it]
+Evaluating videos:   0%|          | 0/10 [00:00<?, ?it/s][A
+Evaluating videos:  10%|█         | 1/10 [00:49<07:22, 49.16s/it][A
+Evaluating videos:  50%|█████     | 5/10 [01:34<01:24, 16.88s/it][AEvaluating videos: 100%|██████████| 10/10 [01:34<00:00,  9.41s/it]
+Evaluating annotation mapping files: 100%|██████████| 4/4 [16:44<00:00, 220.55s/it]Evaluating annotation mapping files: 100%|██████████| 4/4 [16:44<00:00, 251.23s/it]

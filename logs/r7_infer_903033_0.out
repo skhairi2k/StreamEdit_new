@@ -1,0 +1,23 @@
+[r7_infer] job=903034 array_task=0 -> edit_type=1
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=1 method=r7_visual_prompting pairs=100 out=/projects/dataggen/outputs/five_bench/r7_visual_prompting/edit1
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.38975763320923 GB
+[[0, 1, 2]] [[0, 1, 2]]
+[ok] 0001_bus: 69 frames
+[warn] 0002_girl-dog: truncating 81 -> 69 frames (single-window KV-cache capacity, anchor=yes)
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.072444438934326 GB
+[[22, 23, 24]] [[22, 23, 24, 25]]
+[ok] 0002_girl-dog: 69 frames
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.07383871078491 GB
+[[0, 1, 2, 3, 4]] [[2, 3, 4]]
+[ok] 0003_ocean-birds: 33 frames
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.23311948776245 GB
+[[0, 1, 2, 3]] [[0, 1, 2, 3]]
+[ok] 0004_car-roundabout: 69 frames
+[warn] 0005_breakdance: truncating 81 -> 69 frames (single-window KV-cache capacity, anchor=yes)
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.072444438934326 GB
+[[1, 2, 3]] [[0, 1]]
+[ok] 0005_breakdance: 69 frames
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.072444438934326 GB
+[[0, 1, 2, 3]] [[1]]
