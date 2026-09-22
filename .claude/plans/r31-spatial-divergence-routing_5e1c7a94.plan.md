@@ -2,6 +2,7 @@
 name: "R31: Spatial Divergence Routing"
 overview: "Continuous, per-token, per-frame spatial divergence routing for StreamGVE's Q/K blend rate, replacing R26's two-value (background/foreground mask) release exponent with a field derived from measured per-token divergence."
 task_id: R31
+report_url: "https://claude.ai/artifact/YDRsYmV29tZLkPuS8wGhKq"
 isProject: true
 todos:
   - id: vectorize-rho
@@ -453,3 +454,37 @@ direction, R30 found no divergence measure ranks clips like an oracle). Two of f
 are strictly dominated; the other two do not beat anything, they land on a point R26
 already had. The per-token, continuous formulation did not produce a single arm that
 Pareto-improves on R26's constant-`b` two-value gate on this evidence.
+
+---
+
+⚠️ **AMENDED 2026-09-22, at R33's `verdict` step.** The `clip_target` axis every number
+above is read against (`clip_similarity_target_image`) was measured by R33 to not rank
+renders by edit strength on this case set at all: `Spearman(b, clip_target)` = +0.098
+mean, positive on only 11/22 clips -- a coin flip, dominated by the ~85%-shared
+src/trg prompt text CLIP is source-agnostic to. R33 replaced it with **CLIP-D**
+(`cos(E_img(render)-E_img(src), E_txt(trg)-E_txt(src))`), which actually tracks `b`
+(+0.408 mean, 17/22 positive) -- see
+`.claude/plans/r33-edit-alignment-metric-validation_7b2e4f91.plan.md`.
+
+Re-read on the corrected axis (R26 SPATIAL curve interpolated in `clip_d_prompt`,
+each R31 arm's own achieved `(clip_d_prompt, lpips_unedit_part)` compared against the
+curve's LPIPS at that same x, not at matched `clip_target`):
+
+| arm | `clip_d_prompt` | `lpips_unedit_part` | curve LPIPS at that `clip_d_prompt` | delta | verdict |
+|---|---|---|---|---|---|
+| **lpips** | 0.2257 | 0.2165 | 0.2166 (b=6-8) | −0.0002 | TIED |
+| **dino_patch** | 0.2312 | 0.2231 | 0.2234 (b=10-20) | −0.0003 | TIED |
+| **normals** | 0.2210 | 0.2115 | 0.2129 (b=4-6) | −0.0013 | TIED |
+| **latent** | 0.2155 | 0.2115 | 0.2108 (b=3-4) | +0.0008 | TIED |
+
+**The severity changes, the top-line conclusion does not.** `lpips` and `dino_patch` --
+called "strictly dominated" above -- were only worse-looking because the incumbent
+`clip_target` axis placed them at the WRONG x-position: `clip_target` barely tracks `b`
+at all, so "matched clip_target" was not matching edit strength, and the two arms that
+happened to score lower `clip_target` for reasons unrelated to `b` were charged for it
+on the LPIPS axis too. Read against `clip_d_prompt` -- an axis that actually tracks
+edit strength -- **all four arms land within ±0.0013 LPIPS of R26's own curve**, inside
+plotting/measurement noise: not dominated, but not beating it either. **No arm
+Pareto-improves on R26's constant-`b` gate still holds** -- the finding is now "four
+arms tied with the existing curve" rather than "two dominated, two tied", which is a
+WEAKER, more defensible negative than the original text states, not a reversal of it.

@@ -1,0 +1,6 @@
+[r33_fiveacc] node=node57 CUDA_VISIBLE_DEVICES=0
+GPU 0: NVIDIA L40S (UUID: GPU-e58e63a0-c511-c808-0f14-a37da193d112)
+[r33_fiveacc] job=1002742_5 stem=r33_fiveacc_taubg0_taufg10_vp
+[r33_fiveacc] scoring /projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg10_vp
+[r33_fiveacc] FAILED r33_fiveacc_taubg0_taufg10_vp -- arm dir does not exist: /projects/dataggen/outputs/five_bench/r26_spatial_tau/taubg0_taufg10_vp
+[r33_fiveacc]   (is /projects/dataggen mounted here?)

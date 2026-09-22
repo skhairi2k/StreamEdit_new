@@ -1,0 +1,361 @@
+Loading weights:   0%|          | 0/590 [00:00<?, ?it/s]Loading weights: 100%|██████████| 590/590 [00:00<00:00, 34650.56it/s]
+[1mCLIPModel LOAD REPORT[0m from: openai/clip-vit-large-patch14
+Key                                  | Status     |  | 
+-------------------------------------+------------+--+-
+vision_model.embeddings.position_ids | UNEXPECTED |  | 
+text_model.embeddings.position_ids   | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+The image processor of type `CLIPImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/functional/image/lpips.py:332: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.load_state_dict(torch.load(model_path, map_location="cpu"), strict=False)
+Using cache found in /home/ids/skhairi/.cache/torch/hub/facebookresearch_dino_main
+/home/ids/skhairi/Code/co-tracker/cotracker/models/build_cotracker.py:41: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  state_dict = torch.load(f, map_location="cpu")
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 14716.86it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights:   0%|          | 1/729 [00:00<07:23,  1.64it/s]Loading weights:   0%|          | 3/729 [00:00<02:22,  5.10it/s]Loading weights:   1%|          | 6/729 [00:00<01:20,  8.98it/s]Loading weights:   2%|▏         | 16/729 [00:01<00:26, 26.65it/s]Loading weights:   4%|▍         | 28/729 [00:01<00:15, 46.38it/s]Loading weights:   5%|▍         | 35/729 [00:01<00:14, 46.89it/s]Loading weights:   6%|▌         | 41/729 [00:01<00:15, 44.47it/s]Loading weights:   6%|▋         | 47/729 [00:01<00:14, 45.74it/s]Loading weights:   7%|▋         | 53/729 [00:01<00:16, 39.93it/s]Loading weights:   9%|▉         | 64/729 [00:01<00:14, 44.92it/s]Loading weights:   9%|▉         | 69/729 [00:02<00:14, 45.02it/s]Loading weights:  10%|█         | 76/729 [00:02<00:13, 48.01it/s]Loading weights:  11%|█         | 81/729 [00:02<00:18, 35.60it/s]Loading weights:  12%|█▏        | 87/729 [00:02<00:17, 36.99it/s]Loading weights:  13%|█▎        | 92/729 [00:02<00:16, 38.88it/s]Loading weights:  14%|█▍        | 101/729 [00:02<00:14, 44.01it/s]Loading weights:  15%|█▍        | 106/729 [00:02<00:14, 44.22it/s]Loading weights:  15%|█▌        | 112/729 [00:03<00:20, 30.71it/s]Loading weights:  17%|█▋        | 124/729 [00:03<00:14, 42.83it/s]Loading weights:  18%|█▊        | 130/729 [00:03<00:17, 34.88it/s]Loading weights:  19%|█▉        | 137/729 [00:03<00:16, 36.81it/s]Loading weights:  19%|█▉        | 142/729 [00:03<00:15, 38.59it/s]Loading weights:  20%|██        | 148/729 [00:04<00:14, 40.48it/s]Loading weights:  21%|██        | 154/729 [00:04<00:12, 44.52it/s]Loading weights:  22%|██▏       | 160/729 [00:04<00:14, 39.73it/s]Loading weights:  23%|██▎       | 168/729 [00:04<00:12, 46.04it/s]Loading weights:  24%|██▎       | 173/729 [00:04<00:12, 44.50it/s]Loading weights:  25%|██▌       | 184/729 [00:04<00:10, 53.52it/s]Loading weights:  26%|██▌       | 190/729 [00:04<00:11, 48.53it/s]Loading weights:  27%|██▋       | 196/729 [00:05<00:10, 49.12it/s]Loading weights:  28%|██▊       | 202/729 [00:05<00:11, 45.37it/s]Loading weights:  29%|██▊       | 208/729 [00:05<00:11, 46.14it/s]Loading weights:  29%|██▉       | 213/729 [00:05<00:11, 45.48it/s]Loading weights:  30%|███       | 220/729 [00:05<00:13, 37.82it/s]Loading weights:  32%|███▏      | 231/729 [00:05<00:09, 51.38it/s]Loading weights:  33%|███▎      | 237/729 [00:05<00:09, 49.63it/s]Loading weights:  34%|███▎      | 245/729 [00:06<00:09, 51.56it/s]Loading weights:  34%|███▍      | 251/729 [00:06<00:10, 43.60it/s]Loading weights:  35%|███▌      | 257/729 [00:06<00:10, 45.22it/s]Loading weights:  37%|███▋      | 268/729 [00:06<00:08, 52.45it/s]Loading weights:  38%|███▊      | 274/729 [00:06<00:11, 38.15it/s]Loading weights:  39%|███▊      | 281/729 [00:07<00:10, 40.96it/s]Loading weights:  39%|███▉      | 286/729 [00:07<00:11, 37.07it/s]Loading weights:  40%|████      | 293/729 [00:07<00:12, 35.75it/s]Loading weights:  41%|████      | 297/729 [00:07<00:12, 33.30it/s]Loading weights:  42%|████▏     | 304/729 [00:07<00:12, 35.21it/s]Loading weights:  43%|████▎     | 316/729 [00:07<00:09, 43.38it/s]Loading weights:  44%|████▍     | 321/729 [00:08<00:13, 30.05it/s]Loading weights:  45%|████▍     | 328/729 [00:08<00:13, 30.51it/s]Loading weights:  46%|████▌     | 332/729 [00:08<00:12, 30.57it/s]Loading weights:  48%|████▊     | 353/729 [00:08<00:06, 61.53it/s]Loading weights:  52%|█████▏    | 381/729 [00:08<00:03, 102.73it/s]Loading weights:  56%|█████▌    | 407/729 [00:08<00:02, 134.75it/s]Loading weights:  59%|█████▉    | 433/729 [00:09<00:01, 161.10it/s]Loading weights:  64%|██████▎   | 463/729 [00:09<00:01, 190.73it/s]Loading weights:  67%|██████▋   | 489/729 [00:09<00:01, 199.76it/s]Loading weights:  71%|███████▏  | 521/729 [00:09<00:00, 230.08it/s]Loading weights:  75%|███████▌  | 547/729 [00:09<00:00, 235.46it/s]Loading weights:  79%|███████▉  | 575/729 [00:09<00:00, 245.48it/s]Loading weights:  82%|████████▏ | 601/729 [00:09<00:00, 245.94it/s]Loading weights:  98%|█████████▊| 713/729 [00:09<00:00, 488.16it/s]Loading weights: 100%|██████████| 729/729 [00:09<00:00, 74.00it/s] 
+The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+Evaluating annotation mapping files:   0%|          | 0/6 [00:00<?, ?it/s]evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit1_FiVE.json ...
+
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle a bus in the image? Is the vehicle a jeep in the image? What object is present in the image?
+a) A city bus
+b) A jeep
+mc: b) A jeep
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:   1%|          | 1/100 [00:05<08:58,  5.44s/it][AEvaluating videos: 100%|██████████| 100/100 [00:05<00:00, 18.39it/s]
+processing file_id
+processing step14|five_acc_yes_no
+processing step14|five_acc_multi_choice
+processing step14|five_acc_union
+processing step14|five_acc_inter
+processing step14|five_acc
+Evaluating annotation mapping files:  17%|█▋        | 1/6 [00:05<00:27,  5.44s/it]evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit2_FiVE.json ...
+
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the object walking a woman in the image? Is the object walking a lion in the image? What object is present in the image? 
+a) A woman in a black dress 
+b) A lion
+mc: b) A lion
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  11%|█         | 11/100 [00:04<00:35,  2.51it/s][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle a car in the image? Is the vehicle a UFO in the image? What object is performing the action in the image? 
+a) A black car 
+b) A UFO
+mc: b) A UFO
+src_a: NO
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  14%|█▍        | 14/100 [00:09<01:04,  1.33it/s][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+1. Is the animal a horse in the image? 2. Is the animal a kangaroo in the image? What object is present in the image? 
+a) A kangaroo with a rider 
+b) A horse with a rider
+mc: b) A horse with a rider
+src_a: YES
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  16%|█▌        | 16/100 [00:12<01:18,  1.07it/s][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the person human in the image? Is the person a Pikachu in the image? What object is present in the image?
+a) A person 
+b) Pikachu
+mc: b) Pikachu
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  28%|██▊       | 28/100 [00:17<00:43,  1.67it/s][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+1. Is the animal a cow in the image? 2. Is the animal a dragon in the image? What object is present in the image? 
+a) A brown and white cow 
+b) A dragon
+mc: b) A dragon
+src_a: NO
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  34%|███▍      | 34/100 [00:23<00:46,  1.43it/s][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the player a human in the image? Is the player a dinosaur in the image? What object is present in the image? 
+a) a tennis player 
+b) a dinosaur
+mc: b) a dinosaur
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  40%|████      | 40/100 [00:27<00:44,  1.36it/s][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the dog a golden retriever in the image? Is the dog a robotic dog in the image? What type of dog is in the image?
+a) A golden retriever
+b) A robotic dog
+mc: b) A robotic dog
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  57%|█████▋    | 57/100 [00:32<00:19,  2.15it/s][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle an airplane in the image? Is the vehicle a spaceship in the image? What is the vehicle in the scene?
+a) A large passenger airplane
+b) A large spaceship
+mc: a) A large passenger airplane
+src_a: YES
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  68%|██████▊   | 68/100 [00:34<00:12,  2.59it/s][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the rhinoceros made of metal in the image? Is the dinosaur made of metal in the image? What object is present in the image?
+a) a large rhinoceros 
+b) A large robotic dinosaur
+mc: b) A large robotic dinosaur
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  74%|███████▍  | 74/100 [00:40<00:12,  2.01it/s][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle a bicycle in the image? Is the vehicle a skateboard in the image? What object is being used by the person in the image?
+a) A bicycle 
+b) A skateboard
+mc: b) A skateboard
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  75%|███████▌  | 75/100 [00:45<00:17,  1.40it/s][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the object hopping in the image? Is the object buzzing in the image? What object is present in the image? 
+a) A rabbit 
+b) A drone
+mc: b) A drone
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  76%|███████▌  | 76/100 [00:50<00:24,  1.03s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the deer bounding through the forest in the image? Is the snowmobile racing through the forest in the image? What object is present in the image?
+a) A deer 
+b) A snowmobile
+mc: b) A snowmobile
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  90%|█████████ | 90/100 [00:56<00:06,  1.50it/s][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the hawk in the image a bird? Is the hot air balloon in the image an aircraft? What object is present in the image?
+a) A hawk 
+b) A hot air balloon
+mc: b) A hot air balloon
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  91%|█████████ | 91/100 [01:01<00:08,  1.11it/s][AEvaluating videos: 100%|██████████| 100/100 [01:01<00:00,  1.63it/s]
+processing file_id
+processing step14|five_acc_yes_no
+processing step14|five_acc_multi_choice
+processing step14|five_acc_union
+processing step14|five_acc_inter
+processing step14|five_acc
+Evaluating annotation mapping files:  33%|███▎      | 2/6 [01:06<02:33, 38.32s/it]evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit3_FiVE.json ...
+
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the boy wearing a red cap in the image? Is the boy wearing a yellow cap in the image? What is the color of the cap the boy is wearing? 
+a) Red 
+b) Yellow
+mc: b) Yellow
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  17%|█▋        | 17/100 [00:03<00:18,  4.57it/s][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the boat white in the image? Is the boat pink in the image? What color is the boat in the image?
+a) White 
+b) Pink
+mc: b) Pink
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  58%|█████▊    | 58/100 [00:08<00:05,  7.33it/s][AEvaluating videos: 100%|██████████| 100/100 [00:08<00:00, 12.01it/s]
+processing file_id
+processing step14|five_acc_yes_no
+processing step14|five_acc_multi_choice
+processing step14|five_acc_union
+processing step14|five_acc_inter
+processing step14|five_acc
+Evaluating annotation mapping files:  50%|█████     | 3/6 [01:15<01:13, 24.63s/it]evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit4_FiVE.json ...
+
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the person wooden in the image? What is the material of the person in the image?
+a) Normal person
+b) Wooden person
+mc: b) Wooden person
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  28%|██▊       | 28/100 [00:03<00:10,  7.07it/s][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the dog plush in the image? What is the texture of the dog in the image? 
+a) Real dog 
+b) Plush dog 
+mc: b) Plush dog
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  89%|████████▉ | 89/100 [00:08<00:00, 11.63it/s][AEvaluating videos: 100%|██████████| 100/100 [00:08<00:00, 12.31it/s]
+processing file_id
+processing step14|five_acc_yes_no
+processing step14|five_acc_multi_choice
+processing step14|five_acc_union
+processing step14|five_acc_inter
+processing step14|five_acc
+Evaluating annotation mapping files:  67%|██████▋   | 4/6 [01:23<00:36, 18.11s/it]evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit5_FiVE.json ...
+
+Evaluating videos:   0%|          | 0/9 [00:00<?, ?it/s][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the musician wearing a hat in the image? Is the musician wearing a hat in the image?
+a) no
+b) yes
+mc: b) yes
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  11%|█         | 1/9 [00:02<00:20,  2.53s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is a dog following the woman? Is a dog following the woman? 
+a) no 
+b) yes
+mc: a) no
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  33%|███▎      | 3/9 [00:05<00:11,  1.91s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is there a giant inflatable flamingo on the SUV in the image? What object is present on the SUV in the image?
+a) A giant inflatable flamingo
+b) None of the above
+mc: a) A giant inflatable flamingo
+tgt_a: YES
+yn / mc:  1 0
+
+Evaluating videos:  89%|████████▉ | 8/9 [00:09<00:01,  1.07s/it][AEvaluating videos: 100%|██████████| 9/9 [00:09<00:00,  1.08s/it]
+processing file_id
+processing step14|five_acc_yes_no
+processing step14|five_acc_multi_choice
+processing step14|five_acc_union
+processing step14|five_acc_inter
+processing step14|five_acc
+Evaluating annotation mapping files:  83%|████████▎ | 5/6 [01:32<00:15, 15.08s/it]evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit6_FiVE.json ...
+
+Evaluating videos:   0%|          | 0/10 [00:00<?, ?it/s][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the man using a heavy gym ball during the workout in the image? Is the man not using a heavy gym ball during the workout in the image? What object is present in the image? 
+a) A man with a heavy gym ball 
+b) A man without a heavy gym ball
+mc: a) A man with a heavy gym ball
+src_a: NO
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  50%|█████     | 5/10 [00:05<00:05,  1.02s/it][AEvaluating videos: 100%|██████████| 10/10 [00:05<00:00,  1.96it/s]
+processing file_id
+processing step14|five_acc_yes_no
+processing step14|five_acc_multi_choice
+processing step14|five_acc_union
+processing step14|five_acc_inter
+processing step14|five_acc
+Evaluating annotation mapping files: 100%|██████████| 6/6 [01:38<00:00, 11.69s/it]Evaluating annotation mapping files: 100%|██████████| 6/6 [01:38<00:00, 16.34s/it]
+final averaging file_id
+final averaging step14|five_acc_yes_no
+final averaging step14|five_acc_multi_choice
+final averaging step14|five_acc_union
+final averaging step14|five_acc_inter
+final averaging step14|five_acc
+[evaluate] overall metrics -> evaluation/csv/r33_fiveacc_r31_normals_avg.csv

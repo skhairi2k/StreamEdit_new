@@ -1,0 +1,25 @@
+[r34_smoke] node=node39 CUDA_VISIBLE_DEVICES=0
+GPU 0: NVIDIA L40S (UUID: GPU-25914df1-99ab-e6a7-5f87-359345c089bf)
+[r34_smoke] torch 2.5.1+cu121 cuda_ok True
+=== GATE0: render tree is on a latent-frame grid and long enough ===
+GATE0-OK precond: 69 frames = 18 latent frames, chunk 1 = pixel 0-8
+=== RUN A: chunk-1 window (--frame_stride 1 --max_frames 9) ===
+[r34_smoke] RUN A exit=0 errors=0
+=== RUN B: whole video, no --max_frames (non-regression reference) ===
+[r34_smoke] RUN B exit=0 errors=0
+=== GATE1: the window is exactly pixel frames 0-8 ===
+GATE1-OK   window: lpips_unedit_part scored frames [0, 1, 2, 3, 4, 5, 6, 7, 8]
+GATE1-OK   window: clip_similarity_target_image scored frames [0, 1, 2, 3, 4, 5, 6, 7, 8]
+=== GATE2: the shared evaluator is unchanged without --max_frames ===
+    lpips_unedit_part: new=0.191157 stored=0.191165 rel=4.020e-05
+    clip_similarity_target_image: new=22.587562 stored=22.587563 rel=7.506e-08
+GATE2-OK   nonreg: matches the stored R26 reference within 0.001 (worst 4.020e-05); --max_frames is additive
+=== GATE3: the window actually changes the score ===
+GATE3-OK   differs: lpips_unedit_part chunk1=0.074525 whole=0.191157
+GATE3-OK   differs: clip_similarity_target_image chunk1=25.379681 whole=22.587562
+=== GATE4: frame 0 is the same frame pair in both windows ===
+GATE4-OK   aligned: lpips_unedit_part frame 0 = 0.055303 in both runs
+GATE4-OK   aligned: clip_similarity_target_image frame 0 = 26.881105 in both runs
+
+[r34_smoke] ALL GATES PASSED -- ready to submit r34_eval.sh
+--- r34_smoke done (exit 0) ---

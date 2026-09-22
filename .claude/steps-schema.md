@@ -12,6 +12,7 @@ Machine-readable `steps` block in plan YAML frontmatter. Used by `/run-step`.
 | `todos` | list | High-level checklist — implementation tasks and steps; managed alongside `steps` |
 | `steps` | list | Ordered execution steps (see below) |
 | `isProject` | bool | Set `true` for Claude to treat as a persistent project plan |
+| `report_url` | string | Published Claude Artifact URL for this task, set by `/report-task`. Its presence means a re-run of `/report-task` updates this artifact in place instead of publishing a new one. |
 
 ---
 
