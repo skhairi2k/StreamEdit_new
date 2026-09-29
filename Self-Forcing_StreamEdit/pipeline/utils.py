@@ -33,6 +33,24 @@ def _schedule_blend_rate(sched: str, step_idx: int, num_steps: int) -> float:
         return 1.0
     if sched == "zero":
         return 0.0
+    #✨ 2026-09-24, user-requested: a HARD STEP instead of a taper. Full source
+    # anchoring (s = 1, i.e. blender_rate = 0) for the first k denoising steps, then
+    # nothing at all (s = 0, i.e. blender_rate = 1 -- R20's `zero`, blending disabled)
+    # for every remaining step.
+    #
+    # Indexed on step_idx, NOT on the normalised p above: "during 1/2/3 steps" is a
+    # COUNT, and dividing by (num_steps - 1) would make the same name mean a different
+    # number of steps at a different --step. The two degenerate ends stay consistent
+    # with the named schedules: first0 == "zero", first{num_steps} == "const".
+    if sched.startswith("first"):
+        try:
+            k = int(sched[len("first"):])
+        except ValueError:
+            raise ValueError(f"unknown blend schedule: {sched!r} "
+                             f"(expected first<k>, e.g. first2)")
+        if k < 0:
+            raise ValueError(f"blend schedule {sched!r}: k must be >= 0")
+        return 1.0 if step_idx < k else 0.0
     raise ValueError(f"unknown blend schedule: {sched!r}")
 
 

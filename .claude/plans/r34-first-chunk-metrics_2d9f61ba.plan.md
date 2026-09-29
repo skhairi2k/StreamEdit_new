@@ -110,7 +110,8 @@ steps:
       - evaluation/csv/r34_perclip_gap.csv
       - evaluation/figures/r34_report.html
       - evaluation/figures/r34_video_pareto
-    status: pending
+    status: completed
+    completed_at: 2026-09-22
 isProject: true
 ---
 
@@ -189,6 +190,38 @@ question is visible rather than buried in a caveat.
 | New grid script | **New `r34_chunk1_grids.py`, not a patch to `r31_stage3_grids.py`** — that one hardcodes R31's 4 arms, the `r31_{arm}/step14` tree shape, and `evenly_spaced()` over the whole clip; R26's arms sit one level shallower |
 | Where steps 6-7 run | **Local, no GPU and no cluster** — neither script runs a model, and the render trees are on `~/Data`, readable from the login node |
 | Achievement axis of record | **CLIP-D**; `clip_similarity_target_image` reported alongside as the axis R33 showed to be uninformative on this case set |
+
+### ⛔ BLOCKED: no FiVE-Acc-vs-LPIPS / FiVE-Acc-vs-SSIM figures for R34
+
+Requested 2026-09-22 alongside the equivalent R31 and R33 figures (which are unblocked and
+scheduled — see those plans' `fiveacc-figures` steps). **Deferred for R34 on two independent
+measured grounds.** Recorded here so this is not rediscovered later:
+
+1. **The chunk-1 CSVs carry neither axis.** `edit{T}_FiVE_r34_*_chunk1_frame_stride1.csv`
+   contains exactly `lpips_unedit_part` and `clip_similarity_target_image` — there is no
+   `ssim_unedit_part` and no FiVE-Acc column. Producing either figure needs **two** new GPU
+   arrays: a re-eval of all 20 arms for SSIM, and a fresh Qwen2.5-VL array for FiVE-Acc. This
+   also directly reverses the Metrics row above ("Exactly three … No SSIM / NIQE /
+   structure-distance / FiVE-Acc / motion-fidelity"), so it is a scope change, not a gap.
+
+2. **FiVE-Acc cannot honour the chunk-1 window as the code stands — and would fail
+   silently.** `evaluate.py` lines 509-517 pass `tgt_video_path`, the render *directory*,
+   into `calculate_metric_video_level`; they do **not** pass the `--max_frames`-truncated
+   `tgt_image_names` list that every other metric in R34 is scored on.
+   `metrics_calculator.run_each_iter` then re-lists that directory itself via
+   `find_images_in_dir` and applies its own internal subsample down to
+   `five_acc_vlm_num_frames: 4` (`config.yaml`). A chunk-1 FiVE-Acc run would therefore write
+   **whole-video numbers into a file stemmed `_chunk1`** — precisely the class of mislabelling
+   R34's CSV stem convention exists to prevent, and undetectable from the output.
+
+A genuine fix means passing the truncated list into the `five_acc` path — `run_each_iter`
+already accepts a list and only falls back to `find_images_in_dir` for a directory — plus
+deciding what the VLM should see: at 9 frames, `run_each_iter`'s internal
+`stride = len(paths) // (len(paths) // num_frames)` yields `9 // 2 = 4`, feeding the VLM
+**2 frames**, not the 4 it is configured for. Two frames of a 9-frame window is a different
+measurement from the whole-video FiVE-Acc these figures would be compared against, so the
+comparison would need its own justification even after the plumbing is fixed. That is a
+`fivebench/` harness change, out of R34's scoring-only scope (see the Rendering row above).
 
 ## Step commands
 

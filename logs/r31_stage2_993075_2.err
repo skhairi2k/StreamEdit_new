@@ -1,74 +1,0 @@
-/bin/bash: /home/ids/skhairi/anaconda3/envs/streamgve/lib/libtinfo.so.6: no version information available (required by /bin/bash)
-Couldn't connect to the Hub: Cannot reach https://huggingface.co/api/models/prs-eth/marigold-normals-v1-1: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable..
-Will try to load from local cache.
-Loading pipeline components...:   0%|          | 0/5 [00:00<?, ?it/s]Loading pipeline components...:  20%|██        | 1/5 [00:00<00:01,  2.71it/s]
-Loading weights:   0%|          | 0/372 [00:00<?, ?it/s][A
-Loading weights:   9%|▊         | 32/372 [00:00<00:01, 316.08it/s][ALoading weights: 100%|██████████| 372/372 [00:00<00:00, 2170.62it/s]
-[1mCLIPTextModel LOAD REPORT[0m from: /home/ids/skhairi/.cache/huggingface/hub/models--prs-eth--marigold-normals-v1-1/snapshots/09cfdd258cb281fa006cf1afcd2284376d16687d/text_encoder
-Key                                | Status     |  | 
------------------------------------+------------+--+-
-text_model.embeddings.position_ids | UNEXPECTED |  | 
-
-[3mNotes:
-- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
-Loading pipeline components...:  40%|████      | 2/5 [00:00<00:01,  2.71it/s]Loading pipeline components...: 100%|██████████| 5/5 [00:00<00:00,  6.91it/s]Loading pipeline components...: 100%|██████████| 5/5 [00:00<00:00,  5.53it/s]
-Couldn't connect to the Hub: Cannot reach https://huggingface.co/api/models/prs-eth/marigold-normals-v1-1: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable..
-Will try to load from local cache.
-Loading pipeline components...:   0%|          | 0/5 [00:00<?, ?it/s]
-Loading weights:   0%|          | 0/372 [00:00<?, ?it/s][ALoading weights: 100%|██████████| 372/372 [00:00<00:00, 22494.43it/s]
-[1mCLIPTextModel LOAD REPORT[0m from: /home/ids/skhairi/.cache/huggingface/hub/models--prs-eth--marigold-normals-v1-1/snapshots/09cfdd258cb281fa006cf1afcd2284376d16687d/text_encoder
-Key                                | Status     |  | 
------------------------------------+------------+--+-
-text_model.embeddings.position_ids | UNEXPECTED |  | 
-
-[3mNotes:
-- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
-Loading pipeline components...:  80%|████████  | 4/5 [00:00<00:00, 31.36it/s]Loading pipeline components...: 100%|██████████| 5/5 [00:00<00:00, 16.20it/s]
-Couldn't connect to the Hub: Cannot reach https://huggingface.co/api/models/prs-eth/marigold-normals-v1-1: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable..
-Will try to load from local cache.
-Loading pipeline components...:   0%|          | 0/5 [00:00<?, ?it/s]
-Loading weights:   0%|          | 0/372 [00:00<?, ?it/s][ALoading weights: 100%|██████████| 372/372 [00:00<00:00, 20346.89it/s]
-[1mCLIPTextModel LOAD REPORT[0m from: /home/ids/skhairi/.cache/huggingface/hub/models--prs-eth--marigold-normals-v1-1/snapshots/09cfdd258cb281fa006cf1afcd2284376d16687d/text_encoder
-Key                                | Status     |  | 
------------------------------------+------------+--+-
-text_model.embeddings.position_ids | UNEXPECTED |  | 
-
-[3mNotes:
-- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
-Loading pipeline components...:  40%|████      | 2/5 [00:00<00:00, 19.01it/s]Loading pipeline components...:  80%|████████  | 4/5 [00:00<00:00, 12.22it/s]Loading pipeline components...: 100%|██████████| 5/5 [00:00<00:00, 15.87it/s]
-Couldn't connect to the Hub: Cannot reach https://huggingface.co/api/models/prs-eth/marigold-normals-v1-1: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable..
-Will try to load from local cache.
-Loading pipeline components...:   0%|          | 0/5 [00:00<?, ?it/s]
-Loading weights:   0%|          | 0/372 [00:00<?, ?it/s][ALoading weights: 100%|██████████| 372/372 [00:00<00:00, 25182.88it/s]
-[1mCLIPTextModel LOAD REPORT[0m from: /home/ids/skhairi/.cache/huggingface/hub/models--prs-eth--marigold-normals-v1-1/snapshots/09cfdd258cb281fa006cf1afcd2284376d16687d/text_encoder
-Key                                | Status     |  | 
------------------------------------+------------+--+-
-text_model.embeddings.position_ids | UNEXPECTED |  | 
-
-[3mNotes:
-- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
-Loading pipeline components...:  60%|██████    | 3/5 [00:00<00:00, 23.57it/s]Loading pipeline components...: 100%|██████████| 5/5 [00:00<00:00, 15.91it/s]
-Couldn't connect to the Hub: Cannot reach https://huggingface.co/api/models/prs-eth/marigold-normals-v1-1: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable..
-Will try to load from local cache.
-Loading pipeline components...:   0%|          | 0/5 [00:00<?, ?it/s]
-Loading weights:   0%|          | 0/372 [00:00<?, ?it/s][ALoading weights: 100%|██████████| 372/372 [00:00<00:00, 24394.64it/s]
-[1mCLIPTextModel LOAD REPORT[0m from: /home/ids/skhairi/.cache/huggingface/hub/models--prs-eth--marigold-normals-v1-1/snapshots/09cfdd258cb281fa006cf1afcd2284376d16687d/text_encoder
-Key                                | Status     |  | 
------------------------------------+------------+--+-
-text_model.embeddings.position_ids | UNEXPECTED |  | 
-
-[3mNotes:
-- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
-Loading pipeline components...:  60%|██████    | 3/5 [00:00<00:00, 11.88it/s]Loading pipeline components...: 100%|██████████| 5/5 [00:00<00:00, 16.18it/s]
-Couldn't connect to the Hub: Cannot reach https://huggingface.co/api/models/prs-eth/marigold-normals-v1-1: offline mode is enabled. To disable it, please unset the `HF_HUB_OFFLINE` environment variable..
-Will try to load from local cache.
-Loading pipeline components...:   0%|          | 0/5 [00:00<?, ?it/s]
-Loading weights:   0%|          | 0/372 [00:00<?, ?it/s][ALoading weights: 100%|██████████| 372/372 [00:00<00:00, 21607.25it/s]
-[1mCLIPTextModel LOAD REPORT[0m from: /home/ids/skhairi/.cache/huggingface/hub/models--prs-eth--marigold-normals-v1-1/snapshots/09cfdd258cb281fa006cf1afcd2284376d16687d/text_encoder
-Key                                | Status     |  | 
------------------------------------+------------+--+-
-text_model.embeddings.position_ids | UNEXPECTED |  | 
-
-[3mNotes:
-- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
-Loading pipeline components...:  80%|████████  | 4/5 [00:00<00:00, 13.57it/s]Loading pipeline components...: 100%|██████████| 5/5 [00:00<00:00, 16.08it/s]

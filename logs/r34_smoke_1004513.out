@@ -1,6 +1,0 @@
-[r34_smoke] node=node39 CUDA_VISIBLE_DEVICES=0
-GPU 0: NVIDIA L40S (UUID: GPU-25914df1-99ab-e6a7-5f87-359345c089bf)
-[r34_smoke] torch 2.5.1+cu121 cuda_ok True
-=== GATE0: render tree is on a latent-frame grid and long enough ===
-GATE0-OK precond: 69 frames = 18 latent frames, chunk 1 = pixel 0-8
-=== RUN A: chunk-1 window (--frame_stride 1 --max_frames 9) ===

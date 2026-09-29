@@ -1,5 +1,0 @@
-[r25_infer] job=960685_1 edit_type=2 method=r25_adaptive_vp
-[r25_infer] tau_map=/home/ids/skhairi/Code/StreamEdit_bigchantier/evaluation/csv/r25_tau_map.csv cases=/home/ids/skhairi/Code/StreamEdit_bigchantier/evaluation/cases.json expect 13 clip(s)
-[r25_infer] FAILED edit2
-[r25_infer] edit2 frame dirs: 0 (expected 13)
-[r25_infer] failures: 1

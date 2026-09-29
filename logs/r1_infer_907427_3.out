@@ -1,9 +1,0 @@
-[r1_infer] job=907431 array_task=3 -> edit_type=4
-Free VRAM 43.969970703125 GB
-KV inference with 3 frames per block
-[run_fivebench] edit_type=4 method=baseline pairs=100 vp_mode=novp blend_sched=paper(eq4) out=/projects/dataggen/outputs/five_bench/baseline/edit4
-Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.39012956619263 GB
-[[0, 1, 2]] [[0, 1, 2, 3]]
-[ok] 0001_bus: 69 frames
-Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.07185888290405 GB
-[[4, 5, 6]] [[4, 5, 6, 7]]

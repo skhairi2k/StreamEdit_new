@@ -1,4 +1,0 @@
-[quick_grid] 0076_A_rabbit: edit_type=2 video_name=0076_A_rabbit trg_word='A drone'
-[quick_grid] WARNING: no mask at /projects/dataggen/outputs/five_bench/r26_masks/edit2/0076_A_rabbit.npz
-[quick_grid] wrote evaluation/figures/r30_quick_0076_A_rabbit.png  (missing row(s): ['baseline $\\rho$=2', 'dino_patch $\\rho$=50.0', 'lpips $\\rho$=9.5', 'normals $\\rho$=3.3'])
-[r30_quick_grid_rabbit] done -> evaluation/figures/r30_quick_0076_A_rabbit.png

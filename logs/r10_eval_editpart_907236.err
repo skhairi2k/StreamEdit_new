@@ -1,35 +1,0 @@
-/bin/bash: /home/ids/skhairi/anaconda3/envs/streamgve/lib/libtinfo.so.6: no version information available (required by /bin/bash)
-Loading weights:   0%|          | 0/590 [00:00<?, ?it/s]Loading weights: 100%|██████████| 590/590 [00:00<00:00, 14440.08it/s]
-[1mCLIPModel LOAD REPORT[0m from: openai/clip-vit-large-patch14
-Key                                  | Status     |  | 
--------------------------------------+------------+--+-
-vision_model.embeddings.position_ids | UNEXPECTED |  | 
-text_model.embeddings.position_ids   | UNEXPECTED |  | 
-
-[3mNotes:
-- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
-The image processor of type `CLIPImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
-/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/functional/image/lpips.py:332: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
-  self.load_state_dict(torch.load(model_path, map_location="cpu"), strict=False)
-Using cache found in /home/ids/skhairi/.cache/torch/hub/facebookresearch_dino_main
-/home/ids/skhairi/Code/co-tracker/cotracker/models/build_cotracker.py:41: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
-  state_dict = torch.load(f, map_location="cpu")
-Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 7609.40it/s]
-Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights:   0%|          | 1/729 [00:00<01:16,  9.48it/s]Loading weights:   0%|          | 2/729 [00:00<01:34,  7.73it/s]Loading weights:   2%|▏         | 17/729 [00:00<00:11, 63.29it/s]Loading weights:   5%|▌         | 40/729 [00:00<00:06, 112.13it/s]Loading weights:   9%|▉         | 64/729 [00:00<00:04, 148.41it/s]Loading weights:  11%|█         | 80/729 [00:00<00:04, 151.53it/s]Loading weights:  14%|█▍        | 101/729 [00:00<00:03, 166.54it/s]Loading weights:  17%|█▋        | 124/729 [00:00<00:03, 182.44it/s]Loading weights:  20%|██        | 149/729 [00:01<00:02, 200.35it/s]Loading weights:  24%|██▎       | 173/729 [00:01<00:02, 209.76it/s]Loading weights:  27%|██▋       | 197/729 [00:01<00:02, 214.83it/s]Loading weights:  30%|███       | 221/729 [00:01<00:02, 210.38it/s]Loading weights:  34%|███▎      | 245/729 [00:01<00:02, 209.37it/s]Loading weights:  37%|███▋      | 269/729 [00:01<00:02, 216.84it/s]Loading weights:  40%|███▉      | 291/729 [00:01<00:02, 217.05it/s]Loading weights:  43%|████▎     | 313/729 [00:01<00:01, 217.64it/s]Loading weights:  46%|████▌     | 335/729 [00:01<00:01, 205.99it/s]Loading weights:  76%|███████▋  | 557/729 [00:01<00:00, 773.64it/s]Loading weights: 100%|██████████| 729/729 [00:02<00:00, 353.75it/s]
-The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
-Evaluating annotation mapping files:   0%|          | 0/6 [00:00<?, ?it/s]
-Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
-Evaluating videos:   1%|          | 1/100 [00:15<25:20, 15.35s/it][AEvaluating videos: 100%|██████████| 100/100 [00:15<00:00,  6.51it/s]
-Evaluating annotation mapping files:  17%|█▋        | 1/6 [00:15<01:16, 15.36s/it]
-Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
-Evaluating videos:  11%|█         | 11/100 [00:11<01:36,  1.08s/it][A
-Evaluating videos:  14%|█▍        | 14/100 [00:25<02:54,  2.02s/it][A
-Evaluating videos:  16%|█▌        | 16/100 [00:35<03:43,  2.66s/it][A
-Evaluating videos:  28%|██▊       | 28/100 [00:49<02:02,  1.71s/it][A
-Evaluating videos:  40%|████      | 40/100 [01:04<01:29,  1.48s/it][A
-Evaluating videos:  57%|█████▋    | 57/100 [01:18<00:49,  1.15s/it][A
-Evaluating videos:  68%|██████▊   | 68/100 [01:26<00:33,  1.03s/it][A
-Evaluating videos:  72%|███████▏  | 72/100 [01:31<00:29,  1.06s/it][A
-Evaluating videos:  74%|███████▍  | 74/100 [01:46<00:43,  1.65s/it][A
-Evaluating videos:  75%|███████▌  | 75/100 [02:00<00:59,  2.38s/it][A
-Evaluating videos:  76%|███████▌  | 76/100 [02:20<01:31,  3.82s/it][Aslurmstepd: error: *** JOB 907236 ON node57 CANCELLED AT 2026-07-22T17:00:06 ***

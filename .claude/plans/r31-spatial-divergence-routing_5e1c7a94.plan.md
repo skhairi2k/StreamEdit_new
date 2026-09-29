@@ -43,6 +43,22 @@ todos:
   - id: r31-score-script
     content: "evaluation/r31_score.py -- reuses r30_score.py's R26 reference-curve/oracle-frontier loading, scatters R31's 4 arms as single star-marker points on the same clip_target-vs-LPIPS / clip_target-vs-SSIM axes as r30_clip_vs_lpips.pdf / r30_clip_vs_ssim.pdf."
     status: completed
+  - id: fiveacc-score-script
+    content: "ADDED 2026-09-22: give evaluation/r31_score.py a SELECTABLE achievement axis, so the same four-arms-on-R26's-curve figure can be drawn against FiVE-Acc instead of CLIP-target -- r31_fiveacc_vs_lpips.pdf / r31_fiveacc_vs_ssim.pdf (yn_acc) plus an r31_fiveacc_mc_* pair (mc_acc). No new GPU work and no R31 re-eval: the x-values already exist on disk because R33's fiveacc step scored both R26's 16 constant-b arms and R31's own 4 arms (job 1004302). The script currently HARDCODES clip_similarity_target_image on x in five places -- clip_curve/ssim_curve and their uniform twins built at lines 164-174 off clip_target/uniform_clip_target (loaded at lines 153-154 and 159-161), the oracle_frontier calls at lines 176-179, load_r31_metric's own load at lines 119-120, the row[\"clip_target\"] scatter read at line 250, the hardcoded alpha=1 (CLIP) annotation at line 260, and the filenames f\"r31_clip_vs_lpips{tag}.pdf\" / f\"r31_clip_vs_ssim{tag}.pdf\" at lines 273/281. Add --x_metric and --fig_stem; the defaults must reproduce every current output byte-for-byte. See Code to touch for the full spec."
+    status: completed
+    note: "BUILT 2026-09-22 and smoke-tested. Script already had most of the dispatch
+      (_x_r26 / load_r31_arm_x / load_r31_metric returning generic 'x') from a prior
+      partial edit; this pass finished the two missing pieces: (1) --x_metric /
+      --fig_stem argparse flags, (2) make_figures using fig_stem + XSHORT/XLABEL instead
+      of hardcoded CLIP filenames/titles. XCOL keeps the historical 'clip_target' CSV
+      alias for the default axis so re-running with no flags reproduces r31_arms.csv
+      byte-for-byte (verified); yn_acc/mc_acc name the column after the metric.
+      R26 FiVE-Acc x via r33_axis_compare.load_fiveacc_metric (lazy import so the
+      default path does not pull scipy); R31 arms via r30_score.load_stem_metric with
+      stem=r33_fiveacc_r31_{arm}, stride=8.
+      ✅ REGRESSION CLEAN: default run reproduces r31_arms.csv byte-for-byte.
+      SMOKE: yn_acc all 4 arms at exactly 0.727273 (22 clips) -- matches R33's table;
+      mc_acc lpips=0.7727, other three=0.8182. Four PDFs written under /tmp."
   - id: slurm-stage3-lin04
     content: "EXPLORATORY: fork stage 3 to use r31_rho_map.py's new --mapping linear_threshold (tau=0 below m=0.4, linear in the exponent 0->50 for m in [0.4,1]), reusing stage 2's m fields unchanged. Output to new, non-overwriting paths (r31_rho_lin_t0.4/, r31_arms_lin04/)."
     status: completed
@@ -153,6 +169,29 @@ steps:
       - evaluation/figures/r31_clip_vs_lpips.pdf
       - evaluation/figures/r31_clip_vs_ssim.pdf
     status: completed
+
+  - id: fiveacc-figures
+    type: local
+    wait_for: stage3-score
+    command: |
+      python evaluation/r31_score.py --x_metric yn_acc \
+        --fig_stem r31_fiveacc -o evaluation/csv/r31_arms_fiveacc.csv
+      python evaluation/r31_score.py --x_metric mc_acc \
+        --fig_stem r31_fiveacc_mc -o evaluation/csv/r31_arms_fiveacc_mc.csv
+    output_paths:
+      - evaluation/csv/r31_arms_fiveacc.csv
+      - evaluation/csv/r31_arms_fiveacc_mc.csv
+      - evaluation/figures/r31_fiveacc_vs_lpips.pdf
+      - evaluation/figures/r31_fiveacc_vs_ssim.pdf
+      - evaluation/figures/r31_fiveacc_mc_vs_lpips.pdf
+      - evaluation/figures/r31_fiveacc_mc_vs_ssim.pdf
+    status: completed
+    completed_at: 2026-09-22
+    note: "Both invocations exit 0, 4/4 arms x 22 clips, all 6 output paths on disk.
+      r31_arms.csv (CLIP-target) confirmed unchanged -- distinct -o / --fig_stem worked.
+      yn_acc: all four arms sit at EXACTLY 0.727273 (matches R33's table); stars overplot
+      at one x and separate only on y -- no achievement ranking among R31 arms on this
+      axis. mc_acc: lpips=0.7727, other three=0.8182. Both LPIPS panels visually checked."
 
   - id: stage3-lin04
     type: sbatch
@@ -388,6 +427,9 @@ calibrated run is touched. This branch does not gate `verdict`.
 | `evaluation/r31_score.py` | R31-vs-R26 clip_target tradeoff plots -- ✅ **REBUILT 2026-09-15 (by the user) and VERIFIED by actually running it**: reproduces the pre-existing `r31_arms.csv` to full float precision (27.890228873671905 etc.). Also caught a real, previously-unknown bug: `evaluate.py`'s own top-level `r31_{arm}_avg.csv` / `r26_taubg{X}_taufg{Y}_vp_avg.csv` files are **NOT** a correct mean over the 22 cases -- confirmed directly (`edit1_FiVE_r31_lpips_frame_stride8.csv` row 1: `lpips_unedit_part=0.1978`; the corresponding `_avg.csv`: `196.35`, and R26's own per-clip file shows the same pattern, `0.195` vs. its `_avg.csv`'s `194.24` -- not a clean unit-scale bug, a genuinely different and wrong aggregation across the 6 edit types' uneven clip counts). This script (like `r30_score.py`) reads the per-edit-type per-clip CSVs directly and never touches the top-level avg CSV -- see the Verdict section below, which had to be corrected once this was caught |
 | `slurm_scripts/five_bench/r31_stage3_lin04.sh` | EXPLORATORY stage-3 fork, linear_threshold |
 | `slurm_scripts/five_bench/r31_eval_lin04.sh` | EXPLORATORY eval fork, linear_threshold |
+| `evaluation/r31_score.py` (2nd pass) | **Selectable achievement axis**, for the `fiveacc-score-script` todo. New `--x_metric` with choices `clip_similarity_target_image` (**default**, must reproduce every current output byte-for-byte) / `yn_acc` / `mc_acc`, and new `--fig_stem` defaulting to `r31_clip` so the existing filenames are unchanged. `--fig_stem` combines with the existing `{tag}` (`f"{fig_stem}_vs_lpips{tag}.pdf"`), so the `_lin04` fork still cannot collide. Seven hardcoded sites to parametrize: the `clip_target` / `uniform_clip_target` loads (lines 153-154, 159-161), the four `*_curve` list comprehensions built from them (lines 164-174), the two `oracle_frontier` calls (lines 176-179), `load_r31_metric`'s own `clip_similarity_target_image` load (lines 119-120), the `row["clip_target"]` scatter read (line 250), the hardcoded `"$\alpha$=1\n(CLIP)"` frontier annotation (line 260), and the two `x_label` strings (lines 276, 284). Follow `r33_score.py`'s convention exactly: keep the internal dict key generic and name only the **CSV column** after the metric that filled it, so the `out_rows` key `clip_target` becomes the metric name and the `fieldnames` list follows. |
+| ↳ where the FiVE-Acc x-values come from | **R33's CSVs, not a new R31 eval.** R31's own 9-metric harness never ran `five_acc`, and R33 already scored every arm this figure needs. The two R26 reference families come from `r33_axis_compare.load_fiveacc_metric(..., method_fmt=...)` — already written, already used by `r33_report_figures.py` — replacing the `load_r26_metric` calls for x only; the y-side `load_r26_metric` calls for LPIPS/SSIM are untouched. R31's own 4 arms come from `load_stem_metric`, promoted to `r30_score.py` by R33's `fiveacc-aggregate-script` todo (see that plan's Code to touch), called with `stem=f"r33_fiveacc_r31_{arm}"`, `stride=8`. **Do this after R33's promotion lands**, otherwise the function is still only importable from `r34_score.py` and R31 would take a backward dependency on R34. `load_r31_metric` / `load_r31_percli_metric` cannot be reused for the FiVE-Acc x because they glob the `r31_{arm}{suffix}` stem and R33's FiVE-Acc lives under `r33_fiveacc_r31_{arm}`; they stay as-is for LPIPS/SSIM. |
+| ↳ column names | R33's FiVE-Acc CSVs carry `evaluate.py`'s raw column names, so the `yn_acc` / `mc_acc` labels map to `five_acc_yes_no` / `five_acc_multi_choice` before being passed to either loader. (R33's plan documents the counterpart trap on its side: `r30_fiveacc_arms.csv` uses the short labels verbatim. R31 reads no R30 file, so only the raw names apply here.) |
 
 ## Decisions
 
@@ -409,6 +451,28 @@ calibrated run is touched. This branch does not gate `verdict`.
     finished** -- `normals` (Marigold ensemble) is consistently the slowest arm across stage
     2 and stage 3, so eval was launched per-arm as each became ready rather than waiting for
     all 4 to block behind the slowest one.
+- **FiVE-Acc x is READ from R33, never recomputed (2026-09-22).** A deliberate cross-task
+  dependency: R31's 9-metric harness never ran `five_acc`, and R33's `fiveacc` step already
+  scored exactly the arms this figure needs -- R26's 16 constant-`b` arms and R31's own 4 --
+  at the same `frame_stride 8` as every stored LPIPS/SSIM column. Re-running it under an
+  `r31_` stem would burn 440 videos of Qwen2.5-VL time to reproduce numbers that are already
+  on disk, and would risk the two runs disagreeing. The `fiveacc-figures` step is therefore
+  local-only and needs no GPU.
+- **`yn_acc` primary, `mc_acc` secondary (2026-09-22).** Measured over the 22 clips, ordered
+  by `b`: `yn_acc` SPATIAL runs 0.545 -> 0.818 (spread 0.273, monotone) and UNIFORM 0.500 ->
+  0.864 (spread 0.364, monotone), while `mc_acc` SPATIAL saturates from `b`=4 (spread 0.136)
+  and UNIFORM is outright non-monotone. So `yn_acc` takes the plain `r31_fiveacc_vs_*.pdf`
+  filenames and `mc_acc` is drawn alongside it under `r31_fiveacc_mc_vs_*.pdf` as a
+  robustness variant, to be read as a null result rather than a curve.
+- **`0040_tennis` stays in, all 22 clips.** FiVE-Acc is immune to the EOT-truncation bug that
+  forces its exclusion from the CLIP-family axes -- the bug corrupts the *text* embedding, and
+  FiVE-Acc never embeds the prompt (R33's `AXES` table marks these axes `tennis_immune=True`).
+  So these panels carry 22 clips per arm where R33's CLIP-D panels carry 21.
+- **Defaults must stay byte-for-byte.** `--x_metric` defaults to `clip_similarity_target_image`
+  and `--fig_stem` to `r31_clip`, so `stage3-score` and `stage3-score-lin04` re-run unchanged.
+  That is the regression check for this edit: re-run `python evaluation/r31_score.py` and diff
+  against the existing `evaluation/csv/r31_arms.csv` to full float precision, exactly as the
+  2026-09-15 rebuild was verified.
 
 ## Verdict
 

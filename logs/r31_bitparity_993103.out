@@ -1,8 +1,0 @@
-[bitparity] A: PATCHED tree
-Free VRAM 43.969970703125 GB
-KV inference with 3 frames per block
-Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.38975763320923 GB
-[[0, 1, 2]] [[0, 1, 2]]
-[r31_bitparity] sf_root=/home/ids/skhairi/Code/StreamEdit_bigchantier/Self-Forcing_StreamEdit
-[r31_bitparity] latent (1, 18, 16, 60, 104) float32 sum=145745.35937500 -> /tmp/claude-31716/-home-ids-skhairi-Code-StreamEdit-bigchantier/fe8efdc1-d630-4f05-b933-de751f8d3599/scratchpad/latent_patched.npz
-[bitparity] B: PRE-PATCH tree

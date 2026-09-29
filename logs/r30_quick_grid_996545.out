@@ -1,4 +1,0 @@
-[quick_grid] 0011_lucia_e2: edit_type=2 video_name=0011_lucia trg_word='A lion'
-[quick_grid] WARNING: no mask at /projects/dataggen/outputs/five_bench/r26_masks/edit2/0011_lucia.npz
-[quick_grid] wrote evaluation/figures/r30_quick_0011_lucia_e2.png  (missing row(s): ['R30 dino_patch', 'R30 lpips', 'R30 normals', 'baseline b=2'])
-[r30_quick_grid] done -> evaluation/figures/r30_quick_0011_lucia_e2.png

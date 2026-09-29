@@ -22,7 +22,7 @@ plt.show()
 plt.close()
 
 
-taus = range(2, 60, 2) 
+taus = range(2, 50, 2) 
 plt.figure(figsize=(9, 5.5))
 for tau in taus:
     print(f"tau: {tau}")

@@ -105,8 +105,11 @@ echo "[r31_stage1] measured index ${MEASURE_INDEX} is POST-injection (len//2=$((
 echo "[r31_stage1] dump_steps=${DUMP_STEPS} measure_index=${MEASURE_INDEX}"
 echo "[r31_stage1] frames -> ${OUT_ROOT}/${METHOD}   latents -> ${LATENT_DIR}/edit${T}"
 
-# r31_stage1.py pins --blend_sched zero internally; it is not exposed as a flag, so a
-# "stage 1" output can never be silently blended.
+# r31_stage1.py USED to pin --blend_sched zero internally. Since R35 (2026-09-24) it is a
+# flag over a closed set (zero|first1|first2|first3) with `zero` as the default, so this
+# invocation -- which passes no --blend_sched -- is unchanged and still fully unblended.
+# The startup log now echoes the resolved per-step blender_rate; for this script it must
+# read all 1s. Anything else means the default moved and this run is NOT a stage-1 run.
 python evaluation/r31_stage1.py \
   --edit_type "$T" \
   --method "$METHOD" \
