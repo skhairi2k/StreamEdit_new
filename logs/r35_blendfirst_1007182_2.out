@@ -1,0 +1,35 @@
+[r35] job=1007182_2 sched=first3 method=blend_first3_vp
+[r35] node=node06 CUDA_VISIBLE_DEVICES=0
+GPU 0: NVIDIA A100-PCIE-40GB (UUID: GPU-568ebfe5-dd79-ceff-e344-267d5d722401)
+[r35][gate] first3: s(p)         = [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[r35][gate] first3: blender_rate = [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]  (0=blend ON, 1=OFF)
+[r35][gate] PASS: source anchored for exactly 3 of 15 steps, then disabled
+--- [r35] blend_first3_vp / edit2 ---
+Free VRAM 39.07861328125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=2 method=blend_first3_vp pairs=1 vp_mode=vp blend_sched=first3 out=/home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_blendfirst/blend_first3_vp/edit2
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.498545169830322 GB
+[[0, 1, 2, 3, 4, 5]] [[0, 1, 2]]
+[ok] 0011_lucia: 69 frames  tau=2.0
+[run_fivebench] done edit2: 1/1 ok -> /home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_blendfirst/blend_first3_vp/edit2/_manifest.csv
+--- [r35] blend_first3_vp / edit3 ---
+Free VRAM 39.07861328125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=3 method=blend_first3_vp pairs=1 vp_mode=vp blend_sched=first3 out=/home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_blendfirst/blend_first3_vp/edit3
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.49910306930542 GB
+[[0, 1, 2]] [[4, 5, 6]]
+[ok] 0017_kid-football: 57 frames  tau=2.0
+[run_fivebench] done edit3: 1/1 ok -> /home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_blendfirst/blend_first3_vp/edit3/_manifest.csv
+--- [r35] blend_first3_vp / edit5 ---
+Free VRAM 39.07861328125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=5 method=blend_first3_vp pairs=1 vp_mode=vp blend_sched=first3 out=/home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_blendfirst/blend_first3_vp/edit5
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.498545169830322 GB
+[[0, 1, 2, 3, 4, 5]] [[7, 8, 9, 10, 11]]
+[ok] 0011_lucia: 69 frames  tau=2.0
+[run_fivebench] done edit5: 1/1 ok -> /home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_blendfirst/blend_first3_vp/edit5/_manifest.csv
+[r35] blend_first3_vp: frame dirs = 3 (expect 3)
+[r35]   /home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_blendfirst/blend_first3_vp/edit2/0011_lucia/: 69 frames
+[r35]   /home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_blendfirst/blend_first3_vp/edit3/0017_kid-football/: 57 frames
+[r35]   /home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_blendfirst/blend_first3_vp/edit5/0011_lucia/: 69 frames
+[r35] failures: 0

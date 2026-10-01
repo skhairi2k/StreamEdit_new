@@ -1,0 +1,11 @@
+[r31_stage3] preflight: validating 1 rho fields in /home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_rho/dino_first2
+[r31_stage3]   ok 0050_slackline: rho (15, 1560) range [2.04, 50.00]
+[r31_stage3] preflight PASS for all 1 clips
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[r31_stage3] edit_type=1 method=r35_dino_first2 pairs=1 vp_mode=vp steps=15 dump_steps=1 indices rho_dir=/home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_rho/dino_first2
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.390228271484375 GB
+[[0, 1]] [[0, 1, 2]]
+[r31_stage3] GATE1 PASS 0050_slackline: step[14] == final latent (shape (15, 1, 15, 16, 60, 104))
+[ok] 0050_slackline: 1 steps x 57 frames
+[r31_stage3] done edit1: 1/1 ok -> /home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_arms/r35_dino_first2/_manifest_edit1.csv

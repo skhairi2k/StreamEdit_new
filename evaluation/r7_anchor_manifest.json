@@ -1,0 +1,3354 @@
+[
+  {
+    "case_id": "edit1/0001_bus",
+    "edit_type": 1,
+    "video_name": "0001_bus",
+    "src_first_frame": "images/0001_bus/00001.jpg",
+    "first_frame_edit_prompt": "Change the city bus to a jeep.",
+    "anchor_image": "evaluation/anchors/edit1/0001_bus.png"
+  },
+  {
+    "case_id": "edit1/0002_girl-dog",
+    "edit_type": 1,
+    "video_name": "0002_girl-dog",
+    "src_first_frame": "images/0002_girl-dog/00001.jpg",
+    "first_frame_edit_prompt": "Replace the gray dog with a gray rabbit.",
+    "anchor_image": "evaluation/anchors/edit1/0002_girl-dog.png"
+  },
+  {
+    "case_id": "edit1/0003_ocean-birds",
+    "edit_type": 1,
+    "video_name": "0003_ocean-birds",
+    "src_first_frame": "images/0003_ocean-birds/00001.jpg",
+    "first_frame_edit_prompt": "Replace ibises with swans and pecking with exploring.",
+    "anchor_image": "evaluation/anchors/edit1/0003_ocean-birds.png"
+  },
+  {
+    "case_id": "edit1/0004_car-roundabout",
+    "edit_type": 1,
+    "video_name": "0004_car-roundabout",
+    "src_first_frame": "images/0004_car-roundabout/00001.jpg",
+    "first_frame_edit_prompt": "Change the Mini Cooper to a jeep.",
+    "anchor_image": "evaluation/anchors/edit1/0004_car-roundabout.png"
+  },
+  {
+    "case_id": "edit1/0005_breakdance",
+    "edit_type": 1,
+    "video_name": "0005_breakdance",
+    "src_first_frame": "images/0005_breakdance/00001.jpg",
+    "first_frame_edit_prompt": "Replace the breakdancer with Mario and change the color of the hoodie to blue to match Mario's iconic suit.",
+    "anchor_image": "evaluation/anchors/edit1/0005_breakdance.png"
+  },
+  {
+    "case_id": "edit1/0006_paragliding",
+    "edit_type": 1,
+    "video_name": "0006_paragliding",
+    "src_first_frame": "images/0006_paragliding/00001.jpg",
+    "first_frame_edit_prompt": "Change paraglider to hang glider.",
+    "anchor_image": "evaluation/anchors/edit1/0006_paragliding.png"
+  },
+  {
+    "case_id": "edit1/0007_guitar-violin",
+    "edit_type": 1,
+    "video_name": "0007_guitar-violin",
+    "src_first_frame": "images/0007_guitar-violin/00001.jpg",
+    "first_frame_edit_prompt": "Replace the musician playing the violin with a robot.",
+    "anchor_image": "evaluation/anchors/edit1/0007_guitar-violin.png"
+  },
+  {
+    "case_id": "edit1/0008_snowboard-race",
+    "edit_type": 1,
+    "video_name": "0008_snowboard-race",
+    "src_first_frame": "images/0008_snowboard-race/00001.jpg",
+    "first_frame_edit_prompt": "Replace the snowboarders with robots.",
+    "anchor_image": "evaluation/anchors/edit1/0008_snowboard-race.png"
+  },
+  {
+    "case_id": "edit1/0009_bear",
+    "edit_type": 1,
+    "video_name": "0009_bear",
+    "src_first_frame": "images/0009_bear/00001.jpg",
+    "first_frame_edit_prompt": "Replace the brown bear with a panda.",
+    "anchor_image": "evaluation/anchors/edit1/0009_bear.png"
+  },
+  {
+    "case_id": "edit1/0010_giant-slalom",
+    "edit_type": 1,
+    "video_name": "0010_giant-slalom",
+    "src_first_frame": "images/0010_giant-slalom/00001.jpg",
+    "first_frame_edit_prompt": "Change the skier to a snowboarder.",
+    "anchor_image": "evaluation/anchors/edit1/0010_giant-slalom.png"
+  },
+  {
+    "case_id": "edit1/0011_lucia",
+    "edit_type": 1,
+    "video_name": "0011_lucia",
+    "src_first_frame": "images/0011_lucia/00001.jpg",
+    "first_frame_edit_prompt": "Change the woman into a man and change her black dress into a black suit.",
+    "anchor_image": "evaluation/anchors/edit1/0011_lucia.png"
+  },
+  {
+    "case_id": "edit1/0012_goat",
+    "edit_type": 1,
+    "video_name": "0012_goat",
+    "src_first_frame": "images/0012_goat/00001.jpg",
+    "first_frame_edit_prompt": "Change the mountain goat to a mountain sheep.",
+    "anchor_image": "evaluation/anchors/edit1/0012_goat.png"
+  },
+  {
+    "case_id": "edit1/0013_golf",
+    "edit_type": 1,
+    "video_name": "0013_golf",
+    "src_first_frame": "images/0013_golf/00001.jpg",
+    "first_frame_edit_prompt": "Change the man into an ironman and change his shirt and shorts into a black suit.",
+    "anchor_image": "evaluation/anchors/edit1/0013_golf.png"
+  },
+  {
+    "case_id": "edit1/0014_burnout",
+    "edit_type": 1,
+    "video_name": "0014_burnout",
+    "src_first_frame": "images/0014_burnout/00001.jpg",
+    "first_frame_edit_prompt": "Change the car into a jeep.",
+    "anchor_image": "evaluation/anchors/edit1/0014_burnout.png"
+  },
+  {
+    "case_id": "edit1/0015_car-shadow",
+    "edit_type": 1,
+    "video_name": "0015_car-shadow",
+    "src_first_frame": "images/0015_car-shadow/00001.jpg",
+    "first_frame_edit_prompt": "Change the car to a jeep.",
+    "anchor_image": "evaluation/anchors/edit1/0015_car-shadow.png"
+  },
+  {
+    "case_id": "edit1/0016_horsejump-high",
+    "edit_type": 1,
+    "video_name": "0016_horsejump-high",
+    "src_first_frame": "images/0016_horsejump-high/00001.jpg",
+    "first_frame_edit_prompt": "Change the horse to a camel.",
+    "anchor_image": "evaluation/anchors/edit1/0016_horsejump-high.png"
+  },
+  {
+    "case_id": "edit1/0017_kid-football",
+    "edit_type": 1,
+    "video_name": "0017_kid-football",
+    "src_first_frame": "images/0017_kid-football/00001.jpg",
+    "first_frame_edit_prompt": "Change the boy to a girl.",
+    "anchor_image": "evaluation/anchors/edit1/0017_kid-football.png"
+  },
+  {
+    "case_id": "edit1/0018_breakdance-flare",
+    "edit_type": 1,
+    "video_name": "0018_breakdance-flare",
+    "src_first_frame": "images/0018_breakdance-flare/00001.jpg",
+    "first_frame_edit_prompt": "Change the breakdancer to a Beast.",
+    "anchor_image": "evaluation/anchors/edit1/0018_breakdance-flare.png"
+  },
+  {
+    "case_id": "edit1/0019_tennis-vest",
+    "edit_type": 1,
+    "video_name": "0019_tennis-vest",
+    "src_first_frame": "images/0019_tennis-vest/00001.jpg",
+    "first_frame_edit_prompt": "Change the tennis player to an ultraman.",
+    "anchor_image": "evaluation/anchors/edit1/0019_tennis-vest.png"
+  },
+  {
+    "case_id": "edit1/0020_monkeys",
+    "edit_type": 1,
+    "video_name": "0020_monkeys",
+    "src_first_frame": "images/0020_monkeys/00001.jpg",
+    "first_frame_edit_prompt": "Change the monkeys to chimpanzees.",
+    "anchor_image": "evaluation/anchors/edit1/0020_monkeys.png"
+  },
+  {
+    "case_id": "edit1/0021_landing",
+    "edit_type": 1,
+    "video_name": "0021_landing",
+    "src_first_frame": "images/0021_landing/00001.jpg",
+    "first_frame_edit_prompt": "Replace the fighter jet with a helicopter.",
+    "anchor_image": "evaluation/anchors/edit1/0021_landing.png"
+  },
+  {
+    "case_id": "edit1/0022_skate-jump",
+    "edit_type": 1,
+    "video_name": "0022_skate-jump",
+    "src_first_frame": "images/0022_skate-jump/00001.jpg",
+    "first_frame_edit_prompt": "Replace the skateboarder with a spiderman.",
+    "anchor_image": "evaluation/anchors/edit1/0022_skate-jump.png"
+  },
+  {
+    "case_id": "edit1/0023_kayak-race",
+    "edit_type": 1,
+    "video_name": "0023_kayak-race",
+    "src_first_frame": "images/0023_kayak-race/00001.jpg",
+    "first_frame_edit_prompt": "Change 'kayakers' to 'canoeists",
+    "anchor_image": "evaluation/anchors/edit1/0023_kayak-race.png"
+  },
+  {
+    "case_id": "edit1/0024_hockey",
+    "edit_type": 1,
+    "video_name": "0024_hockey",
+    "src_first_frame": "images/0024_hockey/00001.jpg",
+    "first_frame_edit_prompt": "Change the person to a batman.",
+    "anchor_image": "evaluation/anchors/edit1/0024_hockey.png"
+  },
+  {
+    "case_id": "edit1/0025_baseball",
+    "edit_type": 1,
+    "video_name": "0025_baseball",
+    "src_first_frame": "images/0025_baseball/00001.jpg",
+    "first_frame_edit_prompt": "Replace the baseball player with a spiderman.",
+    "anchor_image": "evaluation/anchors/edit1/0025_baseball.png"
+  },
+  {
+    "case_id": "edit1/0026_table-tennis",
+    "edit_type": 1,
+    "video_name": "0026_table-tennis",
+    "src_first_frame": "images/0026_table-tennis/00001.jpg",
+    "first_frame_edit_prompt": "Replace the table tennis players with spidermen.",
+    "anchor_image": "evaluation/anchors/edit1/0026_table-tennis.png"
+  },
+  {
+    "case_id": "edit1/0027_dance-jump",
+    "edit_type": 1,
+    "video_name": "0027_dance-jump",
+    "src_first_frame": "images/0027_dance-jump/00001.jpg",
+    "first_frame_edit_prompt": "Change the young girl to a spiderman.",
+    "anchor_image": "evaluation/anchors/edit1/0027_dance-jump.png"
+  },
+  {
+    "case_id": "edit1/0028_kite-walk",
+    "edit_type": 1,
+    "video_name": "0028_kite-walk",
+    "src_first_frame": "images/0028_kite-walk/00001.jpg",
+    "first_frame_edit_prompt": "Change the person into a spiderman.",
+    "anchor_image": "evaluation/anchors/edit1/0028_kite-walk.png"
+  },
+  {
+    "case_id": "edit1/0029_horsejump-stick",
+    "edit_type": 1,
+    "video_name": "0029_horsejump-stick",
+    "src_first_frame": "images/0029_horsejump-stick/00001.jpg",
+    "first_frame_edit_prompt": "Change the horse to a camel.",
+    "anchor_image": "evaluation/anchors/edit1/0029_horsejump-stick.png"
+  },
+  {
+    "case_id": "edit1/0030_rallye",
+    "edit_type": 1,
+    "video_name": "0030_rallye",
+    "src_first_frame": "images/0030_rallye/00001.jpg",
+    "first_frame_edit_prompt": "Replace the car with a jeep.",
+    "anchor_image": "evaluation/anchors/edit1/0030_rallye.png"
+  },
+  {
+    "case_id": "edit1/0031_soccerball",
+    "edit_type": 1,
+    "video_name": "0031_soccerball",
+    "src_first_frame": "images/0031_soccerball/00001.jpg",
+    "first_frame_edit_prompt": "Change the soccer ball to a basketball.",
+    "anchor_image": "evaluation/anchors/edit1/0031_soccerball.png"
+  },
+  {
+    "case_id": "edit1/0032_mermaid",
+    "edit_type": 1,
+    "video_name": "0032_mermaid",
+    "src_first_frame": "images/0032_mermaid/00001.jpg",
+    "first_frame_edit_prompt": "Replace the woman with a robot.",
+    "anchor_image": "evaluation/anchors/edit1/0032_mermaid.png"
+  },
+  {
+    "case_id": "edit1/0033_horsejump-low",
+    "edit_type": 1,
+    "video_name": "0033_horsejump-low",
+    "src_first_frame": "images/0033_horsejump-low/00001.jpg",
+    "first_frame_edit_prompt": "Change the horse to a camel.",
+    "anchor_image": "evaluation/anchors/edit1/0033_horsejump-low.png"
+  },
+  {
+    "case_id": "edit1/0034_cows",
+    "edit_type": 1,
+    "video_name": "0034_cows",
+    "src_first_frame": "images/0034_cows/00001.jpg",
+    "first_frame_edit_prompt": "Change the cow into a horse.",
+    "anchor_image": "evaluation/anchors/edit1/0034_cows.png"
+  },
+  {
+    "case_id": "edit1/0035_helicopter",
+    "edit_type": 1,
+    "video_name": "0035_helicopter",
+    "src_first_frame": "images/0035_helicopter/00001.jpg",
+    "first_frame_edit_prompt": "Replace the helicopter with a drone.",
+    "anchor_image": "evaluation/anchors/edit1/0035_helicopter.png"
+  },
+  {
+    "case_id": "edit1/0036_camel",
+    "edit_type": 1,
+    "video_name": "0036_camel",
+    "src_first_frame": "images/0036_camel/00001.jpg",
+    "first_frame_edit_prompt": "Replace the camels with horses.",
+    "anchor_image": "evaluation/anchors/edit1/0036_camel.png"
+  },
+  {
+    "case_id": "edit1/0037_snowboard-sand",
+    "edit_type": 1,
+    "video_name": "0037_snowboard-sand",
+    "src_first_frame": "images/0037_snowboard-sand/00001.jpg",
+    "first_frame_edit_prompt": "Replace the woman with spiderman.",
+    "anchor_image": "evaluation/anchors/edit1/0037_snowboard-sand.png"
+  },
+  {
+    "case_id": "edit1/0038_motorbike",
+    "edit_type": 1,
+    "video_name": "0038_motorbike",
+    "src_first_frame": "images/0038_motorbike/00001.jpg",
+    "first_frame_edit_prompt": "Change the motorbike to a bicycle.",
+    "anchor_image": "evaluation/anchors/edit1/0038_motorbike.png"
+  },
+  {
+    "case_id": "edit1/0039_chamaleon",
+    "edit_type": 1,
+    "video_name": "0039_chamaleon",
+    "src_first_frame": "images/0039_chamaleon/00001.jpg",
+    "first_frame_edit_prompt": "Change the chameleon to an iguana.",
+    "anchor_image": "evaluation/anchors/edit1/0039_chamaleon.png"
+  },
+  {
+    "case_id": "edit1/0040_tennis",
+    "edit_type": 1,
+    "video_name": "0040_tennis",
+    "src_first_frame": "images/0040_tennis/00001.jpg",
+    "first_frame_edit_prompt": "Replace the tennis player with a spiderman.",
+    "anchor_image": "evaluation/anchors/edit1/0040_tennis.png"
+  },
+  {
+    "case_id": "edit1/0041_longboard",
+    "edit_type": 1,
+    "video_name": "0041_longboard",
+    "src_first_frame": "images/0041_longboard/00001.jpg",
+    "first_frame_edit_prompt": "Change the man into an astronaut.",
+    "anchor_image": "evaluation/anchors/edit1/0041_longboard.png"
+  },
+  {
+    "case_id": "edit1/0042_gym-ball",
+    "edit_type": 1,
+    "video_name": "0042_gym-ball",
+    "src_first_frame": "images/0042_gym-ball/00001.jpg",
+    "first_frame_edit_prompt": "Change the man to an Iron man.",
+    "anchor_image": "evaluation/anchors/edit1/0042_gym-ball.png"
+  },
+  {
+    "case_id": "edit1/0043_parkour",
+    "edit_type": 1,
+    "video_name": "0043_parkour",
+    "src_first_frame": "images/0043_parkour/00001.jpg",
+    "first_frame_edit_prompt": "Replace the man with a spiderman.",
+    "anchor_image": "evaluation/anchors/edit1/0043_parkour.png"
+  },
+  {
+    "case_id": "edit1/0044_snowboard",
+    "edit_type": 1,
+    "video_name": "0044_snowboard",
+    "src_first_frame": "images/0044_snowboard/00001.jpg",
+    "first_frame_edit_prompt": "Change snowboarder to skier",
+    "anchor_image": "evaluation/anchors/edit1/0044_snowboard.png"
+  },
+  {
+    "case_id": "edit1/0045_butterfly",
+    "edit_type": 1,
+    "video_name": "0045_butterfly",
+    "src_first_frame": "images/0045_butterfly/00001.jpg",
+    "first_frame_edit_prompt": "Change the butterfly to a dragonfly.",
+    "anchor_image": "evaluation/anchors/edit1/0045_butterfly.png"
+  },
+  {
+    "case_id": "edit1/0046_blackswan",
+    "edit_type": 1,
+    "video_name": "0046_blackswan",
+    "src_first_frame": "images/0046_blackswan/00001.jpg",
+    "first_frame_edit_prompt": "Change the swan to a duck.",
+    "anchor_image": "evaluation/anchors/edit1/0046_blackswan.png"
+  },
+  {
+    "case_id": "edit1/0047_judo",
+    "edit_type": 1,
+    "video_name": "0047_judo",
+    "src_first_frame": "images/0047_judo/00001.jpg",
+    "first_frame_edit_prompt": "Replace the judo practitioners with spidermen.",
+    "anchor_image": "evaluation/anchors/edit1/0047_judo.png"
+  },
+  {
+    "case_id": "edit1/0048_hike",
+    "edit_type": 1,
+    "video_name": "0048_hike",
+    "src_first_frame": "images/0048_hike/00001.jpg",
+    "first_frame_edit_prompt": "Replace the man with a spiderman.",
+    "anchor_image": "evaluation/anchors/edit1/0048_hike.png"
+  },
+  {
+    "case_id": "edit1/0049_speed-skating",
+    "edit_type": 1,
+    "video_name": "0049_speed-skating",
+    "src_first_frame": "images/0049_speed-skating/00001.jpg",
+    "first_frame_edit_prompt": "Replace the speed skaters with spidermen.",
+    "anchor_image": "evaluation/anchors/edit1/0049_speed-skating.png"
+  },
+  {
+    "case_id": "edit1/0050_slackline",
+    "edit_type": 1,
+    "video_name": "0050_slackline",
+    "src_first_frame": "images/0050_slackline/00001.jpg",
+    "first_frame_edit_prompt": "Change the person into a spiderman.",
+    "anchor_image": "evaluation/anchors/edit1/0050_slackline.png"
+  },
+  {
+    "case_id": "edit1/0051_dogs-jump",
+    "edit_type": 1,
+    "video_name": "0051_dogs-jump",
+    "src_first_frame": "images/0051_dogs-jump/00001.jpg",
+    "first_frame_edit_prompt": "Change the dogs to rabbits.",
+    "anchor_image": "evaluation/anchors/edit1/0051_dogs-jump.png"
+  },
+  {
+    "case_id": "edit1/0052_mallard-fly",
+    "edit_type": 1,
+    "video_name": "0052_mallard-fly",
+    "src_first_frame": "images/0052_mallard-fly/00001.jpg",
+    "first_frame_edit_prompt": "Change the mallard duck to a white swan.",
+    "anchor_image": "evaluation/anchors/edit1/0052_mallard-fly.png"
+  },
+  {
+    "case_id": "edit1/0053_swing",
+    "edit_type": 1,
+    "video_name": "0053_swing",
+    "src_first_frame": "images/0053_swing/00001.jpg",
+    "first_frame_edit_prompt": "Replace the person with a spiderman.",
+    "anchor_image": "evaluation/anchors/edit1/0053_swing.png"
+  },
+  {
+    "case_id": "edit1/0054_train",
+    "edit_type": 1,
+    "video_name": "0054_train",
+    "src_first_frame": "images/0054_train/00001.jpg",
+    "first_frame_edit_prompt": "Replace the train with a jeep.",
+    "anchor_image": "evaluation/anchors/edit1/0054_train.png"
+  },
+  {
+    "case_id": "edit1/0055_pigs",
+    "edit_type": 1,
+    "video_name": "0055_pigs",
+    "src_first_frame": "images/0055_pigs/00001.jpg",
+    "first_frame_edit_prompt": "Change the pigs into rabbits",
+    "anchor_image": "evaluation/anchors/edit1/0055_pigs.png"
+  },
+  {
+    "case_id": "edit1/0056_kart-turn",
+    "edit_type": 1,
+    "video_name": "0056_kart-turn",
+    "src_first_frame": "images/0056_kart-turn/00001.jpg",
+    "first_frame_edit_prompt": "Replace the go-karts with bicycles and change the drivers to riders.",
+    "anchor_image": "evaluation/anchors/edit1/0056_kart-turn.png"
+  },
+  {
+    "case_id": "edit1/0057_dog",
+    "edit_type": 1,
+    "video_name": "0057_dog",
+    "src_first_frame": "images/0057_dog/00001.jpg",
+    "first_frame_edit_prompt": "Replace the golden retriever with a rabbit.",
+    "anchor_image": "evaluation/anchors/edit1/0057_dog.png"
+  },
+  {
+    "case_id": "edit1/0058_boat",
+    "edit_type": 1,
+    "video_name": "0058_boat",
+    "src_first_frame": "images/0058_boat/00001.jpg",
+    "first_frame_edit_prompt": "Replace 'fishing boat' with 'yacht'.",
+    "anchor_image": "evaluation/anchors/edit1/0058_boat.png"
+  },
+  {
+    "case_id": "edit1/0059_drift-straight",
+    "edit_type": 1,
+    "video_name": "0059_drift-straight",
+    "src_first_frame": "images/0059_drift-straight/00001.jpg",
+    "first_frame_edit_prompt": "Change the sports car to a jeep.",
+    "anchor_image": "evaluation/anchors/edit1/0059_drift-straight.png"
+  },
+  {
+    "case_id": "edit1/0060_motocross-bumps",
+    "edit_type": 1,
+    "video_name": "0060_motocross-bumps",
+    "src_first_frame": "images/0060_motocross-bumps/00001.jpg",
+    "first_frame_edit_prompt": "Replace the motocross rider with a spiderman.",
+    "anchor_image": "evaluation/anchors/edit1/0060_motocross-bumps.png"
+  },
+  {
+    "case_id": "edit1/0061_mbike-santa",
+    "edit_type": 1,
+    "video_name": "0061_mbike-santa",
+    "src_first_frame": "images/0061_mbike-santa/00001.jpg",
+    "first_frame_edit_prompt": "Replace the person with a spiderman.",
+    "anchor_image": "evaluation/anchors/edit1/0061_mbike-santa.png"
+  },
+  {
+    "case_id": "edit1/0062_elephant",
+    "edit_type": 1,
+    "video_name": "0062_elephant",
+    "src_first_frame": "images/0062_elephant/00001.jpg",
+    "first_frame_edit_prompt": "Replace the elephant with a rhinoceros.",
+    "anchor_image": "evaluation/anchors/edit1/0062_elephant.png"
+  },
+  {
+    "case_id": "edit1/0063_drift-turn",
+    "edit_type": 1,
+    "video_name": "0063_drift-turn",
+    "src_first_frame": "images/0063_drift-turn/00001.jpg",
+    "first_frame_edit_prompt": "Replace 'car' with 'jeep'.",
+    "anchor_image": "evaluation/anchors/edit1/0063_drift-turn.png"
+  },
+  {
+    "case_id": "edit1/0064_rollerblade",
+    "edit_type": 1,
+    "video_name": "0064_rollerblade",
+    "src_first_frame": "images/0064_rollerblade/00001.jpg",
+    "first_frame_edit_prompt": "Change the person to a spiderman.",
+    "anchor_image": "evaluation/anchors/edit1/0064_rollerblade.png"
+  },
+  {
+    "case_id": "edit1/0065_twist-dance",
+    "edit_type": 1,
+    "video_name": "0065_twist-dance",
+    "src_first_frame": "images/0065_twist-dance/00001.jpg",
+    "first_frame_edit_prompt": "Replace the dancers with spidermen.",
+    "anchor_image": "evaluation/anchors/edit1/0065_twist-dance.png"
+  },
+  {
+    "case_id": "edit1/0066_deer",
+    "edit_type": 1,
+    "video_name": "0066_deer",
+    "src_first_frame": "images/0066_deer/00001.jpg",
+    "first_frame_edit_prompt": "Replace the deer with goats and change antler to horn.",
+    "anchor_image": "evaluation/anchors/edit1/0066_deer.png"
+  },
+  {
+    "case_id": "edit1/0067_mbike-trick",
+    "edit_type": 1,
+    "video_name": "0067_mbike-trick",
+    "src_first_frame": "images/0067_mbike-trick/00001.jpg",
+    "first_frame_edit_prompt": "Replace the motorcyclist with a spiderman.",
+    "anchor_image": "evaluation/anchors/edit1/0067_mbike-trick.png"
+  },
+  {
+    "case_id": "edit1/0068_planes-water",
+    "edit_type": 1,
+    "video_name": "0068_planes-water",
+    "src_first_frame": "images/0068_planes-water/00001.jpg",
+    "first_frame_edit_prompt": "Change the passenger airplane to a cargo airplane.",
+    "anchor_image": "evaluation/anchors/edit1/0068_planes-water.png"
+  },
+  {
+    "case_id": "edit1/0069_car-turn",
+    "edit_type": 1,
+    "video_name": "0069_car-turn",
+    "src_first_frame": "images/0069_car-turn/00001.jpg",
+    "first_frame_edit_prompt": "Change the SUV to a jeep.",
+    "anchor_image": "evaluation/anchors/edit1/0069_car-turn.png"
+  },
+  {
+    "case_id": "edit1/0070_dance-twirl",
+    "edit_type": 1,
+    "video_name": "0070_dance-twirl",
+    "src_first_frame": "images/0070_dance-twirl/00001.jpg",
+    "first_frame_edit_prompt": "Replace the dancer with a spiderman.",
+    "anchor_image": "evaluation/anchors/edit1/0070_dance-twirl.png"
+  },
+  {
+    "case_id": "edit1/0071_mallard-water",
+    "edit_type": 1,
+    "video_name": "0071_mallard-water",
+    "src_first_frame": "images/0071_mallard-water/00001.jpg",
+    "first_frame_edit_prompt": "Change the mallard duck to a white swan.",
+    "anchor_image": "evaluation/anchors/edit1/0071_mallard-water.png"
+  },
+  {
+    "case_id": "edit1/0072_dog-agility",
+    "edit_type": 1,
+    "video_name": "0072_dog-agility",
+    "src_first_frame": "images/0072_dog-agility/00001.jpg",
+    "first_frame_edit_prompt": "Replace the border collie with a rabbit",
+    "anchor_image": "evaluation/anchors/edit1/0072_dog-agility.png"
+  },
+  {
+    "case_id": "edit1/0073_bmx-rider",
+    "edit_type": 1,
+    "video_name": "0073_bmx-rider",
+    "src_first_frame": "images/0073_bmx-rider/00001.jpg",
+    "first_frame_edit_prompt": "Change the BMX rider into a spiderman.",
+    "anchor_image": "evaluation/anchors/edit1/0073_bmx-rider.png"
+  },
+  {
+    "case_id": "edit1/0074_rhino",
+    "edit_type": 1,
+    "video_name": "0074_rhino",
+    "src_first_frame": "images/0074_rhino/00001.jpg",
+    "first_frame_edit_prompt": "Change the rhinoceros to an elephant.",
+    "anchor_image": "evaluation/anchors/edit1/0074_rhino.png"
+  },
+  {
+    "case_id": "edit1/0075_A_bicycle",
+    "edit_type": 1,
+    "video_name": "0075_A_bicycle",
+    "src_first_frame": "images/0075_A_bicycle/00001.jpg",
+    "first_frame_edit_prompt": "Change the bicycle to a scooter.",
+    "anchor_image": "evaluation/anchors/edit1/0075_A_bicycle.png"
+  },
+  {
+    "case_id": "edit1/0076_A_rabbit",
+    "edit_type": 1,
+    "video_name": "0076_A_rabbit",
+    "src_first_frame": "images/0076_A_rabbit/00001.jpg",
+    "first_frame_edit_prompt": "Replace the rabbit with a kangaroo.",
+    "anchor_image": "evaluation/anchors/edit1/0076_A_rabbit.png"
+  },
+  {
+    "case_id": "edit1/0077_A_hawk",
+    "edit_type": 1,
+    "video_name": "0077_A_hawk",
+    "src_first_frame": "images/0077_A_hawk/00001.jpg",
+    "first_frame_edit_prompt": "Change the hawk into a blue bird.",
+    "anchor_image": "evaluation/anchors/edit1/0077_A_hawk.png"
+  },
+  {
+    "case_id": "edit1/0078_A_cat",
+    "edit_type": 1,
+    "video_name": "0078_A_cat",
+    "src_first_frame": "images/0078_A_cat/00001.jpg",
+    "first_frame_edit_prompt": "Change the cat into a dog.",
+    "anchor_image": "evaluation/anchors/edit1/0078_A_cat.png"
+  },
+  {
+    "case_id": "edit1/0079_A_bus",
+    "edit_type": 1,
+    "video_name": "0079_A_bus",
+    "src_first_frame": "images/0079_A_bus/00001.jpg",
+    "first_frame_edit_prompt": "Change the bus to a jeep.",
+    "anchor_image": "evaluation/anchors/edit1/0079_A_bus.png"
+  },
+  {
+    "case_id": "edit1/0080_A_motorcycle",
+    "edit_type": 1,
+    "video_name": "0080_A_motorcycle",
+    "src_first_frame": "images/0080_A_motorcycle/00001.jpg",
+    "first_frame_edit_prompt": "Replace the motorcycle with a bicycle",
+    "anchor_image": "evaluation/anchors/edit1/0080_A_motorcycle.png"
+  },
+  {
+    "case_id": "edit1/0081_A_horse",
+    "edit_type": 1,
+    "video_name": "0081_A_horse",
+    "src_first_frame": "images/0081_A_horse/00001.jpg",
+    "first_frame_edit_prompt": "Change the horse into a zebra.",
+    "anchor_image": "evaluation/anchors/edit1/0081_A_horse.png"
+  },
+  {
+    "case_id": "edit1/0082_A_tram",
+    "edit_type": 1,
+    "video_name": "0082_A_tram",
+    "src_first_frame": "images/0082_A_tram/00001.jpg",
+    "first_frame_edit_prompt": "Change 'tram' to 'trolley",
+    "anchor_image": "evaluation/anchors/edit1/0082_A_tram.png"
+  },
+  {
+    "case_id": "edit1/0083_A_boat",
+    "edit_type": 1,
+    "video_name": "0083_A_boat",
+    "src_first_frame": "images/0083_A_boat/00001.jpg",
+    "first_frame_edit_prompt": "Replace the boat with a kayak.",
+    "anchor_image": "evaluation/anchors/edit1/0083_A_boat.png"
+  },
+  {
+    "case_id": "edit1/0084_A_squirrel",
+    "edit_type": 1,
+    "video_name": "0084_A_squirrel",
+    "src_first_frame": "images/0084_A_squirrel/00001.jpg",
+    "first_frame_edit_prompt": "Change the squirrel into a rabbit.",
+    "anchor_image": "evaluation/anchors/edit1/0084_A_squirrel.png"
+  },
+  {
+    "case_id": "edit1/0085_A_tram",
+    "edit_type": 1,
+    "video_name": "0085_A_tram",
+    "src_first_frame": "images/0085_A_tram/00001.jpg",
+    "first_frame_edit_prompt": "Change the tram to a bus and the word trolley to bus.",
+    "anchor_image": "evaluation/anchors/edit1/0085_A_tram.png"
+  },
+  {
+    "case_id": "edit1/0086_A_red_sports_car",
+    "edit_type": 1,
+    "video_name": "0086_A_red_sports_car",
+    "src_first_frame": "images/0086_A_red_sports_car/00001.jpg",
+    "first_frame_edit_prompt": "Change the red sports car to a jeep.",
+    "anchor_image": "evaluation/anchors/edit1/0086_A_red_sports_car.png"
+  },
+  {
+    "case_id": "edit1/0087_A_seagull",
+    "edit_type": 1,
+    "video_name": "0087_A_seagull",
+    "src_first_frame": "images/0087_A_seagull/00001.jpg",
+    "first_frame_edit_prompt": "Change the seagull to a pelican.",
+    "anchor_image": "evaluation/anchors/edit1/0087_A_seagull.png"
+  },
+  {
+    "case_id": "edit1/0088_A_cyclist",
+    "edit_type": 1,
+    "video_name": "0088_A_cyclist",
+    "src_first_frame": "images/0088_A_cyclist/00001.jpg",
+    "first_frame_edit_prompt": "Replace the cyclist with a skateboarder.",
+    "anchor_image": "evaluation/anchors/edit1/0088_A_cyclist.png"
+  },
+  {
+    "case_id": "edit1/0089_A_dog",
+    "edit_type": 1,
+    "video_name": "0089_A_dog",
+    "src_first_frame": "images/0089_A_dog/00001.jpg",
+    "first_frame_edit_prompt": "Replace the dog with a cat.",
+    "anchor_image": "evaluation/anchors/edit1/0089_A_dog.png"
+  },
+  {
+    "case_id": "edit1/0090_A_deer",
+    "edit_type": 1,
+    "video_name": "0090_A_deer",
+    "src_first_frame": "images/0090_A_deer/00001.jpg",
+    "first_frame_edit_prompt": "Change the deer to a moose.",
+    "anchor_image": "evaluation/anchors/edit1/0090_A_deer.png"
+  },
+  {
+    "case_id": "edit1/0091_A_hawk",
+    "edit_type": 1,
+    "video_name": "0091_A_hawk",
+    "src_first_frame": "images/0091_A_hawk/00001.jpg",
+    "first_frame_edit_prompt": "Change the hawk to a duck.",
+    "anchor_image": "evaluation/anchors/edit1/0091_A_hawk.png"
+  },
+  {
+    "case_id": "edit1/0092_A_fox",
+    "edit_type": 1,
+    "video_name": "0092_A_fox",
+    "src_first_frame": "images/0092_A_fox/00001.jpg",
+    "first_frame_edit_prompt": "Change the fox to a coyote.",
+    "anchor_image": "evaluation/anchors/edit1/0092_A_fox.png"
+  },
+  {
+    "case_id": "edit1/0093_A_helicopter",
+    "edit_type": 1,
+    "video_name": "0093_A_helicopter",
+    "src_first_frame": "images/0093_A_helicopter/00001.jpg",
+    "first_frame_edit_prompt": "Change the helicopter to a drone.",
+    "anchor_image": "evaluation/anchors/edit1/0093_A_helicopter.png"
+  },
+  {
+    "case_id": "edit1/0094_A_swan",
+    "edit_type": 1,
+    "video_name": "0094_A_swan",
+    "src_first_frame": "images/0094_A_swan/00001.jpg",
+    "first_frame_edit_prompt": "Replace the swan with a duck.",
+    "anchor_image": "evaluation/anchors/edit1/0094_A_swan.png"
+  },
+  {
+    "case_id": "edit1/0095_A_crow",
+    "edit_type": 1,
+    "video_name": "0095_A_crow",
+    "src_first_frame": "images/0095_A_crow/00001.jpg",
+    "first_frame_edit_prompt": "Replace the crow with an owl.",
+    "anchor_image": "evaluation/anchors/edit1/0095_A_crow.png"
+  },
+  {
+    "case_id": "edit1/0096_A_car",
+    "edit_type": 1,
+    "video_name": "0096_A_car",
+    "src_first_frame": "images/0096_A_car/00001.jpg",
+    "first_frame_edit_prompt": "Change 'car' to 'jeep'.",
+    "anchor_image": "evaluation/anchors/edit1/0096_A_car.png"
+  },
+  {
+    "case_id": "edit1/0097_A_bird",
+    "edit_type": 1,
+    "video_name": "0097_A_bird",
+    "src_first_frame": "images/0097_A_bird/00001.jpg",
+    "first_frame_edit_prompt": "Change the bird to an eagle.",
+    "anchor_image": "evaluation/anchors/edit1/0097_A_bird.png"
+  },
+  {
+    "case_id": "edit1/0098_A_squirrel",
+    "edit_type": 1,
+    "video_name": "0098_A_squirrel",
+    "src_first_frame": "images/0098_A_squirrel/00001.jpg",
+    "first_frame_edit_prompt": "Change the squirrel into a rabbit.",
+    "anchor_image": "evaluation/anchors/edit1/0098_A_squirrel.png"
+  },
+  {
+    "case_id": "edit1/0099_A_jogger",
+    "edit_type": 1,
+    "video_name": "0099_A_jogger",
+    "src_first_frame": "images/0099_A_jogger/00001.jpg",
+    "first_frame_edit_prompt": "Change the jogger to an ultraman.",
+    "anchor_image": "evaluation/anchors/edit1/0099_A_jogger.png"
+  },
+  {
+    "case_id": "edit1/0100_A_deer",
+    "edit_type": 1,
+    "video_name": "0100_A_deer",
+    "src_first_frame": "images/0100_A_deer/00001.jpg",
+    "first_frame_edit_prompt": "Replace the deer with a moose.",
+    "anchor_image": "evaluation/anchors/edit1/0100_A_deer.png"
+  },
+  {
+    "case_id": "edit2/0001_bus",
+    "edit_type": 2,
+    "video_name": "0001_bus",
+    "src_first_frame": "images/0001_bus/00001.jpg",
+    "first_frame_edit_prompt": "Change the city bus into a spaceship.",
+    "anchor_image": "evaluation/anchors/edit2/0001_bus.png"
+  },
+  {
+    "case_id": "edit2/0002_girl-dog",
+    "edit_type": 2,
+    "video_name": "0002_girl-dog",
+    "src_first_frame": "images/0002_girl-dog/00001.jpg",
+    "first_frame_edit_prompt": "Replace the girl with a young alien, replace the wheelchair with a hovercraft, and replace the gray dog with a robotic dog.",
+    "anchor_image": "evaluation/anchors/edit2/0002_girl-dog.png"
+  },
+  {
+    "case_id": "edit2/0003_ocean-birds",
+    "edit_type": 2,
+    "video_name": "0003_ocean-birds",
+    "src_first_frame": "images/0003_ocean-birds/00001.jpg",
+    "first_frame_edit_prompt": "Replace the white ibises with drones and change pecking to scanning.",
+    "anchor_image": "evaluation/anchors/edit2/0003_ocean-birds.png"
+  },
+  {
+    "case_id": "edit2/0004_car-roundabout",
+    "edit_type": 2,
+    "video_name": "0004_car-roundabout",
+    "src_first_frame": "images/0004_car-roundabout/00001.jpg",
+    "first_frame_edit_prompt": "Change the grey Mini Cooper to a hovercraft.",
+    "anchor_image": "evaluation/anchors/edit2/0004_car-roundabout.png"
+  },
+  {
+    "case_id": "edit2/0005_breakdance",
+    "edit_type": 2,
+    "video_name": "0005_breakdance",
+    "src_first_frame": "images/0005_breakdance/00001.jpg",
+    "first_frame_edit_prompt": "Change the breakdancer to a bear.",
+    "anchor_image": "evaluation/anchors/edit2/0005_breakdance.png"
+  },
+  {
+    "case_id": "edit2/0006_paragliding",
+    "edit_type": 2,
+    "video_name": "0006_paragliding",
+    "src_first_frame": "images/0006_paragliding/00001.jpg",
+    "first_frame_edit_prompt": "Replace the paraglider with a dragon.",
+    "anchor_image": "evaluation/anchors/edit2/0006_paragliding.png"
+  },
+  {
+    "case_id": "edit2/0007_guitar-violin",
+    "edit_type": 2,
+    "video_name": "0007_guitar-violin",
+    "src_first_frame": "images/0007_guitar-violin/00001.jpg",
+    "first_frame_edit_prompt": "Replace the musicians with a tiger and a robot.",
+    "anchor_image": "evaluation/anchors/edit2/0007_guitar-violin.png"
+  },
+  {
+    "case_id": "edit2/0008_snowboard-race",
+    "edit_type": 2,
+    "video_name": "0008_snowboard-race",
+    "src_first_frame": "images/0008_snowboard-race/00001.jpg",
+    "first_frame_edit_prompt": "Replace the snowboarders with penguins.",
+    "anchor_image": "evaluation/anchors/edit2/0008_snowboard-race.png"
+  },
+  {
+    "case_id": "edit2/0009_bear",
+    "edit_type": 2,
+    "video_name": "0009_bear",
+    "src_first_frame": "images/0009_bear/00001.jpg",
+    "first_frame_edit_prompt": "Replace the bear with a dinosaur.",
+    "anchor_image": "evaluation/anchors/edit2/0009_bear.png"
+  },
+  {
+    "case_id": "edit2/0010_giant-slalom",
+    "edit_type": 2,
+    "video_name": "0010_giant-slalom",
+    "src_first_frame": "images/0010_giant-slalom/00001.jpg",
+    "first_frame_edit_prompt": "Change the skier to a robot.",
+    "anchor_image": "evaluation/anchors/edit2/0010_giant-slalom.png"
+  },
+  {
+    "case_id": "edit2/0011_lucia",
+    "edit_type": 2,
+    "video_name": "0011_lucia",
+    "src_first_frame": "images/0011_lucia/00001.jpg",
+    "first_frame_edit_prompt": "Replace the woman with a lion.",
+    "anchor_image": "evaluation/anchors/edit2/0011_lucia.png"
+  },
+  {
+    "case_id": "edit2/0012_goat",
+    "edit_type": 2,
+    "video_name": "0012_goat",
+    "src_first_frame": "images/0012_goat/00001.jpg",
+    "first_frame_edit_prompt": "Replace the mountain goat with a spiderman.",
+    "anchor_image": "evaluation/anchors/edit2/0012_goat.png"
+  },
+  {
+    "case_id": "edit2/0013_golf",
+    "edit_type": 2,
+    "video_name": "0013_golf",
+    "src_first_frame": "images/0013_golf/00001.jpg",
+    "first_frame_edit_prompt": "Replace the man with a robot and the golf cart with a hovercraft, and change 'drives' to 'glide'.",
+    "anchor_image": "evaluation/anchors/edit2/0013_golf.png"
+  },
+  {
+    "case_id": "edit2/0014_burnout",
+    "edit_type": 2,
+    "video_name": "0014_burnout",
+    "src_first_frame": "images/0014_burnout/00001.jpg",
+    "first_frame_edit_prompt": "Change the black car to a UFO and change burnout to hover trick.",
+    "anchor_image": "evaluation/anchors/edit2/0014_burnout.png"
+  },
+  {
+    "case_id": "edit2/0015_car-shadow",
+    "edit_type": 2,
+    "video_name": "0015_car-shadow",
+    "src_first_frame": "images/0015_car-shadow/00001.jpg",
+    "first_frame_edit_prompt": "Change the silver car into a hovercraft.",
+    "anchor_image": "evaluation/anchors/edit2/0015_car-shadow.png"
+  },
+  {
+    "case_id": "edit2/0016_horsejump-high",
+    "edit_type": 2,
+    "video_name": "0016_horsejump-high",
+    "src_first_frame": "images/0016_horsejump-high/00001.jpg",
+    "first_frame_edit_prompt": "Replace the horse with a kangaroo.",
+    "anchor_image": "evaluation/anchors/edit2/0016_horsejump-high.png"
+  },
+  {
+    "case_id": "edit2/0017_kid-football",
+    "edit_type": 2,
+    "video_name": "0017_kid-football",
+    "src_first_frame": "images/0017_kid-football/00001.jpg",
+    "first_frame_edit_prompt": "Replace the young boy with a dog",
+    "anchor_image": "evaluation/anchors/edit2/0017_kid-football.png"
+  },
+  {
+    "case_id": "edit2/0018_breakdance-flare",
+    "edit_type": 2,
+    "video_name": "0018_breakdance-flare",
+    "src_first_frame": "images/0018_breakdance-flare/00001.jpg",
+    "first_frame_edit_prompt": "Replace the breakdancer with a robot and change the subject from a dancer to a dragon.",
+    "anchor_image": "evaluation/anchors/edit2/0018_breakdance-flare.png"
+  },
+  {
+    "case_id": "edit2/0019_tennis-vest",
+    "edit_type": 2,
+    "video_name": "0019_tennis-vest",
+    "src_first_frame": "images/0019_tennis-vest/00001.jpg",
+    "first_frame_edit_prompt": "Replace the tennis player with a robot.",
+    "anchor_image": "evaluation/anchors/edit2/0019_tennis-vest.png"
+  },
+  {
+    "case_id": "edit2/0020_monkeys",
+    "edit_type": 2,
+    "video_name": "0020_monkeys",
+    "src_first_frame": "images/0020_monkeys/00001.jpg",
+    "first_frame_edit_prompt": "Replace the monkeys with robots.",
+    "anchor_image": "evaluation/anchors/edit2/0020_monkeys.png"
+  },
+  {
+    "case_id": "edit2/0021_landing",
+    "edit_type": 2,
+    "video_name": "0021_landing",
+    "src_first_frame": "images/0021_landing/00001.jpg",
+    "first_frame_edit_prompt": "Replace the fighter jet with a dragon.",
+    "anchor_image": "evaluation/anchors/edit2/0021_landing.png"
+  },
+  {
+    "case_id": "edit2/0022_skate-jump",
+    "edit_type": 2,
+    "video_name": "0022_skate-jump",
+    "src_first_frame": "images/0022_skate-jump/00001.jpg",
+    "first_frame_edit_prompt": "Change the skateboarder to a robot.",
+    "anchor_image": "evaluation/anchors/edit2/0022_skate-jump.png"
+  },
+  {
+    "case_id": "edit2/0023_kayak-race",
+    "edit_type": 2,
+    "video_name": "0023_kayak-race",
+    "src_first_frame": "images/0023_kayak-race/00001.jpg",
+    "first_frame_edit_prompt": "Replace the kayakers with dolphins and change paddling to swimming.",
+    "anchor_image": "evaluation/anchors/edit2/0023_kayak-race.png"
+  },
+  {
+    "case_id": "edit2/0024_hockey",
+    "edit_type": 2,
+    "video_name": "0024_hockey",
+    "src_first_frame": "images/0024_hockey/00001.jpg",
+    "first_frame_edit_prompt": "Change the person to a dragon",
+    "anchor_image": "evaluation/anchors/edit2/0024_hockey.png"
+  },
+  {
+    "case_id": "edit2/0025_baseball",
+    "edit_type": 2,
+    "video_name": "0025_baseball",
+    "src_first_frame": "images/0025_baseball/00001.jpg",
+    "first_frame_edit_prompt": "Replace the baseball player with a tiger and change the player to a robot.",
+    "anchor_image": "evaluation/anchors/edit2/0025_baseball.png"
+  },
+  {
+    "case_id": "edit2/0026_table-tennis",
+    "edit_type": 2,
+    "video_name": "0026_table-tennis",
+    "src_first_frame": "images/0026_table-tennis/00001.jpg",
+    "first_frame_edit_prompt": "Replace the two table tennis players with two robots and change the players to robots",
+    "anchor_image": "evaluation/anchors/edit2/0026_table-tennis.png"
+  },
+  {
+    "case_id": "edit2/0027_dance-jump",
+    "edit_type": 2,
+    "video_name": "0027_dance-jump",
+    "src_first_frame": "images/0027_dance-jump/00001.jpg",
+    "first_frame_edit_prompt": "Replace the young girl with a bumblebee.",
+    "anchor_image": "evaluation/anchors/edit2/0027_dance-jump.png"
+  },
+  {
+    "case_id": "edit2/0028_kite-walk",
+    "edit_type": 2,
+    "video_name": "0028_kite-walk",
+    "src_first_frame": "images/0028_kite-walk/00001.jpg",
+    "first_frame_edit_prompt": "Replace the person with a Pikachu.",
+    "anchor_image": "evaluation/anchors/edit2/0028_kite-walk.png"
+  },
+  {
+    "case_id": "edit2/0029_horsejump-stick",
+    "edit_type": 2,
+    "video_name": "0029_horsejump-stick",
+    "src_first_frame": "images/0029_horsejump-stick/00001.jpg",
+    "first_frame_edit_prompt": "Change the horse to a monkey and the horse to a kangaroo.",
+    "anchor_image": "evaluation/anchors/edit2/0029_horsejump-stick.png"
+  },
+  {
+    "case_id": "edit2/0030_rallye",
+    "edit_type": 2,
+    "video_name": "0030_rallye",
+    "src_first_frame": "images/0030_rallye/00001.jpg",
+    "first_frame_edit_prompt": "Replace the rally car with a hovercraft.",
+    "anchor_image": "evaluation/anchors/edit2/0030_rallye.png"
+  },
+  {
+    "case_id": "edit2/0031_soccerball",
+    "edit_type": 2,
+    "video_name": "0031_soccerball",
+    "src_first_frame": "images/0031_soccerball/00001.jpg",
+    "first_frame_edit_prompt": "Replace the soccer ball with a cube.",
+    "anchor_image": "evaluation/anchors/edit2/0031_soccerball.png"
+  },
+  {
+    "case_id": "edit2/0032_mermaid",
+    "edit_type": 2,
+    "video_name": "0032_mermaid",
+    "src_first_frame": "images/0032_mermaid/00001.jpg",
+    "first_frame_edit_prompt": "Change the woman into an alien.",
+    "anchor_image": "evaluation/anchors/edit2/0032_mermaid.png"
+  },
+  {
+    "case_id": "edit2/0033_horsejump-low",
+    "edit_type": 2,
+    "video_name": "0033_horsejump-low",
+    "src_first_frame": "images/0033_horsejump-low/00001.jpg",
+    "first_frame_edit_prompt": "Change the horse to a lion and the horse to a kangaroo.",
+    "anchor_image": "evaluation/anchors/edit2/0033_horsejump-low.png"
+  },
+  {
+    "case_id": "edit2/0034_cows",
+    "edit_type": 2,
+    "video_name": "0034_cows",
+    "src_first_frame": "images/0034_cows/00001.jpg",
+    "first_frame_edit_prompt": "Replace the cow with a dragon.",
+    "anchor_image": "evaluation/anchors/edit2/0034_cows.png"
+  },
+  {
+    "case_id": "edit2/0035_helicopter",
+    "edit_type": 2,
+    "video_name": "0035_helicopter",
+    "src_first_frame": "images/0035_helicopter/00001.jpg",
+    "first_frame_edit_prompt": "Change the helicopter into a UFO, and change the rotors spinning rapidly into the UFO's lights spinning rapidly.",
+    "anchor_image": "evaluation/anchors/edit2/0035_helicopter.png"
+  },
+  {
+    "case_id": "edit2/0036_camel",
+    "edit_type": 2,
+    "video_name": "0036_camel",
+    "src_first_frame": "images/0036_camel/00001.jpg",
+    "first_frame_edit_prompt": "Replace the camels with monkeys.",
+    "anchor_image": "evaluation/anchors/edit2/0036_camel.png"
+  },
+  {
+    "case_id": "edit2/0037_snowboard-sand",
+    "edit_type": 2,
+    "video_name": "0037_snowboard-sand",
+    "src_first_frame": "images/0037_snowboard-sand/00001.jpg",
+    "first_frame_edit_prompt": "Change the woman to a Wizard.",
+    "anchor_image": "evaluation/anchors/edit2/0037_snowboard-sand.png"
+  },
+  {
+    "case_id": "edit2/0038_motorbike",
+    "edit_type": 2,
+    "video_name": "0038_motorbike",
+    "src_first_frame": "images/0038_motorbike/00001.jpg",
+    "first_frame_edit_prompt": "Change the motorbike to a hovercraft.",
+    "anchor_image": "evaluation/anchors/edit2/0038_motorbike.png"
+  },
+  {
+    "case_id": "edit2/0039_chamaleon",
+    "edit_type": 2,
+    "video_name": "0039_chamaleon",
+    "src_first_frame": "images/0039_chamaleon/00001.jpg",
+    "first_frame_edit_prompt": "Replace the green chameleon with a robotic spider.",
+    "anchor_image": "evaluation/anchors/edit2/0039_chamaleon.png"
+  },
+  {
+    "case_id": "edit2/0040_tennis",
+    "edit_type": 2,
+    "video_name": "0040_tennis",
+    "src_first_frame": "images/0040_tennis/00001.jpg",
+    "first_frame_edit_prompt": "Replace the tennis player with a dinosaur.",
+    "anchor_image": "evaluation/anchors/edit2/0040_tennis.png"
+  },
+  {
+    "case_id": "edit2/0041_longboard",
+    "edit_type": 2,
+    "video_name": "0041_longboard",
+    "src_first_frame": "images/0041_longboard/00001.jpg",
+    "first_frame_edit_prompt": "Replace'man' with 'ultraman' and 'longboard' with 'hoverboard' and 'him' with 'it'.",
+    "anchor_image": "evaluation/anchors/edit2/0041_longboard.png"
+  },
+  {
+    "case_id": "edit2/0042_gym-ball",
+    "edit_type": 2,
+    "video_name": "0042_gym-ball",
+    "src_first_frame": "images/0042_gym-ball/00001.jpg",
+    "first_frame_edit_prompt": "Replace the man with a panda.",
+    "anchor_image": "evaluation/anchors/edit2/0042_gym-ball.png"
+  },
+  {
+    "case_id": "edit2/0043_parkour",
+    "edit_type": 2,
+    "video_name": "0043_parkour",
+    "src_first_frame": "images/0043_parkour/00001.jpg",
+    "first_frame_edit_prompt": "Replace the man with a bear.",
+    "anchor_image": "evaluation/anchors/edit2/0043_parkour.png"
+  },
+  {
+    "case_id": "edit2/0044_snowboard",
+    "edit_type": 2,
+    "video_name": "0044_snowboard",
+    "src_first_frame": "images/0044_snowboard/00001.jpg",
+    "first_frame_edit_prompt": "Replace the snowboarder with a robotic penguin.",
+    "anchor_image": "evaluation/anchors/edit2/0044_snowboard.png"
+  },
+  {
+    "case_id": "edit2/0045_butterfly",
+    "edit_type": 2,
+    "video_name": "0045_butterfly",
+    "src_first_frame": "images/0045_butterfly/00001.jpg",
+    "first_frame_edit_prompt": "Replace the butterfly with a drone.",
+    "anchor_image": "evaluation/anchors/edit2/0045_butterfly.png"
+  },
+  {
+    "case_id": "edit2/0046_blackswan",
+    "edit_type": 2,
+    "video_name": "0046_blackswan",
+    "src_first_frame": "images/0046_blackswan/00001.jpg",
+    "first_frame_edit_prompt": "Change the black swan to a boat.",
+    "anchor_image": "evaluation/anchors/edit2/0046_blackswan.png"
+  },
+  {
+    "case_id": "edit2/0047_judo",
+    "edit_type": 2,
+    "video_name": "0047_judo",
+    "src_first_frame": "images/0047_judo/00001.jpg",
+    "first_frame_edit_prompt": "Replace the judo practitioners with robots.",
+    "anchor_image": "evaluation/anchors/edit2/0047_judo.png"
+  },
+  {
+    "case_id": "edit2/0048_hike",
+    "edit_type": 2,
+    "video_name": "0048_hike",
+    "src_first_frame": "images/0048_hike/00001.jpg",
+    "first_frame_edit_prompt": "Replace the man with a robot.",
+    "anchor_image": "evaluation/anchors/edit2/0048_hike.png"
+  },
+  {
+    "case_id": "edit2/0049_speed-skating",
+    "edit_type": 2,
+    "video_name": "0049_speed-skating",
+    "src_first_frame": "images/0049_speed-skating/00001.jpg",
+    "first_frame_edit_prompt": "Change the human skaters into robotic skaters.",
+    "anchor_image": "evaluation/anchors/edit2/0049_speed-skating.png"
+  },
+  {
+    "case_id": "edit2/0050_slackline",
+    "edit_type": 2,
+    "video_name": "0050_slackline",
+    "src_first_frame": "images/0050_slackline/00001.jpg",
+    "first_frame_edit_prompt": "Replace the person with a Pikachu.",
+    "anchor_image": "evaluation/anchors/edit2/0050_slackline.png"
+  },
+  {
+    "case_id": "edit2/0051_dogs-jump",
+    "edit_type": 2,
+    "video_name": "0051_dogs-jump",
+    "src_first_frame": "images/0051_dogs-jump/00001.jpg",
+    "first_frame_edit_prompt": "Replace the woman with a robot and the dogs with robotic dogs.",
+    "anchor_image": "evaluation/anchors/edit2/0051_dogs-jump.png"
+  },
+  {
+    "case_id": "edit2/0052_mallard-fly",
+    "edit_type": 2,
+    "video_name": "0052_mallard-fly",
+    "src_first_frame": "images/0052_mallard-fly/00001.jpg",
+    "first_frame_edit_prompt": "Replace the mallard duck with a robotic dog.",
+    "anchor_image": "evaluation/anchors/edit2/0052_mallard-fly.png"
+  },
+  {
+    "case_id": "edit2/0053_swing",
+    "edit_type": 2,
+    "video_name": "0053_swing",
+    "src_first_frame": "images/0053_swing/00001.jpg",
+    "first_frame_edit_prompt": "Replace the person with a robot.",
+    "anchor_image": "evaluation/anchors/edit2/0053_swing.png"
+  },
+  {
+    "case_id": "edit2/0054_train",
+    "edit_type": 2,
+    "video_name": "0054_train",
+    "src_first_frame": "images/0054_train/00001.jpg",
+    "first_frame_edit_prompt": "Change the train into a spaceship.",
+    "anchor_image": "evaluation/anchors/edit2/0054_train.png"
+  },
+  {
+    "case_id": "edit2/0055_pigs",
+    "edit_type": 2,
+    "video_name": "0055_pigs",
+    "src_first_frame": "images/0055_pigs/00001.jpg",
+    "first_frame_edit_prompt": "Replace the pigs with robotic dragons.",
+    "anchor_image": "evaluation/anchors/edit2/0055_pigs.png"
+  },
+  {
+    "case_id": "edit2/0056_kart-turn",
+    "edit_type": 2,
+    "video_name": "0056_kart-turn",
+    "src_first_frame": "images/0056_kart-turn/00001.jpg",
+    "first_frame_edit_prompt": "Change go-karts to hovercrafts and drivers to pilots",
+    "anchor_image": "evaluation/anchors/edit2/0056_kart-turn.png"
+  },
+  {
+    "case_id": "edit2/0057_dog",
+    "edit_type": 2,
+    "video_name": "0057_dog",
+    "src_first_frame": "images/0057_dog/00001.jpg",
+    "first_frame_edit_prompt": "Replace the golden retriever with a robotic dog.",
+    "anchor_image": "evaluation/anchors/edit2/0057_dog.png"
+  },
+  {
+    "case_id": "edit2/0058_boat",
+    "edit_type": 2,
+    "video_name": "0058_boat",
+    "src_first_frame": "images/0058_boat/00001.jpg",
+    "first_frame_edit_prompt": "Replace the fishing boat with a hovercraft.",
+    "anchor_image": "evaluation/anchors/edit2/0058_boat.png"
+  },
+  {
+    "case_id": "edit2/0059_drift-straight",
+    "edit_type": 2,
+    "video_name": "0059_drift-straight",
+    "src_first_frame": "images/0059_drift-straight/00001.jpg",
+    "first_frame_edit_prompt": "Change the sports car to a hovercraft.",
+    "anchor_image": "evaluation/anchors/edit2/0059_drift-straight.png"
+  },
+  {
+    "case_id": "edit2/0060_motocross-bumps",
+    "edit_type": 2,
+    "video_name": "0060_motocross-bumps",
+    "src_first_frame": "images/0060_motocross-bumps/00001.jpg",
+    "first_frame_edit_prompt": "Replace the motocross rider with a kangaroo.",
+    "anchor_image": "evaluation/anchors/edit2/0060_motocross-bumps.png"
+  },
+  {
+    "case_id": "edit2/0061_mbike-santa",
+    "edit_type": 2,
+    "video_name": "0061_mbike-santa",
+    "src_first_frame": "images/0061_mbike-santa/00001.jpg",
+    "first_frame_edit_prompt": "Replace the person with a robot and the motorcycle with a hovercraft.",
+    "anchor_image": "evaluation/anchors/edit2/0061_mbike-santa.png"
+  },
+  {
+    "case_id": "edit2/0062_elephant",
+    "edit_type": 2,
+    "video_name": "0062_elephant",
+    "src_first_frame": "images/0062_elephant/00001.jpg",
+    "first_frame_edit_prompt": "Replace the elephant with a jeep.",
+    "anchor_image": "evaluation/anchors/edit2/0062_elephant.png"
+  },
+  {
+    "case_id": "edit2/0063_drift-turn",
+    "edit_type": 2,
+    "video_name": "0063_drift-turn",
+    "src_first_frame": "images/0063_drift-turn/00001.jpg",
+    "first_frame_edit_prompt": "Replace 'race car' with 'hovercraft'.",
+    "anchor_image": "evaluation/anchors/edit2/0063_drift-turn.png"
+  },
+  {
+    "case_id": "edit2/0064_rollerblade",
+    "edit_type": 2,
+    "video_name": "0064_rollerblade",
+    "src_first_frame": "images/0064_rollerblade/00001.jpg",
+    "first_frame_edit_prompt": "Replace the person with a Pikachu.",
+    "anchor_image": "evaluation/anchors/edit2/0064_rollerblade.png"
+  },
+  {
+    "case_id": "edit2/0065_twist-dance",
+    "edit_type": 2,
+    "video_name": "0065_twist-dance",
+    "src_first_frame": "images/0065_twist-dance/00001.jpg",
+    "first_frame_edit_prompt": "Replace the dancers with robots.",
+    "anchor_image": "evaluation/anchors/edit2/0065_twist-dance.png"
+  },
+  {
+    "case_id": "edit2/0066_deer",
+    "edit_type": 2,
+    "video_name": "0066_deer",
+    "src_first_frame": "images/0066_deer/00001.jpg",
+    "first_frame_edit_prompt": "Change the deer to pandas.",
+    "anchor_image": "evaluation/anchors/edit2/0066_deer.png"
+  },
+  {
+    "case_id": "edit2/0067_mbike-trick",
+    "edit_type": 2,
+    "video_name": "0067_mbike-trick",
+    "src_first_frame": "images/0067_mbike-trick/00001.jpg",
+    "first_frame_edit_prompt": "Replace the motorcyclist with a robot and the motorcycle with a hovercraft.",
+    "anchor_image": "evaluation/anchors/edit2/0067_mbike-trick.png"
+  },
+  {
+    "case_id": "edit2/0068_planes-water",
+    "edit_type": 2,
+    "video_name": "0068_planes-water",
+    "src_first_frame": "images/0068_planes-water/00001.jpg",
+    "first_frame_edit_prompt": "Replace the airplane with a spaceship.",
+    "anchor_image": "evaluation/anchors/edit2/0068_planes-water.png"
+  },
+  {
+    "case_id": "edit2/0069_car-turn",
+    "edit_type": 2,
+    "video_name": "0069_car-turn",
+    "src_first_frame": "images/0069_car-turn/00001.jpg",
+    "first_frame_edit_prompt": "Change the silver SUV to a hovercraft.",
+    "anchor_image": "evaluation/anchors/edit2/0069_car-turn.png"
+  },
+  {
+    "case_id": "edit2/0070_dance-twirl",
+    "edit_type": 2,
+    "video_name": "0070_dance-twirl",
+    "src_first_frame": "images/0070_dance-twirl/00001.jpg",
+    "first_frame_edit_prompt": "Change the dancer to a robot.",
+    "anchor_image": "evaluation/anchors/edit2/0070_dance-twirl.png"
+  },
+  {
+    "case_id": "edit2/0071_mallard-water",
+    "edit_type": 2,
+    "video_name": "0071_mallard-water",
+    "src_first_frame": "images/0071_mallard-water/00001.jpg",
+    "first_frame_edit_prompt": "Change the mallard duck to a boad.",
+    "anchor_image": "evaluation/anchors/edit2/0071_mallard-water.png"
+  },
+  {
+    "case_id": "edit2/0072_dog-agility",
+    "edit_type": 2,
+    "video_name": "0072_dog-agility",
+    "src_first_frame": "images/0072_dog-agility/00001.jpg",
+    "first_frame_edit_prompt": "Replace the border collie with a unicorn.",
+    "anchor_image": "evaluation/anchors/edit2/0072_dog-agility.png"
+  },
+  {
+    "case_id": "edit2/0073_bmx-rider",
+    "edit_type": 2,
+    "video_name": "0073_bmx-rider",
+    "src_first_frame": "images/0073_bmx-rider/00001.jpg",
+    "first_frame_edit_prompt": "Replace the BMX rider with a robot.",
+    "anchor_image": "evaluation/anchors/edit2/0073_bmx-rider.png"
+  },
+  {
+    "case_id": "edit2/0074_rhino",
+    "edit_type": 2,
+    "video_name": "0074_rhino",
+    "src_first_frame": "images/0074_rhino/00001.jpg",
+    "first_frame_edit_prompt": "Replace the rhinoceros with a robotic dinosaur.",
+    "anchor_image": "evaluation/anchors/edit2/0074_rhino.png"
+  },
+  {
+    "case_id": "edit2/0075_A_bicycle",
+    "edit_type": 2,
+    "video_name": "0075_A_bicycle",
+    "src_first_frame": "images/0075_A_bicycle/00001.jpg",
+    "first_frame_edit_prompt": "Change the bicycle to a skateboard.",
+    "anchor_image": "evaluation/anchors/edit2/0075_A_bicycle.png"
+  },
+  {
+    "case_id": "edit2/0076_A_rabbit",
+    "edit_type": 2,
+    "video_name": "0076_A_rabbit",
+    "src_first_frame": "images/0076_A_rabbit/00001.jpg",
+    "first_frame_edit_prompt": "Change the rabbit to a drone.",
+    "anchor_image": "evaluation/anchors/edit2/0076_A_rabbit.png"
+  },
+  {
+    "case_id": "edit2/0077_A_hawk",
+    "edit_type": 2,
+    "video_name": "0077_A_hawk",
+    "src_first_frame": "images/0077_A_hawk/00001.jpg",
+    "first_frame_edit_prompt": "Replace the hawk with a paraglider.",
+    "anchor_image": "evaluation/anchors/edit2/0077_A_hawk.png"
+  },
+  {
+    "case_id": "edit2/0078_A_cat",
+    "edit_type": 2,
+    "video_name": "0078_A_cat",
+    "src_first_frame": "images/0078_A_cat/00001.jpg",
+    "first_frame_edit_prompt": "Replace the cat with a ferret.",
+    "anchor_image": "evaluation/anchors/edit2/0078_A_cat.png"
+  },
+  {
+    "case_id": "edit2/0079_A_bus",
+    "edit_type": 2,
+    "video_name": "0079_A_bus",
+    "src_first_frame": "images/0079_A_bus/00001.jpg",
+    "first_frame_edit_prompt": "Replace the bus with a hovercraft.",
+    "anchor_image": "evaluation/anchors/edit2/0079_A_bus.png"
+  },
+  {
+    "case_id": "edit2/0080_A_motorcycle",
+    "edit_type": 2,
+    "video_name": "0080_A_motorcycle",
+    "src_first_frame": "images/0080_A_motorcycle/00001.jpg",
+    "first_frame_edit_prompt": "Change the motorcycle to a cheetah.",
+    "anchor_image": "evaluation/anchors/edit2/0080_A_motorcycle.png"
+  },
+  {
+    "case_id": "edit2/0081_A_horse",
+    "edit_type": 2,
+    "video_name": "0081_A_horse",
+    "src_first_frame": "images/0081_A_horse/00001.jpg",
+    "first_frame_edit_prompt": "Replace the horse with a car and change the camera's focus from the horse to a dolphin.",
+    "anchor_image": "evaluation/anchors/edit2/0081_A_horse.png"
+  },
+  {
+    "case_id": "edit2/0082_A_tram",
+    "edit_type": 2,
+    "video_name": "0082_A_tram",
+    "src_first_frame": "images/0082_A_tram/00001.jpg",
+    "first_frame_edit_prompt": "Change the tram to a sleigh.",
+    "anchor_image": "evaluation/anchors/edit2/0082_A_tram.png"
+  },
+  {
+    "case_id": "edit2/0083_A_boat",
+    "edit_type": 2,
+    "video_name": "0083_A_boat",
+    "src_first_frame": "images/0083_A_boat/00001.jpg",
+    "first_frame_edit_prompt": "Replace the boat with a swan.",
+    "anchor_image": "evaluation/anchors/edit2/0083_A_boat.png"
+  },
+  {
+    "case_id": "edit2/0084_A_squirrel",
+    "edit_type": 2,
+    "video_name": "0084_A_squirrel",
+    "src_first_frame": "images/0084_A_squirrel/00001.jpg",
+    "first_frame_edit_prompt": "Replace the squirrel with a monkey and change 'climbing' to'swinging'.",
+    "anchor_image": "evaluation/anchors/edit2/0084_A_squirrel.png"
+  },
+  {
+    "case_id": "edit2/0085_A_tram",
+    "edit_type": 2,
+    "video_name": "0085_A_tram",
+    "src_first_frame": "images/0085_A_tram/00001.jpg",
+    "first_frame_edit_prompt": "Replace the tram with a horse-drawn carriage.",
+    "anchor_image": "evaluation/anchors/edit2/0085_A_tram.png"
+  },
+  {
+    "case_id": "edit2/0086_A_red_sports_car",
+    "edit_type": 2,
+    "video_name": "0086_A_red_sports_car",
+    "src_first_frame": "images/0086_A_red_sports_car/00001.jpg",
+    "first_frame_edit_prompt": "Replace the red sports car with a rocket and change the action from speeding down to launching up.",
+    "anchor_image": "evaluation/anchors/edit2/0086_A_red_sports_car.png"
+  },
+  {
+    "case_id": "edit2/0087_A_seagull",
+    "edit_type": 2,
+    "video_name": "0087_A_seagull",
+    "src_first_frame": "images/0087_A_seagull/00001.jpg",
+    "first_frame_edit_prompt": "Change the seagull to a kite.",
+    "anchor_image": "evaluation/anchors/edit2/0087_A_seagull.png"
+  },
+  {
+    "case_id": "edit2/0088_A_cyclist",
+    "edit_type": 2,
+    "video_name": "0088_A_cyclist",
+    "src_first_frame": "images/0088_A_cyclist/00001.jpg",
+    "first_frame_edit_prompt": "Change the cyclist to a rollerblader.",
+    "anchor_image": "evaluation/anchors/edit2/0088_A_cyclist.png"
+  },
+  {
+    "case_id": "edit2/0089_A_dog",
+    "edit_type": 2,
+    "video_name": "0089_A_dog",
+    "src_first_frame": "images/0089_A_dog/00001.jpg",
+    "first_frame_edit_prompt": "Change the dog into a seal, replace wagging its tail with clapping its flippers.",
+    "anchor_image": "evaluation/anchors/edit2/0089_A_dog.png"
+  },
+  {
+    "case_id": "edit2/0090_A_deer",
+    "edit_type": 2,
+    "video_name": "0090_A_deer",
+    "src_first_frame": "images/0090_A_deer/00001.jpg",
+    "first_frame_edit_prompt": "Replace the deer with a snowmobile and change bounding to racing and leap to turn.",
+    "anchor_image": "evaluation/anchors/edit2/0090_A_deer.png"
+  },
+  {
+    "case_id": "edit2/0091_A_hawk",
+    "edit_type": 2,
+    "video_name": "0091_A_hawk",
+    "src_first_frame": "images/0091_A_hawk/00001.jpg",
+    "first_frame_edit_prompt": "Replace the hawk with a hot air balloon.",
+    "anchor_image": "evaluation/anchors/edit2/0091_A_hawk.png"
+  },
+  {
+    "case_id": "edit2/0092_A_fox",
+    "edit_type": 2,
+    "video_name": "0092_A_fox",
+    "src_first_frame": "images/0092_A_fox/00001.jpg",
+    "first_frame_edit_prompt": "Replace the fox with a robot, and change 'paw prints' to 'tracks'.",
+    "anchor_image": "evaluation/anchors/edit2/0092_A_fox.png"
+  },
+  {
+    "case_id": "edit2/0093_A_helicopter",
+    "edit_type": 2,
+    "video_name": "0093_A_helicopter",
+    "src_first_frame": "images/0093_A_helicopter/00001.jpg",
+    "first_frame_edit_prompt": "Change the helicopter to a UFO and its blades to lights, and change downdraft to glow.",
+    "anchor_image": "evaluation/anchors/edit2/0093_A_helicopter.png"
+  },
+  {
+    "case_id": "edit2/0094_A_swan",
+    "edit_type": 2,
+    "video_name": "0094_A_swan",
+    "src_first_frame": "images/0094_A_swan/00001.jpg",
+    "first_frame_edit_prompt": "Replace the swan with a paper boat.",
+    "anchor_image": "evaluation/anchors/edit2/0094_A_swan.png"
+  },
+  {
+    "case_id": "edit2/0095_A_crow",
+    "edit_type": 2,
+    "video_name": "0095_A_crow",
+    "src_first_frame": "images/0095_A_crow/00001.jpg",
+    "first_frame_edit_prompt": "Replace the crow with a drone and change cawing to buzzing.",
+    "anchor_image": "evaluation/anchors/edit2/0095_A_crow.png"
+  },
+  {
+    "case_id": "edit2/0096_A_car",
+    "edit_type": 2,
+    "video_name": "0096_A_car",
+    "src_first_frame": "images/0096_A_car/00001.jpg",
+    "first_frame_edit_prompt": "Change the car to a spaceship, the coastal road to a cosmic path, the waves to stars, and the cliffs to the void.",
+    "anchor_image": "evaluation/anchors/edit2/0096_A_car.png"
+  },
+  {
+    "case_id": "edit2/0097_A_bird",
+    "edit_type": 2,
+    "video_name": "0097_A_bird",
+    "src_first_frame": "images/0097_A_bird/00001.jpg",
+    "first_frame_edit_prompt": "Replace the bird with a dragon.",
+    "anchor_image": "evaluation/anchors/edit2/0097_A_bird.png"
+  },
+  {
+    "case_id": "edit2/0098_A_squirrel",
+    "edit_type": 2,
+    "video_name": "0098_A_squirrel",
+    "src_first_frame": "images/0098_A_squirrel/00001.jpg",
+    "first_frame_edit_prompt": "Change the squirrel to a bear.",
+    "anchor_image": "evaluation/anchors/edit2/0098_A_squirrel.png"
+  },
+  {
+    "case_id": "edit2/0099_A_jogger",
+    "edit_type": 2,
+    "video_name": "0099_A_jogger",
+    "src_first_frame": "images/0099_A_jogger/00001.jpg",
+    "first_frame_edit_prompt": "Replace the jogger with a robot.",
+    "anchor_image": "evaluation/anchors/edit2/0099_A_jogger.png"
+  },
+  {
+    "case_id": "edit2/0100_A_deer",
+    "edit_type": 2,
+    "video_name": "0100_A_deer",
+    "src_first_frame": "images/0100_A_deer/00001.jpg",
+    "first_frame_edit_prompt": "Replace the deer with a unicorn and change the word serene to magical.",
+    "anchor_image": "evaluation/anchors/edit2/0100_A_deer.png"
+  },
+  {
+    "case_id": "edit3/0001_bus",
+    "edit_type": 3,
+    "video_name": "0001_bus",
+    "src_first_frame": "images/0001_bus/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the city bus to purple.",
+    "anchor_image": "evaluation/anchors/edit3/0001_bus.png"
+  },
+  {
+    "case_id": "edit3/0002_girl-dog",
+    "edit_type": 3,
+    "video_name": "0002_girl-dog",
+    "src_first_frame": "images/0002_girl-dog/00001.jpg",
+    "first_frame_edit_prompt": "Change the gray dog to a pink dog.",
+    "anchor_image": "evaluation/anchors/edit3/0002_girl-dog.png"
+  },
+  {
+    "case_id": "edit3/0003_ocean-birds",
+    "edit_type": 3,
+    "video_name": "0003_ocean-birds",
+    "src_first_frame": "images/0003_ocean-birds/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the ibises from white to orange.",
+    "anchor_image": "evaluation/anchors/edit3/0003_ocean-birds.png"
+  },
+  {
+    "case_id": "edit3/0004_car-roundabout",
+    "edit_type": 3,
+    "video_name": "0004_car-roundabout",
+    "src_first_frame": "images/0004_car-roundabout/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the Mini Cooper from grey to yellow.",
+    "anchor_image": "evaluation/anchors/edit3/0004_car-roundabout.png"
+  },
+  {
+    "case_id": "edit3/0005_breakdance",
+    "edit_type": 3,
+    "video_name": "0005_breakdance",
+    "src_first_frame": "images/0005_breakdance/00001.jpg",
+    "first_frame_edit_prompt": "Change the red hoodie to a black hoodie.",
+    "anchor_image": "evaluation/anchors/edit3/0005_breakdance.png"
+  },
+  {
+    "case_id": "edit3/0006_paragliding",
+    "edit_type": 3,
+    "video_name": "0006_paragliding",
+    "src_first_frame": "images/0006_paragliding/00001.jpg",
+    "first_frame_edit_prompt": "Change the paraglider to pink.",
+    "anchor_image": "evaluation/anchors/edit3/0006_paragliding.png"
+  },
+  {
+    "case_id": "edit3/0007_guitar-violin",
+    "edit_type": 3,
+    "video_name": "0007_guitar-violin",
+    "src_first_frame": "images/0007_guitar-violin/00001.jpg",
+    "first_frame_edit_prompt": "Add blue clothing to the musician playing the violin.",
+    "anchor_image": "evaluation/anchors/edit3/0007_guitar-violin.png"
+  },
+  {
+    "case_id": "edit3/0008_snowboard-race",
+    "edit_type": 3,
+    "video_name": "0008_snowboard-race",
+    "src_first_frame": "images/0008_snowboard-race/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the snowboarders to pink.",
+    "anchor_image": "evaluation/anchors/edit3/0008_snowboard-race.png"
+  },
+  {
+    "case_id": "edit3/0009_bear",
+    "edit_type": 3,
+    "video_name": "0009_bear",
+    "src_first_frame": "images/0009_bear/00001.jpg",
+    "first_frame_edit_prompt": "Change the bear's color from brown to purple.",
+    "anchor_image": "evaluation/anchors/edit3/0009_bear.png"
+  },
+  {
+    "case_id": "edit3/0010_giant-slalom",
+    "edit_type": 3,
+    "video_name": "0010_giant-slalom",
+    "src_first_frame": "images/0010_giant-slalom/00001.jpg",
+    "first_frame_edit_prompt": "Change the skier's outfit from red and white to purple and black.",
+    "anchor_image": "evaluation/anchors/edit3/0010_giant-slalom.png"
+  },
+  {
+    "case_id": "edit3/0011_lucia",
+    "edit_type": 3,
+    "video_name": "0011_lucia",
+    "src_first_frame": "images/0011_lucia/00001.jpg",
+    "first_frame_edit_prompt": "Change the black dress to a red dress.",
+    "anchor_image": "evaluation/anchors/edit3/0011_lucia.png"
+  },
+  {
+    "case_id": "edit3/0012_goat",
+    "edit_type": 3,
+    "video_name": "0012_goat",
+    "src_first_frame": "images/0012_goat/00001.jpg",
+    "first_frame_edit_prompt": "Add the color blue to the mountain goat.",
+    "anchor_image": "evaluation/anchors/edit3/0012_goat.png"
+  },
+  {
+    "case_id": "edit3/0013_golf",
+    "edit_type": 3,
+    "video_name": "0013_golf",
+    "src_first_frame": "images/0013_golf/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the man's shirt from black to yellow.",
+    "anchor_image": "evaluation/anchors/edit3/0013_golf.png"
+  },
+  {
+    "case_id": "edit3/0014_burnout",
+    "edit_type": 3,
+    "video_name": "0014_burnout",
+    "src_first_frame": "images/0014_burnout/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the car from black to pink.",
+    "anchor_image": "evaluation/anchors/edit3/0014_burnout.png"
+  },
+  {
+    "case_id": "edit3/0015_car-shadow",
+    "edit_type": 3,
+    "video_name": "0015_car-shadow",
+    "src_first_frame": "images/0015_car-shadow/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the car from silver to green.",
+    "anchor_image": "evaluation/anchors/edit3/0015_car-shadow.png"
+  },
+  {
+    "case_id": "edit3/0016_horsejump-high",
+    "edit_type": 3,
+    "video_name": "0016_horsejump-high",
+    "src_first_frame": "images/0016_horsejump-high/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the horse to blue.",
+    "anchor_image": "evaluation/anchors/edit3/0016_horsejump-high.png"
+  },
+  {
+    "case_id": "edit3/0017_kid-football",
+    "edit_type": 3,
+    "video_name": "0017_kid-football",
+    "src_first_frame": "images/0017_kid-football/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the boy's cap from red to yellow.",
+    "anchor_image": "evaluation/anchors/edit3/0017_kid-football.png"
+  },
+  {
+    "case_id": "edit3/0018_breakdance-flare",
+    "edit_type": 3,
+    "video_name": "0018_breakdance-flare",
+    "src_first_frame": "images/0018_breakdance-flare/00001.jpg",
+    "first_frame_edit_prompt": "Add a black shirt to the breakdancer.",
+    "anchor_image": "evaluation/anchors/edit3/0018_breakdance-flare.png"
+  },
+  {
+    "case_id": "edit3/0019_tennis-vest",
+    "edit_type": 3,
+    "video_name": "0019_tennis-vest",
+    "src_first_frame": "images/0019_tennis-vest/00001.jpg",
+    "first_frame_edit_prompt": "Change the white shorts to black shorts.",
+    "anchor_image": "evaluation/anchors/edit3/0019_tennis-vest.png"
+  },
+  {
+    "case_id": "edit3/0020_monkeys",
+    "edit_type": 3,
+    "video_name": "0020_monkeys",
+    "src_first_frame": "images/0020_monkeys/00001.jpg",
+    "first_frame_edit_prompt": "Change the monkeys to be blue.",
+    "anchor_image": "evaluation/anchors/edit3/0020_monkeys.png"
+  },
+  {
+    "case_id": "edit3/0021_landing",
+    "edit_type": 3,
+    "video_name": "0021_landing",
+    "src_first_frame": "images/0021_landing/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the fighter jet to pink.",
+    "anchor_image": "evaluation/anchors/edit3/0021_landing.png"
+  },
+  {
+    "case_id": "edit3/0022_skate-jump",
+    "edit_type": 3,
+    "video_name": "0022_skate-jump",
+    "src_first_frame": "images/0022_skate-jump/00001.jpg",
+    "first_frame_edit_prompt": "Add the color red to the skateboarder's clothing.",
+    "anchor_image": "evaluation/anchors/edit3/0022_skate-jump.png"
+  },
+  {
+    "case_id": "edit3/0023_kayak-race",
+    "edit_type": 3,
+    "video_name": "0023_kayak-race",
+    "src_first_frame": "images/0023_kayak-race/00001.jpg",
+    "first_frame_edit_prompt": "Add blue color to the kayakers.",
+    "anchor_image": "evaluation/anchors/edit3/0023_kayak-race.png"
+  },
+  {
+    "case_id": "edit3/0024_hockey",
+    "edit_type": 3,
+    "video_name": "0024_hockey",
+    "src_first_frame": "images/0024_hockey/00001.jpg",
+    "first_frame_edit_prompt": "Change the person's attire to pink.",
+    "anchor_image": "evaluation/anchors/edit3/0024_hockey.png"
+  },
+  {
+    "case_id": "edit3/0025_baseball",
+    "edit_type": 3,
+    "video_name": "0025_baseball",
+    "src_first_frame": "images/0025_baseball/00001.jpg",
+    "first_frame_edit_prompt": "Change the player's uniform color to yellow.",
+    "anchor_image": "evaluation/anchors/edit3/0025_baseball.png"
+  },
+  {
+    "case_id": "edit3/0026_table-tennis",
+    "edit_type": 3,
+    "video_name": "0026_table-tennis",
+    "src_first_frame": "images/0026_table-tennis/00001.jpg",
+    "first_frame_edit_prompt": "Change the player in red and black outfit to be in a black outfit.",
+    "anchor_image": "evaluation/anchors/edit3/0026_table-tennis.png"
+  },
+  {
+    "case_id": "edit3/0027_dance-jump",
+    "edit_type": 3,
+    "video_name": "0027_dance-jump",
+    "src_first_frame": "images/0027_dance-jump/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the dress from pink and white to blue and black.",
+    "anchor_image": "evaluation/anchors/edit3/0027_dance-jump.png"
+  },
+  {
+    "case_id": "edit3/0028_kite-walk",
+    "edit_type": 3,
+    "video_name": "0028_kite-walk",
+    "src_first_frame": "images/0028_kite-walk/00001.jpg",
+    "first_frame_edit_prompt": "Change the blue helmet to a yellow helmet.",
+    "anchor_image": "evaluation/anchors/edit3/0028_kite-walk.png"
+  },
+  {
+    "case_id": "edit3/0029_horsejump-stick",
+    "edit_type": 3,
+    "video_name": "0029_horsejump-stick",
+    "src_first_frame": "images/0029_horsejump-stick/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the horse to green.",
+    "anchor_image": "evaluation/anchors/edit3/0029_horsejump-stick.png"
+  },
+  {
+    "case_id": "edit3/0030_rallye",
+    "edit_type": 3,
+    "video_name": "0030_rallye",
+    "src_first_frame": "images/0030_rallye/00001.jpg",
+    "first_frame_edit_prompt": "Add the color red to the rally car.",
+    "anchor_image": "evaluation/anchors/edit3/0030_rallye.png"
+  },
+  {
+    "case_id": "edit3/0031_soccerball",
+    "edit_type": 3,
+    "video_name": "0031_soccerball",
+    "src_first_frame": "images/0031_soccerball/00001.jpg",
+    "first_frame_edit_prompt": "Add the color purple to the soccer ball.",
+    "anchor_image": "evaluation/anchors/edit3/0031_soccerball.png"
+  },
+  {
+    "case_id": "edit3/0032_mermaid",
+    "edit_type": 3,
+    "video_name": "0032_mermaid",
+    "src_first_frame": "images/0032_mermaid/00001.jpg",
+    "first_frame_edit_prompt": "Add the color red to the mermaid's costume.",
+    "anchor_image": "evaluation/anchors/edit3/0032_mermaid.png"
+  },
+  {
+    "case_id": "edit3/0033_horsejump-low",
+    "edit_type": 3,
+    "video_name": "0033_horsejump-low",
+    "src_first_frame": "images/0033_horsejump-low/00001.jpg",
+    "first_frame_edit_prompt": "Change the white horse to a black horse.",
+    "anchor_image": "evaluation/anchors/edit3/0033_horsejump-low.png"
+  },
+  {
+    "case_id": "edit3/0034_cows",
+    "edit_type": 3,
+    "video_name": "0034_cows",
+    "src_first_frame": "images/0034_cows/00001.jpg",
+    "first_frame_edit_prompt": "Change the brown color of the cow to purple.",
+    "anchor_image": "evaluation/anchors/edit3/0034_cows.png"
+  },
+  {
+    "case_id": "edit3/0035_helicopter",
+    "edit_type": 3,
+    "video_name": "0035_helicopter",
+    "src_first_frame": "images/0035_helicopter/00001.jpg",
+    "first_frame_edit_prompt": "Add the color'red' to describe the helicopter.",
+    "anchor_image": "evaluation/anchors/edit3/0035_helicopter.png"
+  },
+  {
+    "case_id": "edit3/0036_camel",
+    "edit_type": 3,
+    "video_name": "0036_camel",
+    "src_first_frame": "images/0036_camel/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the first camel to purple.",
+    "anchor_image": "evaluation/anchors/edit3/0036_camel.png"
+  },
+  {
+    "case_id": "edit3/0037_snowboard-sand",
+    "edit_type": 3,
+    "video_name": "0037_snowboard-sand",
+    "src_first_frame": "images/0037_snowboard-sand/00001.jpg",
+    "first_frame_edit_prompt": "Change the woman's outfit to red.",
+    "anchor_image": "evaluation/anchors/edit3/0037_snowboard-sand.png"
+  },
+  {
+    "case_id": "edit3/0038_motorbike",
+    "edit_type": 3,
+    "video_name": "0038_motorbike",
+    "src_first_frame": "images/0038_motorbike/00001.jpg",
+    "first_frame_edit_prompt": "Add the color red to the motorbike.",
+    "anchor_image": "evaluation/anchors/edit3/0038_motorbike.png"
+  },
+  {
+    "case_id": "edit3/0039_chamaleon",
+    "edit_type": 3,
+    "video_name": "0039_chamaleon",
+    "src_first_frame": "images/0039_chamaleon/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the chameleon from green to red.",
+    "anchor_image": "evaluation/anchors/edit3/0039_chamaleon.png"
+  },
+  {
+    "case_id": "edit3/0040_tennis",
+    "edit_type": 3,
+    "video_name": "0040_tennis",
+    "src_first_frame": "images/0040_tennis/00001.jpg",
+    "first_frame_edit_prompt": "Change the player's outfit from white shirt and black shorts to black shirt and red shorts.",
+    "anchor_image": "evaluation/anchors/edit3/0040_tennis.png"
+  },
+  {
+    "case_id": "edit3/0041_longboard",
+    "edit_type": 3,
+    "video_name": "0041_longboard",
+    "src_first_frame": "images/0041_longboard/00001.jpg",
+    "first_frame_edit_prompt": "Change the yellow shirt to a red shirt.",
+    "anchor_image": "evaluation/anchors/edit3/0041_longboard.png"
+  },
+  {
+    "case_id": "edit3/0042_gym-ball",
+    "edit_type": 3,
+    "video_name": "0042_gym-ball",
+    "src_first_frame": "images/0042_gym-ball/00001.jpg",
+    "first_frame_edit_prompt": "Change the man's clothing to yellow.",
+    "anchor_image": "evaluation/anchors/edit3/0042_gym-ball.png"
+  },
+  {
+    "case_id": "edit3/0043_parkour",
+    "edit_type": 3,
+    "video_name": "0043_parkour",
+    "src_first_frame": "images/0043_parkour/00001.jpg",
+    "first_frame_edit_prompt": "Add purple color to the man.",
+    "anchor_image": "evaluation/anchors/edit3/0043_parkour.png"
+  },
+  {
+    "case_id": "edit3/0044_snowboard",
+    "edit_type": 3,
+    "video_name": "0044_snowboard",
+    "src_first_frame": "images/0044_snowboard/00001.jpg",
+    "first_frame_edit_prompt": "Add green to the snowboarder's clothing.",
+    "anchor_image": "evaluation/anchors/edit3/0044_snowboard.png"
+  },
+  {
+    "case_id": "edit3/0045_butterfly",
+    "edit_type": 3,
+    "video_name": "0045_butterfly",
+    "src_first_frame": "images/0045_butterfly/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the butterfly from blue to pink.",
+    "anchor_image": "evaluation/anchors/edit3/0045_butterfly.png"
+  },
+  {
+    "case_id": "edit3/0046_blackswan",
+    "edit_type": 3,
+    "video_name": "0046_blackswan",
+    "src_first_frame": "images/0046_blackswan/00001.jpg",
+    "first_frame_edit_prompt": "Change the black swan to a red swan.",
+    "anchor_image": "evaluation/anchors/edit3/0046_blackswan.png"
+  },
+  {
+    "case_id": "edit3/0047_judo",
+    "edit_type": 3,
+    "video_name": "0047_judo",
+    "src_first_frame": "images/0047_judo/00001.jpg",
+    "first_frame_edit_prompt": "Change the judo practitioners' uniforms to red.",
+    "anchor_image": "evaluation/anchors/edit3/0047_judo.png"
+  },
+  {
+    "case_id": "edit3/0048_hike",
+    "edit_type": 3,
+    "video_name": "0048_hike",
+    "src_first_frame": "images/0048_hike/00001.jpg",
+    "first_frame_edit_prompt": "Change the man's clothing to red.",
+    "anchor_image": "evaluation/anchors/edit3/0048_hike.png"
+  },
+  {
+    "case_id": "edit3/0049_speed-skating",
+    "edit_type": 3,
+    "video_name": "0049_speed-skating",
+    "src_first_frame": "images/0049_speed-skating/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the speed skaters' suits from pink to the original colors",
+    "anchor_image": "evaluation/anchors/edit3/0049_speed-skating.png"
+  },
+  {
+    "case_id": "edit3/0050_slackline",
+    "edit_type": 3,
+    "video_name": "0050_slackline",
+    "src_first_frame": "images/0050_slackline/00001.jpg",
+    "first_frame_edit_prompt": "Add green attire to the person.",
+    "anchor_image": "evaluation/anchors/edit3/0050_slackline.png"
+  },
+  {
+    "case_id": "edit3/0051_dogs-jump",
+    "edit_type": 3,
+    "video_name": "0051_dogs-jump",
+    "src_first_frame": "images/0051_dogs-jump/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the woman's jacket from yellow to blue.",
+    "anchor_image": "evaluation/anchors/edit3/0051_dogs-jump.png"
+  },
+  {
+    "case_id": "edit3/0052_mallard-fly",
+    "edit_type": 3,
+    "video_name": "0052_mallard-fly",
+    "src_first_frame": "images/0052_mallard-fly/00001.jpg",
+    "first_frame_edit_prompt": "Add the color 'blue' to describe the mallard duck.",
+    "anchor_image": "evaluation/anchors/edit3/0052_mallard-fly.png"
+  },
+  {
+    "case_id": "edit3/0053_swing",
+    "edit_type": 3,
+    "video_name": "0053_swing",
+    "src_first_frame": "images/0053_swing/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the person's clothes to purple.",
+    "anchor_image": "evaluation/anchors/edit3/0053_swing.png"
+  },
+  {
+    "case_id": "edit3/0054_train",
+    "edit_type": 3,
+    "video_name": "0054_train",
+    "src_first_frame": "images/0054_train/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the engine and carriages from blue, red, and gray to pink.",
+    "anchor_image": "evaluation/anchors/edit3/0054_train.png"
+  },
+  {
+    "case_id": "edit3/0055_pigs",
+    "edit_type": 3,
+    "video_name": "0055_pigs",
+    "src_first_frame": "images/0055_pigs/00001.jpg",
+    "first_frame_edit_prompt": "Change the pigs to blue pigs.",
+    "anchor_image": "evaluation/anchors/edit3/0055_pigs.png"
+  },
+  {
+    "case_id": "edit3/0056_kart-turn",
+    "edit_type": 3,
+    "video_name": "0056_kart-turn",
+    "src_first_frame": "images/0056_kart-turn/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the go-karts to black.",
+    "anchor_image": "evaluation/anchors/edit3/0056_kart-turn.png"
+  },
+  {
+    "case_id": "edit3/0057_dog",
+    "edit_type": 3,
+    "video_name": "0057_dog",
+    "src_first_frame": "images/0057_dog/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the retriever from golden to blue.",
+    "anchor_image": "evaluation/anchors/edit3/0057_dog.png"
+  },
+  {
+    "case_id": "edit3/0058_boat",
+    "edit_type": 3,
+    "video_name": "0058_boat",
+    "src_first_frame": "images/0058_boat/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the boat from white to pink.",
+    "anchor_image": "evaluation/anchors/edit3/0058_boat.png"
+  },
+  {
+    "case_id": "edit3/0059_drift-straight",
+    "edit_type": 3,
+    "video_name": "0059_drift-straight",
+    "src_first_frame": "images/0059_drift-straight/00001.jpg",
+    "first_frame_edit_prompt": "Change the car's color from red to yellow.",
+    "anchor_image": "evaluation/anchors/edit3/0059_drift-straight.png"
+  },
+  {
+    "case_id": "edit3/0060_motocross-bumps",
+    "edit_type": 3,
+    "video_name": "0060_motocross-bumps",
+    "src_first_frame": "images/0060_motocross-bumps/00001.jpg",
+    "first_frame_edit_prompt": "Add the color red to describe the motocross rider.",
+    "anchor_image": "evaluation/anchors/edit3/0060_motocross-bumps.png"
+  },
+  {
+    "case_id": "edit3/0061_mbike-santa",
+    "edit_type": 3,
+    "video_name": "0061_mbike-santa",
+    "src_first_frame": "images/0061_mbike-santa/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the Santa Claus outfit from the original color to yellow.",
+    "anchor_image": "evaluation/anchors/edit3/0061_mbike-santa.png"
+  },
+  {
+    "case_id": "edit3/0062_elephant",
+    "edit_type": 3,
+    "video_name": "0062_elephant",
+    "src_first_frame": "images/0062_elephant/00001.jpg",
+    "first_frame_edit_prompt": "Change the elephant's color to blue.",
+    "anchor_image": "evaluation/anchors/edit3/0062_elephant.png"
+  },
+  {
+    "case_id": "edit3/0063_drift-turn",
+    "edit_type": 3,
+    "video_name": "0063_drift-turn",
+    "src_first_frame": "images/0063_drift-turn/00001.jpg",
+    "first_frame_edit_prompt": "Add the color black to the car.",
+    "anchor_image": "evaluation/anchors/edit3/0063_drift-turn.png"
+  },
+  {
+    "case_id": "edit3/0064_rollerblade",
+    "edit_type": 3,
+    "video_name": "0064_rollerblade",
+    "src_first_frame": "images/0064_rollerblade/00001.jpg",
+    "first_frame_edit_prompt": "Add the color white to the person's outfit.",
+    "anchor_image": "evaluation/anchors/edit3/0064_rollerblade.png"
+  },
+  {
+    "case_id": "edit3/0065_twist-dance",
+    "edit_type": 3,
+    "video_name": "0065_twist-dance",
+    "src_first_frame": "images/0065_twist-dance/00001.jpg",
+    "first_frame_edit_prompt": "Change the dancers' outfits from red to white.",
+    "anchor_image": "evaluation/anchors/edit3/0065_twist-dance.png"
+  },
+  {
+    "case_id": "edit3/0066_deer",
+    "edit_type": 3,
+    "video_name": "0066_deer",
+    "src_first_frame": "images/0066_deer/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the deer to pink.",
+    "anchor_image": "evaluation/anchors/edit3/0066_deer.png"
+  },
+  {
+    "case_id": "edit3/0067_mbike-trick",
+    "edit_type": 3,
+    "video_name": "0067_mbike-trick",
+    "src_first_frame": "images/0067_mbike-trick/00001.jpg",
+    "first_frame_edit_prompt": "Change the motorcyclist to wear red.",
+    "anchor_image": "evaluation/anchors/edit3/0067_mbike-trick.png"
+  },
+  {
+    "case_id": "edit3/0068_planes-water",
+    "edit_type": 3,
+    "video_name": "0068_planes-water",
+    "src_first_frame": "images/0068_planes-water/00001.jpg",
+    "first_frame_edit_prompt": "Add the color blue to the airplane.",
+    "anchor_image": "evaluation/anchors/edit3/0068_planes-water.png"
+  },
+  {
+    "case_id": "edit3/0069_car-turn",
+    "edit_type": 3,
+    "video_name": "0069_car-turn",
+    "src_first_frame": "images/0069_car-turn/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the SUV from silver to pink.",
+    "anchor_image": "evaluation/anchors/edit3/0069_car-turn.png"
+  },
+  {
+    "case_id": "edit3/0070_dance-twirl",
+    "edit_type": 3,
+    "video_name": "0070_dance-twirl",
+    "src_first_frame": "images/0070_dance-twirl/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the dancer's costume from blue and green to yellow.",
+    "anchor_image": "evaluation/anchors/edit3/0070_dance-twirl.png"
+  },
+  {
+    "case_id": "edit3/0071_mallard-water",
+    "edit_type": 3,
+    "video_name": "0071_mallard-water",
+    "src_first_frame": "images/0071_mallard-water/00001.jpg",
+    "first_frame_edit_prompt": "Add 'blue' to describe the mallard duck.",
+    "anchor_image": "evaluation/anchors/edit3/0071_mallard-water.png"
+  },
+  {
+    "case_id": "edit3/0072_dog-agility",
+    "edit_type": 3,
+    "video_name": "0072_dog-agility",
+    "src_first_frame": "images/0072_dog-agility/00001.jpg",
+    "first_frame_edit_prompt": "Change the border collie to a red border collie.",
+    "anchor_image": "evaluation/anchors/edit3/0072_dog-agility.png"
+  },
+  {
+    "case_id": "edit3/0073_bmx-rider",
+    "edit_type": 3,
+    "video_name": "0073_bmx-rider",
+    "src_first_frame": "images/0073_bmx-rider/00001.jpg",
+    "first_frame_edit_prompt": "Change the rider's color to green.",
+    "anchor_image": "evaluation/anchors/edit3/0073_bmx-rider.png"
+  },
+  {
+    "case_id": "edit3/0074_rhino",
+    "edit_type": 3,
+    "video_name": "0074_rhino",
+    "src_first_frame": "images/0074_rhino/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the rhinoceros to pink.",
+    "anchor_image": "evaluation/anchors/edit3/0074_rhino.png"
+  },
+  {
+    "case_id": "edit3/0075_A_bicycle",
+    "edit_type": 3,
+    "video_name": "0075_A_bicycle",
+    "src_first_frame": "images/0075_A_bicycle/00001.jpg",
+    "first_frame_edit_prompt": "Add purple color to the bicycle.",
+    "anchor_image": "evaluation/anchors/edit3/0075_A_bicycle.png"
+  },
+  {
+    "case_id": "edit3/0076_A_rabbit",
+    "edit_type": 3,
+    "video_name": "0076_A_rabbit",
+    "src_first_frame": "images/0076_A_rabbit/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the rabbit to turquoise.",
+    "anchor_image": "evaluation/anchors/edit3/0076_A_rabbit.png"
+  },
+  {
+    "case_id": "edit3/0077_A_hawk",
+    "edit_type": 3,
+    "video_name": "0077_A_hawk",
+    "src_first_frame": "images/0077_A_hawk/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the hawk to pink.",
+    "anchor_image": "evaluation/anchors/edit3/0077_A_hawk.png"
+  },
+  {
+    "case_id": "edit3/0078_A_cat",
+    "edit_type": 3,
+    "video_name": "0078_A_cat",
+    "src_first_frame": "images/0078_A_cat/00001.jpg",
+    "first_frame_edit_prompt": "Change the cat to green.",
+    "anchor_image": "evaluation/anchors/edit3/0078_A_cat.png"
+  },
+  {
+    "case_id": "edit3/0079_A_bus",
+    "edit_type": 3,
+    "video_name": "0079_A_bus",
+    "src_first_frame": "images/0079_A_bus/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the bus to lavender.",
+    "anchor_image": "evaluation/anchors/edit3/0079_A_bus.png"
+  },
+  {
+    "case_id": "edit3/0080_A_motorcycle",
+    "edit_type": 3,
+    "video_name": "0080_A_motorcycle",
+    "src_first_frame": "images/0080_A_motorcycle/00001.jpg",
+    "first_frame_edit_prompt": "Change the motorcycle to golden.",
+    "anchor_image": "evaluation/anchors/edit3/0080_A_motorcycle.png"
+  },
+  {
+    "case_id": "edit3/0081_A_horse",
+    "edit_type": 3,
+    "video_name": "0081_A_horse",
+    "src_first_frame": "images/0081_A_horse/00001.jpg",
+    "first_frame_edit_prompt": "Change the horse to a silver horse.",
+    "anchor_image": "evaluation/anchors/edit3/0081_A_horse.png"
+  },
+  {
+    "case_id": "edit3/0082_A_tram",
+    "edit_type": 3,
+    "video_name": "0082_A_tram",
+    "src_first_frame": "images/0082_A_tram/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the tram to teal.",
+    "anchor_image": "evaluation/anchors/edit3/0082_A_tram.png"
+  },
+  {
+    "case_id": "edit3/0083_A_boat",
+    "edit_type": 3,
+    "video_name": "0083_A_boat",
+    "src_first_frame": "images/0083_A_boat/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the boat to magenta.",
+    "anchor_image": "evaluation/anchors/edit3/0083_A_boat.png"
+  },
+  {
+    "case_id": "edit3/0084_A_squirrel",
+    "edit_type": 3,
+    "video_name": "0084_A_squirrel",
+    "src_first_frame": "images/0084_A_squirrel/00001.jpg",
+    "first_frame_edit_prompt": "Change the squirrel to a crimson squirrel.",
+    "anchor_image": "evaluation/anchors/edit3/0084_A_squirrel.png"
+  },
+  {
+    "case_id": "edit3/0085_A_tram",
+    "edit_type": 3,
+    "video_name": "0085_A_tram",
+    "src_first_frame": "images/0085_A_tram/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the tram to chartreuse.",
+    "anchor_image": "evaluation/anchors/edit3/0085_A_tram.png"
+  },
+  {
+    "case_id": "edit3/0086_A_red_sports_car",
+    "edit_type": 3,
+    "video_name": "0086_A_red_sports_car",
+    "src_first_frame": "images/0086_A_red_sports_car/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the sports car from red to cyan.",
+    "anchor_image": "evaluation/anchors/edit3/0086_A_red_sports_car.png"
+  },
+  {
+    "case_id": "edit3/0087_A_seagull",
+    "edit_type": 3,
+    "video_name": "0087_A_seagull",
+    "src_first_frame": "images/0087_A_seagull/00001.jpg",
+    "first_frame_edit_prompt": "Change the seagull to violet",
+    "anchor_image": "evaluation/anchors/edit3/0087_A_seagull.png"
+  },
+  {
+    "case_id": "edit3/0088_A_cyclist",
+    "edit_type": 3,
+    "video_name": "0088_A_cyclist",
+    "src_first_frame": "images/0088_A_cyclist/00001.jpg",
+    "first_frame_edit_prompt": "Change the cyclist's color to maroon.",
+    "anchor_image": "evaluation/anchors/edit3/0088_A_cyclist.png"
+  },
+  {
+    "case_id": "edit3/0089_A_dog",
+    "edit_type": 3,
+    "video_name": "0089_A_dog",
+    "src_first_frame": "images/0089_A_dog/00001.jpg",
+    "first_frame_edit_prompt": "Change the dog to a lime dog.",
+    "anchor_image": "evaluation/anchors/edit3/0089_A_dog.png"
+  },
+  {
+    "case_id": "edit3/0090_A_deer",
+    "edit_type": 3,
+    "video_name": "0090_A_deer",
+    "src_first_frame": "images/0090_A_deer/00001.jpg",
+    "first_frame_edit_prompt": "Change the deer into a coral deer.",
+    "anchor_image": "evaluation/anchors/edit3/0090_A_deer.png"
+  },
+  {
+    "case_id": "edit3/0091_A_hawk",
+    "edit_type": 3,
+    "video_name": "0091_A_hawk",
+    "src_first_frame": "images/0091_A_hawk/00001.jpg",
+    "first_frame_edit_prompt": "Change the hawk to a mustard hawk.",
+    "anchor_image": "evaluation/anchors/edit3/0091_A_hawk.png"
+  },
+  {
+    "case_id": "edit3/0092_A_fox",
+    "edit_type": 3,
+    "video_name": "0092_A_fox",
+    "src_first_frame": "images/0092_A_fox/00001.jpg",
+    "first_frame_edit_prompt": "Change the fox to an indigo fox.",
+    "anchor_image": "evaluation/anchors/edit3/0092_A_fox.png"
+  },
+  {
+    "case_id": "edit3/0093_A_helicopter",
+    "edit_type": 3,
+    "video_name": "0093_A_helicopter",
+    "src_first_frame": "images/0093_A_helicopter/00001.jpg",
+    "first_frame_edit_prompt": "Change the helicopter's color to fuchsia.",
+    "anchor_image": "evaluation/anchors/edit3/0093_A_helicopter.png"
+  },
+  {
+    "case_id": "edit3/0094_A_swan",
+    "edit_type": 3,
+    "video_name": "0094_A_swan",
+    "src_first_frame": "images/0094_A_swan/00001.jpg",
+    "first_frame_edit_prompt": "Add 'bronze' to the swan.",
+    "anchor_image": "evaluation/anchors/edit3/0094_A_swan.png"
+  },
+  {
+    "case_id": "edit3/0095_A_crow",
+    "edit_type": 3,
+    "video_name": "0095_A_crow",
+    "src_first_frame": "images/0095_A_crow/00001.jpg",
+    "first_frame_edit_prompt": "Add \"azure\" to describe the crow.",
+    "anchor_image": "evaluation/anchors/edit3/0095_A_crow.png"
+  },
+  {
+    "case_id": "edit3/0096_A_car",
+    "edit_type": 3,
+    "video_name": "0096_A_car",
+    "src_first_frame": "images/0096_A_car/00001.jpg",
+    "first_frame_edit_prompt": "Add the color beige to the car.",
+    "anchor_image": "evaluation/anchors/edit3/0096_A_car.png"
+  },
+  {
+    "case_id": "edit3/0097_A_bird",
+    "edit_type": 3,
+    "video_name": "0097_A_bird",
+    "src_first_frame": "images/0097_A_bird/00001.jpg",
+    "first_frame_edit_prompt": "Change the bird to an olive bird.",
+    "anchor_image": "evaluation/anchors/edit3/0097_A_bird.png"
+  },
+  {
+    "case_id": "edit3/0098_A_squirrel",
+    "edit_type": 3,
+    "video_name": "0098_A_squirrel",
+    "src_first_frame": "images/0098_A_squirrel/00001.jpg",
+    "first_frame_edit_prompt": "Change the squirrel to a salmon squirrel.",
+    "anchor_image": "evaluation/anchors/edit3/0098_A_squirrel.png"
+  },
+  {
+    "case_id": "edit3/0099_A_jogger",
+    "edit_type": 3,
+    "video_name": "0099_A_jogger",
+    "src_first_frame": "images/0099_A_jogger/00001.jpg",
+    "first_frame_edit_prompt": "Change the jogger to lavender.",
+    "anchor_image": "evaluation/anchors/edit3/0099_A_jogger.png"
+  },
+  {
+    "case_id": "edit3/0100_A_deer",
+    "edit_type": 3,
+    "video_name": "0100_A_deer",
+    "src_first_frame": "images/0100_A_deer/00001.jpg",
+    "first_frame_edit_prompt": "Replace 'deer' with 'periwinkle deer",
+    "anchor_image": "evaluation/anchors/edit3/0100_A_deer.png"
+  },
+  {
+    "case_id": "edit4/0001_bus",
+    "edit_type": 4,
+    "video_name": "0001_bus",
+    "src_first_frame": "images/0001_bus/00001.jpg",
+    "first_frame_edit_prompt": "Change the city bus to a glass city bus.",
+    "anchor_image": "evaluation/anchors/edit4/0001_bus.png"
+  },
+  {
+    "case_id": "edit4/0002_girl-dog",
+    "edit_type": 4,
+    "video_name": "0002_girl-dog",
+    "src_first_frame": "images/0002_girl-dog/00001.jpg",
+    "first_frame_edit_prompt": "Change the wheelchair from standard to wooden.",
+    "anchor_image": "evaluation/anchors/edit4/0002_girl-dog.png"
+  },
+  {
+    "case_id": "edit4/0003_ocean-birds",
+    "edit_type": 4,
+    "video_name": "0003_ocean-birds",
+    "src_first_frame": "images/0003_ocean-birds/00001.jpg",
+    "first_frame_edit_prompt": "Change 'Two white ibises' to 'Two crystal white ibises",
+    "anchor_image": "evaluation/anchors/edit4/0003_ocean-birds.png"
+  },
+  {
+    "case_id": "edit4/0004_car-roundabout",
+    "edit_type": 4,
+    "video_name": "0004_car-roundabout",
+    "src_first_frame": "images/0004_car-roundabout/00001.jpg",
+    "first_frame_edit_prompt": "Add the color descriptor \"metallic\" to the Mini Cooper.",
+    "anchor_image": "evaluation/anchors/edit4/0004_car-roundabout.png"
+  },
+  {
+    "case_id": "edit4/0005_breakdance",
+    "edit_type": 4,
+    "video_name": "0005_breakdance",
+    "src_first_frame": "images/0005_breakdance/00001.jpg",
+    "first_frame_edit_prompt": "Change the breakdancer to a holographic breakdancer.",
+    "anchor_image": "evaluation/anchors/edit4/0005_breakdance.png"
+  },
+  {
+    "case_id": "edit4/0006_paragliding",
+    "edit_type": 4,
+    "video_name": "0006_paragliding",
+    "src_first_frame": "images/0006_paragliding/00001.jpg",
+    "first_frame_edit_prompt": "Add silk to describe the paraglider.",
+    "anchor_image": "evaluation/anchors/edit4/0006_paragliding.png"
+  },
+  {
+    "case_id": "edit4/0007_guitar-violin",
+    "edit_type": 4,
+    "video_name": "0007_guitar-violin",
+    "src_first_frame": "images/0007_guitar-violin/00001.jpg",
+    "first_frame_edit_prompt": "Change the musician playing the violin to a wooden musician.",
+    "anchor_image": "evaluation/anchors/edit4/0007_guitar-violin.png"
+  },
+  {
+    "case_id": "edit4/0008_snowboard-race",
+    "edit_type": 4,
+    "video_name": "0008_snowboard-race",
+    "src_first_frame": "images/0008_snowboard-race/00001.jpg",
+    "first_frame_edit_prompt": "Replace the human snowboarders with robotic snowboarders.",
+    "anchor_image": "evaluation/anchors/edit4/0008_snowboard-race.png"
+  },
+  {
+    "case_id": "edit4/0009_bear",
+    "edit_type": 4,
+    "video_name": "0009_bear",
+    "src_first_frame": "images/0009_bear/00001.jpg",
+    "first_frame_edit_prompt": "Change the bear from brown to bronze.",
+    "anchor_image": "evaluation/anchors/edit4/0009_bear.png"
+  },
+  {
+    "case_id": "edit4/0010_giant-slalom",
+    "edit_type": 4,
+    "video_name": "0010_giant-slalom",
+    "src_first_frame": "images/0010_giant-slalom/00001.jpg",
+    "first_frame_edit_prompt": "Replace the skier with a glass skier.",
+    "anchor_image": "evaluation/anchors/edit4/0010_giant-slalom.png"
+  },
+  {
+    "case_id": "edit4/0011_lucia",
+    "edit_type": 4,
+    "video_name": "0011_lucia",
+    "src_first_frame": "images/0011_lucia/00001.jpg",
+    "first_frame_edit_prompt": "Change the woman to a porcelain woman.",
+    "anchor_image": "evaluation/anchors/edit4/0011_lucia.png"
+  },
+  {
+    "case_id": "edit4/0012_goat",
+    "edit_type": 4,
+    "video_name": "0012_goat",
+    "src_first_frame": "images/0012_goat/00001.jpg",
+    "first_frame_edit_prompt": "Change the mountain goat from a living creature to a stone sculpture.",
+    "anchor_image": "evaluation/anchors/edit4/0012_goat.png"
+  },
+  {
+    "case_id": "edit4/0013_golf",
+    "edit_type": 4,
+    "video_name": "0013_golf",
+    "src_first_frame": "images/0013_golf/00001.jpg",
+    "first_frame_edit_prompt": "Change the color of the man to silver and the material of the golf cart to wood.",
+    "anchor_image": "evaluation/anchors/edit4/0013_golf.png"
+  },
+  {
+    "case_id": "edit4/0014_burnout",
+    "edit_type": 4,
+    "video_name": "0014_burnout",
+    "src_first_frame": "images/0014_burnout/00001.jpg",
+    "first_frame_edit_prompt": "Add carbon fiber to the car's description.",
+    "anchor_image": "evaluation/anchors/edit4/0014_burnout.png"
+  },
+  {
+    "case_id": "edit4/0015_car-shadow",
+    "edit_type": 4,
+    "video_name": "0015_car-shadow",
+    "src_first_frame": "images/0015_car-shadow/00001.jpg",
+    "first_frame_edit_prompt": "Change the car into a holographic car.",
+    "anchor_image": "evaluation/anchors/edit4/0015_car-shadow.png"
+  },
+  {
+    "case_id": "edit4/0016_horsejump-high",
+    "edit_type": 4,
+    "video_name": "0016_horsejump-high",
+    "src_first_frame": "images/0016_horsejump-high/00001.jpg",
+    "first_frame_edit_prompt": "Replace the real horse with a wooden horse.",
+    "anchor_image": "evaluation/anchors/edit4/0016_horsejump-high.png"
+  },
+  {
+    "case_id": "edit4/0017_kid-football",
+    "edit_type": 4,
+    "video_name": "0017_kid-football",
+    "src_first_frame": "images/0017_kid-football/00001.jpg",
+    "first_frame_edit_prompt": "Change the young boy to a wooden young boy and change the soccer ball to a rubber soccer ball.",
+    "anchor_image": "evaluation/anchors/edit4/0017_kid-football.png"
+  },
+  {
+    "case_id": "edit4/0018_breakdance-flare",
+    "edit_type": 4,
+    "video_name": "0018_breakdance-flare",
+    "src_first_frame": "images/0018_breakdance-flare/00001.jpg",
+    "first_frame_edit_prompt": "Change the breakdancer to metallic.",
+    "anchor_image": "evaluation/anchors/edit4/0018_breakdance-flare.png"
+  },
+  {
+    "case_id": "edit4/0019_tennis-vest",
+    "edit_type": 4,
+    "video_name": "0019_tennis-vest",
+    "src_first_frame": "images/0019_tennis-vest/00001.jpg",
+    "first_frame_edit_prompt": "Change \"tennis\" to \"clay\" in the description of the player.",
+    "anchor_image": "evaluation/anchors/edit4/0019_tennis-vest.png"
+  },
+  {
+    "case_id": "edit4/0020_monkeys",
+    "edit_type": 4,
+    "video_name": "0020_monkeys",
+    "src_first_frame": "images/0020_monkeys/00001.jpg",
+    "first_frame_edit_prompt": "Change the real monkeys to plush monkeys.",
+    "anchor_image": "evaluation/anchors/edit4/0020_monkeys.png"
+  },
+  {
+    "case_id": "edit4/0021_landing",
+    "edit_type": 4,
+    "video_name": "0021_landing",
+    "src_first_frame": "images/0021_landing/00001.jpg",
+    "first_frame_edit_prompt": "Change the fighter jet to be made of wood.",
+    "anchor_image": "evaluation/anchors/edit4/0021_landing.png"
+  },
+  {
+    "case_id": "edit4/0022_skate-jump",
+    "edit_type": 4,
+    "video_name": "0022_skate-jump",
+    "src_first_frame": "images/0022_skate-jump/00001.jpg",
+    "first_frame_edit_prompt": "Replace the skateboarder with a cardboard cutout of the skateboarder.",
+    "anchor_image": "evaluation/anchors/edit4/0022_skate-jump.png"
+  },
+  {
+    "case_id": "edit4/0023_kayak-race",
+    "edit_type": 4,
+    "video_name": "0023_kayak-race",
+    "src_first_frame": "images/0023_kayak-race/00001.jpg",
+    "first_frame_edit_prompt": "Change the material of the kayakers from human to wooden.",
+    "anchor_image": "evaluation/anchors/edit4/0023_kayak-race.png"
+  },
+  {
+    "case_id": "edit4/0024_hockey",
+    "edit_type": 4,
+    "video_name": "0024_hockey",
+    "src_first_frame": "images/0024_hockey/00001.jpg",
+    "first_frame_edit_prompt": "Change the rollerblades to metallic rollerblades.",
+    "anchor_image": "evaluation/anchors/edit4/0024_hockey.png"
+  },
+  {
+    "case_id": "edit4/0025_baseball",
+    "edit_type": 4,
+    "video_name": "0025_baseball",
+    "src_first_frame": "images/0025_baseball/00001.jpg",
+    "first_frame_edit_prompt": "Change the baseball player to be made of clay.",
+    "anchor_image": "evaluation/anchors/edit4/0025_baseball.png"
+  },
+  {
+    "case_id": "edit4/0026_table-tennis",
+    "edit_type": 4,
+    "video_name": "0026_table-tennis",
+    "src_first_frame": "images/0026_table-tennis/00001.jpg",
+    "first_frame_edit_prompt": "Change the players from human to wooden.",
+    "anchor_image": "evaluation/anchors/edit4/0026_table-tennis.png"
+  },
+  {
+    "case_id": "edit4/0027_dance-jump",
+    "edit_type": 4,
+    "video_name": "0027_dance-jump",
+    "src_first_frame": "images/0027_dance-jump/00001.jpg",
+    "first_frame_edit_prompt": "Change the girl to be made of porcelain.",
+    "anchor_image": "evaluation/anchors/edit4/0027_dance-jump.png"
+  },
+  {
+    "case_id": "edit4/0028_kite-walk",
+    "edit_type": 4,
+    "video_name": "0028_kite-walk",
+    "src_first_frame": "images/0028_kite-walk/00001.jpg",
+    "first_frame_edit_prompt": "Change the person to a wooden person and the kiteboard to a wooden kiteboard.",
+    "anchor_image": "evaluation/anchors/edit4/0028_kite-walk.png"
+  },
+  {
+    "case_id": "edit4/0029_horsejump-stick",
+    "edit_type": 4,
+    "video_name": "0029_horsejump-stick",
+    "src_first_frame": "images/0029_horsejump-stick/00001.jpg",
+    "first_frame_edit_prompt": "Replace the real horse with a wooden horse.",
+    "anchor_image": "evaluation/anchors/edit4/0029_horsejump-stick.png"
+  },
+  {
+    "case_id": "edit4/0030_rallye",
+    "edit_type": 4,
+    "video_name": "0030_rallye",
+    "src_first_frame": "images/0030_rallye/00001.jpg",
+    "first_frame_edit_prompt": "Replace the car with a carbon fiber car.",
+    "anchor_image": "evaluation/anchors/edit4/0030_rallye.png"
+  },
+  {
+    "case_id": "edit4/0031_soccerball",
+    "edit_type": 4,
+    "video_name": "0031_soccerball",
+    "src_first_frame": "images/0031_soccerball/00001.jpg",
+    "first_frame_edit_prompt": "Add rubber to describe the soccer ball.",
+    "anchor_image": "evaluation/anchors/edit4/0031_soccerball.png"
+  },
+  {
+    "case_id": "edit4/0032_mermaid",
+    "edit_type": 4,
+    "video_name": "0032_mermaid",
+    "src_first_frame": "images/0032_mermaid/00001.jpg",
+    "first_frame_edit_prompt": "Change the woman's costume from a regular mermaid to a wooden mermaid.",
+    "anchor_image": "evaluation/anchors/edit4/0032_mermaid.png"
+  },
+  {
+    "case_id": "edit4/0033_horsejump-low",
+    "edit_type": 4,
+    "video_name": "0033_horsejump-low",
+    "src_first_frame": "images/0033_horsejump-low/00001.jpg",
+    "first_frame_edit_prompt": "Replace the real horse with a wooden horse.",
+    "anchor_image": "evaluation/anchors/edit4/0033_horsejump-low.png"
+  },
+  {
+    "case_id": "edit4/0034_cows",
+    "edit_type": 4,
+    "video_name": "0034_cows",
+    "src_first_frame": "images/0034_cows/00001.jpg",
+    "first_frame_edit_prompt": "Change the cow from real to clay.",
+    "anchor_image": "evaluation/anchors/edit4/0034_cows.png"
+  },
+  {
+    "case_id": "edit4/0035_helicopter",
+    "edit_type": 4,
+    "video_name": "0035_helicopter",
+    "src_first_frame": "images/0035_helicopter/00001.jpg",
+    "first_frame_edit_prompt": "Change the helicopter from metal to wood.",
+    "anchor_image": "evaluation/anchors/edit4/0035_helicopter.png"
+  },
+  {
+    "case_id": "edit4/0036_camel",
+    "edit_type": 4,
+    "video_name": "0036_camel",
+    "src_first_frame": "images/0036_camel/00001.jpg",
+    "first_frame_edit_prompt": "Replace one of the camels with a wooden camel.",
+    "anchor_image": "evaluation/anchors/edit4/0036_camel.png"
+  },
+  {
+    "case_id": "edit4/0037_snowboard-sand",
+    "edit_type": 4,
+    "video_name": "0037_snowboard-sand",
+    "src_first_frame": "images/0037_snowboard-sand/00001.jpg",
+    "first_frame_edit_prompt": "Change the woman into a holographic woman",
+    "anchor_image": "evaluation/anchors/edit4/0037_snowboard-sand.png"
+  },
+  {
+    "case_id": "edit4/0038_motorbike",
+    "edit_type": 4,
+    "video_name": "0038_motorbike",
+    "src_first_frame": "images/0038_motorbike/00001.jpg",
+    "first_frame_edit_prompt": "Change the motorbike to a wooden motorbike.",
+    "anchor_image": "evaluation/anchors/edit4/0038_motorbike.png"
+  },
+  {
+    "case_id": "edit4/0039_chamaleon",
+    "edit_type": 4,
+    "video_name": "0039_chamaleon",
+    "src_first_frame": "images/0039_chamaleon/00001.jpg",
+    "first_frame_edit_prompt": "Change the real chameleon to a glass one.",
+    "anchor_image": "evaluation/anchors/edit4/0039_chamaleon.png"
+  },
+  {
+    "case_id": "edit4/0040_tennis",
+    "edit_type": 4,
+    "video_name": "0040_tennis",
+    "src_first_frame": "images/0040_tennis/00001.jpg",
+    "first_frame_edit_prompt": "No change needed.",
+    "anchor_image": "evaluation/anchors/edit4/0040_tennis.png"
+  },
+  {
+    "case_id": "edit4/0041_longboard",
+    "edit_type": 4,
+    "video_name": "0041_longboard",
+    "src_first_frame": "images/0041_longboard/00001.jpg",
+    "first_frame_edit_prompt": "Change the man to a wooden man.",
+    "anchor_image": "evaluation/anchors/edit4/0041_longboard.png"
+  },
+  {
+    "case_id": "edit4/0042_gym-ball",
+    "edit_type": 4,
+    "video_name": "0042_gym-ball",
+    "src_first_frame": "images/0042_gym-ball/00001.jpg",
+    "first_frame_edit_prompt": "Change the man to a metallic man.",
+    "anchor_image": "evaluation/anchors/edit4/0042_gym-ball.png"
+  },
+  {
+    "case_id": "edit4/0043_parkour",
+    "edit_type": 4,
+    "video_name": "0043_parkour",
+    "src_first_frame": "images/0043_parkour/00001.jpg",
+    "first_frame_edit_prompt": "Change the man into a holographic man",
+    "anchor_image": "evaluation/anchors/edit4/0043_parkour.png"
+  },
+  {
+    "case_id": "edit4/0044_snowboard",
+    "edit_type": 4,
+    "video_name": "0044_snowboard",
+    "src_first_frame": "images/0044_snowboard/00001.jpg",
+    "first_frame_edit_prompt": "Change the snowboarder to be metallic.",
+    "anchor_image": "evaluation/anchors/edit4/0044_snowboard.png"
+  },
+  {
+    "case_id": "edit4/0045_butterfly",
+    "edit_type": 4,
+    "video_name": "0045_butterfly",
+    "src_first_frame": "images/0045_butterfly/00001.jpg",
+    "first_frame_edit_prompt": "Change the material of the butterfly from a living creature to glass.",
+    "anchor_image": "evaluation/anchors/edit4/0045_butterfly.png"
+  },
+  {
+    "case_id": "edit4/0046_blackswan",
+    "edit_type": 4,
+    "video_name": "0046_blackswan",
+    "src_first_frame": "images/0046_blackswan/00001.jpg",
+    "first_frame_edit_prompt": "Add velvet before black to describe the swan.",
+    "anchor_image": "evaluation/anchors/edit4/0046_blackswan.png"
+  },
+  {
+    "case_id": "edit4/0047_judo",
+    "edit_type": 4,
+    "video_name": "0047_judo",
+    "src_first_frame": "images/0047_judo/00001.jpg",
+    "first_frame_edit_prompt": "Change the judo practitioners from human to metallic.",
+    "anchor_image": "evaluation/anchors/edit4/0047_judo.png"
+  },
+  {
+    "case_id": "edit4/0048_hike",
+    "edit_type": 4,
+    "video_name": "0048_hike",
+    "src_first_frame": "images/0048_hike/00001.jpg",
+    "first_frame_edit_prompt": "Change the man to be metallic.",
+    "anchor_image": "evaluation/anchors/edit4/0048_hike.png"
+  },
+  {
+    "case_id": "edit4/0049_speed-skating",
+    "edit_type": 4,
+    "video_name": "0049_speed-skating",
+    "src_first_frame": "images/0049_speed-skating/00001.jpg",
+    "first_frame_edit_prompt": "Replace the human skaters with metallic ones.",
+    "anchor_image": "evaluation/anchors/edit4/0049_speed-skating.png"
+  },
+  {
+    "case_id": "edit4/0050_slackline",
+    "edit_type": 4,
+    "video_name": "0050_slackline",
+    "src_first_frame": "images/0050_slackline/00001.jpg",
+    "first_frame_edit_prompt": "Change the person into a metallic person.",
+    "anchor_image": "evaluation/anchors/edit4/0050_slackline.png"
+  },
+  {
+    "case_id": "edit4/0051_dogs-jump",
+    "edit_type": 4,
+    "video_name": "0051_dogs-jump",
+    "src_first_frame": "images/0051_dogs-jump/00001.jpg",
+    "first_frame_edit_prompt": "Change the real dogs to plush dogs.",
+    "anchor_image": "evaluation/anchors/edit4/0051_dogs-jump.png"
+  },
+  {
+    "case_id": "edit4/0052_mallard-fly",
+    "edit_type": 4,
+    "video_name": "0052_mallard-fly",
+    "src_first_frame": "images/0052_mallard-fly/00001.jpg",
+    "first_frame_edit_prompt": "Add 'glass' before'mallard duck'.",
+    "anchor_image": "evaluation/anchors/edit4/0052_mallard-fly.png"
+  },
+  {
+    "case_id": "edit4/0053_swing",
+    "edit_type": 4,
+    "video_name": "0053_swing",
+    "src_first_frame": "images/0053_swing/00001.jpg",
+    "first_frame_edit_prompt": "Change the person to a metallic person.",
+    "anchor_image": "evaluation/anchors/edit4/0053_swing.png"
+  },
+  {
+    "case_id": "edit4/0054_train",
+    "edit_type": 4,
+    "video_name": "0054_train",
+    "src_first_frame": "images/0054_train/00001.jpg",
+    "first_frame_edit_prompt": "Change 'A model train' to 'A wooden model train",
+    "anchor_image": "evaluation/anchors/edit4/0054_train.png"
+  },
+  {
+    "case_id": "edit4/0055_pigs",
+    "edit_type": 4,
+    "video_name": "0055_pigs",
+    "src_first_frame": "images/0055_pigs/00001.jpg",
+    "first_frame_edit_prompt": "Replace the real pigs with clay pigs.",
+    "anchor_image": "evaluation/anchors/edit4/0055_pigs.png"
+  },
+  {
+    "case_id": "edit4/0056_kart-turn",
+    "edit_type": 4,
+    "video_name": "0056_kart-turn",
+    "src_first_frame": "images/0056_kart-turn/00001.jpg",
+    "first_frame_edit_prompt": "Add metallic to the go-karts",
+    "anchor_image": "evaluation/anchors/edit4/0056_kart-turn.png"
+  },
+  {
+    "case_id": "edit4/0057_dog",
+    "edit_type": 4,
+    "video_name": "0057_dog",
+    "src_first_frame": "images/0057_dog/00001.jpg",
+    "first_frame_edit_prompt": "Change the real golden retriever to a plush golden retriever.",
+    "anchor_image": "evaluation/anchors/edit4/0057_dog.png"
+  },
+  {
+    "case_id": "edit4/0058_boat",
+    "edit_type": 4,
+    "video_name": "0058_boat",
+    "src_first_frame": "images/0058_boat/00001.jpg",
+    "first_frame_edit_prompt": "Add 'wooden' to describe the boat.",
+    "anchor_image": "evaluation/anchors/edit4/0058_boat.png"
+  },
+  {
+    "case_id": "edit4/0059_drift-straight",
+    "edit_type": 4,
+    "video_name": "0059_drift-straight",
+    "src_first_frame": "images/0059_drift-straight/00001.jpg",
+    "first_frame_edit_prompt": "Add carbon fiber to the car's description.",
+    "anchor_image": "evaluation/anchors/edit4/0059_drift-straight.png"
+  },
+  {
+    "case_id": "edit4/0060_motocross-bumps",
+    "edit_type": 4,
+    "video_name": "0060_motocross-bumps",
+    "src_first_frame": "images/0060_motocross-bumps/00001.jpg",
+    "first_frame_edit_prompt": "Add 'holographic' to the rider.",
+    "anchor_image": "evaluation/anchors/edit4/0060_motocross-bumps.png"
+  },
+  {
+    "case_id": "edit4/0061_mbike-santa",
+    "edit_type": 4,
+    "video_name": "0061_mbike-santa",
+    "src_first_frame": "images/0061_mbike-santa/00001.jpg",
+    "first_frame_edit_prompt": "Change the person to a robotic person and the motorcycle to a wooden motorcycle.",
+    "anchor_image": "evaluation/anchors/edit4/0061_mbike-santa.png"
+  },
+  {
+    "case_id": "edit4/0062_elephant",
+    "edit_type": 4,
+    "video_name": "0062_elephant",
+    "src_first_frame": "images/0062_elephant/00001.jpg",
+    "first_frame_edit_prompt": "Replace the living elephant with a stone elephant.",
+    "anchor_image": "evaluation/anchors/edit4/0062_elephant.png"
+  },
+  {
+    "case_id": "edit4/0063_drift-turn",
+    "edit_type": 4,
+    "video_name": "0063_drift-turn",
+    "src_first_frame": "images/0063_drift-turn/00001.jpg",
+    "first_frame_edit_prompt": "Add 'carbon fiber' to describe the race car.",
+    "anchor_image": "evaluation/anchors/edit4/0063_drift-turn.png"
+  },
+  {
+    "case_id": "edit4/0064_rollerblade",
+    "edit_type": 4,
+    "video_name": "0064_rollerblade",
+    "src_first_frame": "images/0064_rollerblade/00001.jpg",
+    "first_frame_edit_prompt": "Add a holographic effect to the person.",
+    "anchor_image": "evaluation/anchors/edit4/0064_rollerblade.png"
+  },
+  {
+    "case_id": "edit4/0065_twist-dance",
+    "edit_type": 4,
+    "video_name": "0065_twist-dance",
+    "src_first_frame": "images/0065_twist-dance/00001.jpg",
+    "first_frame_edit_prompt": "Replace the dancers with holographic dancers.",
+    "anchor_image": "evaluation/anchors/edit4/0065_twist-dance.png"
+  },
+  {
+    "case_id": "edit4/0066_deer",
+    "edit_type": 4,
+    "video_name": "0066_deer",
+    "src_first_frame": "images/0066_deer/00001.jpg",
+    "first_frame_edit_prompt": "Change the deer from living creatures to wooden statues.",
+    "anchor_image": "evaluation/anchors/edit4/0066_deer.png"
+  },
+  {
+    "case_id": "edit4/0067_mbike-trick",
+    "edit_type": 4,
+    "video_name": "0067_mbike-trick",
+    "src_first_frame": "images/0067_mbike-trick/00001.jpg",
+    "first_frame_edit_prompt": "Change the motorcyclist to a holographic motorcyclist.",
+    "anchor_image": "evaluation/anchors/edit4/0067_mbike-trick.png"
+  },
+  {
+    "case_id": "edit4/0068_planes-water",
+    "edit_type": 4,
+    "video_name": "0068_planes-water",
+    "src_first_frame": "images/0068_planes-water/00001.jpg",
+    "first_frame_edit_prompt": "Add 'chrome' to describe the airplane.",
+    "anchor_image": "evaluation/anchors/edit4/0068_planes-water.png"
+  },
+  {
+    "case_id": "edit4/0069_car-turn",
+    "edit_type": 4,
+    "video_name": "0069_car-turn",
+    "src_first_frame": "images/0069_car-turn/00001.jpg",
+    "first_frame_edit_prompt": "Add a holographic effect to the silver SUV.",
+    "anchor_image": "evaluation/anchors/edit4/0069_car-turn.png"
+  },
+  {
+    "case_id": "edit4/0070_dance-twirl",
+    "edit_type": 4,
+    "video_name": "0070_dance-twirl",
+    "src_first_frame": "images/0070_dance-twirl/00001.jpg",
+    "first_frame_edit_prompt": "Change the dancer to a holographic dancer.",
+    "anchor_image": "evaluation/anchors/edit4/0070_dance-twirl.png"
+  },
+  {
+    "case_id": "edit4/0071_mallard-water",
+    "edit_type": 4,
+    "video_name": "0071_mallard-water",
+    "src_first_frame": "images/0071_mallard-water/00001.jpg",
+    "first_frame_edit_prompt": "Add 'glass' before'mallard duck'.",
+    "anchor_image": "evaluation/anchors/edit4/0071_mallard-water.png"
+  },
+  {
+    "case_id": "edit4/0072_dog-agility",
+    "edit_type": 4,
+    "video_name": "0072_dog-agility",
+    "src_first_frame": "images/0072_dog-agility/00001.jpg",
+    "first_frame_edit_prompt": "Add plush to the border collie.",
+    "anchor_image": "evaluation/anchors/edit4/0072_dog-agility.png"
+  },
+  {
+    "case_id": "edit4/0073_bmx-rider",
+    "edit_type": 4,
+    "video_name": "0073_bmx-rider",
+    "src_first_frame": "images/0073_bmx-rider/00001.jpg",
+    "first_frame_edit_prompt": "Change the rider to a holographic version.",
+    "anchor_image": "evaluation/anchors/edit4/0073_bmx-rider.png"
+  },
+  {
+    "case_id": "edit4/0074_rhino",
+    "edit_type": 4,
+    "video_name": "0074_rhino",
+    "src_first_frame": "images/0074_rhino/00001.jpg",
+    "first_frame_edit_prompt": "Add stone to the rhinoceros.",
+    "anchor_image": "evaluation/anchors/edit4/0074_rhino.png"
+  },
+  {
+    "case_id": "edit4/0075_A_bicycle",
+    "edit_type": 4,
+    "video_name": "0075_A_bicycle",
+    "src_first_frame": "images/0075_A_bicycle/00001.jpg",
+    "first_frame_edit_prompt": "Change the bicycle to glass.",
+    "anchor_image": "evaluation/anchors/edit4/0075_A_bicycle.png"
+  },
+  {
+    "case_id": "edit4/0076_A_rabbit",
+    "edit_type": 4,
+    "video_name": "0076_A_rabbit",
+    "src_first_frame": "images/0076_A_rabbit/00001.jpg",
+    "first_frame_edit_prompt": "Add the adjective'velvet' to the rabbit.",
+    "anchor_image": "evaluation/anchors/edit4/0076_A_rabbit.png"
+  },
+  {
+    "case_id": "edit4/0077_A_hawk",
+    "edit_type": 4,
+    "video_name": "0077_A_hawk",
+    "src_first_frame": "images/0077_A_hawk/00001.jpg",
+    "first_frame_edit_prompt": "Change the hawk to a metallic hawk.",
+    "anchor_image": "evaluation/anchors/edit4/0077_A_hawk.png"
+  },
+  {
+    "case_id": "edit4/0078_A_cat",
+    "edit_type": 4,
+    "video_name": "0078_A_cat",
+    "src_first_frame": "images/0078_A_cat/00001.jpg",
+    "first_frame_edit_prompt": "Add woolen to the cat.",
+    "anchor_image": "evaluation/anchors/edit4/0078_A_cat.png"
+  },
+  {
+    "case_id": "edit4/0079_A_bus",
+    "edit_type": 4,
+    "video_name": "0079_A_bus",
+    "src_first_frame": "images/0079_A_bus/00001.jpg",
+    "first_frame_edit_prompt": "Replace the bus with a wooden bus.",
+    "anchor_image": "evaluation/anchors/edit4/0079_A_bus.png"
+  },
+  {
+    "case_id": "edit4/0080_A_motorcycle",
+    "edit_type": 4,
+    "video_name": "0080_A_motorcycle",
+    "src_first_frame": "images/0080_A_motorcycle/00001.jpg",
+    "first_frame_edit_prompt": "Change the motorcycle to a holographic motorcycle.",
+    "anchor_image": "evaluation/anchors/edit4/0080_A_motorcycle.png"
+  },
+  {
+    "case_id": "edit4/0081_A_horse",
+    "edit_type": 4,
+    "video_name": "0081_A_horse",
+    "src_first_frame": "images/0081_A_horse/00001.jpg",
+    "first_frame_edit_prompt": "Change the horse to a crystal horse.",
+    "anchor_image": "evaluation/anchors/edit4/0081_A_horse.png"
+  },
+  {
+    "case_id": "edit4/0082_A_tram",
+    "edit_type": 4,
+    "video_name": "0082_A_tram",
+    "src_first_frame": "images/0082_A_tram/00001.jpg",
+    "first_frame_edit_prompt": "Change the material of the tram to ceramic.",
+    "anchor_image": "evaluation/anchors/edit4/0082_A_tram.png"
+  },
+  {
+    "case_id": "edit4/0083_A_boat",
+    "edit_type": 4,
+    "video_name": "0083_A_boat",
+    "src_first_frame": "images/0083_A_boat/00001.jpg",
+    "first_frame_edit_prompt": "Replace the boat with a bamboo boat.",
+    "anchor_image": "evaluation/anchors/edit4/0083_A_boat.png"
+  },
+  {
+    "case_id": "edit4/0084_A_squirrel",
+    "edit_type": 4,
+    "video_name": "0084_A_squirrel",
+    "src_first_frame": "images/0084_A_squirrel/00001.jpg",
+    "first_frame_edit_prompt": "Replace the squirrel with a clay squirrel.",
+    "anchor_image": "evaluation/anchors/edit4/0084_A_squirrel.png"
+  },
+  {
+    "case_id": "edit4/0085_A_tram",
+    "edit_type": 4,
+    "video_name": "0085_A_tram",
+    "src_first_frame": "images/0085_A_tram/00001.jpg",
+    "first_frame_edit_prompt": "Add leather to the tram.",
+    "anchor_image": "evaluation/anchors/edit4/0085_A_tram.png"
+  },
+  {
+    "case_id": "edit4/0086_A_red_sports_car",
+    "edit_type": 4,
+    "video_name": "0086_A_red_sports_car",
+    "src_first_frame": "images/0086_A_red_sports_car/00001.jpg",
+    "first_frame_edit_prompt": "Add'velvet' to describe the color of the car.",
+    "anchor_image": "evaluation/anchors/edit4/0086_A_red_sports_car.png"
+  },
+  {
+    "case_id": "edit4/0087_A_seagull",
+    "edit_type": 4,
+    "video_name": "0087_A_seagull",
+    "src_first_frame": "images/0087_A_seagull/00001.jpg",
+    "first_frame_edit_prompt": "Change the seagull to porcelain.",
+    "anchor_image": "evaluation/anchors/edit4/0087_A_seagull.png"
+  },
+  {
+    "case_id": "edit4/0088_A_cyclist",
+    "edit_type": 4,
+    "video_name": "0088_A_cyclist",
+    "src_first_frame": "images/0088_A_cyclist/00001.jpg",
+    "first_frame_edit_prompt": "Replace the cyclist with a cardboard cutout of the cyclist.",
+    "anchor_image": "evaluation/anchors/edit4/0088_A_cyclist.png"
+  },
+  {
+    "case_id": "edit4/0089_A_dog",
+    "edit_type": 4,
+    "video_name": "0089_A_dog",
+    "src_first_frame": "images/0089_A_dog/00001.jpg",
+    "first_frame_edit_prompt": "Replace the real dog with a plush dog.",
+    "anchor_image": "evaluation/anchors/edit4/0089_A_dog.png"
+  },
+  {
+    "case_id": "edit4/0090_A_deer",
+    "edit_type": 4,
+    "video_name": "0090_A_deer",
+    "src_first_frame": "images/0090_A_deer/00001.jpg",
+    "first_frame_edit_prompt": "Add bronze to the deer's description.",
+    "anchor_image": "evaluation/anchors/edit4/0090_A_deer.png"
+  },
+  {
+    "case_id": "edit4/0091_A_hawk",
+    "edit_type": 4,
+    "video_name": "0091_A_hawk",
+    "src_first_frame": "images/0091_A_hawk/00001.jpg",
+    "first_frame_edit_prompt": "Replace the hawk with a glass hawk.",
+    "anchor_image": "evaluation/anchors/edit4/0091_A_hawk.png"
+  },
+  {
+    "case_id": "edit4/0092_A_fox",
+    "edit_type": 4,
+    "video_name": "0092_A_fox",
+    "src_first_frame": "images/0092_A_fox/00001.jpg",
+    "first_frame_edit_prompt": "Add \"velvet\" to describe the fox.",
+    "anchor_image": "evaluation/anchors/edit4/0092_A_fox.png"
+  },
+  {
+    "case_id": "edit4/0093_A_helicopter",
+    "edit_type": 4,
+    "video_name": "0093_A_helicopter",
+    "src_first_frame": "images/0093_A_helicopter/00001.jpg",
+    "first_frame_edit_prompt": "Add'steel' to describe the helicopter.",
+    "anchor_image": "evaluation/anchors/edit4/0093_A_helicopter.png"
+  },
+  {
+    "case_id": "edit4/0094_A_swan",
+    "edit_type": 4,
+    "video_name": "0094_A_swan",
+    "src_first_frame": "images/0094_A_swan/00001.jpg",
+    "first_frame_edit_prompt": "Add'silk' before'swan",
+    "anchor_image": "evaluation/anchors/edit4/0094_A_swan.png"
+  },
+  {
+    "case_id": "edit4/0095_A_crow",
+    "edit_type": 4,
+    "video_name": "0095_A_crow",
+    "src_first_frame": "images/0095_A_crow/00001.jpg",
+    "first_frame_edit_prompt": "Replace the real crow with a rubber crow.",
+    "anchor_image": "evaluation/anchors/edit4/0095_A_crow.png"
+  },
+  {
+    "case_id": "edit4/0096_A_car",
+    "edit_type": 4,
+    "video_name": "0096_A_car",
+    "src_first_frame": "images/0096_A_car/00001.jpg",
+    "first_frame_edit_prompt": "Add 'chrome' to describe the car.",
+    "anchor_image": "evaluation/anchors/edit4/0096_A_car.png"
+  },
+  {
+    "case_id": "edit4/0097_A_bird",
+    "edit_type": 4,
+    "video_name": "0097_A_bird",
+    "src_first_frame": "images/0097_A_bird/00001.jpg",
+    "first_frame_edit_prompt": "Add 'feathered' to describe the bird.",
+    "anchor_image": "evaluation/anchors/edit4/0097_A_bird.png"
+  },
+  {
+    "case_id": "edit4/0098_A_squirrel",
+    "edit_type": 4,
+    "video_name": "0098_A_squirrel",
+    "src_first_frame": "images/0098_A_squirrel/00001.jpg",
+    "first_frame_edit_prompt": "Add knitted to describe the squirrel.",
+    "anchor_image": "evaluation/anchors/edit4/0098_A_squirrel.png"
+  },
+  {
+    "case_id": "edit4/0099_A_jogger",
+    "edit_type": 4,
+    "video_name": "0099_A_jogger",
+    "src_first_frame": "images/0099_A_jogger/00001.jpg",
+    "first_frame_edit_prompt": "Replace the human jogger with a robotic jogger",
+    "anchor_image": "evaluation/anchors/edit4/0099_A_jogger.png"
+  },
+  {
+    "case_id": "edit4/0100_A_deer",
+    "edit_type": 4,
+    "video_name": "0100_A_deer",
+    "src_first_frame": "images/0100_A_deer/00001.jpg",
+    "first_frame_edit_prompt": "Change the deer to be made of marble.",
+    "anchor_image": "evaluation/anchors/edit4/0100_A_deer.png"
+  },
+  {
+    "case_id": "edit5/0007_guitar-violin",
+    "edit_type": 5,
+    "video_name": "0007_guitar-violin",
+    "src_first_frame": "images/0007_guitar-violin/00001.jpg",
+    "first_frame_edit_prompt": "Add a hat to the violinist.",
+    "anchor_image": "evaluation/anchors/edit5/0007_guitar-violin.png"
+  },
+  {
+    "case_id": "edit5/0009_bear",
+    "edit_type": 5,
+    "video_name": "0009_bear",
+    "src_first_frame": "images/0009_bear/00001.jpg",
+    "first_frame_edit_prompt": "Add a cap to the bear.",
+    "anchor_image": "evaluation/anchors/edit5/0009_bear.png"
+  },
+  {
+    "case_id": "edit5/0011_lucia",
+    "edit_type": 5,
+    "video_name": "0011_lucia",
+    "src_first_frame": "images/0011_lucia/00001.jpg",
+    "first_frame_edit_prompt": "Add a dog following the woman",
+    "anchor_image": "evaluation/anchors/edit5/0011_lucia.png"
+  },
+  {
+    "case_id": "edit5/0019_tennis-vest",
+    "edit_type": 5,
+    "video_name": "0019_tennis-vest",
+    "src_first_frame": "images/0019_tennis-vest/00001.jpg",
+    "first_frame_edit_prompt": "Add a bright yellow fedora to the player's outfit.",
+    "anchor_image": "evaluation/anchors/edit5/0019_tennis-vest.png"
+  },
+  {
+    "case_id": "edit5/0034_cows",
+    "edit_type": 5,
+    "video_name": "0034_cows",
+    "src_first_frame": "images/0034_cows/00001.jpg",
+    "first_frame_edit_prompt": "Add a flower garland to the cow.",
+    "anchor_image": "evaluation/anchors/edit5/0034_cows.png"
+  },
+  {
+    "case_id": "edit5/0036_camel",
+    "edit_type": 5,
+    "video_name": "0036_camel",
+    "src_first_frame": "images/0036_camel/00001.jpg",
+    "first_frame_edit_prompt": "Add a big basket to the first camel.",
+    "anchor_image": "evaluation/anchors/edit5/0036_camel.png"
+  },
+  {
+    "case_id": "edit5/0057_dog",
+    "edit_type": 5,
+    "video_name": "0057_dog",
+    "src_first_frame": "images/0057_dog/00001.jpg",
+    "first_frame_edit_prompt": "Add a crown to the dog's head.",
+    "anchor_image": "evaluation/anchors/edit5/0057_dog.png"
+  },
+  {
+    "case_id": "edit5/0069_car-turn",
+    "edit_type": 5,
+    "video_name": "0069_car-turn",
+    "src_first_frame": "images/0069_car-turn/00001.jpg",
+    "first_frame_edit_prompt": "Add a giant inflatable flamingo to the roof of the silver SUV.",
+    "anchor_image": "evaluation/anchors/edit5/0069_car-turn.png"
+  },
+  {
+    "case_id": "edit5/0089_A_dog",
+    "edit_type": 5,
+    "video_name": "0089_A_dog",
+    "src_first_frame": "images/0089_A_dog/00001.jpg",
+    "first_frame_edit_prompt": "Add sunglasses to the dog.",
+    "anchor_image": "evaluation/anchors/edit5/0089_A_dog.png"
+  },
+  {
+    "case_id": "edit6/0002_girl-dog",
+    "edit_type": 6,
+    "video_name": "0002_girl-dog",
+    "src_first_frame": "images/0002_girl-dog/00001.jpg",
+    "first_frame_edit_prompt": "Remove the gray dog from the scene.",
+    "anchor_image": "evaluation/anchors/edit6/0002_girl-dog.png"
+  },
+  {
+    "case_id": "edit6/0017_kid-football",
+    "edit_type": 6,
+    "video_name": "0017_kid-football",
+    "src_first_frame": "images/0017_kid-football/00001.jpg",
+    "first_frame_edit_prompt": "Remove the red cap from the boy.",
+    "anchor_image": "evaluation/anchors/edit6/0017_kid-football.png"
+  },
+  {
+    "case_id": "edit6/0025_baseball",
+    "edit_type": 6,
+    "video_name": "0025_baseball",
+    "src_first_frame": "images/0025_baseball/00001.jpg",
+    "first_frame_edit_prompt": "Remove the helmet from the baseball player.",
+    "anchor_image": "evaluation/anchors/edit6/0025_baseball.png"
+  },
+  {
+    "case_id": "edit6/0041_longboard",
+    "edit_type": 6,
+    "video_name": "0041_longboard",
+    "src_first_frame": "images/0041_longboard/00001.jpg",
+    "first_frame_edit_prompt": "Remove the backpack from the man.",
+    "anchor_image": "evaluation/anchors/edit6/0041_longboard.png"
+  },
+  {
+    "case_id": "edit6/0042_gym-ball",
+    "edit_type": 6,
+    "video_name": "0042_gym-ball",
+    "src_first_frame": "images/0042_gym-ball/00001.jpg",
+    "first_frame_edit_prompt": "Remove the heavy gym ball from the scene.",
+    "anchor_image": "evaluation/anchors/edit6/0042_gym-ball.png"
+  },
+  {
+    "case_id": "edit6/0048_hike",
+    "edit_type": 6,
+    "video_name": "0048_hike",
+    "src_first_frame": "images/0048_hike/00001.jpg",
+    "first_frame_edit_prompt": "Remove the backpack from the man.",
+    "anchor_image": "evaluation/anchors/edit6/0048_hike.png"
+  },
+  {
+    "case_id": "edit6/0051_dogs-jump",
+    "edit_type": 6,
+    "video_name": "0051_dogs-jump",
+    "src_first_frame": "images/0051_dogs-jump/00001.jpg",
+    "first_frame_edit_prompt": "Remove the two dogs from the scene, but keep the woman and the open field under the cloudy sky.",
+    "anchor_image": "evaluation/anchors/edit6/0051_dogs-jump.png"
+  },
+  {
+    "case_id": "edit6/0055_pigs",
+    "edit_type": 6,
+    "video_name": "0055_pigs",
+    "src_first_frame": "images/0055_pigs/00001.jpg",
+    "first_frame_edit_prompt": "Remove the two smaller pigs from the scene.",
+    "anchor_image": "evaluation/anchors/edit6/0055_pigs.png"
+  },
+  {
+    "case_id": "edit6/0078_A_cat",
+    "edit_type": 6,
+    "video_name": "0078_A_cat",
+    "src_first_frame": "images/0078_A_cat/00001.jpg",
+    "first_frame_edit_prompt": "Remove the toy from the scene.",
+    "anchor_image": "evaluation/anchors/edit6/0078_A_cat.png"
+  },
+  {
+    "case_id": "edit6/0088_A_cyclist",
+    "edit_type": 6,
+    "video_name": "0088_A_cyclist",
+    "src_first_frame": "images/0088_A_cyclist/00001.jpg",
+    "first_frame_edit_prompt": "Remove the helmet.",
+    "anchor_image": "evaluation/anchors/edit6/0088_A_cyclist.png"
+  }
+]

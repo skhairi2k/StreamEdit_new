@@ -1,0 +1,17 @@
+[
+  {
+    "case_id": "0007_guitar-violin",
+    "edit_type": 5,
+    "video_name": "0007_guitar-violin",
+    "src_video": "videos/0007_guitar-violin.mp4",
+    "src_first_frame": "images/0007_guitar-violin/00001.jpg",
+    "src_word": "a musician",
+    "trg_word": "a hat",
+    "src_prompt": "A musician is playing the violin passionately in a cozy, rustic room with stone walls and warm lighting. Another musician is seated, playing the guitar. The camera remains stationary, capturing the intimate musical performance.",
+    "trg_prompt": "A musician wearing a hat is playing the violin passionately in a cozy, rustic room with stone walls and warm lighting. Another musician is seated, playing the guitar. The camera remains stationary, capturing the intimate musical performance.",
+    "negative_prompt": "worst quality, low quality, blurry, absolute black, absolute white, low res, extra limbs, extra digits, misplaced objects, mutated anatomy, monochrome, horror",
+    "instruction": "Add a hat to the violinist.",
+    "first_frame_edit_prompt": "Add a hat to the violinist.",
+    "anchor_image": "/projects/dataggen/outputs/five_bench/anchors/edit5/0007_guitar-violin.png"
+  }
+]

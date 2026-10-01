@@ -1,0 +1,41 @@
+[r39_infer] node=node52 CUDA_VISIBLE_DEVICES=0
+No devices found.
+[r39_infer] job=1016629_12 method=r39_n30_rho8_vp steps=30 rho=8 expect=419
+--- [r39_infer] r39_n30_rho8_vp edit1 (expect 100) 2026-10-01 14:16:00 ---
+[r39_infer] FAILED r39_n30_rho8_vp edit1: run_fivebench.py exit 1
+[r39_infer] r39_n30_rho8_vp edit1 frame dirs: 0 (expected 100)
+[r39_infer] COUNT-MISMATCH r39_n30_rho8_vp edit1: 0 != 100
+[r39_infer] r39_n30_rho8_vp edit1 non-ok manifest rows: -1
+[r39_infer] MANIFEST-ERRORS r39_n30_rho8_vp edit1 (-1 = manifest missing)
+--- [r39_infer] r39_n30_rho8_vp edit2 (expect 100) 2026-10-01 14:16:09 ---
+[r39_infer] FAILED r39_n30_rho8_vp edit2: run_fivebench.py exit 1
+[r39_infer] r39_n30_rho8_vp edit2 frame dirs: 0 (expected 100)
+[r39_infer] COUNT-MISMATCH r39_n30_rho8_vp edit2: 0 != 100
+[r39_infer] r39_n30_rho8_vp edit2 non-ok manifest rows: -1
+[r39_infer] MANIFEST-ERRORS r39_n30_rho8_vp edit2 (-1 = manifest missing)
+--- [r39_infer] r39_n30_rho8_vp edit3 (expect 100) 2026-10-01 14:16:17 ---
+[r39_infer] FAILED r39_n30_rho8_vp edit3: run_fivebench.py exit 1
+[r39_infer] r39_n30_rho8_vp edit3 frame dirs: 0 (expected 100)
+[r39_infer] COUNT-MISMATCH r39_n30_rho8_vp edit3: 0 != 100
+[r39_infer] r39_n30_rho8_vp edit3 non-ok manifest rows: -1
+[r39_infer] MANIFEST-ERRORS r39_n30_rho8_vp edit3 (-1 = manifest missing)
+--- [r39_infer] r39_n30_rho8_vp edit4 (expect 100) 2026-10-01 14:16:25 ---
+[r39_infer] FAILED r39_n30_rho8_vp edit4: run_fivebench.py exit 1
+[r39_infer] r39_n30_rho8_vp edit4 frame dirs: 0 (expected 100)
+[r39_infer] COUNT-MISMATCH r39_n30_rho8_vp edit4: 0 != 100
+[r39_infer] r39_n30_rho8_vp edit4 non-ok manifest rows: -1
+[r39_infer] MANIFEST-ERRORS r39_n30_rho8_vp edit4 (-1 = manifest missing)
+--- [r39_infer] r39_n30_rho8_vp edit5 (expect 9) 2026-10-01 14:16:35 ---
+[r39_infer] FAILED r39_n30_rho8_vp edit5: run_fivebench.py exit 1
+[r39_infer] r39_n30_rho8_vp edit5 frame dirs: 0 (expected 9)
+[r39_infer] COUNT-MISMATCH r39_n30_rho8_vp edit5: 0 != 9
+[r39_infer] r39_n30_rho8_vp edit5 non-ok manifest rows: -1
+[r39_infer] MANIFEST-ERRORS r39_n30_rho8_vp edit5 (-1 = manifest missing)
+--- [r39_infer] r39_n30_rho8_vp edit6 (expect 10) 2026-10-01 14:16:43 ---
+[r39_infer] FAILED r39_n30_rho8_vp edit6: run_fivebench.py exit 1
+[r39_infer] r39_n30_rho8_vp edit6 frame dirs: 0 (expected 10)
+[r39_infer] COUNT-MISMATCH r39_n30_rho8_vp edit6: 0 != 10
+[r39_infer] r39_n30_rho8_vp edit6 non-ok manifest rows: -1
+[r39_infer] MANIFEST-ERRORS r39_n30_rho8_vp edit6 (-1 = manifest missing)
+[r39_infer] r39_n30_rho8_vp total frame dirs: 0 (expected 419) 2026-10-01 14:16:50
+[r39_infer] failures: 18

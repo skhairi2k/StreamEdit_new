@@ -1,0 +1,55 @@
+[r39_infer] node=node50 CUDA_VISIBLE_DEVICES=0
+GPU 0: NVIDIA L40S (UUID: GPU-bc991228-330e-965c-3b75-7cf253e70da1)
+[r39_infer] job=1016629_10 method=r39_n30_rho4_vp steps=30 rho=4 expect=419
+--- [r39_infer] r39_n30_rho4_vp edit1 (expect 100) 2026-10-01 14:14:18 ---
+Free VRAM 43.96807861328125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=1 method=r39_n30_rho4_vp pairs=100 vp_mode=vp blend_sched=paper(eq4) out=/home/ids/skhairi/Data/dataggen/outputs/five_bench/r39_rho_sweep/r39_n30_rho4_vp/edit1
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.38786554336548 GB
+[[0, 1, 2]] [[0, 1, 2]]
+[ok] 0001_bus: 69 frames  tau=4.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.06122636795044 GB
+[[22, 23, 24]] [[22, 23, 24, 25]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.057693004608154 GB
+[[22, 23, 24]] [[22, 23, 24, 25]]
+[ok] 0002_girl-dog: 81 frames  tau=4.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.0102105140686 GB
+[[0, 1, 2, 3, 4]] [[2, 3, 4]]
+[ok] 0003_ocean-birds: 33 frames  tau=4.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.222858905792236 GB
+[[0, 1, 2, 3]] [[0, 1, 2, 3]]
+[ok] 0004_car-roundabout: 69 frames  tau=4.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.06122636795044 GB
+[[1, 2, 3]] [[0, 1]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.057693004608154 GB
+[[1, 2, 3]] [[0, 1]]
+[ok] 0005_breakdance: 81 frames  tau=4.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.008625507354736 GB
+[[0, 1, 2, 3]] [[1]]
+[ok] 0006_paragliding: 69 frames  tau=4.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.06329965591431 GB
+[[0, 1]] [[0, 1]]
+[ok] 0007_guitar-violin: 45 frames  tau=4.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.16930055618286 GB
+[[0, 1, 2]] [[0, 1]]
+[ok] 0008_snowboard-race: 69 frames  tau=4.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.06122636795044 GB
+[[0, 1, 2, 3]] [[0, 1, 2]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.057693004608154 GB
+[[0, 1, 2, 3]] [[0, 1, 2]]
+[ok] 0009_bear: 81 frames  tau=4.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.006393909454346 GB
+[[0, 1, 2]] [[0, 1, 2]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.00286054611206 GB
+[[0, 1, 2]] [[0, 1, 2]]
+[ok] 0010_giant-slalom: 117 frames  tau=4.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 34.84795045852661 GB
+[[0, 1, 2, 3, 4, 5]] [[0, 1]]
+[ok] 0011_lucia: 69 frames  tau=4.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.06122636795044 GB
+[[0, 1, 2, 3]] [[0, 1, 2, 3]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.057693004608154 GB
+[[0, 1, 2, 3]] [[0, 1, 2, 3]]
+[ok] 0012_goat: 81 frames  tau=4.0
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.008625507354736 GB
+[[0, 1]] [[0, 1, 2]]

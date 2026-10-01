@@ -1,0 +1,17 @@
+[
+ {
+  "case_id": "0011_lucia_e5",
+  "edit_type": 5,
+  "video_name": "0011_lucia",
+  "src_video": "videos/0011_lucia.mp4",
+  "src_first_frame": "images/0011_lucia/00001.jpg",
+  "src_word": "a woman in a black dress",
+  "trg_word": "a dog",
+  "src_prompt": "A woman in a black dress is walking along a paved path in a lush green park, with trees and a wooden bench in the background. The camera remains fixed, capturing her steady movement.",
+  "trg_prompt": "A woman in a black dress, followed closely by a dog, is walking along a paved path in a lush green park, with trees and a wooden bench in the background. The camera remains fixed, capturing her steady movement.",
+  "negative_prompt": "worst quality, low quality, blurry, absolute black, absolute white, low res, extra limbs, extra digits, misplaced objects, mutated anatomy, monochrome, horror",
+  "instruction": "Add a dog following the woman",
+  "first_frame_edit_prompt": "Add a dog following the woman",
+  "anchor_image": "/projects/dataggen/outputs/five_bench/anchors/edit5/0011_lucia.png"
+ }
+]

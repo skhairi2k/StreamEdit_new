@@ -1,0 +1,32 @@
+[
+  {
+    "case_id": "0090_A_deer",
+    "edit_type": 2,
+    "video_name": "0090_A_deer",
+    "src_video": "videos/0090_A_deer.mp4",
+    "src_first_frame": "images/0090_A_deer/00001.jpg",
+    "src_word": "A deer",
+    "trg_word": "A snowmobile",
+    "src_prompt": "A deer is bounding through a snowy forest, kicking up powdery snow with each leap. The camera follows the deer's movement with a smooth pan.",
+    "trg_prompt": "A snowmobile is racing through a snowy forest, kicking up powdery snow with each turn. The camera follows the snowmobile's movement with a smooth pan.",
+    "negative_prompt": "worst quality, low quality, blurry, absolute black, absolute white, low res, extra limbs, extra digits, misplaced objects, mutated anatomy, monochrome, horror",
+    "instruction": "Replace the deer with a snowmobile and change bounding to racing and leap to turn.",
+    "first_frame_edit_prompt": "Replace the deer with a snowmobile and change bounding to racing and leap to turn.",
+    "anchor_image": "/projects/dataggen/outputs/five_bench/anchors/edit2/0090_A_deer.png"
+  },
+  {
+    "case_id": "0069_car-turn",
+    "edit_type": 5,
+    "video_name": "0069_car-turn",
+    "src_video": "videos/0069_car-turn.mp4",
+    "src_first_frame": "images/0069_car-turn/00001.jpg",
+    "src_word": "A silver SUV",
+    "trg_word": "a giant inflatable flamingo",
+    "src_prompt": "A silver SUV is navigating a winding mountain road surrounded by lush green forests and towering mountains in the background. The camera remains stationary, capturing the car's smooth turn along the curve of the road.",
+    "trg_prompt": "A silver SUV with a giant inflatable flamingo strapped to its roof is navigating a winding mountain road surrounded by lush green forests and towering mountains in the background. The camera remains stationary, capturing the car's smooth turn along the curve of the road.",
+    "negative_prompt": "worst quality, low quality, blurry, absolute black, absolute white, low res, extra limbs, extra digits, misplaced objects, mutated anatomy, monochrome, horror",
+    "instruction": "Add a giant inflatable flamingo to the roof of the silver SUV.",
+    "first_frame_edit_prompt": "Add a giant inflatable flamingo to the roof of the silver SUV.",
+    "anchor_image": "/projects/dataggen/outputs/five_bench/anchors/edit5/0069_car-turn.png"
+  }
+]

@@ -1,0 +1,81 @@
+[r39_smoke] node=node39 CUDA_VISIBLE_DEVICES=0
+GPU 0: NVIDIA L40S (UUID: GPU-36ee7421-9dcc-be9f-5194-33d81d0cd6b5)
+--- [r39_smoke] N=15 rho=2 edit1 ---
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=1 method=r39_n15_rho2_vp pairs=1 vp_mode=vp blend_sched=paper(eq4) out=/home/ids/skhairi/Data/dataggen/outputs/five_bench/r39_smoke/r39_n15_rho2_vp/edit1
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.38975763320923 GB
+[[0, 1, 2]] [[0, 1, 2]]
+[ok] 0001_bus: 69 frames  tau=2.0
+[run_fivebench] done edit1: 1/1 ok -> /home/ids/skhairi/Data/dataggen/outputs/five_bench/r39_smoke/r39_n15_rho2_vp/edit1/_manifest.csv
+--- [r39_smoke] N=15 rho=2 edit5 ---
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=5 method=r39_n15_rho2_vp pairs=1 vp_mode=vp blend_sched=paper(eq4) out=/home/ids/skhairi/Data/dataggen/outputs/five_bench/r39_smoke/r39_n15_rho2_vp/edit5
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.390873432159424 GB
+[[0, 1]] [[0, 1, 2, 3, 4]]
+[ok] 0007_guitar-violin: 45 frames  tau=2.0
+[run_fivebench] done edit5: 1/1 ok -> /home/ids/skhairi/Data/dataggen/outputs/five_bench/r39_smoke/r39_n15_rho2_vp/edit5/_manifest.csv
+--- [r39_smoke] N=20 rho=2 edit1 ---
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=1 method=r39_n20_rho2_vp pairs=1 vp_mode=vp blend_sched=paper(eq4) out=/home/ids/skhairi/Data/dataggen/outputs/five_bench/r39_smoke/r39_n20_rho2_vp/edit1
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.38975763320923 GB
+[[0, 1, 2]] [[0, 1, 2]]
+[ok] 0001_bus: 69 frames  tau=2.0
+[run_fivebench] done edit1: 1/1 ok -> /home/ids/skhairi/Data/dataggen/outputs/five_bench/r39_smoke/r39_n20_rho2_vp/edit1/_manifest.csv
+--- [r39_smoke] N=20 rho=2 edit5 ---
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=5 method=r39_n20_rho2_vp pairs=1 vp_mode=vp blend_sched=paper(eq4) out=/home/ids/skhairi/Data/dataggen/outputs/five_bench/r39_smoke/r39_n20_rho2_vp/edit5
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.390873432159424 GB
+[[0, 1]] [[0, 1, 2, 3, 4]]
+[ok] 0007_guitar-violin: 45 frames  tau=2.0
+[run_fivebench] done edit5: 1/1 ok -> /home/ids/skhairi/Data/dataggen/outputs/five_bench/r39_smoke/r39_n20_rho2_vp/edit5/_manifest.csv
+--- [r39_smoke] N=20 rho=3 edit1 ---
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=1 method=r39_n20_rho3_vp pairs=1 vp_mode=vp blend_sched=paper(eq4) out=/home/ids/skhairi/Data/dataggen/outputs/five_bench/r39_smoke/r39_n20_rho3_vp/edit1
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.38975763320923 GB
+[[0, 1, 2]] [[0, 1, 2]]
+[ok] 0001_bus: 69 frames  tau=3.0
+[run_fivebench] done edit1: 1/1 ok -> /home/ids/skhairi/Data/dataggen/outputs/five_bench/r39_smoke/r39_n20_rho3_vp/edit1/_manifest.csv
+--- [r39_smoke] N=20 rho=3 edit5 ---
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=5 method=r39_n20_rho3_vp pairs=1 vp_mode=vp blend_sched=paper(eq4) out=/home/ids/skhairi/Data/dataggen/outputs/five_bench/r39_smoke/r39_n20_rho3_vp/edit5
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.390873432159424 GB
+[[0, 1]] [[0, 1, 2, 3, 4]]
+[ok] 0007_guitar-violin: 45 frames  tau=3.0
+[run_fivebench] done edit5: 1/1 ok -> /home/ids/skhairi/Data/dataggen/outputs/five_bench/r39_smoke/r39_n20_rho3_vp/edit5/_manifest.csv
+--- [r39_smoke] N=30 rho=2 edit1 ---
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=1 method=r39_n30_rho2_vp pairs=1 vp_mode=vp blend_sched=paper(eq4) out=/home/ids/skhairi/Data/dataggen/outputs/five_bench/r39_smoke/r39_n30_rho2_vp/edit1
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.38975763320923 GB
+[[0, 1, 2]] [[0, 1, 2]]
+[ok] 0001_bus: 69 frames  tau=2.0
+[run_fivebench] done edit1: 1/1 ok -> /home/ids/skhairi/Data/dataggen/outputs/five_bench/r39_smoke/r39_n30_rho2_vp/edit1/_manifest.csv
+--- [r39_smoke] N=30 rho=2 edit5 ---
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=5 method=r39_n30_rho2_vp pairs=1 vp_mode=vp blend_sched=paper(eq4) out=/home/ids/skhairi/Data/dataggen/outputs/five_bench/r39_smoke/r39_n30_rho2_vp/edit5
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 35.390873432159424 GB
+[[0, 1]] [[0, 1, 2, 3, 4]]
+[ok] 0007_guitar-violin: 45 frames  tau=2.0
+[run_fivebench] done edit5: 1/1 ok -> /home/ids/skhairi/Data/dataggen/outputs/five_bench/r39_smoke/r39_n30_rho2_vp/edit5/_manifest.csv
+=== GATE1: N=15 rho=2 == R36 r36_rho2_vp ===
+IDENTICAL gate1 0001_bus: {'n_frames': 69, 'n_frames_ref': 69, 'n_diff_frames': 0, 'missing': 0, 'identical': 1}
+IDENTICAL gate1 0007_guitar-violin: {'n_frames': 45, 'n_frames_ref': 45, 'n_diff_frames': 0, 'missing': 0, 'identical': 1}
+=== GATE2: N=20 / N=30 rho=2 differ from N=15 rho=2 on every frame; N=30 != N=20 ===
+DIFFERS gate2 n20-vs-n15 0001_bus: {'n_frames': 69, 'n_frames_ref': 69, 'n_diff_frames': 69, 'missing': 0, 'identical': 0}
+DIFFERS gate2 n20-vs-n15 0007_guitar-violin: {'n_frames': 45, 'n_frames_ref': 45, 'n_diff_frames': 45, 'missing': 0, 'identical': 0}
+DIFFERS gate2 n30-vs-n15 0001_bus: {'n_frames': 69, 'n_frames_ref': 69, 'n_diff_frames': 69, 'missing': 0, 'identical': 0}
+DIFFERS gate2 n30-vs-n15 0007_guitar-violin: {'n_frames': 45, 'n_frames_ref': 45, 'n_diff_frames': 45, 'missing': 0, 'identical': 0}
+DIFFERS gate2 n30-vs-n20 0001_bus: {'n_frames': 69, 'n_frames_ref': 69, 'n_diff_frames': 69, 'missing': 0, 'identical': 0}
+DIFFERS gate2 n30-vs-n20 0007_guitar-violin: {'n_frames': 45, 'n_frames_ref': 45, 'n_diff_frames': 45, 'missing': 0, 'identical': 0}
+=== GATE3: N=20 rho=3 != N=20 rho=2 ===
+DIFFERS gate3 0001_bus: {'n_frames': 69, 'n_frames_ref': 69, 'n_diff_frames': 69, 'missing': 0, 'identical': 0}
+DIFFERS gate3 0007_guitar-violin: {'n_frames': 45, 'n_frames_ref': 45, 'n_diff_frames': 45, 'missing': 0, 'identical': 0}
+[r39_check_smoke] failures: 0
+[r39_smoke] gates exit=0

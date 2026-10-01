@@ -903,7 +903,8 @@ class EditCausalInferencePipeline(torch.nn.Module):
                 # weight s(p), so the rate handed to the bridge is 1 - s(p).
                 shared_dict_dual['blender_rate'] = (
                     None if blend_sched in (None, "paper")
-                    else 1.0 - _schedule_blend_rate(blend_sched, index, len(denoising_step_list))
+                    else 1.0 - _schedule_blend_rate(blend_sched, index, len(denoising_step_list),
+                                                    t_cur=float(current_timestep) / 1000)  #✨ R38
                 )
                 #✨ R26: the spatial twin of the line above -- W^src(t) = t ** tau(p)
                 # evaluated per token instead of once. Published every step because the

@@ -1,8 +1,8 @@
 __pycache__/
 checkpoints/
 wan_models/
-evaluation/
-logs/
+figures/
+csv/
 old_streamedit
 *.png
 *.pdf

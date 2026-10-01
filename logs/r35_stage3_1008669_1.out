@@ -1,0 +1,900 @@
+[r35_stage3] job=1008669_1 combo=dino_first2 method=r35_dino_first2
+[r35_stage3] node=node39 CUDA_VISIBLE_DEVICES=0
+GPU 0: NVIDIA L40S (UUID: GPU-36ee7421-9dcc-be9f-5194-33d81d0cd6b5)
+[r35_stage3] dino_first2 div_abs: 419 npz (expect 419), mismatched types=0
+[r35_stage3] dino_first2 rho: 419 npz (expect 419), mismatched types=0
+--- [r35_stage3] r35_dino_first2 edit1 ---
+[r31_stage3] preflight: validating 100 rho fields in /home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_rho/dino_first2
+[r31_stage3]   ok 0001_bus: rho (18, 1560) range [2.05, 50.00]
+[r31_stage3]   ok 0002_girl-dog: rho (21, 1560) range [2.01, 50.00]
+[r31_stage3]   ok 0003_ocean-birds: rho (9, 1560) range [2.12, 50.00]
+[r31_stage3]   ok 0004_car-roundabout: rho (18, 1560) range [2.05, 50.00]
+[r31_stage3]   ok 0005_breakdance: rho (21, 1560) range [2.01, 50.00]
+[r31_stage3]   ok 0006_paragliding: rho (18, 1560) range [2.04, 50.00]
+[r31_stage3]   ok 0007_guitar-violin: rho (12, 1560) range [2.14, 50.00]
+[r31_stage3]   ok 0008_snowboard-race: rho (18, 1560) range [2.06, 50.00]
+[r31_stage3]   ok 0009_bear: rho (21, 1560) range [2.18, 50.00]
+[r31_stage3]   ok 0010_giant-slalom: rho (30, 1560) range [2.03, 13.74]
+[r31_stage3]   ok 0011_lucia: rho (18, 1560) range [2.04, 12.66]
+[r31_stage3]   ok 0012_goat: rho (21, 1560) range [2.18, 50.00]
+[r31_stage3]   ok 0013_golf: rho (18, 1560) range [2.02, 23.74]
+[r31_stage3]   ok 0014_burnout: rho (18, 1560) range [2.02, 43.17]
+[r31_stage3]   ok 0015_car-shadow: rho (9, 1560) range [2.03, 50.00]
+[r31_stage3]   ok 0016_horsejump-high: rho (12, 1560) range [2.03, 50.00]
+[r31_stage3]   ok 0017_kid-football: rho (15, 1560) range [2.03, 18.71]
+[r31_stage3]   ok 0018_breakdance-flare: rho (18, 1560) range [2.10, 50.00]
+[r31_stage3]   ok 0019_tennis-vest: rho (18, 1560) range [2.04, 50.00]
+[r31_stage3]   ok 0020_monkeys: rho (21, 1560) range [2.06, 26.10]
+[r31_stage3]   ok 0021_landing: rho (9, 1560) range [2.03, 50.00]
+[r31_stage3]   ok 0022_skate-jump: rho (15, 1560) range [2.01, 28.33]
+[r31_stage3]   ok 0023_kayak-race: rho (15, 1560) range [2.03, 12.97]
+[r31_stage3]   ok 0024_hockey: rho (18, 1560) range [2.05, 50.00]
+[r31_stage3]   ok 0025_baseball: rho (21, 1560) range [2.03, 15.06]
+[r31_stage3]   ok 0026_table-tennis: rho (18, 1560) range [2.02, 13.80]
+[r31_stage3]   ok 0027_dance-jump: rho (15, 1560) range [2.03, 50.00]
+[r31_stage3]   ok 0028_kite-walk: rho (18, 1560) range [2.03, 9.67]
+[r31_stage3]   ok 0029_horsejump-stick: rho (15, 1560) range [2.06, 50.00]
+[r31_stage3]   ok 0030_rallye: rho (12, 1560) range [2.04, 50.00]
+[r31_stage3]   ok 0031_soccerball: rho (12, 1560) range [2.02, 12.02]
+[r31_stage3]   ok 0032_mermaid: rho (18, 1560) range [2.11, 18.26]
+[r31_stage3]   ok 0033_horsejump-low: rho (15, 1560) range [2.04, 50.00]
+[r31_stage3]   ok 0034_cows: rho (24, 1560) range [2.11, 50.00]
+[r31_stage3]   ok 0035_helicopter: rho (12, 1560) range [2.03, 12.51]
+[r31_stage3]   ok 0036_camel: rho (21, 1560) range [2.07, 50.00]
+[r31_stage3]   ok 0037_snowboard-sand: rho (12, 1560) range [2.10, 50.00]
+[r31_stage3]   ok 0038_motorbike: rho (9, 1560) range [2.02, 50.00]
+[r31_stage3]   ok 0039_chamaleon: rho (21, 1560) range [2.07, 50.00]
+[r31_stage3]   ok 0040_tennis: rho (18, 1560) range [2.05, 30.13]
+[r31_stage3]   ok 0041_longboard: rho (12, 1560) range [2.09, 50.00]
+[r31_stage3]   ok 0042_gym-ball: rho (18, 1560) range [2.04, 47.31]
+[r31_stage3]   ok 0043_parkour: rho (24, 1560) range [2.03, 50.00]
+[r31_stage3]   ok 0044_snowboard: rho (15, 1560) range [2.08, 13.40]
+[r31_stage3]   ok 0045_butterfly: rho (18, 1560) range [2.11, 50.00]
+[r31_stage3]   ok 0046_blackswan: rho (12, 1560) range [2.11, 50.00]
+[r31_stage3]   ok 0047_judo: rho (9, 1560) range [2.08, 50.00]
+[r31_stage3]   ok 0048_hike: rho (18, 1560) range [2.03, 50.00]
+[r31_stage3]   ok 0049_speed-skating: rho (21, 1560) range [2.06, 17.18]
+[r31_stage3]   ok 0050_slackline: rho (15, 1560) range [2.04, 50.00]
+[r31_stage3]   ok 0051_dogs-jump: rho (15, 1560) range [2.05, 50.00]
+[r31_stage3]   ok 0052_mallard-fly: rho (18, 1560) range [2.09, 50.00]
+[r31_stage3]   ok 0053_swing: rho (15, 1560) range [2.04, 26.68]
+[r31_stage3]   ok 0054_train: rho (18, 1560) range [2.03, 16.28]
+[r31_stage3]   ok 0055_pigs: rho (18, 1560) range [2.20, 50.00]
+[r31_stage3]   ok 0056_kart-turn: rho (21, 1560) range [2.08, 50.00]
+[r31_stage3]   ok 0057_dog: rho (15, 1560) range [2.10, 50.00]
+[r31_stage3]   ok 0058_boat: rho (18, 1560) range [2.06, 34.21]
+[r31_stage3]   ok 0059_drift-straight: rho (12, 1560) range [2.01, 50.00]
+[r31_stage3]   ok 0060_motocross-bumps: rho (15, 1560) range [2.04, 19.97]
+[r31_stage3]   ok 0061_mbike-santa: rho (15, 1560) range [2.08, 33.35]
+[r31_stage3]   ok 0062_elephant: rho (18, 1560) range [2.21, 50.00]
+[r31_stage3]   ok 0063_drift-turn: rho (15, 1560) range [2.03, 50.00]
+[r31_stage3]   ok 0064_rollerblade: rho (9, 1560) range [2.02, 14.41]
+[r31_stage3]   ok 0065_twist-dance: rho (21, 1560) range [2.02, 50.00]
+[r31_stage3]   ok 0066_deer: rho (18, 1560) range [2.09, 50.00]
+[r31_stage3]   ok 0067_mbike-trick: rho (18, 1560) range [2.02, 15.05]
+[r31_stage3]   ok 0068_planes-water: rho (9, 1560) range [2.02, 13.21]
+[r31_stage3]   ok 0069_car-turn: rho (18, 1560) range [2.01, 17.14]
+[r31_stage3]   ok 0070_dance-twirl: rho (21, 1560) range [2.03, 50.00]
+[r31_stage3]   ok 0071_mallard-water: rho (18, 1560) range [2.17, 40.19]
+[r31_stage3]   ok 0072_dog-agility: rho (6, 1560) range [2.03, 50.00]
+[r31_stage3]   ok 0073_bmx-rider: rho (21, 1560) range [2.03, 50.00]
+[r31_stage3]   ok 0074_rhino: rho (21, 1560) range [2.22, 50.00]
+[r31_stage3]   ok 0075_A_bicycle: rho (21, 1560) range [2.02, 50.00]
+[r31_stage3]   ok 0076_A_rabbit: rho (21, 1560) range [2.09, 50.00]
+[r31_stage3]   ok 0077_A_hawk: rho (21, 1560) range [2.12, 50.00]
+[r31_stage3]   ok 0078_A_cat: rho (21, 1560) range [2.03, 50.00]
+[r31_stage3]   ok 0079_A_bus: rho (21, 1560) range [2.05, 19.98]
+[r31_stage3]   ok 0080_A_motorcycle: rho (21, 1560) range [2.05, 13.99]
+[r31_stage3]   ok 0081_A_horse: rho (21, 1560) range [2.05, 50.00]
+[r31_stage3]   ok 0082_A_tram: rho (21, 1560) range [2.01, 15.57]
+[r31_stage3]   ok 0083_A_boat: rho (21, 1560) range [2.05, 15.55]
+[r31_stage3]   ok 0084_A_squirrel: rho (21, 1560) range [2.06, 50.00]
+[r31_stage3]   ok 0085_A_tram: rho (21, 1560) range [2.02, 10.02]
+[r31_stage3]   ok 0086_A_red_sports_car: rho (21, 1560) range [2.03, 50.00]
+[r31_stage3]   ok 0087_A_seagull: rho (21, 1560) range [2.03, 50.00]
+[r31_stage3]   ok 0088_A_cyclist: rho (21, 1560) range [2.10, 50.00]
+[r31_stage3]   ok 0089_A_dog: rho (21, 1560) range [2.04, 50.00]
+[r31_stage3]   ok 0090_A_deer: rho (21, 1560) range [2.07, 42.37]
+[r31_stage3]   ok 0091_A_hawk: rho (21, 1560) range [2.05, 27.77]
+[r31_stage3]   ok 0092_A_fox: rho (21, 1560) range [2.04, 50.00]
+[r31_stage3]   ok 0093_A_helicopter: rho (21, 1560) range [2.06, 50.00]
+[r31_stage3]   ok 0094_A_swan: rho (21, 1560) range [2.06, 30.85]
+[r31_stage3]   ok 0095_A_crow: rho (21, 1560) range [2.07, 50.00]
+[r31_stage3]   ok 0096_A_car: rho (21, 1560) range [2.02, 18.78]
+[r31_stage3]   ok 0097_A_bird: rho (21, 1560) range [2.04, 50.00]
+[r31_stage3]   ok 0098_A_squirrel: rho (21, 1560) range [2.04, 50.00]
+[r31_stage3]   ok 0099_A_jogger: rho (21, 1560) range [2.06, 19.25]
+[r31_stage3]   ok 0100_A_deer: rho (21, 1560) range [2.03, 24.63]
+[r31_stage3] preflight PASS for all 100 clips
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[r31_stage3] edit_type=1 method=r35_dino_first2 pairs=100 vp_mode=vp steps=15 dump_steps=1 indices rho_dir=/home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_rho/dino_first2
+[ERROR] 0001_bus: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0001_bus.png
+[ERROR] 0002_girl-dog: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0002_girl-dog.png
+[ERROR] 0003_ocean-birds: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0003_ocean-birds.png
+[ERROR] 0004_car-roundabout: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0004_car-roundabout.png
+[ERROR] 0005_breakdance: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0005_breakdance.png
+[ERROR] 0006_paragliding: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0006_paragliding.png
+[ERROR] 0007_guitar-violin: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0007_guitar-violin.png
+[ERROR] 0008_snowboard-race: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0008_snowboard-race.png
+[ERROR] 0009_bear: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0009_bear.png
+[ERROR] 0010_giant-slalom: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0010_giant-slalom.png
+[ERROR] 0011_lucia: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0011_lucia.png
+[ERROR] 0012_goat: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0012_goat.png
+[ERROR] 0013_golf: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0013_golf.png
+[ERROR] 0014_burnout: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0014_burnout.png
+[ERROR] 0015_car-shadow: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0015_car-shadow.png
+[ERROR] 0016_horsejump-high: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0016_horsejump-high.png
+[ERROR] 0017_kid-football: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0017_kid-football.png
+[ERROR] 0018_breakdance-flare: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0018_breakdance-flare.png
+[ERROR] 0019_tennis-vest: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0019_tennis-vest.png
+[ERROR] 0020_monkeys: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0020_monkeys.png
+[ERROR] 0021_landing: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0021_landing.png
+[ERROR] 0022_skate-jump: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0022_skate-jump.png
+[ERROR] 0023_kayak-race: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0023_kayak-race.png
+[ERROR] 0024_hockey: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0024_hockey.png
+[ERROR] 0025_baseball: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0025_baseball.png
+[ERROR] 0026_table-tennis: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0026_table-tennis.png
+[ERROR] 0027_dance-jump: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0027_dance-jump.png
+[ERROR] 0028_kite-walk: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0028_kite-walk.png
+[ERROR] 0029_horsejump-stick: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0029_horsejump-stick.png
+[ERROR] 0030_rallye: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0030_rallye.png
+[ERROR] 0031_soccerball: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0031_soccerball.png
+[ERROR] 0032_mermaid: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0032_mermaid.png
+[ERROR] 0033_horsejump-low: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0033_horsejump-low.png
+[ERROR] 0034_cows: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0034_cows.png
+[ERROR] 0035_helicopter: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0035_helicopter.png
+[ERROR] 0036_camel: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0036_camel.png
+[ERROR] 0037_snowboard-sand: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0037_snowboard-sand.png
+[ERROR] 0038_motorbike: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0038_motorbike.png
+[ERROR] 0039_chamaleon: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0039_chamaleon.png
+[ERROR] 0040_tennis: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0040_tennis.png
+[ERROR] 0041_longboard: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0041_longboard.png
+[ERROR] 0042_gym-ball: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0042_gym-ball.png
+[ERROR] 0043_parkour: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0043_parkour.png
+[ERROR] 0044_snowboard: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0044_snowboard.png
+[ERROR] 0045_butterfly: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0045_butterfly.png
+[ERROR] 0046_blackswan: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0046_blackswan.png
+[ERROR] 0047_judo: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0047_judo.png
+[ERROR] 0048_hike: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0048_hike.png
+[ERROR] 0049_speed-skating: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0049_speed-skating.png
+[ERROR] 0050_slackline: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0050_slackline.png
+[ERROR] 0051_dogs-jump: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0051_dogs-jump.png
+[ERROR] 0052_mallard-fly: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0052_mallard-fly.png
+[ERROR] 0053_swing: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0053_swing.png
+[ERROR] 0054_train: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0054_train.png
+[ERROR] 0055_pigs: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0055_pigs.png
+[ERROR] 0056_kart-turn: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0056_kart-turn.png
+[ERROR] 0057_dog: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0057_dog.png
+[ERROR] 0058_boat: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0058_boat.png
+[ERROR] 0059_drift-straight: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0059_drift-straight.png
+[ERROR] 0060_motocross-bumps: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0060_motocross-bumps.png
+[ERROR] 0061_mbike-santa: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0061_mbike-santa.png
+[ERROR] 0062_elephant: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0062_elephant.png
+[ERROR] 0063_drift-turn: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0063_drift-turn.png
+[ERROR] 0064_rollerblade: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0064_rollerblade.png
+[ERROR] 0065_twist-dance: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0065_twist-dance.png
+[ERROR] 0066_deer: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0066_deer.png
+[ERROR] 0067_mbike-trick: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0067_mbike-trick.png
+[ERROR] 0068_planes-water: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0068_planes-water.png
+[ERROR] 0069_car-turn: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0069_car-turn.png
+[ERROR] 0070_dance-twirl: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0070_dance-twirl.png
+[ERROR] 0071_mallard-water: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0071_mallard-water.png
+[ERROR] 0072_dog-agility: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0072_dog-agility.png
+[ERROR] 0073_bmx-rider: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0073_bmx-rider.png
+[ERROR] 0074_rhino: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0074_rhino.png
+[ERROR] 0075_A_bicycle: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0075_A_bicycle.png
+[ERROR] 0076_A_rabbit: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0076_A_rabbit.png
+[ERROR] 0077_A_hawk: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0077_A_hawk.png
+[ERROR] 0078_A_cat: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0078_A_cat.png
+[ERROR] 0079_A_bus: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0079_A_bus.png
+[ERROR] 0080_A_motorcycle: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0080_A_motorcycle.png
+[ERROR] 0081_A_horse: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0081_A_horse.png
+[ERROR] 0082_A_tram: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0082_A_tram.png
+[ERROR] 0083_A_boat: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0083_A_boat.png
+[ERROR] 0084_A_squirrel: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0084_A_squirrel.png
+[ERROR] 0085_A_tram: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0085_A_tram.png
+[ERROR] 0086_A_red_sports_car: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0086_A_red_sports_car.png
+[ERROR] 0087_A_seagull: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0087_A_seagull.png
+[ERROR] 0088_A_cyclist: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0088_A_cyclist.png
+[ERROR] 0089_A_dog: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0089_A_dog.png
+[ERROR] 0090_A_deer: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0090_A_deer.png
+[ERROR] 0091_A_hawk: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0091_A_hawk.png
+[ERROR] 0092_A_fox: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0092_A_fox.png
+[ERROR] 0093_A_helicopter: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0093_A_helicopter.png
+[ERROR] 0094_A_swan: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0094_A_swan.png
+[ERROR] 0095_A_crow: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0095_A_crow.png
+[ERROR] 0096_A_car: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0096_A_car.png
+[ERROR] 0097_A_bird: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0097_A_bird.png
+[ERROR] 0098_A_squirrel: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0098_A_squirrel.png
+[ERROR] 0099_A_jogger: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0099_A_jogger.png
+[ERROR] 0100_A_deer: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit1/0100_A_deer.png
+[r31_stage3] done edit1: 0/100 ok -> /home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_arms/r35_dino_first2/_manifest_edit1.csv
+[r35_stage3] FAILED r35_dino_first2 edit1
+--- [r35_stage3] r35_dino_first2 edit2 ---
+[r31_stage3] preflight: validating 100 rho fields in /home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_rho/dino_first2
+[r31_stage3]   ok 0001_bus: rho (18, 1560) range [2.10, 50.00]
+[r31_stage3]   ok 0002_girl-dog: rho (21, 1560) range [2.09, 44.20]
+[r31_stage3]   ok 0003_ocean-birds: rho (9, 1560) range [2.19, 50.00]
+[r31_stage3]   ok 0004_car-roundabout: rho (18, 1560) range [2.08, 50.00]
+[r31_stage3]   ok 0005_breakdance: rho (21, 1560) range [2.03, 50.00]
+[r31_stage3]   ok 0006_paragliding: rho (18, 1560) range [2.18, 50.00]
+[r31_stage3]   ok 0007_guitar-violin: rho (12, 1560) range [2.31, 50.00]
+[r31_stage3]   ok 0008_snowboard-race: rho (18, 1560) range [2.08, 50.00]
+[r31_stage3]   ok 0009_bear: rho (21, 1560) range [2.26, 50.00]
+[r31_stage3]   ok 0010_giant-slalom: rho (30, 1560) range [2.04, 24.95]
+[r31_stage3]   ok 0011_lucia: rho (18, 1560) range [2.20, 50.00]
+[r31_stage3]   ok 0012_goat: rho (21, 1560) range [2.16, 50.00]
+[r31_stage3]   ok 0013_golf: rho (18, 1560) range [2.11, 50.00]
+[r31_stage3]   ok 0014_burnout: rho (18, 1560) range [2.06, 50.00]
+[r31_stage3]   ok 0015_car-shadow: rho (9, 1560) range [2.07, 50.00]
+[r31_stage3]   ok 0016_horsejump-high: rho (12, 1560) range [2.06, 50.00]
+[r31_stage3]   ok 0017_kid-football: rho (15, 1560) range [2.17, 50.00]
+[r31_stage3]   ok 0018_breakdance-flare: rho (18, 1560) range [2.14, 50.00]
+[r31_stage3]   ok 0019_tennis-vest: rho (18, 1560) range [2.07, 50.00]
+[r31_stage3]   ok 0020_monkeys: rho (21, 1560) range [2.21, 50.00]
+[r31_stage3]   ok 0021_landing: rho (9, 1560) range [2.10, 50.00]
+[r31_stage3]   ok 0022_skate-jump: rho (15, 1560) range [2.04, 36.01]
+[r31_stage3]   ok 0023_kayak-race: rho (15, 1560) range [2.13, 50.00]
+[r31_stage3]   ok 0024_hockey: rho (18, 1560) range [2.07, 50.00]
+[r31_stage3]   ok 0025_baseball: rho (21, 1560) range [2.04, 30.93]
+[r31_stage3]   ok 0026_table-tennis: rho (18, 1560) range [2.03, 24.00]
+[r31_stage3]   ok 0027_dance-jump: rho (15, 1560) range [2.05, 50.00]
+[r31_stage3]   ok 0028_kite-walk: rho (18, 1560) range [2.04, 25.49]
+[r31_stage3]   ok 0029_horsejump-stick: rho (15, 1560) range [2.14, 50.00]
+[r31_stage3]   ok 0030_rallye: rho (12, 1560) range [2.07, 50.00]
+[r31_stage3]   ok 0031_soccerball: rho (12, 1560) range [2.03, 18.27]
+[r31_stage3]   ok 0032_mermaid: rho (18, 1560) range [2.12, 17.79]
+[r31_stage3]   ok 0033_horsejump-low: rho (15, 1560) range [2.06, 50.00]
+[r31_stage3]   ok 0034_cows: rho (24, 1560) range [2.25, 50.00]
+[r31_stage3]   ok 0035_helicopter: rho (12, 1560) range [2.05, 50.00]
+[r31_stage3]   ok 0036_camel: rho (21, 1560) range [2.08, 50.00]
+[r31_stage3]   ok 0037_snowboard-sand: rho (12, 1560) range [2.09, 50.00]
+[r31_stage3]   ok 0038_motorbike: rho (9, 1560) range [2.03, 50.00]
+[r31_stage3]   ok 0039_chamaleon: rho (21, 1560) range [2.11, 50.00]
+[r31_stage3]   ok 0040_tennis: rho (18, 1560) range [2.09, 50.00]
+[r31_stage3]   ok 0041_longboard: rho (12, 1560) range [2.05, 16.09]
+[r31_stage3]   ok 0042_gym-ball: rho (18, 1560) range [2.08, 50.00]
+[r31_stage3]   ok 0043_parkour: rho (24, 1560) range [2.12, 50.00]
+[r31_stage3]   ok 0044_snowboard: rho (15, 1560) range [2.22, 50.00]
+[r31_stage3]   ok 0045_butterfly: rho (18, 1560) range [2.13, 50.00]
+[r31_stage3]   ok 0046_blackswan: rho (12, 1560) range [2.26, 50.00]
+[r31_stage3]   ok 0047_judo: rho (9, 1560) range [2.10, 16.32]
+[r31_stage3]   ok 0048_hike: rho (18, 1560) range [2.07, 50.00]
+[r31_stage3]   ok 0049_speed-skating: rho (21, 1560) range [2.06, 12.85]
+[r31_stage3]   ok 0050_slackline: rho (15, 1560) range [2.07, 50.00]
+[r31_stage3]   ok 0051_dogs-jump: rho (15, 1560) range [2.10, 50.00]
+[r31_stage3]   ok 0052_mallard-fly: rho (18, 1560) range [2.09, 50.00]
+[r31_stage3]   ok 0053_swing: rho (15, 1560) range [2.05, 50.00]
+[r31_stage3]   ok 0054_train: rho (18, 1560) range [2.04, 18.41]
+[r31_stage3]   ok 0055_pigs: rho (18, 1560) range [2.41, 50.00]
+[r31_stage3]   ok 0056_kart-turn: rho (21, 1560) range [2.05, 31.04]
+[r31_stage3]   ok 0057_dog: rho (15, 1560) range [2.14, 50.00]
+[r31_stage3]   ok 0058_boat: rho (18, 1560) range [2.06, 50.00]
+[r31_stage3]   ok 0059_drift-straight: rho (12, 1560) range [2.03, 50.00]
+[r31_stage3]   ok 0060_motocross-bumps: rho (15, 1560) range [2.11, 50.00]
+[r31_stage3]   ok 0061_mbike-santa: rho (15, 1560) range [2.27, 50.00]
+[r31_stage3]   ok 0062_elephant: rho (18, 1560) range [2.23, 50.00]
+[r31_stage3]   ok 0063_drift-turn: rho (15, 1560) range [2.05, 50.00]
+[r31_stage3]   ok 0064_rollerblade: rho (9, 1560) range [2.02, 29.37]
+[r31_stage3]   ok 0065_twist-dance: rho (21, 1560) range [2.03, 41.54]
+[r31_stage3]   ok 0066_deer: rho (18, 1560) range [2.15, 50.00]
+[r31_stage3]   ok 0067_mbike-trick: rho (18, 1560) range [2.04, 50.00]
+[r31_stage3]   ok 0068_planes-water: rho (9, 1560) range [2.05, 32.61]
+[r31_stage3]   ok 0069_car-turn: rho (18, 1560) range [2.03, 50.00]
+[r31_stage3]   ok 0070_dance-twirl: rho (21, 1560) range [2.03, 50.00]
+[r31_stage3]   ok 0071_mallard-water: rho (18, 1560) range [2.16, 50.00]
+[r31_stage3]   ok 0072_dog-agility: rho (6, 1560) range [2.05, 50.00]
+[r31_stage3]   ok 0073_bmx-rider: rho (21, 1560) range [2.04, 22.77]
+[r31_stage3]   ok 0074_rhino: rho (21, 1560) range [2.23, 50.00]
+[r31_stage3]   ok 0075_A_bicycle: rho (21, 1560) range [2.03, 50.00]
+[r31_stage3]   ok 0076_A_rabbit: rho (21, 1560) range [2.23, 50.00]
+[r31_stage3]   ok 0077_A_hawk: rho (21, 1560) range [2.16, 50.00]
+[r31_stage3]   ok 0078_A_cat: rho (21, 1560) range [2.04, 50.00]
+[r31_stage3]   ok 0079_A_bus: rho (21, 1560) range [2.09, 18.29]
+[r31_stage3]   ok 0080_A_motorcycle: rho (21, 1560) range [2.05, 27.04]
+[r31_stage3]   ok 0081_A_horse: rho (21, 1560) range [2.15, 50.00]
+[r31_stage3]   ok 0082_A_tram: rho (21, 1560) range [2.03, 50.00]
+[r31_stage3]   ok 0083_A_boat: rho (21, 1560) range [2.07, 50.00]
+[r31_stage3]   ok 0084_A_squirrel: rho (21, 1560) range [2.05, 50.00]
+[r31_stage3]   ok 0085_A_tram: rho (21, 1560) range [2.02, 50.00]
+[r31_stage3]   ok 0086_A_red_sports_car: rho (21, 1560) range [2.10, 50.00]
+[r31_stage3]   ok 0087_A_seagull: rho (21, 1560) range [2.05, 50.00]
+[r31_stage3]   ok 0088_A_cyclist: rho (21, 1560) range [2.05, 50.00]
+[r31_stage3]   ok 0089_A_dog: rho (21, 1560) range [2.08, 50.00]
+[r31_stage3]   ok 0090_A_deer: rho (21, 1560) range [2.19, 50.00]
+[r31_stage3]   ok 0091_A_hawk: rho (21, 1560) range [2.04, 50.00]
+[r31_stage3]   ok 0092_A_fox: rho (21, 1560) range [2.14, 50.00]
+[r31_stage3]   ok 0093_A_helicopter: rho (21, 1560) range [2.13, 50.00]
+[r31_stage3]   ok 0094_A_swan: rho (21, 1560) range [2.09, 50.00]
+[r31_stage3]   ok 0095_A_crow: rho (21, 1560) range [2.14, 50.00]
+[r31_stage3]   ok 0096_A_car: rho (21, 1560) range [2.25, 50.00]
+[r31_stage3]   ok 0097_A_bird: rho (21, 1560) range [2.11, 50.00]
+[r31_stage3]   ok 0098_A_squirrel: rho (21, 1560) range [2.08, 50.00]
+[r31_stage3]   ok 0099_A_jogger: rho (21, 1560) range [2.08, 50.00]
+[r31_stage3]   ok 0100_A_deer: rho (21, 1560) range [2.07, 50.00]
+[r31_stage3] preflight PASS for all 100 clips
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[r31_stage3] edit_type=2 method=r35_dino_first2 pairs=100 vp_mode=vp steps=15 dump_steps=1 indices rho_dir=/home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_rho/dino_first2
+[ERROR] 0001_bus: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0001_bus.png
+[ERROR] 0002_girl-dog: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0002_girl-dog.png
+[ERROR] 0003_ocean-birds: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0003_ocean-birds.png
+[ERROR] 0004_car-roundabout: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0004_car-roundabout.png
+[ERROR] 0005_breakdance: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0005_breakdance.png
+[ERROR] 0006_paragliding: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0006_paragliding.png
+[ERROR] 0007_guitar-violin: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0007_guitar-violin.png
+[ERROR] 0008_snowboard-race: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0008_snowboard-race.png
+[ERROR] 0009_bear: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0009_bear.png
+[ERROR] 0010_giant-slalom: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0010_giant-slalom.png
+[ERROR] 0011_lucia: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0011_lucia.png
+[ERROR] 0012_goat: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0012_goat.png
+[ERROR] 0013_golf: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0013_golf.png
+[ERROR] 0014_burnout: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0014_burnout.png
+[ERROR] 0015_car-shadow: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0015_car-shadow.png
+[ERROR] 0016_horsejump-high: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0016_horsejump-high.png
+[ERROR] 0017_kid-football: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0017_kid-football.png
+[ERROR] 0018_breakdance-flare: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0018_breakdance-flare.png
+[ERROR] 0019_tennis-vest: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0019_tennis-vest.png
+[ERROR] 0020_monkeys: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0020_monkeys.png
+[ERROR] 0021_landing: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0021_landing.png
+[ERROR] 0022_skate-jump: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0022_skate-jump.png
+[ERROR] 0023_kayak-race: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0023_kayak-race.png
+[ERROR] 0024_hockey: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0024_hockey.png
+[ERROR] 0025_baseball: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0025_baseball.png
+[ERROR] 0026_table-tennis: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0026_table-tennis.png
+[ERROR] 0027_dance-jump: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0027_dance-jump.png
+[ERROR] 0028_kite-walk: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0028_kite-walk.png
+[ERROR] 0029_horsejump-stick: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0029_horsejump-stick.png
+[ERROR] 0030_rallye: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0030_rallye.png
+[ERROR] 0031_soccerball: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0031_soccerball.png
+[ERROR] 0032_mermaid: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0032_mermaid.png
+[ERROR] 0033_horsejump-low: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0033_horsejump-low.png
+[ERROR] 0034_cows: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0034_cows.png
+[ERROR] 0035_helicopter: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0035_helicopter.png
+[ERROR] 0036_camel: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0036_camel.png
+[ERROR] 0037_snowboard-sand: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0037_snowboard-sand.png
+[ERROR] 0038_motorbike: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0038_motorbike.png
+[ERROR] 0039_chamaleon: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0039_chamaleon.png
+[ERROR] 0040_tennis: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0040_tennis.png
+[ERROR] 0041_longboard: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0041_longboard.png
+[ERROR] 0042_gym-ball: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0042_gym-ball.png
+[ERROR] 0043_parkour: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0043_parkour.png
+[ERROR] 0044_snowboard: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0044_snowboard.png
+[ERROR] 0045_butterfly: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0045_butterfly.png
+[ERROR] 0046_blackswan: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0046_blackswan.png
+[ERROR] 0047_judo: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0047_judo.png
+[ERROR] 0048_hike: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0048_hike.png
+[ERROR] 0049_speed-skating: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0049_speed-skating.png
+[ERROR] 0050_slackline: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0050_slackline.png
+[ERROR] 0051_dogs-jump: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0051_dogs-jump.png
+[ERROR] 0052_mallard-fly: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0052_mallard-fly.png
+[ERROR] 0053_swing: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0053_swing.png
+[ERROR] 0054_train: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0054_train.png
+[ERROR] 0055_pigs: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0055_pigs.png
+[ERROR] 0056_kart-turn: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0056_kart-turn.png
+[ERROR] 0057_dog: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0057_dog.png
+[ERROR] 0058_boat: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0058_boat.png
+[ERROR] 0059_drift-straight: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0059_drift-straight.png
+[ERROR] 0060_motocross-bumps: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0060_motocross-bumps.png
+[ERROR] 0061_mbike-santa: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0061_mbike-santa.png
+[ERROR] 0062_elephant: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0062_elephant.png
+[ERROR] 0063_drift-turn: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0063_drift-turn.png
+[ERROR] 0064_rollerblade: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0064_rollerblade.png
+[ERROR] 0065_twist-dance: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0065_twist-dance.png
+[ERROR] 0066_deer: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0066_deer.png
+[ERROR] 0067_mbike-trick: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0067_mbike-trick.png
+[ERROR] 0068_planes-water: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0068_planes-water.png
+[ERROR] 0069_car-turn: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0069_car-turn.png
+[ERROR] 0070_dance-twirl: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0070_dance-twirl.png
+[ERROR] 0071_mallard-water: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0071_mallard-water.png
+[ERROR] 0072_dog-agility: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0072_dog-agility.png
+[ERROR] 0073_bmx-rider: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0073_bmx-rider.png
+[ERROR] 0074_rhino: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0074_rhino.png
+[ERROR] 0075_A_bicycle: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0075_A_bicycle.png
+[ERROR] 0076_A_rabbit: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0076_A_rabbit.png
+[ERROR] 0077_A_hawk: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0077_A_hawk.png
+[ERROR] 0078_A_cat: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0078_A_cat.png
+[ERROR] 0079_A_bus: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0079_A_bus.png
+[ERROR] 0080_A_motorcycle: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0080_A_motorcycle.png
+[ERROR] 0081_A_horse: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0081_A_horse.png
+[ERROR] 0082_A_tram: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0082_A_tram.png
+[ERROR] 0083_A_boat: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0083_A_boat.png
+[ERROR] 0084_A_squirrel: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0084_A_squirrel.png
+[ERROR] 0085_A_tram: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0085_A_tram.png
+[ERROR] 0086_A_red_sports_car: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0086_A_red_sports_car.png
+[ERROR] 0087_A_seagull: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0087_A_seagull.png
+[ERROR] 0088_A_cyclist: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0088_A_cyclist.png
+[ERROR] 0089_A_dog: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0089_A_dog.png
+[ERROR] 0090_A_deer: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0090_A_deer.png
+[ERROR] 0091_A_hawk: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0091_A_hawk.png
+[ERROR] 0092_A_fox: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0092_A_fox.png
+[ERROR] 0093_A_helicopter: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0093_A_helicopter.png
+[ERROR] 0094_A_swan: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0094_A_swan.png
+[ERROR] 0095_A_crow: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0095_A_crow.png
+[ERROR] 0096_A_car: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0096_A_car.png
+[ERROR] 0097_A_bird: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0097_A_bird.png
+[ERROR] 0098_A_squirrel: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0098_A_squirrel.png
+[ERROR] 0099_A_jogger: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0099_A_jogger.png
+[ERROR] 0100_A_deer: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit2/0100_A_deer.png
+[r31_stage3] done edit2: 0/100 ok -> /home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_arms/r35_dino_first2/_manifest_edit2.csv
+[r35_stage3] FAILED r35_dino_first2 edit2
+--- [r35_stage3] r35_dino_first2 edit3 ---
+[r31_stage3] preflight: validating 100 rho fields in /home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_rho/dino_first2
+[r31_stage3]   ok 0001_bus: rho (18, 1560) range [2.03, 4.57]
+[r31_stage3]   ok 0002_girl-dog: rho (21, 1560) range [2.01, 50.00]
+[r31_stage3]   ok 0003_ocean-birds: rho (9, 1560) range [2.07, 28.98]
+[r31_stage3]   ok 0004_car-roundabout: rho (18, 1560) range [2.03, 17.39]
+[r31_stage3]   ok 0005_breakdance: rho (21, 1560) range [2.01, 50.00]
+[r31_stage3]   ok 0006_paragliding: rho (18, 1560) range [2.03, 21.65]
+[r31_stage3]   ok 0007_guitar-violin: rho (12, 1560) range [2.01, 50.00]
+[r31_stage3]   ok 0008_snowboard-race: rho (18, 1560) range [2.02, 43.91]
+[r31_stage3]   ok 0009_bear: rho (21, 1560) range [2.06, 50.00]
+[r31_stage3]   ok 0010_giant-slalom: rho (30, 1560) range [2.01, 11.44]
+[r31_stage3]   ok 0011_lucia: rho (18, 1560) range [2.02, 9.24]
+[r31_stage3]   ok 0012_goat: rho (21, 1560) range [2.11, 50.00]
+[r31_stage3]   ok 0013_golf: rho (18, 1560) range [2.01, 9.35]
+[r31_stage3]   ok 0014_burnout: rho (18, 1560) range [2.02, 29.50]
+[r31_stage3]   ok 0015_car-shadow: rho (9, 1560) range [2.02, 50.00]
+[r31_stage3]   ok 0016_horsejump-high: rho (12, 1560) range [2.01, 15.90]
+[r31_stage3]   ok 0017_kid-football: rho (15, 1560) range [2.02, 10.97]
+[r31_stage3]   ok 0018_breakdance-flare: rho (18, 1560) range [2.02, 50.00]
+[r31_stage3]   ok 0019_tennis-vest: rho (18, 1560) range [2.01, 11.30]
+[r31_stage3]   ok 0020_monkeys: rho (21, 1560) range [2.05, 17.68]
+[r31_stage3]   ok 0021_landing: rho (9, 1560) range [2.03, 24.47]
+[r31_stage3]   ok 0022_skate-jump: rho (15, 1560) range [2.01, 21.34]
+[r31_stage3]   ok 0023_kayak-race: rho (15, 1560) range [2.03, 14.15]
+[r31_stage3]   ok 0024_hockey: rho (18, 1560) range [2.02, 25.26]
+[r31_stage3]   ok 0025_baseball: rho (21, 1560) range [2.02, 8.79]
+[r31_stage3]   ok 0026_table-tennis: rho (18, 1560) range [2.04, 9.23]
+[r31_stage3]   ok 0027_dance-jump: rho (15, 1560) range [2.04, 50.00]
+[r31_stage3]   ok 0028_kite-walk: rho (18, 1560) range [2.01, 5.21]
+[r31_stage3]   ok 0029_horsejump-stick: rho (15, 1560) range [2.04, 50.00]
+[r31_stage3]   ok 0030_rallye: rho (12, 1560) range [2.02, 49.85]
+[r31_stage3]   ok 0031_soccerball: rho (12, 1560) range [2.01, 10.17]
+[r31_stage3]   ok 0032_mermaid: rho (18, 1560) range [2.07, 14.19]
+[r31_stage3]   ok 0033_horsejump-low: rho (15, 1560) range [2.03, 50.00]
+[r31_stage3]   ok 0034_cows: rho (24, 1560) range [2.04, 50.00]
+[r31_stage3]   ok 0035_helicopter: rho (12, 1560) range [2.02, 7.91]
+[r31_stage3]   ok 0036_camel: rho (21, 1560) range [2.04, 24.24]
+[r31_stage3]   ok 0037_snowboard-sand: rho (12, 1560) range [2.03, 13.83]
+[r31_stage3]   ok 0038_motorbike: rho (9, 1560) range [2.03, 9.58]
+[r31_stage3]   ok 0039_chamaleon: rho (21, 1560) range [2.05, 27.24]
+[r31_stage3]   ok 0040_tennis: rho (18, 1560) range [2.02, 20.41]
+[r31_stage3]   ok 0041_longboard: rho (12, 1560) range [2.01, 6.77]
+[r31_stage3]   ok 0042_gym-ball: rho (18, 1560) range [2.01, 11.37]
+[r31_stage3]   ok 0043_parkour: rho (24, 1560) range [2.02, 26.97]
+[r31_stage3]   ok 0044_snowboard: rho (15, 1560) range [2.04, 11.76]
+[r31_stage3]   ok 0045_butterfly: rho (18, 1560) range [2.03, 50.00]
+[r31_stage3]   ok 0046_blackswan: rho (12, 1560) range [2.07, 29.00]
+[r31_stage3]   ok 0047_judo: rho (9, 1560) range [2.02, 10.27]
+[r31_stage3]   ok 0048_hike: rho (18, 1560) range [2.03, 13.66]
+[r31_stage3]   ok 0049_speed-skating: rho (21, 1560) range [2.03, 11.01]
+[r31_stage3]   ok 0050_slackline: rho (15, 1560) range [2.03, 50.00]
+[r31_stage3]   ok 0051_dogs-jump: rho (15, 1560) range [2.02, 18.75]
+[r31_stage3]   ok 0052_mallard-fly: rho (18, 1560) range [2.06, 50.00]
+[r31_stage3]   ok 0053_swing: rho (15, 1560) range [2.02, 38.17]
+[r31_stage3]   ok 0054_train: rho (18, 1560) range [2.02, 11.40]
+[r31_stage3]   ok 0055_pigs: rho (18, 1560) range [2.06, 20.06]
+[r31_stage3]   ok 0056_kart-turn: rho (21, 1560) range [2.02, 14.33]
+[r31_stage3]   ok 0057_dog: rho (15, 1560) range [2.09, 50.00]
+[r31_stage3]   ok 0058_boat: rho (18, 1560) range [2.02, 17.35]
+[r31_stage3]   ok 0059_drift-straight: rho (12, 1560) range [2.01, 50.00]
+[r31_stage3]   ok 0060_motocross-bumps: rho (15, 1560) range [2.03, 9.96]
+[r31_stage3]   ok 0061_mbike-santa: rho (15, 1560) range [2.07, 33.96]
+[r31_stage3]   ok 0062_elephant: rho (18, 1560) range [2.10, 50.00]
+[r31_stage3]   ok 0063_drift-turn: rho (15, 1560) range [2.05, 50.00]
+[r31_stage3]   ok 0064_rollerblade: rho (9, 1560) range [2.02, 12.03]
+[r31_stage3]   ok 0065_twist-dance: rho (21, 1560) range [2.01, 14.47]
+[r31_stage3]   ok 0066_deer: rho (18, 1560) range [2.07, 50.00]
+[r31_stage3]   ok 0067_mbike-trick: rho (18, 1560) range [2.01, 13.93]
+[r31_stage3]   ok 0068_planes-water: rho (9, 1560) range [2.02, 3.71]
+[r31_stage3]   ok 0069_car-turn: rho (18, 1560) range [2.01, 13.90]
+[r31_stage3]   ok 0070_dance-twirl: rho (21, 1560) range [2.02, 18.46]
+[r31_stage3]   ok 0071_mallard-water: rho (18, 1560) range [2.10, 21.39]
+[r31_stage3]   ok 0072_dog-agility: rho (6, 1560) range [2.03, 12.38]
+[r31_stage3]   ok 0073_bmx-rider: rho (21, 1560) range [2.03, 18.78]
+[r31_stage3]   ok 0074_rhino: rho (21, 1560) range [2.04, 12.93]
+[r31_stage3]   ok 0075_A_bicycle: rho (21, 1560) range [2.01, 14.20]
+[r31_stage3]   ok 0076_A_rabbit: rho (21, 1560) range [2.07, 50.00]
+[r31_stage3]   ok 0077_A_hawk: rho (21, 1560) range [2.08, 50.00]
+[r31_stage3]   ok 0078_A_cat: rho (21, 1560) range [2.01, 16.51]
+[r31_stage3]   ok 0079_A_bus: rho (21, 1560) range [2.03, 7.05]
+[r31_stage3]   ok 0080_A_motorcycle: rho (21, 1560) range [2.04, 14.38]
+[r31_stage3]   ok 0081_A_horse: rho (21, 1560) range [2.03, 21.12]
+[r31_stage3]   ok 0082_A_tram: rho (21, 1560) range [2.01, 29.57]
+[r31_stage3]   ok 0083_A_boat: rho (21, 1560) range [2.02, 8.56]
+[r31_stage3]   ok 0084_A_squirrel: rho (21, 1560) range [2.03, 26.46]
+[r31_stage3]   ok 0085_A_tram: rho (21, 1560) range [2.01, 8.66]
+[r31_stage3]   ok 0086_A_red_sports_car: rho (21, 1560) range [2.01, 50.00]
+[r31_stage3]   ok 0087_A_seagull: rho (21, 1560) range [2.02, 13.57]
+[r31_stage3]   ok 0088_A_cyclist: rho (21, 1560) range [2.01, 11.89]
+[r31_stage3]   ok 0089_A_dog: rho (21, 1560) range [2.02, 50.00]
+[r31_stage3]   ok 0090_A_deer: rho (21, 1560) range [2.04, 23.50]
+[r31_stage3]   ok 0091_A_hawk: rho (21, 1560) range [2.04, 50.00]
+[r31_stage3]   ok 0092_A_fox: rho (21, 1560) range [2.04, 42.91]
+[r31_stage3]   ok 0093_A_helicopter: rho (21, 1560) range [2.04, 18.97]
+[r31_stage3]   ok 0094_A_swan: rho (21, 1560) range [2.05, 18.59]
+[r31_stage3]   ok 0095_A_crow: rho (21, 1560) range [2.01, 13.76]
+[r31_stage3]   ok 0096_A_car: rho (21, 1560) range [2.02, 49.68]
+[r31_stage3]   ok 0097_A_bird: rho (21, 1560) range [2.03, 12.75]
+[r31_stage3]   ok 0098_A_squirrel: rho (21, 1560) range [2.01, 15.83]
+[r31_stage3]   ok 0099_A_jogger: rho (21, 1560) range [2.02, 10.23]
+[r31_stage3]   ok 0100_A_deer: rho (21, 1560) range [2.02, 20.23]
+[r31_stage3] preflight PASS for all 100 clips
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[r31_stage3] edit_type=3 method=r35_dino_first2 pairs=100 vp_mode=vp steps=15 dump_steps=1 indices rho_dir=/home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_rho/dino_first2
+[ERROR] 0001_bus: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0001_bus.png
+[ERROR] 0002_girl-dog: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0002_girl-dog.png
+[ERROR] 0003_ocean-birds: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0003_ocean-birds.png
+[ERROR] 0004_car-roundabout: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0004_car-roundabout.png
+[ERROR] 0005_breakdance: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0005_breakdance.png
+[ERROR] 0006_paragliding: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0006_paragliding.png
+[ERROR] 0007_guitar-violin: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0007_guitar-violin.png
+[ERROR] 0008_snowboard-race: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0008_snowboard-race.png
+[ERROR] 0009_bear: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0009_bear.png
+[ERROR] 0010_giant-slalom: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0010_giant-slalom.png
+[ERROR] 0011_lucia: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0011_lucia.png
+[ERROR] 0012_goat: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0012_goat.png
+[ERROR] 0013_golf: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0013_golf.png
+[ERROR] 0014_burnout: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0014_burnout.png
+[ERROR] 0015_car-shadow: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0015_car-shadow.png
+[ERROR] 0016_horsejump-high: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0016_horsejump-high.png
+[ERROR] 0017_kid-football: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0017_kid-football.png
+[ERROR] 0018_breakdance-flare: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0018_breakdance-flare.png
+[ERROR] 0019_tennis-vest: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0019_tennis-vest.png
+[ERROR] 0020_monkeys: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0020_monkeys.png
+[ERROR] 0021_landing: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0021_landing.png
+[ERROR] 0022_skate-jump: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0022_skate-jump.png
+[ERROR] 0023_kayak-race: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0023_kayak-race.png
+[ERROR] 0024_hockey: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0024_hockey.png
+[ERROR] 0025_baseball: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0025_baseball.png
+[ERROR] 0026_table-tennis: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0026_table-tennis.png
+[ERROR] 0027_dance-jump: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0027_dance-jump.png
+[ERROR] 0028_kite-walk: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0028_kite-walk.png
+[ERROR] 0029_horsejump-stick: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0029_horsejump-stick.png
+[ERROR] 0030_rallye: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0030_rallye.png
+[ERROR] 0031_soccerball: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0031_soccerball.png
+[ERROR] 0032_mermaid: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0032_mermaid.png
+[ERROR] 0033_horsejump-low: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0033_horsejump-low.png
+[ERROR] 0034_cows: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0034_cows.png
+[ERROR] 0035_helicopter: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0035_helicopter.png
+[ERROR] 0036_camel: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0036_camel.png
+[ERROR] 0037_snowboard-sand: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0037_snowboard-sand.png
+[ERROR] 0038_motorbike: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0038_motorbike.png
+[ERROR] 0039_chamaleon: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0039_chamaleon.png
+[ERROR] 0040_tennis: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0040_tennis.png
+[ERROR] 0041_longboard: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0041_longboard.png
+[ERROR] 0042_gym-ball: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0042_gym-ball.png
+[ERROR] 0043_parkour: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0043_parkour.png
+[ERROR] 0044_snowboard: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0044_snowboard.png
+[ERROR] 0045_butterfly: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0045_butterfly.png
+[ERROR] 0046_blackswan: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0046_blackswan.png
+[ERROR] 0047_judo: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0047_judo.png
+[ERROR] 0048_hike: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0048_hike.png
+[ERROR] 0049_speed-skating: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0049_speed-skating.png
+[ERROR] 0050_slackline: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0050_slackline.png
+[ERROR] 0051_dogs-jump: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0051_dogs-jump.png
+[ERROR] 0052_mallard-fly: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0052_mallard-fly.png
+[ERROR] 0053_swing: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0053_swing.png
+[ERROR] 0054_train: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0054_train.png
+[ERROR] 0055_pigs: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0055_pigs.png
+[ERROR] 0056_kart-turn: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0056_kart-turn.png
+[ERROR] 0057_dog: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0057_dog.png
+[ERROR] 0058_boat: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0058_boat.png
+[ERROR] 0059_drift-straight: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0059_drift-straight.png
+[ERROR] 0060_motocross-bumps: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0060_motocross-bumps.png
+[ERROR] 0061_mbike-santa: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0061_mbike-santa.png
+[ERROR] 0062_elephant: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0062_elephant.png
+[ERROR] 0063_drift-turn: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0063_drift-turn.png
+[ERROR] 0064_rollerblade: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0064_rollerblade.png
+[ERROR] 0065_twist-dance: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0065_twist-dance.png
+[ERROR] 0066_deer: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0066_deer.png
+[ERROR] 0067_mbike-trick: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0067_mbike-trick.png
+[ERROR] 0068_planes-water: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0068_planes-water.png
+[ERROR] 0069_car-turn: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0069_car-turn.png
+[ERROR] 0070_dance-twirl: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0070_dance-twirl.png
+[ERROR] 0071_mallard-water: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0071_mallard-water.png
+[ERROR] 0072_dog-agility: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0072_dog-agility.png
+[ERROR] 0073_bmx-rider: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0073_bmx-rider.png
+[ERROR] 0074_rhino: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0074_rhino.png
+[ERROR] 0075_A_bicycle: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0075_A_bicycle.png
+[ERROR] 0076_A_rabbit: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0076_A_rabbit.png
+[ERROR] 0077_A_hawk: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0077_A_hawk.png
+[ERROR] 0078_A_cat: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0078_A_cat.png
+[ERROR] 0079_A_bus: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0079_A_bus.png
+[ERROR] 0080_A_motorcycle: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0080_A_motorcycle.png
+[ERROR] 0081_A_horse: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0081_A_horse.png
+[ERROR] 0082_A_tram: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0082_A_tram.png
+[ERROR] 0083_A_boat: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0083_A_boat.png
+[ERROR] 0084_A_squirrel: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0084_A_squirrel.png
+[ERROR] 0085_A_tram: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0085_A_tram.png
+[ERROR] 0086_A_red_sports_car: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0086_A_red_sports_car.png
+[ERROR] 0087_A_seagull: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0087_A_seagull.png
+[ERROR] 0088_A_cyclist: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0088_A_cyclist.png
+[ERROR] 0089_A_dog: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0089_A_dog.png
+[ERROR] 0090_A_deer: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0090_A_deer.png
+[ERROR] 0091_A_hawk: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0091_A_hawk.png
+[ERROR] 0092_A_fox: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0092_A_fox.png
+[ERROR] 0093_A_helicopter: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0093_A_helicopter.png
+[ERROR] 0094_A_swan: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0094_A_swan.png
+[ERROR] 0095_A_crow: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0095_A_crow.png
+[ERROR] 0096_A_car: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0096_A_car.png
+[ERROR] 0097_A_bird: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0097_A_bird.png
+[ERROR] 0098_A_squirrel: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0098_A_squirrel.png
+[ERROR] 0099_A_jogger: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0099_A_jogger.png
+[ERROR] 0100_A_deer: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit3/0100_A_deer.png
+[r31_stage3] done edit3: 0/100 ok -> /home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_arms/r35_dino_first2/_manifest_edit3.csv
+[r35_stage3] FAILED r35_dino_first2 edit3
+--- [r35_stage3] r35_dino_first2 edit4 ---
+[r31_stage3] preflight: validating 100 rho fields in /home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_rho/dino_first2
+[r31_stage3]   ok 0001_bus: rho (18, 1560) range [2.05, 11.29]
+[r31_stage3]   ok 0002_girl-dog: rho (21, 1560) range [2.01, 13.54]
+[r31_stage3]   ok 0003_ocean-birds: rho (9, 1560) range [2.06, 22.61]
+[r31_stage3]   ok 0004_car-roundabout: rho (18, 1560) range [2.04, 17.93]
+[r31_stage3]   ok 0005_breakdance: rho (21, 1560) range [2.02, 50.00]
+[r31_stage3]   ok 0006_paragliding: rho (18, 1560) range [2.03, 22.55]
+[r31_stage3]   ok 0007_guitar-violin: rho (12, 1560) range [2.05, 50.00]
+[r31_stage3]   ok 0008_snowboard-race: rho (18, 1560) range [2.06, 50.00]
+[r31_stage3]   ok 0009_bear: rho (21, 1560) range [2.05, 11.66]
+[r31_stage3]   ok 0010_giant-slalom: rho (30, 1560) range [2.04, 15.72]
+[r31_stage3]   ok 0011_lucia: rho (18, 1560) range [2.04, 20.17]
+[r31_stage3]   ok 0012_goat: rho (21, 1560) range [2.11, 50.00]
+[r31_stage3]   ok 0013_golf: rho (18, 1560) range [2.01, 13.10]
+[r31_stage3]   ok 0014_burnout: rho (18, 1560) range [2.01, 46.17]
+[r31_stage3]   ok 0015_car-shadow: rho (9, 1560) range [2.05, 50.00]
+[r31_stage3]   ok 0016_horsejump-high: rho (12, 1560) range [2.02, 14.79]
+[r31_stage3]   ok 0017_kid-football: rho (15, 1560) range [2.04, 10.97]
+[r31_stage3]   ok 0018_breakdance-flare: rho (18, 1560) range [2.03, 50.00]
+[r31_stage3]   ok 0019_tennis-vest: rho (18, 1560) range [2.01, 8.99]
+[r31_stage3]   ok 0020_monkeys: rho (21, 1560) range [2.07, 26.46]
+[r31_stage3]   ok 0021_landing: rho (9, 1560) range [2.03, 50.00]
+[r31_stage3]   ok 0022_skate-jump: rho (15, 1560) range [2.02, 14.81]
+[r31_stage3]   ok 0023_kayak-race: rho (15, 1560) range [2.07, 28.49]
+[r31_stage3]   ok 0024_hockey: rho (18, 1560) range [2.01, 13.93]
+[r31_stage3]   ok 0025_baseball: rho (21, 1560) range [2.03, 11.16]
+[r31_stage3]   ok 0026_table-tennis: rho (18, 1560) range [2.02, 14.91]
+[r31_stage3]   ok 0027_dance-jump: rho (15, 1560) range [2.04, 29.72]
+[r31_stage3]   ok 0028_kite-walk: rho (18, 1560) range [2.04, 12.67]
+[r31_stage3]   ok 0029_horsejump-stick: rho (15, 1560) range [2.04, 50.00]
+[r31_stage3]   ok 0030_rallye: rho (12, 1560) range [2.04, 50.00]
+[r31_stage3]   ok 0031_soccerball: rho (12, 1560) range [2.01, 13.54]
+[r31_stage3]   ok 0032_mermaid: rho (18, 1560) range [2.12, 25.30]
+[r31_stage3]   ok 0033_horsejump-low: rho (15, 1560) range [2.02, 50.00]
+[r31_stage3]   ok 0034_cows: rho (24, 1560) range [2.03, 50.00]
+[r31_stage3]   ok 0035_helicopter: rho (12, 1560) range [2.02, 16.20]
+[r31_stage3]   ok 0036_camel: rho (21, 1560) range [2.09, 32.42]
+[r31_stage3]   ok 0037_snowboard-sand: rho (12, 1560) range [2.11, 13.53]
+[r31_stage3]   ok 0038_motorbike: rho (9, 1560) range [2.02, 17.46]
+[r31_stage3]   ok 0039_chamaleon: rho (21, 1560) range [2.05, 34.19]
+[r31_stage3]   ok 0040_tennis: rho (18, 1560) range [2.02, 17.20]
+[r31_stage3]   ok 0041_longboard: rho (12, 1560) range [2.06, 50.00]
+[r31_stage3]   ok 0042_gym-ball: rho (18, 1560) range [2.04, 19.93]
+[r31_stage3]   ok 0043_parkour: rho (24, 1560) range [2.03, 42.82]
+[r31_stage3]   ok 0044_snowboard: rho (15, 1560) range [2.04, 10.61]
+[r31_stage3]   ok 0045_butterfly: rho (18, 1560) range [2.06, 50.00]
+[r31_stage3]   ok 0046_blackswan: rho (12, 1560) range [2.05, 16.24]
+[r31_stage3]   ok 0047_judo: rho (9, 1560) range [2.05, 12.41]
+[r31_stage3]   ok 0048_hike: rho (18, 1560) range [2.06, 21.03]
+[r31_stage3]   ok 0049_speed-skating: rho (21, 1560) range [2.03, 12.01]
+[r31_stage3]   ok 0050_slackline: rho (15, 1560) range [2.05, 17.32]
+[r31_stage3]   ok 0051_dogs-jump: rho (15, 1560) range [2.06, 50.00]
+[r31_stage3]   ok 0052_mallard-fly: rho (18, 1560) range [2.03, 50.00]
+[r31_stage3]   ok 0053_swing: rho (15, 1560) range [2.04, 30.79]
+[r31_stage3]   ok 0054_train: rho (18, 1560) range [2.04, 13.40]
+[r31_stage3]   ok 0055_pigs: rho (18, 1560) range [2.06, 38.26]
+[r31_stage3]   ok 0056_kart-turn: rho (21, 1560) range [2.02, 15.97]
+[r31_stage3]   ok 0057_dog: rho (15, 1560) range [2.11, 50.00]
+[r31_stage3]   ok 0058_boat: rho (18, 1560) range [2.02, 14.50]
+[r31_stage3]   ok 0059_drift-straight: rho (12, 1560) range [2.15, 50.00]
+[r31_stage3]   ok 0060_motocross-bumps: rho (15, 1560) range [2.07, 17.08]
+[r31_stage3]   ok 0061_mbike-santa: rho (15, 1560) range [2.20, 50.00]
+[r31_stage3]   ok 0062_elephant: rho (18, 1560) range [2.16, 50.00]
+[r31_stage3]   ok 0063_drift-turn: rho (15, 1560) range [2.07, 50.00]
+[r31_stage3]   ok 0064_rollerblade: rho (9, 1560) range [2.03, 20.51]
+[r31_stage3]   ok 0065_twist-dance: rho (21, 1560) range [2.02, 16.83]
+[r31_stage3]   ok 0066_deer: rho (18, 1560) range [2.09, 50.00]
+[r31_stage3]   ok 0067_mbike-trick: rho (18, 1560) range [2.02, 22.50]
+[r31_stage3]   ok 0068_planes-water: rho (9, 1560) range [2.04, 4.80]
+[r31_stage3]   ok 0069_car-turn: rho (18, 1560) range [2.02, 14.58]
+[r31_stage3]   ok 0070_dance-twirl: rho (21, 1560) range [2.03, 50.00]
+[r31_stage3]   ok 0071_mallard-water: rho (18, 1560) range [2.06, 19.90]
+[r31_stage3]   ok 0072_dog-agility: rho (6, 1560) range [2.02, 15.34]
+[r31_stage3]   ok 0073_bmx-rider: rho (21, 1560) range [2.03, 14.48]
+[r31_stage3]   ok 0074_rhino: rho (21, 1560) range [2.04, 10.92]
+[r31_stage3]   ok 0075_A_bicycle: rho (21, 1560) range [2.01, 14.66]
+[r31_stage3]   ok 0076_A_rabbit: rho (21, 1560) range [2.07, 50.00]
+[r31_stage3]   ok 0077_A_hawk: rho (21, 1560) range [2.10, 50.00]
+[r31_stage3]   ok 0078_A_cat: rho (21, 1560) range [2.01, 22.57]
+[r31_stage3]   ok 0079_A_bus: rho (21, 1560) range [2.04, 13.68]
+[r31_stage3]   ok 0080_A_motorcycle: rho (21, 1560) range [2.06, 15.45]
+[r31_stage3]   ok 0081_A_horse: rho (21, 1560) range [2.03, 50.00]
+[r31_stage3]   ok 0082_A_tram: rho (21, 1560) range [2.01, 14.43]
+[r31_stage3]   ok 0083_A_boat: rho (21, 1560) range [2.03, 9.98]
+[r31_stage3]   ok 0084_A_squirrel: rho (21, 1560) range [2.04, 50.00]
+[r31_stage3]   ok 0085_A_tram: rho (21, 1560) range [2.01, 23.85]
+[r31_stage3]   ok 0086_A_red_sports_car: rho (21, 1560) range [2.01, 8.42]
+[r31_stage3]   ok 0087_A_seagull: rho (21, 1560) range [2.02, 12.24]
+[r31_stage3]   ok 0088_A_cyclist: rho (21, 1560) range [2.06, 12.43]
+[r31_stage3]   ok 0089_A_dog: rho (21, 1560) range [2.05, 50.00]
+[r31_stage3]   ok 0090_A_deer: rho (21, 1560) range [2.04, 12.83]
+[r31_stage3]   ok 0091_A_hawk: rho (21, 1560) range [2.04, 50.00]
+[r31_stage3]   ok 0092_A_fox: rho (21, 1560) range [2.02, 23.22]
+[r31_stage3]   ok 0093_A_helicopter: rho (21, 1560) range [2.02, 14.98]
+[r31_stage3]   ok 0094_A_swan: rho (21, 1560) range [2.01, 17.07]
+[r31_stage3]   ok 0095_A_crow: rho (21, 1560) range [2.05, 50.00]
+[r31_stage3]   ok 0096_A_car: rho (21, 1560) range [2.02, 34.91]
+[r31_stage3]   ok 0097_A_bird: rho (21, 1560) range [2.01, 7.87]
+[r31_stage3]   ok 0098_A_squirrel: rho (21, 1560) range [2.02, 14.56]
+[r31_stage3]   ok 0099_A_jogger: rho (21, 1560) range [2.08, 50.00]
+[r31_stage3]   ok 0100_A_deer: rho (21, 1560) range [2.03, 22.54]
+[r31_stage3] preflight PASS for all 100 clips
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[r31_stage3] edit_type=4 method=r35_dino_first2 pairs=100 vp_mode=vp steps=15 dump_steps=1 indices rho_dir=/home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_rho/dino_first2
+[ERROR] 0001_bus: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0001_bus.png
+[ERROR] 0002_girl-dog: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0002_girl-dog.png
+[ERROR] 0003_ocean-birds: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0003_ocean-birds.png
+[ERROR] 0004_car-roundabout: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0004_car-roundabout.png
+[ERROR] 0005_breakdance: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0005_breakdance.png
+[ERROR] 0006_paragliding: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0006_paragliding.png
+[ERROR] 0007_guitar-violin: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0007_guitar-violin.png
+[ERROR] 0008_snowboard-race: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0008_snowboard-race.png
+[ERROR] 0009_bear: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0009_bear.png
+[ERROR] 0010_giant-slalom: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0010_giant-slalom.png
+[ERROR] 0011_lucia: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0011_lucia.png
+[ERROR] 0012_goat: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0012_goat.png
+[ERROR] 0013_golf: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0013_golf.png
+[ERROR] 0014_burnout: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0014_burnout.png
+[ERROR] 0015_car-shadow: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0015_car-shadow.png
+[ERROR] 0016_horsejump-high: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0016_horsejump-high.png
+[ERROR] 0017_kid-football: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0017_kid-football.png
+[ERROR] 0018_breakdance-flare: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0018_breakdance-flare.png
+[ERROR] 0019_tennis-vest: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0019_tennis-vest.png
+[ERROR] 0020_monkeys: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0020_monkeys.png
+[ERROR] 0021_landing: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0021_landing.png
+[ERROR] 0022_skate-jump: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0022_skate-jump.png
+[ERROR] 0023_kayak-race: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0023_kayak-race.png
+[ERROR] 0024_hockey: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0024_hockey.png
+[ERROR] 0025_baseball: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0025_baseball.png
+[ERROR] 0026_table-tennis: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0026_table-tennis.png
+[ERROR] 0027_dance-jump: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0027_dance-jump.png
+[ERROR] 0028_kite-walk: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0028_kite-walk.png
+[ERROR] 0029_horsejump-stick: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0029_horsejump-stick.png
+[ERROR] 0030_rallye: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0030_rallye.png
+[ERROR] 0031_soccerball: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0031_soccerball.png
+[ERROR] 0032_mermaid: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0032_mermaid.png
+[ERROR] 0033_horsejump-low: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0033_horsejump-low.png
+[ERROR] 0034_cows: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0034_cows.png
+[ERROR] 0035_helicopter: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0035_helicopter.png
+[ERROR] 0036_camel: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0036_camel.png
+[ERROR] 0037_snowboard-sand: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0037_snowboard-sand.png
+[ERROR] 0038_motorbike: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0038_motorbike.png
+[ERROR] 0039_chamaleon: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0039_chamaleon.png
+[ERROR] 0040_tennis: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0040_tennis.png
+[ERROR] 0041_longboard: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0041_longboard.png
+[ERROR] 0042_gym-ball: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0042_gym-ball.png
+[ERROR] 0043_parkour: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0043_parkour.png
+[ERROR] 0044_snowboard: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0044_snowboard.png
+[ERROR] 0045_butterfly: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0045_butterfly.png
+[ERROR] 0046_blackswan: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0046_blackswan.png
+[ERROR] 0047_judo: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0047_judo.png
+[ERROR] 0048_hike: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0048_hike.png
+[ERROR] 0049_speed-skating: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0049_speed-skating.png
+[ERROR] 0050_slackline: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0050_slackline.png
+[ERROR] 0051_dogs-jump: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0051_dogs-jump.png
+[ERROR] 0052_mallard-fly: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0052_mallard-fly.png
+[ERROR] 0053_swing: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0053_swing.png
+[ERROR] 0054_train: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0054_train.png
+[ERROR] 0055_pigs: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0055_pigs.png
+[ERROR] 0056_kart-turn: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0056_kart-turn.png
+[ERROR] 0057_dog: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0057_dog.png
+[ERROR] 0058_boat: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0058_boat.png
+[ERROR] 0059_drift-straight: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0059_drift-straight.png
+[ERROR] 0060_motocross-bumps: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0060_motocross-bumps.png
+[ERROR] 0061_mbike-santa: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0061_mbike-santa.png
+[ERROR] 0062_elephant: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0062_elephant.png
+[ERROR] 0063_drift-turn: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0063_drift-turn.png
+[ERROR] 0064_rollerblade: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0064_rollerblade.png
+[ERROR] 0065_twist-dance: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0065_twist-dance.png
+[ERROR] 0066_deer: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0066_deer.png
+[ERROR] 0067_mbike-trick: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0067_mbike-trick.png
+[ERROR] 0068_planes-water: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0068_planes-water.png
+[ERROR] 0069_car-turn: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0069_car-turn.png
+[ERROR] 0070_dance-twirl: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0070_dance-twirl.png
+[ERROR] 0071_mallard-water: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0071_mallard-water.png
+[ERROR] 0072_dog-agility: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0072_dog-agility.png
+[ERROR] 0073_bmx-rider: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0073_bmx-rider.png
+[ERROR] 0074_rhino: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0074_rhino.png
+[ERROR] 0075_A_bicycle: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0075_A_bicycle.png
+[ERROR] 0076_A_rabbit: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0076_A_rabbit.png
+[ERROR] 0077_A_hawk: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0077_A_hawk.png
+[ERROR] 0078_A_cat: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0078_A_cat.png
+[ERROR] 0079_A_bus: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0079_A_bus.png
+[ERROR] 0080_A_motorcycle: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0080_A_motorcycle.png
+[ERROR] 0081_A_horse: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0081_A_horse.png
+[ERROR] 0082_A_tram: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0082_A_tram.png
+[ERROR] 0083_A_boat: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0083_A_boat.png
+[ERROR] 0084_A_squirrel: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0084_A_squirrel.png
+[ERROR] 0085_A_tram: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0085_A_tram.png
+[ERROR] 0086_A_red_sports_car: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0086_A_red_sports_car.png
+[ERROR] 0087_A_seagull: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0087_A_seagull.png
+[ERROR] 0088_A_cyclist: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0088_A_cyclist.png
+[ERROR] 0089_A_dog: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0089_A_dog.png
+[ERROR] 0090_A_deer: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0090_A_deer.png
+[ERROR] 0091_A_hawk: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0091_A_hawk.png
+[ERROR] 0092_A_fox: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0092_A_fox.png
+[ERROR] 0093_A_helicopter: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0093_A_helicopter.png
+[ERROR] 0094_A_swan: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0094_A_swan.png
+[ERROR] 0095_A_crow: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0095_A_crow.png
+[ERROR] 0096_A_car: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0096_A_car.png
+[ERROR] 0097_A_bird: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0097_A_bird.png
+[ERROR] 0098_A_squirrel: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0098_A_squirrel.png
+[ERROR] 0099_A_jogger: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0099_A_jogger.png
+[ERROR] 0100_A_deer: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit4/0100_A_deer.png
+[r31_stage3] done edit4: 0/100 ok -> /home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_arms/r35_dino_first2/_manifest_edit4.csv
+[r35_stage3] FAILED r35_dino_first2 edit4
+--- [r35_stage3] r35_dino_first2 edit5 ---
+[r31_stage3] preflight: validating 9 rho fields in /home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_rho/dino_first2
+[r31_stage3]   ok 0007_guitar-violin: rho (12, 1560) range [2.02, 24.06]
+[r31_stage3]   ok 0009_bear: rho (21, 1560) range [2.05, 50.00]
+[r31_stage3]   ok 0011_lucia: rho (18, 1560) range [2.05, 50.00]
+[r31_stage3]   ok 0019_tennis-vest: rho (18, 1560) range [2.03, 47.75]
+[r31_stage3]   ok 0034_cows: rho (24, 1560) range [2.04, 50.00]
+[r31_stage3]   ok 0036_camel: rho (21, 1560) range [2.05, 50.00]
+[r31_stage3]   ok 0057_dog: rho (15, 1560) range [2.09, 50.00]
+[r31_stage3]   ok 0069_car-turn: rho (18, 1560) range [2.02, 50.00]
+[r31_stage3]   ok 0089_A_dog: rho (21, 1560) range [2.01, 17.11]
+[r31_stage3] preflight PASS for all 9 clips
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[r31_stage3] edit_type=5 method=r35_dino_first2 pairs=9 vp_mode=vp steps=15 dump_steps=1 indices rho_dir=/home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_rho/dino_first2
+[ERROR] 0007_guitar-violin: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit5/0007_guitar-violin.png
+[ERROR] 0009_bear: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit5/0009_bear.png
+[ERROR] 0011_lucia: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit5/0011_lucia.png
+[ERROR] 0019_tennis-vest: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit5/0019_tennis-vest.png
+[ERROR] 0034_cows: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit5/0034_cows.png
+[ERROR] 0036_camel: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit5/0036_camel.png
+[ERROR] 0057_dog: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit5/0057_dog.png
+[ERROR] 0069_car-turn: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit5/0069_car-turn.png
+[ERROR] 0089_A_dog: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit5/0089_A_dog.png
+[r31_stage3] done edit5: 0/9 ok -> /home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_arms/r35_dino_first2/_manifest_edit5.csv
+[r35_stage3] FAILED r35_dino_first2 edit5
+--- [r35_stage3] r35_dino_first2 edit6 ---
+[r31_stage3] preflight: validating 10 rho fields in /home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_rho/dino_first2
+[r31_stage3]   ok 0002_girl-dog: rho (21, 1560) range [2.01, 50.00]
+[r31_stage3]   ok 0017_kid-football: rho (15, 1560) range [2.02, 13.85]
+[r31_stage3]   ok 0025_baseball: rho (21, 1560) range [2.02, 9.09]
+[r31_stage3]   ok 0041_longboard: rho (12, 1560) range [2.02, 18.46]
+[r31_stage3]   ok 0042_gym-ball: rho (18, 1560) range [2.02, 11.26]
+[r31_stage3]   ok 0048_hike: rho (18, 1560) range [2.02, 20.71]
+[r31_stage3]   ok 0051_dogs-jump: rho (15, 1560) range [2.03, 50.00]
+[r31_stage3]   ok 0055_pigs: rho (18, 1560) range [2.05, 23.48]
+[r31_stage3]   ok 0078_A_cat: rho (21, 1560) range [2.01, 33.63]
+[r31_stage3]   ok 0088_A_cyclist: rho (21, 1560) range [2.01, 8.08]
+[r31_stage3] preflight PASS for all 10 clips
+Free VRAM 43.969970703125 GB
+KV inference with 3 frames per block
+[r31_stage3] edit_type=6 method=r35_dino_first2 pairs=10 vp_mode=vp steps=15 dump_steps=1 indices rho_dir=/home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_rho/dino_first2
+[ERROR] 0002_girl-dog: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit6/0002_girl-dog.png
+[ERROR] 0017_kid-football: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit6/0017_kid-football.png
+[ERROR] 0025_baseball: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit6/0025_baseball.png
+[ERROR] 0041_longboard: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit6/0041_longboard.png
+[ERROR] 0042_gym-ball: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit6/0042_gym-ball.png
+[ERROR] 0048_hike: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit6/0048_hike.png
+[ERROR] 0051_dogs-jump: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit6/0051_dogs-jump.png
+[ERROR] 0055_pigs: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit6/0055_pigs.png
+[ERROR] 0078_A_cat: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit6/0078_A_cat.png
+[ERROR] 0088_A_cyclist: missing anchor /home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors/edit6/0088_A_cyclist.png
+[r31_stage3] done edit6: 0/10 ok -> /home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_arms/r35_dino_first2/_manifest_edit6.csv
+[r35_stage3] FAILED r35_dino_first2 edit6
+[r35_stage3] r35_dino_first2 edit1: 50 step14 dirs -- MISMATCH (expect 100)
+[r35_stage3] r35_dino_first2 edit2: 0 step14 dirs -- MISMATCH (expect 100)
+[r35_stage3] r35_dino_first2 edit3: 0 step14 dirs -- MISMATCH (expect 100)
+[r35_stage3] r35_dino_first2 edit4: 0 step14 dirs -- MISMATCH (expect 100)
+[r35_stage3] r35_dino_first2 edit5: 0 step14 dirs -- MISMATCH (expect 9)
+[r35_stage3] r35_dino_first2 edit6: 0 step14 dirs -- MISMATCH (expect 10)
+[r35_stage3] r35_dino_first2: 50 step14 dirs total (expect 419)
+[r35_stage3] r35_dino_first2: non-ok manifest rows: 424
+[r35_stage3] failures: 8

@@ -1,0 +1,33 @@
+[r35] job=1007217_1 sched=first2 method=blend_first2_vp
+[r35] rendering cases=/home/ids/skhairi/Code/StreamEdit_bigchantier/evaluation/cases_blendfirst_new2.json edit_types=2 5
+[r35] guard set   =/home/ids/skhairi/Code/StreamEdit_bigchantier/evaluation/cases_blendfirst.json
+[r35] node=nodeaudible01 CUDA_VISIBLE_DEVICES=0
+GPU 0: NVIDIA A100-SXM4-40GB (UUID: GPU-0bf1705d-33fe-5af5-b56d-1fafef349e4f)
+[r35][gate] first2: s(p)         = [1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[r35][gate] first2: blender_rate = [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]  (0=blend ON, 1=OFF)
+[r35][gate] PASS: source anchored for exactly 2 of 15 steps, then disabled
+--- [r35] blend_first2_vp / edit2 ---
+Free VRAM 39.10040283203125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=2 method=blend_first2_vp pairs=1 vp_mode=vp blend_sched=first2 out=/home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_blendfirst/blend_first2_vp/edit2
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.517823696136475 GB
+[[0, 1, 2]] [[0, 1, 2]]
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.502984523773193 GB
+[[0, 1, 2]] [[0, 1, 2]]
+[ok] 0090_A_deer: 81 frames  tau=2.0
+[run_fivebench] done edit2: 1/1 ok -> /home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_blendfirst/blend_first2_vp/edit2/_manifest.csv
+--- [r35] blend_first2_vp / edit5 ---
+Free VRAM 39.10040283203125 GB
+KV inference with 3 frames per block
+[run_fivebench] edit_type=5 method=blend_first2_vp pairs=1 vp_mode=vp blend_sched=first2 out=/home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_blendfirst/blend_first2_vp/edit5
+Moving DynamicSwap_WanTextEncoder to cuda:0 with preserved memory: 30.518381595611572 GB
+[[0, 1, 2]] [[4, 5, 6, 7, 8, 9, 10]]
+[ok] 0069_car-turn: 69 frames  tau=2.0
+[run_fivebench] done edit5: 1/1 ok -> /home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_blendfirst/blend_first2_vp/edit5/_manifest.csv
+[r35]   edit2 0011_lucia: 69 frames
+[r35]   edit2 0090_A_deer: 81 frames
+[r35]   edit5 0069_car-turn: 69 frames
+[r35]   edit5 0011_lucia: 69 frames
+[r35]   edit3 0017_kid-football: 57 frames
+[r35] guard: 0 incomplete pair(s) of 5
+[r35] failures: 0

@@ -1,0 +1,2 @@
+/bin/bash: /home/ids/skhairi/anaconda3/envs/streamgve/lib/libtinfo.so.6: no version information available (required by /bin/bash)
+slurmstepd: error: *** JOB 1008747 ON node39 CANCELLED AT 2026-09-25T14:13:30 ***

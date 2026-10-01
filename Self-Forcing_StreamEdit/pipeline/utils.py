@@ -1,7 +1,7 @@
 import math
 import os
 import numpy as np
-from typing import List, Dict, Tuple
+from typing import List, Dict, Optional, Tuple
 from PIL import Image, ImageDraw
 import torch
 
@@ -21,8 +21,14 @@ import torch
 # hard at high noise and release as the sample resolves. Every schedule below keeps
 # that direction; `cos_half`/`cos_third` merely release earlier (by p = 1/k) and
 # then stay released.
-def _schedule_blend_rate(sched: str, step_idx: int, num_steps: int) -> float:
-    """Source-anchoring weight s(p) in [0, 1]; caller sets blender_rate = 1 - s(p)."""
+def _schedule_blend_rate(sched: str, step_idx: int, num_steps: int,
+                         t_cur: Optional[float] = None) -> float:
+    """Source-anchoring weight s(p) in [0, 1]; caller sets blender_rate = 1 - s(p).
+
+    ``t_cur`` is the call's warped INPUT timestep in [0, 1] (``current_timestep / 1000``,
+    not ``t_next``). Only the ``tgt<tau>`` family reads it; every other schedule ignores
+    it, so passing it changes nothing for them.
+    """
     p = 0.0 if num_steps <= 1 else step_idx / (num_steps - 1)
     if sched == "cos_full":
         return 0.5 * (1.0 + math.cos(math.pi * p))
@@ -51,6 +57,23 @@ def _schedule_blend_rate(sched: str, step_idx: int, num_steps: int) -> float:
         if k < 0:
             raise ValueError(f"blend schedule {sched!r}: k must be >= 0")
         return 1.0 if step_idx < k else 0.0
+    #✨ R38 2026-10-01, user-requested: the NOISE-LEVEL twin of `firstK`. `firstK` counts
+    # steps, so k=2 anchors ~13% of the trajectory at 15 steps but 40% at 5. `tgt<tau>`
+    # anchors every model call whose input t is above tau -- fully (s = 1), no fractional
+    # weight on the straddling step (that was rejected: it weakens the first call, which
+    # is already the least informative one). Strict `>`: a grid point AT tau is not
+    # anchored. At 15 steps tgt0.9 anchors t = 1.0, 0.933 -- exactly first2.
+    if sched.startswith("tgt"):
+        try:
+            tau = float(sched[len("tgt"):])
+        except ValueError:
+            raise ValueError(f"unknown blend schedule: {sched!r} "
+                             f"(expected tgt<tau>, e.g. tgt0.9)")
+        if not 0.0 < tau < 1.0:
+            raise ValueError(f"blend schedule {sched!r}: tau must be in (0, 1)")
+        if t_cur is None:
+            raise ValueError(f"blend schedule {sched!r} needs the call's input t (t_cur)")
+        return 1.0 if t_cur > tau else 0.0
     raise ValueError(f"unknown blend schedule: {sched!r}")
 
 

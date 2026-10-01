@@ -1,0 +1,5366 @@
+[r35_fiveacc] node=node39 CUDA_VISIBLE_DEVICES=0
+GPU 0: NVIDIA L40S (UUID: GPU-804bbff4-dcc1-302f-1758-4d95c4e3dd88)
+[r35_fiveacc] job=1013064_3 combo=lpips_first2 stem=r35_fiveacc_lpips_first2
+[r35_fiveacc] scoring /home/ids/skhairi/Data/dataggen/outputs/five_bench/r35_arms/r35_lpips_first2/step14  (full bench, no --cases_json)
+[r35_fiveacc] preflight OK: 419 real pairs, 100/100/100/100/9/10
+No found cotracker, skipped!
+Loading weights:   0%|          | 0/590 [00:00<?, ?it/s]Loading weights: 100%|██████████| 590/590 [00:00<00:00, 13577.67it/s]
+[1mCLIPModel LOAD REPORT[0m from: openai/clip-vit-large-patch14
+Key                                  | Status     |  | 
+-------------------------------------+------------+--+-
+text_model.embeddings.position_ids   | UNEXPECTED |  | 
+vision_model.embeddings.position_ids | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+The image processor of type `CLIPImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+/home/ids/skhairi/anaconda3/envs/five-bench/lib/python3.11/site-packages/torchmetrics/functional/image/lpips.py:332: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.load_state_dict(torch.load(model_path, map_location="cpu"), strict=False)
+Using cache found in /home/ids/skhairi/.cache/torch/hub/facebookresearch_dino_main
+Warning: MotionFidelityScore unavailable: name 'CoTrackerPredictor' is not defined
+Failed to load MotionFidelityScore! motion_fidelity_score{,_edit_part} will report nan if requested.
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 46500.04it/s]
+Loading weights:   0%|          | 0/729 [00:00<?, ?it/s]Loading weights:   0%|          | 1/729 [00:00<01:47,  6.75it/s]Loading weights:   4%|▍         | 28/729 [00:00<00:05, 134.10it/s]Loading weights:   9%|▉         | 64/729 [00:00<00:02, 224.93it/s]Loading weights:  12%|█▏        | 90/729 [00:00<00:02, 226.77it/s]Loading weights:  17%|█▋        | 125/729 [00:00<00:02, 261.32it/s]Loading weights:  22%|██▏       | 160/729 [00:00<00:02, 274.98it/s]Loading weights:  27%|██▋       | 196/729 [00:00<00:01, 291.33it/s]Loading weights:  31%|███       | 226/729 [00:00<00:01, 279.55it/s]Loading weights:  35%|███▌      | 256/729 [00:01<00:01, 281.89it/s]Loading weights:  39%|███▉      | 285/729 [00:01<00:01, 274.40it/s]Loading weights:  43%|████▎     | 317/729 [00:01<00:01, 280.61it/s]Loading weights:  63%|██████▎   | 462/729 [00:01<00:00, 611.31it/s]Loading weights: 100%|██████████| 729/729 [00:01<00:00, 504.96it/s]
+The image processor of type `Qwen2VLImageProcessor` is now loaded as a fast processor by default, even if the model checkpoint was saved with a slow processor. This is a breaking change and may produce slightly different outputs. To continue using the slow processor, instantiate this class with `use_fast=False`. 
+Evaluating annotation mapping files:   0%|          | 0/6 [00:00<?, ?it/s]evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit1_FiVE.json ...
+
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle a bus in the image? Is the vehicle a jeep in the image? What object is present in the image?
+a) A city bus
+b) A jeep
+mc: b) A jeep
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:   1%|          | 1/100 [00:05<08:59,  5.45s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the animal accompanying the girl a dog in the image? Is the animal accompanying the girl a rabbit in the image? What animal is accompanying the girl in the image? 
+a) A gray dog 
+b) A gray rabbit
+mc: b) A gray rabbit
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:   2%|▏         | 2/100 [00:11<09:16,  5.68s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Are the animals two white ibis in the image? Are the animals two white swan in the image? What object is walking along the sandy in the image? 
+a) Two white ibises 
+b) Two white swans
+mc: b) Two white swans
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:   3%|▎         | 3/100 [00:13<06:45,  4.18s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the car a Mini Cooper in the image? Is the car a jeep in the image? What object is present in the image? 
+a) a grey Mini Cooper 
+b) A grey jeep
+mc: b) A grey jeep
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:   4%|▍         | 4/100 [00:18<07:03,  4.41s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the performer a breakdancer in the image? Is the performer Mario in the image? What object is present in the image? 
+a) A breakdancer 
+b) A Mario
+mc: a) A breakdancer
+src_a: YES
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:   5%|▌         | 5/100 [00:23<07:31,  4.75s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the paraglider replaced by a hang glider in the image? Is the hang glider an addition to the paraglider in the image? What type of glider is present in the image? 
+a) A paraglider 
+b) A hang glider
+mc: b) A hang glider
+src_a: YES
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:   6%|▌         | 6/100 [00:28<07:35,  4.84s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the musician a real human in the image? Is the musician a robot in the image? Is the musician playing the violin a robot or a human? 
+a) A real person 
+b) A robot
+mc: b) A robot
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:   7%|▋         | 7/100 [00:31<06:38,  4.29s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Are the snowboarders human in the image? Are the robots metallic in the image? What object is present in the image?
+a) Two snowboarders
+b) Two robots
+mc: b) Two robots
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:   8%|▊         | 8/100 [00:36<06:45,  4.40s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the bear brown in the image? Is the bear a panda in the image? What is the type of bear in the image?
+a) A brown bear 
+b) A panda
+mc: b) A panda
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:   9%|▉         | 9/100 [00:41<06:56,  4.58s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the athlete a skier in the image? Is the athlete a snowboarder in the image? What object is present in the image? 
+a) A skier 
+b) A snowboarder
+mc: b) A snowboarder
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  10%|█         | 10/100 [00:49<08:33,  5.71s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the person walking a woman? Is the person walking a man? What is the gender of the person in the image? 
+a) Female 
+b) Male
+mc: b) Male
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  11%|█         | 11/100 [00:54<07:49,  5.28s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the animal a goat in the image? Is the animal a sheep in the image? What is the animal in the image?
+a) A mountain goat
+b) A mountain sheep
+mc: b) A mountain sheep
+src_a: YES
+tgt_a: YES
+yn / mc:  0 1
+
+Evaluating videos:  12%|█▏        | 12/100 [00:59<07:36,  5.19s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the person a man in the image? Is the person an ironman in the image? Is the person in the image human or a robot? 
+a) human 
+b) robot
+mc: a) human
+src_a: YES
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  13%|█▎        | 13/100 [01:03<07:09,  4.94s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle a car in the image? Is the vehicle a jeep in the image? What is the object in the image?
+a) A black car 
+b) A black jeep
+mc: a) A black car
+src_a: YES
+tgt_a: YES
+yn / mc:  0 0
+
+Evaluating videos:  14%|█▍        | 14/100 [01:08<06:59,  4.88s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle a car in the image? Is the vehicle a jeep in the image? What type of vehicle is making the left turn in the image?
+a) A car 
+b) A jeep
+mc: b) A jeep
+src_a: YES
+tgt_a: YES
+yn / mc:  0 1
+
+Evaluating videos:  15%|█▌        | 15/100 [01:10<05:49,  4.11s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+1. Is the horse replaced by a camel in the image? 2. Does the image feature a horse or a camel jumping over obstacles in an outdoor equestrian arena? What object is present in the image? 
+a) A horse with a rider 
+b) A camel
+mc: b) A camel
+src_a: YES
+tgt_a: YES
+yn / mc:  0 1
+
+Evaluating videos:  16%|█▌        | 16/100 [01:13<05:26,  3.88s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the person juggling the soccer ball male in the image? Is the person juggling the soccer ball female in the image? What is the gender of the person juggling the soccer ball in the image? 
+a) Male 
+b) Female
+mc: a) Male
+src_a: YES
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  17%|█▋        | 17/100 [01:17<05:26,  3.93s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the dancer a breakdancer in the image? Is the dancer a Beast in the image? What object is performing the flare move in the image?
+a) a breakdancer
+b) A Beast.
+mc: b) A Beast.
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  18%|█▊        | 18/100 [01:22<05:47,  4.24s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the player a human in the image? Is the player an ultraman in the image? What object is present in the image? 
+a) A tennis player 
+b) An ultraman 
+mc: b) An ultraman
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  19%|█▉        | 19/100 [01:28<06:09,  4.56s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the young monkey a champanzee in the image? Is the adult monkey a monkey in the image? What type of animal is interacting with the adult in the image? 
+a) A monkey 
+b) A champanzee
+mc: b) A champanzee
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  20%|██        | 20/100 [01:32<06:09,  4.62s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the aircraft a fighter jet in the image? Is the aircraft a helicopter in the image? What type of aircraft is landing on the deck? 
+a) A fighter jet 
+b) A helicopter
+mc: b) A helicopter
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  21%|██        | 21/100 [01:35<05:05,  3.87s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the skateboarder a human in the image? Is the spiderman a human in the image? What object is present in the image? 
+a) A skateboarder 
+b) A spiderman
+mc: b) A spiderman
+src_a: NO
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  22%|██▏       | 22/100 [01:38<04:53,  3.77s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Are two kayakers racing across a calm lake in the image? Are two canoeists racing across a calm lake in the image? What object is present in the image? 
+a) two kayakers 
+b) two canoeists
+mc: a) two kayakers
+src_a: YES
+tgt_a: YES
+yn / mc:  0 0
+
+Evaluating videos:  23%|██▎       | 23/100 [01:42<04:47,  3.73s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the person on rollerblades in the image? Is the batman on rollerblades in the image? What is the object that is maneuvering the hockey stick in the image?
+a) A normal person
+b) A batman
+mc: b) A batman
+src_a: YES
+tgt_a: YES
+yn / mc:  0 1
+
+Evaluating videos:  24%|██▍       | 24/100 [01:47<05:08,  4.06s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the player a human in the image? Is the player a spiderman in the image? What is the object in the image?
+a) A baseball player
+b) A spiderman
+mc: b) A spiderman
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  25%|██▌       | 25/100 [01:52<05:43,  4.58s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Are the players in the image table tennis players? Are the players in the image spidermen? What is the object in the image? 
+a) Two table tennis players 
+b) Two spidermen
+mc: b) Two spidermen
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  26%|██▌       | 26/100 [01:57<05:40,  4.60s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the dancer a young girl in the image? Is the dancer a spiderman in the image? What object is present in the image? 
+a) a young girl 
+b) A spiderman 
+mc: b) A spiderman
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  27%|██▋       | 27/100 [02:01<05:17,  4.35s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the person a normal human in the image?  Is the person a spiderman in the image? What object is present in the image? 
+a) A normal person 
+b) A spiderman
+mc: b) A spiderman
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  28%|██▊       | 28/100 [02:06<05:26,  4.53s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+1. Is the animal a horse in the image? 2. Is the animal a camel in the image? What is the animal in the image?
+a) A horse 
+b) A camel
+mc: b) A camel
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  29%|██▉       | 29/100 [02:09<05:05,  4.30s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle a car in the image? Is the vehicle a jeep in the image? What object is present in the image?
+a) A rally car
+b) A rally jeep
+mc: b) A rally jeep
+src_a: YES
+tgt_a: YES
+yn / mc:  0 1
+
+Evaluating videos:  30%|███       | 30/100 [02:12<04:26,  3.81s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the ball a soccer ball in the image? Is the ball a basketball in the image? What type of ball is rolling across the grassy area?
+a) A soccer ball 
+b) A basketball
+mc: b) A basketball
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  31%|███       | 31/100 [02:15<03:57,  3.44s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+1. Is the mermaid a woman in the image? 2. Is the mermaid a robot in the image? What object is present in the image? 
+a) A woman 
+b) A robot
+mc: b) A robot
+src_a: NO
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  32%|███▏      | 32/100 [02:20<04:23,  3.88s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the animal the rider is on a horse in the image? Is the animal the rider is on a camel in the image? What object is present in the image? 
+a) A white horse 
+b) A white camel
+mc: a) A white horse
+src_a: YES
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  33%|███▎      | 33/100 [02:23<04:15,  3.82s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the animal a cow in the image? Is the animal a horse in the image? What animal is present in the image? 
+a) A cow 
+b) A horse
+mc: b) A horse
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  34%|███▍      | 34/100 [02:29<04:46,  4.34s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the aircraft a helicopter in the image? Is the aircraft a drone in the image? What is hovering above the helipad at the airport?
+a) A helicopter
+b) A drone
+mc: b) A drone
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  35%|███▌      | 35/100 [02:32<04:17,  3.96s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the animal a camel in the image? Is the animal a horse in the image? What type of animal is walking along the fence in the image? 
+a) A camel 
+b) A horse
+mc: b) A horse
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  36%|███▌      | 36/100 [02:37<04:37,  4.33s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the snowboarder a woman in the image? Is the snowboarder a spiderman in the image? What object is present in the image? 
+a) A woman 
+b) A spiderman
+mc: b) A spiderman
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  37%|███▋      | 37/100 [02:40<04:05,  3.90s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle a motorbike in the image? Is the vehicle a bicycle in the image? What type of vehicle is present in the image?
+a) A motorbike 
+b) A bicycle
+mc: b) A bicycle
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  38%|███▊      | 38/100 [02:42<03:32,  3.42s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the reptile a chameleon in the image? Is the reptile an iguana in the image? What reptile is present in the image?
+a) A green chameleon 
+b) A green iguana
+mc: b) A green iguana
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  39%|███▉      | 39/100 [02:48<04:03,  3.98s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the player a human in the image? Is the player a spiderman in the image? What object is present in the image? 
+a) A tennis player 
+b) A spiderman
+mc: b) A spiderman
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  40%|████      | 40/100 [02:53<04:15,  4.26s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the person riding the longboard a normal man? Is the person riding the longboard an astronaut? What is the object in the image? 
+a) A man 
+b) An astronaut
+mc: b) An astronaut
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  41%|████      | 41/100 [02:56<03:49,  3.88s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the person performing the workout a man? Is the person performing the workout an Iron man? What is the subject of the workout in the image?
+a) A man
+b) An Iron man
+mc: b) An Iron man
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  42%|████▏     | 42/100 [03:00<03:59,  4.13s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the subject of the image a man? Is the subject of the image a spiderman? What object is present in the image? 
+a) A man 
+b) A spiderman
+mc: b) A spiderman
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  43%|████▎     | 43/100 [03:06<04:30,  4.75s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the subject a snowboarder in the image? Is the subject a skier in the image? What is the subject of the image?
+a) A snowboarder
+b) A skier
+mc: a) A snowboarder
+src_a: YES
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  44%|████▍     | 44/100 [03:10<04:12,  4.50s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the flying insect a butterfly in the image? Is the flying insect a dragonfly in the image? What type of insect is present in the image?
+a) A butterfly
+b) A dragonfly
+mc: b) A dragonfly
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  45%|████▌     | 45/100 [03:15<04:17,  4.68s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the bird a black swan in the image? Is the bird a duck in the image? What is the type of bird in the image?
+a) A black swan
+b) A duck
+mc: b) A duck
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  46%|████▌     | 46/100 [03:19<03:46,  4.19s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Are the practitioners judo practitioners in the image? Are the practitioners spidermen in the image? What object is present in the image?
+a) Two judo practitioners
+b) Two spidermen
+mc: b) Two spidermen
+src_a: YES
+tgt_a: YES
+yn / mc:  0 1
+
+Evaluating videos:  47%|████▋     | 47/100 [03:21<03:10,  3.59s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is a man with a backpack hiking in the image? Is a spiderman with a backpack hiking in the image? What object is present in the image?
+a) a normal man 
+b) a spiderman
+mc: b) a spiderman
+src_a: YES
+tgt_a: YES
+yn / mc:  0 1
+
+Evaluating videos:  48%|████▊     | 48/100 [03:25<03:16,  3.78s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Are there speed skaters in the image? Are there spidermen in the image? What object is present in the image?
+a) three speed skaters
+b) three spidermen
+mc: b) three spidermen
+src_a: YES
+tgt_a: YES
+yn / mc:  0 1
+
+Evaluating videos:  49%|████▉     | 49/100 [03:30<03:36,  4.25s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the acrobatic performer a normal person in the image? Is the acrobatic performer a spiderman in the image? What object is present in the image?
+a) a normal person
+b) A spiderman
+mc: b) A spiderman
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  50%|█████     | 50/100 [03:35<03:34,  4.30s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Are there dogs in the image? Are there rabbits in the image? What animals is the woman training in the image?
+a) two dogs 
+b) two rabbits
+mc: b) two rabbits
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  51%|█████     | 51/100 [03:39<03:24,  4.17s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the bird a mallard duck in the image?  Is the bird a white swan in the image? What type of bird is the subject of the image?
+a) A mallard duck 
+b) A white swan
+mc: b) A white swan
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  52%|█████▏    | 52/100 [03:43<03:28,  4.34s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the huamn on the swing a normal human? Is the human on the swing a spiderman? What object is present in the image?
+a) A normal person
+b) A spiderman
+mc: b) A spiderman
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  53%|█████▎    | 53/100 [03:47<03:17,  4.21s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the object a model train in the image? Is the object a model jeep in the image? What object is present in the image?
+a) A model train
+b) A model jeep
+mc: a) A model train
+src_a: YES
+tgt_a: YES
+yn / mc:  0 0
+
+Evaluating videos:  54%|█████▍    | 54/100 [03:52<03:15,  4.24s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+1. Are the animals pigs in the image? 2. Are the animals rabbits in the image? What animals are foraging on the dirt ground? 
+a) Pigs 
+b) Rabbits
+mc: b) Rabbits
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  55%|█████▌    | 55/100 [03:56<03:16,  4.36s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Are the vehicles go-karts in the scene? Are the vehicles bicycles in the scene? What type of vehicle are the two racers using?
+a) Go-karts
+b) Bicycles
+mc: b) Bicycles
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  56%|█████▌    | 56/100 [04:02<03:28,  4.75s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the animal a dog in the image? Is the animal a rabbit in the image? What is the animal in the image? 
+a) A golden retriever 
+b) A rabbit
+mc: b) A rabbit
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  57%|█████▋    | 57/100 [04:06<03:12,  4.47s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the boat a fishing boat in the image? Is the boat a yacht in the image? What object is present in the image? 
+a) A white fishing boat 
+b) A white yacht
+mc: b) A white yacht
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  58%|█████▊    | 58/100 [04:10<03:09,  4.52s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle a sports car in the image? Is the vehicle a jeep in the image? What object is present in the image? 
+a) A red sports car 
+b) A red jeep
+mc: b) A red jeep
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  59%|█████▉    | 59/100 [04:13<02:47,  4.10s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the rider a motocross rider in the image? Is the rider a spiderman in the image? What object is present in the image? 
+a) A motocross rider 
+b) A spiderman
+mc: a) A motocross rider
+src_a: NO
+tgt_a: YES
+yn / mc:  1 0
+
+Evaluating videos:  60%|██████    | 60/100 [04:17<02:43,  4.08s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the person riding the motorcycle a normal person in the image? Is the person riding the motorcycle a spiderman in the image? What object is present in the image? 
+a) A normal person 
+b) A spiderman
+mc: b) A spiderman
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  61%|██████    | 61/100 [04:21<02:36,  4.01s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the animal an elephant in the image? Is the animal a rhinoceros in the image? What type of animal is walking across the rocky enclosure in the image? 
+a) an elephant 
+b) A rhinoceros
+mc: b) A rhinoceros
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  62%|██████▏   | 62/100 [04:26<02:39,  4.21s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle a car in the image? Is the vehicle a jeep in the image? What type of vehicle is drifting around the track? 
+a) A race car 
+b) A race jeep
+mc: b) A race jeep
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  63%|██████▎   | 63/100 [04:30<02:31,  4.09s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the normal person rollerblading in the image a human? Is the spiderman in the image a human? What object is present in the image? 
+a) A normal person 
+b) A spiderman
+mc: b) A spiderman
+src_a: YES
+tgt_a: YES
+yn / mc:  0 1
+
+Evaluating videos:  64%|██████▍   | 64/100 [04:32<02:07,  3.54s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Are the dancers the real person not spidermen in the image? Are the dancers spidermen in the image? What object is present in the image? 
+a) two dancers 
+b) Two spidermen
+mc: b) Two spidermen
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  65%|██████▌   | 65/100 [04:38<02:26,  4.20s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Are the animals deer in the image? Are the animals goats in the image? What type of animal is present in the image?
+a) Deer
+b) Goats
+mc: b) Goats
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  66%|██████▌   | 66/100 [04:43<02:29,  4.40s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the person performing the trick a motorcyclist? Is the person performing the trick a spiderman? What object is present in the image? 
+a) A motorcyclist 
+b) A spiderman
+mc: a) A motorcyclist
+src_a: YES
+tgt_a: YES
+yn / mc:  0 0
+
+Evaluating videos:  67%|██████▋   | 67/100 [04:47<02:28,  4.49s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the airplane a passenger airplane in the image? Is the airplane a cargo airplane in the image? What type of airplane is taxiing on the runway?
+a) A passenger airplane
+b) A cargo airplane
+mc: a) A passenger airplane
+src_a: YES
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  68%|██████▊   | 68/100 [04:50<02:02,  3.83s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle an SUV in the image? Is the vehicle a jeep in the image? What vehicle is navigating the mountain road? 
+a) A silver SUV 
+b) A silver jeep
+mc: b) A silver jeep
+src_a: YES
+tgt_a: YES
+yn / mc:  0 1
+
+Evaluating videos:  69%|██████▉   | 69/100 [04:54<02:06,  4.09s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the dancer a human in the image? Is the spiderman a human in the image? What object is present in the image? 
+a) A dancer 
+b) A spiderman
+mc: b) A spiderman
+src_a: NO
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  70%|███████   | 70/100 [04:59<02:12,  4.43s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the bird a mallard duck in the image? Is the bird a white swan in the image? What type of bird is present in the image? 
+a) A mallard duck 
+b) A white swan
+mc: b) A white swan
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  71%|███████   | 71/100 [05:04<02:10,  4.52s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+1. Is the dog a border collie in the image? 2. Is the animal a rabbit in the image? What is the animal navigating the agility course in the image?
+a) A border collie
+b) A rabbit
+mc: b) A rabbit
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  72%|███████▏  | 72/100 [05:06<01:41,  3.62s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the rider a BMX rider in the image? Is the rider a spiderman in the image? What is performing the aerial tricks in the image?
+a) A BMX rider
+b) A spiderman
+mc: a) A BMX rider
+src_a: YES
+tgt_a: YES
+yn / mc:  0 0
+
+Evaluating videos:  73%|███████▎  | 73/100 [05:11<01:50,  4.10s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the animal a rhinoceros in the image? Is the animal an elephant in the image? What object is present in the image? 
+a) A large rhinoceros 
+b) A large elephant
+mc: b) A large elephant
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  74%|███████▍  | 74/100 [05:16<01:54,  4.41s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle a bicycle in the image? Is the vehicle a scooter in the image? What object is present in the image?
+a) A bicycle 
+b) A scooter
+mc: b) A scooter
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  75%|███████▌  | 75/100 [05:21<01:55,  4.60s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the animal a rabbit in the image? Is the animal a kangaroo in the image? What object is present in the image? 
+a) A rabbit 
+b) A kangaroo
+mc: b) A kangaroo
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  76%|███████▌  | 76/100 [05:27<01:57,  4.89s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the bird a hawk in the image? Is the bird blue in the image? What type of bird is soaring majestically over a rocky canyon? 
+a) A hawk 
+b) A blue bird
+mc: b) A blue bird
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  77%|███████▋  | 77/100 [05:32<01:57,  5.09s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the animal a cat in the image? Is the animal a dog in the image? What animal is present in the image? 
+a) A cat 
+b) A dog
+mc: b) A dog
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  78%|███████▊  | 78/100 [05:38<01:53,  5.16s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle a bus in the image? Is the vehicle a jeep in the image? What vehicle is present in the scene?
+a) A bus
+b) A jeep
+mc: b) A jeep
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  79%|███████▉  | 79/100 [05:43<01:48,  5.15s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle a motorcycle in the image? Is the vehicle a bicycle in the image? What object is present in the image? 
+a) A motorcycle 
+b) A bicycle
+mc: b) A bicycle
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  80%|████████  | 80/100 [05:48<01:44,  5.24s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the animal a horse in the image? Is the animal a zebra in the image? What object is present in the image? 
+a) A horse 
+b) A zebra
+mc: b) A zebra
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  81%|████████  | 81/100 [05:54<01:40,  5.30s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle a tram in the image? Is the vehicle a trolley in the image? What is the mode of transportation shown in the image? 
+a) A tram 
+b) A trolley
+mc: a) A tram
+src_a: YES
+tgt_a: YES
+yn / mc:  0 0
+
+Evaluating videos:  82%|████████▏ | 82/100 [05:59<01:33,  5.19s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the boat a kayak in the image? Is the kayak a boat in the image? What type of watercraft is present in the image? 
+a) A boat 
+b) A kayak
+mc: b) A kayak
+src_a: YES
+tgt_a: YES
+yn / mc:  0 1
+
+Evaluating videos:  83%|████████▎ | 83/100 [06:04<01:28,  5.19s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+1. Is the animal climbing the tree a squirrel in the image? 2. Is the animal climbing the tree a rabbit in the image? What type of animal is climbing the tree? 
+a) A squirrel 
+b) A rabbit
+mc: b) A rabbit
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  84%|████████▍ | 84/100 [06:09<01:21,  5.11s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle a tram in the image? Is the vehicle a bus in the image? What object is present in the image? 
+a) A tram 
+b) A bus
+mc: b) A bus
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  85%|████████▌ | 85/100 [06:14<01:15,  5.03s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the car red in the image? Is the vehicle a jeep in the image? What type of vehicle is speeding down the mountain road? 
+a) A red sports car 
+b) A jeep
+mc: b) A jeep
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  86%|████████▌ | 86/100 [06:19<01:11,  5.09s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+1. Is the bird a seagull in the image? 2. Is the bird a pelican in the image? What type of bird is gliding over the ocean waves?
+a) A seagull
+b) A pelican
+mc: b) A pelican
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  87%|████████▋ | 87/100 [06:24<01:06,  5.09s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the person on the bike in the image? Is the person on the skateboard in the image? What object is present in the image? 
+a) A cyclist 
+b) A skateboarder
+mc: b) A skateboarder
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  88%|████████▊ | 88/100 [06:29<01:01,  5.16s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is a animal a dog in the image? Is a animal a cat in the image? What animal is present in the image? 
+a) A dog 
+b) A cat
+mc: b) A cat
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  89%|████████▉ | 89/100 [06:34<00:56,  5.12s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the animal bounding through the forest a deer? Is the animal bounding through the forest a moose? What animal is bounding through the forest? 
+a) A deer 
+b) A moose
+mc: b) A moose
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  90%|█████████ | 90/100 [06:40<00:51,  5.20s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+1. Is the bird a hawk in the image? 2. Is the bird a duck in the image? What type of bird is the subject of the image?
+a) A hawk 
+b) A duck
+mc: b) A duck
+src_a: NO
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  91%|█████████ | 91/100 [06:45<00:46,  5.12s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the animal a fox in the image?  Is the animal a coyote in the image? What animal is present in the scene?
+a) A fox
+b) A coyote
+mc: b) A coyote
+src_a: YES
+tgt_a: YES
+yn / mc:  0 1
+
+Evaluating videos:  92%|█████████▏| 92/100 [06:50<00:41,  5.21s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the aircraft a helicopter in the image? Is the aircraft a drone in the image? What object is present in the image? 
+a) A helicopter 
+b) A drone
+mc: b) A drone
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  93%|█████████▎| 93/100 [06:55<00:37,  5.31s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the bird a swan in the image? Is the bird a duck in the image? What object is present in the image? 
+a) A swan 
+b) A duck
+mc: b) A duck
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  94%|█████████▍| 94/100 [07:01<00:32,  5.40s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+1. Is the bird a crow in the image? 2. Is the bird an owl in the image? What type of bird is perched on the branch?
+a) A crow
+b) An owl
+mc: b) An owl
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  95%|█████████▌| 95/100 [07:06<00:26,  5.36s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+1. Is the vehicle a car in the scene? 2. Is the vehicle a jeep in the scene? What type of vehicle is the driver operating? 
+a) A car 
+b) A jeep
+mc: b) A jeep
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  96%|█████████▌| 96/100 [07:12<00:22,  5.50s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the bird building a nest in the image an eagle? Is the bird building a nest in the image not an eagle? What type of bird is building the nest?
+a) A bird 
+b) An eagle
+mc: b) An eagle
+src_a: NO
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  97%|█████████▋| 97/100 [07:17<00:16,  5.40s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the animal a squirrel in the image?  Is the animal a rabbit in the image? What animal is present in the image? 
+a) A squirrel 
+b) A rabbit
+mc: b) A rabbit
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  98%|█████████▊| 98/100 [07:22<00:10,  5.32s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the person running a jogger? Is the person running an ultraman? What is the person running along the path through the park?
+a) A jogger 
+b) An ultraman
+mc: b) An ultraman
+src_a: YES
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  99%|█████████▉| 99/100 [07:28<00:05,  5.36s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the animal drinking from the stream a deer? Is the animal drinking from the stream a moose? What animal is drinking from the stream in the image?
+a) A deer 
+b) A moose
+mc: b) A moose
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos: 100%|██████████| 100/100 [07:33<00:00,  5.27s/it][AEvaluating videos: 100%|██████████| 100/100 [07:33<00:00,  4.53s/it]
+processing file_id
+processing step14|five_acc_yes_no
+processing step14|five_acc_multi_choice
+processing step14|five_acc_union
+processing step14|five_acc_inter
+processing step14|five_acc
+Evaluating annotation mapping files:  17%|█▋        | 1/6 [07:33<37:47, 453.46s/it]evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit2_FiVE.json ...
+
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle a bus in the image? Is the vehicle a spaceship in the image? What object is present in the image? 
+a) A city bus 
+b) A spaceship
+mc: b) A spaceship
+src_a: NO
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:   1%|          | 1/100 [00:04<07:46,  4.71s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the girl in the image in a wheelchair? Is the girl in the image an alien in a hovercraft? What is the object in the image?
+a) A young girl in a wheelchair and a gray dog
+b) A young alien in a hovercraft and a robotic dog
+mc: a) A young girl in a wheelchair and a gray dog
+src_a: NO
+tgt_a: YES
+yn / mc:  1 0
+
+Evaluating videos:   2%|▏         | 2/100 [00:10<08:59,  5.51s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Are the birds white in the image? Are the drones flying in the image? What is present in the image?
+a) Two white ibises
+b) Two drones
+mc: b) Two drones
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:   3%|▎         | 3/100 [00:13<06:31,  4.04s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle a car in the image? Is the vehicle a hovercraft in the image? What object is present in the image?
+a) A grey Mini Cooper 
+b) A hovercraft
+mc: b) A hovercraft
+src_a: NO
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:   4%|▍         | 4/100 [00:17<06:53,  4.31s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the performer a breakdancer in the image? Is the performer a bear in the image? What object is present in the image? 
+a) A breakdancer 
+b) A bear
+mc: b) A bear
+src_a: YES
+tgt_a: YES
+yn / mc:  0 1
+
+Evaluating videos:   5%|▌         | 5/100 [00:23<07:22,  4.65s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the object flying a paraglider in the image? Is the object flying a dragon in the image? What is the flying object in the image? 
+a) A paraglider 
+b) A dragon
+mc: b) A dragon
+src_a: NO
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:   6%|▌         | 6/100 [00:27<07:26,  4.75s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the musician a human in the image? Is the musician a tiger in the image? What object is playing the violin in the image? 
+a) A musician 
+b) A tiger
+mc: b) A tiger
+src_a: NO
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:   7%|▋         | 7/100 [00:31<06:31,  4.21s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Are the snowboarders wearing snowboards in the image? Are the penguins wearing snowboards in the image? What objects are present in the image?
+a) Two snowboarders 
+b) Two penguins
+mc: b) Two penguins
+src_a: NO
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:   8%|▊         | 8/100 [00:35<06:40,  4.36s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the animal a bear in the image? Is the animal a dinosaur in the image? What object is present in the image? 
+a) A large brown bear 
+b) A large dinosaur
+mc: b) A large dinosaur
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:   9%|▉         | 9/100 [00:40<06:54,  4.55s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the skier a human in the image? Is the robot a machine in the image? What object is present in the image? 
+a) A skier 
+b) A robot
+mc: b) A robot
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  10%|█         | 10/100 [00:49<08:36,  5.74s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the object walking a woman in the image? Is the object walking a lion in the image? What object is present in the image? 
+a) A woman in a black dress 
+b) A lion
+mc: b) A lion
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  11%|█         | 11/100 [00:53<07:53,  5.32s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the subject a mountain goat in the image? Is the subject a spiderman in the image? What is the main subject of the image? 
+a) A mountain goat 
+b) A spiderman
+mc: b) A spiderman
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  12%|█▏        | 12/100 [00:58<07:38,  5.22s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the figure a man in the image?  Is the figure a robot in the image? What is the object walking towards the golf cart in the image?
+a) A man 
+b) A robot
+mc: b) A robot
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  13%|█▎        | 13/100 [01:02<07:12,  4.97s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle a car in the image? Is the vehicle a UFO in the image? What object is performing the action in the image? 
+a) A black car 
+b) A UFO
+mc: b) A UFO
+src_a: NO
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  14%|█▍        | 14/100 [01:07<07:01,  4.90s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle a car in the image? Is the vehicle a hovercraft in the image? What object is present in the image?
+a) A silver car 
+b) A hovercraft
+mc: b) A hovercraft
+src_a: NO
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  15%|█▌        | 15/100 [01:09<05:49,  4.12s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+1. Is the animal a horse in the image? 2. Is the animal a kangaroo in the image? What object is present in the image? 
+a) A kangaroo with a rider 
+b) A horse with a rider
+mc: b) A horse with a rider
+src_a: NO
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  16%|█▌        | 16/100 [01:13<05:21,  3.82s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the subject juggling the soccer ball a young boy? Is the subject juggling the soccer ball a dog? What object is present in the image?
+a) A young boy 
+b) A dog
+mc: b) A dog
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  17%|█▋        | 17/100 [01:16<05:14,  3.78s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+1. Is the dancer a breakdancer in the image? 2. Is the dancer a dragon in the image? What object is present in the image?
+a) A breakdancer
+b) A dragon
+mc: b) A dragon
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  18%|█▊        | 18/100 [01:21<05:27,  3.99s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the player a human in the image? Is the player a robot in the image? What is the object that is playing tennis in the image? 
+a) A tennis player 
+b) A robot
+mc: b) A robot
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  19%|█▉        | 19/100 [01:26<05:46,  4.28s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Are the interacting objects monkeys in the image? Are the interacting objects robots in the image? What objects are interacting in the image? 
+a) Monkeys 
+b) Robots
+mc: b) Robots
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  20%|██        | 20/100 [01:30<05:42,  4.28s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the fighter jet replaced by a dragon in the image? Is the object landing on the aircraft carrier deck a dragon in the image? What is landing on the aircraft carrier deck in the image? 
+a) A fighter jet 
+b) A dragon
+mc: a) A fighter jet
+src_a: NO
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  21%|██        | 21/100 [01:32<04:47,  3.64s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the skateboarder a human in the image? Is the robot a machine in the image? What is performing the jump in the image?
+a) A skateboarder
+b) A robot
+mc: b) A robot
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  22%|██▏       | 22/100 [01:36<04:39,  3.58s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Are the kayakers human in the image? Are the dolphins aquatic mammals in the image? What is the subject of the image? 
+a) Two kayakers 
+b) Two dolphins
+mc: b) Two dolphins
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  23%|██▎       | 23/100 [01:39<04:37,  3.60s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the object a person in the image? Is the object a dragon in the image? What object is present in the image? 
+a) A person on rollerblades 
+b) A dragon
+mc: b) A dragon
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  24%|██▍       | 24/100 [01:44<05:00,  3.96s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the baseball player a tiger in the image? Is the baseball player a robot in the image? What object is present in the image? 
+a) A baseball player 
+b) A tiger and a robot
+mc: b) A tiger and a robot
+src_a: YES
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  25%|██▌       | 25/100 [01:50<05:39,  4.52s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Are the players in the image table tennis players? Are the players in the image kangaroos? What is the object in the image?
+a) two table tennis players 
+b) two kangaroo
+mc: a) two table tennis players
+src_a: NO
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  26%|██▌       | 26/100 [01:55<05:38,  4.57s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the dancer a young girl? Is the dancer a Bumblebee? What object is present in the image? 
+a) a young girl 
+b) A Bumblebee
+mc: b) A Bumblebee
+src_a: YES
+tgt_a: YES
+yn / mc:  0 1
+
+Evaluating videos:  27%|██▋       | 27/100 [01:58<05:18,  4.36s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the person human in the image? Is the person a Pikachu in the image? What object is present in the image?
+a) A person 
+b) Pikachu
+mc: b) Pikachu
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  28%|██▊       | 28/100 [02:03<05:26,  4.54s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the animal a horse in the image? Is the animal a monkey in the image? What is jumping over obstacles in the image?
+a) A horse with a rider 
+b) A monkey
+mc: b) A monkey
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  29%|██▉       | 29/100 [02:07<05:05,  4.30s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle a car in the image? Is the vehicle a hovercraft in the image? What object is present in the image? 
+a) A rally car 
+b) A hovercraft
+mc: b) A hovercraft
+src_a: NO
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  30%|███       | 30/100 [02:10<04:26,  3.81s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the object rolling across the grassy area a soccer ball? Is the object rolling across the grassy area a cube? What object is rolling quickly across a grassy area in the image?
+a) A soccer ball 
+b) A cube
+mc: b) A cube
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  31%|███       | 31/100 [02:12<03:57,  3.44s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the mermaid a woman in the image? Is the mermaid an alien in the image? What is swimming in the pool?
+a) a woman dressed as a mermaid 
+b) An alien
+mc: b) An alien
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  32%|███▏      | 32/100 [02:17<04:20,  3.83s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+1. Is the rider on a white horse in the image? 2. Is the rider on a lion in the image? What is the edited object in the image?
+a) A white horse
+b) A lion
+c) A kangaroo
+d) A rider 
+mc: b) A lion
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  33%|███▎      | 33/100 [02:21<04:14,  3.80s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+1. Is the animal a cow in the image? 2. Is the animal a dragon in the image? What object is present in the image? 
+a) A brown and white cow 
+b) A dragon
+mc: b) A dragon
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  34%|███▍      | 34/100 [02:26<04:44,  4.31s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the helicopter a UFO in the image? Is the UFO a helicopter in the image? What is hovering above the helipad at the airport? 
+a) A helicopter 
+b) A UFO
+mc: b) A UFO
+src_a: NO
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  35%|███▌      | 35/100 [02:29<04:16,  3.94s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the animal a camel in the image? Is the animal a monkey in the image? What animal is present in the image?
+a) A camel
+b) A monkey
+mc: b) A monkey
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  36%|███▌      | 36/100 [02:35<04:36,  4.32s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+1. Is the snowboarder a woman in the image? 2. Is the snowboarder a Wizard in the image? What is the object snowboarding down the sand dune in the image?
+a) A woman
+b) A Wizard
+mc: a) A woman
+src_a: YES
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  37%|███▋      | 37/100 [02:38<04:06,  3.91s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle a motorbike in the image? Is the vehicle a hovercraft in the image? What object is present in the image?
+a) A motorbike with two riders 
+b) A hovercraft
+mc: a) A motorbike with two riders
+src_a: NO
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  38%|███▊      | 38/100 [02:40<03:35,  3.47s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the object a chameleon in the image? Is the object a spider in the image? What object is present in the image? 
+a) a green chameleon 
+b) a spider
+mc: b) a spider
+src_a: NO
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  39%|███▉      | 39/100 [02:45<04:03,  4.00s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the player a human in the image? Is the player a dinosaur in the image? What object is present in the image? 
+a) a tennis player 
+b) a dinosaur
+mc: b) a dinosaur
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  40%|████      | 40/100 [02:50<04:15,  4.27s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the rider a human in the image? Is the rider an ultraman in the image? What is the object riding the hoverboard in the image?
+a) A man
+b) An ultraman
+mc: b) An ultraman
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  41%|████      | 41/100 [02:53<03:50,  3.90s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+1. Is the subject performing the workout a man? 2. Is the subject performing the workout a panda? What is the species of the subject performing the workout in the image? 
+a) Human 
+b) Panda
+mc: b) Panda
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  42%|████▏     | 42/100 [02:58<03:59,  4.12s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the parkour performer a bear in the image? Is the parkour performer a man in the image? What is the object performing parkour in the image? 
+a) A man 
+b) A bear
+mc: b) A bear
+src_a: YES
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  43%|████▎     | 43/100 [03:04<04:34,  4.82s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the snowboarder human in the image? Is the penguin robotic in the image? What object is present in the image?
+a) a snowboarder 
+b) A robotic penguin
+mc: b) A robotic penguin
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  44%|████▍     | 44/100 [03:08<04:11,  4.49s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the butterfly blue in the image? Is the drone blue in the image? What is the object that is flutting around the leafy plant in the sunlit garden?
+a) A butterfly 
+b) A drone
+mc: b) A drone
+src_a: YES
+tgt_a: YES
+yn / mc:  0 1
+
+Evaluating videos:  45%|████▌     | 45/100 [03:13<04:11,  4.57s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the object gliding on the pond a swan in the image? Is the object gliding on the pond a boat in the image? What object is present in the image?
+a) a black swan
+b) A boat
+mc: b) A boat
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  46%|████▌     | 46/100 [03:16<03:41,  4.11s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Are the practitioners in the image human? Are the practitioners in the image robots? What are the objects in the scene?
+a) judo practitioners 
+b) robots
+mc: b) robots
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  47%|████▋     | 47/100 [03:18<03:06,  3.52s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+1. Is the hiker a man in the image? 2. Is the hiker a robot in the image? What is hiking along the rocky mountain trail?
+a) A man with a backpack
+b) A robot with a backpack
+mc: b) A robot with a backpack
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  48%|████▊     | 48/100 [03:22<03:15,  3.75s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Are the skaters human in the image? Are the skaters robots in the image? What is the nature of the skaters in the image?
+a) Human 
+b) Robotic
+mc: b) Robotic
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  49%|████▉     | 49/100 [03:27<03:35,  4.22s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the acrobat a person in the image? Is the acrobat a Pikachu in the image? What object is performing acrobatic tricks in the image?
+a) A person 
+b) A Pikachu
+mc: b) A Pikachu
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  50%|█████     | 50/100 [03:32<03:33,  4.26s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Are the dogs robotic in the image? Is the trainer a robot in the image? What is the woman/robot training in the image? 
+a) two dogs 
+b) two robotic dogs
+mc: b) two robotic dogs
+src_a: YES
+tgt_a: YES
+yn / mc:  0 1
+
+Evaluating videos:  51%|█████     | 51/100 [03:36<03:23,  4.15s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the duck a mallard in the image? Is the dog robotic in the image? What is the object in the scene?
+a) A mallard duck 
+b) A robotic dog
+mc: b) A robotic dog
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  52%|█████▏    | 52/100 [03:40<03:27,  4.32s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the person a robot on the swing? Is the robot a person on the swing? What is swinging on the wooden swing in the image?
+a) A person 
+b) A robot
+mc: b) A robot
+src_a: YES
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  53%|█████▎    | 53/100 [03:44<03:16,  4.18s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the object a train in the image? Is the object a spaceship in the image? What object is moving along the curved track in the image?
+a) A model train 
+b) A model spaceship
+mc: a) A model train
+src_a: YES
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  54%|█████▍    | 54/100 [03:49<03:14,  4.23s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Are the pigs robotic in the image? Are the dragons pigs in the image? What type of creatures are present in the scene? 
+a) Pigs 
+b) Robotic dragons
+mc: b) Robotic dragons
+src_a: NO
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  55%|█████▌    | 55/100 [03:53<03:16,  4.36s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Are the vehicles go-karts in the image? Are the vehicles hovercrafts in the image? What type of vehicle is present in the scene?
+a) Go-karts
+b) Hovercrafts
+mc: b) Hovercrafts
+src_a: NO
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  56%|█████▌    | 56/100 [03:59<03:28,  4.75s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the dog a golden retriever in the image? Is the dog a robotic dog in the image? What type of dog is in the image?
+a) A golden retriever
+b) A robotic dog
+mc: b) A robotic dog
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  57%|█████▋    | 57/100 [04:03<03:12,  4.47s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the boat a fishing boat in the image? Is the hovercraft a fishing boat in the image? What object is present in the image?
+a) a white fishing boat
+b) A white hovercraft
+mc: b) A white hovercraft
+src_a: NO
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  58%|█████▊    | 58/100 [04:07<03:10,  4.54s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle a car in the image? Is the vehicle a hovercraft in the image? What vehicle is shown in the image? 
+a) A red sports car 
+b) A red hovercraft
+mc: b) A red hovercraft
+src_a: NO
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  59%|█████▉    | 59/100 [04:11<02:49,  4.13s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the rider a motocross rider in the image? Is the rider a kangaroo in the image? What is the entity navigating the dirt track in the image?
+a) A motocross rider
+b) A kangaroo
+mc: b) A kangaroo
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  60%|██████    | 60/100 [04:15<02:44,  4.11s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the rider a person in the image? Is the rider a robot in the image? What is the entity riding the vehicle in the image?
+a) A person
+b) A robot
+mc: b) A robot
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  61%|██████    | 61/100 [04:19<02:37,  4.03s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the animal walking across the enclosure an elephant? Is the vehicle driving across the enclosure a jeep? What object is present in the image? 
+a) an elephant 
+b) A jeep
+mc: b) A jeep
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  62%|██████▏   | 62/100 [04:23<02:38,  4.18s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle a race car in the image? Is the vehicle a hovercraft in the image? What is the object drifting around the track? 
+a) A race car 
+b) A hovercraft
+mc: b) A hovercraft
+src_a: YES
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  63%|██████▎   | 63/100 [04:27<02:30,  4.08s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the rollerblader a person in the image? Is the rollerblader Pikachu in the image? What is the main subject performing the rollerblading trick in the scene? 
+a) a person 
+b) Pikachu
+mc: b) Pikachu
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  64%|██████▍   | 64/100 [04:29<02:06,  3.51s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Are the dancers human in the image? Are the robots mechanical in the image? What is performing the dance routine? 
+a) Two dancers 
+b) Two robots
+mc: b) Two robots
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  65%|██████▌   | 65/100 [04:35<02:24,  4.12s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Are the deer in the image pandas? Are the pandas in the image deer? What animals are engaging in a playful antler clash in the image?
+a) Two deer 
+b) Two pandas
+mc: b) Two pandas
+src_a: NO
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  66%|██████▌   | 66/100 [04:39<02:26,  4.32s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the performer a motorcyclist in the image? Is the performer a robot in the image? What is the entity performing the burnout trick in the image? 
+a) A motorcyclist 
+b) A robot
+mc: b) A robot
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  67%|██████▋   | 67/100 [04:44<02:25,  4.42s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle an airplane in the image? Is the vehicle a spaceship in the image? What is the vehicle in the scene?
+a) A large passenger airplane
+b) A large spaceship
+mc: a) A large passenger airplane
+src_a: YES
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  68%|██████▊   | 68/100 [04:47<02:03,  3.86s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle a silver SUV in the image? Is the vehicle a hovercraft in the image? What vehicle is navigating the winding mountain road in the image?
+a) A silver SUV
+b) A hovercraft
+mc: b) A hovercraft
+src_a: NO
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  69%|██████▉   | 69/100 [04:51<02:07,  4.12s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the performer a human in the image? Is the performer a robot in the image? What object is performing the twirl in the image? 
+a) A dancer 
+b) A robot
+mc: b) A robot
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  70%|███████   | 70/100 [04:57<02:12,  4.42s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the object a mallard duck in the image? Is the object a boad in the image? What object is gliding smoothly across the surface of the calm pond?
+a) a mallard duck
+b) A boad
+c) A swan
+d) A fish
+mc: c) A swan
+src_a: NO
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  71%|███████   | 71/100 [05:01<02:10,  4.51s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+1. Is the animal a dog in the image? 2. Is the animal a unicorn in the image? What object is present in the image? 
+a) A border collie 
+b) A unicorn
+mc: b) A unicorn
+src_a: NO
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  72%|███████▏  | 72/100 [05:03<01:41,  3.62s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the rider a robot in the image? Is the robot a BMX rider in the image? What object is performing the tricks on the ramp? 
+a) A BMX rider 
+b) A robot
+mc: b) A robot
+src_a: YES
+tgt_a: YES
+yn / mc:  0 1
+
+Evaluating videos:  73%|███████▎  | 73/100 [05:08<01:50,  4.08s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the rhinoceros made of metal in the image? Is the dinosaur made of metal in the image? What object is present in the image?
+a) a large rhinoceros 
+b) A large robotic dinosaur
+mc: b) A large robotic dinosaur
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  74%|███████▍  | 74/100 [05:13<01:56,  4.50s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle a bicycle in the image? Is the vehicle a skateboard in the image? What object is being used by the person in the image?
+a) A bicycle 
+b) A skateboard
+mc: b) A skateboard
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  75%|███████▌  | 75/100 [05:19<01:57,  4.70s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the object hopping in the image? Is the object buzzing in the image? What object is present in the image? 
+a) A rabbit 
+b) A drone
+mc: b) A drone
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  76%|███████▌  | 76/100 [05:24<01:59,  4.98s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the object flying a hawk? Is the object flying a paraglider? What object is present in the image? 
+a) A hawk 
+b) A paraglider
+mc: b) A paraglider
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  77%|███████▋  | 77/100 [05:30<01:58,  5.16s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the animal a cat in the image? Is the animal a ferret in the image? What is the object playing in the image?
+a) A cat
+b) A ferret
+mc: b) A ferret
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  78%|███████▊  | 78/100 [05:35<01:54,  5.19s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle a bus in the image? Is the vehicle a hovercraft in the image? What object is being followed by the camera in the scene? 
+a) A bus 
+b) A hovercraft
+mc: b) A hovercraft
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  79%|███████▉  | 79/100 [05:40<01:49,  5.21s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the motorcycle replaced with a cheetah in the image? Is the cheetah a motorcycle in the image? What object is present in the image? 
+a) A motorcycle 
+b) A cheetah
+mc: b) A cheetah
+src_a: YES
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  80%|████████  | 80/100 [05:46<01:44,  5.23s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the horse galloping across the beach in the image? Is the car driving across the beach in the image? What object is present in the image? 
+a) A horse 
+b) A car
+mc: b) A car
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  81%|████████  | 81/100 [05:51<01:40,  5.30s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle a tram in the image? Is the vehicle a sleigh in the image? What is the vehicle in the scene?
+a) A tram 
+b) A sleigh
+mc: b) A sleigh
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  82%|████████▏ | 82/100 [05:56<01:32,  5.17s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the boat a swan in the image? Is the swan a boat in the image? What is the object gliding across the river?
+a) A boat 
+b) A swan
+mc: b) A swan
+src_a: NO
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  83%|████████▎ | 83/100 [06:01<01:28,  5.19s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the animal climbing the tree a squirrel? Is the animal swinging the tree a monkey? What type of animal is climbing up the tree trunk? 
+a) A squirrel 
+b) A monkey
+mc: b) A monkey
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  84%|████████▍ | 84/100 [06:06<01:22,  5.13s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle a tram in the image? Is the vehicle a horse-drawn carriage in the image? What object is present in the image?
+a) A tram 
+b) A horse-drawn carriage
+mc: b) A horse-drawn carriage
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  85%|████████▌ | 85/100 [06:11<01:15,  5.05s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle on the mountain road a sports car? Is the vehicle on the mountain path a rocket? What object is present in the scene? 
+a) A red sports car 
+b) A rocket
+mc: b) A rocket
+src_a: NO
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  86%|████████▌ | 86/100 [06:16<01:11,  5.12s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the object gliding over the ocean waves a seagull? Is the object soaring over the ocean waves a kite? What object is present in the image? 
+a) A seagull 
+b) A kite
+mc: b) A kite
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  87%|████████▋ | 87/100 [06:21<01:06,  5.10s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the cyclist pedaling in the image? Is the rollerblader gliding in the image? What object is present in the image? 
+a) A cyclist 
+b) A rollerblader
+mc: b) A rollerblader
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  88%|████████▊ | 88/100 [06:27<01:02,  5.19s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+1. Is the animal on the beach a dog? 2. Is the animal on the beach a seal? What object is present in the image? 
+a) A dog 
+b) A seal
+mc: b) A seal
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  89%|████████▉ | 89/100 [06:32<00:56,  5.17s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the deer bounding through the forest in the image? Is the snowmobile racing through the forest in the image? What object is present in the image?
+a) A deer 
+b) A snowmobile
+mc: b) A snowmobile
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  90%|█████████ | 90/100 [06:38<00:53,  5.32s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the hawk in the image a bird? Is the hot air balloon in the image an aircraft? What object is present in the image?
+a) A hawk 
+b) A hot air balloon
+mc: b) A hot air balloon
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  91%|█████████ | 91/100 [06:43<00:48,  5.33s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the animal a fox in the image? Is the object a robot in the image? What is the main subject of the scene?
+a) A fox
+b) A robot
+mc: b) A robot
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  92%|█████████▏| 92/100 [06:48<00:42,  5.36s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the helicopter replaced by a UFO in the image? Is the object hovering above the jungle a helicopter in the image? What is hovering above the jungle?
+a) A helicopter 
+b) A UFO
+mc: b) A UFO
+src_a: YES
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  93%|█████████▎| 93/100 [06:54<00:37,  5.43s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the swan replaced with a paper boat in the image? Is the object in the image a swan or a paper boat? What object is present in the image? 
+a) A swan 
+b) A paper boat
+mc: b) A paper boat
+src_a: YES
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  94%|█████████▍| 94/100 [07:00<00:33,  5.51s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the bird a crow in the image? Is the flying object a drone in the image? What is making the loud noise in the forest?
+a) A crow 
+b) A drone
+mc: b) A drone
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  95%|█████████▌| 95/100 [07:05<00:27,  5.48s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the vehicle a car in the image? Is the vehicle a spaceship in the image? What vehicle is present in the scene? 
+a) A car 
+b) A spaceship
+mc: b) A spaceship
+src_a: NO
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  96%|█████████▌| 96/100 [07:10<00:21,  5.43s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the bird building a nest in the image? Is the dragon building a nest in the image? What object is building a nest in the image?
+a) A bird 
+b) A dragon
+mc: b) A dragon
+src_a: NO
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  97%|█████████▋| 97/100 [07:15<00:15,  5.27s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the animal a squirrel in the image? Is the animal a bear in the image? What is the animal in the image?
+a) A squirrel 
+b) A bear
+mc: b) A bear
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  98%|█████████▊| 98/100 [07:21<00:10,  5.32s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the jogger human in the image? Is the robot mechanical in the image? What is moving along the path through the park?
+a) A jogger
+b) A robot
+mc: b) A robot
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  99%|█████████▉| 99/100 [07:26<00:05,  5.37s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the animal a deer in the image? Is the animal a unicorn in the image? What animal is drinking from the stream in the image? 
+a) A deer 
+b) A unicorn
+mc: b) A unicorn
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos: 100%|██████████| 100/100 [07:31<00:00,  5.26s/it][AEvaluating videos: 100%|██████████| 100/100 [07:31<00:00,  4.52s/it]
+processing file_id
+processing step14|five_acc_yes_no
+processing step14|five_acc_multi_choice
+processing step14|five_acc_union
+processing step14|five_acc_inter
+processing step14|five_acc
+Evaluating annotation mapping files:  33%|███▎      | 2/6 [15:05<30:09, 452.39s/it]evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit3_FiVE.json ...
+
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the bus purple in the image? What color is the city bus in the image?
+a) not purple
+b) purple
+mc: b) purple
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:   1%|          | 1/100 [00:03<06:03,  3.67s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the dog gray in the image? Is the dog pink in the image? What color is the dog in the image? 
+a) Gray 
+b) Pink
+mc: b) Pink
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:   2%|▏         | 2/100 [00:09<07:35,  4.65s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Are the ibises white in the image? Are the ibises orange in the image? What is the color of the ibises in the image?
+a) white
+b) orange
+mc: b) orange
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:   3%|▎         | 3/100 [00:11<05:45,  3.56s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the Mini Cooper grey in the image? Is the Mini Cooper yellow in the image? What is the color of the Mini Cooper in the image?
+a) Grey 
+b) Yellow
+mc: b) Yellow
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:   4%|▍         | 4/100 [00:15<06:23,  3.99s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the breakdancer wearing a red hoodie in the image? Is the breakdancer wearing a black hoodie in the image? What is the color of the breakdancers hoodie? 
+a) Red 
+b) Black
+mc: b) Black
+src_a: NO
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:   5%|▌         | 5/100 [00:21<07:03,  4.46s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the paraglider pink in the image? What is the color of the paraglider in the image? 
+a) not pink 
+b) pink
+mc: b) pink
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:   6%|▌         | 6/100 [00:25<06:42,  4.28s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the musician wearing blue in the image? What is the color of the musicians clothing in the image?
+a) not blue
+b) Blue
+mc: b) Blue
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:   7%|▋         | 7/100 [00:27<05:43,  3.70s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Are the snowboarders pink in the image? What is the color of the snowboarders in the image?
+a) Not pink
+b) Pink
+mc: b) Pink
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:   8%|▊         | 8/100 [00:31<05:37,  3.67s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the bear brown in the image? Is the bear purple in the image? What color is the bear in the image?
+a) brown
+b) purple
+mc: b) purple
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:   9%|▉         | 9/100 [00:36<06:09,  4.06s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the skier wearing a red and white outfit in the image? Is the skier wearing a purple and black outfit in the image? What color is the skiers outfit in the image?
+a) Red and white 
+b) Purple and black
+mc: b) Purple and black
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  10%|█         | 10/100 [00:44<08:01,  5.35s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the womans dress black in the image? Is the womans dress red in the image? What color is the womans dress in the image?
+a) Black 
+b) Red
+mc: b) Red
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  11%|█         | 11/100 [00:48<07:26,  5.02s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the goat blue in the image? What is the color of the goat in the image?
+a) Not blue
+b) Blue
+mc: b) Blue
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  12%|█▏        | 12/100 [00:52<06:51,  4.68s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the man wearing a black shirt in the image? Is the man wearing a yellow shirt in the image? What is the color of the mans shirt in the image?
+a) Black 
+b) Yellow
+mc: b) Yellow
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  13%|█▎        | 13/100 [00:57<06:40,  4.60s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the car black in the image? Is the car pink in the image? What is the color of the car performing the burnout?
+a) black 
+b) pink
+mc: b) pink
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  14%|█▍        | 14/100 [01:01<06:39,  4.64s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the car silver in the image? Is the car green in the image? What object is present in the image?
+a) A silver car
+b) A green car
+mc: b) A green car
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  15%|█▌        | 15/100 [01:04<05:34,  3.93s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the horse blue in the image? Is the horse in the image blue?
+a) no
+b) yes
+mc: b) yes
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  16%|█▌        | 16/100 [01:06<04:51,  3.47s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the boy wearing a red cap in the image? Is the boy wearing a yellow cap in the image? What is the color of the cap the boy is wearing? 
+a) Red 
+b) Yellow
+mc: b) Yellow
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  17%|█▋        | 17/100 [01:10<04:53,  3.54s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the breakdancer wearing a black shirt in the image? What color of breakdancer's shirt in the image?
+a) Not black 
+b) Black
+mc: b) Black
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  18%|█▊        | 18/100 [01:13<04:49,  3.53s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the tennis player wearing black shorts in the image? What color are the tennis players shorts in the image?
+a) Not black 
+b) Black
+mc: b) Black
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  19%|█▉        | 19/100 [01:17<04:53,  3.62s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Does the monkey look blue in the image? What is the color of the monkeys in the image? 
+a) Not Blue 
+b) Blue
+mc: b) Blue
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  20%|██        | 20/100 [01:20<04:41,  3.52s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the fighter jet pink in the image? What color is the fighter jet in the image?
+a) Not pink 
+b) Pink
+mc: b) Pink
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  21%|██        | 21/100 [01:22<03:57,  3.00s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the skateboarder in the image wearing red? Is the skateboarder wearing read in the image?
+a) no 
+b) yes
+mc: b) yes
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  22%|██▏       | 22/100 [01:25<03:47,  2.92s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Are the kayakers wearing blue in the image? Is the kayakers wearing blue in the image?
+a) no 
+b) yes
+mc: b) yes
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  23%|██▎       | 23/100 [01:28<03:43,  2.90s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the person on rollerblades wearing pink in the image? What color is the person wearing in the image? 
+a) Not pink 
+b) Pink
+mc: b) Pink
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  24%|██▍       | 24/100 [01:31<04:01,  3.17s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Are the striped uniforms of the baseball players in the picture yellow? What color is the baseball player wearing in the image?
+a) Yellow 
+b) Striped
+mc: a) Yellow
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  25%|██▌       | 25/100 [01:36<04:31,  3.62s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the cloth of the player in the image black? What is the color of the outfits of the players in the image?
+a) Not black
+b) Black
+mc: b) Black
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  26%|██▌       | 26/100 [01:40<04:27,  3.61s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the girl wearing a pink and white dress in the image? Is the girl wearing a blue and black dress in the image? What color is the dress of the girl in the image? 
+a) Pink and white 
+b) Blue and black
+mc: b) Blue and black
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  27%|██▋       | 27/100 [01:43<04:27,  3.67s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the helmet blue? Is the helmet yellow? What object is present in the image?
+a) A blue helmet
+b) A yellow helmet
+mc: b) A yellow helmet
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  28%|██▊       | 28/100 [01:48<04:52,  4.06s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the horse green in the image? What is the color of the horse in the image? 
+a) Not green 
+b) Green
+mc: b) Green
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  29%|██▉       | 29/100 [01:51<04:24,  3.73s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the rally car red in the image? What is the color of the car in the image?
+a) Not red
+b) Red
+mc: b) Red
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  30%|███       | 30/100 [01:53<03:43,  3.20s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the soccer ball purple in the image? What is the color of the soccer ball in the image? 
+a) The soccer ball is not purple 
+b) The soccer ball is purple
+mc: b) The soccer ball is purple
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  31%|███       | 31/100 [01:55<03:16,  2.85s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the woman wearing red in the image? What color of the womam's dress in the image? 
+a) Not red 
+b)Red
+mc: b) Red
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  32%|███▏      | 32/100 [01:59<03:30,  3.10s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the horse white in the image? Is the horse black in the image? What is the color of the horse in the image? 
+a) White 
+b) Black
+mc: b) Black
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  33%|███▎      | 33/100 [02:03<03:39,  3.27s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the cow brown and white in the image?  Is the cow purple and white in the image? What color is the cow in the image?
+a) Brown and white
+b) Purple and white
+mc: b) Purple and white
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  34%|███▍      | 34/100 [02:08<04:24,  4.00s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the helicopter red in the image? What is the color of the helicopter in the image?
+a) Not red
+b) Red
+mc: b) Red
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  35%|███▌      | 35/100 [02:11<03:49,  3.53s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the camel purple in the image? What is the color of the camel in the image? 
+a) Not purple 
+b) Purple
+mc: b) Purple
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  36%|███▌      | 36/100 [02:15<03:55,  3.68s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the woman wearing red in the image? What is the color of the womans outfit in the image?
+a) Not red
+b) Red
+mc: b) Red
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  37%|███▋      | 37/100 [02:17<03:24,  3.24s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the motorbike red in the image? What is the color of the motorbike with two riders in the image? 
+a) Not red 
+b) Red
+mc: b) Red
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  38%|███▊      | 38/100 [02:19<02:55,  2.83s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the chameleon green in the image? Is the chameleon red in the image? What is the color of the chameleon in the image? 
+a) Green 
+b) Red
+mc: b) Red
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  39%|███▉      | 39/100 [02:24<03:35,  3.54s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the player wearing a white shirt and black shorts in the image? Is the player wearing a black shirt and red shorts in the image? What color shirt and shorts is the tennis player wearing in the image?
+a) white shirt and black shorts 
+b) black shirt and red shorts
+mc: b) black shirt and red shorts
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  40%|████      | 40/100 [02:29<03:58,  3.97s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the man wearing a yellow shirt in the image? Is the man wearing a red shirt in the image? What color is the mans shirt in the image?
+a) Yellow
+b) Red
+mc: b) Red
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  41%|████      | 41/100 [02:32<03:36,  3.67s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the man wearing yellow in the image? What color is the man wearing in the image?
+a) Not yellow
+b) Yellow
+mc: b) Yellow
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  42%|████▏     | 42/100 [02:36<03:32,  3.66s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the man in the image wearing purple? What color is the man wearing?
+a) Not purple
+b) Purple
+mc: b) Purple
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  43%|████▎     | 43/100 [02:41<03:48,  4.01s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the snowboarder wearing green in the image? What object is present in the image?
+a) A snowboarder not in green
+b) A snowboarder in green
+mc: b) A snowboarder in green
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  44%|████▍     | 44/100 [02:44<03:28,  3.72s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the butterfly blue in the image? Is the butterfly pink in the image? What color is the butterfly in the image?
+a) Blue
+b) Pink
+mc: b) Pink
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  45%|████▌     | 45/100 [02:48<03:41,  4.02s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+1. Is the swan black in the image? 2. Is the swan red in the image? What is the color of the swan in the image?
+a) Black
+b) Red
+mc: b) Red
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  46%|████▌     | 46/100 [02:51<03:21,  3.73s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Are the practitioners wearing red uniforms in the image? What is the color of the judo practitioners uniforms in the image?
+a) Not red
+b) red
+mc: b) red
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  47%|████▋     | 47/100 [02:53<02:45,  3.13s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the man wearing red in the image? What is the color of the mans clothing in the image?
+a) Not Red 
+b) Red
+mc: b) Red
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  48%|████▊     | 48/100 [02:56<02:42,  3.13s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Are the speed skaters wearing pink suits in the image? What color are the speed skaters wearing in the image?
+a) Not pink
+b) Pink
+mc: b) Pink
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  49%|████▉     | 49/100 [03:01<02:55,  3.45s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the person in green in the image? What is the color of the person in the image?
+a) not in green 
+b) in green
+mc: b) in green
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  50%|█████     | 50/100 [03:04<02:55,  3.50s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the woman wearing a yellow jacket in the image? Is the woman wearing a blue jacket in the image? What is the color of the jacket the woman is wearing in the image?
+a) Yellow
+b) Blue
+mc: b) Blue
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  51%|█████     | 51/100 [03:08<02:56,  3.61s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the duck blue in the image? What is the color of the duck in the image?
+a) Not blue
+b) Blue
+mc: b) Blue
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  52%|█████▏    | 52/100 [03:12<02:53,  3.62s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the person wearing purple in the image? What is the color of the person swinging in the image?
+a) Not purple 
+b) Purple
+mc: b) Purple
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  53%|█████▎    | 53/100 [03:15<02:43,  3.49s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Does the model train have a blue engine and red and gray carriages? Does the model train have a pink engine and pink and pink carriages? What are the colors of the model train's engine and carriages?
+a) a blue engine and red and gray carriages
+b) a pink engine and pink and pink carriages
+mc: b) a pink engine and pink and pink carriages
+src_a: NO
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  54%|█████▍    | 54/100 [03:19<02:56,  3.83s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Are the pigs blue in the image? What is the color of the pigs in the image?
+a) Not blue
+b) Blue
+mc: b) Blue
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  55%|█████▌    | 55/100 [03:23<02:50,  3.79s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Are the go-karts black in the image? What is the color of the go-karts in the image? 
+a) Not Black 
+b) Black
+mc: b) Black
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  56%|█████▌    | 56/100 [03:28<02:55,  3.99s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the retriever golden in the image? Is the retriever blue in the image? What is the color of the retriever in the image?
+a) Golden
+b) Blue
+mc: b) Blue
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  57%|█████▋    | 57/100 [03:31<02:49,  3.94s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the boat white in the image? Is the boat pink in the image? What color is the boat in the image?
+a) White 
+b) Pink
+mc: b) Pink
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  58%|█████▊    | 58/100 [03:36<02:57,  4.22s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the car red in the image? Is the car yellow in the image? What color is the sports car in the image?
+a) Red 
+b) Yellow
+mc: b) Yellow
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  59%|█████▉    | 59/100 [03:39<02:39,  3.90s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the motocross rider red in this image? What color is the cloth of the motocross rider?
+a) Not red
+b) Red
+mc: b) Red
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  60%|██████    | 60/100 [03:43<02:28,  3.70s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the person wearing a yellow Santa Claus outfit in the image? What is the color of the Santa Claus outfit in the image?
+a) Not yellow
+b) Yellow
+mc: b) Yellow
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  61%|██████    | 61/100 [03:46<02:18,  3.56s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the elephant blue in the image? What is the color of the elephant in the image?
+a) Not Blue
+b) Blue
+mc: b) Blue
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  62%|██████▏   | 62/100 [03:50<02:15,  3.57s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the race car black in the image? What color is the race car in the image?
+a) Not black
+b) Black
+mc: b) Black
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  63%|██████▎   | 63/100 [03:53<02:05,  3.40s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the person in the image wearing white? What is the color of the persons clothing in the image? 
+a) Not white 
+b) white
+mc: b) white
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  64%|██████▍   | 64/100 [03:54<01:45,  2.92s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Are the dancers wearing red skirts in the image? Are the dancers wearing white skirts in the image? What is the color of the dancers skirts and tops in the image?
+a) Red 
+b) White
+mc: b) White
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  65%|██████▌   | 65/100 [04:00<02:10,  3.72s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Are the deer in the image pink? What is the color of the deer in the image?
+a) Not Pink
+b) Pink
+mc: b) Pink
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  66%|██████▌   | 66/100 [04:04<02:06,  3.72s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the the motorcyclist in the image red? What is the color of the motorcyclist in the image?
+a) Not Red
+b) Red
+mc: b) Red
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  67%|██████▋   | 67/100 [04:07<02:01,  3.69s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the airplane blue in the target image? What is the color of the airplane in the image?
+a) Not Blue 
+b) Blue
+mc: b) Blue
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  68%|██████▊   | 68/100 [04:09<01:39,  3.12s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the SUV silver in the image? Is the SUV pink in the image? What color is the SUV in the image? 
+a) Silver 
+b) Pink
+mc: b) Pink
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  69%|██████▉   | 69/100 [04:14<01:50,  3.58s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the dancer wearing a blue and green costume in the image? Is the dancer wearing a yellow costume in the image? What is the color of the dancers costume in the image? 
+a) Blue and green 
+b) Yellow
+mc: b) Yellow
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  70%|███████   | 70/100 [04:19<02:01,  4.04s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the duck blue in the image? What color is the mallard duck? 
+a) Not Blue 
+b) blue
+mc: b) blue
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  71%|███████   | 71/100 [04:22<01:53,  3.91s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the border collie red in the image? What color is the border collie in the image? 
+a) Not Red 
+b) Red
+mc: b) Red
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  72%|███████▏  | 72/100 [04:24<01:26,  3.09s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the rider wearing green in the image? What color is the rider wearing in the image? 
+a) Not Green 
+b) Green
+mc: b) Green
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  73%|███████▎  | 73/100 [04:28<01:30,  3.36s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the rhinoceros pink in the image? What color is the rhinoceros in the image?
+a) Not pink
+b) Pink
+mc: b) Pink
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  74%|███████▍  | 74/100 [04:32<01:32,  3.56s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the bicycle purple in the image? What object is present in the image? 
+a) A non-purple bicycle 
+b) A purple bicycle
+mc: b) A purple bicycle
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  75%|███████▌  | 75/100 [04:35<01:31,  3.65s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the rabbit turquoise in the image? What color is the rabbit in the image?
+a) Non-Turquoise 
+b) Turquoise
+mc: b) Turquoise
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  76%|███████▌  | 76/100 [04:40<01:33,  3.88s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the hawk pink in the image? What is the color of the hawk in the image? 
+a) Not pink 
+b) Pink
+mc: b) Pink
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  77%|███████▋  | 77/100 [04:44<01:32,  4.02s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the cat green in the image? What is the color of the cat in the image?
+a) Not green 
+b) Green
+mc: b) Green
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  78%|███████▊  | 78/100 [04:48<01:29,  4.06s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the bus lavender in the image? What color is the bus in the image?
+a) Not lavender
+b) Lavender
+mc: b) Lavender
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  79%|███████▉  | 79/100 [04:52<01:25,  4.08s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the motorcycle golden in the image? What object is present in the image? 
+a) A non-golden motorcycle 
+b) A golden motorcycle
+mc: b) A golden motorcycle
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  80%|████████  | 80/100 [04:57<01:21,  4.08s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the horse silver in the image? What color of the horse in the image?
+a) Not silver
+b) Silver
+mc: b) Silver
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  81%|████████  | 81/100 [05:01<01:18,  4.13s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the tram teal in the image? What color is the tram in the image? 
+a) Not teal 
+b) teal
+mc: b) teal
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  82%|████████▏ | 82/100 [05:05<01:12,  4.03s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the boat magenta in the image? What object is present in the image? 
+a) A non-magenta boat 
+b) A magenta boat
+mc: b) A magenta boat
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  83%|████████▎ | 83/100 [05:09<01:08,  4.04s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the squirrel crimson in the image? What color is the squirrel in the image? 
+a) Not Crimson 
+b) Crimson
+mc: b) Crimson
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  84%|████████▍ | 84/100 [05:12<01:03,  3.97s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the tram chartreuse in the image? What is the color of the tram in the image? 
+a) Not Chartreuse 
+b) Chartreuse
+mc: b) Chartreuse
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  85%|████████▌ | 85/100 [05:16<00:58,  3.89s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the sports car red in the image? Is the sports car cyan in the image? What is the color of the sports car in the image? 
+a) Red 
+b) Cyan
+mc: b) Cyan
+src_a: NO
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  86%|████████▌ | 86/100 [05:21<00:59,  4.28s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the seagull violet in the image? What color is the seagull in the image?
+a) Not Violet 
+b) Violet
+mc: b) Violet
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  87%|████████▋ | 87/100 [05:25<00:54,  4.17s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the cyclist maroon in the image? What color is the cyclist in the image?
+a) Not maroon 
+b) Maroon
+mc: b) Maroon
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  88%|████████▊ | 88/100 [05:29<00:49,  4.15s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the dog lime in the image? What color is the dog in the image?
+a) Not lime
+b) Lime
+mc: b) Lime
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  89%|████████▉ | 89/100 [05:33<00:45,  4.10s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the deer coral in the image? What object is present in the image? 
+a) A non-coral deer 
+b) A coral deer
+mc: b) A coral deer
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  90%|█████████ | 90/100 [05:38<00:41,  4.13s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the hawk mustard in the image? What type of hawk is present in the image?
+a) A non-mustard hawk 
+b) A mustard hawk 
+mc: b) A mustard hawk
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  91%|█████████ | 91/100 [05:41<00:36,  4.04s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the fox indigo in the image? What is the color of the fox in the image?
+a) Not indigo 
+b) Indigo
+mc: b) Indigo
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  92%|█████████▏| 92/100 [05:46<00:33,  4.17s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the helicopter fuchsia in the image? What is the color of the helicopter in the image? 
+a) Not Fuchsia 
+b) Fuchsia
+mc: b) Fuchsia
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  93%|█████████▎| 93/100 [05:50<00:29,  4.26s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the swan bronze in the image? What is the material of the swan in the image? 
+a) Not Bronze 
+b) Bronze
+mc: b) Bronze
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  94%|█████████▍| 94/100 [05:55<00:25,  4.30s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the crow azure in the image? What color is the crow in the image?
+a) Not azure
+b) azure
+mc: b) azure
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  95%|█████████▌| 95/100 [05:59<00:21,  4.28s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the car beige in the image? What is the color of the car in the image?
+a) Not beige
+b) beige
+mc: b) beige
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  96%|█████████▌| 96/100 [06:03<00:17,  4.27s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the bird olive in the image? What is the color of the bird building the nest in the image? 
+a) The bird is not olive 
+b) The bird is olive
+mc: b) The bird is olive
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  97%|█████████▋| 97/100 [06:07<00:12,  4.15s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the squirrel salmon in the image? What color of the squirrel in the image?
+a) Not salmon
+b) Salmon
+mc: b) Salmon
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  98%|█████████▊| 98/100 [06:11<00:08,  4.11s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the joggers shirt lavender in the image? What is the color of the jogger in the image?
+a) lavender
+b) Not lavender
+mc: a) lavender
+tgt_a: YES
+yn / mc:  1 0
+
+Evaluating videos:  99%|█████████▉| 99/100 [06:15<00:04,  4.16s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the deer periwinkle in the image? What type of deer is present in the image?
+a) A normal deer 
+b) A periwinkle deer
+mc: a) A normal deer
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos: 100%|██████████| 100/100 [06:19<00:00,  4.08s/it][AEvaluating videos: 100%|██████████| 100/100 [06:19<00:00,  3.80s/it]
+processing file_id
+processing step14|five_acc_yes_no
+processing step14|five_acc_multi_choice
+processing step14|five_acc_union
+processing step14|five_acc_inter
+processing step14|five_acc
+Evaluating annotation mapping files:  50%|█████     | 3/6 [21:24<20:57, 419.24s/it]evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit4_FiVE.json ...
+
+Evaluating videos:   0%|          | 0/100 [00:00<?, ?it/s][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the bus made of glass in the image? What is the material of the city bus in the image?
+a) Normal bus
+b) glass bus
+mc: b) glass bus
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:   1%|          | 1/100 [00:03<06:05,  3.69s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the wheelchair made of wood in the image? What is the material of the wheelchair in the image?
+a) Normal 
+b) Wood
+mc: b) Wood
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:   2%|▏         | 2/100 [00:07<06:28,  3.97s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the ibis crystal white in the image? What is the color of the ibises in the image?
+a) Normal white 
+b) Crystal white
+mc: b) Crystal white
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:   3%|▎         | 3/100 [00:09<04:51,  3.00s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the Mini Cooper made of metallic in the image? What is the object in the image?
+a) A grey Mini Cooper 
+b) A metallic grey Mini Cooper
+mc: b) A metallic grey Mini Cooper
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:   4%|▍         | 4/100 [00:13<05:16,  3.30s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the breakdancer a hologram? What is the nature of the breakdancer in the image?
+a) Normal human
+b) Holographic style
+mc: b) Holographic style
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:   5%|▌         | 5/100 [00:17<05:43,  3.62s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the paraglider made of silk? What is the attribute of the paraglider?
+a) Normal
+b) Silk
+mc: a) Normal
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:   6%|▌         | 6/100 [00:21<05:49,  3.72s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the musician made of wood in the image? What is the material of the musician in the image?
+a) Normal human
+b) Wood
+mc: b) Wood
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:   7%|▋         | 7/100 [00:24<05:09,  3.33s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the snowboarder robotic in the image? What is the type of the snowboarders in the image?
+a) Human snowboarders
+b) Robotic snowboarders
+mc: b) Robotic snowboarders
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:   8%|▊         | 8/100 [00:27<05:17,  3.45s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the bear bronze in the image? What is the color of the bear in the image?
+a) Brown
+b) Bronze
+mc: a) Brown
+tgt_a: YES
+yn / mc:  1 0
+
+Evaluating videos:   9%|▉         | 9/100 [00:31<05:22,  3.54s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the skier made of glass in the image? What is the material of the skier in the image?
+a) Normal skier 
+b) glass skier
+mc: a) Normal skier
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  10%|█         | 10/100 [00:37<06:39,  4.43s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the woman in the image made of porcelain? What is the material of the woman in the image?
+a) Normal human 
+b) Porcelain
+mc: b) Porcelain
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  11%|█         | 11/100 [00:41<06:04,  4.09s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the goat made of stone? Is the goat made of stone?
+a) No 
+b) Yes
+mc: b) Yes
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  12%|█▏        | 12/100 [00:45<05:52,  4.01s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the man silver in the image? What is the color of the man in the image?
+a) Normal skin tone 
+b) Silver 
+mc: a) Normal skin tone
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  13%|█▎        | 13/100 [00:48<05:32,  3.82s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the car made of carbon fiber in the image? What is the material of the car in the image?
+a) black car 
+b) carbon fiber car
+mc: a) black car
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  14%|█▍        | 14/100 [00:52<05:26,  3.80s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the car holographic in the image? What is the material of the car in the image?
+a) Normal car
+b) Holographic car
+mc: b) Holographic car
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  15%|█▌        | 15/100 [00:54<04:33,  3.22s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the horse wooden in the image? What is the material of the horse in the image?
+a) Normal horse 
+b) Wooden horse 
+mc: b) Wooden horse
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  16%|█▌        | 16/100 [00:56<04:09,  2.97s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the boy made of wooden in the image? What is the material of the boy in the image?
+a) Normal boy 
+b) wooden boy 
+mc: b) wooden boy
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  17%|█▋        | 17/100 [00:59<04:06,  2.97s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the breakdancer metallic in the image? What is the material of the breakdancer in the image?
+a) Normal 
+b) Metallic
+mc: b) Metallic
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  18%|█▊        | 18/100 [01:02<04:15,  3.11s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the player a clay in the image? What is the material of the tennis player in the image?
+a) Normal player 
+b) clay player
+mc: b) clay player
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  19%|█▉        | 19/100 [01:06<04:30,  3.34s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the young monkey plush in the image? What is the material of the young monkey in the image?
+a) Real monkey 
+b) Plush monkey
+mc: b) Plush monkey
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  20%|██        | 20/100 [01:10<04:27,  3.35s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the fighter jet made of wood in the image? What is the material of the fighter jet in the image?
+a) Normal jet 
+b) Wooden jet
+mc: b) Wooden jet
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  21%|██        | 21/100 [01:11<03:45,  2.85s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the skateboarder made of cardboard in the image? What is the material of the skateboarder in the image?
+a) Normal skateboarder 
+b) Cardboard skateboarder
+mc: b) Cardboard skateboarder
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  22%|██▏       | 22/100 [01:14<03:41,  2.84s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the kayak made of wood in the image? What is the material of the kayakers in the image?
+a) Normal 
+b) Wooden
+mc: b) Wooden
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  23%|██▎       | 23/100 [01:17<03:38,  2.84s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Are the rollerblades metallic in the image? What is the material of the rollerblades in the image?
+a) Normal 
+b) Metallic 
+mc: b) Metallic 
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  24%|██▍       | 24/100 [01:21<03:57,  3.12s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the baseball player made of clay in the image? What is the material of the baseball player in the image?
+a) Normal 
+b) Clay
+mc: b) Clay
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  25%|██▌       | 25/100 [01:25<04:28,  3.58s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the table tennis players made of wood? What is the material of the table tennis players in the image?
+a) Normal players 
+b) wooden players
+mc: b) wooden players
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  26%|██▌       | 26/100 [01:29<04:25,  3.59s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the girl porcelain in the image? What is the material of the girl in the image?
+a) Human 
+b) Porcelain 
+mc: b) Porcelain
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  27%|██▋       | 27/100 [01:32<04:08,  3.40s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the person wooden in the image? What is the material of the person in the image?
+a) Normal person
+b) Wooden person
+mc: b) Wooden person
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  28%|██▊       | 28/100 [01:36<04:16,  3.57s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the horse made of wood in the image? What is the material of the horse in the image? 
+a) Normal horse 
+b) wooden horse
+mc: b) wooden horse
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  29%|██▉       | 29/100 [01:39<04:00,  3.39s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Does the rally car have a carbon fiber body in the image? What is the material of the rally car in the image?
+a) Normal car 
+b) Carbon fiber
+mc: b) Carbon fiber
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  30%|███       | 30/100 [01:41<03:27,  2.97s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the soccer ball made of rubber in the image? What is the material of the soccer ball in the image?
+a) not rubber
+b) rubber
+mc: a) not rubber
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  31%|███       | 31/100 [01:43<03:04,  2.67s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the mermaid made of wood in the image? What is the material of the mermaid in the image?
+a) Normal mermaid
+b) wooden mermaid
+mc: b) wooden mermaid
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  32%|███▏      | 32/100 [01:47<03:24,  3.00s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the horse made of wood in the image? What is the material of the horse in the image?
+a) Normal horse 
+b) Wooden horse
+mc: a) Normal horse
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  33%|███▎      | 33/100 [01:50<03:19,  2.98s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the cow made of clay in the image? What is the material of the cow in the image?
+a) Normal cow 
+b) clay cow
+mc: a) Normal cow
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  34%|███▍      | 34/100 [01:54<03:39,  3.33s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the helicopter made of wood in the image? What is the material of the helicopter in the image?
+a) Normal helicopter 
+b) Wooden helicopter 
+mc: a) Normal helicopter
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  35%|███▌      | 35/100 [01:56<03:19,  3.06s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the camel made of wood in the image? What is the material of the camel in the image?
+a) Normal camel 
+b) Wooden camel
+mc: b) Wooden camel
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  36%|███▌      | 36/100 [02:00<03:35,  3.37s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the woman a hologram in the image? What is the nature of the woman in the image?
+a) Human
+b) Holographic
+mc: b) Holographic
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  37%|███▋      | 37/100 [02:03<03:11,  3.04s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the motorbike wooden in the image? Is the motorbike made of wood in the image? 
+a) no 
+b) yes
+mc: b) yes
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  38%|███▊      | 38/100 [02:04<02:46,  2.69s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the chameleon green in the image? What is the material of the chameleon in the image?
+a) Normal chameleon 
+b) glass chameleon 
+mc: b) glass chameleon
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  39%|███▉      | 39/100 [02:08<03:09,  3.11s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the player a clay player in the image? What is the material of the tennis player in the image?
+a) Normal 
+b) clay
+mc: b) clay
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  40%|████      | 40/100 [02:12<03:19,  3.32s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the man made of wood in the image? What is the material of the man in the image?
+a) Normal man 
+b) Wooden man
+mc: b) Wooden man
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  41%|████      | 41/100 [02:15<02:59,  3.04s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the man metallic in the image? What is the material of the man in the image?
+a) Normal human
+b) Metallic 
+mc: b) Metallic
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  42%|████▏     | 42/100 [02:18<03:06,  3.21s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the man holographic in the image? What is the nature of the man in the image?
+a) Real man
+b) Holographic man
+mc: b) Holographic man
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  43%|████▎     | 43/100 [02:23<03:31,  3.70s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the snowboarder metallic in the image? What is the material of the snowboarder in the image?
+a) Normal snowboarder 
+b) Metallic snowboarder
+mc: b) Metallic snowboarder
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  44%|████▍     | 44/100 [02:26<03:15,  3.49s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the butterfly made of glass in the image? What is the material of the butterfly in the image? 
+a) Normal butterfly 
+b) glass butterfly
+mc: b) glass butterfly
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  45%|████▌     | 45/100 [02:30<03:15,  3.56s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the black swan made of velvet in the image? Is the black swan made of velvet in the image?
+a) no
+b) yes
+mc: a) no
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  46%|████▌     | 46/100 [02:32<02:53,  3.21s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Are two judo practitioners made of metallic? Are two judo practitioners made of metallic?
+a) no 
+b) yes 
+mc: b) yes
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  47%|████▋     | 47/100 [02:34<02:25,  2.75s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the man metallic in the image? What is the material of the man in the image?
+a) Normal man 
+b) metallic man 
+mc: b) metallic man
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  48%|████▊     | 48/100 [02:37<02:29,  2.88s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Are three speed skaters made of metallic in the image? Are three speed skaters made of metallic in the image?
+a) no 
+b) yes
+mc: a) no
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  49%|████▉     | 49/100 [02:41<02:45,  3.25s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the person metallic in the image? What is the material of the person in the image?
+a) Normal human
+b) metallic 
+mc: b) metallic
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  50%|█████     | 50/100 [02:45<02:47,  3.35s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the dogs plush in the image? What is the texture of the dogs in the image?
+a) Normal dogs
+b) plush dogs
+mc: b) plush dogs
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  51%|█████     | 51/100 [02:48<02:40,  3.28s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the duck made of glass in the image? What is the material of the mallard duck in the image?
+a) Normal duck
+b) Glass duck
+mc: b) Glass duck
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  52%|█████▏    | 52/100 [02:52<02:43,  3.40s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the person metallic in the image? What is the material of the person on the swing in the image? 
+a) Normal person 
+b) Metallic person
+mc: b) Metallic person
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  53%|█████▎    | 53/100 [02:55<02:36,  3.32s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the model train made of wood in the image? Is the model train made of wood in the image?
+a) no
+b) yes
+mc: b) yes
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  54%|█████▍    | 54/100 [02:58<02:33,  3.34s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Does the group of pigs consist of clay pigs in the image? What is the material of the pigs in the image?
+a) Normal pigs 
+b) clay pigs
+mc: b) clay pigs
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  55%|█████▌    | 55/100 [03:02<02:35,  3.46s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Are the go-karts made of metallic in the image? Are the go-karts made of metallic in the image?
+a) no 
+b) yes 
+mc: b) yes
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  56%|█████▌    | 56/100 [03:06<02:44,  3.75s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the dog plush in the image? What is the texture of the golden retriever in the image?
+a) Normal dog 
+b) plush dog 
+mc: b) plush dog
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  57%|█████▋    | 57/100 [03:09<02:32,  3.55s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the boat made of wood in the image? What is the material of the boat in the image?
+a) Normal boat 
+b) Wooden boat
+mc: b) Wooden boat
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  58%|█████▊    | 58/100 [03:13<02:30,  3.57s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the car's material carbon fiber in the image? What is the material of the sports car in the image?
+a) Normal red car 
+b) carbon fiber car 
+mc: b) carbon fiber car
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  59%|█████▉    | 59/100 [03:15<02:13,  3.25s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Are motocross riders holographic? What type of the motocross rider in the image?
+a) Normal human 
+b) holographic human
+mc: b) holographic human
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  60%|██████    | 60/100 [03:19<02:09,  3.24s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the person riding the motorcycle a robotic human? What is the nature of the person dressed in a Santa Claus outfit in the image?
+a) Human
+b) Robotic
+mc: b) Robotic
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  61%|██████    | 61/100 [03:22<02:04,  3.18s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the elephant made of stone in the image? What is the material of the elephant in the image? 
+a) Normal elephant 
+b) Stone elephant 
+mc: b) Stone elephant
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  62%|██████▏   | 62/100 [03:25<02:05,  3.29s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the race car made of carbon fiber in the image? What is the material of the race car in the image?
+a) Normal race car 
+b) carbon fiber race car
+mc: b) carbon fiber race car
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  63%|██████▎   | 63/100 [03:28<02:00,  3.24s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the person holoraphic in the image? What is the nature of the person in the image?
+a) Human 
+b) Holographic 
+mc: b) Holographic
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  64%|██████▍   | 64/100 [03:30<01:41,  2.82s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Are the dancers holographic in the image? What is the nature of the dancers in the image?
+a) Real 
+b) Holographic 
+mc: b) Holographic
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  65%|██████▌   | 65/100 [03:35<01:55,  3.31s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the material of the deer wood in the image? What is the material of the deer in the image? 
+a) Normal deer 
+b) Wooden deer 
+mc: b) Wooden deer
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  66%|██████▌   | 66/100 [03:38<01:57,  3.45s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the motorcyclist holographic? What is the material of the motorcyclist in the image? 
+a) normal human 
+b) holographic human
+mc: b) holographic human
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  67%|██████▋   | 67/100 [03:42<01:56,  3.52s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the airplane chrome in the image? What is the material of the airplane in the image?
+a) Normal airplane
+b) Chrome airplane
+mc: b) Chrome airplane
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  68%|██████▊   | 68/100 [03:44<01:36,  3.01s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the SUV holographic in the image? What is the material of the SUV in the image? 
+a) Normal 
+b) Holographic
+mc: b) Holographic
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  69%|██████▉   | 69/100 [03:48<01:39,  3.21s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the dancer a hologram in the image? What is the nature of the dancer in the image?
+a) real person 
+b) Holographic
+mc: b) Holographic
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  70%|███████   | 70/100 [03:52<01:43,  3.46s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the duck made of glass in the image? What is the material of the mallard duck in the image?
+a) Normal duck 
+b) glass duck 
+mc: a) Normal duck
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  71%|███████   | 71/100 [03:55<01:41,  3.51s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the border collie plush in the image? What is the texture of the border collie in the image?
+a) Normal dog 
+b) Plush dog 
+mc: b) Plush dog
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  72%|███████▏  | 72/100 [03:57<01:19,  2.83s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the BMX rider a hologram in the image? What is the nature of the BMX rider in the image?
+a) Real person
+b) Holographic
+mc: b) Holographic
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  73%|███████▎  | 73/100 [04:01<01:26,  3.20s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the rhinoceros made of stone? What is the nature of the rhinoceros in the image?
+a) normal rhinoceros
+b) rhinoceros made of stone
+mc: b) rhinoceros made of stone
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  74%|███████▍  | 74/100 [04:05<01:30,  3.49s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the bicycle made of glass in the image? What is the material of the bicycle in the image?
+a) Normal bicycle 
+b) glass bicycle
+mc: b) glass bicycle
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  75%|███████▌  | 75/100 [04:09<01:29,  3.60s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the rabbit made of velvet in the image? What is the material of the rabbit in the image?
+a) Normal rabbit
+b) Velvet rabbit 
+mc: b) Velvet rabbit
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  76%|███████▌  | 76/100 [04:13<01:32,  3.85s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the hawk metallic in the image? What is the material of the hawk in the image?
+a) Normal hawk 
+b) metallic hawk
+mc: b) metallic hawk
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  77%|███████▋  | 77/100 [04:18<01:32,  4.01s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the cat made of woolen in the image? What is the material of the cat in the image?
+a) Normal cat 
+b) woolen cat
+mc: a) Normal cat
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  78%|███████▊  | 78/100 [04:22<01:28,  4.04s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the bus made of wood in the image? What is the material of the bus in the image?
+a) Normal bus 
+b) Wooden bus
+mc: b) Wooden bus
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  79%|███████▉  | 79/100 [04:26<01:25,  4.05s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the motorcycle holorgraphic in the image? What is the material of the motorcycle in the image?
+a) Normal motorcycle
+b) Holographic motorcycle
+c) Other (please specify) 
+mc: b) Holographic motorcycle
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  80%|████████  | 80/100 [04:30<01:21,  4.08s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the horse crystal in the image? What is the material of the horse in the image? 
+a) Normal horse 
+b) crystal horse
+mc: b) crystal horse
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  81%|████████  | 81/100 [04:34<01:18,  4.14s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the tram made of ceramic in the image? What is the material of the tram in the image? 
+a) Normal tram 
+b) Ceramic tram
+mc: a) Normal tram
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  82%|████████▏ | 82/100 [04:38<01:12,  4.04s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the boat made of bamboo in the image? What is the material of the boat in the image?
+a) Normal boat
+b) Bamboo boat
+mc: b) Bamboo boat
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  83%|████████▎ | 83/100 [04:42<01:08,  4.02s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the squirrel made of clay in the image? What is the material of the squirrel in the image? 
+a) Normal squirrel 
+b) clay squirrel
+mc: b) clay squirrel
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  84%|████████▍ | 84/100 [04:46<01:04,  4.01s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the tram made of leather in the image? What is the material of the tram in the image?
+a) Normal tram 
+b) Leather tram
+mc: a) Normal tram
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  85%|████████▌ | 85/100 [04:50<01:00,  4.04s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the sports car velvet red in the image? What is the texture of the sports car in the image?
+a) Normal red car
+b) Velvet car
+mc: b) Velvet car
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  86%|████████▌ | 86/100 [04:54<00:56,  4.06s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the seagull made of porcelain in the image? What is the material of the seagull in the image?
+a) Normal seagull 
+b) Porcelain seagull
+mc: a) Normal seagull
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  87%|████████▋ | 87/100 [04:58<00:52,  4.05s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the cyclist made of cardboard in the image? What is the material of the cyclist in the image?
+a) real person 
+b) Cardboard
+mc: b) Cardboard
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  88%|████████▊ | 88/100 [05:02<00:48,  4.07s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the dog plush in the image? What is the texture of the dog in the image? 
+a) Real dog 
+b) Plush dog 
+mc: b) Plush dog
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  89%|████████▉ | 89/100 [05:06<00:44,  4.06s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the deer bronze in the image? What is the material of the deer in the image? 
+a) Normal deer 
+b) bronze deer
+mc: a) Normal deer
+tgt_a: YES
+yn / mc:  1 0
+
+Evaluating videos:  90%|█████████ | 90/100 [05:10<00:41,  4.11s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the hawk made of glass in the image? What is the material of the hawk in the image?
+a) Normal bird
+b) glass bird
+mc: b) glass bird
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  91%|█████████ | 91/100 [05:14<00:36,  4.07s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the fox velvet in the image? What is the texture of the fox in the image? 
+a) Normal fox 
+b) velvet fox 
+mc: a) normal fox
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  92%|█████████▏| 92/100 [05:19<00:33,  4.24s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the helicopter made of steel in the image? What is the material of the helicopter in the image? 
+a) Normal helicopter 
+b) Steel helicopter
+mc: b) Steel helicopter
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  93%|█████████▎| 93/100 [05:23<00:29,  4.27s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the swan made of silk in the image? What is the material of the swan in the image? 
+a) Normal swan 
+b) silk swan
+mc: a) Normal swan
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  94%|█████████▍| 94/100 [05:28<00:26,  4.35s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the crow made of rubber in the image? What is the material of the crow in the image?
+a) Normal bird 
+b) rubber bird
+mc: b) rubber bird
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  95%|█████████▌| 95/100 [05:32<00:21,  4.34s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the car chrome in the image? What is the material of the car in the image? 
+a) Normal car 
+b) Chrome car
+mc: b) Chrome car
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  96%|█████████▌| 96/100 [05:37<00:17,  4.31s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the bird feathered in the image? What is the bird in the image?
+a) feathered
+b) featherless
+mc: a) feathered
+tgt_a: YES
+yn / mc:  1 0
+
+Evaluating videos:  97%|█████████▋| 97/100 [05:40<00:12,  4.16s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Does the squirrel in the image look like in a knitted style? What is the texture of the squirrel in the image? 
+a) Normal style 
+b) knitted style
+mc: a) Normal style
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  98%|█████████▊| 98/100 [05:44<00:08,  4.13s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the jogger robotic in the image? What is the type of the jogger in the image?
+a) real people
+b) Robotic
+mc: b) Robotic
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  99%|█████████▉| 99/100 [05:49<00:04,  4.19s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the deer made of marble in the image? What is the material of the deer in the image?
+a) Real deer 
+b) Marble deer
+mc: b) Marble deer
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos: 100%|██████████| 100/100 [05:53<00:00,  4.13s/it][AEvaluating videos: 100%|██████████| 100/100 [05:53<00:00,  3.53s/it]
+processing file_id
+processing step14|five_acc_yes_no
+processing step14|five_acc_multi_choice
+processing step14|five_acc_union
+processing step14|five_acc_inter
+processing step14|five_acc
+Evaluating annotation mapping files:  67%|██████▋   | 4/6 [27:18<13:06, 393.17s/it]evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit5_FiVE.json ...
+
+Evaluating videos:   0%|          | 0/9 [00:00<?, ?it/s][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the musician wearing a hat in the image? Is the musician wearing a hat in the image?
+a) no
+b) yes
+mc: b) yes
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  11%|█         | 1/9 [00:02<00:20,  2.51s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the bear wearing a cap in the image? What is the bear wearing in the image? 
+a) nothing 
+b) a cap
+mc: b) a cap
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  22%|██▏       | 2/9 [00:06<00:23,  3.33s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is a dog following the woman? Is a dog following the woman? 
+a) no 
+b) yes
+mc: a) no
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  33%|███▎      | 3/9 [00:09<00:19,  3.32s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the tennis player wearing a bright yellow fedora in the image? Is a tennis player wearing a bright yellow fedora in the image?
+a) no 
+b) yes
+mc: b) yes
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  44%|████▍     | 4/9 [00:13<00:17,  3.50s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the cow wearing a flower garland in the image? Is a brown and white cow wearing a flower garland in the image?
+a) no 
+b) yes
+mc: b) yes
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  56%|█████▌    | 5/9 [00:17<00:15,  3.75s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the camel carrying a big basket in the image? Is a camel carrying a big basket in the image? 
+a) no 
+b) yes
+mc: b) yes
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  67%|██████▋   | 6/9 [00:21<00:11,  3.83s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is the dog wearing a crown in the image? What object is present in the image? 
+a) A golden retriever without wearing a crown 
+b) A golden retriever wearing a crown
+mc: b) A golden retriever wearing a crown
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos:  78%|███████▊  | 7/9 [00:24<00:07,  3.65s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is there a giant inflatable flamingo on the SUV in the image? What object is present on the SUV in the image?
+a) A giant inflatable flamingo
+b) None of the above
+mc: a) A giant inflatable flamingo
+tgt_a: YES
+yn / mc:  1 0
+
+Evaluating videos:  89%|████████▉ | 8/9 [00:28<00:03,  3.68s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+ Is a dog wearing sunglasses? Is a dog wearing sunglasses? 
+a) no 
+b) yes
+mc: b) yes
+tgt_a: YES
+yn / mc:  1 1
+
+Evaluating videos: 100%|██████████| 9/9 [00:32<00:00,  3.84s/it][AEvaluating videos: 100%|██████████| 9/9 [00:32<00:00,  3.66s/it]
+processing file_id
+processing step14|five_acc_yes_no
+processing step14|five_acc_multi_choice
+processing step14|five_acc_union
+processing step14|five_acc_inter
+processing step14|five_acc
+Evaluating annotation mapping files:  83%|████████▎ | 5/6 [27:51<04:23, 263.26s/it]evaluating /home/ids/skhairi/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit6_FiVE.json ...
+
+Evaluating videos:   0%|          | 0/10 [00:00<?, ?it/s][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the girl accompanied by a gray dog in the image? Is not there a grey dog ​​walking with the girl in the picture? Is the gray dog present in the image? 
+a) yes 
+b) no
+mc: a) yes
+src_a: YES
+tgt_a: YES
+yn / mc:  0 0
+
+Evaluating videos:  10%|█         | 1/10 [00:05<00:47,  5.30s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the young boy wearing a red cap? Is not the young boy wearing a red cap? Is the young boy wearing a red cap? 
+a) yes 
+b) no
+mc: a) yes
+src_a: YES
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  20%|██        | 2/10 [00:08<00:34,  4.35s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the baseball player wearing a helmet in the image? Is the baseball player not wearing a helmet in the image? Is the baseball player wearing a helmet? 
+a) Yes 
+b) No
+mc: a) Yes
+src_a: YES
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  30%|███       | 3/10 [00:14<00:34,  4.99s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the man wearing a backpack in the image? Is the man not wearing a backpack in the image? Is the man in the image wearing a backpack? 
+a) Yes 
+b) No
+mc: a) Yes
+src_a: YES
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  40%|████      | 4/10 [00:17<00:25,  4.23s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the man using a heavy gym ball during the workout in the image? Is the man not using a heavy gym ball during the workout in the image? What object is present in the image? 
+a) A man with a heavy gym ball 
+b) A man without a heavy gym ball
+mc: a) A man with a heavy gym ball
+src_a: NO
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  50%|█████     | 5/10 [00:22<00:22,  4.47s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the man wearing a backpack in the image? Is the man not wearing a backpack in the image? Is the man in the image carrying a backpack? 
+a) Yes 
+b) No
+mc: a) Yes
+src_a: YES
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  60%|██████    | 6/10 [00:26<00:17,  4.37s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Are there two dogs in the image? Are there no dogs in the image? What object is present in the image? 
+a) two dogs 
+b) without two dogs
+mc: a) two dogs
+src_a: NO
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  70%|███████   | 7/10 [00:30<00:12,  4.21s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Are there smaller pigs in the image? Is the pig alone in the image? What is the number of pigs in the image? 
+a) There are many pigs 
+b) There is a large pig
+mc: b) There is a large pig
+src_a: YES
+tgt_a: NO
+yn / mc:  0 1
+
+Evaluating videos:  80%|████████  | 8/10 [00:35<00:08,  4.40s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the cat playing with a toy in the image? Is the cat playing without a toy in the image?  Is a cat pouncing playfully on a toy?
+a) yes 
+b) no
+mc: a) yes
+src_a: YES
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos:  90%|█████████ | 9/10 [00:40<00:04,  4.67s/it][A
+
+evaluating method: step14
+
+evaluating metric: five_acc
+Is the cyclist wearing a helmet in the image? Is the cyclist not wearing a helmet in the image? Is the cyclist wearing a helmet? 
+a) Yes 
+b) No
+mc: a) Yes
+src_a: YES
+tgt_a: NO
+yn / mc:  0 0
+
+Evaluating videos: 100%|██████████| 10/10 [00:46<00:00,  4.84s/it][AEvaluating videos: 100%|██████████| 10/10 [00:46<00:00,  4.61s/it]
+processing file_id
+processing step14|five_acc_yes_no
+processing step14|five_acc_multi_choice
+processing step14|five_acc_union
+processing step14|five_acc_inter
+processing step14|five_acc
+Evaluating annotation mapping files: 100%|██████████| 6/6 [28:37<00:00, 189.41s/it]Evaluating annotation mapping files: 100%|██████████| 6/6 [28:37<00:00, 286.18s/it]
+final averaging file_id
+final averaging step14|five_acc_yes_no
+final averaging step14|five_acc_multi_choice
+final averaging step14|five_acc_union
+final averaging step14|five_acc_inter
+final averaging step14|five_acc
+[evaluate] overall metrics -> evaluation/csv/r35_fiveacc_lpips_first2_avg.csv
+[r35_fiveacc] r35_fiveacc_lpips_first2 exit=0 error_lines=0 oom_lines=0
+[r35_fiveacc] r35_fiveacc_lpips_first2 edit1: 100 rows (expect 100), missing cols=0, non-binary/NaN cells=0 -- ok
+[r35_fiveacc] r35_fiveacc_lpips_first2 edit2: 100 rows (expect 100), missing cols=0, non-binary/NaN cells=0 -- ok
+[r35_fiveacc] r35_fiveacc_lpips_first2 edit3: 100 rows (expect 100), missing cols=0, non-binary/NaN cells=0 -- ok
+[r35_fiveacc] r35_fiveacc_lpips_first2 edit4: 100 rows (expect 100), missing cols=0, non-binary/NaN cells=0 -- ok
+[r35_fiveacc] r35_fiveacc_lpips_first2 edit5: 9 rows (expect 9), missing cols=0, non-binary/NaN cells=0 -- ok
+[r35_fiveacc] r35_fiveacc_lpips_first2 edit6: 10 rows (expect 10), missing cols=0, non-binary/NaN cells=0 -- ok
+[r35_fiveacc] OK r35_fiveacc_lpips_first2 -> evaluation/csv/edit{1..6}_FiVE_r35_fiveacc_lpips_first2_frame_stride8.csv
