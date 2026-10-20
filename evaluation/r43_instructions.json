@@ -2029,9 +2029,9 @@
   "edit_type": 3,
   "video_name": "0026_table-tennis",
   "instruction_orig": "Change the player in red and black outfit to be in a black outfit.",
-  "instruction_v2": "Change the outfit of the player in red and black to all black.",
+  "instruction_v2": "Change the outfit of the player in red and black to all red.",
   "flag": "contradiction",
-  "note": "target prompt says both players in black and still mentions the red and black outfit (user-approved)"
+  "note": "target prompt says both players in black and still mentions the red and black outfit (user-approved); user review 2026-10-20; was: Change the outfit of the player in red and black to all black."
  },
  {
   "case_id": "edit3/0027_dance-jump",
@@ -2983,9 +2983,9 @@
   "edit_type": 4,
   "video_name": "0032_mermaid",
   "instruction_orig": "Change the woman's costume from a regular mermaid to a wooden mermaid.",
-  "instruction_v2": "Make the mermaid costume out of wood.",
+  "instruction_v2": "Make the mermaid out of wood.",
   "flag": "other",
-  "note": "woman dressed as a wooden mermaid — costume only (user-approved)"
+  "note": "woman dressed as a wooden mermaid — costume only (user-approved); user review 2026-10-20; was: Make the mermaid costume out of wood."
  },
  {
   "case_id": "edit4/0033_horsejump-low",
@@ -3289,9 +3289,9 @@
   "edit_type": 4,
   "video_name": "0066_deer",
   "instruction_orig": "Change the deer from living creatures to wooden statues.",
-  "instruction_v2": "Turn the two deer into wooden statues.",
+  "instruction_v2": "Make the two deer out of wood.",
   "flag": "ok",
-  "note": "reworded"
+  "note": "reworded; user review 2026-10-20; was: Turn the two deer into wooden statues."
  },
  {
   "case_id": "edit4/0067_mbike-trick",

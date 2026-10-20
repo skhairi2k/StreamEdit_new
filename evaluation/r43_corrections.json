@@ -13,10 +13,14 @@
   "level": "L3",
   "changed_spans": [],
   "must_not_contain": [],
-  "source_yes_no_question": "",
-  "target_yes_no_question": "Is the paraglider replaced by a hang glider in the image?",
+  "source_yes_no_question": "Is a paraglider soaring gracefully over a lush, green landscape?",
+  "target_yes_no_question": "Is a hang glider soaring gracefully over a lush, green landscape?",
   "target_object": "A hang glider",
-  "note": "target_object 'hang' truncated -> 'A hang glider'; source question was target-true: moved to the target slot (replacing a garbled/ambiguous target question), source question emptied"
+  "user_review": [
+   "source_yes_no_question",
+   "target_yes_no_question"
+  ],
+  "note": "target_object 'hang' truncated -> 'A hang glider'; source question was target-true: moved to the target slot (replacing a garbled/ambiguous target question), source question emptied; questions rewritten in the user review (2026-10-20)"
  },
  {
   "case_id": "edit1/0011_lucia",
@@ -27,14 +31,34 @@
   "note": "source_object 'a woman in a black dress' -> 'a woman' (surviving words are not part of the edit)"
  },
  {
-  "case_id": "edit1/0016_horsejump-high",
+  "case_id": "edit1/0014_burnout",
   "level": "L3",
   "changed_spans": [],
   "must_not_contain": [],
   "source_yes_no_question": "",
-  "target_yes_no_question": "Is the horse replaced by a camel in the image?",
+  "note": "source question removed: a jeep is a car (true on a correct edit)"
+ },
+ {
+  "case_id": "edit1/0015_car-shadow",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "",
+  "note": "source question removed: a jeep is a car (true on a correct edit)"
+ },
+ {
+  "case_id": "edit1/0016_horsejump-high",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "Is the animal a horse?",
+  "target_yes_no_question": "Is the animal a camel?",
   "source_object": "A horse",
-  "note": "source_object 'a horse with a rider' -> 'A horse' (surviving words are not part of the edit); source question was target-true: moved to the target slot (replacing a garbled/ambiguous target question), source question emptied"
+  "user_review": [
+   "source_yes_no_question",
+   "target_yes_no_question"
+  ],
+  "note": "source_object 'a horse with a rider' -> 'A horse' (surviving words are not part of the edit); source question was target-true: moved to the target slot (replacing a garbled/ambiguous target question), source question emptied; questions rewritten in the user review (2026-10-20)"
  },
  {
   "case_id": "edit1/0018_breakdance-flare",
@@ -68,11 +92,11 @@
    "champanzee"
   ],
   "target_prompt": "A young chimpanzee is playfully interacting with an adult chimpanzee on a grassy field covered with fallen leaves. The camera remains fixed, capturing the gentle and curious movements of the chimpanzees.",
-  "source_yes_no_question": "Is the young monkey a monkey in the image?",
+  "source_yes_no_question": "",
   "target_yes_no_question": "Is the young monkey a chimpanzee in the image?",
   "multiple_choice_question": "What type of animal is interacting with the adult in the image? \na) A monkey \nb) A chimpanzee",
   "target_object": "chimpanzee",
-  "note": "typo champanzee -> chimpanzee (spelling from the instruction); yes/no questions swapped (source asked about the target) with span fixes 'adult' -> 'young', no rewrite; target_object typo champanzee -> chimpanzee"
+  "note": "typo champanzee -> chimpanzee (spelling from the instruction); yes/no questions swapped (source asked about the target) with span fixes 'adult' -> 'young', no rewrite; target_object typo champanzee -> chimpanzee; source question removed: a chimpanzee is commonly called a monkey (review pass 2026-10-20)"
  },
  {
   "case_id": "edit1/0022_skate-jump",
@@ -99,6 +123,14 @@
   "target_yes_no_question": "Is the animal a camel in the image?",
   "source_object": "A horse",
   "note": "source_object 'a horse with a rider' -> 'A horse' (surviving words are not part of the edit); '1.' / '2.' numbering removed from the yes/no questions"
+ },
+ {
+  "case_id": "edit1/0030_rallye",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "",
+  "note": "source question removed: a jeep is a car (true on a correct edit)"
  },
  {
   "case_id": "edit1/0032_mermaid",
@@ -180,6 +212,14 @@
   "note": "source_object 'a person dressed in a Santa Claus outfit' -> 'a person' (surviving words are not part of the edit)"
  },
  {
+  "case_id": "edit1/0063_drift-turn",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "",
+  "note": "source question removed: a jeep is a car (true on a correct edit)"
+ },
+ {
   "case_id": "edit1/0064_rollerblade",
   "level": "L3",
   "changed_spans": [],
@@ -189,11 +229,24 @@
  },
  {
   "case_id": "edit1/0065_twist-dance",
-  "level": "L1",
+  "level": "L2",
   "changed_spans": [],
   "must_not_contain": [],
-  "source_yes_no_question": "Are the dancers the real person in the image?",
-  "note": "'not spidermen' deleted from the source question"
+  "source_yes_no_question": "Do the dancers look ordinary, real?",
+  "target_yes_no_question": "Do the dancers look like spidermen?",
+  "user_review": [
+   "source_yes_no_question",
+   "target_yes_no_question"
+  ],
+  "note": "'not spidermen' deleted from the source question; questions rewritten in the user review (2026-10-20)"
+ },
+ {
+  "case_id": "edit1/0069_car-turn",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "",
+  "note": "source question removed: a jeep is an SUV (review pass 2026-10-20)"
  },
  {
   "case_id": "edit1/0070_dance-twirl",
@@ -205,12 +258,23 @@
  },
  {
   "case_id": "edit1/0072_dog-agility",
-  "level": "L1",
+  "level": "L2",
   "changed_spans": [],
   "must_not_contain": [],
-  "source_yes_no_question": "Is the dog a border collie in the image?",
+  "source_yes_no_question": "Is the animal a border collie dog?",
   "target_yes_no_question": "Is the animal a rabbit in the image?",
-  "note": "'1.' / '2.' numbering removed from the yes/no questions"
+  "user_review": [
+   "source_yes_no_question"
+  ],
+  "note": "'1.' / '2.' numbering removed from the yes/no questions; questions rewritten in the user review (2026-10-20)"
+ },
+ {
+  "case_id": "edit1/0082_A_tram",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "exclude": true,
+  "note": "EXCLUDED: tram -> trolley is a near no-op (same vehicle in most English usage); source question, target question and MCQ cannot discriminate (user 2026-10-20)"
  },
  {
   "case_id": "edit1/0083_A_boat",
@@ -218,8 +282,11 @@
   "changed_spans": [],
   "must_not_contain": [],
   "source_yes_no_question": "",
-  "target_yes_no_question": "Is the boat a kayak in the image?",
-  "note": "source question was target-true: moved to the target slot (replacing a garbled/ambiguous target question), source question emptied"
+  "target_yes_no_question": "Is the object sailing across the river a kayak?",
+  "user_review": [
+   "target_yes_no_question"
+  ],
+  "note": "source question was target-true: moved to the target slot (replacing a garbled/ambiguous target question), source question emptied; questions rewritten in the user review (2026-10-20); source question removed: a kayak is a boat (true on a correct edit)"
  },
  {
   "case_id": "edit1/0084_A_squirrel",
@@ -253,12 +320,24 @@
  },
  {
   "case_id": "edit1/0089_A_dog",
-  "level": "L1",
+  "level": "L2",
   "changed_spans": [],
   "must_not_contain": [],
-  "source_yes_no_question": "Is an animal a dog in the image?",
-  "target_yes_no_question": "Is an animal a cat in the image?",
-  "note": "'a animal' -> 'an animal'"
+  "source_yes_no_question": "Is the animal a dog?",
+  "target_yes_no_question": "Is the animal a cat?",
+  "user_review": [
+   "source_yes_no_question",
+   "target_yes_no_question"
+  ],
+  "note": "'a animal' -> 'an animal'; questions rewritten in the user review (2026-10-20)"
+ },
+ {
+  "case_id": "edit1/0090_A_deer",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "",
+  "note": "source question removed: a moose is a deer (review pass 2026-10-20)"
  },
  {
   "case_id": "edit1/0091_A_hawk",
@@ -280,21 +359,29 @@
  },
  {
   "case_id": "edit1/0096_A_car",
-  "level": "L1",
+  "level": "L3",
   "changed_spans": [],
   "must_not_contain": [],
-  "source_yes_no_question": "Is the vehicle a car in the scene?",
+  "source_yes_no_question": "",
   "target_yes_no_question": "Is the vehicle a jeep in the scene?",
-  "note": "'1.' / '2.' numbering removed from the yes/no questions"
+  "note": "'1.' / '2.' numbering removed from the yes/no questions; source question removed: a jeep is a car (true on a correct edit)"
  },
  {
   "case_id": "edit1/0097_A_bird",
   "level": "L3",
   "changed_spans": [],
   "must_not_contain": [],
-  "source_yes_no_question": "Is the bird building a nest in the image not an eagle?",
+  "source_yes_no_question": "",
   "target_yes_no_question": "Is the bird building a nest in the image an eagle?",
-  "note": "source and target yes/no questions swapped back"
+  "note": "source and target yes/no questions swapped back; source question removed: an eagle is a bird (true on a correct edit)"
+ },
+ {
+  "case_id": "edit1/0100_A_deer",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "",
+  "note": "source question removed: a moose is a deer (review pass 2026-10-20)"
  },
  {
   "case_id": "edit2/0007_guitar-violin",
@@ -367,8 +454,13 @@
   "level": "L3",
   "changed_spans": [],
   "must_not_contain": [],
-  "source_yes_no_question": "",
-  "note": "target-true source question removed"
+  "source_yes_no_question": "Is the object landing a fighter jet?",
+  "target_yes_no_question": "Is the object landing a dragon?",
+  "user_review": [
+   "source_yes_no_question",
+   "target_yes_no_question"
+  ],
+  "note": "target-true source question removed; questions rewritten in the user review (2026-10-20)"
  },
  {
   "case_id": "edit2/0024_hockey",
@@ -394,10 +486,13 @@
    "robot"
   ],
   "target_prompt": "A tiger in a striped uniform is preparing to bunt the ball on a sunny day at the baseball field. The tiger successfully bunts the ball and begins to sprint towards first base, leaving the bat behind on the ground. The catcher in blue gear is seen reacting to the play. The camera remains fixed, capturing the sequence of the tiger's actions and the catcher's response.",
-  "source_yes_no_question": "",
+  "source_yes_no_question": "Is the baseball player an ordinary, real person?",
   "target_yes_no_question": "Is the baseball player a tiger in the image?",
   "multiple_choice_question": "What object is present in the image? \na) A baseball player \nb) A tiger",
-  "note": "leftover object robot -> tiger; FiVE's source question (target-true) moved to the target slot, replacing the robot question (leak); source question removed: no source-true wording exists without new words"
+  "user_review": [
+   "source_yes_no_question"
+  ],
+  "note": "leftover object robot -> tiger; FiVE's source question (target-true) moved to the target slot, replacing the robot question (leak); source question removed: no source-true wording exists without new words; questions rewritten in the user review (2026-10-20)"
  },
  {
   "case_id": "edit2/0026_table-tennis",
@@ -465,9 +560,13 @@
   "level": "L3",
   "changed_spans": [],
   "must_not_contain": [],
-  "source_yes_no_question": "Is the UFO a helicopter in the image?",
-  "target_yes_no_question": "Is the helicopter a UFO in the image?",
-  "note": "yes/no questions swapped back"
+  "source_yes_no_question": "Is the hovering object a helicopter?",
+  "target_yes_no_question": "Is the hovering object a UFO?",
+  "user_review": [
+   "source_yes_no_question",
+   "target_yes_no_question"
+  ],
+  "note": "yes/no questions swapped back; questions rewritten in the user review (2026-10-20)"
  },
  {
   "case_id": "edit2/0036_camel",
@@ -587,20 +686,28 @@
   ],
   "must_not_contain": [],
   "target_prompt": "A woman in a yellow jacket is training two robotic dogs in an open field under a cloudy sky. One of the robotic dogs leaps into the air, responding to her command, while the other robotic dog watches attentively. The camera remains fixed, capturing the energetic movements of the robotic dogs and the serene environment.",
-  "source_yes_no_question": "",
+  "source_yes_no_question": "Do the dogs look ordinary, real?",
   "target_yes_no_question": "Are the dogs robotic in the image?",
-  "multiple_choice_question": "What is the woman training in the image? \na) two dogs \nb) two robotic dogs",
+  "multiple_choice_question": "What is the woman training? \na) two ordinary, real dogs \nb) two robotic dogs",
   "target_object": "two robotic dogs",
-  "note": "reduced to the masked edit (dogs -> robotic dogs); woman restored; objects two dogs -> two robotic dogs; questions test the dogs"
+  "user_review": [
+   "source_yes_no_question",
+   "multiple_choice_question"
+  ],
+  "note": "reduced to the masked edit (dogs -> robotic dogs); woman restored; objects two dogs -> two robotic dogs; questions test the dogs; questions rewritten in the user review (2026-10-20)"
  },
  {
   "case_id": "edit2/0053_swing",
   "level": "L3",
   "changed_spans": [],
   "must_not_contain": [],
-  "source_yes_no_question": "Is the robot a person on the swing?",
-  "target_yes_no_question": "Is the person a robot on the swing?",
-  "note": "yes/no questions swapped back"
+  "source_yes_no_question": "Does the person look real, ordinary?",
+  "target_yes_no_question": "Does the person look like a robot?",
+  "user_review": [
+   "source_yes_no_question",
+   "target_yes_no_question"
+  ],
+  "note": "yes/no questions swapped back; questions rewritten in the user review (2026-10-20)"
  },
  {
   "case_id": "edit2/0055_pigs",
@@ -613,6 +720,14 @@
   "source_yes_no_question": "Are the creatures in the image pigs?",
   "target_yes_no_question": "Are the creatures in the image robotic dragons?",
   "note": "large dragon made robotic like the others; yes/no questions had inverted polarity"
+ },
+ {
+  "case_id": "edit2/0057_dog",
+  "level": "L1",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "multiple_choice_question": "What type of dog is it?\na) A golden retriever\nb) A robotic dog",
+  "note": "MCQ stem 'is in the image' -> 'is it' (location strip left 'is?')"
  },
  {
   "case_id": "edit2/0058_boat",
@@ -684,9 +799,13 @@
   "level": "L3",
   "changed_spans": [],
   "must_not_contain": [],
-  "source_yes_no_question": "Is the robot a BMX rider in the image?",
-  "target_yes_no_question": "Is the rider a robot in the image?",
-  "note": "yes/no questions swapped back"
+  "source_yes_no_question": "Does the rider look ordinary, real?",
+  "target_yes_no_question": "Does the rider look like a robot?",
+  "user_review": [
+   "source_yes_no_question",
+   "target_yes_no_question"
+  ],
+  "note": "yes/no questions swapped back; questions rewritten in the user review (2026-10-20)"
  },
  {
   "case_id": "edit2/0080_A_motorcycle",
@@ -698,9 +817,13 @@
    "path"
   ],
   "target_prompt": "A cheetah is sprinting along a winding mountain road, with cliffs and trees lining the route. The camera quickly follows the cheetah as it zooms past.",
-  "source_yes_no_question": "Is the cheetah a motorcycle in the image?",
-  "target_yes_no_question": "Is the motorcycle replaced with a cheetah in the image?",
-  "note": "background change road -> path reverted; yes/no questions swapped back"
+  "source_yes_no_question": "Is the speeding object a motorcycle?",
+  "target_yes_no_question": "Is the speeding object a cheetah?",
+  "user_review": [
+   "source_yes_no_question",
+   "target_yes_no_question"
+  ],
+  "note": "background change road -> path reverted; yes/no questions swapped back; questions rewritten in the user review (2026-10-20)"
  },
  {
   "case_id": "edit2/0081_A_horse",
@@ -719,9 +842,13 @@
   "level": "L3",
   "changed_spans": [],
   "must_not_contain": [],
-  "source_yes_no_question": "Is the swan a boat in the image?",
-  "target_yes_no_question": "Is the boat a swan in the image?",
-  "note": "yes/no questions swapped back"
+  "source_yes_no_question": "Is the object sailing across the river a boat?",
+  "target_yes_no_question": "Is the object sailing across the river a swan?",
+  "user_review": [
+   "source_yes_no_question",
+   "target_yes_no_question"
+  ],
+  "note": "yes/no questions swapped back; questions rewritten in the user review (2026-10-20)"
  },
  {
   "case_id": "edit2/0086_A_red_sports_car",
@@ -779,9 +906,13 @@
   "level": "L3",
   "changed_spans": [],
   "must_not_contain": [],
-  "source_yes_no_question": "",
-  "target_yes_no_question": "Is the swan replaced with a paper boat in the image?",
-  "note": "target-true source question moved to the target slot, source emptied"
+  "source_yes_no_question": "Is the swimming object a swan?",
+  "target_yes_no_question": "Is the floating object a paper boat?",
+  "user_review": [
+   "source_yes_no_question",
+   "target_yes_no_question"
+  ],
+  "note": "target-true source question moved to the target slot, source emptied; questions rewritten in the user review (2026-10-20)"
  },
  {
   "case_id": "edit2/0095_A_crow",
@@ -916,11 +1047,14 @@
  },
  {
   "case_id": "edit3/0022_skate-jump",
-  "level": "L1",
+  "level": "L2",
   "changed_spans": [],
   "must_not_contain": [],
-  "multiple_choice_question": "Is the skateboarder wearing red in the image?\na) no \nb) yes",
-  "note": "'wearing read' -> 'wearing red'"
+  "multiple_choice_question": "What color is the skateboarder's clothing? \na) not red \nb) red",
+  "user_review": [
+   "multiple_choice_question"
+  ],
+  "note": "'wearing read' -> 'wearing red'; questions rewritten in the user review (2026-10-20)"
  },
  {
   "case_id": "edit3/0023_kayak-race",
@@ -950,19 +1084,29 @@
  },
  {
   "case_id": "edit3/0026_table-tennis",
-  "level": "L2",
+  "level": "L3",
   "changed_spans": [
-   ", with one player in a black outfit and the other in a red and black outfit",
-   ", while the player in red is poised to respond"
+   "players in black",
+   "a red and black outfit"
   ],
   "must_not_contain": [
-   "red and black outfit",
-   "player in red"
+   "red and black"
   ],
-  "target_prompt": "Two table tennis players in black are engaged in a fast-paced match on a red court. The player in black is lunging forward to return the ball. The environment is a competitive sports arena with a blue backdrop displaying 'TAIPEI 2017' and 'FISU'. The camera remains fixed, capturing the dynamic movements of the players as they exchange rapid shots across the table.",
+  "source_prompt": "Two table tennis players are engaged in a fast-paced match on a red court, with one player in a black outfit and the other in a red and black outfit. The player in black is lunging forward to return the ball, while the player in red and black is poised to respond. The environment is a competitive sports arena with a blue backdrop displaying 'TAIPEI 2017' and 'FISU'. The camera remains fixed, capturing the dynamic movements of the players as they exchange rapid shots across the table.",
+  "target_prompt": "Two table tennis players are engaged in a fast-paced match on a red court, with one player in a black outfit and the other in a red outfit. The player in black is lunging forward to return the ball, while the player in red is poised to respond. The environment is a competitive sports arena with a blue backdrop displaying 'TAIPEI 2017' and 'FISU'. The camera remains fixed, capturing the dynamic movements of the players as they exchange rapid shots across the table.",
+  "source_yes_no_question": "Is the other player in a red and black outfit?",
+  "target_yes_no_question": "Is the other player in a red outfit?",
+  "multiple_choice_question": "What is the color of the other player's outfit? \na) red and black \nb) red",
   "source_object": "a red and black outfit",
-  "target_object": "Two table tennis players in black",
-  "note": "internal contradiction (players in black vs a red and black outfit): contradicting spans deleted; objects + instruction to settle in the edit3 audit batch; source_object 'two table tennis players' -> 'a red and black outfit'; target_object 'player in red' -> 'Two table tennis players in black'"
+  "target_object": "a red outfit",
+  "user_review": [
+   "source_prompt",
+   "target_prompt",
+   "source_yes_no_question",
+   "target_yes_no_question",
+   "multiple_choice_question"
+  ],
+  "note": "rewritten in the user review (2026-10-20): source prompt fixed ('player in red' -> 'player in red and black'), edit = red and black outfit -> red outfit; questions and objects adapted"
  },
  {
   "case_id": "edit3/0027_dance-jump",
@@ -1002,10 +1146,13 @@
   "level": "L2",
   "changed_spans": [],
   "must_not_contain": [],
-  "multiple_choice_question": "What color of the woman's dress in the image? \na) Not red \nb)Red",
+  "multiple_choice_question": "What color is the mermaid's costume? \na) not red \nb) red",
   "source_object": "A woman",
   "target_object": "A woman in red",
-  "note": "source_object 'a woman dressed as a mermaid' -> 'A woman'; target_object 'in red' -> 'A woman in red'; 'womam's' -> 'woman's'"
+  "user_review": [
+   "multiple_choice_question"
+  ],
+  "note": "source_object 'a woman dressed as a mermaid' -> 'A woman'; target_object 'in red' -> 'A woman in red'; 'womam's' -> 'woman's'; questions rewritten in the user review (2026-10-20)"
  },
  {
   "case_id": "edit3/0033_horsejump-low",
@@ -1310,9 +1457,10 @@
   "level": "L3",
   "changed_spans": [],
   "must_not_contain": [],
+  "target_yes_no_question": "Is the jogger's shirt lavender in the image?",
   "multiple_choice_question": "What is the color of the jogger in the image?\na) Not lavender\nb) lavender",
   "target_object": "A lavender jogger",
-  "note": "target_object 'lavender' -> 'A lavender jogger'; MCQ options swapped (b must be the target)"
+  "note": "target_object 'lavender' -> 'A lavender jogger'; MCQ options swapped (b must be the target); apostrophe joggers -> jogger's"
  },
  {
   "case_id": "edit3/0100_A_deer",
@@ -1451,9 +1599,12 @@
   "level": "L2",
   "changed_spans": [],
   "must_not_contain": [],
-  "target_yes_no_question": "Is the player clay in the image?",
+  "target_yes_no_question": "Is the player made of clay?",
   "target_object": "A clay tennis player",
-  "note": "target_object 'clay' -> 'A clay tennis player'; 'Is the player a clay' -> 'Is the player clay'"
+  "user_review": [
+   "target_yes_no_question"
+  ],
+  "note": "target_object 'clay' -> 'A clay tennis player'; 'Is the player a clay' -> 'Is the player clay'; questions rewritten in the user review (2026-10-20)"
  },
  {
   "case_id": "edit4/0020_monkeys",
@@ -1476,9 +1627,12 @@
   "level": "L2",
   "changed_spans": [],
   "must_not_contain": [],
-  "target_yes_no_question": "Is the kayaker made of wood in the image?",
+  "target_yes_no_question": "Are the kayakers made of wood?",
   "target_object": "Two wooden kayakers",
-  "note": "target_object 'wooden' -> 'Two wooden kayakers'; 'Is the kayak made' -> 'Is the kayaker made'"
+  "user_review": [
+   "target_yes_no_question"
+  ],
+  "note": "target_object 'wooden' -> 'Two wooden kayakers'; 'Is the kayak made' -> 'Is the kayaker made'; questions rewritten in the user review (2026-10-20)"
  },
  {
   "case_id": "edit4/0024_hockey",
@@ -1555,7 +1709,7 @@
   "must_not_contain": [],
   "source_object": "a mermaid",
   "target_object": "a wooden mermaid",
-  "note": "source_object 'a woman dressed as a mermaid' -> 'a mermaid'; target_object 'wooden' -> 'a wooden mermaid'"
+  "note": "source_object 'a woman dressed as a mermaid' -> 'a mermaid'; target_object 'wooden' -> 'a wooden mermaid'; instruction_v2 reworded in the user review"
  },
  {
   "case_id": "edit4/0033_horsejump-low",
@@ -1773,7 +1927,7 @@
   "changed_spans": [],
   "must_not_contain": [],
   "target_object": "Two wooden deer",
-  "note": "target_object 'wooden' -> 'Two wooden deer'"
+  "note": "target_object 'wooden' -> 'Two wooden deer'; instruction_v2 reworded in the user review"
  },
  {
   "case_id": "edit4/0067_mbike-trick",

@@ -9,10 +9,13 @@
         "source_object": "a city bus",
         "target_object": "A spaceship",
         "instruction": "Change the city bus into a spaceship.",
-        "multiple_choice_question": "What object is present in the image? \na) A city bus \nb) A spaceship",
-        "source_yes_no_question": "Is the vehicle a bus in the image?",
-        "target_yes_no_question": "Is the vehicle a spaceship in the image?",
-        "save_dir": "2_A spaceship is glidi"
+        "multiple_choice_question": "What object is present? \na) A city bus \nb) A spaceship",
+        "source_yes_no_question": "Is the vehicle a bus?",
+        "target_yes_no_question": "Is the vehicle a spaceship?",
+        "save_dir": "2_A spaceship is glidi",
+        "source_yes_no_question_orig": "Is the vehicle a bus in the image?",
+        "target_yes_no_question_orig": "Is the vehicle a spaceship in the image?",
+        "multiple_choice_question_orig": "What object is present in the image? \na) A city bus \nb) A spaceship"
     },
     {
         "id": "0002_girl-dog",
@@ -25,10 +28,13 @@
         "target_object": "A young alien in a hovercraft",
         "instruction_orig": "Replace the girl with a young alien, replace the wheelchair with a hovercraft, and replace the gray dog with a robotic dog.",
         "instruction": "Replace the girl in the wheelchair with a young alien in a hovercraft and the gray dog with a robotic dog.",
-        "multiple_choice_question": "What is the object in the image?\na) A young girl in a wheelchair and a gray dog\nb) A young alien in a hovercraft and a robotic dog",
-        "source_yes_no_question": "Is the girl in the image in a wheelchair?",
-        "target_yes_no_question": "Is the girl in the image an alien in a hovercraft?",
-        "save_dir": "2_A young alien in a h"
+        "multiple_choice_question": "What is the object?\na) A young girl in a wheelchair and a gray dog\nb) A young alien in a hovercraft and a robotic dog",
+        "source_yes_no_question": "Is the girl in a wheelchair?",
+        "target_yes_no_question": "Is the girl an alien in a hovercraft?",
+        "save_dir": "2_A young alien in a h",
+        "source_yes_no_question_orig": "Is the girl in the image in a wheelchair?",
+        "target_yes_no_question_orig": "Is the girl in the image an alien in a hovercraft?",
+        "multiple_choice_question_orig": "What is the object in the image?\na) A young girl in a wheelchair and a gray dog\nb) A young alien in a hovercraft and a robotic dog"
     },
     {
         "id": "0003_ocean-birds",
@@ -41,10 +47,13 @@
         "target_object": "drones",
         "instruction_orig": "Replace the white ibises with drones and change pecking to scanning.",
         "instruction": "Replace the two white ibises with two drones scanning the ground.",
-        "multiple_choice_question": "What is present in the image?\na) Two white ibises\nb) Two drones",
-        "source_yes_no_question": "Are the birds white in the image?",
-        "target_yes_no_question": "Are the drones flying in the image?",
-        "save_dir": "2_Two drones are hover"
+        "multiple_choice_question": "What is present?\na) Two white ibises\nb) Two drones",
+        "source_yes_no_question": "Are the birds white?",
+        "target_yes_no_question": "Are the drones flying?",
+        "save_dir": "2_Two drones are hover",
+        "source_yes_no_question_orig": "Are the birds white in the image?",
+        "target_yes_no_question_orig": "Are the drones flying in the image?",
+        "multiple_choice_question_orig": "What is present in the image?\na) Two white ibises\nb) Two drones"
     },
     {
         "id": "0004_car-roundabout",
@@ -56,10 +65,13 @@
         "source_object": "a grey Mini Cooper",
         "target_object": "A hovercraft",
         "instruction": "Change the grey Mini Cooper to a hovercraft.",
-        "multiple_choice_question": "What object is present in the image?\na) A grey Mini Cooper \nb) A hovercraft",
-        "source_yes_no_question": "Is the vehicle a car in the image?",
-        "target_yes_no_question": "Is the vehicle a hovercraft in the image?",
-        "save_dir": "2_A hovercraft is smoo"
+        "multiple_choice_question": "What object is present?\na) A grey Mini Cooper \nb) A hovercraft",
+        "source_yes_no_question": "Is the vehicle a car?",
+        "target_yes_no_question": "Is the vehicle a hovercraft?",
+        "save_dir": "2_A hovercraft is smoo",
+        "source_yes_no_question_orig": "Is the vehicle a car in the image?",
+        "target_yes_no_question_orig": "Is the vehicle a hovercraft in the image?",
+        "multiple_choice_question_orig": "What object is present in the image?\na) A grey Mini Cooper \nb) A hovercraft"
     },
     {
         "id": "0005_breakdance",
@@ -71,10 +83,13 @@
         "source_object": "breakdancer",
         "target_object": "A bear",
         "instruction": "Change the breakdancer to a bear.",
-        "multiple_choice_question": "What object is present in the image? \na) A breakdancer \nb) A bear",
-        "source_yes_no_question": "Is the performer a breakdancer in the image?",
-        "target_yes_no_question": "Is the performer a bear in the image?",
-        "save_dir": "2_A bear in a red hood"
+        "multiple_choice_question": "What object is present? \na) A breakdancer \nb) A bear",
+        "source_yes_no_question": "Is the performer a breakdancer?",
+        "target_yes_no_question": "Is the performer a bear?",
+        "save_dir": "2_A bear in a red hood",
+        "source_yes_no_question_orig": "Is the performer a breakdancer in the image?",
+        "target_yes_no_question_orig": "Is the performer a bear in the image?",
+        "multiple_choice_question_orig": "What object is present in the image? \na) A breakdancer \nb) A bear"
     },
     {
         "id": "0006_paragliding",
@@ -86,10 +101,13 @@
         "source_object": "a paraglider",
         "target_object": "A dragon",
         "instruction": "Replace the paraglider with a dragon.",
-        "multiple_choice_question": "What is the flying object in the image? \na) A paraglider \nb) A dragon",
-        "source_yes_no_question": "Is the object flying a paraglider in the image?",
-        "target_yes_no_question": "Is the object flying a dragon in the image?",
-        "save_dir": "2_A dragon is soaring "
+        "multiple_choice_question": "What is the flying object? \na) A paraglider \nb) A dragon",
+        "source_yes_no_question": "Is the object flying a paraglider?",
+        "target_yes_no_question": "Is the object flying a dragon?",
+        "save_dir": "2_A dragon is soaring ",
+        "source_yes_no_question_orig": "Is the object flying a paraglider in the image?",
+        "target_yes_no_question_orig": "Is the object flying a dragon in the image?",
+        "multiple_choice_question_orig": "What is the flying object in the image? \na) A paraglider \nb) A dragon"
     },
     {
         "id": "0007_guitar-violin",
@@ -103,12 +121,13 @@
         "target_object": "A tiger",
         "instruction_orig": "Replace the musicians with a tiger and a robot.",
         "instruction": "Replace the violinist with a tiger.",
-        "multiple_choice_question": "What object is playing the violin in the image? \na) A musician \nb) A tiger",
+        "multiple_choice_question": "What object is playing the violin? \na) A musician \nb) A tiger",
         "source_yes_no_question_orig": "Is the musician a human in the image?",
-        "source_yes_no_question": "Is the musician playing the violin a human in the image?",
+        "source_yes_no_question": "Is the musician playing the violin a human?",
         "target_yes_no_question_orig": "Is the musician a tiger in the image?",
-        "target_yes_no_question": "Is the musician playing the violin a tiger in the image?",
-        "save_dir": "2_A tiger is playing t"
+        "target_yes_no_question": "Is the musician playing the violin a tiger?",
+        "save_dir": "2_A tiger is playing t",
+        "multiple_choice_question_orig": "What object is playing the violin in the image? \na) A musician \nb) A tiger"
     },
     {
         "id": "0008_snowboard-race",
@@ -120,10 +139,13 @@
         "source_object": "two snowboarders",
         "target_object": "Two penguins",
         "instruction": "Replace the snowboarders with penguins.",
-        "multiple_choice_question": "What objects are present in the image?\na) Two snowboarders \nb) Two penguins",
-        "source_yes_no_question": "Are the snowboarders wearing snowboards in the image?",
-        "target_yes_no_question": "Are the penguins wearing snowboards in the image?",
-        "save_dir": "2_Two penguins are sli"
+        "multiple_choice_question": "What objects are present?\na) Two snowboarders \nb) Two penguins",
+        "source_yes_no_question": "Are the snowboarders wearing snowboards?",
+        "target_yes_no_question": "Are the penguins wearing snowboards?",
+        "save_dir": "2_Two penguins are sli",
+        "source_yes_no_question_orig": "Are the snowboarders wearing snowboards in the image?",
+        "target_yes_no_question_orig": "Are the penguins wearing snowboards in the image?",
+        "multiple_choice_question_orig": "What objects are present in the image?\na) Two snowboarders \nb) Two penguins"
     },
     {
         "id": "0009_bear",
@@ -135,10 +157,13 @@
         "source_object": "a large brown bear",
         "target_object": "A large dinosaur",
         "instruction": "Replace the bear with a dinosaur.",
-        "multiple_choice_question": "What object is present in the image? \na) A large brown bear \nb) A large dinosaur",
-        "source_yes_no_question": "Is the animal a bear in the image?",
-        "target_yes_no_question": "Is the animal a dinosaur in the image?",
-        "save_dir": "2_A large dinosaur is "
+        "multiple_choice_question": "What object is present? \na) A large brown bear \nb) A large dinosaur",
+        "source_yes_no_question": "Is the animal a bear?",
+        "target_yes_no_question": "Is the animal a dinosaur?",
+        "save_dir": "2_A large dinosaur is ",
+        "source_yes_no_question_orig": "Is the animal a bear in the image?",
+        "target_yes_no_question_orig": "Is the animal a dinosaur in the image?",
+        "multiple_choice_question_orig": "What object is present in the image? \na) A large brown bear \nb) A large dinosaur"
     },
     {
         "id": "0010_giant-slalom",
@@ -150,10 +175,13 @@
         "source_object": "a skier",
         "target_object": "A robot",
         "instruction": "Change the skier to a robot.",
-        "multiple_choice_question": "What object is present in the image? \na) A skier \nb) A robot",
-        "source_yes_no_question": "Is the skier a human in the image?",
-        "target_yes_no_question": "Is the robot a machine in the image?",
-        "save_dir": "2_A robot in a red and"
+        "multiple_choice_question": "What object is present? \na) A skier \nb) A robot",
+        "source_yes_no_question": "Is the skier a human?",
+        "target_yes_no_question": "Is the robot a machine?",
+        "save_dir": "2_A robot in a red and",
+        "source_yes_no_question_orig": "Is the skier a human in the image?",
+        "target_yes_no_question_orig": "Is the robot a machine in the image?",
+        "multiple_choice_question_orig": "What object is present in the image? \na) A skier \nb) A robot"
     },
     {
         "id": "0011_lucia",
@@ -165,10 +193,13 @@
         "source_object": "a woman in a black dress",
         "target_object": "A lion",
         "instruction": "Replace the woman with a lion.",
-        "multiple_choice_question": "What object is present in the image? \na) A woman in a black dress \nb) A lion",
-        "source_yes_no_question": "Is the object walking a woman in the image?",
-        "target_yes_no_question": "Is the object walking a lion in the image?",
-        "save_dir": "2_A lion is walking al"
+        "multiple_choice_question": "What object is present? \na) A woman in a black dress \nb) A lion",
+        "source_yes_no_question": "Is the object walking a woman?",
+        "target_yes_no_question": "Is the object walking a lion?",
+        "save_dir": "2_A lion is walking al",
+        "source_yes_no_question_orig": "Is the object walking a woman in the image?",
+        "target_yes_no_question_orig": "Is the object walking a lion in the image?",
+        "multiple_choice_question_orig": "What object is present in the image? \na) A woman in a black dress \nb) A lion"
     },
     {
         "id": "0012_goat",
@@ -181,9 +212,11 @@
         "target_object": "A spiderman",
         "instruction": "Replace the mountain goat with a spiderman.",
         "multiple_choice_question": "What is the main subject of the image? \na) A mountain goat \nb) A spiderman",
-        "source_yes_no_question": "Is the subject a mountain goat in the image?",
-        "target_yes_no_question": "Is the subject a spiderman in the image?",
-        "save_dir": "2_A spiderman is caref"
+        "source_yes_no_question": "Is the subject a mountain goat?",
+        "target_yes_no_question": "Is the subject a spiderman?",
+        "save_dir": "2_A spiderman is caref",
+        "source_yes_no_question_orig": "Is the subject a mountain goat in the image?",
+        "target_yes_no_question_orig": "Is the subject a spiderman in the image?"
     },
     {
         "id": "0013_golf",
@@ -197,10 +230,13 @@
         "target_object": "A robot",
         "instruction_orig": "Replace the man with a robot and the golf cart with a hovercraft, and change 'drives' to 'glide'.",
         "instruction": "Replace the man with a robot.",
-        "multiple_choice_question": "What is the object walking towards the golf cart in the image?\na) A man \nb) A robot",
-        "source_yes_no_question": "Is the figure a man in the image? ",
-        "target_yes_no_question": "Is the figure a robot in the image?",
-        "save_dir": "2_A robot in a black s"
+        "multiple_choice_question": "What is the object walking towards the golf cart?\na) A man \nb) A robot",
+        "source_yes_no_question": "Is the figure a man? ",
+        "target_yes_no_question": "Is the figure a robot?",
+        "save_dir": "2_A robot in a black s",
+        "source_yes_no_question_orig": "Is the figure a man in the image? ",
+        "target_yes_no_question_orig": "Is the figure a robot in the image?",
+        "multiple_choice_question_orig": "What is the object walking towards the golf cart in the image?\na) A man \nb) A robot"
     },
     {
         "id": "0014_burnout",
@@ -213,10 +249,13 @@
         "target_object": "A UFO",
         "instruction_orig": "Change the black car to a UFO and change burnout to hover trick.",
         "instruction": "Replace the black car with a UFO.",
-        "multiple_choice_question": "What object is performing the action in the image? \na) A black car \nb) A UFO",
-        "source_yes_no_question": "Is the vehicle a car in the image?",
-        "target_yes_no_question": "Is the vehicle a UFO in the image?",
-        "save_dir": "2_A UFO is performing "
+        "multiple_choice_question": "What object is performing the action? \na) A black car \nb) A UFO",
+        "source_yes_no_question": "Is the vehicle a car?",
+        "target_yes_no_question": "Is the vehicle a UFO?",
+        "save_dir": "2_A UFO is performing ",
+        "source_yes_no_question_orig": "Is the vehicle a car in the image?",
+        "target_yes_no_question_orig": "Is the vehicle a UFO in the image?",
+        "multiple_choice_question_orig": "What object is performing the action in the image? \na) A black car \nb) A UFO"
     },
     {
         "id": "0015_car-shadow",
@@ -228,10 +267,13 @@
         "source_object": "a silver car",
         "target_object": "A hovercraft",
         "instruction": "Change the silver car into a hovercraft.",
-        "multiple_choice_question": "What object is present in the image?\na) A silver car \nb) A hovercraft",
-        "source_yes_no_question": "Is the vehicle a car in the image?",
-        "target_yes_no_question": "Is the vehicle a hovercraft in the image?",
-        "save_dir": "2_A hovercraft is maki"
+        "multiple_choice_question": "What object is present?\na) A silver car \nb) A hovercraft",
+        "source_yes_no_question": "Is the vehicle a car?",
+        "target_yes_no_question": "Is the vehicle a hovercraft?",
+        "save_dir": "2_A hovercraft is maki",
+        "source_yes_no_question_orig": "Is the vehicle a car in the image?",
+        "target_yes_no_question_orig": "Is the vehicle a hovercraft in the image?",
+        "multiple_choice_question_orig": "What object is present in the image?\na) A silver car \nb) A hovercraft"
     },
     {
         "id": "0016_horsejump-high",
@@ -245,11 +287,11 @@
         "target_object": "A kangaroo",
         "instruction": "Replace the horse with a kangaroo.",
         "multiple_choice_question_orig": "What object is present in the image? \na) A kangaroo with a rider \nb) A horse with a rider",
-        "multiple_choice_question": "What object is present in the image? \na) A horse with a rider \nb) A kangaroo with a rider",
+        "multiple_choice_question": "What object is present? \na) A horse with a rider \nb) A kangaroo with a rider",
         "source_yes_no_question_orig": "1. Is the animal a horse in the image?",
-        "source_yes_no_question": "Is the animal a horse in the image?",
+        "source_yes_no_question": "Is the animal a horse?",
         "target_yes_no_question_orig": "2. Is the animal a kangaroo in the image?",
-        "target_yes_no_question": "Is the animal a kangaroo in the image?",
+        "target_yes_no_question": "Is the animal a kangaroo?",
         "save_dir": "2_A kangaroo with a ri"
     },
     {
@@ -264,10 +306,11 @@
         "target_object": "A dog",
         "instruction_orig": "Replace the young boy with a dog",
         "instruction": "Replace the young boy with a dog.",
-        "multiple_choice_question": "What object is present in the image?\na) A young boy \nb) A dog",
+        "multiple_choice_question": "What object is present?\na) A young boy \nb) A dog",
         "source_yes_no_question": "Is the subject juggling the soccer ball a young boy?",
         "target_yes_no_question": "Is the subject juggling the soccer ball a dog?",
-        "save_dir": "2_A dog wearing a red "
+        "save_dir": "2_A dog wearing a red ",
+        "multiple_choice_question_orig": "What object is present in the image?\na) A young boy \nb) A dog"
     },
     {
         "id": "0018_breakdance-flare",
@@ -281,12 +324,13 @@
         "target_object": "A dragon",
         "instruction_orig": "Replace the breakdancer with a robot and change the subject from a dancer to a dragon.",
         "instruction": "Replace the breakdancer with a dragon.",
-        "multiple_choice_question": "What object is present in the image?\na) A breakdancer\nb) A dragon",
+        "multiple_choice_question": "What object is present?\na) A breakdancer\nb) A dragon",
         "source_yes_no_question_orig": "1. Is the dancer a breakdancer in the image?",
-        "source_yes_no_question": "Is the dancer a breakdancer in the image?",
+        "source_yes_no_question": "Is the dancer a breakdancer?",
         "target_yes_no_question_orig": "2. Is the dancer a dragon in the image?",
-        "target_yes_no_question": "Is the dancer a dragon in the image?",
-        "save_dir": "2_A dragon is performi"
+        "target_yes_no_question": "Is the dancer a dragon?",
+        "save_dir": "2_A dragon is performi",
+        "multiple_choice_question_orig": "What object is present in the image?\na) A breakdancer\nb) A dragon"
     },
     {
         "id": "0019_tennis-vest",
@@ -298,10 +342,13 @@
         "source_object": "a tennis player",
         "target_object": "A robot",
         "instruction": "Replace the tennis player with a robot.",
-        "multiple_choice_question": "What is the object that is playing tennis in the image? \na) A tennis player \nb) A robot",
-        "source_yes_no_question": "Is the player a human in the image?",
-        "target_yes_no_question": "Is the player a robot in the image?",
-        "save_dir": "2_A robot in a navy ta"
+        "multiple_choice_question": "What is the object that is playing tennis? \na) A tennis player \nb) A robot",
+        "source_yes_no_question": "Is the player a human?",
+        "target_yes_no_question": "Is the player a robot?",
+        "save_dir": "2_A robot in a navy ta",
+        "source_yes_no_question_orig": "Is the player a human in the image?",
+        "target_yes_no_question_orig": "Is the player a robot in the image?",
+        "multiple_choice_question_orig": "What is the object that is playing tennis in the image? \na) A tennis player \nb) A robot"
     },
     {
         "id": "0020_monkeys",
@@ -313,10 +360,13 @@
         "source_object": "a young monkey",
         "target_object": "A young robot",
         "instruction": "Replace the monkeys with robots.",
-        "multiple_choice_question": "What objects are interacting in the image? \na) Monkeys \nb) Robots",
-        "source_yes_no_question": "Are the interacting objects monkeys in the image?",
-        "target_yes_no_question": "Are the interacting objects robots in the image?",
-        "save_dir": "2_A young robot is pla"
+        "multiple_choice_question": "What objects are interacting? \na) Monkeys \nb) Robots",
+        "source_yes_no_question": "Are the interacting objects monkeys?",
+        "target_yes_no_question": "Are the interacting objects robots?",
+        "save_dir": "2_A young robot is pla",
+        "source_yes_no_question_orig": "Are the interacting objects monkeys in the image?",
+        "target_yes_no_question_orig": "Are the interacting objects robots in the image?",
+        "multiple_choice_question_orig": "What objects are interacting in the image? \na) Monkeys \nb) Robots"
     },
     {
         "id": "0021_landing",
@@ -328,11 +378,13 @@
         "source_object": "fighter jet",
         "target_object": "A dragon",
         "instruction": "Replace the fighter jet with a dragon.",
-        "multiple_choice_question": "What is landing on the aircraft carrier deck in the image? \na) A fighter jet \nb) A dragon",
+        "multiple_choice_question": "What is landing on the aircraft carrier deck? \na) A fighter jet \nb) A dragon",
         "source_yes_no_question_orig": "Is the fighter jet replaced by a dragon in the image?",
-        "source_yes_no_question": "",
-        "target_yes_no_question": "Is the object landing on the aircraft carrier deck a dragon in the image?",
-        "save_dir": "2_A dragon is landing "
+        "source_yes_no_question": "Is the object landing a fighter jet?",
+        "target_yes_no_question_orig": "Is the object landing on the aircraft carrier deck a dragon in the image?",
+        "target_yes_no_question": "Is the object landing a dragon?",
+        "save_dir": "2_A dragon is landing ",
+        "multiple_choice_question_orig": "What is landing on the aircraft carrier deck in the image? \na) A fighter jet \nb) A dragon"
     },
     {
         "id": "0022_skate-jump",
@@ -344,10 +396,13 @@
         "source_object": "a skateboarder",
         "target_object": "A robot",
         "instruction": "Change the skateboarder to a robot.",
-        "multiple_choice_question": "What is performing the jump in the image?\na) A skateboarder\nb) A robot",
-        "source_yes_no_question": "Is the skateboarder a human in the image?",
-        "target_yes_no_question": "Is the robot a machine in the image?",
-        "save_dir": "2_A robot is skillfull"
+        "multiple_choice_question": "What is performing the jump?\na) A skateboarder\nb) A robot",
+        "source_yes_no_question": "Is the skateboarder a human?",
+        "target_yes_no_question": "Is the robot a machine?",
+        "save_dir": "2_A robot is skillfull",
+        "source_yes_no_question_orig": "Is the skateboarder a human in the image?",
+        "target_yes_no_question_orig": "Is the robot a machine in the image?",
+        "multiple_choice_question_orig": "What is performing the jump in the image?\na) A skateboarder\nb) A robot"
     },
     {
         "id": "0023_kayak-race",
@@ -361,9 +416,11 @@
         "instruction_orig": "Replace the kayakers with dolphins and change paddling to swimming.",
         "instruction": "Replace the two kayakers with two dolphins.",
         "multiple_choice_question": "What is the subject of the image? \na) Two kayakers \nb) Two dolphins",
-        "source_yes_no_question": "Are the kayakers human in the image?",
-        "target_yes_no_question": "Are the dolphins aquatic mammals in the image?",
-        "save_dir": "2_Two dolphins are rac"
+        "source_yes_no_question": "Are the kayakers human?",
+        "target_yes_no_question": "Are the dolphins aquatic mammals?",
+        "save_dir": "2_Two dolphins are rac",
+        "source_yes_no_question_orig": "Are the kayakers human in the image?",
+        "target_yes_no_question_orig": "Are the dolphins aquatic mammals in the image?"
     },
     {
         "id": "0024_hockey",
@@ -378,10 +435,13 @@
         "target_object": "A dragon",
         "instruction_orig": "Change the person to a dragon",
         "instruction": "Replace the person with a dragon.",
-        "multiple_choice_question": "What object is present in the image? \na) A person on rollerblades \nb) A dragon",
-        "source_yes_no_question": "Is the object a person in the image?",
-        "target_yes_no_question": "Is the object a dragon in the image?",
-        "save_dir": "2_A dragon on rollerbl"
+        "multiple_choice_question": "What object is present? \na) A person on rollerblades \nb) A dragon",
+        "source_yes_no_question": "Is the object a person?",
+        "target_yes_no_question": "Is the object a dragon?",
+        "save_dir": "2_A dragon on rollerbl",
+        "source_yes_no_question_orig": "Is the object a person in the image?",
+        "target_yes_no_question_orig": "Is the object a dragon in the image?",
+        "multiple_choice_question_orig": "What object is present in the image? \na) A person on rollerblades \nb) A dragon"
     },
     {
         "id": "0025_baseball",
@@ -396,11 +456,11 @@
         "instruction_orig": "Replace the baseball player with a tiger and change the player to a robot.",
         "instruction": "Replace the baseball player with a tiger.",
         "multiple_choice_question_orig": "What object is present in the image? \na) A baseball player \nb) A tiger and a robot",
-        "multiple_choice_question": "What object is present in the image? \na) A baseball player \nb) A tiger",
+        "multiple_choice_question": "What object is present? \na) A baseball player \nb) A tiger",
         "source_yes_no_question_orig": "Is the baseball player a tiger in the image?",
-        "source_yes_no_question": "",
+        "source_yes_no_question": "Is the baseball player an ordinary, real person?",
         "target_yes_no_question_orig": "Is the baseball player a robot in the image?",
-        "target_yes_no_question": "Is the baseball player a tiger in the image?",
+        "target_yes_no_question": "Is the baseball player a tiger?",
         "save_dir": "2_A tiger in a striped"
     },
     {
@@ -417,10 +477,12 @@
         "instruction_orig": "Replace the two table tennis players with two robots and change the players to robots",
         "instruction": "Replace the two table tennis players with two kangaroos.",
         "multiple_choice_question_orig": "What is the object in the image?\na) two table tennis players \nb) two kangaroo",
-        "multiple_choice_question": "What is the object in the image?\na) two table tennis players \nb) two kangaroos",
-        "source_yes_no_question": "Are the players in the image table tennis players?",
-        "target_yes_no_question": "Are the players in the image kangaroos?",
-        "save_dir": "2_Two kangaroo are eng"
+        "multiple_choice_question": "What is the object?\na) two table tennis players \nb) two kangaroos",
+        "source_yes_no_question": "Are the players table tennis players?",
+        "target_yes_no_question": "Are the players kangaroos?",
+        "save_dir": "2_Two kangaroo are eng",
+        "source_yes_no_question_orig": "Are the players in the image table tennis players?",
+        "target_yes_no_question_orig": "Are the players in the image kangaroos?"
     },
     {
         "id": "0027_dance-jump",
@@ -432,10 +494,11 @@
         "source_object": "a young girl",
         "target_object": "A Bumblebee",
         "instruction": "Replace the young girl with a bumblebee.",
-        "multiple_choice_question": "What object is present in the image? \na) a young girl \nb) A Bumblebee",
+        "multiple_choice_question": "What object is present? \na) a young girl \nb) A Bumblebee",
         "source_yes_no_question": "Is the dancer a young girl?",
         "target_yes_no_question": "Is the dancer a Bumblebee?",
-        "save_dir": "2_A Bumblebee in a flo"
+        "save_dir": "2_A Bumblebee in a flo",
+        "multiple_choice_question_orig": "What object is present in the image? \na) a young girl \nb) A Bumblebee"
     },
     {
         "id": "0028_kite-walk",
@@ -447,10 +510,13 @@
         "source_object": "a person",
         "target_object": "Pikachu",
         "instruction": "Replace the person with a Pikachu.",
-        "multiple_choice_question": "What object is present in the image?\na) A person \nb) Pikachu",
-        "source_yes_no_question": "Is the person human in the image?",
-        "target_yes_no_question": "Is the person a Pikachu in the image?",
-        "save_dir": "2_A Pikachu wearing a "
+        "multiple_choice_question": "What object is present?\na) A person \nb) Pikachu",
+        "source_yes_no_question": "Is the person human?",
+        "target_yes_no_question": "Is the person a Pikachu?",
+        "save_dir": "2_A Pikachu wearing a ",
+        "source_yes_no_question_orig": "Is the person human in the image?",
+        "target_yes_no_question_orig": "Is the person a Pikachu in the image?",
+        "multiple_choice_question_orig": "What object is present in the image?\na) A person \nb) Pikachu"
     },
     {
         "id": "0029_horsejump-stick",
@@ -465,10 +531,13 @@
         "target_object": "A monkey",
         "instruction_orig": "Change the horse to a monkey and the horse to a kangaroo.",
         "instruction": "Replace the horse with a monkey.",
-        "multiple_choice_question": "What is jumping over obstacles in the image?\na) A horse with a rider \nb) A monkey",
-        "source_yes_no_question": "Is the animal a horse in the image?",
-        "target_yes_no_question": "Is the animal a monkey in the image?",
-        "save_dir": "2_A monkey with a ride"
+        "multiple_choice_question": "What is jumping over obstacles?\na) A horse with a rider \nb) A monkey",
+        "source_yes_no_question": "Is the animal a horse?",
+        "target_yes_no_question": "Is the animal a monkey?",
+        "save_dir": "2_A monkey with a ride",
+        "source_yes_no_question_orig": "Is the animal a horse in the image?",
+        "target_yes_no_question_orig": "Is the animal a monkey in the image?",
+        "multiple_choice_question_orig": "What is jumping over obstacles in the image?\na) A horse with a rider \nb) A monkey"
     },
     {
         "id": "0030_rallye",
@@ -480,10 +549,13 @@
         "source_object": "a rally car",
         "target_object": "A hovercraft",
         "instruction": "Replace the rally car with a hovercraft.",
-        "multiple_choice_question": "What object is present in the image? \na) A rally car \nb) A hovercraft",
-        "source_yes_no_question": "Is the vehicle a car in the image?",
-        "target_yes_no_question": "Is the vehicle a hovercraft in the image?",
-        "save_dir": "2_A hovercraft speeds "
+        "multiple_choice_question": "What object is present? \na) A rally car \nb) A hovercraft",
+        "source_yes_no_question": "Is the vehicle a car?",
+        "target_yes_no_question": "Is the vehicle a hovercraft?",
+        "save_dir": "2_A hovercraft speeds ",
+        "source_yes_no_question_orig": "Is the vehicle a car in the image?",
+        "target_yes_no_question_orig": "Is the vehicle a hovercraft in the image?",
+        "multiple_choice_question_orig": "What object is present in the image? \na) A rally car \nb) A hovercraft"
     },
     {
         "id": "0031_soccerball",
@@ -495,10 +567,11 @@
         "source_object": "a soccer ball",
         "target_object": "A cube",
         "instruction": "Replace the soccer ball with a cube.",
-        "multiple_choice_question": "What object is rolling quickly across a grassy area in the image?\na) A soccer ball \nb) A cube",
+        "multiple_choice_question": "What object is rolling quickly across a grassy area?\na) A soccer ball \nb) A cube",
         "source_yes_no_question": "Is the object rolling across the grassy area a soccer ball?",
         "target_yes_no_question": "Is the object rolling across the grassy area a cube?",
-        "save_dir": "2_A cube is rolling qu"
+        "save_dir": "2_A cube is rolling qu",
+        "multiple_choice_question_orig": "What object is rolling quickly across a grassy area in the image?\na) A soccer ball \nb) A cube"
     },
     {
         "id": "0032_mermaid",
@@ -512,9 +585,11 @@
         "target_object": "An alien",
         "instruction": "Change the woman into an alien.",
         "multiple_choice_question": "What is swimming in the pool?\na) a woman dressed as a mermaid \nb) An alien",
-        "source_yes_no_question": "Is the mermaid a woman in the image?",
-        "target_yes_no_question": "Is the mermaid an alien in the image?",
-        "save_dir": "2_An alien dressed as "
+        "source_yes_no_question": "Is the mermaid a woman?",
+        "target_yes_no_question": "Is the mermaid an alien?",
+        "save_dir": "2_An alien dressed as ",
+        "source_yes_no_question_orig": "Is the mermaid a woman in the image?",
+        "target_yes_no_question_orig": "Is the mermaid an alien in the image?"
     },
     {
         "id": "0033_horsejump-low",
@@ -529,12 +604,13 @@
         "target_object": "A lion",
         "instruction_orig": "Change the horse to a lion and the horse to a kangaroo.",
         "instruction": "Replace the white horse with a lion.",
-        "multiple_choice_question": "What is the edited object in the image?\na) A white horse\nb) A lion\nc) A kangaroo\nd) A rider ",
+        "multiple_choice_question": "What is the edited object?\na) A white horse\nb) A lion\nc) A kangaroo\nd) A rider ",
         "source_yes_no_question_orig": "1. Is the rider on a white horse in the image?",
-        "source_yes_no_question": "Is the rider on a white horse in the image?",
+        "source_yes_no_question": "Is the rider on a white horse?",
         "target_yes_no_question_orig": "2. Is the rider on a lion in the image?",
-        "target_yes_no_question": "Is the rider on a lion in the image?",
-        "save_dir": "2_A rider on a lion is"
+        "target_yes_no_question": "Is the rider on a lion?",
+        "save_dir": "2_A rider on a lion is",
+        "multiple_choice_question_orig": "What is the edited object in the image?\na) A white horse\nb) A lion\nc) A kangaroo\nd) A rider "
     },
     {
         "id": "0034_cows",
@@ -546,12 +622,13 @@
         "source_object": "a brown and white cow",
         "target_object": "A dragon",
         "instruction": "Replace the cow with a dragon.",
-        "multiple_choice_question": "What object is present in the image? \na) A brown and white cow \nb) A dragon",
+        "multiple_choice_question": "What object is present? \na) A brown and white cow \nb) A dragon",
         "source_yes_no_question_orig": "1. Is the animal a cow in the image?",
-        "source_yes_no_question": "Is the animal a cow in the image?",
+        "source_yes_no_question": "Is the animal a cow?",
         "target_yes_no_question_orig": "2. Is the animal a dragon in the image?",
-        "target_yes_no_question": "Is the animal a dragon in the image?",
-        "save_dir": "2_A dragon is walking "
+        "target_yes_no_question": "Is the animal a dragon?",
+        "save_dir": "2_A dragon is walking ",
+        "multiple_choice_question_orig": "What object is present in the image? \na) A brown and white cow \nb) A dragon"
     },
     {
         "id": "0035_helicopter",
@@ -566,9 +643,9 @@
         "instruction": "Replace the helicopter with a UFO with spinning lights.",
         "multiple_choice_question": "What is hovering above the helipad at the airport? \na) A helicopter \nb) A UFO",
         "source_yes_no_question_orig": "Is the helicopter a UFO in the image?",
-        "source_yes_no_question": "Is the UFO a helicopter in the image?",
+        "source_yes_no_question": "Is the hovering object a helicopter?",
         "target_yes_no_question_orig": "Is the UFO a helicopter in the image?",
-        "target_yes_no_question": "Is the helicopter a UFO in the image?",
+        "target_yes_no_question": "Is the hovering object a UFO?",
         "save_dir": "2_A UFO is hovering ab"
     },
     {
@@ -583,10 +660,13 @@
         "target_object": "A monkey",
         "instruction_orig": "Replace the camels with monkeys.",
         "instruction": "Replace the camel with a monkey.",
-        "multiple_choice_question": "What animal is present in the image?\na) A camel\nb) A monkey",
-        "source_yes_no_question": "Is the animal a camel in the image?",
-        "target_yes_no_question": "Is the animal a monkey in the image?",
-        "save_dir": "2_A monkey is walking "
+        "multiple_choice_question": "What animal is present?\na) A camel\nb) A monkey",
+        "source_yes_no_question": "Is the animal a camel?",
+        "target_yes_no_question": "Is the animal a monkey?",
+        "save_dir": "2_A monkey is walking ",
+        "source_yes_no_question_orig": "Is the animal a camel in the image?",
+        "target_yes_no_question_orig": "Is the animal a monkey in the image?",
+        "multiple_choice_question_orig": "What animal is present in the image?\na) A camel\nb) A monkey"
     },
     {
         "id": "0037_snowboard-sand",
@@ -599,12 +679,13 @@
         "target_object": "A Wizard",
         "instruction_orig": "Change the woman to a Wizard.",
         "instruction": "Replace the woman with a wizard.",
-        "multiple_choice_question": "What is the object snowboarding down the sand dune in the image?\na) A woman\nb) A Wizard",
+        "multiple_choice_question": "What is the object snowboarding down the sand dune?\na) A woman\nb) A Wizard",
         "source_yes_no_question_orig": "1. Is the snowboarder a woman in the image?",
-        "source_yes_no_question": "Is the snowboarder a woman in the image?",
+        "source_yes_no_question": "Is the snowboarder a woman?",
         "target_yes_no_question_orig": "2. Is the snowboarder a Wizard in the image?",
-        "target_yes_no_question": "Is the snowboarder a Wizard in the image?",
-        "save_dir": "2_A Wizard is snowboar"
+        "target_yes_no_question": "Is the snowboarder a Wizard?",
+        "save_dir": "2_A Wizard is snowboar",
+        "multiple_choice_question_orig": "What is the object snowboarding down the sand dune in the image?\na) A woman\nb) A Wizard"
     },
     {
         "id": "0038_motorbike",
@@ -617,10 +698,13 @@
         "source_object": "a motorbike",
         "target_object": "A hovercraft",
         "instruction": "Change the motorbike to a hovercraft.",
-        "multiple_choice_question": "What object is present in the image?\na) A motorbike with two riders \nb) A hovercraft",
-        "source_yes_no_question": "Is the vehicle a motorbike in the image?",
-        "target_yes_no_question": "Is the vehicle a hovercraft in the image?",
-        "save_dir": "2_A hovercraft with tw"
+        "multiple_choice_question": "What object is present?\na) A motorbike with two riders \nb) A hovercraft",
+        "source_yes_no_question": "Is the vehicle a motorbike?",
+        "target_yes_no_question": "Is the vehicle a hovercraft?",
+        "save_dir": "2_A hovercraft with tw",
+        "source_yes_no_question_orig": "Is the vehicle a motorbike in the image?",
+        "target_yes_no_question_orig": "Is the vehicle a hovercraft in the image?",
+        "multiple_choice_question_orig": "What object is present in the image?\na) A motorbike with two riders \nb) A hovercraft"
     },
     {
         "id": "0039_chamaleon",
@@ -634,10 +718,13 @@
         "target_object": "A spider",
         "instruction_orig": "Replace the green chameleon with a robotic spider.",
         "instruction": "Replace the green chameleon with a spider.",
-        "multiple_choice_question": "What object is present in the image? \na) a green chameleon \nb) a spider",
-        "source_yes_no_question": "Is the object a chameleon in the image?",
-        "target_yes_no_question": "Is the object a spider in the image?",
-        "save_dir": "2_A spider is slowly c"
+        "multiple_choice_question": "What object is present? \na) a green chameleon \nb) a spider",
+        "source_yes_no_question": "Is the object a chameleon?",
+        "target_yes_no_question": "Is the object a spider?",
+        "save_dir": "2_A spider is slowly c",
+        "source_yes_no_question_orig": "Is the object a chameleon in the image?",
+        "target_yes_no_question_orig": "Is the object a spider in the image?",
+        "multiple_choice_question_orig": "What object is present in the image? \na) a green chameleon \nb) a spider"
     },
     {
         "id": "0040_tennis",
@@ -650,10 +737,13 @@
         "source_object": "a tennis player",
         "target_object": "a dinosaur",
         "instruction": "Replace the tennis player with a dinosaur.",
-        "multiple_choice_question": "What object is present in the image? \na) a tennis player \nb) a dinosaur",
-        "source_yes_no_question": "Is the player a human in the image?",
-        "target_yes_no_question": "Is the player a dinosaur in the image?",
-        "save_dir": "2_A dinosaur in a whit"
+        "multiple_choice_question": "What object is present? \na) a tennis player \nb) a dinosaur",
+        "source_yes_no_question": "Is the player a human?",
+        "target_yes_no_question": "Is the player a dinosaur?",
+        "save_dir": "2_A dinosaur in a whit",
+        "source_yes_no_question_orig": "Is the player a human in the image?",
+        "target_yes_no_question_orig": "Is the player a dinosaur in the image?",
+        "multiple_choice_question_orig": "What object is present in the image? \na) a tennis player \nb) a dinosaur"
     },
     {
         "id": "0041_longboard",
@@ -669,10 +759,13 @@
         "target_object": "An ultraman",
         "instruction_orig": "Replace'man' with 'ultraman' and 'longboard' with 'hoverboard' and 'him' with 'it'.",
         "instruction": "Replace the man with Ultraman and the longboard with a hoverboard.",
-        "multiple_choice_question": "What is the object riding the hoverboard in the image?\na) A man\nb) An ultraman",
-        "source_yes_no_question": "Is the rider a human in the image?",
-        "target_yes_no_question": "Is the rider an ultraman in the image?",
-        "save_dir": "2_An  ultraman in a ye"
+        "multiple_choice_question": "What is the object riding the hoverboard?\na) A man\nb) An ultraman",
+        "source_yes_no_question": "Is the rider a human?",
+        "target_yes_no_question": "Is the rider an ultraman?",
+        "save_dir": "2_An  ultraman in a ye",
+        "source_yes_no_question_orig": "Is the rider a human in the image?",
+        "target_yes_no_question_orig": "Is the rider an ultraman in the image?",
+        "multiple_choice_question_orig": "What is the object riding the hoverboard in the image?\na) A man\nb) An ultraman"
     },
     {
         "id": "0042_gym-ball",
@@ -684,12 +777,13 @@
         "source_object": "a man",
         "target_object": "A panda",
         "instruction": "Replace the man with a panda.",
-        "multiple_choice_question": "What is the species of the subject performing the workout in the image? \na) Human \nb) Panda",
+        "multiple_choice_question": "What is the species of the subject performing the workout? \na) Human \nb) Panda",
         "source_yes_no_question_orig": "1. Is the subject performing the workout a man?",
         "source_yes_no_question": "Is the subject performing the workout a man?",
         "target_yes_no_question_orig": "2. Is the subject performing the workout a panda?",
         "target_yes_no_question": "Is the subject performing the workout a panda?",
-        "save_dir": "2_A panda is performin"
+        "save_dir": "2_A panda is performin",
+        "multiple_choice_question_orig": "What is the species of the subject performing the workout in the image? \na) Human \nb) Panda"
     },
     {
         "id": "0043_parkour",
@@ -701,12 +795,13 @@
         "source_object": "a man",
         "target_object": "A bear",
         "instruction": "Replace the man with a bear.",
-        "multiple_choice_question": "What is the object performing parkour in the image? \na) A man \nb) A bear",
+        "multiple_choice_question": "What is the object performing parkour? \na) A man \nb) A bear",
         "source_yes_no_question_orig": "Is the parkour performer a bear in the image?",
-        "source_yes_no_question": "Is the parkour performer a man in the image?",
+        "source_yes_no_question": "Is the parkour performer a man?",
         "target_yes_no_question_orig": "Is the parkour performer a man in the image?",
-        "target_yes_no_question": "Is the parkour performer a bear in the image?",
-        "save_dir": "2_A bear is performing"
+        "target_yes_no_question": "Is the parkour performer a bear?",
+        "save_dir": "2_A bear is performing",
+        "multiple_choice_question_orig": "What is the object performing parkour in the image? \na) A man \nb) A bear"
     },
     {
         "id": "0044_snowboard",
@@ -718,10 +813,13 @@
         "source_object": "a snowboarder",
         "target_object": "A robotic penguin",
         "instruction": "Replace the snowboarder with a robotic penguin.",
-        "multiple_choice_question": "What object is present in the image?\na) a snowboarder \nb) A robotic penguin",
-        "source_yes_no_question": "Is the snowboarder human in the image?",
-        "target_yes_no_question": "Is the penguin robotic in the image?",
-        "save_dir": "2_A robotic penguin is"
+        "multiple_choice_question": "What object is present?\na) a snowboarder \nb) A robotic penguin",
+        "source_yes_no_question": "Is the snowboarder human?",
+        "target_yes_no_question": "Is the penguin robotic?",
+        "save_dir": "2_A robotic penguin is",
+        "source_yes_no_question_orig": "Is the snowboarder human in the image?",
+        "target_yes_no_question_orig": "Is the penguin robotic in the image?",
+        "multiple_choice_question_orig": "What object is present in the image?\na) a snowboarder \nb) A robotic penguin"
     },
     {
         "id": "0045_butterfly",
@@ -735,9 +833,11 @@
         "instruction": "Replace the butterfly with a drone.",
         "multiple_choice_question_orig": "What is the object that is flutting around the leafy plant in the sunlit garden?\na) A butterfly \nb) A drone",
         "multiple_choice_question": "What is the object that is fluttering around the leafy plant in the sunlit garden?\na) A butterfly \nb) A drone",
-        "source_yes_no_question": "Is the butterfly blue in the image?",
-        "target_yes_no_question": "Is the drone blue in the image?",
-        "save_dir": "2_A vibrant blue drone"
+        "source_yes_no_question": "Is the butterfly blue?",
+        "target_yes_no_question": "Is the drone blue?",
+        "save_dir": "2_A vibrant blue drone",
+        "source_yes_no_question_orig": "Is the butterfly blue in the image?",
+        "target_yes_no_question_orig": "Is the drone blue in the image?"
     },
     {
         "id": "0046_blackswan",
@@ -749,10 +849,13 @@
         "source_object": "a black swan",
         "target_object": "A boat",
         "instruction": "Change the black swan to a boat.",
-        "multiple_choice_question": "What object is present in the image?\na) a black swan\nb) A boat",
-        "source_yes_no_question": "Is the object gliding on the pond a swan in the image?",
-        "target_yes_no_question": "Is the object gliding on the pond a boat in the image?",
-        "save_dir": "2_A boat is gliding sm"
+        "multiple_choice_question": "What object is present?\na) a black swan\nb) A boat",
+        "source_yes_no_question": "Is the object gliding on the pond a swan?",
+        "target_yes_no_question": "Is the object gliding on the pond a boat?",
+        "save_dir": "2_A boat is gliding sm",
+        "source_yes_no_question_orig": "Is the object gliding on the pond a swan in the image?",
+        "target_yes_no_question_orig": "Is the object gliding on the pond a boat in the image?",
+        "multiple_choice_question_orig": "What object is present in the image?\na) a black swan\nb) A boat"
     },
     {
         "id": "0047_judo",
@@ -765,10 +868,13 @@
         "target_object": "robots",
         "instruction_orig": "Replace the judo practitioners with robots.",
         "instruction": "Replace the two judo practitioners with two robots.",
-        "multiple_choice_question": "What are the objects in the scene?\na) judo practitioners \nb) robots",
-        "source_yes_no_question": "Are the practitioners in the image human?",
-        "target_yes_no_question": "Are the practitioners in the image robots?",
-        "save_dir": "2_Two robots are engag"
+        "multiple_choice_question": "What are the objects?\na) judo practitioners \nb) robots",
+        "source_yes_no_question": "Are the practitioners human?",
+        "target_yes_no_question": "Are the practitioners robots?",
+        "save_dir": "2_Two robots are engag",
+        "source_yes_no_question_orig": "Are the practitioners in the image human?",
+        "target_yes_no_question_orig": "Are the practitioners in the image robots?",
+        "multiple_choice_question_orig": "What are the objects in the scene?\na) judo practitioners \nb) robots"
     },
     {
         "id": "0048_hike",
@@ -783,9 +889,9 @@
         "instruction": "Replace the man with a robot.",
         "multiple_choice_question": "What is hiking along the rocky mountain trail?\na) A man with a backpack\nb) A robot with a backpack",
         "source_yes_no_question_orig": "1. Is the hiker a man in the image?",
-        "source_yes_no_question": "Is the hiker a man in the image?",
+        "source_yes_no_question": "Is the hiker a man?",
         "target_yes_no_question_orig": "2. Is the hiker a robot in the image?",
-        "target_yes_no_question": "Is the hiker a robot in the image?",
+        "target_yes_no_question": "Is the hiker a robot?",
         "save_dir": "2_A robot with a backp"
     },
     {
@@ -800,10 +906,13 @@
         "target_object": "Three robotic skaters",
         "instruction_orig": "Change the human skaters into robotic skaters.",
         "instruction": "Replace the three speed skaters with three robots.",
-        "multiple_choice_question": "What is the nature of the skaters in the image?\na) Human \nb) Robotic",
-        "source_yes_no_question": "Are the skaters human in the image?",
-        "target_yes_no_question": "Are the skaters robots in the image?",
-        "save_dir": "2_Three robotic skater"
+        "multiple_choice_question": "What is the nature of the skaters?\na) Human \nb) Robotic",
+        "source_yes_no_question": "Are the skaters human?",
+        "target_yes_no_question": "Are the skaters robots?",
+        "save_dir": "2_Three robotic skater",
+        "source_yes_no_question_orig": "Are the skaters human in the image?",
+        "target_yes_no_question_orig": "Are the skaters robots in the image?",
+        "multiple_choice_question_orig": "What is the nature of the skaters in the image?\na) Human \nb) Robotic"
     },
     {
         "id": "0050_slackline",
@@ -815,10 +924,13 @@
         "source_object": "a person",
         "target_object": "Pikachu",
         "instruction": "Replace the person with a Pikachu.",
-        "multiple_choice_question": "What object is performing acrobatic tricks in the image?\na) A person \nb) A Pikachu",
-        "source_yes_no_question": "Is the acrobat a person in the image?",
-        "target_yes_no_question": "Is the acrobat a Pikachu in the image?",
-        "save_dir": "2_A Pikachu is skillfu"
+        "multiple_choice_question": "What object is performing acrobatic tricks?\na) A person \nb) A Pikachu",
+        "source_yes_no_question": "Is the acrobat a person?",
+        "target_yes_no_question": "Is the acrobat a Pikachu?",
+        "save_dir": "2_A Pikachu is skillfu",
+        "source_yes_no_question_orig": "Is the acrobat a person in the image?",
+        "target_yes_no_question_orig": "Is the acrobat a Pikachu in the image?",
+        "multiple_choice_question_orig": "What object is performing acrobatic tricks in the image?\na) A person \nb) A Pikachu"
     },
     {
         "id": "0051_dogs-jump",
@@ -834,11 +946,11 @@
         "instruction_orig": "Replace the woman with a robot and the dogs with robotic dogs.",
         "instruction": "Replace the dogs with robotic dogs.",
         "multiple_choice_question_orig": "What is the woman/robot training in the image? \na) two dogs \nb) two robotic dogs",
-        "multiple_choice_question": "What is the woman training in the image? \na) two dogs \nb) two robotic dogs",
+        "multiple_choice_question": "What is the woman training? \na) two ordinary, real dogs \nb) two robotic dogs",
         "source_yes_no_question_orig": "Are the dogs robotic in the image?",
-        "source_yes_no_question": "",
+        "source_yes_no_question": "Do the dogs look ordinary, real?",
         "target_yes_no_question_orig": "Is the trainer a robot in the image?",
-        "target_yes_no_question": "Are the dogs robotic in the image?",
+        "target_yes_no_question": "Are the dogs robotic?",
         "save_dir": "2_A robot in a yellow "
     },
     {
@@ -851,10 +963,13 @@
         "source_object": "a mallard duck",
         "target_object": "A robotic dog",
         "instruction": "Replace the mallard duck with a robotic dog.",
-        "multiple_choice_question": "What is the object in the scene?\na) A mallard duck \nb) A robotic dog",
-        "source_yes_no_question": "Is the duck a mallard in the image?",
-        "target_yes_no_question": "Is the dog robotic in the image?",
-        "save_dir": "2_A robotic dog  is wa"
+        "multiple_choice_question": "What is the object?\na) A mallard duck \nb) A robotic dog",
+        "source_yes_no_question": "Is the duck a mallard?",
+        "target_yes_no_question": "Is the dog robotic?",
+        "save_dir": "2_A robotic dog  is wa",
+        "source_yes_no_question_orig": "Is the duck a mallard in the image?",
+        "target_yes_no_question_orig": "Is the dog robotic in the image?",
+        "multiple_choice_question_orig": "What is the object in the scene?\na) A mallard duck \nb) A robotic dog"
     },
     {
         "id": "0053_swing",
@@ -866,12 +981,13 @@
         "source_object": "a person",
         "target_object": "A robot",
         "instruction": "Replace the person with a robot.",
-        "multiple_choice_question": "What is swinging on the wooden swing in the image?\na) A person \nb) A robot",
+        "multiple_choice_question": "What is swinging on the wooden swing?\na) A person \nb) A robot",
         "source_yes_no_question_orig": "Is the person a robot on the swing?",
-        "source_yes_no_question": "Is the robot a person on the swing?",
+        "source_yes_no_question": "Does the person look real, ordinary?",
         "target_yes_no_question_orig": "Is the robot a person on the swing?",
-        "target_yes_no_question": "Is the person a robot on the swing?",
-        "save_dir": "2_A robot is swinging "
+        "target_yes_no_question": "Does the person look like a robot?",
+        "save_dir": "2_A robot is swinging ",
+        "multiple_choice_question_orig": "What is swinging on the wooden swing in the image?\na) A person \nb) A robot"
     },
     {
         "id": "0054_train",
@@ -884,10 +1000,13 @@
         "target_object": "A model spaceship",
         "instruction_orig": "Change the train into a spaceship.",
         "instruction": "Replace the model train with a model spaceship.",
-        "multiple_choice_question": "What object is moving along the curved track in the image?\na) A model train \nb) A model spaceship",
-        "source_yes_no_question": "Is the object a train in the image?",
-        "target_yes_no_question": "Is the object a spaceship in the image?",
-        "save_dir": "2_A model spaceship wi"
+        "multiple_choice_question": "What object is moving along the curved track?\na) A model train \nb) A model spaceship",
+        "source_yes_no_question": "Is the object a train?",
+        "target_yes_no_question": "Is the object a spaceship?",
+        "save_dir": "2_A model spaceship wi",
+        "source_yes_no_question_orig": "Is the object a train in the image?",
+        "target_yes_no_question_orig": "Is the object a spaceship in the image?",
+        "multiple_choice_question_orig": "What object is moving along the curved track in the image?\na) A model train \nb) A model spaceship"
     },
     {
         "id": "0055_pigs",
@@ -900,12 +1019,13 @@
         "source_object": "a group of pigs",
         "target_object": "A group of robotic dragons",
         "instruction": "Replace the pigs with robotic dragons.",
-        "multiple_choice_question": "What type of creatures are present in the scene? \na) Pigs \nb) Robotic dragons",
+        "multiple_choice_question": "What type of creatures are present? \na) Pigs \nb) Robotic dragons",
         "source_yes_no_question_orig": "Are the pigs robotic in the image?",
-        "source_yes_no_question": "Are the creatures in the image pigs?",
+        "source_yes_no_question": "Are the creatures pigs?",
         "target_yes_no_question_orig": "Are the dragons pigs in the image?",
-        "target_yes_no_question": "Are the creatures in the image robotic dragons?",
-        "save_dir": "2_A group of robotic d"
+        "target_yes_no_question": "Are the creatures robotic dragons?",
+        "save_dir": "2_A group of robotic d",
+        "multiple_choice_question_orig": "What type of creatures are present in the scene? \na) Pigs \nb) Robotic dragons"
     },
     {
         "id": "0056_kart-turn",
@@ -918,10 +1038,13 @@
         "target_object": "hovercrafts",
         "instruction_orig": "Change go-karts to hovercrafts and drivers to pilots",
         "instruction": "Replace the two go-karts with two hovercraft.",
-        "multiple_choice_question": "What type of vehicle is present in the scene?\na) Go-karts\nb) Hovercrafts",
-        "source_yes_no_question": "Are the vehicles go-karts in the image?",
-        "target_yes_no_question": "Are the vehicles hovercrafts in the image?",
-        "save_dir": "2_Two hovercrafts are "
+        "multiple_choice_question": "What type of vehicle is present?\na) Go-karts\nb) Hovercrafts",
+        "source_yes_no_question": "Are the vehicles go-karts?",
+        "target_yes_no_question": "Are the vehicles hovercrafts?",
+        "save_dir": "2_Two hovercrafts are ",
+        "source_yes_no_question_orig": "Are the vehicles go-karts in the image?",
+        "target_yes_no_question_orig": "Are the vehicles hovercrafts in the image?",
+        "multiple_choice_question_orig": "What type of vehicle is present in the scene?\na) Go-karts\nb) Hovercrafts"
     },
     {
         "id": "0057_dog",
@@ -933,10 +1056,13 @@
         "source_object": "a golden retriever",
         "target_object": "A robotic dog",
         "instruction": "Replace the golden retriever with a robotic dog.",
-        "multiple_choice_question": "What type of dog is in the image?\na) A golden retriever\nb) A robotic dog",
-        "source_yes_no_question": "Is the dog a golden retriever in the image?",
-        "target_yes_no_question": "Is the dog a robotic dog in the image?",
-        "save_dir": "2_A robotic dog is sni"
+        "multiple_choice_question_orig": "What type of dog is in the image?\na) A golden retriever\nb) A robotic dog",
+        "multiple_choice_question": "What type of dog is it?\na) A golden retriever\nb) A robotic dog",
+        "source_yes_no_question": "Is the dog a golden retriever?",
+        "target_yes_no_question": "Is the dog a robotic dog?",
+        "save_dir": "2_A robotic dog is sni",
+        "source_yes_no_question_orig": "Is the dog a golden retriever in the image?",
+        "target_yes_no_question_orig": "Is the dog a robotic dog in the image?"
     },
     {
         "id": "0058_boat",
@@ -948,11 +1074,13 @@
         "source_object": "a white fishing boat",
         "target_object": "A white hovercraft",
         "instruction": "Replace the fishing boat with a hovercraft.",
-        "multiple_choice_question": "What object is present in the image?\na) a white fishing boat\nb) A white hovercraft",
-        "source_yes_no_question": "Is the boat a fishing boat in the image?",
+        "multiple_choice_question": "What object is present?\na) a white fishing boat\nb) A white hovercraft",
+        "source_yes_no_question": "Is the boat a fishing boat?",
         "target_yes_no_question_orig": "Is the hovercraft a fishing boat in the image?",
-        "target_yes_no_question": "Is the boat a hovercraft in the image?",
-        "save_dir": "2_A white hovercraft i"
+        "target_yes_no_question": "Is the boat a hovercraft?",
+        "save_dir": "2_A white hovercraft i",
+        "source_yes_no_question_orig": "Is the boat a fishing boat in the image?",
+        "multiple_choice_question_orig": "What object is present in the image?\na) a white fishing boat\nb) A white hovercraft"
     },
     {
         "id": "0059_drift-straight",
@@ -964,10 +1092,13 @@
         "source_object": "a red sports car",
         "target_object": "A red hovercraft",
         "instruction": "Change the sports car to a hovercraft.",
-        "multiple_choice_question": "What vehicle is shown in the image? \na) A red sports car \nb) A red hovercraft",
-        "source_yes_no_question": "Is the vehicle a car in the image?",
-        "target_yes_no_question": "Is the vehicle a hovercraft in the image?",
-        "save_dir": "2_A red hovercraft is "
+        "multiple_choice_question": "What vehicle is shown? \na) A red sports car \nb) A red hovercraft",
+        "source_yes_no_question": "Is the vehicle a car?",
+        "target_yes_no_question": "Is the vehicle a hovercraft?",
+        "save_dir": "2_A red hovercraft is ",
+        "source_yes_no_question_orig": "Is the vehicle a car in the image?",
+        "target_yes_no_question_orig": "Is the vehicle a hovercraft in the image?",
+        "multiple_choice_question_orig": "What vehicle is shown in the image? \na) A red sports car \nb) A red hovercraft"
     },
     {
         "id": "0060_motocross-bumps",
@@ -979,10 +1110,13 @@
         "source_object": "motocross rider",
         "target_object": "A kangaroo",
         "instruction": "Replace the motocross rider with a kangaroo.",
-        "multiple_choice_question": "What is the entity navigating the dirt track in the image?\na) A motocross rider\nb) A kangaroo",
-        "source_yes_no_question": "Is the rider a motocross rider in the image?",
-        "target_yes_no_question": "Is the rider a kangaroo in the image?",
-        "save_dir": "2_A kangaroo is skillf"
+        "multiple_choice_question": "What is the entity navigating the dirt track?\na) A motocross rider\nb) A kangaroo",
+        "source_yes_no_question": "Is the rider a motocross rider?",
+        "target_yes_no_question": "Is the rider a kangaroo?",
+        "save_dir": "2_A kangaroo is skillf",
+        "source_yes_no_question_orig": "Is the rider a motocross rider in the image?",
+        "target_yes_no_question_orig": "Is the rider a kangaroo in the image?",
+        "multiple_choice_question_orig": "What is the entity navigating the dirt track in the image?\na) A motocross rider\nb) A kangaroo"
     },
     {
         "id": "0061_mbike-santa",
@@ -996,10 +1130,13 @@
         "target_object": "A robot",
         "instruction_orig": "Replace the person with a robot and the motorcycle with a hovercraft.",
         "instruction": "Replace the person in the Santa Claus outfit with a robot and the motorcycle with a hovercraft.",
-        "multiple_choice_question": "What is the entity riding the vehicle in the image?\na) A person\nb) A robot",
-        "source_yes_no_question": "Is the rider a person in the image?",
-        "target_yes_no_question": "Is the rider a robot in the image?",
-        "save_dir": "2_A robot dressed in a"
+        "multiple_choice_question": "What is the entity riding the vehicle?\na) A person\nb) A robot",
+        "source_yes_no_question": "Is the rider a person?",
+        "target_yes_no_question": "Is the rider a robot?",
+        "save_dir": "2_A robot dressed in a",
+        "source_yes_no_question_orig": "Is the rider a person in the image?",
+        "target_yes_no_question_orig": "Is the rider a robot in the image?",
+        "multiple_choice_question_orig": "What is the entity riding the vehicle in the image?\na) A person\nb) A robot"
     },
     {
         "id": "0062_elephant",
@@ -1012,10 +1149,11 @@
         "source_object": "an elephant",
         "target_object": "A jeep",
         "instruction": "Replace the elephant with a jeep.",
-        "multiple_choice_question": "What object is present in the image? \na) an elephant \nb) A jeep",
+        "multiple_choice_question": "What object is present? \na) an elephant \nb) A jeep",
         "source_yes_no_question": "Is the animal walking across the enclosure an elephant?",
         "target_yes_no_question": "Is the vehicle driving across the enclosure a jeep?",
-        "save_dir": "2_A jeep is driving sl"
+        "save_dir": "2_A jeep is driving sl",
+        "multiple_choice_question_orig": "What object is present in the image? \na) an elephant \nb) A jeep"
     },
     {
         "id": "0063_drift-turn",
@@ -1029,9 +1167,11 @@
         "instruction_orig": "Replace 'race car' with 'hovercraft'.",
         "instruction": "Replace the race car with a hovercraft.",
         "multiple_choice_question": "What is the object drifting around the track? \na) A race car \nb) A hovercraft",
-        "source_yes_no_question": "Is the vehicle a race car in the image?",
-        "target_yes_no_question": "Is the vehicle a hovercraft in the image?",
-        "save_dir": "2_A hovercraft is skil"
+        "source_yes_no_question": "Is the vehicle a race car?",
+        "target_yes_no_question": "Is the vehicle a hovercraft?",
+        "save_dir": "2_A hovercraft is skil",
+        "source_yes_no_question_orig": "Is the vehicle a race car in the image?",
+        "target_yes_no_question_orig": "Is the vehicle a hovercraft in the image?"
     },
     {
         "id": "0064_rollerblade",
@@ -1043,10 +1183,13 @@
         "source_object": "a person",
         "target_object": "Pikachu",
         "instruction": "Replace the person with a Pikachu.",
-        "multiple_choice_question": "What is the main subject performing the rollerblading trick in the scene? \na) a person \nb) Pikachu",
-        "source_yes_no_question": "Is the rollerblader a person in the image?",
-        "target_yes_no_question": "Is the rollerblader Pikachu in the image?",
-        "save_dir": "2_A Pikachu is rollerb"
+        "multiple_choice_question": "What is the main subject performing the rollerblading trick? \na) a person \nb) Pikachu",
+        "source_yes_no_question": "Is the rollerblader a person?",
+        "target_yes_no_question": "Is the rollerblader Pikachu?",
+        "save_dir": "2_A Pikachu is rollerb",
+        "source_yes_no_question_orig": "Is the rollerblader a person in the image?",
+        "target_yes_no_question_orig": "Is the rollerblader Pikachu in the image?",
+        "multiple_choice_question_orig": "What is the main subject performing the rollerblading trick in the scene? \na) a person \nb) Pikachu"
     },
     {
         "id": "0065_twist-dance",
@@ -1059,9 +1202,11 @@
         "target_object": "Two robots",
         "instruction": "Replace the dancers with robots.",
         "multiple_choice_question": "What is performing the dance routine? \na) Two dancers \nb) Two robots",
-        "source_yes_no_question": "Are the dancers human in the image?",
-        "target_yes_no_question": "Are the robots mechanical in the image?",
-        "save_dir": "2_Two robots in matchi"
+        "source_yes_no_question": "Are the dancers human?",
+        "target_yes_no_question": "Are the robots mechanical?",
+        "save_dir": "2_Two robots in matchi",
+        "source_yes_no_question_orig": "Are the dancers human in the image?",
+        "target_yes_no_question_orig": "Are the robots mechanical in the image?"
     },
     {
         "id": "0066_deer",
@@ -1075,12 +1220,13 @@
         "target_object": "pandas",
         "instruction_orig": "Change the deer to pandas.",
         "instruction": "Replace the two deer with two pandas.",
-        "multiple_choice_question": "What animals are engaging in a playful antler clash in the image?\na) Two deer \nb) Two pandas",
+        "multiple_choice_question": "What animals are engaging in a playful antler clash?\na) Two deer \nb) Two pandas",
         "source_yes_no_question_orig": "Are the deer in the image pandas?",
-        "source_yes_no_question": "Are the animals in the image deer?",
+        "source_yes_no_question": "Are the animals deer?",
         "target_yes_no_question_orig": "Are the pandas in the image deer?",
-        "target_yes_no_question": "Are the animals in the image pandas?",
-        "save_dir": "2_Two pandas are engag"
+        "target_yes_no_question": "Are the animals pandas?",
+        "save_dir": "2_Two pandas are engag",
+        "multiple_choice_question_orig": "What animals are engaging in a playful antler clash in the image?\na) Two deer \nb) Two pandas"
     },
     {
         "id": "0067_mbike-trick",
@@ -1092,10 +1238,13 @@
         "source_object": "motorcyclist",
         "target_object": "A robot",
         "instruction": "Replace the motorcyclist with a robot and the motorcycle with a hovercraft.",
-        "multiple_choice_question": "What is the entity performing the burnout trick in the image? \na) A motorcyclist \nb) A robot",
-        "source_yes_no_question": "Is the performer a motorcyclist in the image?",
-        "target_yes_no_question": "Is the performer a robot in the image?",
-        "save_dir": "2_A robot is performin"
+        "multiple_choice_question": "What is the entity performing the burnout trick? \na) A motorcyclist \nb) A robot",
+        "source_yes_no_question": "Is the performer a motorcyclist?",
+        "target_yes_no_question": "Is the performer a robot?",
+        "save_dir": "2_A robot is performin",
+        "source_yes_no_question_orig": "Is the performer a motorcyclist in the image?",
+        "target_yes_no_question_orig": "Is the performer a robot in the image?",
+        "multiple_choice_question_orig": "What is the entity performing the burnout trick in the image? \na) A motorcyclist \nb) A robot"
     },
     {
         "id": "0068_planes-water",
@@ -1107,10 +1256,13 @@
         "source_object": "a large passenger airplane",
         "target_object": "A large spaceship",
         "instruction": "Replace the airplane with a spaceship.",
-        "multiple_choice_question": "What is the vehicle in the scene?\na) A large passenger airplane\nb) A large spaceship",
-        "source_yes_no_question": "Is the vehicle an airplane in the image?",
-        "target_yes_no_question": "Is the vehicle a spaceship in the image?",
-        "save_dir": "2_A large spaceship is"
+        "multiple_choice_question": "What is the vehicle?\na) A large passenger airplane\nb) A large spaceship",
+        "source_yes_no_question": "Is the vehicle an airplane?",
+        "target_yes_no_question": "Is the vehicle a spaceship?",
+        "save_dir": "2_A large spaceship is",
+        "source_yes_no_question_orig": "Is the vehicle an airplane in the image?",
+        "target_yes_no_question_orig": "Is the vehicle a spaceship in the image?",
+        "multiple_choice_question_orig": "What is the vehicle in the scene?\na) A large passenger airplane\nb) A large spaceship"
     },
     {
         "id": "0069_car-turn",
@@ -1122,10 +1274,13 @@
         "source_object": "a silver SUV",
         "target_object": "A hovercraft",
         "instruction": "Change the silver SUV to a hovercraft.",
-        "multiple_choice_question": "What vehicle is navigating the winding mountain road in the image?\na) A silver SUV\nb) A hovercraft",
-        "source_yes_no_question": "Is the vehicle a silver SUV in the image?",
-        "target_yes_no_question": "Is the vehicle a hovercraft in the image?",
-        "save_dir": "2_A hovercraft is navi"
+        "multiple_choice_question": "What vehicle is navigating the winding mountain road?\na) A silver SUV\nb) A hovercraft",
+        "source_yes_no_question": "Is the vehicle a silver SUV?",
+        "target_yes_no_question": "Is the vehicle a hovercraft?",
+        "save_dir": "2_A hovercraft is navi",
+        "source_yes_no_question_orig": "Is the vehicle a silver SUV in the image?",
+        "target_yes_no_question_orig": "Is the vehicle a hovercraft in the image?",
+        "multiple_choice_question_orig": "What vehicle is navigating the winding mountain road in the image?\na) A silver SUV\nb) A hovercraft"
     },
     {
         "id": "0070_dance-twirl",
@@ -1137,10 +1292,13 @@
         "source_object": "a dancer",
         "target_object": "A robot",
         "instruction": "Change the dancer to a robot.",
-        "multiple_choice_question": "What object is performing the twirl in the image? \na) A dancer \nb) A robot",
-        "source_yes_no_question": "Is the performer a human in the image?",
-        "target_yes_no_question": "Is the performer a robot in the image?",
-        "save_dir": "2_A robot in a blue an"
+        "multiple_choice_question": "What object is performing the twirl? \na) A dancer \nb) A robot",
+        "source_yes_no_question": "Is the performer a human?",
+        "target_yes_no_question": "Is the performer a robot?",
+        "save_dir": "2_A robot in a blue an",
+        "source_yes_no_question_orig": "Is the performer a human in the image?",
+        "target_yes_no_question_orig": "Is the performer a robot in the image?",
+        "multiple_choice_question_orig": "What object is performing the twirl in the image? \na) A dancer \nb) A robot"
     },
     {
         "id": "0071_mallard-water",
@@ -1157,10 +1315,11 @@
         "instruction": "Replace the mallard duck with a boat.",
         "multiple_choice_question_orig": "What object is gliding smoothly across the surface of the calm pond?\na) a mallard duck\nb) A boad\nc) A swan\nd) A fish",
         "multiple_choice_question": "What object is gliding smoothly across the surface of the calm pond?\na) a mallard duck\nb) A boat\nc) A swan\nd) A fish",
-        "source_yes_no_question": "Is the object a mallard duck in the image?",
+        "source_yes_no_question": "Is the object a mallard duck?",
         "target_yes_no_question_orig": "Is the object a boad in the image?",
-        "target_yes_no_question": "Is the object a boat in the image?",
-        "save_dir": "2_A boad is gliding sm"
+        "target_yes_no_question": "Is the object a boat?",
+        "save_dir": "2_A boad is gliding sm",
+        "source_yes_no_question_orig": "Is the object a mallard duck in the image?"
     },
     {
         "id": "0072_dog-agility",
@@ -1172,12 +1331,13 @@
         "source_object": "a border collie",
         "target_object": "A unicorn",
         "instruction": "Replace the border collie with a unicorn.",
-        "multiple_choice_question": "What object is present in the image? \na) A border collie \nb) A unicorn",
+        "multiple_choice_question": "What object is present? \na) A border collie \nb) A unicorn",
         "source_yes_no_question_orig": "1. Is the animal a dog in the image?",
-        "source_yes_no_question": "Is the animal a dog in the image?",
+        "source_yes_no_question": "Is the animal a dog?",
         "target_yes_no_question_orig": "2. Is the animal a unicorn in the image?",
-        "target_yes_no_question": "Is the animal a unicorn in the image?",
-        "save_dir": "2_A unicorn is skillfu"
+        "target_yes_no_question": "Is the animal a unicorn?",
+        "save_dir": "2_A unicorn is skillfu",
+        "multiple_choice_question_orig": "What object is present in the image? \na) A border collie \nb) A unicorn"
     },
     {
         "id": "0073_bmx-rider",
@@ -1191,9 +1351,9 @@
         "instruction": "Replace the BMX rider with a robot.",
         "multiple_choice_question": "What object is performing the tricks on the ramp? \na) A BMX rider \nb) A robot",
         "source_yes_no_question_orig": "Is the rider a robot in the image?",
-        "source_yes_no_question": "Is the robot a BMX rider in the image?",
+        "source_yes_no_question": "Does the rider look ordinary, real?",
         "target_yes_no_question_orig": "Is the robot a BMX rider in the image?",
-        "target_yes_no_question": "Is the rider a robot in the image?",
+        "target_yes_no_question": "Does the rider look like a robot?",
         "save_dir": "2_A robot is performin"
     },
     {
@@ -1206,10 +1366,13 @@
         "source_object": "a large rhinoceros",
         "target_object": "A large robotic dinosaur",
         "instruction": "Replace the rhinoceros with a robotic dinosaur.",
-        "multiple_choice_question": "What object is present in the image?\na) a large rhinoceros \nb) A large robotic dinosaur",
-        "source_yes_no_question": "Is the rhinoceros made of metal in the image?",
-        "target_yes_no_question": "Is the dinosaur made of metal in the image?",
-        "save_dir": "2_A large robotic dino"
+        "multiple_choice_question": "What object is present?\na) a large rhinoceros \nb) A large robotic dinosaur",
+        "source_yes_no_question": "Is the rhinoceros made of metal?",
+        "target_yes_no_question": "Is the dinosaur made of metal?",
+        "save_dir": "2_A large robotic dino",
+        "source_yes_no_question_orig": "Is the rhinoceros made of metal in the image?",
+        "target_yes_no_question_orig": "Is the dinosaur made of metal in the image?",
+        "multiple_choice_question_orig": "What object is present in the image?\na) a large rhinoceros \nb) A large robotic dinosaur"
     },
     {
         "id": "0075_A_bicycle",
@@ -1221,10 +1384,13 @@
         "source_object": "A bicycle",
         "target_object": "A skateboard",
         "instruction": "Change the bicycle to a skateboard.",
-        "multiple_choice_question": "What object is being used by the person in the image?\na) A bicycle \nb) A skateboard",
-        "source_yes_no_question": "Is the vehicle a bicycle in the image?",
-        "target_yes_no_question": "Is the vehicle a skateboard in the image?",
-        "save_dir": "2_A skateboard is glid"
+        "multiple_choice_question": "What object is being used by the person?\na) A bicycle \nb) A skateboard",
+        "source_yes_no_question": "Is the vehicle a bicycle?",
+        "target_yes_no_question": "Is the vehicle a skateboard?",
+        "save_dir": "2_A skateboard is glid",
+        "source_yes_no_question_orig": "Is the vehicle a bicycle in the image?",
+        "target_yes_no_question_orig": "Is the vehicle a skateboard in the image?",
+        "multiple_choice_question_orig": "What object is being used by the person in the image?\na) A bicycle \nb) A skateboard"
     },
     {
         "id": "0076_A_rabbit",
@@ -1236,10 +1402,13 @@
         "source_object": "A rabbit",
         "target_object": "A drone",
         "instruction": "Change the rabbit to a drone.",
-        "multiple_choice_question": "What object is present in the image? \na) A rabbit \nb) A drone",
-        "source_yes_no_question": "Is the object hopping in the image?",
-        "target_yes_no_question": "Is the object buzzing in the image?",
-        "save_dir": "2_A drone is buzzing q"
+        "multiple_choice_question": "What object is present? \na) A rabbit \nb) A drone",
+        "source_yes_no_question": "Is the object hopping?",
+        "target_yes_no_question": "Is the object buzzing?",
+        "save_dir": "2_A drone is buzzing q",
+        "source_yes_no_question_orig": "Is the object hopping in the image?",
+        "target_yes_no_question_orig": "Is the object buzzing in the image?",
+        "multiple_choice_question_orig": "What object is present in the image? \na) A rabbit \nb) A drone"
     },
     {
         "id": "0077_A_hawk",
@@ -1251,10 +1420,11 @@
         "source_object": "A hawk",
         "target_object": "paraglider",
         "instruction": "Replace the hawk with a paraglider.",
-        "multiple_choice_question": "What object is present in the image? \na) A hawk \nb) A paraglider",
+        "multiple_choice_question": "What object is present? \na) A hawk \nb) A paraglider",
         "source_yes_no_question": "Is the object flying a hawk?",
         "target_yes_no_question": "Is the object flying a paraglider?",
-        "save_dir": "2_A paraglider is soar"
+        "save_dir": "2_A paraglider is soar",
+        "multiple_choice_question_orig": "What object is present in the image? \na) A hawk \nb) A paraglider"
     },
     {
         "id": "0078_A_cat",
@@ -1266,10 +1436,13 @@
         "source_object": "A cat",
         "target_object": "A ferret",
         "instruction": "Replace the cat with a ferret.",
-        "multiple_choice_question": "What is the object playing in the image?\na) A cat\nb) A ferret",
-        "source_yes_no_question": "Is the animal a cat in the image?",
-        "target_yes_no_question": "Is the animal a ferret in the image?",
-        "save_dir": "2_A ferret is darting "
+        "multiple_choice_question": "What is the object playing?\na) A cat\nb) A ferret",
+        "source_yes_no_question": "Is the animal a cat?",
+        "target_yes_no_question": "Is the animal a ferret?",
+        "save_dir": "2_A ferret is darting ",
+        "source_yes_no_question_orig": "Is the animal a cat in the image?",
+        "target_yes_no_question_orig": "Is the animal a ferret in the image?",
+        "multiple_choice_question_orig": "What is the object playing in the image?\na) A cat\nb) A ferret"
     },
     {
         "id": "0079_A_bus",
@@ -1281,10 +1454,13 @@
         "source_object": "A bus",
         "target_object": "A hovercraft",
         "instruction": "Replace the bus with a hovercraft.",
-        "multiple_choice_question": "What object is being followed by the camera in the scene? \na) A bus \nb) A hovercraft",
-        "source_yes_no_question": "Is the vehicle a bus in the image?",
-        "target_yes_no_question": "Is the vehicle a hovercraft in the image?",
-        "save_dir": "2_A hovercraft is glid"
+        "multiple_choice_question": "What object is being followed by the camera? \na) A bus \nb) A hovercraft",
+        "source_yes_no_question": "Is the vehicle a bus?",
+        "target_yes_no_question": "Is the vehicle a hovercraft?",
+        "save_dir": "2_A hovercraft is glid",
+        "source_yes_no_question_orig": "Is the vehicle a bus in the image?",
+        "target_yes_no_question_orig": "Is the vehicle a hovercraft in the image?",
+        "multiple_choice_question_orig": "What object is being followed by the camera in the scene? \na) A bus \nb) A hovercraft"
     },
     {
         "id": "0080_A_motorcycle",
@@ -1297,12 +1473,13 @@
         "source_object": "A motorcycle",
         "target_object": "A cheetah",
         "instruction": "Change the motorcycle to a cheetah.",
-        "multiple_choice_question": "What object is present in the image? \na) A motorcycle \nb) A cheetah",
+        "multiple_choice_question": "What object is present? \na) A motorcycle \nb) A cheetah",
         "source_yes_no_question_orig": "Is the motorcycle replaced with a cheetah in the image?",
-        "source_yes_no_question": "Is the cheetah a motorcycle in the image?",
+        "source_yes_no_question": "Is the speeding object a motorcycle?",
         "target_yes_no_question_orig": "Is the cheetah a motorcycle in the image?",
-        "target_yes_no_question": "Is the motorcycle replaced with a cheetah in the image?",
-        "save_dir": "2_A cheetah is sprinti"
+        "target_yes_no_question": "Is the speeding object a cheetah?",
+        "save_dir": "2_A cheetah is sprinti",
+        "multiple_choice_question_orig": "What object is present in the image? \na) A motorcycle \nb) A cheetah"
     },
     {
         "id": "0081_A_horse",
@@ -1316,10 +1493,13 @@
         "target_object": "A car",
         "instruction_orig": "Replace the horse with a car and change the camera's focus from the horse to a dolphin.",
         "instruction": "Replace the horse with a car.",
-        "multiple_choice_question": "What object is present in the image? \na) A horse \nb) A car",
-        "source_yes_no_question": "Is the horse galloping across the beach in the image?",
-        "target_yes_no_question": "Is the car driving across the beach in the image?",
-        "save_dir": "2_A car is driving pow"
+        "multiple_choice_question": "What object is present? \na) A horse \nb) A car",
+        "source_yes_no_question": "Is the horse galloping across the beach?",
+        "target_yes_no_question": "Is the car driving across the beach?",
+        "save_dir": "2_A car is driving pow",
+        "source_yes_no_question_orig": "Is the horse galloping across the beach in the image?",
+        "target_yes_no_question_orig": "Is the car driving across the beach in the image?",
+        "multiple_choice_question_orig": "What object is present in the image? \na) A horse \nb) A car"
     },
     {
         "id": "0082_A_tram",
@@ -1331,10 +1511,13 @@
         "source_object": "A tram",
         "target_object": "A sleigh",
         "instruction": "Change the tram to a sleigh.",
-        "multiple_choice_question": "What is the vehicle in the scene?\na) A tram \nb) A sleigh",
-        "source_yes_no_question": "Is the vehicle a tram in the image?",
-        "target_yes_no_question": "Is the vehicle a sleigh in the image?",
-        "save_dir": "2_A sleigh is gliding "
+        "multiple_choice_question": "What is the vehicle?\na) A tram \nb) A sleigh",
+        "source_yes_no_question": "Is the vehicle a tram?",
+        "target_yes_no_question": "Is the vehicle a sleigh?",
+        "save_dir": "2_A sleigh is gliding ",
+        "source_yes_no_question_orig": "Is the vehicle a tram in the image?",
+        "target_yes_no_question_orig": "Is the vehicle a sleigh in the image?",
+        "multiple_choice_question_orig": "What is the vehicle in the scene?\na) A tram \nb) A sleigh"
     },
     {
         "id": "0083_A_boat",
@@ -1348,9 +1531,9 @@
         "instruction": "Replace the boat with a swan.",
         "multiple_choice_question": "What is the object gliding across the river?\na) A boat \nb) A swan",
         "source_yes_no_question_orig": "Is the boat a swan in the image?",
-        "source_yes_no_question": "Is the swan a boat in the image?",
+        "source_yes_no_question": "Is the object sailing across the river a boat?",
         "target_yes_no_question_orig": "Is the swan a boat in the image?",
-        "target_yes_no_question": "Is the boat a swan in the image?",
+        "target_yes_no_question": "Is the object sailing across the river a swan?",
         "save_dir": "2_A swan is gliding sm"
     },
     {
@@ -1379,10 +1562,13 @@
         "source_object": "A tram",
         "target_object": "A horse-drawn carriage",
         "instruction": "Replace the tram with a horse-drawn carriage.",
-        "multiple_choice_question": "What object is present in the image?\na) A tram \nb) A horse-drawn carriage",
-        "source_yes_no_question": "Is the vehicle a tram in the image?",
-        "target_yes_no_question": "Is the vehicle a horse-drawn carriage in the image?",
-        "save_dir": "2_A horse-drawn carria"
+        "multiple_choice_question": "What object is present?\na) A tram \nb) A horse-drawn carriage",
+        "source_yes_no_question": "Is the vehicle a tram?",
+        "target_yes_no_question": "Is the vehicle a horse-drawn carriage?",
+        "save_dir": "2_A horse-drawn carria",
+        "source_yes_no_question_orig": "Is the vehicle a tram in the image?",
+        "target_yes_no_question_orig": "Is the vehicle a horse-drawn carriage in the image?",
+        "multiple_choice_question_orig": "What object is present in the image?\na) A tram \nb) A horse-drawn carriage"
     },
     {
         "id": "0086_A_red_sports_car",
@@ -1396,11 +1582,12 @@
         "target_object": "A rocket",
         "instruction_orig": "Replace the red sports car with a rocket and change the action from speeding down to launching up.",
         "instruction": "Replace the red sports car with a rocket.",
-        "multiple_choice_question": "What object is present in the scene? \na) A red sports car \nb) A rocket",
+        "multiple_choice_question": "What object is present? \na) A red sports car \nb) A rocket",
         "source_yes_no_question": "Is the vehicle on the mountain road a sports car?",
         "target_yes_no_question_orig": "Is the vehicle on the mountain path a rocket?",
         "target_yes_no_question": "Is the vehicle on the mountain road a rocket?",
-        "save_dir": "2_A rocket is launchin"
+        "save_dir": "2_A rocket is launchin",
+        "multiple_choice_question_orig": "What object is present in the scene? \na) A red sports car \nb) A rocket"
     },
     {
         "id": "0087_A_seagull",
@@ -1412,10 +1599,11 @@
         "source_object": "A seagull",
         "target_object": "A kite",
         "instruction": "Change the seagull to a kite.",
-        "multiple_choice_question": "What object is present in the image? \na) A seagull \nb) A kite",
+        "multiple_choice_question": "What object is present? \na) A seagull \nb) A kite",
         "source_yes_no_question": "Is the object gliding over the ocean waves a seagull?",
         "target_yes_no_question": "Is the object soaring over the ocean waves a kite?",
-        "save_dir": "2_A kite is soaring ef"
+        "save_dir": "2_A kite is soaring ef",
+        "multiple_choice_question_orig": "What object is present in the image? \na) A seagull \nb) A kite"
     },
     {
         "id": "0088_A_cyclist",
@@ -1427,10 +1615,13 @@
         "source_object": "A cyclist",
         "target_object": "A rollerblader",
         "instruction": "Change the cyclist to a rollerblader.",
-        "multiple_choice_question": "What object is present in the image? \na) A cyclist \nb) A rollerblader",
-        "source_yes_no_question": "Is the cyclist pedaling in the image?",
-        "target_yes_no_question": "Is the rollerblader gliding in the image?",
-        "save_dir": "2_A rollerblader is gl"
+        "multiple_choice_question": "What object is present? \na) A cyclist \nb) A rollerblader",
+        "source_yes_no_question": "Is the cyclist pedaling?",
+        "target_yes_no_question": "Is the rollerblader gliding?",
+        "save_dir": "2_A rollerblader is gl",
+        "source_yes_no_question_orig": "Is the cyclist pedaling in the image?",
+        "target_yes_no_question_orig": "Is the rollerblader gliding in the image?",
+        "multiple_choice_question_orig": "What object is present in the image? \na) A cyclist \nb) A rollerblader"
     },
     {
         "id": "0089_A_dog",
@@ -1443,12 +1634,13 @@
         "target_object": "A seal",
         "instruction_orig": "Change the dog into a seal, replace wagging its tail with clapping its flippers.",
         "instruction": "Replace the dog with a seal.",
-        "multiple_choice_question": "What object is present in the image? \na) A dog \nb) A seal",
+        "multiple_choice_question": "What object is present? \na) A dog \nb) A seal",
         "source_yes_no_question_orig": "1. Is the animal on the beach a dog?",
         "source_yes_no_question": "Is the animal on the beach a dog?",
         "target_yes_no_question_orig": "2. Is the animal on the beach a seal?",
         "target_yes_no_question": "Is the animal on the beach a seal?",
-        "save_dir": "2_A seal is clapping i"
+        "save_dir": "2_A seal is clapping i",
+        "multiple_choice_question_orig": "What object is present in the image? \na) A dog \nb) A seal"
     },
     {
         "id": "0090_A_deer",
@@ -1461,10 +1653,13 @@
         "target_object": "A snowmobile",
         "instruction_orig": "Replace the deer with a snowmobile and change bounding to racing and leap to turn.",
         "instruction": "Replace the deer with a snowmobile.",
-        "multiple_choice_question": "What object is present in the image?\na) A deer \nb) A snowmobile",
-        "source_yes_no_question": "Is the deer bounding through the forest in the image?",
-        "target_yes_no_question": "Is the snowmobile racing through the forest in the image?",
-        "save_dir": "2_A snowmobile is raci"
+        "multiple_choice_question": "What object is present?\na) A deer \nb) A snowmobile",
+        "source_yes_no_question": "Is the deer bounding through the forest?",
+        "target_yes_no_question": "Is the snowmobile racing through the forest?",
+        "save_dir": "2_A snowmobile is raci",
+        "source_yes_no_question_orig": "Is the deer bounding through the forest in the image?",
+        "target_yes_no_question_orig": "Is the snowmobile racing through the forest in the image?",
+        "multiple_choice_question_orig": "What object is present in the image?\na) A deer \nb) A snowmobile"
     },
     {
         "id": "0091_A_hawk",
@@ -1477,10 +1672,13 @@
         "source_object": "A hawk",
         "target_object": "A hot air balloon",
         "instruction": "Replace the hawk with a hot air balloon.",
-        "multiple_choice_question": "What object is present in the image?\na) A hawk \nb) A hot air balloon",
-        "source_yes_no_question": "Is the hawk in the image a bird?",
-        "target_yes_no_question": "Is the hot air balloon in the image an aircraft?",
-        "save_dir": "2_A hot air balloon is"
+        "multiple_choice_question": "What object is present?\na) A hawk \nb) A hot air balloon",
+        "source_yes_no_question": "Is the hawk a bird?",
+        "target_yes_no_question": "Is the hot air balloon an aircraft?",
+        "save_dir": "2_A hot air balloon is",
+        "source_yes_no_question_orig": "Is the hawk in the image a bird?",
+        "target_yes_no_question_orig": "Is the hot air balloon in the image an aircraft?",
+        "multiple_choice_question_orig": "What object is present in the image?\na) A hawk \nb) A hot air balloon"
     },
     {
         "id": "0092_A_fox",
@@ -1494,9 +1692,11 @@
         "instruction_orig": "Replace the fox with a robot, and change 'paw prints' to 'tracks'.",
         "instruction": "Replace the fox with a robot.",
         "multiple_choice_question": "What is the main subject of the scene?\na) A fox\nb) A robot",
-        "source_yes_no_question": "Is the animal a fox in the image?",
-        "target_yes_no_question": "Is the object a robot in the image?",
-        "save_dir": "2_A robot is navigatin"
+        "source_yes_no_question": "Is the animal a fox?",
+        "target_yes_no_question": "Is the object a robot?",
+        "save_dir": "2_A robot is navigatin",
+        "source_yes_no_question_orig": "Is the animal a fox in the image?",
+        "target_yes_no_question_orig": "Is the object a robot in the image?"
     },
     {
         "id": "0093_A_helicopter",
@@ -1512,9 +1712,9 @@
         "instruction": "Replace the helicopter with a UFO.",
         "multiple_choice_question": "What is hovering above the jungle?\na) A helicopter \nb) A UFO",
         "source_yes_no_question_orig": "Is the helicopter replaced by a UFO in the image?",
-        "source_yes_no_question": "Is the object hovering above the jungle a helicopter in the image?",
+        "source_yes_no_question": "Is the object hovering above the jungle a helicopter?",
         "target_yes_no_question_orig": "Is the object hovering above the jungle a helicopter in the image?",
-        "target_yes_no_question": "Is the object hovering above the jungle a UFO in the image?",
+        "target_yes_no_question": "Is the object hovering above the jungle a UFO?",
         "save_dir": "2_A UFO is hovering ab"
     },
     {
@@ -1527,12 +1727,13 @@
         "source_object": "A swan",
         "target_object": "A paper boat",
         "instruction": "Replace the swan with a paper boat.",
-        "multiple_choice_question": "What object is present in the image? \na) A swan \nb) A paper boat",
+        "multiple_choice_question": "What object is present? \na) A swan \nb) A paper boat",
         "source_yes_no_question_orig": "Is the swan replaced with a paper boat in the image?",
-        "source_yes_no_question": "",
+        "source_yes_no_question": "Is the swimming object a swan?",
         "target_yes_no_question_orig": "Is the object in the image a swan or a paper boat?",
-        "target_yes_no_question": "Is the swan replaced with a paper boat in the image?",
-        "save_dir": "2_A paper boat is floa"
+        "target_yes_no_question": "Is the floating object a paper boat?",
+        "save_dir": "2_A paper boat is floa",
+        "multiple_choice_question_orig": "What object is present in the image? \na) A swan \nb) A paper boat"
     },
     {
         "id": "0095_A_crow",
@@ -1547,10 +1748,11 @@
         "instruction_orig": "Replace the crow with a drone and change cawing to buzzing.",
         "instruction": "Replace the crow with a drone.",
         "multiple_choice_question": "What is making the loud noise in the forest?\na) A crow \nb) A drone",
-        "source_yes_no_question": "Is the bird a crow in the image?",
+        "source_yes_no_question": "Is the bird a crow?",
         "target_yes_no_question_orig": "Is the flying object a drone in the image?",
-        "target_yes_no_question": "Is the object on the branch a drone in the image?",
-        "save_dir": "2_A drone is hovering "
+        "target_yes_no_question": "Is the object on the branch a drone?",
+        "save_dir": "2_A drone is hovering ",
+        "source_yes_no_question_orig": "Is the bird a crow in the image?"
     },
     {
         "id": "0096_A_car",
@@ -1564,10 +1766,13 @@
         "target_object": "A spaceship",
         "instruction_orig": "Change the car to a spaceship, the coastal road to a cosmic path, the waves to stars, and the cliffs to the void.",
         "instruction": "Replace the car with a spaceship.",
-        "multiple_choice_question": "What vehicle is present in the scene? \na) A car \nb) A spaceship",
-        "source_yes_no_question": "Is the vehicle a car in the image?",
-        "target_yes_no_question": "Is the vehicle a spaceship in the image?",
-        "save_dir": "2_A spaceship is flyin"
+        "multiple_choice_question": "What vehicle is present? \na) A car \nb) A spaceship",
+        "source_yes_no_question": "Is the vehicle a car?",
+        "target_yes_no_question": "Is the vehicle a spaceship?",
+        "save_dir": "2_A spaceship is flyin",
+        "source_yes_no_question_orig": "Is the vehicle a car in the image?",
+        "target_yes_no_question_orig": "Is the vehicle a spaceship in the image?",
+        "multiple_choice_question_orig": "What vehicle is present in the scene? \na) A car \nb) A spaceship"
     },
     {
         "id": "0097_A_bird",
@@ -1579,10 +1784,13 @@
         "source_object": "A bird",
         "target_object": "A dragon",
         "instruction": "Replace the bird with a dragon.",
-        "multiple_choice_question": "What object is building a nest in the image?\na) A bird \nb) A dragon",
-        "source_yes_no_question": "Is the bird building a nest in the image?",
-        "target_yes_no_question": "Is the dragon building a nest in the image?",
-        "save_dir": "2_A dragon is building"
+        "multiple_choice_question": "What object is building a nest?\na) A bird \nb) A dragon",
+        "source_yes_no_question": "Is the bird building a nest?",
+        "target_yes_no_question": "Is the dragon building a nest?",
+        "save_dir": "2_A dragon is building",
+        "source_yes_no_question_orig": "Is the bird building a nest in the image?",
+        "target_yes_no_question_orig": "Is the dragon building a nest in the image?",
+        "multiple_choice_question_orig": "What object is building a nest in the image?\na) A bird \nb) A dragon"
     },
     {
         "id": "0098_A_squirrel",
@@ -1594,10 +1802,13 @@
         "source_object": "A squirrel",
         "target_object": "A bear",
         "instruction": "Change the squirrel to a bear.",
-        "multiple_choice_question": "What is the animal in the image?\na) A squirrel \nb) A bear",
-        "source_yes_no_question": "Is the animal a squirrel in the image?",
-        "target_yes_no_question": "Is the animal a bear in the image?",
-        "save_dir": "2_A bear is nibbling o"
+        "multiple_choice_question": "What is the animal?\na) A squirrel \nb) A bear",
+        "source_yes_no_question": "Is the animal a squirrel?",
+        "target_yes_no_question": "Is the animal a bear?",
+        "save_dir": "2_A bear is nibbling o",
+        "source_yes_no_question_orig": "Is the animal a squirrel in the image?",
+        "target_yes_no_question_orig": "Is the animal a bear in the image?",
+        "multiple_choice_question_orig": "What is the animal in the image?\na) A squirrel \nb) A bear"
     },
     {
         "id": "0099_A_jogger",
@@ -1610,9 +1821,11 @@
         "target_object": "A robot",
         "instruction": "Replace the jogger with a robot.",
         "multiple_choice_question": "What is moving along the path through the park?\na) A jogger\nb) A robot",
-        "source_yes_no_question": "Is the jogger human in the image?",
-        "target_yes_no_question": "Is the robot mechanical in the image?",
-        "save_dir": "2_A robot is rolling a"
+        "source_yes_no_question": "Is the jogger human?",
+        "target_yes_no_question": "Is the robot mechanical?",
+        "save_dir": "2_A robot is rolling a",
+        "source_yes_no_question_orig": "Is the jogger human in the image?",
+        "target_yes_no_question_orig": "Is the robot mechanical in the image?"
     },
     {
         "id": "0100_A_deer",
@@ -1626,9 +1839,12 @@
         "target_object": "A unicorn",
         "instruction_orig": "Replace the deer with a unicorn and change the word serene to magical.",
         "instruction": "Replace the deer with a unicorn.",
-        "multiple_choice_question": "What animal is drinking from the stream in the image? \na) A deer \nb) A unicorn",
-        "source_yes_no_question": "Is the animal a deer in the image?",
-        "target_yes_no_question": "Is the animal a unicorn in the image?",
-        "save_dir": "2_A unicorn is sipping"
+        "multiple_choice_question": "What animal is drinking from the stream? \na) A deer \nb) A unicorn",
+        "source_yes_no_question": "Is the animal a deer?",
+        "target_yes_no_question": "Is the animal a unicorn?",
+        "save_dir": "2_A unicorn is sipping",
+        "source_yes_no_question_orig": "Is the animal a deer in the image?",
+        "target_yes_no_question_orig": "Is the animal a unicorn in the image?",
+        "multiple_choice_question_orig": "What animal is drinking from the stream in the image? \na) A deer \nb) A unicorn"
     }
 ]

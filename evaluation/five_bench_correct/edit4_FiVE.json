@@ -10,10 +10,12 @@
         "target_object": "A glass city bus",
         "instruction_orig": "Change the city bus to a glass city bus.",
         "instruction": "Make the city bus out of glass.",
-        "multiple_choice_question": "What is the material of the city bus in the image?\na) Normal bus\nb) glass bus",
+        "multiple_choice_question": "What is the material of the city bus?\na) Normal bus\nb) glass bus",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the bus made of glass in the image?",
-        "save_dir": "4_A glass city bus is "
+        "target_yes_no_question": "Is the bus made of glass?",
+        "save_dir": "4_A glass city bus is ",
+        "target_yes_no_question_orig": "Is the bus made of glass in the image?",
+        "multiple_choice_question_orig": "What is the material of the city bus in the image?\na) Normal bus\nb) glass bus"
     },
     {
         "id": "0002_girl-dog",
@@ -26,10 +28,12 @@
         "target_object": "a wooden wheelchair",
         "instruction_orig": "Change the wheelchair from standard to wooden.",
         "instruction": "Make the wheelchair out of wood.",
-        "multiple_choice_question": "What is the material of the wheelchair in the image?\na) Normal \nb) Wood",
+        "multiple_choice_question": "What is the material of the wheelchair?\na) Normal \nb) Wood",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the wheelchair made of wood in the image?",
-        "save_dir": "4_A young girl in a wo"
+        "target_yes_no_question": "Is the wheelchair made of wood?",
+        "save_dir": "4_A young girl in a wo",
+        "target_yes_no_question_orig": "Is the wheelchair made of wood in the image?",
+        "multiple_choice_question_orig": "What is the material of the wheelchair in the image?\na) Normal \nb) Wood"
     },
     {
         "id": "0003_ocean-birds",
@@ -43,10 +47,12 @@
         "target_object": "Two crystal white ibises",
         "instruction_orig": "Change 'Two white ibises' to 'Two crystal white ibises",
         "instruction": "Make the two white ibises out of crystal.",
-        "multiple_choice_question": "What is the color of the ibises in the image?\na) Normal white \nb) Crystal white",
+        "multiple_choice_question": "What is the color of the ibises?\na) Normal white \nb) Crystal white",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the ibis crystal white in the image?",
-        "save_dir": "4_Two crystal white ib"
+        "target_yes_no_question": "Is the ibis crystal white?",
+        "save_dir": "4_Two crystal white ib",
+        "target_yes_no_question_orig": "Is the ibis crystal white in the image?",
+        "multiple_choice_question_orig": "What is the color of the ibises in the image?\na) Normal white \nb) Crystal white"
     },
     {
         "id": "0004_car-roundabout",
@@ -60,11 +66,12 @@
         "target_object": "A metallic grey Mini Cooper",
         "instruction_orig": "Add the color descriptor \"metallic\" to the Mini Cooper.",
         "instruction": "Give the grey Mini Cooper a metallic finish.",
-        "multiple_choice_question": "What is the object in the image?\na) A grey Mini Cooper \nb) A metallic grey Mini Cooper",
+        "multiple_choice_question": "What is the object?\na) A grey Mini Cooper \nb) A metallic grey Mini Cooper",
         "source_yes_no_question": "",
         "target_yes_no_question_orig": "Is the Mini Cooper made of metallic in the image?",
-        "target_yes_no_question": "Is the Mini Cooper metallic in the image?",
-        "save_dir": "4_A metallic grey Mini"
+        "target_yes_no_question": "Is the Mini Cooper metallic?",
+        "save_dir": "4_A metallic grey Mini",
+        "multiple_choice_question_orig": "What is the object in the image?\na) A grey Mini Cooper \nb) A metallic grey Mini Cooper"
     },
     {
         "id": "0005_breakdance",
@@ -79,10 +86,11 @@
         "target_object": "A holographic breakdancer",
         "instruction_orig": "Change the breakdancer to a holographic breakdancer.",
         "instruction": "Turn the breakdancer into a hologram.",
-        "multiple_choice_question": "What is the nature of the breakdancer in the image?\na) Normal human\nb) Holographic style",
+        "multiple_choice_question": "What is the nature of the breakdancer?\na) Normal human\nb) Holographic style",
         "source_yes_no_question": "",
         "target_yes_no_question": "Is the breakdancer a hologram?",
-        "save_dir": "4_A holographic breakd"
+        "save_dir": "4_A holographic breakd",
+        "multiple_choice_question_orig": "What is the nature of the breakdancer in the image?\na) Normal human\nb) Holographic style"
     },
     {
         "id": "0006_paragliding",
@@ -112,10 +120,12 @@
         "target_object": "A wooden musician",
         "instruction_orig": "Change the musician playing the violin to a wooden musician.",
         "instruction": "Turn the musician into a wooden figure.",
-        "multiple_choice_question": "What is the material of the musician in the image?\na) Normal human\nb) Wood",
+        "multiple_choice_question": "What is the material of the musician?\na) Normal human\nb) Wood",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the musician made of wood in the image?",
-        "save_dir": "4_A wooden musician is"
+        "target_yes_no_question": "Is the musician made of wood?",
+        "save_dir": "4_A wooden musician is",
+        "target_yes_no_question_orig": "Is the musician made of wood in the image?",
+        "multiple_choice_question_orig": "What is the material of the musician in the image?\na) Normal human\nb) Wood"
     },
     {
         "id": "0008_snowboard-race",
@@ -128,10 +138,12 @@
         "target_object": "Two robotic snowboarders",
         "instruction_orig": "Replace the human snowboarders with robotic snowboarders.",
         "instruction": "Turn the two snowboarders into robots.",
-        "multiple_choice_question": "What is the type of the snowboarders in the image?\na) Human snowboarders\nb) Robotic snowboarders",
+        "multiple_choice_question": "What is the type of the snowboarders?\na) Human snowboarders\nb) Robotic snowboarders",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the snowboarder robotic in the image?",
-        "save_dir": "4_Two robotic snowboar"
+        "target_yes_no_question": "Is the snowboarder robotic?",
+        "save_dir": "4_Two robotic snowboar",
+        "target_yes_no_question_orig": "Is the snowboarder robotic in the image?",
+        "multiple_choice_question_orig": "What is the type of the snowboarders in the image?\na) Human snowboarders\nb) Robotic snowboarders"
     },
     {
         "id": "0009_bear",
@@ -145,10 +157,12 @@
         "target_object": "A large bronze bear",
         "instruction_orig": "Change the bear from brown to bronze.",
         "instruction": "Make the bear out of bronze.",
-        "multiple_choice_question": "What is the color of the bear in the image?\na) Brown\nb) Bronze",
+        "multiple_choice_question": "What is the color of the bear?\na) Brown\nb) Bronze",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the bear bronze in the image?",
-        "save_dir": "4_A large bronze bear "
+        "target_yes_no_question": "Is the bear bronze?",
+        "save_dir": "4_A large bronze bear ",
+        "target_yes_no_question_orig": "Is the bear bronze in the image?",
+        "multiple_choice_question_orig": "What is the color of the bear in the image?\na) Brown\nb) Bronze"
     },
     {
         "id": "0010_giant-slalom",
@@ -162,10 +176,12 @@
         "target_object": "A glass skier",
         "instruction_orig": "Replace the skier with a glass skier.",
         "instruction": "Make the skier out of glass.",
-        "multiple_choice_question": "What is the material of the skier in the image?\na) Normal skier \nb) glass skier",
+        "multiple_choice_question": "What is the material of the skier?\na) Normal skier \nb) glass skier",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the skier made of glass in the image?",
-        "save_dir": "4_A glass skier in a r"
+        "target_yes_no_question": "Is the skier made of glass?",
+        "save_dir": "4_A glass skier in a r",
+        "target_yes_no_question_orig": "Is the skier made of glass in the image?",
+        "multiple_choice_question_orig": "What is the material of the skier in the image?\na) Normal skier \nb) glass skier"
     },
     {
         "id": "0011_lucia",
@@ -179,10 +195,12 @@
         "target_object": "A porcelain woman",
         "instruction_orig": "Change the woman to a porcelain woman.",
         "instruction": "Make the woman out of porcelain.",
-        "multiple_choice_question": "What is the material of the woman in the image?\na) Normal human \nb) Porcelain",
+        "multiple_choice_question": "What is the material of the woman?\na) Normal human \nb) Porcelain",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the woman in the image made of porcelain?",
-        "save_dir": "4_A porcelain woman in"
+        "target_yes_no_question": "Is the woman made of porcelain?",
+        "save_dir": "4_A porcelain woman in",
+        "target_yes_no_question_orig": "Is the woman in the image made of porcelain?",
+        "multiple_choice_question_orig": "What is the material of the woman in the image?\na) Normal human \nb) Porcelain"
     },
     {
         "id": "0012_goat",
@@ -213,10 +231,12 @@
         "target_object": "A silver man",
         "instruction_orig": "Change the color of the man to silver and the material of the golf cart to wood.",
         "instruction": "Make the man out of silver metal.",
-        "multiple_choice_question": "What is the color of the man in the image?\na) Normal skin tone \nb) Silver ",
+        "multiple_choice_question": "What is the color of the man?\na) Normal skin tone \nb) Silver ",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the man silver in the image?",
-        "save_dir": "4_A silver man in a bl"
+        "target_yes_no_question": "Is the man silver?",
+        "save_dir": "4_A silver man in a bl",
+        "target_yes_no_question_orig": "Is the man silver in the image?",
+        "multiple_choice_question_orig": "What is the color of the man in the image?\na) Normal skin tone \nb) Silver "
     },
     {
         "id": "0014_burnout",
@@ -230,10 +250,12 @@
         "target_object": "A carbon fiber black car",
         "instruction_orig": "Add carbon fiber to the car's description.",
         "instruction": "Make the black car out of carbon fiber.",
-        "multiple_choice_question": "What is the material of the car in the image?\na) black car \nb) carbon fiber car",
+        "multiple_choice_question": "What is the material of the car?\na) black car \nb) carbon fiber car",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the car made of carbon fiber in the image?",
-        "save_dir": "4_A carbon fiber black"
+        "target_yes_no_question": "Is the car made of carbon fiber?",
+        "save_dir": "4_A carbon fiber black",
+        "target_yes_no_question_orig": "Is the car made of carbon fiber in the image?",
+        "multiple_choice_question_orig": "What is the material of the car in the image?\na) black car \nb) carbon fiber car"
     },
     {
         "id": "0015_car-shadow",
@@ -247,10 +269,12 @@
         "target_object": "A silver holographic car",
         "instruction_orig": "Change the car into a holographic car.",
         "instruction": "Turn the silver car into a hologram.",
-        "multiple_choice_question": "What is the material of the car in the image?\na) Normal car\nb) Holographic car",
+        "multiple_choice_question": "What is the material of the car?\na) Normal car\nb) Holographic car",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the car holographic in the image?",
-        "save_dir": "4_A silver holographic"
+        "target_yes_no_question": "Is the car holographic?",
+        "save_dir": "4_A silver holographic",
+        "target_yes_no_question_orig": "Is the car holographic in the image?",
+        "multiple_choice_question_orig": "What is the material of the car in the image?\na) Normal car\nb) Holographic car"
     },
     {
         "id": "0016_horsejump-high",
@@ -264,10 +288,12 @@
         "target_object": "A wooden horse",
         "instruction_orig": "Replace the real horse with a wooden horse.",
         "instruction": "Turn the horse into a wooden horse.",
-        "multiple_choice_question": "What is the material of the horse in the image?\na) Normal horse \nb) Wooden horse ",
+        "multiple_choice_question": "What is the material of the horse?\na) Normal horse \nb) Wooden horse ",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the horse wooden in the image?",
-        "save_dir": "4_A wooden horse with "
+        "target_yes_no_question": "Is the horse wooden?",
+        "save_dir": "4_A wooden horse with ",
+        "target_yes_no_question_orig": "Is the horse wooden in the image?",
+        "multiple_choice_question_orig": "What is the material of the horse in the image?\na) Normal horse \nb) Wooden horse "
     },
     {
         "id": "0017_kid-football",
@@ -282,11 +308,12 @@
         "target_object": "A wooden young boy",
         "instruction_orig": "Change the young boy to a wooden young boy and change the soccer ball to a rubber soccer ball.",
         "instruction": "Make the young boy out of wood.",
-        "multiple_choice_question": "What is the material of the boy in the image?\na) Normal boy \nb) wooden boy ",
+        "multiple_choice_question": "What is the material of the boy?\na) Normal boy \nb) wooden boy ",
         "source_yes_no_question": "",
         "target_yes_no_question_orig": "Is the boy made of wooden in the image?",
-        "target_yes_no_question": "Is the boy wooden in the image?",
-        "save_dir": "4_A wooden young boy w"
+        "target_yes_no_question": "Is the boy wooden?",
+        "save_dir": "4_A wooden young boy w",
+        "multiple_choice_question_orig": "What is the material of the boy in the image?\na) Normal boy \nb) wooden boy "
     },
     {
         "id": "0018_breakdance-flare",
@@ -300,10 +327,12 @@
         "target_object": "A metallic breakdancer",
         "instruction_orig": "Change the breakdancer to metallic.",
         "instruction": "Make the breakdancer metallic.",
-        "multiple_choice_question": "What is the material of the breakdancer in the image?\na) Normal \nb) Metallic",
+        "multiple_choice_question": "What is the material of the breakdancer?\na) Normal \nb) Metallic",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the breakdancer metallic in the image?",
-        "save_dir": "4_A metallic breakdanc"
+        "target_yes_no_question": "Is the breakdancer metallic?",
+        "save_dir": "4_A metallic breakdanc",
+        "target_yes_no_question_orig": "Is the breakdancer metallic in the image?",
+        "multiple_choice_question_orig": "What is the material of the breakdancer in the image?\na) Normal \nb) Metallic"
     },
     {
         "id": "0019_tennis-vest",
@@ -317,11 +346,12 @@
         "target_object": "A clay tennis player",
         "instruction_orig": "Change \"tennis\" to \"clay\" in the description of the player.",
         "instruction": "Make the tennis player out of clay.",
-        "multiple_choice_question": "What is the material of the tennis player in the image?\na) Normal player \nb) clay player",
+        "multiple_choice_question": "What is the material of the tennis player?\na) Normal player \nb) clay player",
         "source_yes_no_question": "",
         "target_yes_no_question_orig": "Is the player a clay in the image?",
-        "target_yes_no_question": "Is the player clay in the image?",
-        "save_dir": "4_A clay tennis player"
+        "target_yes_no_question": "Is the player made of clay?",
+        "save_dir": "4_A clay tennis player",
+        "multiple_choice_question_orig": "What is the material of the tennis player in the image?\na) Normal player \nb) clay player"
     },
     {
         "id": "0020_monkeys",
@@ -335,10 +365,12 @@
         "target_object": "A young plush monkey",
         "instruction_orig": "Change the real monkeys to plush monkeys.",
         "instruction": "Turn the young monkey into a plush monkey.",
-        "multiple_choice_question": "What is the material of the young monkey in the image?\na) Real monkey \nb) Plush monkey",
+        "multiple_choice_question": "What is the material of the young monkey?\na) Real monkey \nb) Plush monkey",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the young monkey plush in the image?",
-        "save_dir": "4_A young plush monkey"
+        "target_yes_no_question": "Is the young monkey plush?",
+        "save_dir": "4_A young plush monkey",
+        "target_yes_no_question_orig": "Is the young monkey plush in the image?",
+        "multiple_choice_question_orig": "What is the material of the young monkey in the image?\na) Real monkey \nb) Plush monkey"
     },
     {
         "id": "0021_landing",
@@ -351,10 +383,12 @@
         "target_object": "A wooden fighter jet",
         "instruction_orig": "Change the fighter jet to be made of wood.",
         "instruction": "Make the fighter jet out of wood.",
-        "multiple_choice_question": "What is the material of the fighter jet in the image?\na) Normal jet \nb) Wooden jet",
+        "multiple_choice_question": "What is the material of the fighter jet?\na) Normal jet \nb) Wooden jet",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the fighter jet made of wood in the image?",
-        "save_dir": "4_A wooden fighter jet"
+        "target_yes_no_question": "Is the fighter jet made of wood?",
+        "save_dir": "4_A wooden fighter jet",
+        "target_yes_no_question_orig": "Is the fighter jet made of wood in the image?",
+        "multiple_choice_question_orig": "What is the material of the fighter jet in the image?\na) Normal jet \nb) Wooden jet"
     },
     {
         "id": "0022_skate-jump",
@@ -368,10 +402,12 @@
         "target_object": "A cardboard skateboarder",
         "instruction_orig": "Replace the skateboarder with a cardboard cutout of the skateboarder.",
         "instruction": "Turn the skateboarder into a cardboard cutout.",
-        "multiple_choice_question": "What is the material of the skateboarder in the image?\na) Normal skateboarder \nb) Cardboard skateboarder",
+        "multiple_choice_question": "What is the material of the skateboarder?\na) Normal skateboarder \nb) Cardboard skateboarder",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the skateboarder made of cardboard in the image?",
-        "save_dir": "4_A cardboard skateboa"
+        "target_yes_no_question": "Is the skateboarder made of cardboard?",
+        "save_dir": "4_A cardboard skateboa",
+        "target_yes_no_question_orig": "Is the skateboarder made of cardboard in the image?",
+        "multiple_choice_question_orig": "What is the material of the skateboarder in the image?\na) Normal skateboarder \nb) Cardboard skateboarder"
     },
     {
         "id": "0023_kayak-race",
@@ -385,11 +421,12 @@
         "target_object": "Two wooden kayakers",
         "instruction_orig": "Change the material of the kayakers from human to wooden.",
         "instruction": "Make the two kayakers out of wood.",
-        "multiple_choice_question": "What is the material of the kayakers in the image?\na) Normal \nb) Wooden",
+        "multiple_choice_question": "What is the material of the kayakers?\na) Normal \nb) Wooden",
         "source_yes_no_question": "",
         "target_yes_no_question_orig": "Is the kayak made of wood in the image?",
-        "target_yes_no_question": "Is the kayaker made of wood in the image?",
-        "save_dir": "4_Two wooden kayakers "
+        "target_yes_no_question": "Are the kayakers made of wood?",
+        "save_dir": "4_Two wooden kayakers ",
+        "multiple_choice_question_orig": "What is the material of the kayakers in the image?\na) Normal \nb) Wooden"
     },
     {
         "id": "0024_hockey",
@@ -404,10 +441,12 @@
         "target_object": "metallic rollerblades",
         "instruction_orig": "Change the rollerblades to metallic rollerblades.",
         "instruction": "Make the rollerblades metallic.",
-        "multiple_choice_question": "What is the material of the rollerblades in the image?\na) Normal \nb) Metallic ",
+        "multiple_choice_question": "What is the material of the rollerblades?\na) Normal \nb) Metallic ",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Are the rollerblades metallic in the image?",
-        "save_dir": "4_A person on metallic"
+        "target_yes_no_question": "Are the rollerblades metallic?",
+        "save_dir": "4_A person on metallic",
+        "target_yes_no_question_orig": "Are the rollerblades metallic in the image?",
+        "multiple_choice_question_orig": "What is the material of the rollerblades in the image?\na) Normal \nb) Metallic "
     },
     {
         "id": "0025_baseball",
@@ -421,10 +460,12 @@
         "target_object": "A clay baseball player",
         "instruction_orig": "Change the baseball player to be made of clay.",
         "instruction": "Make the baseball player out of clay.",
-        "multiple_choice_question": "What is the material of the baseball player in the image?\na) Normal \nb) Clay",
+        "multiple_choice_question": "What is the material of the baseball player?\na) Normal \nb) Clay",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the baseball player made of clay in the image?",
-        "save_dir": "4_A clay baseball play"
+        "target_yes_no_question": "Is the baseball player made of clay?",
+        "save_dir": "4_A clay baseball play",
+        "target_yes_no_question_orig": "Is the baseball player made of clay in the image?",
+        "multiple_choice_question_orig": "What is the material of the baseball player in the image?\na) Normal \nb) Clay"
     },
     {
         "id": "0026_table-tennis",
@@ -438,11 +479,12 @@
         "target_object": "Two wooden table tennis players",
         "instruction_orig": "Change the players from human to wooden.",
         "instruction": "Make the two table tennis players out of wood.",
-        "multiple_choice_question": "What is the material of the table tennis players in the image?\na) Normal players \nb) wooden players",
+        "multiple_choice_question": "What is the material of the table tennis players?\na) Normal players \nb) wooden players",
         "source_yes_no_question": "",
         "target_yes_no_question_orig": "Is the table tennis players made of wood?",
         "target_yes_no_question": "Are the table tennis players made of wood?",
-        "save_dir": "4_Two wooden table ten"
+        "save_dir": "4_Two wooden table ten",
+        "multiple_choice_question_orig": "What is the material of the table tennis players in the image?\na) Normal players \nb) wooden players"
     },
     {
         "id": "0027_dance-jump",
@@ -456,10 +498,12 @@
         "target_object": "A young porcelain girl",
         "instruction_orig": "Change the girl to be made of porcelain.",
         "instruction": "Make the young girl out of porcelain.",
-        "multiple_choice_question": "What is the material of the girl in the image?\na) Human \nb) Porcelain ",
+        "multiple_choice_question": "What is the material of the girl?\na) Human \nb) Porcelain ",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the girl porcelain in the image?",
-        "save_dir": "4_A young porcelain gi"
+        "target_yes_no_question": "Is the girl porcelain?",
+        "save_dir": "4_A young porcelain gi",
+        "target_yes_no_question_orig": "Is the girl porcelain in the image?",
+        "multiple_choice_question_orig": "What is the material of the girl in the image?\na) Human \nb) Porcelain "
     },
     {
         "id": "0028_kite-walk",
@@ -473,10 +517,12 @@
         "target_object": "A wooden person",
         "instruction_orig": "Change the person to a wooden person and the kiteboard to a wooden kiteboard.",
         "instruction": "Make the person out of wood.",
-        "multiple_choice_question": "What is the material of the person in the image?\na) Normal person\nb) Wooden person",
+        "multiple_choice_question": "What is the material of the person?\na) Normal person\nb) Wooden person",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the person wooden in the image?",
-        "save_dir": "4_A wooden person wear"
+        "target_yes_no_question": "Is the person wooden?",
+        "save_dir": "4_A wooden person wear",
+        "target_yes_no_question_orig": "Is the person wooden in the image?",
+        "multiple_choice_question_orig": "What is the material of the person in the image?\na) Normal person\nb) Wooden person"
     },
     {
         "id": "0029_horsejump-stick",
@@ -490,10 +536,12 @@
         "target_object": "A wooden horse",
         "instruction_orig": "Replace the real horse with a wooden horse.",
         "instruction": "Turn the horse into a wooden horse.",
-        "multiple_choice_question": "What is the material of the horse in the image? \na) Normal horse \nb) wooden horse",
+        "multiple_choice_question": "What is the material of the horse? \na) Normal horse \nb) wooden horse",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the horse made of wood in the image?",
-        "save_dir": "4_A wooden horse with "
+        "target_yes_no_question": "Is the horse made of wood?",
+        "save_dir": "4_A wooden horse with ",
+        "target_yes_no_question_orig": "Is the horse made of wood in the image?",
+        "multiple_choice_question_orig": "What is the material of the horse in the image? \na) Normal horse \nb) wooden horse"
     },
     {
         "id": "0030_rallye",
@@ -507,10 +555,12 @@
         "target_object": "A carbon fiber rally car",
         "instruction_orig": "Replace the car with a carbon fiber car.",
         "instruction": "Make the rally car out of carbon fiber.",
-        "multiple_choice_question": "What is the material of the rally car in the image?\na) Normal car \nb) Carbon fiber",
+        "multiple_choice_question": "What is the material of the rally car?\na) Normal car \nb) Carbon fiber",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Does the rally car have a carbon fiber body in the image?",
-        "save_dir": "4_A carbon fiber rally"
+        "target_yes_no_question": "Does the rally car have a carbon fiber body?",
+        "save_dir": "4_A carbon fiber rally",
+        "target_yes_no_question_orig": "Does the rally car have a carbon fiber body in the image?",
+        "multiple_choice_question_orig": "What is the material of the rally car in the image?\na) Normal car \nb) Carbon fiber"
     },
     {
         "id": "0031_soccerball",
@@ -524,10 +574,12 @@
         "target_object": "A rubber soccer ball",
         "instruction_orig": "Add rubber to describe the soccer ball.",
         "instruction": "Make the soccer ball out of rubber.",
-        "multiple_choice_question": "What is the material of the soccer ball in the image?\na) not rubber\nb) rubber",
+        "multiple_choice_question": "What is the material of the soccer ball?\na) not rubber\nb) rubber",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the soccer ball made of rubber in the image?",
-        "save_dir": "4_A rubber soccer ball"
+        "target_yes_no_question": "Is the soccer ball made of rubber?",
+        "save_dir": "4_A rubber soccer ball",
+        "target_yes_no_question_orig": "Is the soccer ball made of rubber in the image?",
+        "multiple_choice_question_orig": "What is the material of the soccer ball in the image?\na) not rubber\nb) rubber"
     },
     {
         "id": "0032_mermaid",
@@ -541,11 +593,13 @@
         "target_object_orig": "wooden",
         "target_object": "a wooden mermaid",
         "instruction_orig": "Change the woman's costume from a regular mermaid to a wooden mermaid.",
-        "instruction": "Make the mermaid costume out of wood.",
-        "multiple_choice_question": "What is the material of the mermaid in the image?\na) Normal mermaid\nb) wooden mermaid",
+        "instruction": "Make the mermaid out of wood.",
+        "multiple_choice_question": "What is the material of the mermaid?\na) Normal mermaid\nb) wooden mermaid",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the mermaid made of wood in the image?",
-        "save_dir": "4_A woman dressed as a"
+        "target_yes_no_question": "Is the mermaid made of wood?",
+        "save_dir": "4_A woman dressed as a",
+        "target_yes_no_question_orig": "Is the mermaid made of wood in the image?",
+        "multiple_choice_question_orig": "What is the material of the mermaid in the image?\na) Normal mermaid\nb) wooden mermaid"
     },
     {
         "id": "0033_horsejump-low",
@@ -559,10 +613,12 @@
         "target_object": "A wooden white horse",
         "instruction_orig": "Replace the real horse with a wooden horse.",
         "instruction": "Turn the white horse into a wooden horse.",
-        "multiple_choice_question": "What is the material of the horse in the image?\na) Normal horse \nb) Wooden horse",
+        "multiple_choice_question": "What is the material of the horse?\na) Normal horse \nb) Wooden horse",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the horse made of wood in the image?",
-        "save_dir": "4_A rider on a wooden "
+        "target_yes_no_question": "Is the horse made of wood?",
+        "save_dir": "4_A rider on a wooden ",
+        "target_yes_no_question_orig": "Is the horse made of wood in the image?",
+        "multiple_choice_question_orig": "What is the material of the horse in the image?\na) Normal horse \nb) Wooden horse"
     },
     {
         "id": "0034_cows",
@@ -576,10 +632,12 @@
         "target_object": "A clay brown and white cow",
         "instruction_orig": "Change the cow from real to clay.",
         "instruction": "Make the cow out of clay.",
-        "multiple_choice_question": "What is the material of the cow in the image?\na) Normal cow \nb) clay cow",
+        "multiple_choice_question": "What is the material of the cow?\na) Normal cow \nb) clay cow",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the cow made of clay in the image?",
-        "save_dir": "4_A clay brown and whi"
+        "target_yes_no_question": "Is the cow made of clay?",
+        "save_dir": "4_A clay brown and whi",
+        "target_yes_no_question_orig": "Is the cow made of clay in the image?",
+        "multiple_choice_question_orig": "What is the material of the cow in the image?\na) Normal cow \nb) clay cow"
     },
     {
         "id": "0035_helicopter",
@@ -592,10 +650,12 @@
         "target_object": "A wooden helicopter",
         "instruction_orig": "Change the helicopter from metal to wood.",
         "instruction": "Make the helicopter out of wood.",
-        "multiple_choice_question": "What is the material of the helicopter in the image?\na) Normal helicopter \nb) Wooden helicopter ",
+        "multiple_choice_question": "What is the material of the helicopter?\na) Normal helicopter \nb) Wooden helicopter ",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the helicopter made of wood in the image?",
-        "save_dir": "4_A wooden helicopter "
+        "target_yes_no_question": "Is the helicopter made of wood?",
+        "save_dir": "4_A wooden helicopter ",
+        "target_yes_no_question_orig": "Is the helicopter made of wood in the image?",
+        "multiple_choice_question_orig": "What is the material of the helicopter in the image?\na) Normal helicopter \nb) Wooden helicopter "
     },
     {
         "id": "0036_camel",
@@ -608,10 +668,12 @@
         "target_object": "A wooden camel",
         "instruction_orig": "Replace one of the camels with a wooden camel.",
         "instruction": "Turn the front camel into a wooden camel.",
-        "multiple_choice_question": "What is the material of the camel in the image?\na) Normal camel \nb) Wooden camel",
+        "multiple_choice_question": "What is the material of the camel?\na) Normal camel \nb) Wooden camel",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the camel made of wood in the image?",
-        "save_dir": "4_A wooden camel is wa"
+        "target_yes_no_question": "Is the camel made of wood?",
+        "save_dir": "4_A wooden camel is wa",
+        "target_yes_no_question_orig": "Is the camel made of wood in the image?",
+        "multiple_choice_question_orig": "What is the material of the camel in the image?\na) Normal camel \nb) Wooden camel"
     },
     {
         "id": "0037_snowboard-sand",
@@ -624,10 +686,12 @@
         "target_object": "A holographic woman",
         "instruction_orig": "Change the woman into a holographic woman",
         "instruction": "Turn the woman into a hologram.",
-        "multiple_choice_question": "What is the nature of the woman in the image?\na) Human\nb) Holographic",
+        "multiple_choice_question": "What is the nature of the woman?\na) Human\nb) Holographic",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the woman a hologram in the image?",
-        "save_dir": "4_A holographic woman "
+        "target_yes_no_question": "Is the woman a hologram?",
+        "save_dir": "4_A holographic woman ",
+        "target_yes_no_question_orig": "Is the woman a hologram in the image?",
+        "multiple_choice_question_orig": "What is the nature of the woman in the image?\na) Human\nb) Holographic"
     },
     {
         "id": "0038_motorbike",
@@ -641,10 +705,12 @@
         "target_object": "A wooden motorbike",
         "instruction_orig": "Change the motorbike to a wooden motorbike.",
         "instruction": "Make the motorbike out of wood.",
-        "multiple_choice_question": "Is the motorbike made of wood in the image? \na) no \nb) yes",
+        "multiple_choice_question": "Is the motorbike made of wood? \na) no \nb) yes",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the motorbike wooden in the image?",
-        "save_dir": "4_A wooden motorbike w"
+        "target_yes_no_question": "Is the motorbike wooden?",
+        "save_dir": "4_A wooden motorbike w",
+        "target_yes_no_question_orig": "Is the motorbike wooden in the image?",
+        "multiple_choice_question_orig": "Is the motorbike made of wood in the image? \na) no \nb) yes"
     },
     {
         "id": "0039_chamaleon",
@@ -658,11 +724,12 @@
         "target_object": "A glass green chameleon",
         "instruction_orig": "Change the real chameleon to a glass one.",
         "instruction": "Make the chameleon out of glass.",
-        "multiple_choice_question": "What is the material of the chameleon in the image?\na) Normal chameleon \nb) glass chameleon ",
+        "multiple_choice_question": "What is the material of the chameleon?\na) Normal chameleon \nb) glass chameleon ",
         "source_yes_no_question": "",
         "target_yes_no_question_orig": "Is the chameleon green in the image?",
-        "target_yes_no_question": "Is the chameleon glass in the image?",
-        "save_dir": "4_A glass green chamel"
+        "target_yes_no_question": "Is the chameleon glass?",
+        "save_dir": "4_A glass green chamel",
+        "multiple_choice_question_orig": "What is the material of the chameleon in the image?\na) Normal chameleon \nb) glass chameleon "
     },
     {
         "id": "0040_tennis",
@@ -676,10 +743,12 @@
         "target_object": "A clay tennis player",
         "instruction_orig": "No change needed.",
         "instruction": "Make the tennis player out of clay.",
-        "multiple_choice_question": "What is the material of the tennis player in the image?\na) Normal \nb) clay",
+        "multiple_choice_question": "What is the material of the tennis player?\na) Normal \nb) clay",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the player a clay player in the image?",
-        "save_dir": "4_A clay tennis player"
+        "target_yes_no_question": "Is the player a clay player?",
+        "save_dir": "4_A clay tennis player",
+        "target_yes_no_question_orig": "Is the player a clay player in the image?",
+        "multiple_choice_question_orig": "What is the material of the tennis player in the image?\na) Normal \nb) clay"
     },
     {
         "id": "0041_longboard",
@@ -692,10 +761,12 @@
         "target_object": "A wooden man",
         "instruction_orig": "Change the man to a wooden man.",
         "instruction": "Make the man out of wood.",
-        "multiple_choice_question": "What is the material of the man in the image?\na) Normal man \nb) Wooden man",
+        "multiple_choice_question": "What is the material of the man?\na) Normal man \nb) Wooden man",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the man made of wood in the image?",
-        "save_dir": "4_A wooden man in a ye"
+        "target_yes_no_question": "Is the man made of wood?",
+        "save_dir": "4_A wooden man in a ye",
+        "target_yes_no_question_orig": "Is the man made of wood in the image?",
+        "multiple_choice_question_orig": "What is the material of the man in the image?\na) Normal man \nb) Wooden man"
     },
     {
         "id": "0042_gym-ball",
@@ -708,10 +779,12 @@
         "target_object": "A metallic man",
         "instruction_orig": "Change the man to a metallic man.",
         "instruction": "Make the man metallic.",
-        "multiple_choice_question": "What is the material of the man in the image?\na) Normal human\nb) Metallic ",
+        "multiple_choice_question": "What is the material of the man?\na) Normal human\nb) Metallic ",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the man metallic in the image?",
-        "save_dir": "4_A metallic man is pe"
+        "target_yes_no_question": "Is the man metallic?",
+        "save_dir": "4_A metallic man is pe",
+        "target_yes_no_question_orig": "Is the man metallic in the image?",
+        "multiple_choice_question_orig": "What is the material of the man in the image?\na) Normal human\nb) Metallic "
     },
     {
         "id": "0043_parkour",
@@ -725,10 +798,12 @@
         "target_object": "A holographic man",
         "instruction_orig": "Change the man into a holographic man",
         "instruction": "Turn the man into a hologram.",
-        "multiple_choice_question": "What is the nature of the man in the image?\na) Real man\nb) Holographic man",
+        "multiple_choice_question": "What is the nature of the man?\na) Real man\nb) Holographic man",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the man holographic in the image?",
-        "save_dir": "4_A holographic man is"
+        "target_yes_no_question": "Is the man holographic?",
+        "save_dir": "4_A holographic man is",
+        "target_yes_no_question_orig": "Is the man holographic in the image?",
+        "multiple_choice_question_orig": "What is the nature of the man in the image?\na) Real man\nb) Holographic man"
     },
     {
         "id": "0044_snowboard",
@@ -742,10 +817,12 @@
         "target_object": "A metallic snowboarder",
         "instruction_orig": "Change the snowboarder to be metallic.",
         "instruction": "Make the snowboarder metallic.",
-        "multiple_choice_question": "What is the material of the snowboarder in the image?\na) Normal snowboarder \nb) Metallic snowboarder",
+        "multiple_choice_question": "What is the material of the snowboarder?\na) Normal snowboarder \nb) Metallic snowboarder",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the snowboarder metallic in the image?",
-        "save_dir": "4_A metallic snowboard"
+        "target_yes_no_question": "Is the snowboarder metallic?",
+        "save_dir": "4_A metallic snowboard",
+        "target_yes_no_question_orig": "Is the snowboarder metallic in the image?",
+        "multiple_choice_question_orig": "What is the material of the snowboarder in the image?\na) Normal snowboarder \nb) Metallic snowboarder"
     },
     {
         "id": "0045_butterfly",
@@ -759,10 +836,12 @@
         "target_object": "A vibrant glass blue butterfly",
         "instruction_orig": "Change the material of the butterfly from a living creature to glass.",
         "instruction": "Make the butterfly out of glass.",
-        "multiple_choice_question": "What is the material of the butterfly in the image? \na) Normal butterfly \nb) glass butterfly",
+        "multiple_choice_question": "What is the material of the butterfly? \na) Normal butterfly \nb) glass butterfly",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the butterfly made of glass in the image?",
-        "save_dir": "4_A vibrant glass blue"
+        "target_yes_no_question": "Is the butterfly made of glass?",
+        "save_dir": "4_A vibrant glass blue",
+        "target_yes_no_question_orig": "Is the butterfly made of glass in the image?",
+        "multiple_choice_question_orig": "What is the material of the butterfly in the image? \na) Normal butterfly \nb) glass butterfly"
     },
     {
         "id": "0046_blackswan",
@@ -776,10 +855,12 @@
         "target_object": "A velvet black swan",
         "instruction_orig": "Add velvet before black to describe the swan.",
         "instruction": "Make the black swan out of velvet.",
-        "multiple_choice_question": "Is the black swan made of velvet in the image?\na) no\nb) yes",
+        "multiple_choice_question": "Is the black swan made of velvet?\na) no\nb) yes",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the black swan made of velvet in the image?",
-        "save_dir": "4_A velvet black swan "
+        "target_yes_no_question": "Is the black swan made of velvet?",
+        "save_dir": "4_A velvet black swan ",
+        "target_yes_no_question_orig": "Is the black swan made of velvet in the image?",
+        "multiple_choice_question_orig": "Is the black swan made of velvet in the image?\na) no\nb) yes"
     },
     {
         "id": "0047_judo",
@@ -813,10 +894,12 @@
         "target_object": "A metallic man",
         "instruction_orig": "Change the man to be metallic.",
         "instruction": "Make the man metallic.",
-        "multiple_choice_question": "What is the material of the man in the image?\na) Normal man \nb) metallic man ",
+        "multiple_choice_question": "What is the material of the man?\na) Normal man \nb) metallic man ",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the man metallic in the image?",
-        "save_dir": "4_A metallic man with "
+        "target_yes_no_question": "Is the man metallic?",
+        "save_dir": "4_A metallic man with ",
+        "target_yes_no_question_orig": "Is the man metallic in the image?",
+        "multiple_choice_question_orig": "What is the material of the man in the image?\na) Normal man \nb) metallic man "
     },
     {
         "id": "0049_speed-skating",
@@ -831,10 +914,10 @@
         "instruction_orig": "Replace the human skaters with metallic ones.",
         "instruction": "Make the three speed skaters metallic.",
         "multiple_choice_question_orig": "Are three speed skaters made of metallic in the image?\na) no \nb) yes",
-        "multiple_choice_question": "Are three speed skaters metallic in the image?\na) no \nb) yes",
+        "multiple_choice_question": "Are three speed skaters metallic?\na) no \nb) yes",
         "source_yes_no_question": "",
         "target_yes_no_question_orig": "Are three speed skaters made of metallic in the image?",
-        "target_yes_no_question": "Are three speed skaters metallic in the image?",
+        "target_yes_no_question": "Are three speed skaters metallic?",
         "save_dir": "4_Three metallic speed"
     },
     {
@@ -848,10 +931,12 @@
         "target_object": "A metallic person",
         "instruction_orig": "Change the person into a metallic person.",
         "instruction": "Make the person metallic.",
-        "multiple_choice_question": "What is the material of the person in the image?\na) Normal human\nb) metallic ",
+        "multiple_choice_question": "What is the material of the person?\na) Normal human\nb) metallic ",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the person metallic in the image?",
-        "save_dir": "4_A metallic person is"
+        "target_yes_no_question": "Is the person metallic?",
+        "save_dir": "4_A metallic person is",
+        "target_yes_no_question_orig": "Is the person metallic in the image?",
+        "multiple_choice_question_orig": "What is the material of the person in the image?\na) Normal human\nb) metallic "
     },
     {
         "id": "0051_dogs-jump",
@@ -865,10 +950,12 @@
         "target_object": "two plush dogs",
         "instruction_orig": "Change the real dogs to plush dogs.",
         "instruction": "Turn the two dogs into plush dogs.",
-        "multiple_choice_question": "What is the texture of the dogs in the image?\na) Normal dogs\nb) plush dogs",
+        "multiple_choice_question": "What is the texture of the dogs?\na) Normal dogs\nb) plush dogs",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the dogs plush in the image?",
-        "save_dir": "4_A woman in a yellow "
+        "target_yes_no_question": "Is the dogs plush?",
+        "save_dir": "4_A woman in a yellow ",
+        "target_yes_no_question_orig": "Is the dogs plush in the image?",
+        "multiple_choice_question_orig": "What is the texture of the dogs in the image?\na) Normal dogs\nb) plush dogs"
     },
     {
         "id": "0052_mallard-fly",
@@ -882,10 +969,12 @@
         "target_object": "A glass mallard duck",
         "instruction_orig": "Add 'glass' before'mallard duck'.",
         "instruction": "Make the mallard duck out of glass.",
-        "multiple_choice_question": "What is the material of the mallard duck in the image?\na) Normal duck\nb) Glass duck",
+        "multiple_choice_question": "What is the material of the mallard duck?\na) Normal duck\nb) Glass duck",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the duck made of glass in the image?",
-        "save_dir": "4_A glass mallard duck"
+        "target_yes_no_question": "Is the duck made of glass?",
+        "save_dir": "4_A glass mallard duck",
+        "target_yes_no_question_orig": "Is the duck made of glass in the image?",
+        "multiple_choice_question_orig": "What is the material of the mallard duck in the image?\na) Normal duck\nb) Glass duck"
     },
     {
         "id": "0053_swing",
@@ -898,10 +987,12 @@
         "target_object": "A metallic person",
         "instruction_orig": "Change the person to a metallic person.",
         "instruction": "Make the person metallic.",
-        "multiple_choice_question": "What is the material of the person on the swing in the image? \na) Normal person \nb) Metallic person",
+        "multiple_choice_question": "What is the material of the person on the swing? \na) Normal person \nb) Metallic person",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the person metallic in the image?",
-        "save_dir": "4_A metallic person is"
+        "target_yes_no_question": "Is the person metallic?",
+        "save_dir": "4_A metallic person is",
+        "target_yes_no_question_orig": "Is the person metallic in the image?",
+        "multiple_choice_question_orig": "What is the material of the person on the swing in the image? \na) Normal person \nb) Metallic person"
     },
     {
         "id": "0054_train",
@@ -916,10 +1007,12 @@
         "target_object": "A wooden model train",
         "instruction_orig": "Change 'A model train' to 'A wooden model train",
         "instruction": "Make the model train out of wood.",
-        "multiple_choice_question": "Is the model train made of wood in the image?\na) no\nb) yes",
+        "multiple_choice_question": "Is the model train made of wood?\na) no\nb) yes",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the model train made of wood in the image?",
-        "save_dir": "4_A wooden model train"
+        "target_yes_no_question": "Is the model train made of wood?",
+        "save_dir": "4_A wooden model train",
+        "target_yes_no_question_orig": "Is the model train made of wood in the image?",
+        "multiple_choice_question_orig": "Is the model train made of wood in the image?\na) no\nb) yes"
     },
     {
         "id": "0055_pigs",
@@ -933,10 +1026,12 @@
         "target_object": "A group of clay pigs",
         "instruction_orig": "Replace the real pigs with clay pigs.",
         "instruction": "Make the pigs out of clay.",
-        "multiple_choice_question": "What is the material of the pigs in the image?\na) Normal pigs \nb) clay pigs",
+        "multiple_choice_question": "What is the material of the pigs?\na) Normal pigs \nb) clay pigs",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Does the group of pigs consist of clay pigs in the image?",
-        "save_dir": "4_A group of clay pigs"
+        "target_yes_no_question": "Does the group of pigs consist of clay pigs?",
+        "save_dir": "4_A group of clay pigs",
+        "target_yes_no_question_orig": "Does the group of pigs consist of clay pigs in the image?",
+        "multiple_choice_question_orig": "What is the material of the pigs in the image?\na) Normal pigs \nb) clay pigs"
     },
     {
         "id": "0056_kart-turn",
@@ -950,10 +1045,10 @@
         "instruction_orig": "Add metallic to the go-karts",
         "instruction": "Make the two go-karts metallic.",
         "multiple_choice_question_orig": "Are the go-karts made of metallic in the image?\na) no \nb) yes ",
-        "multiple_choice_question": "Are the go-karts metallic in the image?\na) no \nb) yes ",
+        "multiple_choice_question": "Are the go-karts metallic?\na) no \nb) yes ",
         "source_yes_no_question": "",
         "target_yes_no_question_orig": "Are the go-karts made of metallic in the image?",
-        "target_yes_no_question": "Are the go-karts metallic in the image?",
+        "target_yes_no_question": "Are the go-karts metallic?",
         "save_dir": "4_Two metallic go-kart"
     },
     {
@@ -968,10 +1063,12 @@
         "target_object": "A plush golden retriever",
         "instruction_orig": "Change the real golden retriever to a plush golden retriever.",
         "instruction": "Turn the golden retriever into a plush golden retriever.",
-        "multiple_choice_question": "What is the texture of the golden retriever in the image?\na) Normal dog \nb) plush dog ",
+        "multiple_choice_question": "What is the texture of the golden retriever?\na) Normal dog \nb) plush dog ",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the dog plush in the image?",
-        "save_dir": "4_A plush golden retri"
+        "target_yes_no_question": "Is the dog plush?",
+        "save_dir": "4_A plush golden retri",
+        "target_yes_no_question_orig": "Is the dog plush in the image?",
+        "multiple_choice_question_orig": "What is the texture of the golden retriever in the image?\na) Normal dog \nb) plush dog "
     },
     {
         "id": "0058_boat",
@@ -985,10 +1082,12 @@
         "target_object": "A wooden white fishing boat",
         "instruction_orig": "Add 'wooden' to describe the boat.",
         "instruction": "Make the white fishing boat out of wood.",
-        "multiple_choice_question": "What is the material of the boat in the image?\na) Normal boat \nb) Wooden boat",
+        "multiple_choice_question": "What is the material of the boat?\na) Normal boat \nb) Wooden boat",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the boat made of wood in the image?",
-        "save_dir": "4_A wooden white fishi"
+        "target_yes_no_question": "Is the boat made of wood?",
+        "save_dir": "4_A wooden white fishi",
+        "target_yes_no_question_orig": "Is the boat made of wood in the image?",
+        "multiple_choice_question_orig": "What is the material of the boat in the image?\na) Normal boat \nb) Wooden boat"
     },
     {
         "id": "0059_drift-straight",
@@ -1002,10 +1101,12 @@
         "target_object": "A carbon fiber red sports car",
         "instruction_orig": "Add carbon fiber to the car's description.",
         "instruction": "Make the red sports car out of carbon fiber.",
-        "multiple_choice_question": "What is the material of the sports car in the image?\na) Normal red car \nb) carbon fiber car ",
+        "multiple_choice_question": "What is the material of the sports car?\na) Normal red car \nb) carbon fiber car ",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the car's material carbon fiber in the image?",
-        "save_dir": "4_A carbon fiber red s"
+        "target_yes_no_question": "Is the car's material carbon fiber?",
+        "save_dir": "4_A carbon fiber red s",
+        "target_yes_no_question_orig": "Is the car's material carbon fiber in the image?",
+        "multiple_choice_question_orig": "What is the material of the sports car in the image?\na) Normal red car \nb) carbon fiber car "
     },
     {
         "id": "0060_motocross-bumps",
@@ -1020,10 +1121,11 @@
         "target_object": "A holographic motocross rider",
         "instruction_orig": "Add 'holographic' to the rider.",
         "instruction": "Turn the motocross rider into a hologram.",
-        "multiple_choice_question": "What type of the motocross rider in the image?\na) Normal human \nb) holographic human",
+        "multiple_choice_question": "What type of the motocross rider?\na) Normal human \nb) holographic human",
         "source_yes_no_question": "",
         "target_yes_no_question": "Are motocross riders holographic?",
-        "save_dir": "4_A holographic motocr"
+        "save_dir": "4_A holographic motocr",
+        "multiple_choice_question_orig": "What type of the motocross rider in the image?\na) Normal human \nb) holographic human"
     },
     {
         "id": "0061_mbike-santa",
@@ -1037,10 +1139,11 @@
         "target_object": "A robotic person",
         "instruction_orig": "Change the person to a robotic person and the motorcycle to a wooden motorcycle.",
         "instruction": "Turn the person in the Santa Claus outfit into a robot and make the motorcycle out of wood.",
-        "multiple_choice_question": "What is the nature of the person dressed in a Santa Claus outfit in the image?\na) Human\nb) Robotic",
+        "multiple_choice_question": "What is the nature of the person dressed in a Santa Claus outfit?\na) Human\nb) Robotic",
         "source_yes_no_question": "",
         "target_yes_no_question": "Is the person riding the motorcycle a robotic human?",
-        "save_dir": "4_A robotic person dre"
+        "save_dir": "4_A robotic person dre",
+        "multiple_choice_question_orig": "What is the nature of the person dressed in a Santa Claus outfit in the image?\na) Human\nb) Robotic"
     },
     {
         "id": "0062_elephant",
@@ -1053,10 +1156,12 @@
         "target_object": "A stone elephant",
         "instruction_orig": "Replace the living elephant with a stone elephant.",
         "instruction": "Turn the elephant into a stone elephant.",
-        "multiple_choice_question": "What is the material of the elephant in the image? \na) Normal elephant \nb) Stone elephant ",
+        "multiple_choice_question": "What is the material of the elephant? \na) Normal elephant \nb) Stone elephant ",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the elephant made of stone in the image?",
-        "save_dir": "4_A stone elephant is "
+        "target_yes_no_question": "Is the elephant made of stone?",
+        "save_dir": "4_A stone elephant is ",
+        "target_yes_no_question_orig": "Is the elephant made of stone in the image?",
+        "multiple_choice_question_orig": "What is the material of the elephant in the image? \na) Normal elephant \nb) Stone elephant "
     },
     {
         "id": "0063_drift-turn",
@@ -1070,10 +1175,12 @@
         "target_object": "A carbon fiber race car",
         "instruction_orig": "Add 'carbon fiber' to describe the race car.",
         "instruction": "Make the race car out of carbon fiber.",
-        "multiple_choice_question": "What is the material of the race car in the image?\na) Normal race car \nb) carbon fiber race car",
+        "multiple_choice_question": "What is the material of the race car?\na) Normal race car \nb) carbon fiber race car",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the race car made of carbon fiber in the image?",
-        "save_dir": "4_A carbon fiber race "
+        "target_yes_no_question": "Is the race car made of carbon fiber?",
+        "save_dir": "4_A carbon fiber race ",
+        "target_yes_no_question_orig": "Is the race car made of carbon fiber in the image?",
+        "multiple_choice_question_orig": "What is the material of the race car in the image?\na) Normal race car \nb) carbon fiber race car"
     },
     {
         "id": "0064_rollerblade",
@@ -1087,11 +1194,12 @@
         "target_object": "A holographic person",
         "instruction_orig": "Add a holographic effect to the person.",
         "instruction": "Turn the person into a hologram.",
-        "multiple_choice_question": "What is the nature of the person in the image?\na) Human \nb) Holographic ",
+        "multiple_choice_question": "What is the nature of the person?\na) Human \nb) Holographic ",
         "source_yes_no_question": "",
         "target_yes_no_question_orig": "Is the person holoraphic in the image?",
-        "target_yes_no_question": "Is the person holographic in the image?",
-        "save_dir": "4_A holographic person"
+        "target_yes_no_question": "Is the person holographic?",
+        "save_dir": "4_A holographic person",
+        "multiple_choice_question_orig": "What is the nature of the person in the image?\na) Human \nb) Holographic "
     },
     {
         "id": "0065_twist-dance",
@@ -1105,10 +1213,12 @@
         "target_object": "Two holographic dancers",
         "instruction_orig": "Replace the dancers with holographic dancers.",
         "instruction": "Turn the two dancers into holograms.",
-        "multiple_choice_question": "What is the nature of the dancers in the image?\na) Real \nb) Holographic ",
+        "multiple_choice_question": "What is the nature of the dancers?\na) Real \nb) Holographic ",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Are the dancers holographic in the image?",
-        "save_dir": "4_Two holographic danc"
+        "target_yes_no_question": "Are the dancers holographic?",
+        "save_dir": "4_Two holographic danc",
+        "target_yes_no_question_orig": "Are the dancers holographic in the image?",
+        "multiple_choice_question_orig": "What is the nature of the dancers in the image?\na) Real \nb) Holographic "
     },
     {
         "id": "0066_deer",
@@ -1121,11 +1231,13 @@
         "target_object_orig": "wooden",
         "target_object": "Two wooden deer",
         "instruction_orig": "Change the deer from living creatures to wooden statues.",
-        "instruction": "Turn the two deer into wooden statues.",
-        "multiple_choice_question": "What is the material of the deer in the image? \na) Normal deer \nb) Wooden deer ",
+        "instruction": "Make the two deer out of wood.",
+        "multiple_choice_question": "What is the material of the deer? \na) Normal deer \nb) Wooden deer ",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the material of the deer wood in the image?",
-        "save_dir": "4_Two wooden deer are "
+        "target_yes_no_question": "Is the material of the deer wood?",
+        "save_dir": "4_Two wooden deer are ",
+        "target_yes_no_question_orig": "Is the material of the deer wood in the image?",
+        "multiple_choice_question_orig": "What is the material of the deer in the image? \na) Normal deer \nb) Wooden deer "
     },
     {
         "id": "0067_mbike-trick",
@@ -1140,10 +1252,11 @@
         "target_object": "A holographic motorcyclist",
         "instruction_orig": "Change the motorcyclist to a holographic motorcyclist.",
         "instruction": "Turn the motorcyclist into a hologram.",
-        "multiple_choice_question": "What is the material of the motorcyclist in the image? \na) normal human \nb) holographic human",
+        "multiple_choice_question": "What is the material of the motorcyclist? \na) normal human \nb) holographic human",
         "source_yes_no_question": "",
         "target_yes_no_question": "Is the motorcyclist holographic?",
-        "save_dir": "4_A holographic motorc"
+        "save_dir": "4_A holographic motorc",
+        "multiple_choice_question_orig": "What is the material of the motorcyclist in the image? \na) normal human \nb) holographic human"
     },
     {
         "id": "0068_planes-water",
@@ -1157,10 +1270,12 @@
         "target_object": "A chrome large passenger airplane",
         "instruction_orig": "Add 'chrome' to describe the airplane.",
         "instruction": "Make the airplane out of chrome.",
-        "multiple_choice_question": "What is the material of the airplane in the image?\na) Normal airplane\nb) Chrome airplane",
+        "multiple_choice_question": "What is the material of the airplane?\na) Normal airplane\nb) Chrome airplane",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the airplane chrome in the image?",
-        "save_dir": "4_A chrome large passe"
+        "target_yes_no_question": "Is the airplane chrome?",
+        "save_dir": "4_A chrome large passe",
+        "target_yes_no_question_orig": "Is the airplane chrome in the image?",
+        "multiple_choice_question_orig": "What is the material of the airplane in the image?\na) Normal airplane\nb) Chrome airplane"
     },
     {
         "id": "0069_car-turn",
@@ -1174,10 +1289,12 @@
         "target_object": "A silver holographic SUV",
         "instruction_orig": "Add a holographic effect to the silver SUV.",
         "instruction": "Turn the silver SUV into a hologram.",
-        "multiple_choice_question": "What is the material of the SUV in the image? \na) Normal \nb) Holographic",
+        "multiple_choice_question": "What is the material of the SUV? \na) Normal \nb) Holographic",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the SUV holographic in the image?",
-        "save_dir": "4_A silver holographic"
+        "target_yes_no_question": "Is the SUV holographic?",
+        "save_dir": "4_A silver holographic",
+        "target_yes_no_question_orig": "Is the SUV holographic in the image?",
+        "multiple_choice_question_orig": "What is the material of the SUV in the image? \na) Normal \nb) Holographic"
     },
     {
         "id": "0070_dance-twirl",
@@ -1190,10 +1307,12 @@
         "target_object": "A holographic dancer",
         "instruction_orig": "Change the dancer to a holographic dancer.",
         "instruction": "Turn the dancer into a hologram.",
-        "multiple_choice_question": "What is the nature of the dancer in the image?\na) real person \nb) Holographic",
+        "multiple_choice_question": "What is the nature of the dancer?\na) real person \nb) Holographic",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the dancer a hologram in the image?",
-        "save_dir": "4_A holographic dancer"
+        "target_yes_no_question": "Is the dancer a hologram?",
+        "save_dir": "4_A holographic dancer",
+        "target_yes_no_question_orig": "Is the dancer a hologram in the image?",
+        "multiple_choice_question_orig": "What is the nature of the dancer in the image?\na) real person \nb) Holographic"
     },
     {
         "id": "0071_mallard-water",
@@ -1207,10 +1326,12 @@
         "target_object": "A glass mallard duck",
         "instruction_orig": "Add 'glass' before'mallard duck'.",
         "instruction": "Make the mallard duck out of glass.",
-        "multiple_choice_question": "What is the material of the mallard duck in the image?\na) Normal duck \nb) glass duck ",
+        "multiple_choice_question": "What is the material of the mallard duck?\na) Normal duck \nb) glass duck ",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the duck made of glass in the image?",
-        "save_dir": "4_A glass mallard duck"
+        "target_yes_no_question": "Is the duck made of glass?",
+        "save_dir": "4_A glass mallard duck",
+        "target_yes_no_question_orig": "Is the duck made of glass in the image?",
+        "multiple_choice_question_orig": "What is the material of the mallard duck in the image?\na) Normal duck \nb) glass duck "
     },
     {
         "id": "0072_dog-agility",
@@ -1224,10 +1345,12 @@
         "target_object": "A plush border collie",
         "instruction_orig": "Add plush to the border collie.",
         "instruction": "Turn the border collie into a plush border collie.",
-        "multiple_choice_question": "What is the texture of the border collie in the image?\na) Normal dog \nb) Plush dog ",
+        "multiple_choice_question": "What is the texture of the border collie?\na) Normal dog \nb) Plush dog ",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the border collie plush in the image?",
-        "save_dir": "4_A plush border colli"
+        "target_yes_no_question": "Is the border collie plush?",
+        "save_dir": "4_A plush border colli",
+        "target_yes_no_question_orig": "Is the border collie plush in the image?",
+        "multiple_choice_question_orig": "What is the texture of the border collie in the image?\na) Normal dog \nb) Plush dog "
     },
     {
         "id": "0073_bmx-rider",
@@ -1242,10 +1365,12 @@
         "target_object": "A holographic BMX rider",
         "instruction_orig": "Change the rider to a holographic version.",
         "instruction": "Turn the BMX rider into a hologram.",
-        "multiple_choice_question": "What is the nature of the BMX rider in the image?\na) Real person\nb) Holographic",
+        "multiple_choice_question": "What is the nature of the BMX rider?\na) Real person\nb) Holographic",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the BMX rider a hologram in the image?",
-        "save_dir": "4_A holographic BMX ri"
+        "target_yes_no_question": "Is the BMX rider a hologram?",
+        "save_dir": "4_A holographic BMX ri",
+        "target_yes_no_question_orig": "Is the BMX rider a hologram in the image?",
+        "multiple_choice_question_orig": "What is the nature of the BMX rider in the image?\na) Real person\nb) Holographic"
     },
     {
         "id": "0074_rhino",
@@ -1259,10 +1384,11 @@
         "target_object": "A stone large rhinoceros",
         "instruction_orig": "Add stone to the rhinoceros.",
         "instruction": "Make the rhinoceros out of stone.",
-        "multiple_choice_question": "What is the nature of the rhinoceros in the image?\na) normal rhinoceros\nb) rhinoceros made of stone",
+        "multiple_choice_question": "What is the nature of the rhinoceros?\na) normal rhinoceros\nb) rhinoceros made of stone",
         "source_yes_no_question": "",
         "target_yes_no_question": "Is the rhinoceros made of stone?",
-        "save_dir": "4_A stone large rhinoc"
+        "save_dir": "4_A stone large rhinoc",
+        "multiple_choice_question_orig": "What is the nature of the rhinoceros in the image?\na) normal rhinoceros\nb) rhinoceros made of stone"
     },
     {
         "id": "0075_A_bicycle",
@@ -1276,10 +1402,12 @@
         "target_object": "A glass bicycle",
         "instruction_orig": "Change the bicycle to glass.",
         "instruction": "Make the bicycle out of glass.",
-        "multiple_choice_question": "What is the material of the bicycle in the image?\na) Normal bicycle \nb) glass bicycle",
+        "multiple_choice_question": "What is the material of the bicycle?\na) Normal bicycle \nb) glass bicycle",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the bicycle made of glass in the image?",
-        "save_dir": "4_A glass bicycle is r"
+        "target_yes_no_question": "Is the bicycle made of glass?",
+        "save_dir": "4_A glass bicycle is r",
+        "target_yes_no_question_orig": "Is the bicycle made of glass in the image?",
+        "multiple_choice_question_orig": "What is the material of the bicycle in the image?\na) Normal bicycle \nb) glass bicycle"
     },
     {
         "id": "0076_A_rabbit",
@@ -1292,10 +1420,12 @@
         "target_object": "A velvet rabbit",
         "instruction_orig": "Add the adjective'velvet' to the rabbit.",
         "instruction": "Make the rabbit out of velvet.",
-        "multiple_choice_question": "What is the material of the rabbit in the image?\na) Normal rabbit\nb) Velvet rabbit ",
+        "multiple_choice_question": "What is the material of the rabbit?\na) Normal rabbit\nb) Velvet rabbit ",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the rabbit made of velvet in the image?",
-        "save_dir": "4_A velvet rabbit is h"
+        "target_yes_no_question": "Is the rabbit made of velvet?",
+        "save_dir": "4_A velvet rabbit is h",
+        "target_yes_no_question_orig": "Is the rabbit made of velvet in the image?",
+        "multiple_choice_question_orig": "What is the material of the rabbit in the image?\na) Normal rabbit\nb) Velvet rabbit "
     },
     {
         "id": "0077_A_hawk",
@@ -1308,10 +1438,12 @@
         "target_object": "A metallic hawk",
         "instruction_orig": "Change the hawk to a metallic hawk.",
         "instruction": "Make the hawk metallic.",
-        "multiple_choice_question": "What is the material of the hawk in the image?\na) Normal hawk \nb) metallic hawk",
+        "multiple_choice_question": "What is the material of the hawk?\na) Normal hawk \nb) metallic hawk",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the hawk metallic in the image?",
-        "save_dir": "4_A metallic hawk is s"
+        "target_yes_no_question": "Is the hawk metallic?",
+        "save_dir": "4_A metallic hawk is s",
+        "target_yes_no_question_orig": "Is the hawk metallic in the image?",
+        "multiple_choice_question_orig": "What is the material of the hawk in the image?\na) Normal hawk \nb) metallic hawk"
     },
     {
         "id": "0078_A_cat",
@@ -1324,11 +1456,12 @@
         "target_object": "A woolen cat",
         "instruction_orig": "Add woolen to the cat.",
         "instruction": "Make the cat out of wool.",
-        "multiple_choice_question": "What is the material of the cat in the image?\na) Normal cat \nb) woolen cat",
+        "multiple_choice_question": "What is the material of the cat?\na) Normal cat \nb) woolen cat",
         "source_yes_no_question": "",
         "target_yes_no_question_orig": "Is the cat made of woolen in the image?",
-        "target_yes_no_question": "Is the cat woolen in the image?",
-        "save_dir": "4_A woolen cat is poun"
+        "target_yes_no_question": "Is the cat woolen?",
+        "save_dir": "4_A woolen cat is poun",
+        "multiple_choice_question_orig": "What is the material of the cat in the image?\na) Normal cat \nb) woolen cat"
     },
     {
         "id": "0079_A_bus",
@@ -1341,10 +1474,12 @@
         "target_object": "A wooden bus",
         "instruction_orig": "Replace the bus with a wooden bus.",
         "instruction": "Make the bus out of wood.",
-        "multiple_choice_question": "What is the material of the bus in the image?\na) Normal bus \nb) Wooden bus",
+        "multiple_choice_question": "What is the material of the bus?\na) Normal bus \nb) Wooden bus",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the bus made of wood in the image?",
-        "save_dir": "4_A wooden bus is driv"
+        "target_yes_no_question": "Is the bus made of wood?",
+        "save_dir": "4_A wooden bus is driv",
+        "target_yes_no_question_orig": "Is the bus made of wood in the image?",
+        "multiple_choice_question_orig": "What is the material of the bus in the image?\na) Normal bus \nb) Wooden bus"
     },
     {
         "id": "0080_A_motorcycle",
@@ -1358,11 +1493,12 @@
         "target_object": "A holographic motorcycle",
         "instruction_orig": "Change the motorcycle to a holographic motorcycle.",
         "instruction": "Turn the motorcycle into a hologram.",
-        "multiple_choice_question": "What is the material of the motorcycle in the image?\na) Normal motorcycle\nb) Holographic motorcycle\nc) Other (please specify) ",
+        "multiple_choice_question": "What is the material of the motorcycle?\na) Normal motorcycle\nb) Holographic motorcycle\nc) Other (please specify) ",
         "source_yes_no_question": "",
         "target_yes_no_question_orig": "Is the motorcycle holorgraphic in the image?",
-        "target_yes_no_question": "Is the motorcycle holographic in the image?",
-        "save_dir": "4_A holographic motorc"
+        "target_yes_no_question": "Is the motorcycle holographic?",
+        "save_dir": "4_A holographic motorc",
+        "multiple_choice_question_orig": "What is the material of the motorcycle in the image?\na) Normal motorcycle\nb) Holographic motorcycle\nc) Other (please specify) "
     },
     {
         "id": "0081_A_horse",
@@ -1375,10 +1511,12 @@
         "target_object": "A crystal horse",
         "instruction_orig": "Change the horse to a crystal horse.",
         "instruction": "Make the horse out of crystal.",
-        "multiple_choice_question": "What is the material of the horse in the image? \na) Normal horse \nb) crystal horse",
+        "multiple_choice_question": "What is the material of the horse? \na) Normal horse \nb) crystal horse",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the horse crystal in the image?",
-        "save_dir": "4_A crystal horse is g"
+        "target_yes_no_question": "Is the horse crystal?",
+        "save_dir": "4_A crystal horse is g",
+        "target_yes_no_question_orig": "Is the horse crystal in the image?",
+        "multiple_choice_question_orig": "What is the material of the horse in the image? \na) Normal horse \nb) crystal horse"
     },
     {
         "id": "0082_A_tram",
@@ -1392,10 +1530,12 @@
         "target_object": "A ceramic tram",
         "instruction_orig": "Change the material of the tram to ceramic.",
         "instruction": "Make the tram out of ceramic.",
-        "multiple_choice_question": "What is the material of the tram in the image? \na) Normal tram \nb) Ceramic tram",
+        "multiple_choice_question": "What is the material of the tram? \na) Normal tram \nb) Ceramic tram",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the tram made of ceramic in the image?",
-        "save_dir": "4_A ceramic tram is mo"
+        "target_yes_no_question": "Is the tram made of ceramic?",
+        "save_dir": "4_A ceramic tram is mo",
+        "target_yes_no_question_orig": "Is the tram made of ceramic in the image?",
+        "multiple_choice_question_orig": "What is the material of the tram in the image? \na) Normal tram \nb) Ceramic tram"
     },
     {
         "id": "0083_A_boat",
@@ -1408,10 +1548,12 @@
         "target_object": "A bamboo boat",
         "instruction_orig": "Replace the boat with a bamboo boat.",
         "instruction": "Make the boat out of bamboo.",
-        "multiple_choice_question": "What is the material of the boat in the image?\na) Normal boat\nb) Bamboo boat",
+        "multiple_choice_question": "What is the material of the boat?\na) Normal boat\nb) Bamboo boat",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the boat made of bamboo in the image?",
-        "save_dir": "4_A bamboo boat is sai"
+        "target_yes_no_question": "Is the boat made of bamboo?",
+        "save_dir": "4_A bamboo boat is sai",
+        "target_yes_no_question_orig": "Is the boat made of bamboo in the image?",
+        "multiple_choice_question_orig": "What is the material of the boat in the image?\na) Normal boat\nb) Bamboo boat"
     },
     {
         "id": "0084_A_squirrel",
@@ -1425,10 +1567,12 @@
         "target_object": "A clay squirrel",
         "instruction_orig": "Replace the squirrel with a clay squirrel.",
         "instruction": "Make the squirrel out of clay.",
-        "multiple_choice_question": "What is the material of the squirrel in the image? \na) Normal squirrel \nb) clay squirrel",
+        "multiple_choice_question": "What is the material of the squirrel? \na) Normal squirrel \nb) clay squirrel",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the squirrel made of clay in the image?",
-        "save_dir": "4_A clay squirrel is c"
+        "target_yes_no_question": "Is the squirrel made of clay?",
+        "save_dir": "4_A clay squirrel is c",
+        "target_yes_no_question_orig": "Is the squirrel made of clay in the image?",
+        "multiple_choice_question_orig": "What is the material of the squirrel in the image? \na) Normal squirrel \nb) clay squirrel"
     },
     {
         "id": "0085_A_tram",
@@ -1442,10 +1586,12 @@
         "target_object": "A leather tram",
         "instruction_orig": "Add leather to the tram.",
         "instruction": "Make the tram out of leather.",
-        "multiple_choice_question": "What is the material of the tram in the image?\na) Normal tram \nb) Leather tram",
+        "multiple_choice_question": "What is the material of the tram?\na) Normal tram \nb) Leather tram",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the tram made of leather in the image?",
-        "save_dir": "4_A leather tram is mo"
+        "target_yes_no_question": "Is the tram made of leather?",
+        "save_dir": "4_A leather tram is mo",
+        "target_yes_no_question_orig": "Is the tram made of leather in the image?",
+        "multiple_choice_question_orig": "What is the material of the tram in the image?\na) Normal tram \nb) Leather tram"
     },
     {
         "id": "0086_A_red_sports_car",
@@ -1458,10 +1604,12 @@
         "target_object": "A velvet red sports car",
         "instruction_orig": "Add'velvet' to describe the color of the car.",
         "instruction": "Make the red sports car out of red velvet.",
-        "multiple_choice_question": "What is the texture of the sports car in the image?\na) Normal red car\nb) Velvet car",
+        "multiple_choice_question": "What is the texture of the sports car?\na) Normal red car\nb) Velvet car",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the sports car velvet red in the image?",
-        "save_dir": "4_A velvet red sports "
+        "target_yes_no_question": "Is the sports car velvet red?",
+        "save_dir": "4_A velvet red sports ",
+        "target_yes_no_question_orig": "Is the sports car velvet red in the image?",
+        "multiple_choice_question_orig": "What is the texture of the sports car in the image?\na) Normal red car\nb) Velvet car"
     },
     {
         "id": "0087_A_seagull",
@@ -1474,10 +1622,12 @@
         "target_object": "A porcelain seagull",
         "instruction_orig": "Change the seagull to porcelain.",
         "instruction": "Make the seagull out of porcelain.",
-        "multiple_choice_question": "What is the material of the seagull in the image?\na) Normal seagull \nb) Porcelain seagull",
+        "multiple_choice_question": "What is the material of the seagull?\na) Normal seagull \nb) Porcelain seagull",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the seagull made of porcelain in the image?",
-        "save_dir": "4_A porcelain seagull "
+        "target_yes_no_question": "Is the seagull made of porcelain?",
+        "save_dir": "4_A porcelain seagull ",
+        "target_yes_no_question_orig": "Is the seagull made of porcelain in the image?",
+        "multiple_choice_question_orig": "What is the material of the seagull in the image?\na) Normal seagull \nb) Porcelain seagull"
     },
     {
         "id": "0088_A_cyclist",
@@ -1491,10 +1641,12 @@
         "target_object": "A cardboard cyclist",
         "instruction_orig": "Replace the cyclist with a cardboard cutout of the cyclist.",
         "instruction": "Turn the cyclist into a cardboard cutout.",
-        "multiple_choice_question": "What is the material of the cyclist in the image?\na) real person \nb) Cardboard",
+        "multiple_choice_question": "What is the material of the cyclist?\na) real person \nb) Cardboard",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the cyclist made of cardboard in the image?",
-        "save_dir": "4_A cardboard cyclist "
+        "target_yes_no_question": "Is the cyclist made of cardboard?",
+        "save_dir": "4_A cardboard cyclist ",
+        "target_yes_no_question_orig": "Is the cyclist made of cardboard in the image?",
+        "multiple_choice_question_orig": "What is the material of the cyclist in the image?\na) real person \nb) Cardboard"
     },
     {
         "id": "0089_A_dog",
@@ -1508,10 +1660,12 @@
         "target_object": "A plush dog",
         "instruction_orig": "Replace the real dog with a plush dog.",
         "instruction": "Turn the dog into a plush dog.",
-        "multiple_choice_question": "What is the texture of the dog in the image? \na) Real dog \nb) Plush dog ",
+        "multiple_choice_question": "What is the texture of the dog? \na) Real dog \nb) Plush dog ",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the dog plush in the image?",
-        "save_dir": "4_A plush dog is waggi"
+        "target_yes_no_question": "Is the dog plush?",
+        "save_dir": "4_A plush dog is waggi",
+        "target_yes_no_question_orig": "Is the dog plush in the image?",
+        "multiple_choice_question_orig": "What is the texture of the dog in the image? \na) Real dog \nb) Plush dog "
     },
     {
         "id": "0090_A_deer",
@@ -1525,10 +1679,12 @@
         "target_object": "A bronze deer",
         "instruction_orig": "Add bronze to the deer's description.",
         "instruction": "Make the deer out of bronze.",
-        "multiple_choice_question": "What is the material of the deer in the image? \na) Normal deer \nb) bronze deer",
+        "multiple_choice_question": "What is the material of the deer? \na) Normal deer \nb) bronze deer",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the deer bronze in the image?",
-        "save_dir": "4_A bronze deer is bou"
+        "target_yes_no_question": "Is the deer bronze?",
+        "save_dir": "4_A bronze deer is bou",
+        "target_yes_no_question_orig": "Is the deer bronze in the image?",
+        "multiple_choice_question_orig": "What is the material of the deer in the image? \na) Normal deer \nb) bronze deer"
     },
     {
         "id": "0091_A_hawk",
@@ -1541,10 +1697,12 @@
         "target_object": "A glass hawk",
         "instruction_orig": "Replace the hawk with a glass hawk.",
         "instruction": "Make the hawk out of glass.",
-        "multiple_choice_question": "What is the material of the hawk in the image?\na) Normal bird\nb) glass bird",
+        "multiple_choice_question": "What is the material of the hawk?\na) Normal bird\nb) glass bird",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the hawk made of glass in the image?",
-        "save_dir": "4_A glass hawk is circ"
+        "target_yes_no_question": "Is the hawk made of glass?",
+        "save_dir": "4_A glass hawk is circ",
+        "target_yes_no_question_orig": "Is the hawk made of glass in the image?",
+        "multiple_choice_question_orig": "What is the material of the hawk in the image?\na) Normal bird\nb) glass bird"
     },
     {
         "id": "0092_A_fox",
@@ -1557,10 +1715,12 @@
         "target_object": "A velvet fox",
         "instruction_orig": "Add \"velvet\" to describe the fox.",
         "instruction": "Make the fox out of velvet.",
-        "multiple_choice_question": "What is the texture of the fox in the image? \na) Normal fox \nb) velvet fox ",
+        "multiple_choice_question": "What is the texture of the fox? \na) Normal fox \nb) velvet fox ",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the fox velvet in the image?",
-        "save_dir": "4_A velvet fox is trot"
+        "target_yes_no_question": "Is the fox velvet?",
+        "save_dir": "4_A velvet fox is trot",
+        "target_yes_no_question_orig": "Is the fox velvet in the image?",
+        "multiple_choice_question_orig": "What is the texture of the fox in the image? \na) Normal fox \nb) velvet fox "
     },
     {
         "id": "0093_A_helicopter",
@@ -1574,10 +1734,12 @@
         "target_object": "A steel helicopter",
         "instruction_orig": "Add'steel' to describe the helicopter.",
         "instruction": "Make the helicopter out of steel.",
-        "multiple_choice_question": "What is the material of the helicopter in the image? \na) Normal helicopter \nb) Steel helicopter",
+        "multiple_choice_question": "What is the material of the helicopter? \na) Normal helicopter \nb) Steel helicopter",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the helicopter made of steel in the image?",
-        "save_dir": "4_A steel helicopter i"
+        "target_yes_no_question": "Is the helicopter made of steel?",
+        "save_dir": "4_A steel helicopter i",
+        "target_yes_no_question_orig": "Is the helicopter made of steel in the image?",
+        "multiple_choice_question_orig": "What is the material of the helicopter in the image? \na) Normal helicopter \nb) Steel helicopter"
     },
     {
         "id": "0094_A_swan",
@@ -1591,10 +1753,12 @@
         "target_object": "A silk swan",
         "instruction_orig": "Add'silk' before'swan",
         "instruction": "Make the swan out of silk.",
-        "multiple_choice_question": "What is the material of the swan in the image? \na) Normal swan \nb) silk swan",
+        "multiple_choice_question": "What is the material of the swan? \na) Normal swan \nb) silk swan",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the swan made of silk in the image?",
-        "save_dir": "4_A silk swan is swimm"
+        "target_yes_no_question": "Is the swan made of silk?",
+        "save_dir": "4_A silk swan is swimm",
+        "target_yes_no_question_orig": "Is the swan made of silk in the image?",
+        "multiple_choice_question_orig": "What is the material of the swan in the image? \na) Normal swan \nb) silk swan"
     },
     {
         "id": "0095_A_crow",
@@ -1607,10 +1771,12 @@
         "target_object": "A rubber crow",
         "instruction_orig": "Replace the real crow with a rubber crow.",
         "instruction": "Make the crow out of rubber.",
-        "multiple_choice_question": "What is the material of the crow in the image?\na) Normal bird \nb) rubber bird",
+        "multiple_choice_question": "What is the material of the crow?\na) Normal bird \nb) rubber bird",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the crow made of rubber in the image?",
-        "save_dir": "4_A rubber crow is per"
+        "target_yes_no_question": "Is the crow made of rubber?",
+        "save_dir": "4_A rubber crow is per",
+        "target_yes_no_question_orig": "Is the crow made of rubber in the image?",
+        "multiple_choice_question_orig": "What is the material of the crow in the image?\na) Normal bird \nb) rubber bird"
     },
     {
         "id": "0096_A_car",
@@ -1624,10 +1790,12 @@
         "target_object": "A chrome car",
         "instruction_orig": "Add 'chrome' to describe the car.",
         "instruction": "Make the car out of chrome.",
-        "multiple_choice_question": "What is the material of the car in the image? \na) Normal car \nb) Chrome car",
+        "multiple_choice_question": "What is the material of the car? \na) Normal car \nb) Chrome car",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the car chrome in the image?",
-        "save_dir": "4_A chrome car is driv"
+        "target_yes_no_question": "Is the car chrome?",
+        "save_dir": "4_A chrome car is driv",
+        "target_yes_no_question_orig": "Is the car chrome in the image?",
+        "multiple_choice_question_orig": "What is the material of the car in the image? \na) Normal car \nb) Chrome car"
     },
     {
         "id": "0098_A_squirrel",
@@ -1640,10 +1808,12 @@
         "target_object": "A knitted squirrel",
         "instruction_orig": "Add knitted to describe the squirrel.",
         "instruction": "Make the squirrel out of knitted wool.",
-        "multiple_choice_question": "What is the texture of the squirrel in the image? \na) Normal style \nb) knitted style",
+        "multiple_choice_question": "What is the texture of the squirrel? \na) Normal style \nb) knitted style",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Does the squirrel in the image look like in a knitted style?",
-        "save_dir": "4_A knitted squirrel i"
+        "target_yes_no_question": "Does the squirrel look like in a knitted style?",
+        "save_dir": "4_A knitted squirrel i",
+        "target_yes_no_question_orig": "Does the squirrel in the image look like in a knitted style?",
+        "multiple_choice_question_orig": "What is the texture of the squirrel in the image? \na) Normal style \nb) knitted style"
     },
     {
         "id": "0099_A_jogger",
@@ -1656,10 +1826,12 @@
         "target_object": "A robotic jogger",
         "instruction_orig": "Replace the human jogger with a robotic jogger",
         "instruction": "Turn the jogger into a robot.",
-        "multiple_choice_question": "What is the type of the jogger in the image?\na) real people\nb) Robotic",
+        "multiple_choice_question": "What is the type of the jogger?\na) real people\nb) Robotic",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the jogger robotic in the image?",
-        "save_dir": "4_A robotic jogger is "
+        "target_yes_no_question": "Is the jogger robotic?",
+        "save_dir": "4_A robotic jogger is ",
+        "target_yes_no_question_orig": "Is the jogger robotic in the image?",
+        "multiple_choice_question_orig": "What is the type of the jogger in the image?\na) real people\nb) Robotic"
     },
     {
         "id": "0100_A_deer",
@@ -1672,9 +1844,11 @@
         "target_object": "A marble deer",
         "instruction_orig": "Change the deer to be made of marble.",
         "instruction": "Make the deer out of marble.",
-        "multiple_choice_question": "What is the material of the deer in the image?\na) Real deer \nb) Marble deer",
+        "multiple_choice_question": "What is the material of the deer?\na) Real deer \nb) Marble deer",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the deer made of marble in the image?",
-        "save_dir": "4_A marble deer is dri"
+        "target_yes_no_question": "Is the deer made of marble?",
+        "save_dir": "4_A marble deer is dri",
+        "target_yes_no_question_orig": "Is the deer made of marble in the image?",
+        "multiple_choice_question_orig": "What is the material of the deer in the image?\na) Real deer \nb) Marble deer"
     }
 ]

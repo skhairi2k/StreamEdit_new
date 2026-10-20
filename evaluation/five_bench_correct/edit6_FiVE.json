@@ -12,11 +12,13 @@
         "target_object_orig": "not accompanied by a gray dog walking alongside her",
         "target_object": "",
         "instruction": "Remove the gray dog from the scene.",
-        "multiple_choice_question": "Is the gray dog present in the image? \na) yes \nb) no",
-        "source_yes_no_question": "Is the girl accompanied by a gray dog in the image?",
+        "multiple_choice_question": "Is the gray dog present? \na) yes \nb) no",
+        "source_yes_no_question": "Is the girl accompanied by a gray dog?",
         "target_yes_no_question_orig": "Is not there a grey dog ​​walking with the girl in the picture?",
-        "target_yes_no_question": "Is the girl not accompanied by a gray dog in the image?",
-        "save_dir": "6_A young girl in a wh"
+        "target_yes_no_question": "Is the girl not accompanied by a gray dog?",
+        "save_dir": "6_A young girl in a wh",
+        "source_yes_no_question_orig": "Is the girl accompanied by a gray dog in the image?",
+        "multiple_choice_question_orig": "Is the gray dog present in the image? \na) yes \nb) no"
     },
     {
         "id": "0017_kid-football",
@@ -51,9 +53,11 @@
         "target_object": "",
         "instruction": "Remove the helmet from the baseball player.",
         "multiple_choice_question": "Is the baseball player wearing a helmet? \na) Yes \nb) No",
-        "source_yes_no_question": "Is the baseball player wearing a helmet in the image?",
-        "target_yes_no_question": "Is the baseball player not wearing a helmet in the image?",
-        "save_dir": "6_A baseball player in"
+        "source_yes_no_question": "Is the baseball player wearing a helmet?",
+        "target_yes_no_question": "Is the baseball player not wearing a helmet?",
+        "save_dir": "6_A baseball player in",
+        "source_yes_no_question_orig": "Is the baseball player wearing a helmet in the image?",
+        "target_yes_no_question_orig": "Is the baseball player not wearing a helmet in the image?"
     },
     {
         "id": "0041_longboard",
@@ -68,10 +72,13 @@
         "target_object_orig": "backpack",
         "target_object": "",
         "instruction": "Remove the backpack from the man.",
-        "multiple_choice_question": "Is the man in the image wearing a backpack? \na) Yes \nb) No",
-        "source_yes_no_question": "Is the man wearing a backpack in the image?",
-        "target_yes_no_question": "Is the man not wearing a backpack in the image?",
-        "save_dir": "6_A man in a yellow sh"
+        "multiple_choice_question": "Is the man wearing a backpack? \na) Yes \nb) No",
+        "source_yes_no_question": "Is the man wearing a backpack?",
+        "target_yes_no_question": "Is the man not wearing a backpack?",
+        "save_dir": "6_A man in a yellow sh",
+        "source_yes_no_question_orig": "Is the man wearing a backpack in the image?",
+        "target_yes_no_question_orig": "Is the man not wearing a backpack in the image?",
+        "multiple_choice_question_orig": "Is the man in the image wearing a backpack? \na) Yes \nb) No"
     },
     {
         "id": "0048_hike",
@@ -86,10 +93,13 @@
         "target_object_orig": "backpack",
         "target_object": "",
         "instruction": "Remove the backpack from the man.",
-        "multiple_choice_question": "Is the man in the image carrying a backpack? \na) Yes \nb) No",
-        "source_yes_no_question": "Is the man wearing a backpack in the image?",
-        "target_yes_no_question": "Is the man not wearing a backpack in the image?",
-        "save_dir": "6_A man without a back"
+        "multiple_choice_question": "Is the man carrying a backpack? \na) Yes \nb) No",
+        "source_yes_no_question": "Is the man wearing a backpack?",
+        "target_yes_no_question": "Is the man not wearing a backpack?",
+        "save_dir": "6_A man without a back",
+        "source_yes_no_question_orig": "Is the man wearing a backpack in the image?",
+        "target_yes_no_question_orig": "Is the man not wearing a backpack in the image?",
+        "multiple_choice_question_orig": "Is the man in the image carrying a backpack? \na) Yes \nb) No"
     },
     {
         "id": "0051_dogs-jump",
@@ -104,10 +114,13 @@
         "target_object": "",
         "instruction_orig": "Remove the two dogs from the scene, but keep the woman and the open field under the cloudy sky.",
         "instruction": "Remove the two dogs.",
-        "multiple_choice_question": "What object is present in the image? \na) two dogs \nb) without two dogs",
-        "source_yes_no_question": "Are there two dogs in the image?",
-        "target_yes_no_question": "Are there no dogs in the image?",
-        "save_dir": "6_A woman in a yellow "
+        "multiple_choice_question": "What object is present? \na) two dogs \nb) without two dogs",
+        "source_yes_no_question": "Are there two dogs?",
+        "target_yes_no_question": "Are there no dogs?",
+        "save_dir": "6_A woman in a yellow ",
+        "source_yes_no_question_orig": "Are there two dogs in the image?",
+        "target_yes_no_question_orig": "Are there no dogs in the image?",
+        "multiple_choice_question_orig": "What object is present in the image? \na) two dogs \nb) without two dogs"
     },
     {
         "id": "0055_pigs",
@@ -122,10 +135,13 @@
         "target_object_orig": "A large pig is forging on a dirt ground without smaller pigs moving around",
         "target_object": "",
         "instruction": "Remove the two smaller pigs from the scene.",
-        "multiple_choice_question": "What is the number of pigs in the image? \na) There are many pigs \nb) There is a large pig",
-        "source_yes_no_question": "Are there smaller pigs in the image?",
-        "target_yes_no_question": "Is the pig alone in the image?",
-        "save_dir": "6_A large pig is forgi"
+        "multiple_choice_question": "What is the number of pigs? \na) There are many pigs \nb) There is a large pig",
+        "source_yes_no_question": "Are there smaller pigs?",
+        "target_yes_no_question": "Is the pig alone?",
+        "save_dir": "6_A large pig is forgi",
+        "source_yes_no_question_orig": "Are there smaller pigs in the image?",
+        "target_yes_no_question_orig": "Is the pig alone in the image?",
+        "multiple_choice_question_orig": "What is the number of pigs in the image? \na) There are many pigs \nb) There is a large pig"
     },
     {
         "id": "0088_A_cyclist",
@@ -142,8 +158,10 @@
         "instruction_orig": "Remove the helmet.",
         "instruction": "Remove the cyclist's helmet.",
         "multiple_choice_question": "Is the cyclist wearing a helmet? \na) Yes \nb) No",
-        "source_yes_no_question": "Is the cyclist wearing a helmet in the image?",
-        "target_yes_no_question": "Is the cyclist not wearing a helmet in the image?",
-        "save_dir": "6_A cyclist not wearin"
+        "source_yes_no_question": "Is the cyclist wearing a helmet?",
+        "target_yes_no_question": "Is the cyclist not wearing a helmet?",
+        "save_dir": "6_A cyclist not wearin",
+        "source_yes_no_question_orig": "Is the cyclist wearing a helmet in the image?",
+        "target_yes_no_question_orig": "Is the cyclist not wearing a helmet in the image?"
     }
 ]

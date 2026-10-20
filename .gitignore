@@ -21,3 +21,4 @@ evaluation/**/_archive*/
 *.pt
 *.npy
 *.npz
+jz/r50_jz.env

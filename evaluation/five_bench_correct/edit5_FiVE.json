@@ -11,10 +11,12 @@
         "target_object_orig": "A musician wearing a hat",
         "target_object": "a hat",
         "instruction": "Add a hat to the violinist.",
-        "multiple_choice_question": "Is the musician wearing a hat in the image?\na) no\nb) yes",
+        "multiple_choice_question": "Is the musician wearing a hat?\na) no\nb) yes",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the musician wearing a hat in the image?",
-        "save_dir": "5_A musician wearing a"
+        "target_yes_no_question": "Is the musician wearing a hat?",
+        "save_dir": "5_A musician wearing a",
+        "target_yes_no_question_orig": "Is the musician wearing a hat in the image?",
+        "multiple_choice_question_orig": "Is the musician wearing a hat in the image?\na) no\nb) yes"
     },
     {
         "id": "0009_bear",
@@ -28,10 +30,12 @@
         "target_object_orig": "A large brown bear wearing a cap",
         "target_object": "a cap",
         "instruction": "Add a cap to the bear.",
-        "multiple_choice_question": "What is the bear wearing in the image? \na) nothing \nb) a cap",
+        "multiple_choice_question": "What is the bear wearing? \na) nothing \nb) a cap",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the bear wearing a cap in the image?",
-        "save_dir": "5_A large brown bear w"
+        "target_yes_no_question": "Is the bear wearing a cap?",
+        "save_dir": "5_A large brown bear w",
+        "target_yes_no_question_orig": "Is the bear wearing a cap in the image?",
+        "multiple_choice_question_orig": "What is the bear wearing in the image? \na) nothing \nb) a cap"
     },
     {
         "id": "0011_lucia",
@@ -64,10 +68,12 @@
         "target_object": "a bright yellow fedora",
         "instruction_orig": "Add a bright yellow fedora to the player's outfit.",
         "instruction": "Add a bright yellow fedora to the tennis player.",
-        "multiple_choice_question": "Is a tennis player wearing a bright yellow fedora in the image?\na) no \nb) yes",
+        "multiple_choice_question": "Is a tennis player wearing a bright yellow fedora?\na) no \nb) yes",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the tennis player wearing a bright yellow fedora in the image?",
-        "save_dir": "5_A tennis player in a"
+        "target_yes_no_question": "Is the tennis player wearing a bright yellow fedora?",
+        "save_dir": "5_A tennis player in a",
+        "target_yes_no_question_orig": "Is the tennis player wearing a bright yellow fedora in the image?",
+        "multiple_choice_question_orig": "Is a tennis player wearing a bright yellow fedora in the image?\na) no \nb) yes"
     },
     {
         "id": "0034_cows",
@@ -81,10 +87,12 @@
         "target_object_orig": "A brown and white cow wearing a flower garland",
         "target_object": "a flower garland",
         "instruction": "Add a flower garland to the cow.",
-        "multiple_choice_question": "Is a brown and white cow wearing a flower garland in the image?\na) no \nb) yes",
+        "multiple_choice_question": "Is a brown and white cow wearing a flower garland?\na) no \nb) yes",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the cow wearing a flower garland in the image?",
-        "save_dir": "5_A brown and white co"
+        "target_yes_no_question": "Is the cow wearing a flower garland?",
+        "save_dir": "5_A brown and white co",
+        "target_yes_no_question_orig": "Is the cow wearing a flower garland in the image?",
+        "multiple_choice_question_orig": "Is a brown and white cow wearing a flower garland in the image?\na) no \nb) yes"
     },
     {
         "id": "0036_camel",
@@ -99,10 +107,12 @@
         "target_object": "a big basket",
         "instruction_orig": "Add a big basket to the first camel.",
         "instruction": "Add a big basket to the front camel.",
-        "multiple_choice_question": "Is a camel carrying a big basket in the image? \na) no \nb) yes",
+        "multiple_choice_question": "Is a camel carrying a big basket? \na) no \nb) yes",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the camel carrying a big basket in the image?",
-        "save_dir": "5_A camel carrying a b"
+        "target_yes_no_question": "Is the camel carrying a big basket?",
+        "save_dir": "5_A camel carrying a b",
+        "target_yes_no_question_orig": "Is the camel carrying a big basket in the image?",
+        "multiple_choice_question_orig": "Is a camel carrying a big basket in the image? \na) no \nb) yes"
     },
     {
         "id": "0057_dog",
@@ -117,10 +127,12 @@
         "target_object": "a crown",
         "instruction_orig": "Add a crown to the dog's head.",
         "instruction": "Add a crown on the golden retriever's head.",
-        "multiple_choice_question": "What object is present in the image? \na) A golden retriever without wearing a crown \nb) A golden retriever wearing a crown",
+        "multiple_choice_question": "What object is present? \na) A golden retriever without wearing a crown \nb) A golden retriever wearing a crown",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the dog wearing a crown in the image?",
-        "save_dir": "5_A golden retriever w"
+        "target_yes_no_question": "Is the dog wearing a crown?",
+        "save_dir": "5_A golden retriever w",
+        "target_yes_no_question_orig": "Is the dog wearing a crown in the image?",
+        "multiple_choice_question_orig": "What object is present in the image? \na) A golden retriever without wearing a crown \nb) A golden retriever wearing a crown"
     },
     {
         "id": "0069_car-turn",
@@ -134,10 +146,11 @@
         "target_object": "a giant inflatable flamingo",
         "instruction": "Add a giant inflatable flamingo to the roof of the silver SUV.",
         "multiple_choice_question_orig": "What object is present on the SUV in the image?\na) A giant inflatable flamingo\nb) None of the above",
-        "multiple_choice_question": "What object is present on the SUV in the image?\na) None of the above\nb) A giant inflatable flamingo",
+        "multiple_choice_question": "What object is present on the SUV?\na) None of the above\nb) A giant inflatable flamingo",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is there a giant inflatable flamingo on the SUV in the image?",
-        "save_dir": "5_A silver SUV with a "
+        "target_yes_no_question": "Is there a giant inflatable flamingo on the SUV?",
+        "save_dir": "5_A silver SUV with a ",
+        "target_yes_no_question_orig": "Is there a giant inflatable flamingo on the SUV in the image?"
     },
     {
         "id": "0089_A_dog",

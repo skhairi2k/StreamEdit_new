@@ -363,7 +363,9 @@ def main(args, config, all_tgt_video_folders, tgt_layout=None):
             if case_filter is not None and (video_name, str(item["editing_type_id"])) not in case_filter:
                 continue
             per_frame_rows = []
-            save_dir = str(item["editing_type_id"]) + "_" + item["target_prompt"][:len(item["save_dir"])-2]  # item["save_dir"]
+            # R43: FiVE-Bench-Correct keeps the released target prompt as target_prompt_orig;
+            # render folders are named from it, so the lookup uses it when present.
+            save_dir = str(item["editing_type_id"]) + "_" + item.get("target_prompt_orig", item["target_prompt"])[:len(item["save_dir"])-2]  # item["save_dir"]
             source_prompt = item["source_prompt"].replace("[", "").replace("]", "")
             target_prompt = item["target_prompt"].replace("[", "").replace("]", "")
             # FiVE_acc

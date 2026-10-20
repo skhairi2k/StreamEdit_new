@@ -648,14 +648,6 @@
   "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit1/0081_A_horse.png"
  },
  {
-  "case_id": "edit1/0082_A_tram",
-  "edit_type": 1,
-  "video_name": "0082_A_tram",
-  "src_first_frame": "images/0082_A_tram/00001.jpg",
-  "first_frame_edit_prompt": "Replace the tram with a trolley. Keep the coarse position, size, facing direction and coarse pose of the original object.",
-  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit1/0082_A_tram.png"
- },
- {
   "case_id": "edit1/0083_A_boat",
   "edit_type": 1,
   "video_name": "0083_A_boat",
@@ -1804,7 +1796,7 @@
   "edit_type": 3,
   "video_name": "0026_table-tennis",
   "src_first_frame": "images/0026_table-tennis/00001.jpg",
-  "first_frame_edit_prompt": "Change the outfit of the player in red and black to all black. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "first_frame_edit_prompt": "Change the outfit of the player in red and black to all red. Keep the coarse position, size, facing direction and coarse pose of the original object.",
   "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit3/0026_table-tennis.png"
  },
  {
@@ -2644,7 +2636,7 @@
   "edit_type": 4,
   "video_name": "0032_mermaid",
   "src_first_frame": "images/0032_mermaid/00001.jpg",
-  "first_frame_edit_prompt": "Make the mermaid costume out of wood. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "first_frame_edit_prompt": "Make the mermaid out of wood. Keep the coarse position, size, facing direction and coarse pose of the original object.",
   "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit4/0032_mermaid.png"
  },
  {
@@ -2916,7 +2908,7 @@
   "edit_type": 4,
   "video_name": "0066_deer",
   "src_first_frame": "images/0066_deer/00001.jpg",
-  "first_frame_edit_prompt": "Turn the two deer into wooden statues. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "first_frame_edit_prompt": "Make the two deer out of wood. Keep the coarse position, size, facing direction and coarse pose of the original object.",
   "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit4/0066_deer.png"
  },
  {

@@ -9,10 +9,12 @@
         "source_object": "a city bus",
         "target_object": "purple city bus",
         "instruction": "Change the color of the city bus to purple.",
-        "multiple_choice_question": "What color is the city bus in the image?\na) not purple\nb) purple",
+        "multiple_choice_question": "What color is the city bus?\na) not purple\nb) purple",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the bus purple in the image?",
-        "save_dir": "3_A purple city bus is"
+        "target_yes_no_question": "Is the bus purple?",
+        "save_dir": "3_A purple city bus is",
+        "target_yes_no_question_orig": "Is the bus purple in the image?",
+        "multiple_choice_question_orig": "What color is the city bus in the image?\na) not purple\nb) purple"
     },
     {
         "id": "0002_girl-dog",
@@ -25,10 +27,13 @@
         "target_object": "A pink dog",
         "instruction_orig": "Change the gray dog to a pink dog.",
         "instruction": "Change the color of the gray dog to pink.",
-        "multiple_choice_question": "What color is the dog in the image? \na) Gray \nb) Pink",
-        "source_yes_no_question": "Is the dog gray in the image?",
-        "target_yes_no_question": "Is the dog pink in the image?",
-        "save_dir": "3_A young girl in a wh"
+        "multiple_choice_question": "What color is the dog? \na) Gray \nb) Pink",
+        "source_yes_no_question": "Is the dog gray?",
+        "target_yes_no_question": "Is the dog pink?",
+        "save_dir": "3_A young girl in a wh",
+        "source_yes_no_question_orig": "Is the dog gray in the image?",
+        "target_yes_no_question_orig": "Is the dog pink in the image?",
+        "multiple_choice_question_orig": "What color is the dog in the image? \na) Gray \nb) Pink"
     },
     {
         "id": "0003_ocean-birds",
@@ -42,10 +47,13 @@
         "target_object": "Two orange ibises",
         "instruction_orig": "Change the color of the ibises from white to orange.",
         "instruction": "Change the color of the two ibises from white to orange.",
-        "multiple_choice_question": "What is the color of the ibises in the image?\na) white\nb) orange",
-        "source_yes_no_question": "Are the ibises white in the image?",
-        "target_yes_no_question": "Are the ibises orange in the image?",
-        "save_dir": "3_Two orange ibises ar"
+        "multiple_choice_question": "What is the color of the ibises?\na) white\nb) orange",
+        "source_yes_no_question": "Are the ibises white?",
+        "target_yes_no_question": "Are the ibises orange?",
+        "save_dir": "3_Two orange ibises ar",
+        "source_yes_no_question_orig": "Are the ibises white in the image?",
+        "target_yes_no_question_orig": "Are the ibises orange in the image?",
+        "multiple_choice_question_orig": "What is the color of the ibises in the image?\na) white\nb) orange"
     },
     {
         "id": "0004_car-roundabout",
@@ -57,10 +65,13 @@
         "source_object": "a grey Mini Cooper",
         "target_object": "A yellow Mini Cooper",
         "instruction": "Change the color of the Mini Cooper from grey to yellow.",
-        "multiple_choice_question": "What is the color of the Mini Cooper in the image?\na) Grey \nb) Yellow",
-        "source_yes_no_question": "Is the Mini Cooper grey in the image?",
-        "target_yes_no_question": "Is the Mini Cooper yellow in the image?",
-        "save_dir": "3_A yellow Mini Cooper"
+        "multiple_choice_question": "What is the color of the Mini Cooper?\na) Grey \nb) Yellow",
+        "source_yes_no_question": "Is the Mini Cooper grey?",
+        "target_yes_no_question": "Is the Mini Cooper yellow?",
+        "save_dir": "3_A yellow Mini Cooper",
+        "source_yes_no_question_orig": "Is the Mini Cooper grey in the image?",
+        "target_yes_no_question_orig": "Is the Mini Cooper yellow in the image?",
+        "multiple_choice_question_orig": "What is the color of the Mini Cooper in the image?\na) Grey \nb) Yellow"
     },
     {
         "id": "0005_breakdance",
@@ -75,9 +86,11 @@
         "instruction_orig": "Change the red hoodie to a black hoodie.",
         "instruction": "Change the color of the breakdancer's hoodie from red to black.",
         "multiple_choice_question": "What is the color of the breakdancers hoodie? \na) Red \nb) Black",
-        "source_yes_no_question": "Is the breakdancer wearing a red hoodie in the image?",
-        "target_yes_no_question": "Is the breakdancer wearing a black hoodie in the image?",
-        "save_dir": "3_A breakdancer in a b"
+        "source_yes_no_question": "Is the breakdancer wearing a red hoodie?",
+        "target_yes_no_question": "Is the breakdancer wearing a black hoodie?",
+        "save_dir": "3_A breakdancer in a b",
+        "source_yes_no_question_orig": "Is the breakdancer wearing a red hoodie in the image?",
+        "target_yes_no_question_orig": "Is the breakdancer wearing a black hoodie in the image?"
     },
     {
         "id": "0006_paragliding",
@@ -91,10 +104,12 @@
         "target_object": "A pink paraglider",
         "instruction_orig": "Change the paraglider to pink.",
         "instruction": "Change the color of the paraglider to pink.",
-        "multiple_choice_question": "What is the color of the paraglider in the image? \na) not pink \nb) pink",
+        "multiple_choice_question": "What is the color of the paraglider? \na) not pink \nb) pink",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the paraglider pink in the image?",
-        "save_dir": "3_A pink paraglider is"
+        "target_yes_no_question": "Is the paraglider pink?",
+        "save_dir": "3_A pink paraglider is",
+        "target_yes_no_question_orig": "Is the paraglider pink in the image?",
+        "multiple_choice_question_orig": "What is the color of the paraglider in the image? \na) not pink \nb) pink"
     },
     {
         "id": "0007_guitar-violin",
@@ -107,10 +122,12 @@
         "target_object": "A musician in blue",
         "instruction_orig": "Add blue clothing to the musician playing the violin.",
         "instruction": "Change the color of the clothing of the musician playing the violin to blue.",
-        "multiple_choice_question": "What is the color of the musicians clothing in the image?\na) not blue\nb) Blue",
+        "multiple_choice_question": "What is the color of the musicians clothing?\na) not blue\nb) Blue",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the musician wearing blue in the image?",
-        "save_dir": "3_A musician in blue i"
+        "target_yes_no_question": "Is the musician wearing blue?",
+        "save_dir": "3_A musician in blue i",
+        "target_yes_no_question_orig": "Is the musician wearing blue in the image?",
+        "multiple_choice_question_orig": "What is the color of the musicians clothing in the image?\na) not blue\nb) Blue"
     },
     {
         "id": "0008_snowboard-race",
@@ -124,10 +141,12 @@
         "target_object": "Two pink snowboarders",
         "instruction_orig": "Change the color of the snowboarders to pink.",
         "instruction": "Change the color of the snowboarders' outfits to pink.",
-        "multiple_choice_question": "What is the color of the snowboarders in the image?\na) Not pink\nb) Pink",
+        "multiple_choice_question": "What is the color of the snowboarders?\na) Not pink\nb) Pink",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Are the snowboarders pink in the image?",
-        "save_dir": "3_Two pink snowboarder"
+        "target_yes_no_question": "Are the snowboarders pink?",
+        "save_dir": "3_Two pink snowboarder",
+        "target_yes_no_question_orig": "Are the snowboarders pink in the image?",
+        "multiple_choice_question_orig": "What is the color of the snowboarders in the image?\na) Not pink\nb) Pink"
     },
     {
         "id": "0009_bear",
@@ -140,10 +159,13 @@
         "target_object": "A large purple bear",
         "instruction_orig": "Change the bear's color from brown to purple.",
         "instruction": "Change the color of the bear from brown to purple.",
-        "multiple_choice_question": "What color is the bear in the image?\na) brown\nb) purple",
-        "source_yes_no_question": "Is the bear brown in the image?",
-        "target_yes_no_question": "Is the bear purple in the image?",
-        "save_dir": "3_A large purple bear "
+        "multiple_choice_question": "What color is the bear?\na) brown\nb) purple",
+        "source_yes_no_question": "Is the bear brown?",
+        "target_yes_no_question": "Is the bear purple?",
+        "save_dir": "3_A large purple bear ",
+        "source_yes_no_question_orig": "Is the bear brown in the image?",
+        "target_yes_no_question_orig": "Is the bear purple in the image?",
+        "multiple_choice_question_orig": "What color is the bear in the image?\na) brown\nb) purple"
     },
     {
         "id": "0010_giant-slalom",
@@ -158,10 +180,13 @@
         "target_object": "a purple and black outfit",
         "instruction_orig": "Change the skier's outfit from red and white to purple and black.",
         "instruction": "Change the color of the skier's outfit from red and white to purple and black.",
-        "multiple_choice_question": "What color is the skiers outfit in the image?\na) Red and white \nb) Purple and black",
-        "source_yes_no_question": "Is the skier wearing a red and white outfit in the image?",
-        "target_yes_no_question": "Is the skier wearing a purple and black outfit in the image?",
-        "save_dir": "3_A skier in a purple "
+        "multiple_choice_question": "What color is the skiers outfit?\na) Red and white \nb) Purple and black",
+        "source_yes_no_question": "Is the skier wearing a red and white outfit?",
+        "target_yes_no_question": "Is the skier wearing a purple and black outfit?",
+        "save_dir": "3_A skier in a purple ",
+        "source_yes_no_question_orig": "Is the skier wearing a red and white outfit in the image?",
+        "target_yes_no_question_orig": "Is the skier wearing a purple and black outfit in the image?",
+        "multiple_choice_question_orig": "What color is the skiers outfit in the image?\na) Red and white \nb) Purple and black"
     },
     {
         "id": "0011_lucia",
@@ -174,10 +199,13 @@
         "target_object": "A woman in a red dress",
         "instruction_orig": "Change the black dress to a red dress.",
         "instruction": "Change the color of the woman's dress from black to red.",
-        "multiple_choice_question": "What color is the womans dress in the image?\na) Black \nb) Red",
-        "source_yes_no_question": "Is the womans dress black in the image?",
-        "target_yes_no_question": "Is the womans dress red in the image?",
-        "save_dir": "3_A woman in a red dre"
+        "multiple_choice_question": "What color is the womans dress?\na) Black \nb) Red",
+        "source_yes_no_question": "Is the womans dress black?",
+        "target_yes_no_question": "Is the womans dress red?",
+        "save_dir": "3_A woman in a red dre",
+        "source_yes_no_question_orig": "Is the womans dress black in the image?",
+        "target_yes_no_question_orig": "Is the womans dress red in the image?",
+        "multiple_choice_question_orig": "What color is the womans dress in the image?\na) Black \nb) Red"
     },
     {
         "id": "0012_goat",
@@ -191,10 +219,12 @@
         "target_object": "A blue mountain goat",
         "instruction_orig": "Add the color blue to the mountain goat.",
         "instruction": "Change the color of the mountain goat to blue.",
-        "multiple_choice_question": "What is the color of the goat in the image?\na) Not blue\nb) Blue",
+        "multiple_choice_question": "What is the color of the goat?\na) Not blue\nb) Blue",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the goat blue in the image?",
-        "save_dir": "3_A blue mountain goat"
+        "target_yes_no_question": "Is the goat blue?",
+        "save_dir": "3_A blue mountain goat",
+        "target_yes_no_question_orig": "Is the goat blue in the image?",
+        "multiple_choice_question_orig": "What is the color of the goat in the image?\na) Not blue\nb) Blue"
     },
     {
         "id": "0013_golf",
@@ -208,10 +238,13 @@
         "target_object_orig": "A man in a yellow shirt",
         "target_object": "a yellow shirt",
         "instruction": "Change the color of the man's shirt from black to yellow.",
-        "multiple_choice_question": "What is the color of the mans shirt in the image?\na) Black \nb) Yellow",
-        "source_yes_no_question": "Is the man wearing a black shirt in the image?",
-        "target_yes_no_question": "Is the man wearing a yellow shirt in the image?",
-        "save_dir": "3_A man in a yellow sh"
+        "multiple_choice_question": "What is the color of the mans shirt?\na) Black \nb) Yellow",
+        "source_yes_no_question": "Is the man wearing a black shirt?",
+        "target_yes_no_question": "Is the man wearing a yellow shirt?",
+        "save_dir": "3_A man in a yellow sh",
+        "source_yes_no_question_orig": "Is the man wearing a black shirt in the image?",
+        "target_yes_no_question_orig": "Is the man wearing a yellow shirt in the image?",
+        "multiple_choice_question_orig": "What is the color of the mans shirt in the image?\na) Black \nb) Yellow"
     },
     {
         "id": "0014_burnout",
@@ -224,9 +257,11 @@
         "target_object": "A pink car",
         "instruction": "Change the color of the car from black to pink.",
         "multiple_choice_question": "What is the color of the car performing the burnout?\na) black \nb) pink",
-        "source_yes_no_question": "Is the car black in the image?",
-        "target_yes_no_question": "Is the car pink in the image?",
-        "save_dir": "3_A pink car is perfor"
+        "source_yes_no_question": "Is the car black?",
+        "target_yes_no_question": "Is the car pink?",
+        "save_dir": "3_A pink car is perfor",
+        "source_yes_no_question_orig": "Is the car black in the image?",
+        "target_yes_no_question_orig": "Is the car pink in the image?"
     },
     {
         "id": "0015_car-shadow",
@@ -238,10 +273,13 @@
         "source_object": "a silver car",
         "target_object": "A green car",
         "instruction": "Change the color of the car from silver to green.",
-        "multiple_choice_question": "What object is present in the image?\na) A silver car\nb) A green car",
-        "source_yes_no_question": "Is the car silver in the image?",
-        "target_yes_no_question": "Is the car green in the image?",
-        "save_dir": "3_A green car is makin"
+        "multiple_choice_question": "What object is present?\na) A silver car\nb) A green car",
+        "source_yes_no_question": "Is the car silver?",
+        "target_yes_no_question": "Is the car green?",
+        "save_dir": "3_A green car is makin",
+        "source_yes_no_question_orig": "Is the car silver in the image?",
+        "target_yes_no_question_orig": "Is the car green in the image?",
+        "multiple_choice_question_orig": "What object is present in the image?\na) A silver car\nb) A green car"
     },
     {
         "id": "0016_horsejump-high",
@@ -254,10 +292,12 @@
         "source_object": "A horse",
         "target_object": "A blue horse",
         "instruction": "Change the color of the horse to blue.",
-        "multiple_choice_question": "Is the horse in the image blue?\na) no\nb) yes",
+        "multiple_choice_question": "Is the horse blue?\na) no\nb) yes",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the horse blue in the image?",
-        "save_dir": "3_A blue horse with a "
+        "target_yes_no_question": "Is the horse blue?",
+        "save_dir": "3_A blue horse with a ",
+        "target_yes_no_question_orig": "Is the horse blue in the image?",
+        "multiple_choice_question_orig": "Is the horse in the image blue?\na) no\nb) yes"
     },
     {
         "id": "0017_kid-football",
@@ -271,9 +311,11 @@
         "target_object": "A yellow cap",
         "instruction": "Change the color of the boy's cap from red to yellow.",
         "multiple_choice_question": "What is the color of the cap the boy is wearing? \na) Red \nb) Yellow",
-        "source_yes_no_question": "Is the boy wearing a red cap in the image?",
-        "target_yes_no_question": "Is the boy wearing a yellow cap in the image?",
-        "save_dir": "3_A young boy wearing "
+        "source_yes_no_question": "Is the boy wearing a red cap?",
+        "target_yes_no_question": "Is the boy wearing a yellow cap?",
+        "save_dir": "3_A young boy wearing ",
+        "source_yes_no_question_orig": "Is the boy wearing a red cap in the image?",
+        "target_yes_no_question_orig": "Is the boy wearing a yellow cap in the image?"
     },
     {
         "id": "0018_breakdance-flare",
@@ -286,10 +328,12 @@
         "target_object": "A breakdancer in black shirt",
         "instruction_orig": "Add a black shirt to the breakdancer.",
         "instruction": "Change the color of the breakdancer's shirt to black.",
-        "multiple_choice_question": "What color of breakdancer's shirt in the image?\na) Not black \nb) Black",
+        "multiple_choice_question": "What color of breakdancer's shirt?\na) Not black \nb) Black",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the breakdancer wearing a black shirt in the image?",
-        "save_dir": "3_A breakdancer in bla"
+        "target_yes_no_question": "Is the breakdancer wearing a black shirt?",
+        "save_dir": "3_A breakdancer in bla",
+        "target_yes_no_question_orig": "Is the breakdancer wearing a black shirt in the image?",
+        "multiple_choice_question_orig": "What color of breakdancer's shirt in the image?\na) Not black \nb) Black"
     },
     {
         "id": "0019_tennis-vest",
@@ -303,10 +347,12 @@
         "target_object": "black shorts",
         "instruction_orig": "Change the white shorts to black shorts.",
         "instruction": "Change the color of the tennis player's shorts from white to black.",
-        "multiple_choice_question": "What color are the tennis players shorts in the image?\na) Not black \nb) Black",
+        "multiple_choice_question": "What color are the tennis players shorts?\na) Not black \nb) Black",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the tennis player wearing black shorts in the image?",
-        "save_dir": "3_A tennis player in a"
+        "target_yes_no_question": "Is the tennis player wearing black shorts?",
+        "save_dir": "3_A tennis player in a",
+        "target_yes_no_question_orig": "Is the tennis player wearing black shorts in the image?",
+        "multiple_choice_question_orig": "What color are the tennis players shorts in the image?\na) Not black \nb) Black"
     },
     {
         "id": "0020_monkeys",
@@ -320,10 +366,12 @@
         "target_object": "A young blue monkey",
         "instruction_orig": "Change the monkeys to be blue.",
         "instruction": "Change the color of the monkeys to blue.",
-        "multiple_choice_question": "What is the color of the monkeys in the image? \na) Not Blue \nb) Blue",
+        "multiple_choice_question": "What is the color of the monkeys? \na) Not Blue \nb) Blue",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Does the monkey look blue in the image?",
-        "save_dir": "3_A young blue monkey "
+        "target_yes_no_question": "Does the monkey look blue?",
+        "save_dir": "3_A young blue monkey ",
+        "target_yes_no_question_orig": "Does the monkey look blue in the image?",
+        "multiple_choice_question_orig": "What is the color of the monkeys in the image? \na) Not Blue \nb) Blue"
     },
     {
         "id": "0021_landing",
@@ -335,10 +383,12 @@
         "source_object": "fighter jet",
         "target_object": "A pink fighter jet",
         "instruction": "Change the color of the fighter jet to pink.",
-        "multiple_choice_question": "What color is the fighter jet in the image?\na) Not pink \nb) Pink",
+        "multiple_choice_question": "What color is the fighter jet?\na) Not pink \nb) Pink",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the fighter jet pink in the image?",
-        "save_dir": "3_A pink fighter jet i"
+        "target_yes_no_question": "Is the fighter jet pink?",
+        "save_dir": "3_A pink fighter jet i",
+        "target_yes_no_question_orig": "Is the fighter jet pink in the image?",
+        "multiple_choice_question_orig": "What color is the fighter jet in the image?\na) Not pink \nb) Pink"
     },
     {
         "id": "0022_skate-jump",
@@ -352,10 +402,11 @@
         "instruction_orig": "Add the color red to the skateboarder's clothing.",
         "instruction": "Change the color of the skateboarder's clothing to red.",
         "multiple_choice_question_orig": "Is the skateboarder wearing read in the image?\na) no \nb) yes",
-        "multiple_choice_question": "Is the skateboarder wearing red in the image?\na) no \nb) yes",
+        "multiple_choice_question": "What color is the skateboarder's clothing? \na) not red \nb) red",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the skateboarder in the image wearing red?",
-        "save_dir": "3_A skateboarder in re"
+        "target_yes_no_question": "Is the skateboarder wearing red?",
+        "save_dir": "3_A skateboarder in re",
+        "target_yes_no_question_orig": "Is the skateboarder in the image wearing red?"
     },
     {
         "id": "0023_kayak-race",
@@ -369,10 +420,12 @@
         "target_object": "Two kayakers in blue",
         "instruction_orig": "Add blue color to the kayakers.",
         "instruction": "Change the color of the kayakers' clothing to blue.",
-        "multiple_choice_question": "Is the kayakers wearing blue in the image?\na) no \nb) yes",
+        "multiple_choice_question": "Is the kayakers wearing blue?\na) no \nb) yes",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Are the kayakers wearing blue in the image?",
-        "save_dir": "3_Two kayakers in blue"
+        "target_yes_no_question": "Are the kayakers wearing blue?",
+        "save_dir": "3_Two kayakers in blue",
+        "target_yes_no_question_orig": "Are the kayakers wearing blue in the image?",
+        "multiple_choice_question_orig": "Is the kayakers wearing blue in the image?\na) no \nb) yes"
     },
     {
         "id": "0024_hockey",
@@ -387,10 +440,12 @@
         "target_object": "A person in pink",
         "instruction_orig": "Change the person's attire to pink.",
         "instruction": "Change the color of the person's clothing to pink.",
-        "multiple_choice_question": "What color is the person wearing in the image? \na) Not pink \nb) Pink",
+        "multiple_choice_question": "What color is the person wearing? \na) Not pink \nb) Pink",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the person on rollerblades wearing pink in the image?",
-        "save_dir": "3_A person in pink on "
+        "target_yes_no_question": "Is the person on rollerblades wearing pink?",
+        "save_dir": "3_A person in pink on ",
+        "target_yes_no_question_orig": "Is the person on rollerblades wearing pink in the image?",
+        "multiple_choice_question_orig": "What color is the person wearing in the image? \na) Not pink \nb) Pink"
     },
     {
         "id": "0025_baseball",
@@ -405,28 +460,33 @@
         "instruction_orig": "Change the player's uniform color to yellow.",
         "instruction": "Change the color of the baseball player's uniform to yellow.",
         "multiple_choice_question_orig": "What color is the baseball player wearing in the image?\na) Yellow \nb) Striped",
-        "multiple_choice_question": "What color is the baseball player wearing in the image?\na) Striped \nb) Yellow",
+        "multiple_choice_question": "What color is the baseball player wearing?\na) Striped \nb) Yellow",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Are the striped uniforms of the baseball players in the picture yellow?",
-        "save_dir": "3_A baseball player in"
+        "target_yes_no_question": "Are the striped uniforms of the baseball players yellow?",
+        "save_dir": "3_A baseball player in",
+        "target_yes_no_question_orig": "Are the striped uniforms of the baseball players in the picture yellow?"
     },
     {
         "id": "0026_table-tennis",
         "video_name": "0026_table-tennis",
         "editing_type_id": 3,
-        "source_prompt": "Two table tennis players are engaged in a fast-paced match on a red court, with one player in a black outfit and the other in a red and black outfit. The player in black is lunging forward to return the ball, while the player in red is poised to respond. The environment is a competitive sports arena with a blue backdrop displaying 'TAIPEI 2017' and 'FISU'. The camera remains fixed, capturing the dynamic movements of the players as they exchange rapid shots across the table.",
+        "source_prompt_orig": "Two table tennis players are engaged in a fast-paced match on a red court, with one player in a black outfit and the other in a red and black outfit. The player in black is lunging forward to return the ball, while the player in red is poised to respond. The environment is a competitive sports arena with a blue backdrop displaying 'TAIPEI 2017' and 'FISU'. The camera remains fixed, capturing the dynamic movements of the players as they exchange rapid shots across the table.",
+        "source_prompt": "Two table tennis players are engaged in a fast-paced match on a red court, with one player in a black outfit and the other in a red and black outfit. The player in black is lunging forward to return the ball, while the player in red and black is poised to respond. The environment is a competitive sports arena with a blue backdrop displaying 'TAIPEI 2017' and 'FISU'. The camera remains fixed, capturing the dynamic movements of the players as they exchange rapid shots across the table.",
         "target_prompt_orig": "Two table tennis players in black are engaged in a fast-paced match on a red court, with one player in a black outfit and the other in a red and black outfit. The player in black is lunging forward to return the ball, while the player in red is poised to respond. The environment is a competitive sports arena with a blue backdrop displaying 'TAIPEI 2017' and 'FISU'. The camera remains fixed, capturing the dynamic movements of the players as they exchange rapid shots across the table.",
-        "target_prompt": "Two table tennis players in black are engaged in a fast-paced match on a red court. The player in black is lunging forward to return the ball. The environment is a competitive sports arena with a blue backdrop displaying 'TAIPEI 2017' and 'FISU'. The camera remains fixed, capturing the dynamic movements of the players as they exchange rapid shots across the table.",
+        "target_prompt": "Two table tennis players are engaged in a fast-paced match on a red court, with one player in a black outfit and the other in a red outfit. The player in black is lunging forward to return the ball, while the player in red is poised to respond. The environment is a competitive sports arena with a blue backdrop displaying 'TAIPEI 2017' and 'FISU'. The camera remains fixed, capturing the dynamic movements of the players as they exchange rapid shots across the table.",
         "negative_prompt": "worst quality, low quality, blurry, absolute black, absolute white, low res, extra limbs, extra digits, misplaced objects, mutated anatomy, monochrome, horror",
         "source_object_orig": "two table tennis players",
         "source_object": "a red and black outfit",
         "target_object_orig": "player in red",
-        "target_object": "Two table tennis players in black",
+        "target_object": "a red outfit",
         "instruction_orig": "Change the player in red and black outfit to be in a black outfit.",
-        "instruction": "Change the outfit of the player in red and black to all black.",
-        "multiple_choice_question": "What is the color of the outfits of the players in the image?\na) Not black\nb) Black",
-        "source_yes_no_question": "",
-        "target_yes_no_question": "Is the cloth of the player in the image black?",
+        "instruction": "Change the outfit of the player in red and black to all red.",
+        "multiple_choice_question_orig": "What is the color of the outfits of the players in the image?\na) Not black\nb) Black",
+        "multiple_choice_question": "What is the color of the other player's outfit? \na) red and black \nb) red",
+        "source_yes_no_question_orig": "",
+        "source_yes_no_question": "Is the other player in a red and black outfit?",
+        "target_yes_no_question_orig": "Is the cloth of the player in the image black?",
+        "target_yes_no_question": "Is the other player in a red outfit?",
         "save_dir": "3_Two table tennis pla"
     },
     {
@@ -441,10 +501,13 @@
         "target_object": "A flowing blue and black dress",
         "instruction_orig": "Change the color of the dress from pink and white to blue and black.",
         "instruction": "Change the color of the girl's dress from pink and white to blue and black.",
-        "multiple_choice_question": "What color is the dress of the girl in the image? \na) Pink and white \nb) Blue and black",
-        "source_yes_no_question": "Is the girl wearing a pink and white dress in the image?",
-        "target_yes_no_question": "Is the girl wearing a blue and black dress in the image?",
-        "save_dir": "3_A young girl in a fl"
+        "multiple_choice_question": "What color is the dress of the girl? \na) Pink and white \nb) Blue and black",
+        "source_yes_no_question": "Is the girl wearing a pink and white dress?",
+        "target_yes_no_question": "Is the girl wearing a blue and black dress?",
+        "save_dir": "3_A young girl in a fl",
+        "source_yes_no_question_orig": "Is the girl wearing a pink and white dress in the image?",
+        "target_yes_no_question_orig": "Is the girl wearing a blue and black dress in the image?",
+        "multiple_choice_question_orig": "What color is the dress of the girl in the image? \na) Pink and white \nb) Blue and black"
     },
     {
         "id": "0028_kite-walk",
@@ -458,10 +521,11 @@
         "target_object": "A yellow helmet",
         "instruction_orig": "Change the blue helmet to a yellow helmet.",
         "instruction": "Change the color of the helmet from blue to yellow.",
-        "multiple_choice_question": "What object is present in the image?\na) A blue helmet\nb) A yellow helmet",
+        "multiple_choice_question": "What object is present?\na) A blue helmet\nb) A yellow helmet",
         "source_yes_no_question": "Is the helmet blue?",
         "target_yes_no_question": "Is the helmet yellow?",
-        "save_dir": "3_A person wearing a y"
+        "save_dir": "3_A person wearing a y",
+        "multiple_choice_question_orig": "What object is present in the image?\na) A blue helmet\nb) A yellow helmet"
     },
     {
         "id": "0029_horsejump-stick",
@@ -475,10 +539,12 @@
         "target_object_orig": "green",
         "target_object": "A green horse",
         "instruction": "Change the color of the horse to green.",
-        "multiple_choice_question": "What is the color of the horse in the image? \na) Not green \nb) Green",
+        "multiple_choice_question": "What is the color of the horse? \na) Not green \nb) Green",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the horse green in the image?",
-        "save_dir": "3_A green horse with a"
+        "target_yes_no_question": "Is the horse green?",
+        "save_dir": "3_A green horse with a",
+        "target_yes_no_question_orig": "Is the horse green in the image?",
+        "multiple_choice_question_orig": "What is the color of the horse in the image? \na) Not green \nb) Green"
     },
     {
         "id": "0030_rallye",
@@ -492,10 +558,12 @@
         "target_object": "A red rally car",
         "instruction_orig": "Add the color red to the rally car.",
         "instruction": "Change the color of the rally car to red.",
-        "multiple_choice_question": "What is the color of the car in the image?\na) Not red\nb) Red",
+        "multiple_choice_question": "What is the color of the car?\na) Not red\nb) Red",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the rally car red in the image?",
-        "save_dir": "3_A red rally car spee"
+        "target_yes_no_question": "Is the rally car red?",
+        "save_dir": "3_A red rally car spee",
+        "target_yes_no_question_orig": "Is the rally car red in the image?",
+        "multiple_choice_question_orig": "What is the color of the car in the image?\na) Not red\nb) Red"
     },
     {
         "id": "0031_soccerball",
@@ -508,10 +576,12 @@
         "target_object": "A purple soccer ball",
         "instruction_orig": "Add the color purple to the soccer ball.",
         "instruction": "Change the color of the soccer ball to purple.",
-        "multiple_choice_question": "What is the color of the soccer ball in the image? \na) The soccer ball is not purple \nb) The soccer ball is purple",
+        "multiple_choice_question": "What is the color of the soccer ball? \na) The soccer ball is not purple \nb) The soccer ball is purple",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the soccer ball purple in the image?",
-        "save_dir": "3_A purple soccer ball"
+        "target_yes_no_question": "Is the soccer ball purple?",
+        "save_dir": "3_A purple soccer ball",
+        "target_yes_no_question_orig": "Is the soccer ball purple in the image?",
+        "multiple_choice_question_orig": "What is the color of the soccer ball in the image? \na) The soccer ball is not purple \nb) The soccer ball is purple"
     },
     {
         "id": "0032_mermaid",
@@ -527,10 +597,11 @@
         "instruction_orig": "Add the color red to the mermaid's costume.",
         "instruction": "Change the color of the mermaid costume to red.",
         "multiple_choice_question_orig": "What color of the womam's dress in the image? \na) Not red \nb)Red",
-        "multiple_choice_question": "What color of the woman's dress in the image? \na) Not red \nb)Red",
+        "multiple_choice_question": "What color is the mermaid's costume? \na) not red \nb) red",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the woman wearing red in the image?",
-        "save_dir": "3_A woman in red dress"
+        "target_yes_no_question": "Is the woman wearing red?",
+        "save_dir": "3_A woman in red dress",
+        "target_yes_no_question_orig": "Is the woman wearing red in the image?"
     },
     {
         "id": "0033_horsejump-low",
@@ -544,10 +615,13 @@
         "target_object": "A black horse",
         "instruction_orig": "Change the white horse to a black horse.",
         "instruction": "Change the color of the horse from white to black.",
-        "multiple_choice_question": "What is the color of the horse in the image? \na) White \nb) Black",
-        "source_yes_no_question": "Is the horse white in the image?",
-        "target_yes_no_question": "Is the horse black in the image?",
-        "save_dir": "3_A rider on a black h"
+        "multiple_choice_question": "What is the color of the horse? \na) White \nb) Black",
+        "source_yes_no_question": "Is the horse white?",
+        "target_yes_no_question": "Is the horse black?",
+        "save_dir": "3_A rider on a black h",
+        "source_yes_no_question_orig": "Is the horse white in the image?",
+        "target_yes_no_question_orig": "Is the horse black in the image?",
+        "multiple_choice_question_orig": "What is the color of the horse in the image? \na) White \nb) Black"
     },
     {
         "id": "0034_cows",
@@ -560,10 +634,13 @@
         "target_object": "A purple and white cow",
         "instruction_orig": "Change the brown color of the cow to purple.",
         "instruction": "Change the brown patches of the cow to purple.",
-        "multiple_choice_question": "What color is the cow in the image?\na) Brown and white\nb) Purple and white",
-        "source_yes_no_question": "Is the cow brown and white in the image? ",
-        "target_yes_no_question": "Is the cow purple and white in the image?",
-        "save_dir": "3_A purple and white c"
+        "multiple_choice_question": "What color is the cow?\na) Brown and white\nb) Purple and white",
+        "source_yes_no_question": "Is the cow brown and white? ",
+        "target_yes_no_question": "Is the cow purple and white?",
+        "save_dir": "3_A purple and white c",
+        "source_yes_no_question_orig": "Is the cow brown and white in the image? ",
+        "target_yes_no_question_orig": "Is the cow purple and white in the image?",
+        "multiple_choice_question_orig": "What color is the cow in the image?\na) Brown and white\nb) Purple and white"
     },
     {
         "id": "0035_helicopter",
@@ -576,10 +653,12 @@
         "target_object": "A red helicopter",
         "instruction_orig": "Add the color'red' to describe the helicopter.",
         "instruction": "Change the color of the helicopter to red.",
-        "multiple_choice_question": "What is the color of the helicopter in the image?\na) Not red\nb) Red",
+        "multiple_choice_question": "What is the color of the helicopter?\na) Not red\nb) Red",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the helicopter red in the image?",
-        "save_dir": "3_A red helicopter is "
+        "target_yes_no_question": "Is the helicopter red?",
+        "save_dir": "3_A red helicopter is ",
+        "target_yes_no_question_orig": "Is the helicopter red in the image?",
+        "multiple_choice_question_orig": "What is the color of the helicopter in the image?\na) Not red\nb) Red"
     },
     {
         "id": "0036_camel",
@@ -593,10 +672,12 @@
         "target_object": "A purple camel",
         "instruction_orig": "Change the color of the first camel to purple.",
         "instruction": "Change the color of the front camel to purple.",
-        "multiple_choice_question": "What is the color of the camel in the image? \na) Not purple \nb) Purple",
+        "multiple_choice_question": "What is the color of the camel? \na) Not purple \nb) Purple",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the camel purple in the image?",
-        "save_dir": "3_A purple camel is wa"
+        "target_yes_no_question": "Is the camel purple?",
+        "save_dir": "3_A purple camel is wa",
+        "target_yes_no_question_orig": "Is the camel purple in the image?",
+        "multiple_choice_question_orig": "What is the color of the camel in the image? \na) Not purple \nb) Purple"
     },
     {
         "id": "0037_snowboard-sand",
@@ -610,10 +691,12 @@
         "target_object": "A woman in red",
         "instruction_orig": "Change the woman's outfit to red.",
         "instruction": "Change the color of the woman's outfit to red.",
-        "multiple_choice_question": "What is the color of the womans outfit in the image?\na) Not red\nb) Red",
+        "multiple_choice_question": "What is the color of the womans outfit?\na) Not red\nb) Red",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the woman wearing red in the image?",
-        "save_dir": "3_A woman in red is sn"
+        "target_yes_no_question": "Is the woman wearing red?",
+        "save_dir": "3_A woman in red is sn",
+        "target_yes_no_question_orig": "Is the woman wearing red in the image?",
+        "multiple_choice_question_orig": "What is the color of the womans outfit in the image?\na) Not red\nb) Red"
     },
     {
         "id": "0038_motorbike",
@@ -627,10 +710,12 @@
         "target_object": "A red motorbike",
         "instruction_orig": "Add the color red to the motorbike.",
         "instruction": "Change the color of the motorbike to red.",
-        "multiple_choice_question": "What is the color of the motorbike with two riders in the image? \na) Not red \nb) Red",
+        "multiple_choice_question": "What is the color of the motorbike with two riders? \na) Not red \nb) Red",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the motorbike red in the image?",
-        "save_dir": "3_A red motorbike with"
+        "target_yes_no_question": "Is the motorbike red?",
+        "save_dir": "3_A red motorbike with",
+        "target_yes_no_question_orig": "Is the motorbike red in the image?",
+        "multiple_choice_question_orig": "What is the color of the motorbike with two riders in the image? \na) Not red \nb) Red"
     },
     {
         "id": "0039_chamaleon",
@@ -642,10 +727,13 @@
         "source_object": "a green chameleon",
         "target_object": "A red chameleon",
         "instruction": "Change the color of the chameleon from green to red.",
-        "multiple_choice_question": "What is the color of the chameleon in the image? \na) Green \nb) Red",
-        "source_yes_no_question": "Is the chameleon green in the image?",
-        "target_yes_no_question": "Is the chameleon red in the image?",
-        "save_dir": "3_A red chameleon is s"
+        "multiple_choice_question": "What is the color of the chameleon? \na) Green \nb) Red",
+        "source_yes_no_question": "Is the chameleon green?",
+        "target_yes_no_question": "Is the chameleon red?",
+        "save_dir": "3_A red chameleon is s",
+        "source_yes_no_question_orig": "Is the chameleon green in the image?",
+        "target_yes_no_question_orig": "Is the chameleon red in the image?",
+        "multiple_choice_question_orig": "What is the color of the chameleon in the image? \na) Green \nb) Red"
     },
     {
         "id": "0040_tennis",
@@ -660,10 +748,13 @@
         "target_object": "a black shirt and red shorts",
         "instruction_orig": "Change the player's outfit from white shirt and black shorts to black shirt and red shorts.",
         "instruction": "Change the tennis player's outfit to a black shirt and red shorts.",
-        "multiple_choice_question": "What color shirt and shorts is the tennis player wearing in the image?\na) white shirt and black shorts \nb) black shirt and red shorts",
-        "source_yes_no_question": "Is the player wearing a white shirt and black shorts in the image?",
-        "target_yes_no_question": "Is the player wearing a black shirt and red shorts in the image?",
-        "save_dir": "3_A tennis player in a"
+        "multiple_choice_question": "What color shirt and shorts is the tennis player wearing?\na) white shirt and black shorts \nb) black shirt and red shorts",
+        "source_yes_no_question": "Is the player wearing a white shirt and black shorts?",
+        "target_yes_no_question": "Is the player wearing a black shirt and red shorts?",
+        "save_dir": "3_A tennis player in a",
+        "source_yes_no_question_orig": "Is the player wearing a white shirt and black shorts in the image?",
+        "target_yes_no_question_orig": "Is the player wearing a black shirt and red shorts in the image?",
+        "multiple_choice_question_orig": "What color shirt and shorts is the tennis player wearing in the image?\na) white shirt and black shorts \nb) black shirt and red shorts"
     },
     {
         "id": "0041_longboard",
@@ -676,10 +767,13 @@
         "target_object": "A man in a red shirt",
         "instruction_orig": "Change the yellow shirt to a red shirt.",
         "instruction": "Change the color of the man's shirt from yellow to red.",
-        "multiple_choice_question": "What color is the mans shirt in the image?\na) Yellow\nb) Red",
-        "source_yes_no_question": "Is the man wearing a yellow shirt in the image?",
-        "target_yes_no_question": "Is the man wearing a red shirt in the image?",
-        "save_dir": "3_A man in a red shirt"
+        "multiple_choice_question": "What color is the mans shirt?\na) Yellow\nb) Red",
+        "source_yes_no_question": "Is the man wearing a yellow shirt?",
+        "target_yes_no_question": "Is the man wearing a red shirt?",
+        "save_dir": "3_A man in a red shirt",
+        "source_yes_no_question_orig": "Is the man wearing a yellow shirt in the image?",
+        "target_yes_no_question_orig": "Is the man wearing a red shirt in the image?",
+        "multiple_choice_question_orig": "What color is the mans shirt in the image?\na) Yellow\nb) Red"
     },
     {
         "id": "0042_gym-ball",
@@ -692,10 +786,12 @@
         "target_object": "A man in yellow",
         "instruction_orig": "Change the man's clothing to yellow.",
         "instruction": "Change the color of the man's clothing to yellow.",
-        "multiple_choice_question": "What color is the man wearing in the image?\na) Not yellow\nb) Yellow",
+        "multiple_choice_question": "What color is the man wearing?\na) Not yellow\nb) Yellow",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the man wearing yellow in the image?",
-        "save_dir": "3_A man in yellow is p"
+        "target_yes_no_question": "Is the man wearing yellow?",
+        "save_dir": "3_A man in yellow is p",
+        "target_yes_no_question_orig": "Is the man wearing yellow in the image?",
+        "multiple_choice_question_orig": "What color is the man wearing in the image?\na) Not yellow\nb) Yellow"
     },
     {
         "id": "0043_parkour",
@@ -710,8 +806,9 @@
         "instruction": "Change the color of the man's clothing to purple.",
         "multiple_choice_question": "What color is the man wearing?\na) Not purple\nb) Purple",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the man in the image wearing purple?",
-        "save_dir": "3_A man in purple is p"
+        "target_yes_no_question": "Is the man wearing purple?",
+        "save_dir": "3_A man in purple is p",
+        "target_yes_no_question_orig": "Is the man in the image wearing purple?"
     },
     {
         "id": "0044_snowboard",
@@ -725,10 +822,12 @@
         "target_object": "A snowboarder in green",
         "instruction_orig": "Add green to the snowboarder's clothing.",
         "instruction": "Change the color of the snowboarder's clothing to green.",
-        "multiple_choice_question": "What object is present in the image?\na) A snowboarder not in green\nb) A snowboarder in green",
+        "multiple_choice_question": "What object is present?\na) A snowboarder not in green\nb) A snowboarder in green",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the snowboarder wearing green in the image?",
-        "save_dir": "3_A snowboarder in gre"
+        "target_yes_no_question": "Is the snowboarder wearing green?",
+        "save_dir": "3_A snowboarder in gre",
+        "target_yes_no_question_orig": "Is the snowboarder wearing green in the image?",
+        "multiple_choice_question_orig": "What object is present in the image?\na) A snowboarder not in green\nb) A snowboarder in green"
     },
     {
         "id": "0045_butterfly",
@@ -740,10 +839,13 @@
         "source_object": "a vibrant blue butterfly",
         "target_object": "A vibrant pink butterfly",
         "instruction": "Change the color of the butterfly from blue to pink.",
-        "multiple_choice_question": "What color is the butterfly in the image?\na) Blue\nb) Pink",
-        "source_yes_no_question": "Is the butterfly blue in the image?",
-        "target_yes_no_question": "Is the butterfly pink in the image?",
-        "save_dir": "3_A vibrant pink butte"
+        "multiple_choice_question": "What color is the butterfly?\na) Blue\nb) Pink",
+        "source_yes_no_question": "Is the butterfly blue?",
+        "target_yes_no_question": "Is the butterfly pink?",
+        "save_dir": "3_A vibrant pink butte",
+        "source_yes_no_question_orig": "Is the butterfly blue in the image?",
+        "target_yes_no_question_orig": "Is the butterfly pink in the image?",
+        "multiple_choice_question_orig": "What color is the butterfly in the image?\na) Blue\nb) Pink"
     },
     {
         "id": "0046_blackswan",
@@ -756,12 +858,13 @@
         "target_object": "A red swan",
         "instruction_orig": "Change the black swan to a red swan.",
         "instruction": "Change the color of the swan from black to red.",
-        "multiple_choice_question": "What is the color of the swan in the image?\na) Black\nb) Red",
+        "multiple_choice_question": "What is the color of the swan?\na) Black\nb) Red",
         "source_yes_no_question_orig": "1. Is the swan black in the image?",
-        "source_yes_no_question": "Is the swan black in the image?",
+        "source_yes_no_question": "Is the swan black?",
         "target_yes_no_question_orig": "2. Is the swan red in the image?",
-        "target_yes_no_question": "Is the swan red in the image?",
-        "save_dir": "3_A red swan is glidin"
+        "target_yes_no_question": "Is the swan red?",
+        "save_dir": "3_A red swan is glidin",
+        "multiple_choice_question_orig": "What is the color of the swan in the image?\na) Black\nb) Red"
     },
     {
         "id": "0047_judo",
@@ -776,10 +879,12 @@
         "target_object": "Two judo practitioners in red",
         "instruction_orig": "Change the judo practitioners' uniforms to red.",
         "instruction": "Change the color of the judo practitioners' uniforms to red.",
-        "multiple_choice_question": "What is the color of the judo practitioners uniforms in the image?\na) Not red\nb) red",
+        "multiple_choice_question": "What is the color of the judo practitioners uniforms?\na) Not red\nb) red",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Are the practitioners wearing red uniforms in the image?",
-        "save_dir": "3_Two judo practitione"
+        "target_yes_no_question": "Are the practitioners wearing red uniforms?",
+        "save_dir": "3_Two judo practitione",
+        "target_yes_no_question_orig": "Are the practitioners wearing red uniforms in the image?",
+        "multiple_choice_question_orig": "What is the color of the judo practitioners uniforms in the image?\na) Not red\nb) red"
     },
     {
         "id": "0048_hike",
@@ -793,10 +898,12 @@
         "target_object": "A man in red",
         "instruction_orig": "Change the man's clothing to red.",
         "instruction": "Change the color of the man's clothing to red.",
-        "multiple_choice_question": "What is the color of the mans clothing in the image?\na) Not Red \nb) Red",
+        "multiple_choice_question": "What is the color of the mans clothing?\na) Not Red \nb) Red",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the man wearing red in the image?",
-        "save_dir": "3_A man in red with a "
+        "target_yes_no_question": "Is the man wearing red?",
+        "save_dir": "3_A man in red with a ",
+        "target_yes_no_question_orig": "Is the man wearing red in the image?",
+        "multiple_choice_question_orig": "What is the color of the mans clothing in the image?\na) Not Red \nb) Red"
     },
     {
         "id": "0049_speed-skating",
@@ -811,10 +918,12 @@
         "target_object": "Three speed skaters in pink",
         "instruction_orig": "Change the color of the speed skaters' suits from pink to the original colors",
         "instruction": "Change the color of the speed skaters' suits to pink.",
-        "multiple_choice_question": "What color are the speed skaters wearing in the image?\na) Not pink\nb) Pink",
+        "multiple_choice_question": "What color are the speed skaters wearing?\na) Not pink\nb) Pink",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Are the speed skaters wearing pink suits in the image?",
-        "save_dir": "3_Three speed skaters "
+        "target_yes_no_question": "Are the speed skaters wearing pink suits?",
+        "save_dir": "3_Three speed skaters ",
+        "target_yes_no_question_orig": "Are the speed skaters wearing pink suits in the image?",
+        "multiple_choice_question_orig": "What color are the speed skaters wearing in the image?\na) Not pink\nb) Pink"
     },
     {
         "id": "0050_slackline",
@@ -828,10 +937,12 @@
         "target_object": "A person in green",
         "instruction_orig": "Add green attire to the person.",
         "instruction": "Change the color of the person's clothing to green.",
-        "multiple_choice_question": "What is the color of the person in the image?\na) not in green \nb) in green",
+        "multiple_choice_question": "What is the color of the person?\na) not in green \nb) in green",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the person in green in the image?",
-        "save_dir": "3_A person in green is"
+        "target_yes_no_question": "Is the person in green?",
+        "save_dir": "3_A person in green is",
+        "target_yes_no_question_orig": "Is the person in green in the image?",
+        "multiple_choice_question_orig": "What is the color of the person in the image?\na) not in green \nb) in green"
     },
     {
         "id": "0052_mallard-fly",
@@ -845,10 +956,12 @@
         "target_object": "A blue mallard duck",
         "instruction_orig": "Add the color 'blue' to describe the mallard duck.",
         "instruction": "Change the color of the mallard duck to blue.",
-        "multiple_choice_question": "What is the color of the duck in the image?\na) Not blue\nb) Blue",
+        "multiple_choice_question": "What is the color of the duck?\na) Not blue\nb) Blue",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the duck blue in the image?",
-        "save_dir": "3_A blue mallard duck "
+        "target_yes_no_question": "Is the duck blue?",
+        "save_dir": "3_A blue mallard duck ",
+        "target_yes_no_question_orig": "Is the duck blue in the image?",
+        "multiple_choice_question_orig": "What is the color of the duck in the image?\na) Not blue\nb) Blue"
     },
     {
         "id": "0053_swing",
@@ -860,10 +973,12 @@
         "source_object": "a person",
         "target_object": "A person in purple",
         "instruction": "Change the color of the person's clothes to purple.",
-        "multiple_choice_question": "What is the color of the person swinging in the image?\na) Not purple \nb) Purple",
+        "multiple_choice_question": "What is the color of the person swinging?\na) Not purple \nb) Purple",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the person wearing purple in the image?",
-        "save_dir": "3_A person in purple i"
+        "target_yes_no_question": "Is the person wearing purple?",
+        "save_dir": "3_A person in purple i",
+        "target_yes_no_question_orig": "Is the person wearing purple in the image?",
+        "multiple_choice_question_orig": "What is the color of the person swinging in the image?\na) Not purple \nb) Purple"
     },
     {
         "id": "0054_train",
@@ -898,10 +1013,12 @@
         "target_object": "A group of blue pigs",
         "instruction_orig": "Change the pigs to blue pigs.",
         "instruction": "Change the color of the pigs to blue.",
-        "multiple_choice_question": "What is the color of the pigs in the image?\na) Not blue\nb) Blue",
+        "multiple_choice_question": "What is the color of the pigs?\na) Not blue\nb) Blue",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Are the pigs blue in the image?",
-        "save_dir": "3_A group of blue pigs"
+        "target_yes_no_question": "Are the pigs blue?",
+        "save_dir": "3_A group of blue pigs",
+        "target_yes_no_question_orig": "Are the pigs blue in the image?",
+        "multiple_choice_question_orig": "What is the color of the pigs in the image?\na) Not blue\nb) Blue"
     },
     {
         "id": "0056_kart-turn",
@@ -914,10 +1031,12 @@
         "target_object": "Two black go-karts",
         "instruction_orig": "Change the color of the go-karts to black.",
         "instruction": "Change the color of the two go-karts to black.",
-        "multiple_choice_question": "What is the color of the go-karts in the image? \na) Not Black \nb) Black",
+        "multiple_choice_question": "What is the color of the go-karts? \na) Not Black \nb) Black",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Are the go-karts black in the image?",
-        "save_dir": "3_Two black go-karts a"
+        "target_yes_no_question": "Are the go-karts black?",
+        "save_dir": "3_Two black go-karts a",
+        "target_yes_no_question_orig": "Are the go-karts black in the image?",
+        "multiple_choice_question_orig": "What is the color of the go-karts in the image? \na) Not Black \nb) Black"
     },
     {
         "id": "0057_dog",
@@ -930,10 +1049,13 @@
         "target_object": "A blue retriever",
         "instruction_orig": "Change the color of the retriever from golden to blue.",
         "instruction": "Change the color of the golden retriever to blue.",
-        "multiple_choice_question": "What is the color of the retriever in the image?\na) Golden\nb) Blue",
-        "source_yes_no_question": "Is the retriever golden in the image?",
-        "target_yes_no_question": "Is the retriever blue in the image?",
-        "save_dir": "3_A blue retriever is "
+        "multiple_choice_question": "What is the color of the retriever?\na) Golden\nb) Blue",
+        "source_yes_no_question": "Is the retriever golden?",
+        "target_yes_no_question": "Is the retriever blue?",
+        "save_dir": "3_A blue retriever is ",
+        "source_yes_no_question_orig": "Is the retriever golden in the image?",
+        "target_yes_no_question_orig": "Is the retriever blue in the image?",
+        "multiple_choice_question_orig": "What is the color of the retriever in the image?\na) Golden\nb) Blue"
     },
     {
         "id": "0058_boat",
@@ -946,10 +1068,13 @@
         "target_object": "A pink fishing boat",
         "instruction_orig": "Change the color of the boat from white to pink.",
         "instruction": "Change the color of the fishing boat from white to pink.",
-        "multiple_choice_question": "What color is the boat in the image?\na) White \nb) Pink",
-        "source_yes_no_question": "Is the boat white in the image?",
-        "target_yes_no_question": "Is the boat pink in the image?",
-        "save_dir": "3_A pink fishing boat "
+        "multiple_choice_question": "What color is the boat?\na) White \nb) Pink",
+        "source_yes_no_question": "Is the boat white?",
+        "target_yes_no_question": "Is the boat pink?",
+        "save_dir": "3_A pink fishing boat ",
+        "source_yes_no_question_orig": "Is the boat white in the image?",
+        "target_yes_no_question_orig": "Is the boat pink in the image?",
+        "multiple_choice_question_orig": "What color is the boat in the image?\na) White \nb) Pink"
     },
     {
         "id": "0059_drift-straight",
@@ -962,10 +1087,13 @@
         "target_object": "A yellow sports car",
         "instruction_orig": "Change the car's color from red to yellow.",
         "instruction": "Change the color of the sports car from red to yellow.",
-        "multiple_choice_question": "What color is the sports car in the image?\na) Red \nb) Yellow",
-        "source_yes_no_question": "Is the car red in the image?",
-        "target_yes_no_question": "Is the car yellow in the image?",
-        "save_dir": "3_A yellow sports car "
+        "multiple_choice_question": "What color is the sports car?\na) Red \nb) Yellow",
+        "source_yes_no_question": "Is the car red?",
+        "target_yes_no_question": "Is the car yellow?",
+        "save_dir": "3_A yellow sports car ",
+        "source_yes_no_question_orig": "Is the car red in the image?",
+        "target_yes_no_question_orig": "Is the car yellow in the image?",
+        "multiple_choice_question_orig": "What color is the sports car in the image?\na) Red \nb) Yellow"
     },
     {
         "id": "0060_motocross-bumps",
@@ -981,8 +1109,9 @@
         "instruction": "Change the color of the motocross rider's outfit to red.",
         "multiple_choice_question": "What color is the cloth of the motocross rider?\na) Not red\nb) Red",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the motocross rider red in this image?",
-        "save_dir": "3_A red motocross ride"
+        "target_yes_no_question": "Is the motocross rider red?",
+        "save_dir": "3_A red motocross ride",
+        "target_yes_no_question_orig": "Is the motocross rider red in this image?"
     },
     {
         "id": "0061_mbike-santa",
@@ -995,10 +1124,12 @@
         "target_object": "A person dressed in a yellow Santa Claus outfit",
         "instruction_orig": "Change the color of the Santa Claus outfit from the original color to yellow.",
         "instruction": "Change the color of the Santa Claus outfit to yellow.",
-        "multiple_choice_question": "What is the color of the Santa Claus outfit in the image?\na) Not yellow\nb) Yellow",
+        "multiple_choice_question": "What is the color of the Santa Claus outfit?\na) Not yellow\nb) Yellow",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the person wearing a yellow Santa Claus outfit in the image?",
-        "save_dir": "3_A person dressed in "
+        "target_yes_no_question": "Is the person wearing a yellow Santa Claus outfit?",
+        "save_dir": "3_A person dressed in ",
+        "target_yes_no_question_orig": "Is the person wearing a yellow Santa Claus outfit in the image?",
+        "multiple_choice_question_orig": "What is the color of the Santa Claus outfit in the image?\na) Not yellow\nb) Yellow"
     },
     {
         "id": "0062_elephant",
@@ -1011,10 +1142,12 @@
         "target_object": "A blue elephant",
         "instruction_orig": "Change the elephant's color to blue.",
         "instruction": "Change the color of the elephant to blue.",
-        "multiple_choice_question": "What is the color of the elephant in the image?\na) Not Blue\nb) Blue",
+        "multiple_choice_question": "What is the color of the elephant?\na) Not Blue\nb) Blue",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the elephant blue in the image?",
-        "save_dir": "3_A blue elephant is w"
+        "target_yes_no_question": "Is the elephant blue?",
+        "save_dir": "3_A blue elephant is w",
+        "target_yes_no_question_orig": "Is the elephant blue in the image?",
+        "multiple_choice_question_orig": "What is the color of the elephant in the image?\na) Not Blue\nb) Blue"
     },
     {
         "id": "0063_drift-turn",
@@ -1027,10 +1160,12 @@
         "target_object": "A black race car",
         "instruction_orig": "Add the color black to the car.",
         "instruction": "Change the color of the race car to black.",
-        "multiple_choice_question": "What color is the race car in the image?\na) Not black\nb) Black",
+        "multiple_choice_question": "What color is the race car?\na) Not black\nb) Black",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the race car black in the image?",
-        "save_dir": "3_A black race car is "
+        "target_yes_no_question": "Is the race car black?",
+        "save_dir": "3_A black race car is ",
+        "target_yes_no_question_orig": "Is the race car black in the image?",
+        "multiple_choice_question_orig": "What color is the race car in the image?\na) Not black\nb) Black"
     },
     {
         "id": "0064_rollerblade",
@@ -1044,10 +1179,12 @@
         "target_object": "A person in white",
         "instruction_orig": "Add the color white to the person's outfit.",
         "instruction": "Change the color of the person's outfit to white.",
-        "multiple_choice_question": "What is the color of the persons clothing in the image? \na) Not white \nb) white",
+        "multiple_choice_question": "What is the color of the persons clothing? \na) Not white \nb) white",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the person in the image wearing white?",
-        "save_dir": "3_A person in white is"
+        "target_yes_no_question": "Is the person wearing white?",
+        "save_dir": "3_A person in white is",
+        "target_yes_no_question_orig": "Is the person in the image wearing white?",
+        "multiple_choice_question_orig": "What is the color of the persons clothing in the image? \na) Not white \nb) white"
     },
     {
         "id": "0065_twist-dance",
@@ -1061,10 +1198,13 @@
         "target_object": "white skirts and white tops",
         "instruction_orig": "Change the dancers' outfits from red to white.",
         "instruction": "Change the color of the dancers' outfits to white.",
-        "multiple_choice_question": "What is the color of the dancers skirts and tops in the image?\na) Red \nb) White",
-        "source_yes_no_question": "Are the dancers wearing red skirts in the image?",
-        "target_yes_no_question": "Are the dancers wearing white skirts in the image?",
-        "save_dir": "3_Two dancers in match"
+        "multiple_choice_question": "What is the color of the dancers skirts and tops?\na) Red \nb) White",
+        "source_yes_no_question": "Are the dancers wearing red skirts?",
+        "target_yes_no_question": "Are the dancers wearing white skirts?",
+        "save_dir": "3_Two dancers in match",
+        "source_yes_no_question_orig": "Are the dancers wearing red skirts in the image?",
+        "target_yes_no_question_orig": "Are the dancers wearing white skirts in the image?",
+        "multiple_choice_question_orig": "What is the color of the dancers skirts and tops in the image?\na) Red \nb) White"
     },
     {
         "id": "0066_deer",
@@ -1078,10 +1218,12 @@
         "target_object": "Two pink deer",
         "instruction_orig": "Change the color of the deer to pink.",
         "instruction": "Change the color of the two deer to pink.",
-        "multiple_choice_question": "What is the color of the deer in the image?\na) Not Pink\nb) Pink",
+        "multiple_choice_question": "What is the color of the deer?\na) Not Pink\nb) Pink",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Are the deer in the image pink?",
-        "save_dir": "3_Two pink deer are en"
+        "target_yes_no_question": "Are the deer pink?",
+        "save_dir": "3_Two pink deer are en",
+        "target_yes_no_question_orig": "Are the deer in the image pink?",
+        "multiple_choice_question_orig": "What is the color of the deer in the image?\na) Not Pink\nb) Pink"
     },
     {
         "id": "0067_mbike-trick",
@@ -1095,11 +1237,12 @@
         "target_object": "A motorcyclist in red",
         "instruction_orig": "Change the motorcyclist to wear red.",
         "instruction": "Change the color of the motorcyclist's outfit to red.",
-        "multiple_choice_question": "What is the color of the motorcyclist in the image?\na) Not Red\nb) Red",
+        "multiple_choice_question": "What is the color of the motorcyclist?\na) Not Red\nb) Red",
         "source_yes_no_question": "",
         "target_yes_no_question_orig": "Is the the motorcyclist in the image red?",
-        "target_yes_no_question": "Is the motorcyclist in the image red?",
-        "save_dir": "3_A motorcyclist in re"
+        "target_yes_no_question": "Is the motorcyclist red?",
+        "save_dir": "3_A motorcyclist in re",
+        "multiple_choice_question_orig": "What is the color of the motorcyclist in the image?\na) Not Red\nb) Red"
     },
     {
         "id": "0068_planes-water",
@@ -1113,11 +1256,12 @@
         "target_object": "A blue large passenger airplane",
         "instruction_orig": "Add the color blue to the airplane.",
         "instruction": "Change the color of the airplane to blue.",
-        "multiple_choice_question": "What is the color of the airplane in the image?\na) Not Blue \nb) Blue",
+        "multiple_choice_question": "What is the color of the airplane?\na) Not Blue \nb) Blue",
         "source_yes_no_question": "",
         "target_yes_no_question_orig": "Is the airplane blue in the target image?",
-        "target_yes_no_question": "Is the airplane blue in the image?",
-        "save_dir": "3_A blue large passeng"
+        "target_yes_no_question": "Is the airplane blue?",
+        "save_dir": "3_A blue large passeng",
+        "multiple_choice_question_orig": "What is the color of the airplane in the image?\na) Not Blue \nb) Blue"
     },
     {
         "id": "0069_car-turn",
@@ -1129,10 +1273,13 @@
         "source_object": "a silver SUV",
         "target_object": "A pink SUV",
         "instruction": "Change the color of the SUV from silver to pink.",
-        "multiple_choice_question": "What color is the SUV in the image? \na) Silver \nb) Pink",
-        "source_yes_no_question": "Is the SUV silver in the image?",
-        "target_yes_no_question": "Is the SUV pink in the image?",
-        "save_dir": "3_A pink SUV is naviga"
+        "multiple_choice_question": "What color is the SUV? \na) Silver \nb) Pink",
+        "source_yes_no_question": "Is the SUV silver?",
+        "target_yes_no_question": "Is the SUV pink?",
+        "save_dir": "3_A pink SUV is naviga",
+        "source_yes_no_question_orig": "Is the SUV silver in the image?",
+        "target_yes_no_question_orig": "Is the SUV pink in the image?",
+        "multiple_choice_question_orig": "What color is the SUV in the image? \na) Silver \nb) Pink"
     },
     {
         "id": "0070_dance-twirl",
@@ -1144,10 +1291,13 @@
         "source_object": "a dancer in a blue and green costume",
         "target_object": "A dancer in a yellow costume",
         "instruction": "Change the color of the dancer's costume from blue and green to yellow.",
-        "multiple_choice_question": "What is the color of the dancers costume in the image? \na) Blue and green \nb) Yellow",
-        "source_yes_no_question": "Is the dancer wearing a blue and green costume in the image?",
-        "target_yes_no_question": "Is the dancer wearing a yellow costume in the image?",
-        "save_dir": "3_A dancer in a yellow"
+        "multiple_choice_question": "What is the color of the dancers costume? \na) Blue and green \nb) Yellow",
+        "source_yes_no_question": "Is the dancer wearing a blue and green costume?",
+        "target_yes_no_question": "Is the dancer wearing a yellow costume?",
+        "save_dir": "3_A dancer in a yellow",
+        "source_yes_no_question_orig": "Is the dancer wearing a blue and green costume in the image?",
+        "target_yes_no_question_orig": "Is the dancer wearing a yellow costume in the image?",
+        "multiple_choice_question_orig": "What is the color of the dancers costume in the image? \na) Blue and green \nb) Yellow"
     },
     {
         "id": "0071_mallard-water",
@@ -1163,8 +1313,9 @@
         "instruction": "Change the color of the mallard duck to blue.",
         "multiple_choice_question": "What color is the mallard duck? \na) Not Blue \nb) blue",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the duck blue in the image?",
-        "save_dir": "3_A blue mallard duck "
+        "target_yes_no_question": "Is the duck blue?",
+        "save_dir": "3_A blue mallard duck ",
+        "target_yes_no_question_orig": "Is the duck blue in the image?"
     },
     {
         "id": "0072_dog-agility",
@@ -1177,10 +1328,12 @@
         "target_object": "A red border collie",
         "instruction_orig": "Change the border collie to a red border collie.",
         "instruction": "Change the color of the border collie to red.",
-        "multiple_choice_question": "What color is the border collie in the image? \na) Not Red \nb) Red",
+        "multiple_choice_question": "What color is the border collie? \na) Not Red \nb) Red",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the border collie red in the image?",
-        "save_dir": "3_A red border collie "
+        "target_yes_no_question": "Is the border collie red?",
+        "save_dir": "3_A red border collie ",
+        "target_yes_no_question_orig": "Is the border collie red in the image?",
+        "multiple_choice_question_orig": "What color is the border collie in the image? \na) Not Red \nb) Red"
     },
     {
         "id": "0073_bmx-rider",
@@ -1193,10 +1346,12 @@
         "target_object": "A BMX rider in green",
         "instruction_orig": "Change the rider's color to green.",
         "instruction": "Change the color of the BMX rider's outfit to green.",
-        "multiple_choice_question": "What color is the rider wearing in the image? \na) Not Green \nb) Green",
+        "multiple_choice_question": "What color is the rider wearing? \na) Not Green \nb) Green",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the rider wearing green in the image?",
-        "save_dir": "3_A BMX rider in green"
+        "target_yes_no_question": "Is the rider wearing green?",
+        "save_dir": "3_A BMX rider in green",
+        "target_yes_no_question_orig": "Is the rider wearing green in the image?",
+        "multiple_choice_question_orig": "What color is the rider wearing in the image? \na) Not Green \nb) Green"
     },
     {
         "id": "0074_rhino",
@@ -1209,10 +1364,12 @@
         "target_object_orig": "pink",
         "target_object": "A large pink rhinoceros",
         "instruction": "Change the color of the rhinoceros to pink.",
-        "multiple_choice_question": "What color is the rhinoceros in the image?\na) Not pink\nb) Pink",
+        "multiple_choice_question": "What color is the rhinoceros?\na) Not pink\nb) Pink",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the rhinoceros pink in the image?",
-        "save_dir": "3_A large pink rhinoce"
+        "target_yes_no_question": "Is the rhinoceros pink?",
+        "save_dir": "3_A large pink rhinoce",
+        "target_yes_no_question_orig": "Is the rhinoceros pink in the image?",
+        "multiple_choice_question_orig": "What color is the rhinoceros in the image?\na) Not pink\nb) Pink"
     },
     {
         "id": "0075_A_bicycle",
@@ -1225,10 +1382,12 @@
         "target_object": "A purple bicycle",
         "instruction_orig": "Add purple color to the bicycle.",
         "instruction": "Change the color of the bicycle to purple.",
-        "multiple_choice_question": "What object is present in the image? \na) A non-purple bicycle \nb) A purple bicycle",
+        "multiple_choice_question": "What object is present? \na) A non-purple bicycle \nb) A purple bicycle",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the bicycle purple in the image?",
-        "save_dir": "3_A purple bicycle is "
+        "target_yes_no_question": "Is the bicycle purple?",
+        "save_dir": "3_A purple bicycle is ",
+        "target_yes_no_question_orig": "Is the bicycle purple in the image?",
+        "multiple_choice_question_orig": "What object is present in the image? \na) A non-purple bicycle \nb) A purple bicycle"
     },
     {
         "id": "0076_A_rabbit",
@@ -1240,10 +1399,12 @@
         "source_object": "A rabbit",
         "target_object": "A turquoise rabbit",
         "instruction": "Change the color of the rabbit to turquoise.",
-        "multiple_choice_question": "What color is the rabbit in the image?\na) Non-Turquoise \nb) Turquoise",
+        "multiple_choice_question": "What color is the rabbit?\na) Non-Turquoise \nb) Turquoise",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the rabbit turquoise in the image?",
-        "save_dir": "3_A turquoise rabbit i"
+        "target_yes_no_question": "Is the rabbit turquoise?",
+        "save_dir": "3_A turquoise rabbit i",
+        "target_yes_no_question_orig": "Is the rabbit turquoise in the image?",
+        "multiple_choice_question_orig": "What color is the rabbit in the image?\na) Non-Turquoise \nb) Turquoise"
     },
     {
         "id": "0077_A_hawk",
@@ -1255,10 +1416,12 @@
         "source_object": "A hawk",
         "target_object": "A pink hawk",
         "instruction": "Change the color of the hawk to pink.",
-        "multiple_choice_question": "What is the color of the hawk in the image? \na) Not pink \nb) Pink",
+        "multiple_choice_question": "What is the color of the hawk? \na) Not pink \nb) Pink",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the hawk pink in the image?",
-        "save_dir": "3_A pink hawk is soari"
+        "target_yes_no_question": "Is the hawk pink?",
+        "save_dir": "3_A pink hawk is soari",
+        "target_yes_no_question_orig": "Is the hawk pink in the image?",
+        "multiple_choice_question_orig": "What is the color of the hawk in the image? \na) Not pink \nb) Pink"
     },
     {
         "id": "0078_A_cat",
@@ -1272,10 +1435,12 @@
         "target_object": "A green cat",
         "instruction_orig": "Change the cat to green.",
         "instruction": "Change the color of the cat to green.",
-        "multiple_choice_question": "What is the color of the cat in the image?\na) Not green \nb) Green",
+        "multiple_choice_question": "What is the color of the cat?\na) Not green \nb) Green",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the cat green in the image?",
-        "save_dir": "3_A green cat is pounc"
+        "target_yes_no_question": "Is the cat green?",
+        "save_dir": "3_A green cat is pounc",
+        "target_yes_no_question_orig": "Is the cat green in the image?",
+        "multiple_choice_question_orig": "What is the color of the cat in the image?\na) Not green \nb) Green"
     },
     {
         "id": "0079_A_bus",
@@ -1287,10 +1452,12 @@
         "source_object": "A bus",
         "target_object": "A lavender bus",
         "instruction": "Change the color of the bus to lavender.",
-        "multiple_choice_question": "What color is the bus in the image?\na) Not lavender\nb) Lavender",
+        "multiple_choice_question": "What color is the bus?\na) Not lavender\nb) Lavender",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the bus lavender in the image?",
-        "save_dir": "3_A lavender bus is dr"
+        "target_yes_no_question": "Is the bus lavender?",
+        "save_dir": "3_A lavender bus is dr",
+        "target_yes_no_question_orig": "Is the bus lavender in the image?",
+        "multiple_choice_question_orig": "What color is the bus in the image?\na) Not lavender\nb) Lavender"
     },
     {
         "id": "0080_A_motorcycle",
@@ -1303,10 +1470,12 @@
         "target_object": "A golden motorcycle",
         "instruction_orig": "Change the motorcycle to golden.",
         "instruction": "Change the color of the motorcycle to gold.",
-        "multiple_choice_question": "What object is present in the image? \na) A non-golden motorcycle \nb) A golden motorcycle",
+        "multiple_choice_question": "What object is present? \na) A non-golden motorcycle \nb) A golden motorcycle",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the motorcycle golden in the image?",
-        "save_dir": "3_A golden motorcycle "
+        "target_yes_no_question": "Is the motorcycle golden?",
+        "save_dir": "3_A golden motorcycle ",
+        "target_yes_no_question_orig": "Is the motorcycle golden in the image?",
+        "multiple_choice_question_orig": "What object is present in the image? \na) A non-golden motorcycle \nb) A golden motorcycle"
     },
     {
         "id": "0081_A_horse",
@@ -1320,10 +1489,12 @@
         "target_object": "A silver horse",
         "instruction_orig": "Change the horse to a silver horse.",
         "instruction": "Change the color of the horse to silver.",
-        "multiple_choice_question": "What color of the horse in the image?\na) Not silver\nb) Silver",
+        "multiple_choice_question": "What color of the horse?\na) Not silver\nb) Silver",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the horse silver in the image?",
-        "save_dir": "3_A silver horse is ga"
+        "target_yes_no_question": "Is the horse silver?",
+        "save_dir": "3_A silver horse is ga",
+        "target_yes_no_question_orig": "Is the horse silver in the image?",
+        "multiple_choice_question_orig": "What color of the horse in the image?\na) Not silver\nb) Silver"
     },
     {
         "id": "0082_A_tram",
@@ -1336,10 +1507,12 @@
         "target_object_orig": "A teal",
         "target_object": "A teal tram",
         "instruction": "Change the color of the tram to teal.",
-        "multiple_choice_question": "What color is the tram in the image? \na) Not teal \nb) teal",
+        "multiple_choice_question": "What color is the tram? \na) Not teal \nb) teal",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the tram teal in the image?",
-        "save_dir": "3_A teal tram is movin"
+        "target_yes_no_question": "Is the tram teal?",
+        "save_dir": "3_A teal tram is movin",
+        "target_yes_no_question_orig": "Is the tram teal in the image?",
+        "multiple_choice_question_orig": "What color is the tram in the image? \na) Not teal \nb) teal"
     },
     {
         "id": "0083_A_boat",
@@ -1351,10 +1524,12 @@
         "source_object": "A boat",
         "target_object": "A magenta boat",
         "instruction": "Change the color of the boat to magenta.",
-        "multiple_choice_question": "What object is present in the image? \na) A non-magenta boat \nb) A magenta boat",
+        "multiple_choice_question": "What object is present? \na) A non-magenta boat \nb) A magenta boat",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the boat magenta in the image?",
-        "save_dir": "3_A magenta boat is sa"
+        "target_yes_no_question": "Is the boat magenta?",
+        "save_dir": "3_A magenta boat is sa",
+        "target_yes_no_question_orig": "Is the boat magenta in the image?",
+        "multiple_choice_question_orig": "What object is present in the image? \na) A non-magenta boat \nb) A magenta boat"
     },
     {
         "id": "0084_A_squirrel",
@@ -1367,10 +1542,12 @@
         "target_object": "A crimson squirrel",
         "instruction_orig": "Change the squirrel to a crimson squirrel.",
         "instruction": "Change the color of the squirrel to crimson.",
-        "multiple_choice_question": "What color is the squirrel in the image? \na) Not Crimson \nb) Crimson",
+        "multiple_choice_question": "What color is the squirrel? \na) Not Crimson \nb) Crimson",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the squirrel crimson in the image?",
-        "save_dir": "3_A crimson squirrel i"
+        "target_yes_no_question": "Is the squirrel crimson?",
+        "save_dir": "3_A crimson squirrel i",
+        "target_yes_no_question_orig": "Is the squirrel crimson in the image?",
+        "multiple_choice_question_orig": "What color is the squirrel in the image? \na) Not Crimson \nb) Crimson"
     },
     {
         "id": "0085_A_tram",
@@ -1383,10 +1560,12 @@
         "target_object_orig": "A chartreuse",
         "target_object": "A chartreuse tram",
         "instruction": "Change the color of the tram to chartreuse.",
-        "multiple_choice_question": "What is the color of the tram in the image? \na) Not Chartreuse \nb) Chartreuse",
+        "multiple_choice_question": "What is the color of the tram? \na) Not Chartreuse \nb) Chartreuse",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the tram chartreuse in the image?",
-        "save_dir": "3_A chartreuse tram is"
+        "target_yes_no_question": "Is the tram chartreuse?",
+        "save_dir": "3_A chartreuse tram is",
+        "target_yes_no_question_orig": "Is the tram chartreuse in the image?",
+        "multiple_choice_question_orig": "What is the color of the tram in the image? \na) Not Chartreuse \nb) Chartreuse"
     },
     {
         "id": "0086_A_red_sports_car",
@@ -1398,10 +1577,13 @@
         "source_object": "A red sports car",
         "target_object": "A cyan sports car",
         "instruction": "Change the color of the sports car from red to cyan.",
-        "multiple_choice_question": "What is the color of the sports car in the image? \na) Red \nb) Cyan",
-        "source_yes_no_question": "Is the sports car red in the image?",
-        "target_yes_no_question": "Is the sports car cyan in the image?",
-        "save_dir": "3_A cyan sports car is"
+        "multiple_choice_question": "What is the color of the sports car? \na) Red \nb) Cyan",
+        "source_yes_no_question": "Is the sports car red?",
+        "target_yes_no_question": "Is the sports car cyan?",
+        "save_dir": "3_A cyan sports car is",
+        "source_yes_no_question_orig": "Is the sports car red in the image?",
+        "target_yes_no_question_orig": "Is the sports car cyan in the image?",
+        "multiple_choice_question_orig": "What is the color of the sports car in the image? \na) Red \nb) Cyan"
     },
     {
         "id": "0087_A_seagull",
@@ -1415,10 +1597,12 @@
         "target_object": "A violet seagull",
         "instruction_orig": "Change the seagull to violet",
         "instruction": "Change the color of the seagull to violet.",
-        "multiple_choice_question": "What color is the seagull in the image?\na) Not Violet \nb) Violet",
+        "multiple_choice_question": "What color is the seagull?\na) Not Violet \nb) Violet",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the seagull violet in the image?",
-        "save_dir": "3_A violet seagull is "
+        "target_yes_no_question": "Is the seagull violet?",
+        "save_dir": "3_A violet seagull is ",
+        "target_yes_no_question_orig": "Is the seagull violet in the image?",
+        "multiple_choice_question_orig": "What color is the seagull in the image?\na) Not Violet \nb) Violet"
     },
     {
         "id": "0088_A_cyclist",
@@ -1432,10 +1616,12 @@
         "target_object": "A maroon cyclist",
         "instruction_orig": "Change the cyclist's color to maroon.",
         "instruction": "Change the color of the cyclist's outfit to maroon.",
-        "multiple_choice_question": "What color is the cyclist in the image?\na) Not maroon \nb) Maroon",
+        "multiple_choice_question": "What color is the cyclist?\na) Not maroon \nb) Maroon",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the cyclist maroon in the image?",
-        "save_dir": "3_A maroon cyclist is "
+        "target_yes_no_question": "Is the cyclist maroon?",
+        "save_dir": "3_A maroon cyclist is ",
+        "target_yes_no_question_orig": "Is the cyclist maroon in the image?",
+        "multiple_choice_question_orig": "What color is the cyclist in the image?\na) Not maroon \nb) Maroon"
     },
     {
         "id": "0089_A_dog",
@@ -1448,10 +1634,12 @@
         "target_object": "A lime dog",
         "instruction_orig": "Change the dog to a lime dog.",
         "instruction": "Change the color of the dog to lime green.",
-        "multiple_choice_question": "What color is the dog in the image?\na) Not lime\nb) Lime",
+        "multiple_choice_question": "What color is the dog?\na) Not lime\nb) Lime",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the dog lime in the image?",
-        "save_dir": "3_A lime dog is waggin"
+        "target_yes_no_question": "Is the dog lime?",
+        "save_dir": "3_A lime dog is waggin",
+        "target_yes_no_question_orig": "Is the dog lime in the image?",
+        "multiple_choice_question_orig": "What color is the dog in the image?\na) Not lime\nb) Lime"
     },
     {
         "id": "0090_A_deer",
@@ -1464,10 +1652,12 @@
         "target_object": "A coral deer",
         "instruction_orig": "Change the deer into a coral deer.",
         "instruction": "Change the color of the deer to coral.",
-        "multiple_choice_question": "What object is present in the image? \na) A non-coral deer \nb) A coral deer",
+        "multiple_choice_question": "What object is present? \na) A non-coral deer \nb) A coral deer",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the deer coral in the image?",
-        "save_dir": "3_A coral deer is boun"
+        "target_yes_no_question": "Is the deer coral?",
+        "save_dir": "3_A coral deer is boun",
+        "target_yes_no_question_orig": "Is the deer coral in the image?",
+        "multiple_choice_question_orig": "What object is present in the image? \na) A non-coral deer \nb) A coral deer"
     },
     {
         "id": "0091_A_hawk",
@@ -1480,10 +1670,12 @@
         "target_object": "A mustard hawk",
         "instruction_orig": "Change the hawk to a mustard hawk.",
         "instruction": "Change the color of the hawk to mustard yellow.",
-        "multiple_choice_question": "What type of hawk is present in the image?\na) A non-mustard hawk \nb) A mustard hawk ",
+        "multiple_choice_question": "What type of hawk is present?\na) A non-mustard hawk \nb) A mustard hawk ",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the hawk mustard in the image?",
-        "save_dir": "3_A mustard hawk is ci"
+        "target_yes_no_question": "Is the hawk mustard?",
+        "save_dir": "3_A mustard hawk is ci",
+        "target_yes_no_question_orig": "Is the hawk mustard in the image?",
+        "multiple_choice_question_orig": "What type of hawk is present in the image?\na) A non-mustard hawk \nb) A mustard hawk "
     },
     {
         "id": "0092_A_fox",
@@ -1496,10 +1688,12 @@
         "target_object": "An indigo fox",
         "instruction_orig": "Change the fox to an indigo fox.",
         "instruction": "Change the color of the fox to indigo.",
-        "multiple_choice_question": "What is the color of the fox in the image?\na) Not indigo \nb) Indigo",
+        "multiple_choice_question": "What is the color of the fox?\na) Not indigo \nb) Indigo",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the fox indigo in the image?",
-        "save_dir": "3_An indigo fox is tro"
+        "target_yes_no_question": "Is the fox indigo?",
+        "save_dir": "3_An indigo fox is tro",
+        "target_yes_no_question_orig": "Is the fox indigo in the image?",
+        "multiple_choice_question_orig": "What is the color of the fox in the image?\na) Not indigo \nb) Indigo"
     },
     {
         "id": "0093_A_helicopter",
@@ -1513,10 +1707,12 @@
         "target_object": "A fuchsia helicopter",
         "instruction_orig": "Change the helicopter's color to fuchsia.",
         "instruction": "Change the color of the helicopter to fuchsia.",
-        "multiple_choice_question": "What is the color of the helicopter in the image? \na) Not Fuchsia \nb) Fuchsia",
+        "multiple_choice_question": "What is the color of the helicopter? \na) Not Fuchsia \nb) Fuchsia",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the helicopter fuchsia in the image?",
-        "save_dir": "3_A fuchsia helicopter"
+        "target_yes_no_question": "Is the helicopter fuchsia?",
+        "save_dir": "3_A fuchsia helicopter",
+        "target_yes_no_question_orig": "Is the helicopter fuchsia in the image?",
+        "multiple_choice_question_orig": "What is the color of the helicopter in the image? \na) Not Fuchsia \nb) Fuchsia"
     },
     {
         "id": "0094_A_swan",
@@ -1530,10 +1726,12 @@
         "target_object": "A bronze swan",
         "instruction_orig": "Add 'bronze' to the swan.",
         "instruction": "Change the color of the swan to bronze.",
-        "multiple_choice_question": "What is the material of the swan in the image? \na) Not Bronze \nb) Bronze",
+        "multiple_choice_question": "What is the material of the swan? \na) Not Bronze \nb) Bronze",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the swan bronze in the image?",
-        "save_dir": "3_A bronze swan is swi"
+        "target_yes_no_question": "Is the swan bronze?",
+        "save_dir": "3_A bronze swan is swi",
+        "target_yes_no_question_orig": "Is the swan bronze in the image?",
+        "multiple_choice_question_orig": "What is the material of the swan in the image? \na) Not Bronze \nb) Bronze"
     },
     {
         "id": "0095_A_crow",
@@ -1548,10 +1746,12 @@
         "target_object": "An azure crow",
         "instruction_orig": "Add \"azure\" to describe the crow.",
         "instruction": "Change the color of the crow to azure.",
-        "multiple_choice_question": "What color is the crow in the image?\na) Not azure\nb) azure",
+        "multiple_choice_question": "What color is the crow?\na) Not azure\nb) azure",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the crow azure in the image?",
-        "save_dir": "3_A azure crow is perc"
+        "target_yes_no_question": "Is the crow azure?",
+        "save_dir": "3_A azure crow is perc",
+        "target_yes_no_question_orig": "Is the crow azure in the image?",
+        "multiple_choice_question_orig": "What color is the crow in the image?\na) Not azure\nb) azure"
     },
     {
         "id": "0096_A_car",
@@ -1565,10 +1765,12 @@
         "target_object": "A beige car",
         "instruction_orig": "Add the color beige to the car.",
         "instruction": "Change the color of the car to beige.",
-        "multiple_choice_question": "What is the color of the car in the image?\na) Not beige\nb) beige",
+        "multiple_choice_question": "What is the color of the car?\na) Not beige\nb) beige",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the car beige in the image?",
-        "save_dir": "3_A beige car is drivi"
+        "target_yes_no_question": "Is the car beige?",
+        "save_dir": "3_A beige car is drivi",
+        "target_yes_no_question_orig": "Is the car beige in the image?",
+        "multiple_choice_question_orig": "What is the color of the car in the image?\na) Not beige\nb) beige"
     },
     {
         "id": "0097_A_bird",
@@ -1581,10 +1783,12 @@
         "target_object": "An olive bird",
         "instruction_orig": "Change the bird to an olive bird.",
         "instruction": "Change the color of the bird to olive.",
-        "multiple_choice_question": "What is the color of the bird building the nest in the image? \na) The bird is not olive \nb) The bird is olive",
+        "multiple_choice_question": "What is the color of the bird building the nest? \na) The bird is not olive \nb) The bird is olive",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the bird olive in the image?",
-        "save_dir": "3_An olive bird is bui"
+        "target_yes_no_question": "Is the bird olive?",
+        "save_dir": "3_An olive bird is bui",
+        "target_yes_no_question_orig": "Is the bird olive in the image?",
+        "multiple_choice_question_orig": "What is the color of the bird building the nest in the image? \na) The bird is not olive \nb) The bird is olive"
     },
     {
         "id": "0098_A_squirrel",
@@ -1598,10 +1802,12 @@
         "target_object": "A salmon squirrel",
         "instruction_orig": "Change the squirrel to a salmon squirrel.",
         "instruction": "Change the color of the squirrel to salmon pink.",
-        "multiple_choice_question": "What color of the squirrel in the image?\na) Not salmon\nb) Salmon",
+        "multiple_choice_question": "What color of the squirrel?\na) Not salmon\nb) Salmon",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the squirrel salmon in the image?",
-        "save_dir": "3_A salmon squirrel is"
+        "target_yes_no_question": "Is the squirrel salmon?",
+        "save_dir": "3_A salmon squirrel is",
+        "target_yes_no_question_orig": "Is the squirrel salmon in the image?",
+        "multiple_choice_question_orig": "What color of the squirrel in the image?\na) Not salmon\nb) Salmon"
     },
     {
         "id": "0099_A_jogger",
@@ -1616,9 +1822,10 @@
         "instruction_orig": "Change the jogger to lavender.",
         "instruction": "Change the color of the jogger's outfit to lavender.",
         "multiple_choice_question_orig": "What is the color of the jogger in the image?\na) lavender\nb) Not lavender",
-        "multiple_choice_question": "What is the color of the jogger in the image?\na) Not lavender\nb) Not Not lavender",
+        "multiple_choice_question": "What is the color of the jogger?\na) Not lavender\nb) lavender",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the joggers shirt lavender in the image?",
+        "target_yes_no_question_orig": "Is the joggers shirt lavender in the image?",
+        "target_yes_no_question": "Is the jogger's shirt lavender?",
         "save_dir": "3_A lavender jogger is"
     },
     {
@@ -1633,9 +1840,11 @@
         "target_object": "A periwinkle deer",
         "instruction_orig": "Replace 'deer' with 'periwinkle deer",
         "instruction": "Change the color of the deer to periwinkle.",
-        "multiple_choice_question": "What type of deer is present in the image?\na) A normal deer \nb) A periwinkle deer",
+        "multiple_choice_question": "What type of deer is present?\na) A normal deer \nb) A periwinkle deer",
         "source_yes_no_question": "",
-        "target_yes_no_question": "Is the deer periwinkle in the image?",
-        "save_dir": "3_A periwinkle deer is"
+        "target_yes_no_question": "Is the deer periwinkle?",
+        "save_dir": "3_A periwinkle deer is",
+        "target_yes_no_question_orig": "Is the deer periwinkle in the image?",
+        "multiple_choice_question_orig": "What type of deer is present in the image?\na) A normal deer \nb) A periwinkle deer"
     }
 ]

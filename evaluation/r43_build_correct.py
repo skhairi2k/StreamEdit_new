@@ -14,8 +14,13 @@ Validation (non-zero exit, nothing written on any failure):
   * copy check -- each word a correction inserts into a target prompt or a question exists in
     the pair's own FiVE fields (or ``template_from``'s), except the typo-fix exception (a
     replacement within edit distance 2 of the word it replaces, or a <-> an:
-    ``L1-spelling``) and the grammar exception (is <-> are: ``L1-grammar``); reported per row
-    in ``inserted_from``;
+    ``L1-spelling``) and the grammar exception (is <-> are: ``L1-grammar``); fields listed in a
+    correction's ``user_review`` (wording written by the user in the review) are exempt and
+    reported as ``user-review``; reported per row in ``inserted_from``;
+  * span check also applies to a corrected ``source_prompt`` (edit3/0026 only);
+
+Every question of every pair has the location phrases "in the image" / "in the scene" /
+"in the picture" / "in this image" removed (``inserted_from`` ``strip-location``).
   * no ``must_not_contain`` word survives in the corrected target prompt (word boundary);
   * no edit6 target prompt keeps a negated mention;
   * object-span guard -- every non-empty object is a verbatim, case-insensitive, word-bounded
@@ -54,15 +59,18 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 EDIT_TYPES = range(1, 7)
-CORRECTABLE = ("target_prompt", "source_yes_no_question", "target_yes_no_question",
+CORRECTABLE = ("source_prompt", "target_prompt", "source_yes_no_question", "target_yes_no_question",
                "multiple_choice_question", "source_object", "target_object")
-COPY_CHECKED = ("target_prompt", "source_yes_no_question", "target_yes_no_question",
+SPAN_CHECKED = ("source_prompt", "target_prompt")
+COPY_CHECKED = ("source_prompt", "target_prompt", "source_yes_no_question", "target_yes_no_question",
                 "multiple_choice_question")
+# Location phrases stripped from every question of every pair (user 2026-10-20).
+LOCATION_PHRASE = re.compile(r"\s*\b(?:in the image|in the scene|in the picture|in this image)\b", re.I)
 QUESTION_FIELDS = ("source_yes_no_question", "target_yes_no_question", "multiple_choice_question")
 VOCAB_FIELDS = ("source_prompt", "target_prompt", "source_object", "target_object", "instruction",
                 "source_yes_no_question", "target_yes_no_question", "multiple_choice_question")
 CORRECTION_KEYS = {"case_id", "level", "changed_spans", "must_not_contain", "template_from",
-                   "exclude", "note", *CORRECTABLE}
+                   "user_review", "exclude", "note", *CORRECTABLE}
 OBJECT_PROMPT = {"source_object": "source_prompt", "target_object": "target_prompt"}
 NEGATION = re.compile(r"\bwithout\b|\bnot wearing\b|\bnot accompanied\b", re.I)
 KEEP_POSE_SUFFIX = (" Keep the coarse position, size, facing direction and coarse pose of the "
@@ -161,6 +169,10 @@ def is_span(obj: str, prompt: str) -> bool:
     return re.search(r"(?<!\w)" + re.escape(obj.strip()) + r"(?!\w)", prompt, re.I) is not None
 
 
+def strip_location(text: str) -> str:
+    return LOCATION_PHRASE.sub("", text)
+
+
 def pair_vocab(entry: dict) -> set[str]:
     return {w for f in VOCAB_FIELDS for w in words(str(entry.get(f) or ""))}
 
@@ -223,11 +235,13 @@ def main() -> None:
             elif key in CORRECTABLE and key in corr and corr[key] != value:
                 fixed = corr[key]
                 provenance = ""
-                if key == "target_prompt":
+                if key in SPAN_CHECKED:
                     stray = [w for w in removed_words(value, fixed) if w not in span_words]
                     if stray:
-                        failures.append(f"{cid} target_prompt: edits outside changed_spans: {stray}")
-                if key in COPY_CHECKED:
+                        failures.append(f"{cid} {key}: edits outside changed_spans: {stray}")
+                if key in corr.get("user_review", []):
+                    provenance = "user-review"
+                elif key in COPY_CHECKED:
                     tags, bad = copy_check(value, fixed, vocab, template_vocab)
                     if bad:
                         failures.append(f"{cid} {key}: inserted words not in the pair's FiVE "
@@ -240,9 +254,26 @@ def main() -> None:
             else:
                 new[key] = value
 
+        # Strip location phrases from every question; one diff row per field.
+        for key in QUESTION_FIELDS:
+            stripped = strip_location(new[key])
+            if stripped == new[key]:
+                continue
+            new[key] = stripped
+            row = next((r for r in diff_rows if r[0] == cid and r[2] == key), None)
+            if row is not None:
+                row[4], row[5] = stripped, (row[5] + "," if row[5] else "") + "strip-location"
+            else:
+                new[f"{key}_orig"] = entry[key]
+                diff_rows.append([cid, level, key, entry[key], stripped, "strip-location", groups,
+                                  corr.get("note", "")])
+
         if not corr:
-            rest = {k: v for k, v in new.items() if k not in ("instruction", "instruction_orig")}
-            if rest != {k: v for k, v in entry.items() if k != "instruction"}:
+            rest = {k: v for k, v in new.items()
+                    if k not in ("instruction", "instruction_orig") and not k.endswith("_orig")}
+            expected = {k: (strip_location(v) if k in QUESTION_FIELDS else v)
+                        for k, v in entry.items() if k != "instruction"}
+            if rest != expected:
                 failures.append(f"{cid}: uncorrected pair differs from the released entry")
 
         tp = new["target_prompt"]
