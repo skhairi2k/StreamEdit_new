@@ -1,0 +1,2185 @@
+[
+ {
+  "case_id": "edit1/0003_ocean-birds",
+  "level": "L1",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_yes_no_question": "Are the animals two white swans in the image?",
+  "multiple_choice_question": "What object is walking along the sandy shore in the image? \na) Two white ibises \nb) Two white swans",
+  "note": "questions: 'swan' -> 'swans', 'sandy' -> 'sandy shore'"
+ },
+ {
+  "case_id": "edit1/0006_paragliding",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "",
+  "target_yes_no_question": "Is the paraglider replaced by a hang glider in the image?",
+  "target_object": "A hang glider",
+  "note": "target_object 'hang' truncated -> 'A hang glider'; source question was target-true: moved to the target slot (replacing a garbled/ambiguous target question), source question emptied"
+ },
+ {
+  "case_id": "edit1/0011_lucia",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "a woman",
+  "note": "source_object 'a woman in a black dress' -> 'a woman' (surviving words are not part of the edit)"
+ },
+ {
+  "case_id": "edit1/0016_horsejump-high",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "",
+  "target_yes_no_question": "Is the horse replaced by a camel in the image?",
+  "source_object": "A horse",
+  "note": "source_object 'a horse with a rider' -> 'A horse' (surviving words are not part of the edit); source question was target-true: moved to the target slot (replacing a garbled/ambiguous target question), source question emptied"
+ },
+ {
+  "case_id": "edit1/0018_breakdance-flare",
+  "level": "L1",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "multiple_choice_question": "What object is performing the flare move in the image?\na) a breakdancer\nb) A Beast",
+  "note": "stray period in the MCQ"
+ },
+ {
+  "case_id": "edit1/0019_tennis-vest",
+  "level": "L2",
+  "changed_spans": [
+   "spiderman's",
+   "A ultraman"
+  ],
+  "must_not_contain": [
+   "spiderman"
+  ],
+  "target_prompt": "An ultraman in a navy tank top and white shorts is actively engaged in a tennis match on a clay court. The ultraman is seen moving dynamically across the court, preparing to hit the ball with a tennis racket. The background features a blue banner and a chain-link fence, typical of a tennis court environment. The camera remains stationary, capturing the ultraman's swift movements and actions.",
+  "note": "leftover object spiderman -> ultraman; article A ultraman -> An ultraman"
+ },
+ {
+  "case_id": "edit1/0020_monkeys",
+  "level": "L3",
+  "changed_spans": [
+   "champanzee",
+   "champanzees"
+  ],
+  "must_not_contain": [
+   "champanzee"
+  ],
+  "target_prompt": "A young chimpanzee is playfully interacting with an adult chimpanzee on a grassy field covered with fallen leaves. The camera remains fixed, capturing the gentle and curious movements of the chimpanzees.",
+  "source_yes_no_question": "Is the young monkey a monkey in the image?",
+  "target_yes_no_question": "Is the young monkey a chimpanzee in the image?",
+  "multiple_choice_question": "What type of animal is interacting with the adult in the image? \na) A monkey \nb) A chimpanzee",
+  "target_object": "chimpanzee",
+  "note": "typo champanzee -> chimpanzee (spelling from the instruction); yes/no questions swapped (source asked about the target) with span fixes 'adult' -> 'young', no rewrite; target_object typo champanzee -> chimpanzee"
+ },
+ {
+  "case_id": "edit1/0022_skate-jump",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_yes_no_question": "Is the skateboarder a spiderman in the image?",
+  "note": "ambiguous target question ('a spiderman a human?') rebuilt from the source question"
+ },
+ {
+  "case_id": "edit1/0024_hockey",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "A person",
+  "note": "source_object 'a person on rollerblades' -> 'A person' (surviving words are not part of the edit)"
+ },
+ {
+  "case_id": "edit1/0029_horsejump-stick",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "Is the animal a horse in the image?",
+  "target_yes_no_question": "Is the animal a camel in the image?",
+  "source_object": "A horse",
+  "note": "source_object 'a horse with a rider' -> 'A horse' (surviving words are not part of the edit); '1.' / '2.' numbering removed from the yes/no questions"
+ },
+ {
+  "case_id": "edit1/0032_mermaid",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "Is the mermaid a woman in the image?",
+  "target_yes_no_question": "Is the mermaid a robot in the image?",
+  "source_object": "a woman",
+  "note": "source_object 'a woman dressed as a mermaid' -> 'a woman' (surviving words are not part of the edit); '1.' / '2.' numbering removed from the yes/no questions"
+ },
+ {
+  "case_id": "edit1/0033_horsejump-low",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "a white horse",
+  "note": "source_object 'a rider on a white horse' -> 'a white horse' (surviving words are not part of the edit)"
+ },
+ {
+  "case_id": "edit1/0038_motorbike",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "a motorbike",
+  "note": "source_object 'a motorbike with two riders' -> 'a motorbike' (surviving words are not part of the edit)"
+ },
+ {
+  "case_id": "edit1/0041_longboard",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "A man",
+  "note": "source_object 'a man in a yellow shirt' -> 'A man' (surviving words are not part of the edit)"
+ },
+ {
+  "case_id": "edit1/0046_blackswan",
+  "level": "L2",
+  "changed_spans": [
+   "swan's"
+  ],
+  "must_not_contain": [
+   "swan"
+  ],
+  "target_prompt": "A duck is gliding smoothly across a calm pond, surrounded by lush green foliage. The camera remains fixed, capturing the duck's serene movement.",
+  "note": "leftover object swan -> duck"
+ },
+ {
+  "case_id": "edit1/0048_hike",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "a man",
+  "note": "source_object 'a man with a backpack' -> 'a man' (surviving words are not part of the edit)"
+ },
+ {
+  "case_id": "edit1/0053_swing",
+  "level": "L1",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "Is the human on the swing a normal human?",
+  "note": "typo huamn -> human"
+ },
+ {
+  "case_id": "edit1/0055_pigs",
+  "level": "L1",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "Are the animals pigs in the image?",
+  "target_yes_no_question": "Are the animals rabbits in the image?",
+  "note": "'1.' / '2.' numbering removed from the yes/no questions"
+ },
+ {
+  "case_id": "edit1/0061_mbike-santa",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "a person",
+  "note": "source_object 'a person dressed in a Santa Claus outfit' -> 'a person' (surviving words are not part of the edit)"
+ },
+ {
+  "case_id": "edit1/0064_rollerblade",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_yes_no_question": "Is the person rollerblading in the image a spiderman?",
+  "note": "ambiguous target question ('a spiderman a human?') rebuilt from the source question"
+ },
+ {
+  "case_id": "edit1/0065_twist-dance",
+  "level": "L1",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "Are the dancers the real person in the image?",
+  "note": "'not spidermen' deleted from the source question"
+ },
+ {
+  "case_id": "edit1/0070_dance-twirl",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_yes_no_question": "Is the dancer a spiderman in the image?",
+  "note": "ambiguous target question ('a spiderman a human?') rebuilt from the source question"
+ },
+ {
+  "case_id": "edit1/0072_dog-agility",
+  "level": "L1",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "Is the dog a border collie in the image?",
+  "target_yes_no_question": "Is the animal a rabbit in the image?",
+  "note": "'1.' / '2.' numbering removed from the yes/no questions"
+ },
+ {
+  "case_id": "edit1/0083_A_boat",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "",
+  "target_yes_no_question": "Is the boat a kayak in the image?",
+  "note": "source question was target-true: moved to the target slot (replacing a garbled/ambiguous target question), source question emptied"
+ },
+ {
+  "case_id": "edit1/0084_A_squirrel",
+  "level": "L1",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "Is the animal climbing the tree a squirrel in the image?",
+  "target_yes_no_question": "Is the animal climbing the tree a rabbit in the image?",
+  "note": "'1.' / '2.' numbering removed from the yes/no questions"
+ },
+ {
+  "case_id": "edit1/0085_A_tram",
+  "level": "L2",
+  "changed_spans": [
+   "trolley"
+  ],
+  "must_not_contain": [
+   "trolley"
+  ],
+  "target_prompt": "A bus is moving steadily through a city square, with fountains and statues in the background. The camera slowly follows the bus as it passes by.",
+  "note": "leftover object trolley -> bus"
+ },
+ {
+  "case_id": "edit1/0087_A_seagull",
+  "level": "L1",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "Is the bird a seagull in the image?",
+  "target_yes_no_question": "Is the bird a pelican in the image?",
+  "note": "'1.' / '2.' numbering removed from the yes/no questions"
+ },
+ {
+  "case_id": "edit1/0089_A_dog",
+  "level": "L1",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "Is an animal a dog in the image?",
+  "target_yes_no_question": "Is an animal a cat in the image?",
+  "note": "'a animal' -> 'an animal'"
+ },
+ {
+  "case_id": "edit1/0091_A_hawk",
+  "level": "L1",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "Is the bird a hawk in the image?",
+  "target_yes_no_question": "Is the bird a duck in the image?",
+  "note": "'1.' / '2.' numbering removed from the yes/no questions"
+ },
+ {
+  "case_id": "edit1/0095_A_crow",
+  "level": "L1",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "Is the bird a crow in the image?",
+  "target_yes_no_question": "Is the bird an owl in the image?",
+  "note": "'1.' / '2.' numbering removed from the yes/no questions"
+ },
+ {
+  "case_id": "edit1/0096_A_car",
+  "level": "L1",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "Is the vehicle a car in the scene?",
+  "target_yes_no_question": "Is the vehicle a jeep in the scene?",
+  "note": "'1.' / '2.' numbering removed from the yes/no questions"
+ },
+ {
+  "case_id": "edit1/0097_A_bird",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "Is the bird building a nest in the image not an eagle?",
+  "target_yes_no_question": "Is the bird building a nest in the image an eagle?",
+  "note": "source and target yes/no questions swapped back"
+ },
+ {
+  "case_id": "edit2/0007_guitar-violin",
+  "level": "L3",
+  "changed_spans": [
+   "Another robot"
+  ],
+  "must_not_contain": [
+   "robot"
+  ],
+  "target_prompt": "A tiger is playing the violin passionately in a cozy, rustic room with stone walls and warm lighting. Another musician is seated, playing the guitar. The camera remains stationary, capturing the intimate musical performance.",
+  "source_yes_no_question": "Is the musician playing the violin a human in the image?",
+  "target_yes_no_question": "Is the musician playing the violin a tiger in the image?",
+  "note": "reduced to the masked edit (violinist -> tiger); guitarist kept as a musician; questions point at the violinist"
+ },
+ {
+  "case_id": "edit2/0013_golf",
+  "level": "L3",
+  "changed_spans": [
+   "hovercraft",
+   "glide"
+  ],
+  "must_not_contain": [
+   "hovercraft",
+   "glide"
+  ],
+  "target_prompt": "A robot in a black shirt and shorts walks towards a golf cart parked on a lush green golf course. It gets into the cart, starts it, and begins to drive away, with a set of golf clubs visible in the back. The camera remains stationary, capturing the serene golf course environment with trees and mountains in the background.",
+  "note": "reduced to the masked edit (man -> robot); golf cart and 'drive' restored from the source prompt"
+ },
+ {
+  "case_id": "edit2/0016_horsejump-high",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "Is the animal a horse in the image?",
+  "target_yes_no_question": "Is the animal a kangaroo in the image?",
+  "multiple_choice_question": "What object is present in the image? \na) A horse with a rider \nb) A kangaroo with a rider",
+  "source_object": "A horse",
+  "note": "MCQ options swapped; numbering removed; source_object 'a horse with a rider' -> 'A horse'"
+ },
+ {
+  "case_id": "edit2/0017_kid-football",
+  "level": "L2",
+  "changed_spans": [
+   "robot's"
+  ],
+  "must_not_contain": [
+   "robot"
+  ],
+  "target_prompt": "A dog wearing a red cap and a soccer jersey with the name 'SACA' and number '10' is skillfully juggling a soccer ball on a grassy field. The environment is open with trees and a goalpost in the background. The camera remains fixed, capturing the dog's dynamic movements as it controls the ball with precision.",
+  "note": "leftover object robot -> dog"
+ },
+ {
+  "case_id": "edit2/0018_breakdance-flare",
+  "level": "L2",
+  "changed_spans": [
+   "robot's",
+   "robot."
+  ],
+  "must_not_contain": [
+   "robot"
+  ],
+  "target_prompt": "A dragon is performing a flare move on a gravel surface in front of a stone wall adorned with purple flowers. The dragon's legs are extended and spinning in a circular motion, supported by one hand on the ground. The camera remains fixed, capturing the dynamic and fluid movements of the dragon.",
+  "source_yes_no_question": "Is the dancer a breakdancer in the image?",
+  "target_yes_no_question": "Is the dancer a dragon in the image?",
+  "note": "leftover object robot -> dragon (target_object); numbering removed"
+ },
+ {
+  "case_id": "edit2/0021_landing",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "",
+  "note": "target-true source question removed"
+ },
+ {
+  "case_id": "edit2/0024_hockey",
+  "level": "L2",
+  "changed_spans": [
+   "robot"
+  ],
+  "must_not_contain": [
+   "robot"
+  ],
+  "target_prompt": "A dragon on rollerblades is skillfully maneuvering a hockey stick to control a small ball on an outdoor court. The environment is an open area with a green fence and graffiti in the background. The camera remains stationary, capturing the dynamic movements of the dragon as it glides across the court.",
+  "source_object": "A person",
+  "note": "leftover object robot -> dragon; source_object 'a person on rollerblades' -> 'A person'"
+ },
+ {
+  "case_id": "edit2/0025_baseball",
+  "level": "L3",
+  "changed_spans": [
+   "robot",
+   "robot's"
+  ],
+  "must_not_contain": [
+   "robot"
+  ],
+  "target_prompt": "A tiger in a striped uniform is preparing to bunt the ball on a sunny day at the baseball field. The tiger successfully bunts the ball and begins to sprint towards first base, leaving the bat behind on the ground. The catcher in blue gear is seen reacting to the play. The camera remains fixed, capturing the sequence of the tiger's actions and the catcher's response.",
+  "source_yes_no_question": "",
+  "target_yes_no_question": "Is the baseball player a tiger in the image?",
+  "multiple_choice_question": "What object is present in the image? \na) A baseball player \nb) A tiger",
+  "note": "leftover object robot -> tiger; FiVE's source question (target-true) moved to the target slot, replacing the robot question (leak); source question removed: no source-true wording exists without new words"
+ },
+ {
+  "case_id": "edit2/0026_table-tennis",
+  "level": "L2",
+  "changed_spans": [
+   "kangaroo",
+   "robot",
+   "robots"
+  ],
+  "must_not_contain": [
+   "robot"
+  ],
+  "target_prompt": "Two kangaroos are engaged in a fast-paced match on a red court, with one kangaroo in a black outfit and the other in a red and black outfit. The kangaroo in black is lunging forward to return the ball, while the kangaroo in red is poised to respond. The environment is a competitive sports arena with a blue backdrop displaying 'TAIPEI 2017' and 'FISU'. The camera remains fixed, capturing the dynamic movements of the kangaroos as they exchange rapid shots across the table.",
+  "multiple_choice_question": "What is the object in the image?\na) two table tennis players \nb) two kangaroos",
+  "target_object": "Two kangaroos",
+  "note": "kangaroo/robot conflict -> kangaroos (target_object); plural fixed; target_object 'Two kangaroo' -> 'Two kangaroos'"
+ },
+ {
+  "case_id": "edit2/0029_horsejump-stick",
+  "level": "L2",
+  "changed_spans": [
+   "kangaroo's"
+  ],
+  "must_not_contain": [
+   "kangaroo"
+  ],
+  "target_prompt": "A monkey with a rider is gracefully jumping over a series of obstacles in an equestrian arena. The camera remains stationary, capturing the monkey's dynamic movements and the rider's skillful handling.",
+  "source_object": "A horse",
+  "note": "leftover object kangaroo -> monkey; source_object 'a horse with a rider' -> 'A horse'"
+ },
+ {
+  "case_id": "edit2/0032_mermaid",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "A woman",
+  "note": "source_object 'a woman dressed as a mermaid' -> 'A woman'"
+ },
+ {
+  "case_id": "edit2/0033_horsejump-low",
+  "level": "L2",
+  "changed_spans": [
+   "kangaroo's"
+  ],
+  "must_not_contain": [
+   "kangaroo"
+  ],
+  "target_prompt": "A rider on a lion is gracefully jumping over a series of obstacles in an equestrian arena surrounded by greenery. The camera remains fixed, capturing the lion's powerful leap and the rider's skillful control.",
+  "source_yes_no_question": "Is the rider on a white horse in the image?",
+  "target_yes_no_question": "Is the rider on a lion in the image?",
+  "source_object": "a white horse",
+  "note": "leftover object kangaroo -> lion; numbering removed; source_object 'a rider on a white horse' -> 'a white horse'"
+ },
+ {
+  "case_id": "edit2/0034_cows",
+  "level": "L1",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "Is the animal a cow in the image?",
+  "target_yes_no_question": "Is the animal a dragon in the image?",
+  "note": "numbering removed"
+ },
+ {
+  "case_id": "edit2/0035_helicopter",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "Is the UFO a helicopter in the image?",
+  "target_yes_no_question": "Is the helicopter a UFO in the image?",
+  "note": "yes/no questions swapped back"
+ },
+ {
+  "case_id": "edit2/0036_camel",
+  "level": "L1",
+  "changed_spans": [
+   "monekys'"
+  ],
+  "must_not_contain": [
+   "monekys"
+  ],
+  "target_prompt": "A monkey is walking along a wooden fence in a sandy enclosure, with another monkey following behind. The environment is enclosed with wooden fences and greenery in the background. The camera remains stationary, capturing the monkeys' movements as they explore the area.",
+  "note": "typo monekys -> monkeys"
+ },
+ {
+  "case_id": "edit2/0037_snowboard-sand",
+  "level": "L1",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "Is the snowboarder a woman in the image?",
+  "target_yes_no_question": "Is the snowboarder a Wizard in the image?",
+  "note": "numbering removed"
+ },
+ {
+  "case_id": "edit2/0038_motorbike",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "a motorbike",
+  "note": "source_object 'a motorbike with two riders' -> 'a motorbike'"
+ },
+ {
+  "case_id": "edit2/0039_chamaleon",
+  "level": "L2",
+  "changed_spans": [
+   "robotic"
+  ],
+  "must_not_contain": [
+   "robotic"
+  ],
+  "target_prompt": "A spider is slowly crawling along a branch in a lush, leafy terrarium. The camera remains fixed, capturing the spider's deliberate movements as it navigates through the foliage.",
+  "note": "spider/robotic spider conflict -> spider (target_object)"
+ },
+ {
+  "case_id": "edit2/0040_tennis",
+  "level": "L2",
+  "changed_spans": [
+   "robot"
+  ],
+  "must_not_contain": [
+   "robot"
+  ],
+  "target_prompt": "A dinosaur in a white shirt and black shorts is actively engaged in a match on a clay court. The dinosaur is seen running and lunging to hit the tennis ball with a racket, demonstrating agility and focus. The background features a blue advertisement banner and a chain-link fence, with greenery visible beyond the court. The camera remains stationary, capturing the dinosaur's dynamic movements and the trajectory of the ball.",
+  "note": "leftover object robot -> dinosaur"
+ },
+ {
+  "case_id": "edit2/0041_longboard",
+  "level": "L2",
+  "changed_spans": [
+   "An  ultraman"
+  ],
+  "must_not_contain": [],
+  "target_prompt": "An ultraman in a yellow shirt is skillfully riding a hoverboard down a paved path surrounded by lush greenery. The camera follows it closely, capturing its smooth movements as it navigates the path.",
+  "source_object": "A man",
+  "target_object": "An ultraman",
+  "note": "source_object 'a man in a yellow shirt' -> 'A man'; double space 'An  ultraman' -> 'An ultraman' (prompt + target_object)"
+ },
+ {
+  "case_id": "edit2/0042_gym-ball",
+  "level": "L1",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "Is the subject performing the workout a man?",
+  "target_yes_no_question": "Is the subject performing the workout a panda?",
+  "note": "numbering removed"
+ },
+ {
+  "case_id": "edit2/0043_parkour",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "Is the parkour performer a man in the image?",
+  "target_yes_no_question": "Is the parkour performer a bear in the image?",
+  "note": "yes/no questions swapped back"
+ },
+ {
+  "case_id": "edit2/0045_butterfly",
+  "level": "L1",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "multiple_choice_question": "What is the object that is fluttering around the leafy plant in the sunlit garden?\na) A butterfly \nb) A drone",
+  "note": "typo flutting -> fluttering"
+ },
+ {
+  "case_id": "edit2/0048_hike",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "Is the hiker a man in the image?",
+  "target_yes_no_question": "Is the hiker a robot in the image?",
+  "source_object": "a man",
+  "note": "numbering removed; source_object 'a man with a backpack' -> 'a man'"
+ },
+ {
+  "case_id": "edit2/0049_speed-skating",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "Three robotic skaters",
+  "note": "target_object 'robotic' -> 'Three robotic skaters'"
+ },
+ {
+  "case_id": "edit2/0051_dogs-jump",
+  "level": "L3",
+  "changed_spans": [
+   "A robot",
+   "its command"
+  ],
+  "must_not_contain": [],
+  "target_prompt": "A woman in a yellow jacket is training two robotic dogs in an open field under a cloudy sky. One of the robotic dogs leaps into the air, responding to her command, while the other robotic dog watches attentively. The camera remains fixed, capturing the energetic movements of the robotic dogs and the serene environment.",
+  "source_yes_no_question": "",
+  "target_yes_no_question": "Are the dogs robotic in the image?",
+  "multiple_choice_question": "What is the woman training in the image? \na) two dogs \nb) two robotic dogs",
+  "target_object": "two robotic dogs",
+  "note": "reduced to the masked edit (dogs -> robotic dogs); woman restored; objects two dogs -> two robotic dogs; questions test the dogs"
+ },
+ {
+  "case_id": "edit2/0053_swing",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "Is the robot a person on the swing?",
+  "target_yes_no_question": "Is the person a robot on the swing?",
+  "note": "yes/no questions swapped back"
+ },
+ {
+  "case_id": "edit2/0055_pigs",
+  "level": "L3",
+  "changed_spans": [
+   "dragon"
+  ],
+  "must_not_contain": [],
+  "target_prompt": "A group of robotic dragons is foraging on a dirt ground, with one large robotic dragon and two smaller robotic dragons moving around each other. The camera remains fixed, capturing the dragons' movements as they explore the area.",
+  "source_yes_no_question": "Are the creatures in the image pigs?",
+  "target_yes_no_question": "Are the creatures in the image robotic dragons?",
+  "note": "large dragon made robotic like the others; yes/no questions had inverted polarity"
+ },
+ {
+  "case_id": "edit2/0058_boat",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_yes_no_question": "Is the boat a hovercraft in the image?",
+  "note": "target question was false on a correct edit"
+ },
+ {
+  "case_id": "edit2/0061_mbike-santa",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "a person",
+  "note": "source_object 'a person dressed in a Santa Claus outfit' -> 'a person'"
+ },
+ {
+  "case_id": "edit2/0062_elephant",
+  "level": "L2",
+  "changed_spans": [
+   "around its feet"
+  ],
+  "must_not_contain": [
+   "feet"
+  ],
+  "target_prompt": "A jeep is driving slowly across a rocky enclosure in a zoo, with dust rising. The camera remains fixed, capturing the car's steady movement against the backdrop of trees and a building.",
+  "note": "jeep has no feet: 'around its feet' deleted (delete-only; 'wheels' would be a new word)"
+ },
+ {
+  "case_id": "edit2/0066_deer",
+  "level": "L3",
+  "changed_spans": [
+   "panda"
+  ],
+  "must_not_contain": [],
+  "target_prompt": "Two pandas are engaging in a playful antler clash in a snowy forest clearing. The camera remains fixed, capturing the dynamic interaction between the pandas amidst the snow-covered ground and surrounding trees.",
+  "source_yes_no_question": "Are the animals in the image deer?",
+  "target_yes_no_question": "Are the animals in the image pandas?",
+  "note": "grammar panda -> pandas; yes/no questions had inverted polarity"
+ },
+ {
+  "case_id": "edit2/0071_mallard-water",
+  "level": "L2",
+  "changed_spans": [
+   "boad",
+   "boad's"
+  ],
+  "must_not_contain": [
+   "boad"
+  ],
+  "target_prompt": "A boat is gliding smoothly across the surface of a calm pond, creating gentle ripples in the water. The camera remains fixed, capturing the boat's serene movement.",
+  "target_yes_no_question": "Is the object a boat in the image?",
+  "multiple_choice_question": "What object is gliding smoothly across the surface of the calm pond?\na) a mallard duck\nb) A boat\nc) A swan\nd) A fish",
+  "target_object": "A boat",
+  "note": "typo boad -> boat (prompt, question, MCQ); target_object 'A boad' -> 'A boat'"
+ },
+ {
+  "case_id": "edit2/0072_dog-agility",
+  "level": "L1",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "Is the animal a dog in the image?",
+  "target_yes_no_question": "Is the animal a unicorn in the image?",
+  "note": "numbering removed"
+ },
+ {
+  "case_id": "edit2/0073_bmx-rider",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "Is the robot a BMX rider in the image?",
+  "target_yes_no_question": "Is the rider a robot in the image?",
+  "note": "yes/no questions swapped back"
+ },
+ {
+  "case_id": "edit2/0080_A_motorcycle",
+  "level": "L3",
+  "changed_spans": [
+   "path"
+  ],
+  "must_not_contain": [
+   "path"
+  ],
+  "target_prompt": "A cheetah is sprinting along a winding mountain road, with cliffs and trees lining the route. The camera quickly follows the cheetah as it zooms past.",
+  "source_yes_no_question": "Is the cheetah a motorcycle in the image?",
+  "target_yes_no_question": "Is the motorcycle replaced with a cheetah in the image?",
+  "note": "background change road -> path reverted; yes/no questions swapped back"
+ },
+ {
+  "case_id": "edit2/0081_A_horse",
+  "level": "L2",
+  "changed_spans": [
+   "dolphin's"
+  ],
+  "must_not_contain": [
+   "dolphin"
+  ],
+  "target_prompt": "A car is driving powerfully across a sandy beach, with waves crashing and seagulls flying overhead. The camera remains fixed, capturing the car's dynamic motion.",
+  "note": "leftover object dolphin -> car"
+ },
+ {
+  "case_id": "edit2/0083_A_boat",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "Is the swan a boat in the image?",
+  "target_yes_no_question": "Is the boat a swan in the image?",
+  "note": "yes/no questions swapped back"
+ },
+ {
+  "case_id": "edit2/0086_A_red_sports_car",
+  "level": "L3",
+  "changed_spans": [
+   "launching up",
+   "path",
+   "ascent."
+  ],
+  "must_not_contain": [
+   "launching",
+   "ascent"
+  ],
+  "target_prompt": "A rocket is speeding down a winding mountain road with pine trees lining the sides. The camera remains fixed, capturing the rocket's swift motion.",
+  "target_yes_no_question": "Is the vehicle on the mountain road a rocket?",
+  "note": "motion edit reverted to source motion (no motion-edit category)"
+ },
+ {
+  "case_id": "edit2/0089_A_dog",
+  "level": "L1",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "Is the animal on the beach a dog?",
+  "target_yes_no_question": "Is the animal on the beach a seal?",
+  "note": "numbering removed"
+ },
+ {
+  "case_id": "edit2/0091_A_hawk",
+  "level": "L3",
+  "changed_spans": [
+   "drifting"
+  ],
+  "must_not_contain": [
+   "drifting"
+  ],
+  "target_prompt": "A hot air balloon is circling high above a rocky canyon under a clear blue sky. The camera tracks the balloon's flight with a slow zoom.",
+  "note": "trajectory reverted to source (circling); FiVE questions kept"
+ },
+ {
+  "case_id": "edit2/0093_A_helicopter",
+  "level": "L3",
+  "changed_spans": [
+   "its lights creating a mysterious glow."
+  ],
+  "must_not_contain": [
+   "glow"
+  ],
+  "target_prompt": "A UFO is hovering above a dense jungle, creating a strong downdraft. The camera remains fixed, capturing the UFO's stationary position.",
+  "source_yes_no_question": "Is the object hovering above the jungle a helicopter in the image?",
+  "target_yes_no_question": "Is the object hovering above the jungle a UFO in the image?",
+  "note": "effect edit reverted (no effect-edit category); yes/no questions were swapped. Note: R43 anchor instruction says 'glowing lights' (user kept it)"
+ },
+ {
+  "case_id": "edit2/0094_A_swan",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "",
+  "target_yes_no_question": "Is the swan replaced with a paper boat in the image?",
+  "note": "target-true source question moved to the target slot, source emptied"
+ },
+ {
+  "case_id": "edit2/0095_A_crow",
+  "level": "L3",
+  "changed_spans": [
+   "hovering above"
+  ],
+  "must_not_contain": [
+   "hovering"
+  ],
+  "target_prompt": "A drone is perched on a branch, buzzing loudly in a dense forest. The camera zooms in slowly to focus on the drone.",
+  "target_yes_no_question": "Is the object on the branch a drone in the image?",
+  "note": "pose reverted to source (perched on), matching the keep-pose anchor"
+ },
+ {
+  "case_id": "edit2/0096_A_car",
+  "level": "L3",
+  "changed_spans": [
+   "cosmic path",
+   "stars twinkling",
+   "void"
+  ],
+  "must_not_contain": [
+   "cosmic",
+   "stars",
+   "void"
+  ],
+  "target_prompt": "A spaceship is flying along a winding coastal road with waves crashing against the cliffs below. The camera tracks the spaceship's movement with a fast pan.",
+  "note": "scene edit reverted to source scene (no scene-edit category)"
+ },
+ {
+  "case_id": "edit2/0100_A_deer",
+  "level": "L3",
+  "changed_spans": [
+   "magical"
+  ],
+  "must_not_contain": [
+   "magical"
+  ],
+  "target_prompt": "A unicorn is sipping from a clear stream in a forest, with sunlight filtering through the trees. The camera zooms in slowly to capture the serene moment.",
+  "note": "caption change serene -> magical reverted"
+ },
+ {
+  "case_id": "edit3/0003_ocean-birds",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "Two orange ibises",
+  "note": "target_object 'orange' -> 'Two orange ibises'"
+ },
+ {
+  "case_id": "edit3/0005_breakdance",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "a red hoodie",
+  "note": "source_object 'breakdancer' -> 'a red hoodie'"
+ },
+ {
+  "case_id": "edit3/0006_paragliding",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A pink paraglider",
+  "note": "target_object 'pink' -> 'A pink paraglider'"
+ },
+ {
+  "case_id": "edit3/0008_snowboard-race",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "Two pink snowboarders",
+  "note": "target_object 'pink' -> 'Two pink snowboarders'"
+ },
+ {
+  "case_id": "edit3/0010_giant-slalom",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "a red and white outfit",
+  "target_object": "a purple and black outfit",
+  "note": "source_object 'a skier' -> 'a red and white outfit'; target_object 'A skier in a purple and black outfit' -> 'a purple and black outfit'"
+ },
+ {
+  "case_id": "edit3/0012_goat",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A blue mountain goat",
+  "note": "target_object 'blue' -> 'A blue mountain goat'"
+ },
+ {
+  "case_id": "edit3/0013_golf",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "a black shirt",
+  "target_object": "a yellow shirt",
+  "note": "source_object 'a man' -> 'a black shirt'; target_object 'A man in a yellow shirt' -> 'a yellow shirt'"
+ },
+ {
+  "case_id": "edit3/0016_horsejump-high",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "A horse",
+  "note": "source_object 'a horse with a rider' -> 'A horse'"
+ },
+ {
+  "case_id": "edit3/0017_kid-football",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "a red cap",
+  "note": "source_object 'a young boy' -> 'a red cap'"
+ },
+ {
+  "case_id": "edit3/0019_tennis-vest",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "white shorts",
+  "note": "source_object 'a tennis player' -> 'white shorts'"
+ },
+ {
+  "case_id": "edit3/0020_monkeys",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A young blue monkey",
+  "note": "target_object 'blue' -> 'A young blue monkey'"
+ },
+ {
+  "case_id": "edit3/0022_skate-jump",
+  "level": "L1",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "multiple_choice_question": "Is the skateboarder wearing red in the image?\na) no \nb) yes",
+  "note": "'wearing read' -> 'wearing red'"
+ },
+ {
+  "case_id": "edit3/0023_kayak-race",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "Two kayakers in blue",
+  "note": "target_object 'in blue' -> 'Two kayakers in blue'"
+ },
+ {
+  "case_id": "edit3/0024_hockey",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "A person",
+  "target_object": "A person in pink",
+  "note": "source_object 'a person on rollerblades' -> 'A person'; target_object 'in pink' -> 'A person in pink'"
+ },
+ {
+  "case_id": "edit3/0025_baseball",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "multiple_choice_question": "What color is the baseball player wearing in the image?\na) Striped \nb) Yellow",
+  "source_object": "A baseball player",
+  "note": "source_object 'baseball player' -> 'A baseball player'; MCQ options swapped (b must be the target)"
+ },
+ {
+  "case_id": "edit3/0026_table-tennis",
+  "level": "L2",
+  "changed_spans": [
+   ", with one player in a black outfit and the other in a red and black outfit",
+   ", while the player in red is poised to respond"
+  ],
+  "must_not_contain": [
+   "red and black outfit",
+   "player in red"
+  ],
+  "target_prompt": "Two table tennis players in black are engaged in a fast-paced match on a red court. The player in black is lunging forward to return the ball. The environment is a competitive sports arena with a blue backdrop displaying 'TAIPEI 2017' and 'FISU'. The camera remains fixed, capturing the dynamic movements of the players as they exchange rapid shots across the table.",
+  "source_object": "a red and black outfit",
+  "target_object": "Two table tennis players in black",
+  "note": "internal contradiction (players in black vs a red and black outfit): contradicting spans deleted; objects + instruction to settle in the edit3 audit batch; source_object 'two table tennis players' -> 'a red and black outfit'; target_object 'player in red' -> 'Two table tennis players in black'"
+ },
+ {
+  "case_id": "edit3/0027_dance-jump",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "a flowing pink and white dress",
+  "note": "source_object 'a young girl' -> 'a flowing pink and white dress'"
+ },
+ {
+  "case_id": "edit3/0028_kite-walk",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "a blue helmet",
+  "note": "source_object 'A person' -> 'a blue helmet'"
+ },
+ {
+  "case_id": "edit3/0029_horsejump-stick",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "A horse",
+  "target_object": "A green horse",
+  "note": "source_object 'a horse with a rider' -> 'A horse'; target_object 'green' -> 'A green horse'"
+ },
+ {
+  "case_id": "edit3/0030_rallye",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A red rally car",
+  "note": "target_object 'A red' -> 'A red rally car'"
+ },
+ {
+  "case_id": "edit3/0032_mermaid",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "multiple_choice_question": "What color of the woman's dress in the image? \na) Not red \nb)Red",
+  "source_object": "A woman",
+  "target_object": "A woman in red",
+  "note": "source_object 'a woman dressed as a mermaid' -> 'A woman'; target_object 'in red' -> 'A woman in red'; 'womam's' -> 'woman's'"
+ },
+ {
+  "case_id": "edit3/0033_horsejump-low",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "a white horse",
+  "note": "source_object 'a rider on a white horse' -> 'a white horse'"
+ },
+ {
+  "case_id": "edit3/0036_camel",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A purple camel",
+  "note": "target_object 'A purple' -> 'A purple camel'"
+ },
+ {
+  "case_id": "edit3/0037_snowboard-sand",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A woman in red",
+  "note": "target_object 'in red' -> 'A woman in red'"
+ },
+ {
+  "case_id": "edit3/0038_motorbike",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "A motorbike",
+  "note": "source_object 'a motorbike with two riders' -> 'A motorbike'"
+ },
+ {
+  "case_id": "edit3/0040_tennis",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "a white shirt and black shorts",
+  "target_object": "a black shirt and red shorts",
+  "note": "source_object 'a tennis player' -> 'a white shirt and black shorts'; target_object 'A tennis player in a black shirt and red shorts' -> 'a black shirt and red shorts'"
+ },
+ {
+  "case_id": "edit3/0044_snowboard",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A snowboarder in green",
+  "note": "target_object 'in green' -> 'A snowboarder in green'"
+ },
+ {
+  "case_id": "edit3/0046_blackswan",
+  "level": "L1",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_yes_no_question": "Is the swan black in the image?",
+  "target_yes_no_question": "Is the swan red in the image?",
+  "note": "numbering removed"
+ },
+ {
+  "case_id": "edit3/0047_judo",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "Two judo practitioners",
+  "target_object": "Two judo practitioners in red",
+  "note": "source_object 'judo practitioners' -> 'Two judo practitioners'; target_object 'practitioners in red' -> 'Two judo practitioners in red'"
+ },
+ {
+  "case_id": "edit3/0048_hike",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "A man",
+  "note": "source_object 'a man with a backpack' -> 'A man'"
+ },
+ {
+  "case_id": "edit3/0049_speed-skating",
+  "level": "L2",
+  "changed_spans": [
+   ", each wearing distinctively colored suits",
+   "The skater in red leads, closely followed by skaters in black and orange."
+  ],
+  "must_not_contain": [
+   "distinctively",
+   "orange"
+  ],
+  "target_prompt": "Three speed skaters in pink are racing intensely on an ice rink. The camera remains fixed, capturing the dynamic and synchronized movements of the athletes as they glide swiftly across the ice.",
+  "target_object": "Three speed skaters in pink",
+  "note": "internal contradiction (pink vs distinct colours): contradicting spans deleted; target_object 'pink' -> 'Three speed skaters in pink'"
+ },
+ {
+  "case_id": "edit3/0050_slackline",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A person in green",
+  "note": "target_object 'in green' -> 'A person in green'"
+ },
+ {
+  "case_id": "edit3/0051_dogs-jump",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "a yellow jacket",
+  "target_object": "a blue jacket",
+  "exclude": true,
+  "note": "source_object 'two dogs' -> 'a yellow jacket'; target_object 'A woman in a blue jacket' -> 'a blue jacket'; EXCLUDED: the edited woman/jacket is outside the video mask (user 2026-10-07)"
+ },
+ {
+  "case_id": "edit3/0052_mallard-fly",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A blue mallard duck",
+  "note": "target_object 'blue' -> 'A blue mallard duck'"
+ },
+ {
+  "case_id": "edit3/0054_train",
+  "level": "L2",
+  "changed_spans": [
+   "pink and pink"
+  ],
+  "must_not_contain": [
+   "pink and pink"
+  ],
+  "target_prompt": "A model train with a pink engine and pink carriages is moving smoothly along a curved track in a miniature village setting. The scene is detailed with small trees, a station building, and tiny figures of people engaged in various activities. The camera remains fixed, capturing the train's steady progress around the bend.",
+  "target_yes_no_question": "Does the model train have a pink engine and pink carriages?",
+  "multiple_choice_question": "What are the colors of the model train's engine and carriages?\na) a blue engine and red and gray carriages\nb) a pink engine and pink carriages",
+  "source_object": "a blue engine and red and gray carriages",
+  "target_object": "a pink engine and pink carriages",
+  "note": "'pink and pink carriages' -> 'pink carriages' (prompt + questions); source_object 'model train' -> 'a blue engine and red and gray carriages'; target_object 'A model train with a pink engine and pink and pink carriages' -> 'a pink engine and pink carriages'"
+ },
+ {
+  "case_id": "edit3/0055_pigs",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A group of blue pigs",
+  "note": "target_object 'blue' -> 'A group of blue pigs'"
+ },
+ {
+  "case_id": "edit3/0060_motocross-bumps",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A red motocross rider",
+  "note": "target_object 'A red' -> 'A red motocross rider'"
+ },
+ {
+  "case_id": "edit3/0064_rollerblade",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A person in white",
+  "note": "target_object 'in white' -> 'A person in white'"
+ },
+ {
+  "case_id": "edit3/0065_twist-dance",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "red skirts and black tops",
+  "target_object": "white skirts and white tops",
+  "note": "source_object 'two dancers' -> 'red skirts and black tops'; target_object 'white skirts and white tops' -> 'white skirts and white tops'"
+ },
+ {
+  "case_id": "edit3/0066_deer",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "Two pink deer",
+  "note": "target_object 'pink' -> 'Two pink deer'"
+ },
+ {
+  "case_id": "edit3/0067_mbike-trick",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_yes_no_question": "Is the motorcyclist in the image red?",
+  "target_object": "A motorcyclist in red",
+  "note": "target_object 'in red' -> 'A motorcyclist in red'; 'Is the the' -> 'Is the'"
+ },
+ {
+  "case_id": "edit3/0068_planes-water",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_yes_no_question": "Is the airplane blue in the image?",
+  "target_object": "A blue large passenger airplane",
+  "note": "target_object 'blue' -> 'A blue large passenger airplane'; 'in the target image' -> 'in the image'"
+ },
+ {
+  "case_id": "edit3/0071_mallard-water",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A blue mallard duck",
+  "note": "target_object 'blue' -> 'A blue mallard duck'"
+ },
+ {
+  "case_id": "edit3/0074_rhino",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A large pink rhinoceros",
+  "note": "target_object 'pink' -> 'A large pink rhinoceros'"
+ },
+ {
+  "case_id": "edit3/0078_A_cat",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A green cat",
+  "note": "target_object 'green' -> 'A green cat'"
+ },
+ {
+  "case_id": "edit3/0081_A_horse",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A silver horse",
+  "note": "target_object 'silver' -> 'A silver horse'"
+ },
+ {
+  "case_id": "edit3/0082_A_tram",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A teal tram",
+  "note": "target_object 'A teal' -> 'A teal tram'"
+ },
+ {
+  "case_id": "edit3/0085_A_tram",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A chartreuse tram",
+  "note": "target_object 'A chartreuse' -> 'A chartreuse tram'"
+ },
+ {
+  "case_id": "edit3/0087_A_seagull",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A violet seagull",
+  "note": "target_object 'violet' -> 'A violet seagull'"
+ },
+ {
+  "case_id": "edit3/0088_A_cyclist",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A maroon cyclist",
+  "note": "target_object 'maroon' -> 'A maroon cyclist'"
+ },
+ {
+  "case_id": "edit3/0093_A_helicopter",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A fuchsia helicopter",
+  "note": "target_object 'A fuchsia' -> 'A fuchsia helicopter'"
+ },
+ {
+  "case_id": "edit3/0094_A_swan",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A bronze swan",
+  "note": "target_object 'bronze' -> 'A bronze swan'"
+ },
+ {
+  "case_id": "edit3/0095_A_crow",
+  "level": "L2",
+  "changed_spans": [
+   "A azure"
+  ],
+  "must_not_contain": [],
+  "target_prompt": "An azure crow is perched on a branch, cawing loudly in a dense forest. The camera zooms in slowly to focus on the bird.",
+  "target_object": "An azure crow",
+  "note": "article A azure -> An azure; target_object 'azure' -> 'An azure crow'"
+ },
+ {
+  "case_id": "edit3/0096_A_car",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A beige car",
+  "note": "target_object 'beige car' -> 'A beige car'"
+ },
+ {
+  "case_id": "edit3/0098_A_squirrel",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A salmon squirrel",
+  "note": "target_object 'salmon' -> 'A salmon squirrel'"
+ },
+ {
+  "case_id": "edit3/0099_A_jogger",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "multiple_choice_question": "What is the color of the jogger in the image?\na) Not lavender\nb) lavender",
+  "target_object": "A lavender jogger",
+  "note": "target_object 'lavender' -> 'A lavender jogger'; MCQ options swapped (b must be the target)"
+ },
+ {
+  "case_id": "edit3/0100_A_deer",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A periwinkle deer",
+  "note": "target_object 'periwinkle' -> 'A periwinkle deer'"
+ },
+ {
+  "case_id": "edit4/0003_ocean-birds",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "Two crystal white ibises",
+  "note": "target_object 'Two crystal white' -> 'Two crystal white ibises'"
+ },
+ {
+  "case_id": "edit4/0004_car-roundabout",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_yes_no_question": "Is the Mini Cooper metallic in the image?",
+  "target_object": "A metallic grey Mini Cooper",
+  "note": "target_object 'metallic' -> 'A metallic grey Mini Cooper'; 'made of metallic' -> 'metallic'"
+ },
+ {
+  "case_id": "edit4/0005_breakdance",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "A breakdancer",
+  "target_object": "A holographic breakdancer",
+  "note": "source_object 'breakdancer' -> 'A breakdancer'; target_object 'holographic' -> 'A holographic breakdancer'"
+ },
+ {
+  "case_id": "edit4/0006_paragliding",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A silk paraglider",
+  "note": "target_object 'silk' -> 'A silk paraglider'"
+ },
+ {
+  "case_id": "edit4/0009_bear",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A large bronze bear",
+  "note": "target_object 'bronze' -> 'A large bronze bear'"
+ },
+ {
+  "case_id": "edit4/0010_giant-slalom",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A glass skier",
+  "note": "target_object 'glass' -> 'A glass skier'"
+ },
+ {
+  "case_id": "edit4/0011_lucia",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "A woman",
+  "note": "source_object 'a woman in a black dress' -> 'A woman'"
+ },
+ {
+  "case_id": "edit4/0012_goat",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A stone mountain goat",
+  "note": "target_object 'stone' -> 'A stone mountain goat'"
+ },
+ {
+  "case_id": "edit4/0013_golf",
+  "level": "L3",
+  "changed_spans": [
+   "towards a wooden golf cart"
+  ],
+  "must_not_contain": [
+   "wooden"
+  ],
+  "target_prompt": "A silver man in a black shirt and shorts walks towards a golf cart parked on a lush green golf course. He gets into the cart, starts it, and begins to drive away, with a set of golf clubs visible in the back. The camera remains stationary, capturing the serene golf course environment with trees and mountains in the background.",
+  "note": "reduced to the masked edit: golf cart -> wooden dropped (cart not in the mask)"
+ },
+ {
+  "case_id": "edit4/0014_burnout",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A carbon fiber black car",
+  "note": "target_object 'carbon fiber black' -> 'A carbon fiber black car'"
+ },
+ {
+  "case_id": "edit4/0015_car-shadow",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A silver holographic car",
+  "note": "target_object 'holographic' -> 'A silver holographic car'"
+ },
+ {
+  "case_id": "edit4/0016_horsejump-high",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "A horse",
+  "note": "source_object 'a horse with a rider' -> 'A horse'"
+ },
+ {
+  "case_id": "edit4/0017_kid-football",
+  "level": "L3",
+  "changed_spans": [
+   "juggling a rubber soccer ball"
+  ],
+  "must_not_contain": [
+   "rubber"
+  ],
+  "target_prompt": "A wooden young boy wearing a red cap and a soccer jersey with the name 'SACA' and number '10' is skillfully juggling a soccer ball on a grassy field. The environment is open with trees and a goalpost in the background. The camera remains fixed, capturing the boy's dynamic movements as he controls the ball with precision.",
+  "target_yes_no_question": "Is the boy wooden in the image?",
+  "target_object": "A wooden young boy",
+  "note": "reduced to the masked edit: soccer ball -> rubber dropped (ball not in the mask); target_object 'wooden' -> 'A wooden young boy'; 'made of wooden' -> 'wooden'"
+ },
+ {
+  "case_id": "edit4/0018_breakdance-flare",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A metallic breakdancer",
+  "note": "target_object 'A metallic' -> 'A metallic breakdancer'"
+ },
+ {
+  "case_id": "edit4/0019_tennis-vest",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_yes_no_question": "Is the player clay in the image?",
+  "target_object": "A clay tennis player",
+  "note": "target_object 'clay' -> 'A clay tennis player'; 'Is the player a clay' -> 'Is the player clay'"
+ },
+ {
+  "case_id": "edit4/0020_monkeys",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A young plush monkey",
+  "note": "target prompt correct; only the instruction (plural) is corrected via R43; target_object 'plush monkey' -> 'A young plush monkey'"
+ },
+ {
+  "case_id": "edit4/0022_skate-jump",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A cardboard skateboarder",
+  "note": "target_object 'cardboard' -> 'A cardboard skateboarder'"
+ },
+ {
+  "case_id": "edit4/0023_kayak-race",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_yes_no_question": "Is the kayaker made of wood in the image?",
+  "target_object": "Two wooden kayakers",
+  "note": "target_object 'wooden' -> 'Two wooden kayakers'; 'Is the kayak made' -> 'Is the kayaker made'"
+ },
+ {
+  "case_id": "edit4/0024_hockey",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "rollerblades",
+  "target_object": "metallic rollerblades",
+  "note": "source_object 'a person on rollerblades' -> 'rollerblades'; target_object 'rollerblades' -> 'metallic rollerblades'"
+ },
+ {
+  "case_id": "edit4/0025_baseball",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A clay baseball player",
+  "note": "target_object 'clay' -> 'A clay baseball player'"
+ },
+ {
+  "case_id": "edit4/0026_table-tennis",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_yes_no_question": "Are the table tennis players made of wood?",
+  "target_object": "Two wooden table tennis players",
+  "note": "target_object 'wooden' -> 'Two wooden table tennis players'; 'Is the table tennis players' -> 'Are the table tennis players'"
+ },
+ {
+  "case_id": "edit4/0027_dance-jump",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A young porcelain girl",
+  "note": "target_object 'porcelain' -> 'A young porcelain girl'"
+ },
+ {
+  "case_id": "edit4/0028_kite-walk",
+  "level": "L3",
+  "changed_spans": [
+   "holding a wooden kiteboard"
+  ],
+  "must_not_contain": [],
+  "target_prompt": "A wooden person wearing a blue helmet and a red life vest is walking along a sandy beach while holding a kiteboard and controlling the kite lines. The ocean waves gently lap at the shore in the background. The camera remains stationary, capturing the person's steady movement along the beach.",
+  "note": "reduced to the masked edit: kiteboard -> wooden reverted (not in the mask, not in instruction_v2)"
+ },
+ {
+  "case_id": "edit4/0029_horsejump-stick",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "A horse",
+  "note": "source_object 'a horse with a rider' -> 'A horse'"
+ },
+ {
+  "case_id": "edit4/0030_rallye",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A carbon fiber rally car",
+  "note": "target_object 'A carbon fiber' -> 'A carbon fiber rally car'"
+ },
+ {
+  "case_id": "edit4/0031_soccerball",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A rubber soccer ball",
+  "note": "target_object 'A rubber' -> 'A rubber soccer ball'"
+ },
+ {
+  "case_id": "edit4/0032_mermaid",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "a mermaid",
+  "target_object": "a wooden mermaid",
+  "note": "source_object 'a woman dressed as a mermaid' -> 'a mermaid'; target_object 'wooden' -> 'a wooden mermaid'"
+ },
+ {
+  "case_id": "edit4/0033_horsejump-low",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "a white horse",
+  "note": "source_object 'a rider on a white horse' -> 'a white horse'"
+ },
+ {
+  "case_id": "edit4/0034_cows",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A clay brown and white cow",
+  "note": "target_object 'clay' -> 'A clay brown and white cow'"
+ },
+ {
+  "case_id": "edit4/0038_motorbike",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "A motorbike",
+  "note": "source_object 'a motorbike with two riders' -> 'A motorbike'"
+ },
+ {
+  "case_id": "edit4/0039_chamaleon",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_yes_no_question": "Is the chameleon glass in the image?",
+  "target_object": "A glass green chameleon",
+  "note": "target_object 'glass' -> 'A glass green chameleon'; 'Is the chameleon green in the image?' -> 'Is the chameleon glass in the image?'"
+ },
+ {
+  "case_id": "edit4/0040_tennis",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A clay tennis player",
+  "note": "target prompt correct; only the instruction ('No change needed.') is corrected via R43; target_object 'clay' -> 'A clay tennis player'"
+ },
+ {
+  "case_id": "edit4/0043_parkour",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A holographic man",
+  "note": "target_object 'holographic' -> 'A holographic man'"
+ },
+ {
+  "case_id": "edit4/0044_snowboard",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A metallic snowboarder",
+  "note": "target_object 'A metallic' -> 'A metallic snowboarder'"
+ },
+ {
+  "case_id": "edit4/0045_butterfly",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A vibrant glass blue butterfly",
+  "note": "target_object 'glass' -> 'A vibrant glass blue butterfly'"
+ },
+ {
+  "case_id": "edit4/0046_blackswan",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A velvet black swan",
+  "note": "target_object 'velvet' -> 'A velvet black swan'"
+ },
+ {
+  "case_id": "edit4/0047_judo",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_yes_no_question": "Are two judo practitioners metallic?",
+  "multiple_choice_question": "Are two judo practitioners metallic?\na) no \nb) yes ",
+  "source_object": "Two judo practitioners",
+  "target_object": "Two metallic judo practitioners",
+  "note": "source_object 'judo practitioners' -> 'Two judo practitioners'; target_object 'metallic' -> 'Two metallic judo practitioners'; 'made of metallic' -> 'metallic'; 'made of metallic' -> 'metallic'"
+ },
+ {
+  "case_id": "edit4/0048_hike",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "A man",
+  "note": "source_object 'a man with a backpack' -> 'A man'"
+ },
+ {
+  "case_id": "edit4/0049_speed-skating",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_yes_no_question": "Are three speed skaters metallic in the image?",
+  "multiple_choice_question": "Are three speed skaters metallic in the image?\na) no \nb) yes",
+  "target_object": "Three metallic speed skaters",
+  "note": "target_object 'metallic' -> 'Three metallic speed skaters'; 'made of metallic' -> 'metallic'; 'made of metallic' -> 'metallic'"
+ },
+ {
+  "case_id": "edit4/0051_dogs-jump",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "two plush dogs",
+  "note": "target_object 'plush' -> 'two plush dogs'"
+ },
+ {
+  "case_id": "edit4/0052_mallard-fly",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A glass mallard duck",
+  "note": "target_object 'glass' -> 'A glass mallard duck'"
+ },
+ {
+  "case_id": "edit4/0054_train",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "A model train",
+  "target_object": "A wooden model train",
+  "note": "source_object 'model train' -> 'A model train'; target_object 'wooden' -> 'A wooden model train'"
+ },
+ {
+  "case_id": "edit4/0055_pigs",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A group of clay pigs",
+  "note": "target_object 'clay' -> 'A group of clay pigs'"
+ },
+ {
+  "case_id": "edit4/0056_kart-turn",
+  "level": "L1",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_yes_no_question": "Are the go-karts metallic in the image?",
+  "multiple_choice_question": "Are the go-karts metallic in the image?\na) no \nb) yes ",
+  "note": "'made of metallic' -> 'metallic'; 'made of metallic' -> 'metallic'"
+ },
+ {
+  "case_id": "edit4/0057_dog",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A plush golden retriever",
+  "note": "target_object 'plush' -> 'A plush golden retriever'"
+ },
+ {
+  "case_id": "edit4/0058_boat",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A wooden white fishing boat",
+  "note": "target_object 'A wooden white ' -> 'A wooden white fishing boat'"
+ },
+ {
+  "case_id": "edit4/0059_drift-straight",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A carbon fiber red sports car",
+  "note": "target_object 'carbon fiber' -> 'A carbon fiber red sports car'"
+ },
+ {
+  "case_id": "edit4/0060_motocross-bumps",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "A motocross rider",
+  "target_object": "A holographic motocross rider",
+  "note": "source_object 'motocross rider' -> 'A motocross rider'; target_object 'holographic' -> 'A holographic motocross rider'"
+ },
+ {
+  "case_id": "edit4/0061_mbike-santa",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "A person",
+  "note": "source_object 'a person dressed in a Santa Claus outfit' -> 'A person'"
+ },
+ {
+  "case_id": "edit4/0063_drift-turn",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A carbon fiber race car",
+  "note": "target_object 'carbon fiber race car' -> 'A carbon fiber race car'"
+ },
+ {
+  "case_id": "edit4/0064_rollerblade",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_yes_no_question": "Is the person holographic in the image?",
+  "target_object": "A holographic person",
+  "note": "target_object 'holographic' -> 'A holographic person'; 'holoraphic' -> 'holographic'"
+ },
+ {
+  "case_id": "edit4/0065_twist-dance",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "Two holographic dancers",
+  "note": "target_object 'holographic dancers' -> 'Two holographic dancers'"
+ },
+ {
+  "case_id": "edit4/0066_deer",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "Two wooden deer",
+  "note": "target_object 'wooden' -> 'Two wooden deer'"
+ },
+ {
+  "case_id": "edit4/0067_mbike-trick",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "A motorcyclist",
+  "target_object": "A holographic motorcyclist",
+  "note": "source_object 'motorcyclist' -> 'A motorcyclist'; target_object 'holographic motorcyclist' -> 'A holographic motorcyclist'"
+ },
+ {
+  "case_id": "edit4/0068_planes-water",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A chrome large passenger airplane",
+  "note": "target_object 'chrome' -> 'A chrome large passenger airplane'"
+ },
+ {
+  "case_id": "edit4/0069_car-turn",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A silver holographic SUV",
+  "note": "target_object 'holographic' -> 'A silver holographic SUV'"
+ },
+ {
+  "case_id": "edit4/0071_mallard-water",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A glass mallard duck",
+  "note": "target_object 'glass' -> 'A glass mallard duck'"
+ },
+ {
+  "case_id": "edit4/0072_dog-agility",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A plush border collie",
+  "note": "target_object 'plush' -> 'A plush border collie'"
+ },
+ {
+  "case_id": "edit4/0073_bmx-rider",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "A BMX rider",
+  "target_object": "A holographic BMX rider",
+  "note": "source_object 'BMX rider' -> 'A BMX rider'; target_object 'A holographic' -> 'A holographic BMX rider'"
+ },
+ {
+  "case_id": "edit4/0074_rhino",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A stone large rhinoceros",
+  "note": "target_object 'stone' -> 'A stone large rhinoceros'"
+ },
+ {
+  "case_id": "edit4/0075_A_bicycle",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A glass bicycle",
+  "note": "target_object 'A glass' -> 'A glass bicycle'"
+ },
+ {
+  "case_id": "edit4/0078_A_cat",
+  "level": "L1",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_yes_no_question": "Is the cat woolen in the image?",
+  "note": "'made of woolen' -> 'woolen'"
+ },
+ {
+  "case_id": "edit4/0080_A_motorcycle",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_yes_no_question": "Is the motorcycle holographic in the image?",
+  "target_object": "A holographic motorcycle",
+  "note": "target_object 'holographic' -> 'A holographic motorcycle'; 'holorgraphic' -> 'holographic'"
+ },
+ {
+  "case_id": "edit4/0082_A_tram",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A ceramic tram",
+  "note": "target_object 'A ceramic' -> 'A ceramic tram'"
+ },
+ {
+  "case_id": "edit4/0084_A_squirrel",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A clay squirrel",
+  "note": "target_object 'clay' -> 'A clay squirrel'"
+ },
+ {
+  "case_id": "edit4/0085_A_tram",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A leather tram",
+  "note": "target_object 'leather' -> 'A leather tram'"
+ },
+ {
+  "case_id": "edit4/0088_A_cyclist",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A cardboard cyclist",
+  "note": "target_object 'cardboard' -> 'A cardboard cyclist'"
+ },
+ {
+  "case_id": "edit4/0089_A_dog",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A plush dog",
+  "note": "target_object 'plush' -> 'A plush dog'"
+ },
+ {
+  "case_id": "edit4/0090_A_deer",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A bronze deer",
+  "note": "target_object 'bronze' -> 'A bronze deer'"
+ },
+ {
+  "case_id": "edit4/0093_A_helicopter",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A steel helicopter",
+  "note": "target_object 'A steel' -> 'A steel helicopter'"
+ },
+ {
+  "case_id": "edit4/0094_A_swan",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A silk swan",
+  "note": "target_object 'A silk' -> 'A silk swan'"
+ },
+ {
+  "case_id": "edit4/0096_A_car",
+  "level": "L2",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "target_object": "A chrome car",
+  "note": "target_object 'chrome' -> 'A chrome car'"
+ },
+ {
+  "case_id": "edit4/0097_A_bird",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "exclude": true,
+  "note": "no-op edit (a bird is already feathered); excluded from FiVE-corrected"
+ },
+ {
+  "case_id": "edit5/0007_guitar-violin",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "",
+  "target_object": "a hat",
+  "note": "added-object convention: 'a musician' -> '' ; 'A musician wearing a hat' -> 'a hat'"
+ },
+ {
+  "case_id": "edit5/0009_bear",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "",
+  "target_object": "a cap",
+  "note": "added-object convention: 'a large brown bear' -> '' ; 'A large brown bear wearing a cap' -> 'a cap'"
+ },
+ {
+  "case_id": "edit5/0011_lucia",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "",
+  "target_object": "a dog",
+  "note": "added-object convention: 'a woman in a black dress' -> '' ; 'followed closely by a dog' -> 'a dog'"
+ },
+ {
+  "case_id": "edit5/0019_tennis-vest",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "",
+  "target_object": "a bright yellow fedora",
+  "note": "added-object convention: 'A tennis player' -> '' ; 'wearing a bright yellow fedora' -> 'a bright yellow fedora'"
+ },
+ {
+  "case_id": "edit5/0034_cows",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "",
+  "target_object": "a flower garland",
+  "note": "added-object convention: 'A brown and white cow' -> '' ; 'A brown and white cow wearing a flower garland' -> 'a flower garland'"
+ },
+ {
+  "case_id": "edit5/0036_camel",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "",
+  "target_object": "a big basket",
+  "note": "added-object convention: 'A camel' -> '' ; 'A camel carrying a big basket' -> 'a big basket'"
+ },
+ {
+  "case_id": "edit5/0057_dog",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "",
+  "target_object": "a crown",
+  "note": "added-object convention: 'A golden retriever' -> '' ; 'A golden retriever wearing a crown' -> 'a crown'"
+ },
+ {
+  "case_id": "edit5/0069_car-turn",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "multiple_choice_question": "What object is present on the SUV in the image?\na) None of the above\nb) A giant inflatable flamingo",
+  "source_object": "",
+  "target_object": "a giant inflatable flamingo",
+  "note": "added-object convention: 'A silver SUV' -> '' ; 'a giant inflatable flamingo' -> 'a giant inflatable flamingo'; MCQ options swapped (b must be the target)"
+ },
+ {
+  "case_id": "edit5/0089_A_dog",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "source_object": "",
+  "target_object": "sunglasses",
+  "note": "added-object convention: 'A dog' -> '' ; 'wearing sunglasses' -> 'sunglasses'"
+ },
+ {
+  "case_id": "edit6/0002_girl-dog",
+  "level": "L3",
+  "changed_spans": [
+   "not accompanied by a gray dog walking alongside her.",
+   "and the dog's relaxed pace."
+  ],
+  "must_not_contain": [
+   "dog",
+   " not "
+  ],
+  "target_prompt": "A young girl in a wheelchair is moving along a paved path beside a grassy area. The environment is a sunny urban setting with a mix of grass and paved walkways. The camera remains stationary, capturing the girl's smooth movement.",
+  "target_yes_no_question": "Is the girl not accompanied by a gray dog in the image?",
+  "source_object": "a gray dog",
+  "target_object": "",
+  "note": "removal by negation; leftover 'the dog's relaxed pace'; garbled target question"
+ },
+ {
+  "case_id": "edit6/0017_kid-football",
+  "level": "L3",
+  "changed_spans": [
+   ",without a red cap,",
+   "rubber"
+  ],
+  "must_not_contain": [
+   "without",
+   "rubber",
+   "cap"
+  ],
+  "target_prompt": "A young boy wearing a soccer jersey with the name 'SACA' and number '10' is skillfully juggling a soccer ball on a grassy field. The environment is open with trees and a goalpost in the background. The camera remains fixed, capturing the boy's dynamic movements as he controls the ball with precision.",
+  "target_yes_no_question": "Is the young boy not wearing a red cap?",
+  "source_object": "a red cap",
+  "target_object": "",
+  "note": "removal by negation; leaked 'rubber' from edit4; garbled target question"
+ },
+ {
+  "case_id": "edit6/0025_baseball",
+  "level": "L3",
+  "changed_spans": [
+   "not wearing a helmet,"
+  ],
+  "must_not_contain": [
+   "helmet",
+   " not "
+  ],
+  "target_prompt": "A baseball player in a striped uniform is preparing to bunt the ball on a sunny day at the baseball field. The player successfully bunts the ball and begins to sprint towards first base, leaving the bat behind on the ground. The catcher in blue gear is seen reacting to the play. The camera remains fixed, capturing the sequence of the player's actions and the catcher's response.",
+  "source_object": "a helmet",
+  "target_object": "",
+  "note": "removal by negation"
+ },
+ {
+  "case_id": "edit6/0041_longboard",
+  "level": "L3",
+  "changed_spans": [
+   "not wearing a backpack,"
+  ],
+  "must_not_contain": [
+   "backpack",
+   " not "
+  ],
+  "target_prompt": "A man in a yellow shirt is skillfully riding a longboard down a paved path surrounded by lush greenery. The camera follows him closely, capturing his smooth movements as he navigates the path.",
+  "source_object": "a backpack",
+  "target_object": "",
+  "note": "removal by negation (target question kept: no natural positive form)"
+ },
+ {
+  "case_id": "edit6/0042_gym-ball",
+  "level": "L3",
+  "changed_spans": [
+   "without a heavy gym ball."
+  ],
+  "must_not_contain": [
+   "ball",
+   "without"
+  ],
+  "target_prompt": "A man is performing a workout. The exercise takes place in a modern gym environment with motivational posters and equipment in the background. The camera remains stationary, focusing on the man's dynamic movements.",
+  "source_object": "a heavy gym ball",
+  "target_object": "",
+  "exclude": true,
+  "note": "removal by negation; EXCLUDED: the removed heavy gym ball is outside the video mask (user 2026-10-07)"
+ },
+ {
+  "case_id": "edit6/0048_hike",
+  "level": "L3",
+  "changed_spans": [
+   "without a backpack"
+  ],
+  "must_not_contain": [
+   "backpack",
+   "without"
+  ],
+  "target_prompt": "A man is hiking along a rocky mountain trail under a clear blue sky. The rugged terrain is surrounded by steep cliffs and scattered boulders. The camera remains stationary, capturing the man's steady progress through the scenic landscape.",
+  "source_object": "a backpack",
+  "target_object": "",
+  "note": "removal by negation (target question kept: no natural positive form)"
+ },
+ {
+  "case_id": "edit6/0051_dogs-jump",
+  "level": "L3",
+  "changed_spans": [
+   "without two dogs",
+   "energetic movements of the dogs and the"
+  ],
+  "must_not_contain": [
+   "dog",
+   "without"
+  ],
+  "target_prompt": "A woman in a yellow jacket is training in an open field under a cloudy sky.  The camera remains fixed, capturing the serene environment.",
+  "source_object": "two dogs",
+  "target_object": "",
+  "note": "removal by negation; leftover 'movements of the dogs'; delete-only (no 'standing')"
+ },
+ {
+  "case_id": "edit6/0055_pigs",
+  "level": "L3",
+  "changed_spans": [
+   "forging",
+   "without smaller pigs moving around",
+   "pig'",
+   "as they explore the area"
+  ],
+  "must_not_contain": [
+   "without",
+   "forging",
+   "smaller"
+  ],
+  "target_prompt": "A large pig is foraging on a dirt ground. The camera remains fixed, capturing the pig's movements.",
+  "source_object": "two smaller pigs",
+  "target_object": "",
+  "note": "removal by negation; typos forging -> foraging (copied from source_prompt), pig' -> pig's; 'as they explore the area' deleted (one pig left)"
+ },
+ {
+  "case_id": "edit6/0078_A_cat",
+  "level": "L3",
+  "changed_spans": [
+   "without a toy"
+  ],
+  "must_not_contain": [
+   "toy",
+   "without"
+  ],
+  "target_prompt": "A cat is pouncing playfully in a cozy living room, with a sofa and a window in the background. The camera remains fixed, focusing on the cat's playful behavior.",
+  "source_object": "a toy",
+  "target_object": "",
+  "exclude": true,
+  "note": "removal by negation (target question kept: no natural positive form); EXCLUDED: the removed toy is outside the video mask (user 2026-10-07)"
+ },
+ {
+  "case_id": "edit6/0088_A_cyclist",
+  "level": "L3",
+  "changed_spans": [
+   "not wearing a helmet"
+  ],
+  "must_not_contain": [
+   "helmet",
+   " not "
+  ],
+  "target_prompt": "A cyclist is pedaling vigorously along a tree-lined path in a city park. The camera follows the cyclist at a steady pace.",
+  "source_object": "a helmet",
+  "target_object": "",
+  "note": "removal by negation"
+ }
+]

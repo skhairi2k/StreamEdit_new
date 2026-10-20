@@ -194,7 +194,17 @@ def _resolve(cols: Sequence[str], name: str, pattern: Optional[str] = None) -> s
                      f"available columns: {list(cols)}")
 
 
-def r36_points(sweep: Path) -> List[Dict[str, object]]:
+def r36_points(sweep: Path,
+               expected_rhos: Sequence[int] = RHOS) -> List[Dict[str, object]]:
+    """Points of one rho-sweep summary CSV, in ``expected_rhos`` order.
+
+    ``expected_rhos`` defaults to the standard 8-point grid (R35/R36/R38/R39's curves).
+    Pass a subset (e.g. R44's reduced equal-NFE sweep, run at only 4 rhos to save compute)
+    to validate and load that curve instead -- the full-bench rows must match it EXACTLY,
+    same as before. Keep the grid's endpoints when subsetting: interp_at() never
+    extrapolates, so dropping an endpoint (not an interior point) risks `outside_range`
+    for any point beyond the remaining span.
+    """
     if not sweep.is_file():
         raise SystemExit(f"[r35_score] missing {sweep} -- R36's summarize step (a separate "
                          f"task) must have run first.")
@@ -215,11 +225,11 @@ def r36_points(sweep: Path) -> List[Dict[str, object]]:
         if rho in by_rho:
             raise SystemExit(f"[r35_score] {sweep.name}: two full-bench rows for rho={rho}")
         by_rho[rho] = r
-    if sorted(by_rho) != sorted(RHOS):
+    if sorted(by_rho) != sorted(expected_rhos):
         raise SystemExit(f"[r35_score] {sweep.name}: full-bench (n_pairs=={N_CLIPS}) rows "
-                         f"for rho {sorted(by_rho)}, expected {list(RHOS)}")
+                         f"for rho {sorted(by_rho)}, expected {sorted(expected_rhos)}")
     return [{"source": "R36", "label": f"rho={rho}", "n_clips": N_CLIPS,
-             **{m: float(by_rho[rho][c]) for m, c in c_met.items()}} for rho in RHOS]
+             **{m: float(by_rho[rho][c]) for m, c in c_met.items()}} for rho in expected_rhos]
 
 
 # ----------------------------------------------------------------------- figures ------

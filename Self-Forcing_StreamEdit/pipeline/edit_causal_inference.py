@@ -67,6 +67,12 @@ class EditCausalInferencePipeline(torch.nn.Module):
         trg_prompts: str | List[str],
         src_trigger_words: str | List[str],
         trg_trigger_words: str | List[str],
+        #✨ R48: opt-in per-token cross-attention recorder. A plain dict the
+        # CALLER owns; this call fills it in (see "get trigger token indices"
+        # below) and reads from it are only valid once this call returns. None
+        # (default) => crossattn_cache_dual never gets a "rec_state" key and
+        # every denoising call is bit-for-bit what it was.
+        attn_record: Optional[dict] = None,
         return_latents: bool = False,
         wo_video_decode: bool = False,
         profile: bool = False,
@@ -265,6 +271,7 @@ class EditCausalInferencePipeline(torch.nn.Module):
                 # video: abs_frame_offset 0 and no overlap to drop.
                 union_dump=ret_union_list,
                 split_dump=ret_split_list,
+                attn_record=attn_record,        #✨ R48
                 union_frames=union_frames,
                 abs_frame_offset=0,
                 tau_bg=tau_bg,
@@ -290,6 +297,7 @@ class EditCausalInferencePipeline(torch.nn.Module):
         # `ret_latent_list`. `inference` appends one entry per call, so this list stays
         # index-aligned with the windows.
         ret_step_list = [] if step_dump is not None else None
+        ret_attn_list = []   #✨ R48
         start_idx = 0
 
         while True:
@@ -303,6 +311,9 @@ class EditCausalInferencePipeline(torch.nn.Module):
             else:
                 rollout_src_video = src_video[:, start_idx + rollout_overlap: chunk_right_idx]
 
+            #✨ R48: one fresh window-local recorder per window, stitched after the loop.
+            window_rec = ({k: v for k, v in attn_record.items() if k in ("window", "n_blocks_used")}
+                          if attn_record is not None else None)   # caller's sigma window carries over
             # inference
             _, rollout_latent = self.inference(
                 src_video=rollout_src_video,
@@ -352,6 +363,7 @@ class EditCausalInferencePipeline(torch.nn.Module):
                 # position arithmetic is duplicated here.
                 union_dump=ret_union_list,
                 split_dump=ret_split_list,
+                attn_record=window_rec,         #✨ R48
                 union_frames=union_frames,
                 abs_frame_offset=start_idx,
                 tau_bg=tau_bg,
@@ -377,6 +389,15 @@ class EditCausalInferencePipeline(torch.nn.Module):
             if union_dump_path is not None and start_idx != 0:
                 ret_union_list[-1] = ret_union_list[-1][:, rollout_overlap: ]
 
+            #✨ R48: same overlap rule on the recorder's frame axes.
+            if window_rec is not None:
+                if start_idx != 0:
+                    for k in ("accum_src_tok", "accum_trg_tok"):
+                        window_rec[k] = window_rec[k][:, rollout_overlap:]
+                    for k in ("accum_src_prompt", "accum_trg_prompt"):
+                        window_rec[k] = window_rec[k][rollout_overlap:]
+                ret_attn_list.append(window_rec)
+
             #✨ R30 diagnostic: same overlap rule, on both the src and trg buffers.
             if split_dump_path is not None and start_idx != 0:
                 s, t = ret_split_list[-1]
@@ -395,6 +416,17 @@ class EditCausalInferencePipeline(torch.nn.Module):
             trg_initial_latent = rollout_latent[:, -rollout_overlap: ]
 
         output = torch.cat(ret_latent_list, dim=1)
+        #✨ R48: stitch the per-window recorders into the caller's dict and re-assert the
+        # frame count against the latents (same check R26 does for the union mask).
+        if attn_record is not None:
+            attn_record.update({k: v for k, v in ret_attn_list[0].items() if not k.startswith("accum")})
+            attn_record["accum_src_tok"] = torch.cat([w["accum_src_tok"] for w in ret_attn_list], dim=1)
+            attn_record["accum_trg_tok"] = torch.cat([w["accum_trg_tok"] for w in ret_attn_list], dim=1)
+            attn_record["accum_src_prompt"] = torch.cat([w["accum_src_prompt"] for w in ret_attn_list], dim=0)
+            attn_record["accum_trg_prompt"] = torch.cat([w["accum_trg_prompt"] for w in ret_attn_list], dim=0)
+            if attn_record["accum_src_tok"].shape[1] != output.shape[1]:
+                raise ValueError("R48: stitched attention has %d frames but the rollout produced %d"
+                                 % (attn_record["accum_src_tok"].shape[1], output.shape[1]))
         assert src_video.shape == output.shape, 'noise shape: %s, but output: %s.' % (str(src_video.shape), str(output.shape))
 
         #✨ R22: stitch the windows into one whole-video step buffer and re-assert the L1
@@ -459,6 +491,9 @@ class EditCausalInferencePipeline(torch.nn.Module):
         trg_prompts: str | List[str],
         src_trigger_words: str | List[str],
         trg_trigger_words: str | List[str],
+        #✨ R48: window-local attention recorder, see rollout_inference. Filled here,
+        # trimmed below with the same SS4.5 prefix rule as the union buffer.
+        attn_record: Optional[dict] = None,
         return_latents: bool = False,
         wo_video_decode: bool = False,
         profile: bool = False,
@@ -727,6 +762,47 @@ class EditCausalInferencePipeline(torch.nn.Module):
         tok_trg = find_phrase_token_indices(trans_tokenizer, trg_prompts, trg_trigger_words)
         print(tok_src, tok_trg)
 
+        #✨ R48: fill in and attach the attention recorder. `crossattn_cache_dual` is
+        # the cache the REAL denoising-step model calls use (crossattn_cache_src/trg
+        # below are only used by the context-caching calls, at the fixed
+        # `context_noise` level, never one of our target denoising steps -- they are
+        # never given a "rec_state" key and so are untouched). batch_size == 1 is
+        # asserted in model.py; tok_src/tok_trg are List[List[int]] of length
+        # batch_size, so [0] is the single clip's index list.
+        if attn_record is not None:
+            n_prompt_src = len(trans_tokenizer(
+                src_prompts[0] if isinstance(src_prompts, list) else src_prompts,
+                add_special_tokens=True)["input_ids"])
+            n_prompt_trg = len(trans_tokenizer(
+                trg_prompts[0] if isinstance(trg_prompts, list) else trg_prompts,
+                add_special_tokens=True)["input_ids"])
+            idx_src, idx_trg = tok_src[0], tok_trg[0]
+            f_lat_total = output.shape[1]
+            # window = draft calls with sigma in [0.55, 0.9]; fixed given a fixed
+            # denoising_step_list, so computed once here rather than re-derived per
+            # call inside model.py.
+            w_lo, w_hi = attn_record.get("window", (0.55, 0.9))   # caller may override; default = R48 plan
+            n_window = sum(1 for t in self.denoising_step_list if w_lo <= t / 1000 <= w_hi)
+            assert n_window > 0, f"R48 attn recorder: no denoising step falls in sigma [{w_lo}, {w_hi}]"
+            attn_record.update(
+                idx_src=idx_src, idx_trg=idx_trg,
+                n_prompt_src=n_prompt_src, n_prompt_trg=n_prompt_trg,
+                n_blocks=attn_record.get("n_blocks_used", 20), n_window=n_window,
+                cur_slice=(0, 0), active=False, w_lo=w_lo, w_hi=w_hi,
+                accum_src_tok=torch.zeros(len(idx_src), f_lat_total, 30, 52,
+                                          dtype=torch.float32, device=src_video.device),
+                accum_trg_tok=torch.zeros(len(idx_trg), f_lat_total, 30, 52,
+                                          dtype=torch.float32, device=src_video.device),
+                accum_src_prompt=torch.zeros(f_lat_total, 30, 52,
+                                             dtype=torch.float32, device=src_video.device),
+                accum_trg_prompt=torch.zeros(f_lat_total, 30, 52,
+                                             dtype=torch.float32, device=src_video.device),
+            )
+            n_used = attn_record.get("n_blocks_used", 20)   # first n_used blocks
+            for l_idx in range(self.num_transformer_blocks):
+                crossattn_cache_dual[l_idx]["rec_state"] = attn_record
+                crossattn_cache_dual[l_idx]["rec_use"] = l_idx < n_used
+
         # Step 2: Cache context feature
         current_start_frame = 0
         if trg_initial_latent is not None:
@@ -882,6 +958,11 @@ class EditCausalInferencePipeline(torch.nn.Module):
                 if spatial_active else None
             )
 
+            #✨ R48: this chunk's global latent-frame range, same coordinates as
+            # `union_out`/`src_mask_out`. Does not vary within the step loop below.
+            if attn_record is not None:
+                attn_record["cur_slice"] = (current_start_frame, current_start_frame + current_num_frames)
+
             # Step 3.1: Spatial denoising loop
             noisy_pred_input = None
             for index, current_timestep in tqdm(enumerate(denoising_step_list), total=len(denoising_step_list), leave=False):
@@ -895,6 +976,12 @@ class EditCausalInferencePipeline(torch.nn.Module):
                 timestep_next = denoising_step_list[index + 1] / 1000 if (index < len(denoising_step_list) - 1) else 0
                 shared_dict_dual['current_timestep_next'] = float(timestep_next)
                 shared_dict_dual['current_timestep'] = float(current_timestep / 1000)
+                #✨ R48: only the denoising calls inside the window actually accumulate
+                # into attn_record (model.py checks this flag); every other call this
+                # whole rollout is unaffected since crossattn_cache_dual[l]["rec_state"]
+                # is the SAME dict either way, just read with active=False.
+                if attn_record is not None:
+                    attn_record["active"] = bool(attn_record["w_lo"] <= (current_timestep / 1000) <= attn_record["w_hi"])
                 shared_dict_dual['current_timestep_index'] = index
                 shared_dict_dual['total_timestep'] = len(denoising_step_list)
                 shared_dict_dual['blend_power'] = blend_power
@@ -1069,6 +1156,18 @@ class EditCausalInferencePipeline(torch.nn.Module):
                 "is no longer being written from the same tensor Step 3.2 records."
             )
             step_dump.append(step_out)
+
+        #✨ R48: same prefix trims on the recorder (frame axis: dim 1 for the per-token
+        # maps, dim 0 for the prompt totals), so frames align with `output`.
+        if attn_record is not None:
+            n_trim = (1 if independent_first_frame else 0) + (3 if triple_first_frame else 0)
+            for k in ("accum_src_tok", "accum_trg_tok"):
+                attn_record[k] = attn_record[k][:, n_trim:]
+            for k in ("accum_src_prompt", "accum_trg_prompt"):
+                attn_record[k] = attn_record[k][n_trim:]
+            if attn_record["accum_src_tok"].shape[1] != output.shape[1]:
+                raise ValueError("R48: attn recorder frames != output frames after trim")
+            attn_record["active"] = False
 
         #✨ R26: the same trims on the union buffer (frame axis is dim 1 here), so the
         # dumped M_f rows are in the same coordinate system as the returned latents --

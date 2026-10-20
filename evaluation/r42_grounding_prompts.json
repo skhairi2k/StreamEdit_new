@@ -1,0 +1,25 @@
+[
+  {"case_id": "edit5/0007_guitar-violin", "edit_type": 5, "image": "anchor", "phrase": "hat"},
+  {"case_id": "edit5/0009_bear",          "edit_type": 5, "image": "anchor", "phrase": "cap"},
+  {"case_id": "edit5/0011_lucia",         "edit_type": 5, "image": "anchor", "phrase": "dog"},
+  {"case_id": "edit5/0019_tennis-vest",   "edit_type": 5, "image": "anchor", "phrase": "yellow fedora"},
+  {"case_id": "edit5/0034_cows",          "edit_type": 5, "image": "anchor", "phrase": "flower garland"},
+  {"case_id": "edit5/0036_camel",         "edit_type": 5, "image": "anchor", "phrase": "basket"},
+  {"case_id": "edit5/0057_dog",           "edit_type": 5, "image": "anchor", "phrase": "crown"},
+  {"case_id": "edit5/0069_car-turn",      "edit_type": 5, "image": "anchor", "phrase": "inflatable flamingo"},
+  {"case_id": "edit5/0089_A_dog",         "edit_type": 5, "image": "anchor", "phrase": "sunglasses"},
+
+  {"case_id": "edit6/0002_girl-dog",      "edit_type": 6, "image": "source", "phrase": "gray dog"},
+  {"case_id": "edit6/0017_kid-football",  "edit_type": 6, "image": "source", "phrase": "red cap"},
+  {"case_id": "edit6/0025_baseball",      "edit_type": 6, "image": "source", "phrase": "batting helmet",
+   "note": "The catcher also wears head gear; 'helmet' alone may ground the catcher. 'batting helmet' is the disambiguation attempt, check the audit panel."},
+  {"case_id": "edit6/0041_longboard",     "edit_type": 6, "image": "source", "phrase": "backpack"},
+  {"case_id": "edit6/0042_gym-ball",      "edit_type": 6, "image": "source", "phrase": "gym ball"},
+  {"case_id": "edit6/0048_hike",          "edit_type": 6, "image": "source", "phrase": "backpack"},
+  {"case_id": "edit6/0051_dogs-jump",     "edit_type": 6, "image": "source", "phrase": "dog",
+   "note": "TWO dogs removed. r25_iou.phrase_mask keeps only the best box, so M would cover one dog. ACCEPTED (user, 2026-10-01): single best box kept; M slightly under-covers the removed region."},
+  {"case_id": "edit6/0055_pigs",          "edit_type": 6, "image": "source", "phrase": "small pig",
+   "note": "TWO smaller pigs removed, the large pig stays. Best-box grounding covers one pig and may pick the large one. ACCEPTED (user, 2026-10-01): single best box kept; M slightly under-covers the removed region."},
+  {"case_id": "edit6/0078_A_cat",         "edit_type": 6, "image": "source", "phrase": "toy"},
+  {"case_id": "edit6/0088_A_cyclist",     "edit_type": 6, "image": "source", "phrase": "helmet"}
+]

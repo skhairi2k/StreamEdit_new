@@ -51,6 +51,8 @@ import torch
 from PIL import Image
 from torchvision import transforms
 
+import backbone as bb   #✨ R45: --backbone sf|ll (evaluation/backbone.py)
+
 
 # Default location of the Self-Forcing StreamEdit build, relative to the repo root.
 _DEFAULT_SF_ROOT = Path(__file__).resolve().parent.parent / "Self-Forcing_StreamEdit"
@@ -155,13 +157,10 @@ def parse_args() -> argparse.Namespace:
                              "runs stay reproducible; use 'images' for paper-comparable "
                              "numbers.")
     parser.add_argument("--sink_size", type=int, default=0)
-    parser.add_argument("--config_path", type=str, default="configs/self_forcing_dmd.yaml",
-                        help="Pipeline config (resolved relative to --sf_root)")
     parser.add_argument("--checkpoint_path", type=str, default="checkpoints/self_forcing_dmd.pt",
                         help="Generator checkpoint (resolved relative to --sf_root)")
     parser.add_argument("--use_ema", action="store_true", default=True)
-    parser.add_argument("--sf_root", type=str, default=str(_DEFAULT_SF_ROOT),
-                        help="Path to the Self-Forcing_StreamEdit build")
+    bb.add_backbone_args(parser)   #✨ R45: --backbone, --sf_root, --config_path
     return parser.parse_args()
 
 
@@ -176,6 +175,10 @@ def save_frames_png(frames: torch.Tensor, out_dir: Path) -> int:
 
 def main() -> None:
     args = parse_args()
+    bb.resolve_defaults(args)   #✨ R45: per-backbone --sf_root / --config_path
+    if args.backbone == "ll" and args.vp_mode == "pvp":
+        raise SystemExit("--vp_mode pvp (R10 persistent VP bank) is Self-Forcing-only; "
+                         "LongLive implements vp and novp.")
 
     # Resolve all external paths to absolute BEFORE chdir-ing into the SF build,
     # so relative config/checkpoint paths (configs/..., checkpoints/...) resolve there
@@ -240,16 +243,14 @@ def main() -> None:
 
     # The Self-Forcing build imports as a top-level package (`from pipeline import ...`)
     # and reads configs via relative paths, so put it on sys.path and make it the cwd.
-    sys.path.insert(0, str(sf_root))
-    os.chdir(sf_root)
-
-    # Imports that depend on the SF build living on sys.path.
-    from inference_edit_streamedit import load_pipe, find_closest_num_frame, read_json
-    from pipeline.utils import find_phrase_token_indices
-    from utils.misc import set_seed
+    #✨ R45: the chosen backbone build goes on sys.path and becomes the cwd; its own
+    # helpers are used (LL's trigger matcher is the case-insensitive port).
+    _bb = bb.activate(args.backbone, sf_root)
+    find_closest_num_frame, read_json = _bb.find_closest_num_frame, _bb.read_json
+    find_phrase_token_indices, set_seed = _bb.find_phrase_token_indices, _bb.set_seed
     from diffusers.utils import load_video
 
-    pipeline, low_memory, device, local_rank = load_pipe(args)
+    pipeline, low_memory, device = bb.load_backbone(args.backbone, args)   #✨ R45
     # tokenizer used only to flag pairs whose trigger words don't tokenize into the prompt
     trans_tokenizer = pipeline.text_encoder.tokenizer.tokenizer
 
@@ -388,14 +389,13 @@ def main() -> None:
                 # clear_cache are load bearing: the VAE carries temporal-conv state
                 # between calls, so reordering these two encodes would change the
                 # latents and break bit-parity with R7. Do not "tidy" this.
-                src_first_frame_latent = pipeline.vae.encode_to_latent(
-                    transform(src_video[0]).unsqueeze(0).unsqueeze(2).to(device=device, dtype=torch.bfloat16)
-                ).to(device=device, dtype=torch.bfloat16)
-                trg_first_frame_latent = pipeline.vae.encode_to_latent(
-                    transform(trg_first_frame).unsqueeze(0).unsqueeze(2).to(device=device, dtype=torch.bfloat16)
-                ).to(device=device, dtype=torch.bfloat16)
-                pipeline.vae.model.clear_cache()
-                independent_first_frame = True
+                #✨ R45: same two encodes, same order, one clear_cache -- via
+                # backbone.encode_vp, which also applies LongLive's x3 repeat
+                # (triple_first_frame) on --backbone ll.
+                src_first_frame_latent, trg_first_frame_latent, _vp_flags = bb.encode_vp(
+                    args.backbone, pipeline, transform, src_video[0], trg_first_frame, device)
+                independent_first_frame = _vp_flags["independent_first_frame"]
+                triple_first_frame = _vp_flags["triple_first_frame"]
                 vp_latent = None
             elif vp_mode == "pvp":
                 # Only the anchor is encoded -- there is no independent first frame.
@@ -404,9 +404,11 @@ def main() -> None:
                 ).to(device=device, dtype=torch.bfloat16)
                 pipeline.vae.model.clear_cache()
                 independent_first_frame = False
+                triple_first_frame = False
                 src_first_frame_latent = trg_first_frame_latent = None
             else:                                   # novp -- R1 baseline path, unchanged
                 independent_first_frame = False
+                triple_first_frame = False
                 src_first_frame_latent = trg_first_frame_latent = vp_latent = None
 
             tok = find_phrase_token_indices(
@@ -440,7 +442,7 @@ def main() -> None:
                     raise FileNotFoundError(f"missing R26 union mask {union_mask_path}")
                 union_mask_path = str(union_mask_path)
 
-            edit_video = pipeline.rollout_inference(
+            edit_video = bb.edit_call(args.backbone, pipeline,   #✨ R45: sf -> rollout_inference, ll -> inference
                 src_video=video_latents,
                 src_prompts=e["source_prompt"],
                 trg_prompts=e["target_prompt"],
@@ -451,6 +453,7 @@ def main() -> None:
                 profile=False,
                 low_memory=low_memory,
                 independent_first_frame=independent_first_frame,
+                triple_first_frame=triple_first_frame,
                 src_initial_latent=src_first_frame_latent,
                 trg_initial_latent=trg_first_frame_latent,
                 fg_boost_factor=args.fg_boost_factor,

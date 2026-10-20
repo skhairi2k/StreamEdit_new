@@ -1,0 +1,17 @@
+[
+  {
+    "case_id": "0004_car-roundabout",
+    "edit_type": 3,
+    "video_name": "0004_car-roundabout",
+    "src_video": "videos/0004_car-roundabout.mp4",
+    "src_first_frame": "images/0004_car-roundabout/00001.jpg",
+    "src_word": "a grey Mini Cooper",
+    "trg_word": "A yellow Mini Cooper",
+    "src_prompt": "A grey Mini Cooper is smoothly navigating a roundabout in a bustling urban area, surrounded by historic buildings and other vehicles. The camera remains stationary, capturing the car's movement through the roundabout.",
+    "trg_prompt": "A yellow Mini Cooper is smoothly navigating a roundabout in a bustling urban area, surrounded by historic buildings and other vehicles. The camera remains stationary, capturing the car's movement through the roundabout.",
+    "negative_prompt": "worst quality, low quality, blurry, absolute black, absolute white, low res, extra limbs, extra digits, misplaced objects, mutated anatomy, monochrome, horror",
+    "instruction": "Change the color of the Mini Cooper from grey to yellow.",
+    "first_frame_edit_prompt": "Change the color of the Mini Cooper from grey to yellow.",
+    "anchor_image": "/projects/dataggen/outputs/five_bench/anchors/edit3/0004_car-roundabout.png"
+  }
+]

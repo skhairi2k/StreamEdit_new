@@ -86,6 +86,8 @@ import torch
 from PIL import Image
 from torchvision import transforms
 
+import backbone as bb   #✨ R45: --backbone sf|ll (evaluation/backbone.py)
+
 
 # Default location of the Self-Forcing StreamEdit build, relative to the repo root.
 _DEFAULT_SF_ROOT = Path(__file__).resolve().parent.parent / "Self-Forcing_StreamEdit"
@@ -116,6 +118,16 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--latent_dir", type=str,
                         default="/projects/dataggen/outputs/five_bench/r31_latents",
                         help="Root for the per-clip z_trg/z_src npz ({dir}/edit{T}/{video}.npz)")
+    #✨ R48: opt-in per-token cross-attention recorder. None (default) => attn_record
+    # is never built and bb.edit_call's attn_record kwarg stays None end to end, so
+    # the render is bit-for-bit what it was before this flag existed.
+    parser.add_argument("--attn_window", type=float, nargs=2, default=[0.55, 0.9], metavar=("LO", "HI"),
+                        help="sigma window the attention is averaged over (default: the R48 plan's 0.55 0.9)")
+    parser.add_argument("--attn_blocks", type=int, default=20,
+                        help="record the FIRST N cross-attention blocks only (default 20 = StreamEdit's own mask_layers; 30 = all)")
+    parser.add_argument("--attn_out_dir", type=str, default=None,
+                        help="Root for the per-clip attention npz ({dir}/edit{T}/{video}.npz); "
+                             "sf backbone only (R48 does not implement this on ll)")
 
     # anchor injection -- same flags and semantics as run_fivebench.py / r22_dump_steps.py
     parser.add_argument("--first_frame_edit_dir", type=str, default=None,
@@ -180,10 +192,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--flow_shift", type=float, default=1.0)
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--sink_size", type=int, default=0)
-    parser.add_argument("--config_path", type=str, default="configs/self_forcing_dmd.yaml")
     parser.add_argument("--checkpoint_path", type=str, default="checkpoints/self_forcing_dmd.pt")
     parser.add_argument("--use_ema", action="store_true", default=True)
-    parser.add_argument("--sf_root", type=str, default=str(_DEFAULT_SF_ROOT))
+    bb.add_backbone_args(parser)   #✨ R45: --backbone, --sf_root, --config_path
 
     args = parser.parse_args()
 
@@ -249,6 +260,10 @@ def save_frames_png(frames: torch.Tensor, out_dir: Path) -> int:
 
 def main() -> None:
     args = parse_args()
+    bb.resolve_defaults(args)   #✨ R45: per-backbone --sf_root / --config_path
+    if args.backbone == "ll" and args.vp_mode == "pvp":
+        raise SystemExit("--vp_mode pvp (R10 persistent VP bank) is Self-Forcing-only; "
+                         "LongLive implements vp and novp.")
 
     # Resolve external paths to absolute BEFORE chdir-ing into the SF build (see
     # run_fivebench.py -- the build reads configs/checkpoints via relative paths).
@@ -256,19 +271,19 @@ def main() -> None:
     data_root = Path(args.data_root).expanduser().resolve()
     out_root = Path(args.out_root).expanduser().resolve()
     latent_dir = Path(args.latent_dir).expanduser().resolve()
+    attn_out_dir = (Path(args.attn_out_dir).expanduser().resolve()
+                    if args.attn_out_dir else None)
     first_frame_edit_dir = (Path(args.first_frame_edit_dir).expanduser().resolve()
                             if args.first_frame_edit_dir else None)
     cases_json = (Path(args.cases_json).expanduser().resolve()
                   if args.cases_json else None)
 
-    sys.path.insert(0, str(sf_root))
-    os.chdir(sf_root)
-
-    from inference_edit_streamedit import load_pipe, find_closest_num_frame, read_json
-    from utils.misc import set_seed
+    #✨ R45: the chosen backbone build goes on sys.path and becomes the cwd.
+    _bb = bb.activate(args.backbone, sf_root)
+    find_closest_num_frame, read_json, set_seed = _bb.find_closest_num_frame, _bb.read_json, _bb.set_seed
     from diffusers.utils import load_video
 
-    pipeline, low_memory, device, local_rank = load_pipe(args)
+    pipeline, low_memory, device = bb.load_backbone(args.backbone, args)   #✨ R45
 
     transform = transforms.Compose([
         transforms.Resize((480, 832)),
@@ -359,14 +374,13 @@ def main() -> None:
                 # clear_cache are load bearing: the VAE carries temporal-conv state
                 # between calls, so reordering these two encodes changes the latents and
                 # breaks bit-parity with R7/R26/R30. Do not "tidy" this.
-                src_first_frame_latent = pipeline.vae.encode_to_latent(
-                    transform(src_video[0]).unsqueeze(0).unsqueeze(2).to(device=device, dtype=torch.bfloat16)
-                ).to(device=device, dtype=torch.bfloat16)
-                trg_first_frame_latent = pipeline.vae.encode_to_latent(
-                    transform(trg_first_frame).unsqueeze(0).unsqueeze(2).to(device=device, dtype=torch.bfloat16)
-                ).to(device=device, dtype=torch.bfloat16)
-                pipeline.vae.model.clear_cache()
-                independent_first_frame = True
+                #✨ R45: same two encodes, same order, one clear_cache -- via
+                # backbone.encode_vp, which also applies LongLive's x3 repeat
+                # (triple_first_frame) on --backbone ll.
+                src_first_frame_latent, trg_first_frame_latent, _vp_flags = bb.encode_vp(
+                    args.backbone, pipeline, transform, src_video[0], trg_first_frame, device)
+                independent_first_frame = _vp_flags["independent_first_frame"]
+                triple_first_frame = _vp_flags["triple_first_frame"]
                 vp_latent = None
             elif vp_mode == "pvp":
                 vp_latent = pipeline.vae.encode_to_latent(
@@ -374,15 +388,22 @@ def main() -> None:
                 ).to(device=device, dtype=torch.bfloat16)
                 pipeline.vae.model.clear_cache()
                 independent_first_frame = False
+                triple_first_frame = False
                 src_first_frame_latent = trg_first_frame_latent = None
             else:                                   # novp -- R1 baseline path
                 independent_first_frame = False
+                triple_first_frame = False
                 src_first_frame_latent = trg_first_frame_latent = vp_latent = None
 
             # wo_video_decode=True: the final video IS step n_steps-1 (asserted below),
             # so decoding it here as well would be a wasted VAE pass.
             steps: list = []
-            _, final_latent = pipeline.rollout_inference(
+            #✨ R48: attn_record is a plain dict bb.edit_call/rollout_inference fills
+            # in; None (attn_out_dir not set) => not a single extra op anywhere in the
+            # render. backbone.py's _SF_ONLY list refuses this on ll explicitly.
+            attn_record = ({"window": tuple(args.attn_window), "n_blocks_used": args.attn_blocks}
+                           if attn_out_dir is not None else None)
+            _, final_latent = bb.edit_call(args.backbone, pipeline,   #✨ R45: sf -> rollout_inference, ll -> inference
                 src_video=video_latents,
                 src_prompts=e["source_prompt"],
                 trg_prompts=e["target_prompt"],
@@ -393,6 +414,7 @@ def main() -> None:
                 profile=False,
                 low_memory=low_memory,
                 independent_first_frame=independent_first_frame,
+                triple_first_frame=triple_first_frame,
                 src_initial_latent=src_first_frame_latent,
                 trg_initial_latent=trg_first_frame_latent,
                 fg_boost_factor=args.fg_boost_factor,
@@ -408,6 +430,7 @@ def main() -> None:
                 src_kv_full=(args.src_kv == "full"),
                 #✨ R22 hook, reused: one rollout, every step's x0 prediction.
                 step_dump=steps,
+                attn_record=attn_record,   #✨ R48
             )
 
             if len(steps) != 1:
@@ -448,6 +471,7 @@ def main() -> None:
                 n_steps=np.int32(n_steps),
                 blend_sched=np.str_(args.blend_sched),
                 vp_mode=np.str_(vp_mode),
+                backbone=np.str_(args.backbone),   #✨ R45
                 seed=np.int32(args.seed),
                 flow_shift=np.float32(args.flow_shift),
                 fg_boost_factor=np.float32(args.fg_boost_factor),
@@ -460,6 +484,28 @@ def main() -> None:
                 # must weigh a localised map accordingly.
                 measure_kind=np.str_(args.measure_kind),
             )
+
+            #✨ R48: per-token cross-attention npz, same {dir}/edit{T}/{video}.npz
+            # layout as the latents above. attn_record's accum_* tensors are already
+            # divided by (n_blocks * n_window) inside the model, so no further
+            # reduction happens here -- this is a straight dump.
+            if attn_record is not None:
+                attn_npz_path = attn_out_dir / f"edit{args.edit_type}" / f"{video_name}.npz"
+                attn_npz_path.parent.mkdir(parents=True, exist_ok=True)
+                np.savez_compressed(
+                    attn_npz_path,
+                    src_tokens=attn_record["accum_src_tok"].cpu().numpy(),
+                    trg_tokens=attn_record["accum_trg_tok"].cpu().numpy(),
+                    src_prompt=attn_record["accum_src_prompt"].cpu().numpy(),
+                    trg_prompt=attn_record["accum_trg_prompt"].cpu().numpy(),
+                    idx_src=np.array(attn_record["idx_src"], dtype=np.int64),
+                    idx_trg=np.array(attn_record["idx_trg"], dtype=np.int64),
+                    n_prompt_src=np.int32(attn_record["n_prompt_src"]),
+                    n_prompt_trg=np.int32(attn_record["n_prompt_trg"]),
+                    steps_t=np.array(_grid, dtype=np.float32),
+                    video_name=np.str_(video_name),
+                    edit_type=np.int32(args.edit_type),
+                )
 
             # --- decode only the requested steps -------------------------------------
             # clear_cache() between decodes so the VAE's temporal-conv state cannot leak

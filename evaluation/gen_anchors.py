@@ -61,6 +61,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--cpu_offload", action="store_true", default=False,
                         help="Enable model CPU offload (lower VRAM, slower)")
+    parser.add_argument("--two_stage", action="store_true", default=False,
+                        help="Encode all prompts with the text encoder first, free it, then denoise "
+                             "with the transformer alone. Fits a ~46 GB GPU with low host RAM "
+                             "(text encoder and transformer are never resident together)")
     return parser.parse_args()
 
 
@@ -84,6 +88,68 @@ def load_pipeline(model_id: str, cpu_offload: bool):
         pipe.enable_model_cpu_offload()
     else:
         pipe.to("cuda")
+    return pipe
+
+
+def _import_plus_module():
+    """Plus-pipeline module (pipeline class + its condition-image sizing helpers)."""
+    try:
+        from diffusers.pipelines.qwenimage import pipeline_qwenimage_edit_plus as plus
+    except ImportError as exc:
+        sys.exit(f"[gen_anchors] QwenImageEditPlusPipeline unavailable: {exc}")
+    if not torch.cuda.is_available():
+        sys.exit("[gen_anchors] CUDA not available; Qwen-Image-Edit needs a GPU.")
+    return plus
+
+
+def encode_all_prompts(model_id: str, todo: list, negative_prompt: str) -> dict:
+    """Stage 1 of --two_stage: raw (embeds, mask) for every case's prompt and the negative.
+
+    Mirrors QwenImageEditPlusPipeline.__call__ step 3 exactly: the condition image is the
+    source resized to CONDITION_IMAGE_SIZE area via the pipeline's image_processor, and we
+    store the *raw* output of ``_get_qwen_prompt_embeds`` so ``__call__``'s own
+    ``encode_prompt`` applies the same repeat / all-ones-mask -> None reduction as the
+    one-stage path. The text encoder consumes no generator state, so the denoise stage
+    sees identical inputs.
+    """
+    from transformers import Qwen2_5_VLForConditionalGeneration
+    plus = _import_plus_module()
+
+    # device_map="cuda" streams shards straight to the GPU (host RAM stays small).
+    text_encoder = Qwen2_5_VLForConditionalGeneration.from_pretrained(
+        model_id, subfolder="text_encoder", torch_dtype=torch.bfloat16, device_map="cuda")
+    pipe = plus.QwenImageEditPlusPipeline.from_pretrained(
+        model_id, text_encoder=text_encoder, transformer=None, torch_dtype=torch.bfloat16)
+    device = torch.device("cuda")
+
+    embeds = {}
+    with torch.no_grad():
+        for c, src, _ in todo:
+            instruction = c["first_frame_edit_prompt"] or c["instruction"]
+            image = Image.open(src).convert("RGB")
+            w, h = image.size
+            cond_w, cond_h = plus.calculate_dimensions(plus.CONDITION_IMAGE_SIZE, w / h)
+            cond_images = [pipe.image_processor.resize(image, cond_h, cond_w)]
+            pos, pos_mask = pipe._get_qwen_prompt_embeds(instruction, cond_images, device)
+            neg, neg_mask = pipe._get_qwen_prompt_embeds(negative_prompt, cond_images, device)
+            embeds[c["case_id"]] = tuple(t.cpu() for t in (pos, pos_mask, neg, neg_mask))
+            print(f"[encode] {c['case_id']}: {tuple(pos.shape)} / neg {tuple(neg.shape)}")
+
+    del pipe, text_encoder
+    torch.cuda.empty_cache()
+    return embeds
+
+
+def load_denoise_pipeline(model_id: str):
+    """Stage 2 of --two_stage: transformer + VAE on GPU, no text encoder."""
+    from diffusers import QwenImageTransformer2DModel
+    plus = _import_plus_module()
+
+    transformer = QwenImageTransformer2DModel.from_pretrained(
+        model_id, subfolder="transformer", torch_dtype=torch.bfloat16, device_map="cuda")
+    pipe = plus.QwenImageEditPlusPipeline.from_pretrained(
+        model_id, transformer=transformer, text_encoder=None, torch_dtype=torch.bfloat16)
+    pipe.vae.to("cuda")
     return pipe
 
 
@@ -121,18 +187,27 @@ def main() -> None:
         print("[gen_anchors] nothing to generate.")
         return
 
-    pipe = load_pipeline(args.model_id, args.cpu_offload)
+    if args.two_stage:
+        embeds = encode_all_prompts(args.model_id, todo, args.negative_prompt)
+        pipe = load_denoise_pipeline(args.model_id)
+    else:
+        pipe = load_pipeline(args.model_id, args.cpu_offload)
 
     n_ok = 0
     for c, src, out_path in todo:
         instruction = c["first_frame_edit_prompt"] or c["instruction"]
         image = Image.open(src).convert("RGB")
         generator = torch.Generator(device="cuda").manual_seed(args.seed)
+        if args.two_stage:
+            pos, pos_mask, neg, neg_mask = (t.to("cuda") for t in embeds[c["case_id"]])
+            prompt_kwargs = dict(prompt_embeds=pos, prompt_embeds_mask=pos_mask,
+                                 negative_prompt_embeds=neg, negative_prompt_embeds_mask=neg_mask)
+        else:
+            prompt_kwargs = dict(prompt=instruction, negative_prompt=args.negative_prompt)
         try:
             result = pipe(
                 image=[image],  # Plus pipeline takes a list of reference images
-                prompt=instruction,
-                negative_prompt=args.negative_prompt,
+                **prompt_kwargs,
                 num_inference_steps=args.num_inference_steps,
                 true_cfg_scale=args.true_cfg_scale,
                 guidance_scale=args.guidance_scale,

@@ -1,0 +1,210 @@
+[
+ {
+  "case_id": "edit1/0003_ocean-birds",
+  "edit_type": 1,
+  "video_name": "0003_ocean-birds",
+  "src_first_frame": "images/0003_ocean-birds/00001.jpg",
+  "first_frame_edit_prompt": "Replace the two white ibises with two white swans. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchor_r43_smoke/edit1/0003_ocean-birds.png"
+ },
+ {
+  "case_id": "edit1/0005_breakdance",
+  "edit_type": 1,
+  "video_name": "0005_breakdance",
+  "src_first_frame": "images/0005_breakdance/00001.jpg",
+  "first_frame_edit_prompt": "Replace the breakdancer with Mario. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchor_r43_smoke/edit1/0005_breakdance.png"
+ },
+ {
+  "case_id": "edit1/0012_goat",
+  "edit_type": 1,
+  "video_name": "0012_goat",
+  "src_first_frame": "images/0012_goat/00001.jpg",
+  "first_frame_edit_prompt": "Change the mountain goat to a mountain sheep. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchor_r43_smoke/edit1/0012_goat.png"
+ },
+ {
+  "case_id": "edit1/0018_breakdance-flare",
+  "edit_type": 1,
+  "video_name": "0018_breakdance-flare",
+  "src_first_frame": "images/0018_breakdance-flare/00001.jpg",
+  "first_frame_edit_prompt": "Change the breakdancer to a Beast. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchor_r43_smoke/edit1/0018_breakdance-flare.png"
+ },
+ {
+  "case_id": "edit1/0022_skate-jump",
+  "edit_type": 1,
+  "video_name": "0022_skate-jump",
+  "src_first_frame": "images/0022_skate-jump/00001.jpg",
+  "first_frame_edit_prompt": "Replace the skateboarder with a spiderman. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchor_r43_smoke/edit1/0022_skate-jump.png"
+ },
+ {
+  "case_id": "edit1/0030_rallye",
+  "edit_type": 1,
+  "video_name": "0030_rallye",
+  "src_first_frame": "images/0030_rallye/00001.jpg",
+  "first_frame_edit_prompt": "Replace the car with a jeep. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchor_r43_smoke/edit1/0030_rallye.png"
+ },
+ {
+  "case_id": "edit1/0036_camel",
+  "edit_type": 1,
+  "video_name": "0036_camel",
+  "src_first_frame": "images/0036_camel/00001.jpg",
+  "first_frame_edit_prompt": "Replace the camel with a horse. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchor_r43_smoke/edit1/0036_camel.png"
+ },
+ {
+  "case_id": "edit1/0045_butterfly",
+  "edit_type": 1,
+  "video_name": "0045_butterfly",
+  "src_first_frame": "images/0045_butterfly/00001.jpg",
+  "first_frame_edit_prompt": "Change the butterfly to a dragonfly. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchor_r43_smoke/edit1/0045_butterfly.png"
+ },
+ {
+  "case_id": "edit1/0059_drift-straight",
+  "edit_type": 1,
+  "video_name": "0059_drift-straight",
+  "src_first_frame": "images/0059_drift-straight/00001.jpg",
+  "first_frame_edit_prompt": "Change the sports car to a jeep. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchor_r43_smoke/edit1/0059_drift-straight.png"
+ },
+ {
+  "case_id": "edit1/0062_elephant",
+  "edit_type": 1,
+  "video_name": "0062_elephant",
+  "src_first_frame": "images/0062_elephant/00001.jpg",
+  "first_frame_edit_prompt": "Replace the elephant with a rhinoceros. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchor_r43_smoke/edit1/0062_elephant.png"
+ },
+ {
+  "case_id": "edit1/0074_rhino",
+  "edit_type": 1,
+  "video_name": "0074_rhino",
+  "src_first_frame": "images/0074_rhino/00001.jpg",
+  "first_frame_edit_prompt": "Change the rhinoceros to an elephant. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchor_r43_smoke/edit1/0074_rhino.png"
+ },
+ {
+  "case_id": "edit1/0081_A_horse",
+  "edit_type": 1,
+  "video_name": "0081_A_horse",
+  "src_first_frame": "images/0081_A_horse/00001.jpg",
+  "first_frame_edit_prompt": "Change the horse into a zebra. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchor_r43_smoke/edit1/0081_A_horse.png"
+ },
+ {
+  "case_id": "edit1/0098_A_squirrel",
+  "edit_type": 1,
+  "video_name": "0098_A_squirrel",
+  "src_first_frame": "images/0098_A_squirrel/00001.jpg",
+  "first_frame_edit_prompt": "Change the squirrel into a rabbit. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchor_r43_smoke/edit1/0098_A_squirrel.png"
+ },
+ {
+  "case_id": "edit2/0003_ocean-birds",
+  "edit_type": 2,
+  "video_name": "0003_ocean-birds",
+  "src_first_frame": "images/0003_ocean-birds/00001.jpg",
+  "first_frame_edit_prompt": "Replace the two white ibises with two drones scanning the ground. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchor_r43_smoke/edit2/0003_ocean-birds.png"
+ },
+ {
+  "case_id": "edit2/0005_breakdance",
+  "edit_type": 2,
+  "video_name": "0005_breakdance",
+  "src_first_frame": "images/0005_breakdance/00001.jpg",
+  "first_frame_edit_prompt": "Change the breakdancer to a bear. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchor_r43_smoke/edit2/0005_breakdance.png"
+ },
+ {
+  "case_id": "edit2/0012_goat",
+  "edit_type": 2,
+  "video_name": "0012_goat",
+  "src_first_frame": "images/0012_goat/00001.jpg",
+  "first_frame_edit_prompt": "Replace the mountain goat with a spiderman. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchor_r43_smoke/edit2/0012_goat.png"
+ },
+ {
+  "case_id": "edit2/0018_breakdance-flare",
+  "edit_type": 2,
+  "video_name": "0018_breakdance-flare",
+  "src_first_frame": "images/0018_breakdance-flare/00001.jpg",
+  "first_frame_edit_prompt": "Replace the breakdancer with a dragon. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchor_r43_smoke/edit2/0018_breakdance-flare.png"
+ },
+ {
+  "case_id": "edit2/0022_skate-jump",
+  "edit_type": 2,
+  "video_name": "0022_skate-jump",
+  "src_first_frame": "images/0022_skate-jump/00001.jpg",
+  "first_frame_edit_prompt": "Change the skateboarder to a robot. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchor_r43_smoke/edit2/0022_skate-jump.png"
+ },
+ {
+  "case_id": "edit2/0030_rallye",
+  "edit_type": 2,
+  "video_name": "0030_rallye",
+  "src_first_frame": "images/0030_rallye/00001.jpg",
+  "first_frame_edit_prompt": "Replace the rally car with a hovercraft. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchor_r43_smoke/edit2/0030_rallye.png"
+ },
+ {
+  "case_id": "edit2/0036_camel",
+  "edit_type": 2,
+  "video_name": "0036_camel",
+  "src_first_frame": "images/0036_camel/00001.jpg",
+  "first_frame_edit_prompt": "Replace the camel with a monkey. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchor_r43_smoke/edit2/0036_camel.png"
+ },
+ {
+  "case_id": "edit2/0045_butterfly",
+  "edit_type": 2,
+  "video_name": "0045_butterfly",
+  "src_first_frame": "images/0045_butterfly/00001.jpg",
+  "first_frame_edit_prompt": "Replace the butterfly with a drone. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchor_r43_smoke/edit2/0045_butterfly.png"
+ },
+ {
+  "case_id": "edit2/0059_drift-straight",
+  "edit_type": 2,
+  "video_name": "0059_drift-straight",
+  "src_first_frame": "images/0059_drift-straight/00001.jpg",
+  "first_frame_edit_prompt": "Change the sports car to a hovercraft. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchor_r43_smoke/edit2/0059_drift-straight.png"
+ },
+ {
+  "case_id": "edit2/0062_elephant",
+  "edit_type": 2,
+  "video_name": "0062_elephant",
+  "src_first_frame": "images/0062_elephant/00001.jpg",
+  "first_frame_edit_prompt": "Replace the elephant with a jeep. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchor_r43_smoke/edit2/0062_elephant.png"
+ },
+ {
+  "case_id": "edit2/0074_rhino",
+  "edit_type": 2,
+  "video_name": "0074_rhino",
+  "src_first_frame": "images/0074_rhino/00001.jpg",
+  "first_frame_edit_prompt": "Replace the rhinoceros with a robotic dinosaur. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchor_r43_smoke/edit2/0074_rhino.png"
+ },
+ {
+  "case_id": "edit2/0081_A_horse",
+  "edit_type": 2,
+  "video_name": "0081_A_horse",
+  "src_first_frame": "images/0081_A_horse/00001.jpg",
+  "first_frame_edit_prompt": "Replace the horse with a car. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchor_r43_smoke/edit2/0081_A_horse.png"
+ },
+ {
+  "case_id": "edit2/0098_A_squirrel",
+  "edit_type": 2,
+  "video_name": "0098_A_squirrel",
+  "src_first_frame": "images/0098_A_squirrel/00001.jpg",
+  "first_frame_edit_prompt": "Change the squirrel to a bear. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchor_r43_smoke/edit2/0098_A_squirrel.png"
+ }
+]

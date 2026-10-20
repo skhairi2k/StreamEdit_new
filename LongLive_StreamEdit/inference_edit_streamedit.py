@@ -87,7 +87,11 @@ def load_pipe(args):
 
     # Load generator checkpoint
     if config.generator_ckpt:
-        state_dict = torch.load(config.generator_ckpt, map_location="cpu")
+        #✨ R45: Self-Forcing's memory-lean load (inference_edit_streamedit.py:74-79 there),
+        # user-requested 2026-10-06: weights_only, straight to `device`, and (non-EMA path)
+        # load_state_dict(assign=True) so the fp32 state dict is not held twice. Values are
+        # unchanged: the checkpoint is fp32 like the model, and the driver casts to bf16 after.
+        state_dict = torch.load(config.generator_ckpt, map_location=device, weights_only=True)
         if "generator" in state_dict or "generator_ema" in state_dict:
             raw_gen_state_dict = state_dict["generator_ema" if config.use_ema else "generator"]
         elif "model" in state_dict:
@@ -108,7 +112,8 @@ def load_pipe(args):
                 if len(unexpected) > 0:
                     print(f"[Warning] {len(unexpected)} unexpected parameters encountered when loading checkpoint: {unexpected[:8]} ...")
         else:
-            pipeline.generator.load_state_dict(raw_gen_state_dict)
+            pipeline.generator.load_state_dict(raw_gen_state_dict, assign=True)
+        del state_dict, raw_gen_state_dict
 
     # --------------------------- LoRA support (optional) ---------------------------
 

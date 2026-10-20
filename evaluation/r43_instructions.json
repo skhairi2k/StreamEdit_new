@@ -1,0 +1,3773 @@
+[
+ {
+  "case_id": "edit1/0001_bus",
+  "edit_type": 1,
+  "video_name": "0001_bus",
+  "instruction_orig": "Change the city bus to a jeep.",
+  "instruction_v2": "Change the city bus to a jeep.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0002_girl-dog",
+  "edit_type": 1,
+  "video_name": "0002_girl-dog",
+  "instruction_orig": "Replace the gray dog with a gray rabbit.",
+  "instruction_v2": "Replace the gray dog with a gray rabbit.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0003_ocean-birds",
+  "edit_type": 1,
+  "video_name": "0003_ocean-birds",
+  "instruction_orig": "Replace ibises with swans and pecking with exploring.",
+  "instruction_v2": "Replace the two white ibises with two white swans.",
+  "flag": "multi_edit",
+  "note": "dropped 'pecking with exploring' (action change)"
+ },
+ {
+  "case_id": "edit1/0004_car-roundabout",
+  "edit_type": 1,
+  "video_name": "0004_car-roundabout",
+  "instruction_orig": "Change the Mini Cooper to a jeep.",
+  "instruction_v2": "Change the Mini Cooper to a jeep.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0005_breakdance",
+  "edit_type": 1,
+  "video_name": "0005_breakdance",
+  "instruction_orig": "Replace the breakdancer with Mario and change the color of the hoodie to blue to match Mario's iconic suit.",
+  "instruction_v2": "Replace the breakdancer with Mario.",
+  "flag": "multi_edit",
+  "note": "dropped hoodie recolour"
+ },
+ {
+  "case_id": "edit1/0006_paragliding",
+  "edit_type": 1,
+  "video_name": "0006_paragliding",
+  "instruction_orig": "Change paraglider to hang glider.",
+  "instruction_v2": "Replace the paraglider with a hang glider.",
+  "flag": "ok",
+  "note": "reworded; target_object truncated to 'hang'"
+ },
+ {
+  "case_id": "edit1/0007_guitar-violin",
+  "edit_type": 1,
+  "video_name": "0007_guitar-violin",
+  "instruction_orig": "Replace the musician playing the violin with a robot.",
+  "instruction_v2": "Replace the musician playing the violin with a robot.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0008_snowboard-race",
+  "edit_type": 1,
+  "video_name": "0008_snowboard-race",
+  "instruction_orig": "Replace the snowboarders with robots.",
+  "instruction_v2": "Replace the snowboarders with robots.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0009_bear",
+  "edit_type": 1,
+  "video_name": "0009_bear",
+  "instruction_orig": "Replace the brown bear with a panda.",
+  "instruction_v2": "Replace the brown bear with a panda.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0010_giant-slalom",
+  "edit_type": 1,
+  "video_name": "0010_giant-slalom",
+  "instruction_orig": "Change the skier to a snowboarder.",
+  "instruction_v2": "Change the skier to a snowboarder.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0011_lucia",
+  "edit_type": 1,
+  "video_name": "0011_lucia",
+  "instruction_orig": "Change the woman into a man and change her black dress into a black suit.",
+  "instruction_v2": "Replace the woman in the black dress with a man in a black suit.",
+  "flag": "multi_edit",
+  "note": "merged person+clothing into one replacement (target prompt)"
+ },
+ {
+  "case_id": "edit1/0012_goat",
+  "edit_type": 1,
+  "video_name": "0012_goat",
+  "instruction_orig": "Change the mountain goat to a mountain sheep.",
+  "instruction_v2": "Change the mountain goat to a mountain sheep.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0013_golf",
+  "edit_type": 1,
+  "video_name": "0013_golf",
+  "instruction_orig": "Change the man into an ironman and change his shirt and shorts into a black suit.",
+  "instruction_v2": "Replace the man in the black shirt and shorts with Iron Man in a black suit.",
+  "flag": "multi_edit",
+  "note": "merged person+clothing into one replacement (user)"
+ },
+ {
+  "case_id": "edit1/0014_burnout",
+  "edit_type": 1,
+  "video_name": "0014_burnout",
+  "instruction_orig": "Change the car into a jeep.",
+  "instruction_v2": "Change the car into a jeep.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0015_car-shadow",
+  "edit_type": 1,
+  "video_name": "0015_car-shadow",
+  "instruction_orig": "Change the car to a jeep.",
+  "instruction_v2": "Change the car to a jeep.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0016_horsejump-high",
+  "edit_type": 1,
+  "video_name": "0016_horsejump-high",
+  "instruction_orig": "Change the horse to a camel.",
+  "instruction_v2": "Change the horse to a camel.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0017_kid-football",
+  "edit_type": 1,
+  "video_name": "0017_kid-football",
+  "instruction_orig": "Change the boy to a girl.",
+  "instruction_v2": "Change the boy to a girl.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0018_breakdance-flare",
+  "edit_type": 1,
+  "video_name": "0018_breakdance-flare",
+  "instruction_orig": "Change the breakdancer to a Beast.",
+  "instruction_v2": "Change the breakdancer to a Beast.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0019_tennis-vest",
+  "edit_type": 1,
+  "video_name": "0019_tennis-vest",
+  "instruction_orig": "Change the tennis player to an ultraman.",
+  "instruction_v2": "Replace the tennis player with Ultraman.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit1/0020_monkeys",
+  "edit_type": 1,
+  "video_name": "0020_monkeys",
+  "instruction_orig": "Change the monkeys to chimpanzees.",
+  "instruction_v2": "Change the monkeys to chimpanzees.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0021_landing",
+  "edit_type": 1,
+  "video_name": "0021_landing",
+  "instruction_orig": "Replace the fighter jet with a helicopter.",
+  "instruction_v2": "Replace the fighter jet with a helicopter.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0022_skate-jump",
+  "edit_type": 1,
+  "video_name": "0022_skate-jump",
+  "instruction_orig": "Replace the skateboarder with a spiderman.",
+  "instruction_v2": "Replace the skateboarder with a spiderman.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0023_kayak-race",
+  "edit_type": 1,
+  "video_name": "0023_kayak-race",
+  "instruction_orig": "Change 'kayakers' to 'canoeists",
+  "instruction_v2": "Replace the two kayakers with two canoeists.",
+  "flag": "caption_edit",
+  "note": "was a quoted word swap with unclosed quote"
+ },
+ {
+  "case_id": "edit1/0024_hockey",
+  "edit_type": 1,
+  "video_name": "0024_hockey",
+  "instruction_orig": "Change the person to a batman.",
+  "instruction_v2": "Change the person to a batman.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0025_baseball",
+  "edit_type": 1,
+  "video_name": "0025_baseball",
+  "instruction_orig": "Replace the baseball player with a spiderman.",
+  "instruction_v2": "Replace the baseball player with a spiderman.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0026_table-tennis",
+  "edit_type": 1,
+  "video_name": "0026_table-tennis",
+  "instruction_orig": "Replace the table tennis players with spidermen.",
+  "instruction_v2": "Replace the table tennis players with spidermen.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0027_dance-jump",
+  "edit_type": 1,
+  "video_name": "0027_dance-jump",
+  "instruction_orig": "Change the young girl to a spiderman.",
+  "instruction_v2": "Change the young girl to a spiderman.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0028_kite-walk",
+  "edit_type": 1,
+  "video_name": "0028_kite-walk",
+  "instruction_orig": "Change the person into a spiderman.",
+  "instruction_v2": "Change the person into a spiderman.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0029_horsejump-stick",
+  "edit_type": 1,
+  "video_name": "0029_horsejump-stick",
+  "instruction_orig": "Change the horse to a camel.",
+  "instruction_v2": "Change the horse to a camel.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0030_rallye",
+  "edit_type": 1,
+  "video_name": "0030_rallye",
+  "instruction_orig": "Replace the car with a jeep.",
+  "instruction_v2": "Replace the car with a jeep.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0031_soccerball",
+  "edit_type": 1,
+  "video_name": "0031_soccerball",
+  "instruction_orig": "Change the soccer ball to a basketball.",
+  "instruction_v2": "Change the soccer ball to a basketball.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0032_mermaid",
+  "edit_type": 1,
+  "video_name": "0032_mermaid",
+  "instruction_orig": "Replace the woman with a robot.",
+  "instruction_v2": "Replace the woman with a robot.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0033_horsejump-low",
+  "edit_type": 1,
+  "video_name": "0033_horsejump-low",
+  "instruction_orig": "Change the horse to a camel.",
+  "instruction_v2": "Replace the white horse with a white camel.",
+  "flag": "ok",
+  "note": "target_object 'A white camel'"
+ },
+ {
+  "case_id": "edit1/0034_cows",
+  "edit_type": 1,
+  "video_name": "0034_cows",
+  "instruction_orig": "Change the cow into a horse.",
+  "instruction_v2": "Change the cow into a horse.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0035_helicopter",
+  "edit_type": 1,
+  "video_name": "0035_helicopter",
+  "instruction_orig": "Replace the helicopter with a drone.",
+  "instruction_v2": "Replace the helicopter with a drone.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0036_camel",
+  "edit_type": 1,
+  "video_name": "0036_camel",
+  "instruction_orig": "Replace the camels with horses.",
+  "instruction_v2": "Replace the camel with a horse.",
+  "flag": "count_mismatch",
+  "note": "frame 0 shows one camel; plural produced two horses in tests"
+ },
+ {
+  "case_id": "edit1/0037_snowboard-sand",
+  "edit_type": 1,
+  "video_name": "0037_snowboard-sand",
+  "instruction_orig": "Replace the woman with spiderman.",
+  "instruction_v2": "Replace the woman with spiderman.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0038_motorbike",
+  "edit_type": 1,
+  "video_name": "0038_motorbike",
+  "instruction_orig": "Change the motorbike to a bicycle.",
+  "instruction_v2": "Change the motorbike to a bicycle.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0039_chamaleon",
+  "edit_type": 1,
+  "video_name": "0039_chamaleon",
+  "instruction_orig": "Change the chameleon to an iguana.",
+  "instruction_v2": "Change the chameleon to an iguana.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0040_tennis",
+  "edit_type": 1,
+  "video_name": "0040_tennis",
+  "instruction_orig": "Replace the tennis player with a spiderman.",
+  "instruction_v2": "Replace the tennis player with a spiderman.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0041_longboard",
+  "edit_type": 1,
+  "video_name": "0041_longboard",
+  "instruction_orig": "Change the man into an astronaut.",
+  "instruction_v2": "Change the man into an astronaut.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0042_gym-ball",
+  "edit_type": 1,
+  "video_name": "0042_gym-ball",
+  "instruction_orig": "Change the man to an Iron man.",
+  "instruction_v2": "Change the man to an Iron man.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0043_parkour",
+  "edit_type": 1,
+  "video_name": "0043_parkour",
+  "instruction_orig": "Replace the man with a spiderman.",
+  "instruction_v2": "Replace the man with a spiderman.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0044_snowboard",
+  "edit_type": 1,
+  "video_name": "0044_snowboard",
+  "instruction_orig": "Change snowboarder to skier",
+  "instruction_v2": "Replace the snowboarder with a skier.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit1/0045_butterfly",
+  "edit_type": 1,
+  "video_name": "0045_butterfly",
+  "instruction_orig": "Change the butterfly to a dragonfly.",
+  "instruction_v2": "Change the butterfly to a dragonfly.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0046_blackswan",
+  "edit_type": 1,
+  "video_name": "0046_blackswan",
+  "instruction_orig": "Change the swan to a duck.",
+  "instruction_v2": "Change the swan to a duck.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0047_judo",
+  "edit_type": 1,
+  "video_name": "0047_judo",
+  "instruction_orig": "Replace the judo practitioners with spidermen.",
+  "instruction_v2": "Replace the two judo practitioners with two spidermen.",
+  "flag": "ok",
+  "note": "count made explicit"
+ },
+ {
+  "case_id": "edit1/0048_hike",
+  "edit_type": 1,
+  "video_name": "0048_hike",
+  "instruction_orig": "Replace the man with a spiderman.",
+  "instruction_v2": "Replace the man with a spiderman.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0049_speed-skating",
+  "edit_type": 1,
+  "video_name": "0049_speed-skating",
+  "instruction_orig": "Replace the speed skaters with spidermen.",
+  "instruction_v2": "Replace the three speed skaters with three spidermen.",
+  "flag": "ok",
+  "note": "count made explicit"
+ },
+ {
+  "case_id": "edit1/0050_slackline",
+  "edit_type": 1,
+  "video_name": "0050_slackline",
+  "instruction_orig": "Change the person into a spiderman.",
+  "instruction_v2": "Change the person into a spiderman.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0051_dogs-jump",
+  "edit_type": 1,
+  "video_name": "0051_dogs-jump",
+  "instruction_orig": "Change the dogs to rabbits.",
+  "instruction_v2": "Replace the two dogs with two rabbits.",
+  "flag": "ok",
+  "note": "count made explicit"
+ },
+ {
+  "case_id": "edit1/0052_mallard-fly",
+  "edit_type": 1,
+  "video_name": "0052_mallard-fly",
+  "instruction_orig": "Change the mallard duck to a white swan.",
+  "instruction_v2": "Change the mallard duck to a white swan.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0053_swing",
+  "edit_type": 1,
+  "video_name": "0053_swing",
+  "instruction_orig": "Replace the person with a spiderman.",
+  "instruction_v2": "Replace the person with a spiderman.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0054_train",
+  "edit_type": 1,
+  "video_name": "0054_train",
+  "instruction_orig": "Replace the train with a jeep.",
+  "instruction_v2": "Replace the model train with a model jeep.",
+  "flag": "ok",
+  "note": "target_object 'A model jeep'"
+ },
+ {
+  "case_id": "edit1/0055_pigs",
+  "edit_type": 1,
+  "video_name": "0055_pigs",
+  "instruction_orig": "Change the pigs into rabbits",
+  "instruction_v2": "Replace the pigs with rabbits.",
+  "flag": "ok",
+  "note": "period"
+ },
+ {
+  "case_id": "edit1/0056_kart-turn",
+  "edit_type": 1,
+  "video_name": "0056_kart-turn",
+  "instruction_orig": "Replace the go-karts with bicycles and change the drivers to riders.",
+  "instruction_v2": "Replace the two go-karts with two bicycles.",
+  "flag": "multi_edit",
+  "note": "dropped drivers→riders"
+ },
+ {
+  "case_id": "edit1/0057_dog",
+  "edit_type": 1,
+  "video_name": "0057_dog",
+  "instruction_orig": "Replace the golden retriever with a rabbit.",
+  "instruction_v2": "Replace the golden retriever with a rabbit.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0058_boat",
+  "edit_type": 1,
+  "video_name": "0058_boat",
+  "instruction_orig": "Replace 'fishing boat' with 'yacht'.",
+  "instruction_v2": "Replace the white fishing boat with a white yacht.",
+  "flag": "caption_edit",
+  "note": "was a quoted word swap"
+ },
+ {
+  "case_id": "edit1/0059_drift-straight",
+  "edit_type": 1,
+  "video_name": "0059_drift-straight",
+  "instruction_orig": "Change the sports car to a jeep.",
+  "instruction_v2": "Change the sports car to a jeep.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0060_motocross-bumps",
+  "edit_type": 1,
+  "video_name": "0060_motocross-bumps",
+  "instruction_orig": "Replace the motocross rider with a spiderman.",
+  "instruction_v2": "Replace the motocross rider with a spiderman.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0061_mbike-santa",
+  "edit_type": 1,
+  "video_name": "0061_mbike-santa",
+  "instruction_orig": "Replace the person with a spiderman.",
+  "instruction_v2": "Replace the person with a spiderman.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0062_elephant",
+  "edit_type": 1,
+  "video_name": "0062_elephant",
+  "instruction_orig": "Replace the elephant with a rhinoceros.",
+  "instruction_v2": "Replace the elephant with a rhinoceros.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0063_drift-turn",
+  "edit_type": 1,
+  "video_name": "0063_drift-turn",
+  "instruction_orig": "Replace 'car' with 'jeep'.",
+  "instruction_v2": "Replace the race car with a jeep.",
+  "flag": "caption_edit",
+  "note": "was a quoted word swap"
+ },
+ {
+  "case_id": "edit1/0064_rollerblade",
+  "edit_type": 1,
+  "video_name": "0064_rollerblade",
+  "instruction_orig": "Change the person to a spiderman.",
+  "instruction_v2": "Change the person to a spiderman.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0065_twist-dance",
+  "edit_type": 1,
+  "video_name": "0065_twist-dance",
+  "instruction_orig": "Replace the dancers with spidermen.",
+  "instruction_v2": "Replace the dancers with spidermen.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0066_deer",
+  "edit_type": 1,
+  "video_name": "0066_deer",
+  "instruction_orig": "Replace the deer with goats and change antler to horn.",
+  "instruction_v2": "Replace the two deer with two goats.",
+  "flag": "multi_edit",
+  "note": "dropped antler→horn"
+ },
+ {
+  "case_id": "edit1/0067_mbike-trick",
+  "edit_type": 1,
+  "video_name": "0067_mbike-trick",
+  "instruction_orig": "Replace the motorcyclist with a spiderman.",
+  "instruction_v2": "Replace the motorcyclist with a spiderman.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0068_planes-water",
+  "edit_type": 1,
+  "video_name": "0068_planes-water",
+  "instruction_orig": "Change the passenger airplane to a cargo airplane.",
+  "instruction_v2": "Change the passenger airplane to a cargo airplane.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0069_car-turn",
+  "edit_type": 1,
+  "video_name": "0069_car-turn",
+  "instruction_orig": "Change the SUV to a jeep.",
+  "instruction_v2": "Change the SUV to a jeep.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0070_dance-twirl",
+  "edit_type": 1,
+  "video_name": "0070_dance-twirl",
+  "instruction_orig": "Replace the dancer with a spiderman.",
+  "instruction_v2": "Replace the dancer with a spiderman.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0071_mallard-water",
+  "edit_type": 1,
+  "video_name": "0071_mallard-water",
+  "instruction_orig": "Change the mallard duck to a white swan.",
+  "instruction_v2": "Change the mallard duck to a white swan.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0072_dog-agility",
+  "edit_type": 1,
+  "video_name": "0072_dog-agility",
+  "instruction_orig": "Replace the border collie with a rabbit",
+  "instruction_v2": "Replace the border collie with a rabbit.",
+  "flag": "ok",
+  "note": "period"
+ },
+ {
+  "case_id": "edit1/0073_bmx-rider",
+  "edit_type": 1,
+  "video_name": "0073_bmx-rider",
+  "instruction_orig": "Change the BMX rider into a spiderman.",
+  "instruction_v2": "Change the BMX rider into a spiderman.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0074_rhino",
+  "edit_type": 1,
+  "video_name": "0074_rhino",
+  "instruction_orig": "Change the rhinoceros to an elephant.",
+  "instruction_v2": "Change the rhinoceros to an elephant.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0075_A_bicycle",
+  "edit_type": 1,
+  "video_name": "0075_A_bicycle",
+  "instruction_orig": "Change the bicycle to a scooter.",
+  "instruction_v2": "Change the bicycle to a scooter.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0076_A_rabbit",
+  "edit_type": 1,
+  "video_name": "0076_A_rabbit",
+  "instruction_orig": "Replace the rabbit with a kangaroo.",
+  "instruction_v2": "Replace the rabbit with a kangaroo.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0077_A_hawk",
+  "edit_type": 1,
+  "video_name": "0077_A_hawk",
+  "instruction_orig": "Change the hawk into a blue bird.",
+  "instruction_v2": "Change the hawk into a blue bird.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0078_A_cat",
+  "edit_type": 1,
+  "video_name": "0078_A_cat",
+  "instruction_orig": "Change the cat into a dog.",
+  "instruction_v2": "Change the cat into a dog.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0079_A_bus",
+  "edit_type": 1,
+  "video_name": "0079_A_bus",
+  "instruction_orig": "Change the bus to a jeep.",
+  "instruction_v2": "Change the bus to a jeep.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0080_A_motorcycle",
+  "edit_type": 1,
+  "video_name": "0080_A_motorcycle",
+  "instruction_orig": "Replace the motorcycle with a bicycle",
+  "instruction_v2": "Replace the motorcycle with a bicycle.",
+  "flag": "ok",
+  "note": "period"
+ },
+ {
+  "case_id": "edit1/0081_A_horse",
+  "edit_type": 1,
+  "video_name": "0081_A_horse",
+  "instruction_orig": "Change the horse into a zebra.",
+  "instruction_v2": "Change the horse into a zebra.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0082_A_tram",
+  "edit_type": 1,
+  "video_name": "0082_A_tram",
+  "instruction_orig": "Change 'tram' to 'trolley",
+  "instruction_v2": "Replace the tram with a trolley.",
+  "flag": "caption_edit",
+  "note": "was a quoted word swap with unclosed quote"
+ },
+ {
+  "case_id": "edit1/0083_A_boat",
+  "edit_type": 1,
+  "video_name": "0083_A_boat",
+  "instruction_orig": "Replace the boat with a kayak.",
+  "instruction_v2": "Replace the boat with a kayak.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0084_A_squirrel",
+  "edit_type": 1,
+  "video_name": "0084_A_squirrel",
+  "instruction_orig": "Change the squirrel into a rabbit.",
+  "instruction_v2": "Change the squirrel into a rabbit.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0085_A_tram",
+  "edit_type": 1,
+  "video_name": "0085_A_tram",
+  "instruction_orig": "Change the tram to a bus and the word trolley to bus.",
+  "instruction_v2": "Replace the tram with a bus.",
+  "flag": "multi_edit",
+  "note": "dropped 'the word trolley to bus'"
+ },
+ {
+  "case_id": "edit1/0086_A_red_sports_car",
+  "edit_type": 1,
+  "video_name": "0086_A_red_sports_car",
+  "instruction_orig": "Change the red sports car to a jeep.",
+  "instruction_v2": "Change the red sports car to a jeep.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0087_A_seagull",
+  "edit_type": 1,
+  "video_name": "0087_A_seagull",
+  "instruction_orig": "Change the seagull to a pelican.",
+  "instruction_v2": "Change the seagull to a pelican.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0088_A_cyclist",
+  "edit_type": 1,
+  "video_name": "0088_A_cyclist",
+  "instruction_orig": "Replace the cyclist with a skateboarder.",
+  "instruction_v2": "Replace the cyclist with a skateboarder.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0089_A_dog",
+  "edit_type": 1,
+  "video_name": "0089_A_dog",
+  "instruction_orig": "Replace the dog with a cat.",
+  "instruction_v2": "Replace the dog with a cat.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0090_A_deer",
+  "edit_type": 1,
+  "video_name": "0090_A_deer",
+  "instruction_orig": "Change the deer to a moose.",
+  "instruction_v2": "Change the deer to a moose.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0091_A_hawk",
+  "edit_type": 1,
+  "video_name": "0091_A_hawk",
+  "instruction_orig": "Change the hawk to a duck.",
+  "instruction_v2": "Change the hawk to a duck.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0092_A_fox",
+  "edit_type": 1,
+  "video_name": "0092_A_fox",
+  "instruction_orig": "Change the fox to a coyote.",
+  "instruction_v2": "Change the fox to a coyote.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0093_A_helicopter",
+  "edit_type": 1,
+  "video_name": "0093_A_helicopter",
+  "instruction_orig": "Change the helicopter to a drone.",
+  "instruction_v2": "Change the helicopter to a drone.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0094_A_swan",
+  "edit_type": 1,
+  "video_name": "0094_A_swan",
+  "instruction_orig": "Replace the swan with a duck.",
+  "instruction_v2": "Replace the swan with a duck.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0095_A_crow",
+  "edit_type": 1,
+  "video_name": "0095_A_crow",
+  "instruction_orig": "Replace the crow with an owl.",
+  "instruction_v2": "Replace the crow with an owl.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0096_A_car",
+  "edit_type": 1,
+  "video_name": "0096_A_car",
+  "instruction_orig": "Change 'car' to 'jeep'.",
+  "instruction_v2": "Replace the car with a jeep.",
+  "flag": "caption_edit",
+  "note": "was a quoted word swap"
+ },
+ {
+  "case_id": "edit1/0097_A_bird",
+  "edit_type": 1,
+  "video_name": "0097_A_bird",
+  "instruction_orig": "Change the bird to an eagle.",
+  "instruction_v2": "Change the bird to an eagle.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0098_A_squirrel",
+  "edit_type": 1,
+  "video_name": "0098_A_squirrel",
+  "instruction_orig": "Change the squirrel into a rabbit.",
+  "instruction_v2": "Change the squirrel into a rabbit.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0099_A_jogger",
+  "edit_type": 1,
+  "video_name": "0099_A_jogger",
+  "instruction_orig": "Change the jogger to an ultraman.",
+  "instruction_v2": "Change the jogger to an ultraman.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit1/0100_A_deer",
+  "edit_type": 1,
+  "video_name": "0100_A_deer",
+  "instruction_orig": "Replace the deer with a moose.",
+  "instruction_v2": "Replace the deer with a moose.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0001_bus",
+  "edit_type": 2,
+  "video_name": "0001_bus",
+  "instruction_orig": "Change the city bus into a spaceship.",
+  "instruction_v2": "Change the city bus into a spaceship.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0002_girl-dog",
+  "edit_type": 2,
+  "video_name": "0002_girl-dog",
+  "instruction_orig": "Replace the girl with a young alien, replace the wheelchair with a hovercraft, and replace the gray dog with a robotic dog.",
+  "instruction_v2": "Replace the girl in the wheelchair with a young alien in a hovercraft and the gray dog with a robotic dog.",
+  "flag": "multi_edit",
+  "note": "kept both edits (user decision)"
+ },
+ {
+  "case_id": "edit2/0003_ocean-birds",
+  "edit_type": 2,
+  "video_name": "0003_ocean-birds",
+  "instruction_orig": "Replace the white ibises with drones and change pecking to scanning.",
+  "instruction_v2": "Replace the two white ibises with two drones scanning the ground.",
+  "flag": "multi_edit",
+  "note": "kept scanning in place of pecking (user decision)"
+ },
+ {
+  "case_id": "edit2/0004_car-roundabout",
+  "edit_type": 2,
+  "video_name": "0004_car-roundabout",
+  "instruction_orig": "Change the grey Mini Cooper to a hovercraft.",
+  "instruction_v2": "Change the grey Mini Cooper to a hovercraft.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0005_breakdance",
+  "edit_type": 2,
+  "video_name": "0005_breakdance",
+  "instruction_orig": "Change the breakdancer to a bear.",
+  "instruction_v2": "Change the breakdancer to a bear.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0006_paragliding",
+  "edit_type": 2,
+  "video_name": "0006_paragliding",
+  "instruction_orig": "Replace the paraglider with a dragon.",
+  "instruction_v2": "Replace the paraglider with a dragon.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0007_guitar-violin",
+  "edit_type": 2,
+  "video_name": "0007_guitar-violin",
+  "instruction_orig": "Replace the musicians with a tiger and a robot.",
+  "instruction_v2": "Replace the violinist with a tiger.",
+  "flag": "mask_scope",
+  "note": "two musicians: violinist→tiger, guitarist→robot, as in the target prompt (user decision); reduced to the masked edit (user 2026-10-07); was: Replace the violinist with a tiger and the guitarist with a robot."
+ },
+ {
+  "case_id": "edit2/0008_snowboard-race",
+  "edit_type": 2,
+  "video_name": "0008_snowboard-race",
+  "instruction_orig": "Replace the snowboarders with penguins.",
+  "instruction_v2": "Replace the snowboarders with penguins.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0009_bear",
+  "edit_type": 2,
+  "video_name": "0009_bear",
+  "instruction_orig": "Replace the bear with a dinosaur.",
+  "instruction_v2": "Replace the bear with a dinosaur.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0010_giant-slalom",
+  "edit_type": 2,
+  "video_name": "0010_giant-slalom",
+  "instruction_orig": "Change the skier to a robot.",
+  "instruction_v2": "Change the skier to a robot.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0011_lucia",
+  "edit_type": 2,
+  "video_name": "0011_lucia",
+  "instruction_orig": "Replace the woman with a lion.",
+  "instruction_v2": "Replace the woman with a lion.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0012_goat",
+  "edit_type": 2,
+  "video_name": "0012_goat",
+  "instruction_orig": "Replace the mountain goat with a spiderman.",
+  "instruction_v2": "Replace the mountain goat with a spiderman.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0013_golf",
+  "edit_type": 2,
+  "video_name": "0013_golf",
+  "instruction_orig": "Replace the man with a robot and the golf cart with a hovercraft, and change 'drives' to 'glide'.",
+  "instruction_v2": "Replace the man with a robot.",
+  "flag": "mask_scope",
+  "note": "kept both object edits; dropped drives→glide (user decision); reduced to the masked edit (user 2026-10-07); was: Replace the man with a robot and the golf cart with a hovercraft."
+ },
+ {
+  "case_id": "edit2/0014_burnout",
+  "edit_type": 2,
+  "video_name": "0014_burnout",
+  "instruction_orig": "Change the black car to a UFO and change burnout to hover trick.",
+  "instruction_v2": "Replace the black car with a UFO.",
+  "flag": "multi_edit",
+  "note": "dropped burnout→hover trick"
+ },
+ {
+  "case_id": "edit2/0015_car-shadow",
+  "edit_type": 2,
+  "video_name": "0015_car-shadow",
+  "instruction_orig": "Change the silver car into a hovercraft.",
+  "instruction_v2": "Change the silver car into a hovercraft.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0016_horsejump-high",
+  "edit_type": 2,
+  "video_name": "0016_horsejump-high",
+  "instruction_orig": "Replace the horse with a kangaroo.",
+  "instruction_v2": "Replace the horse with a kangaroo.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0017_kid-football",
+  "edit_type": 2,
+  "video_name": "0017_kid-football",
+  "instruction_orig": "Replace the young boy with a dog",
+  "instruction_v2": "Replace the young boy with a dog.",
+  "flag": "ok",
+  "note": "period"
+ },
+ {
+  "case_id": "edit2/0018_breakdance-flare",
+  "edit_type": 2,
+  "video_name": "0018_breakdance-flare",
+  "instruction_orig": "Replace the breakdancer with a robot and change the subject from a dancer to a dragon.",
+  "instruction_v2": "Replace the breakdancer with a dragon.",
+  "flag": "contradiction",
+  "note": "instruction says robot AND dragon; target_object dragon; target prompt also says 'robot's legs'"
+ },
+ {
+  "case_id": "edit2/0019_tennis-vest",
+  "edit_type": 2,
+  "video_name": "0019_tennis-vest",
+  "instruction_orig": "Replace the tennis player with a robot.",
+  "instruction_v2": "Replace the tennis player with a robot.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0020_monkeys",
+  "edit_type": 2,
+  "video_name": "0020_monkeys",
+  "instruction_orig": "Replace the monkeys with robots.",
+  "instruction_v2": "Replace the monkeys with robots.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0021_landing",
+  "edit_type": 2,
+  "video_name": "0021_landing",
+  "instruction_orig": "Replace the fighter jet with a dragon.",
+  "instruction_v2": "Replace the fighter jet with a dragon.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0022_skate-jump",
+  "edit_type": 2,
+  "video_name": "0022_skate-jump",
+  "instruction_orig": "Change the skateboarder to a robot.",
+  "instruction_v2": "Change the skateboarder to a robot.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0023_kayak-race",
+  "edit_type": 2,
+  "video_name": "0023_kayak-race",
+  "instruction_orig": "Replace the kayakers with dolphins and change paddling to swimming.",
+  "instruction_v2": "Replace the two kayakers with two dolphins.",
+  "flag": "multi_edit",
+  "note": "dropped paddling→swimming"
+ },
+ {
+  "case_id": "edit2/0024_hockey",
+  "edit_type": 2,
+  "video_name": "0024_hockey",
+  "instruction_orig": "Change the person to a dragon",
+  "instruction_v2": "Replace the person with a dragon.",
+  "flag": "ok",
+  "note": "period"
+ },
+ {
+  "case_id": "edit2/0025_baseball",
+  "edit_type": 2,
+  "video_name": "0025_baseball",
+  "instruction_orig": "Replace the baseball player with a tiger and change the player to a robot.",
+  "instruction_v2": "Replace the baseball player with a tiger.",
+  "flag": "contradiction",
+  "note": "instruction says tiger AND robot; target_object/prompt say tiger"
+ },
+ {
+  "case_id": "edit2/0026_table-tennis",
+  "edit_type": 2,
+  "video_name": "0026_table-tennis",
+  "instruction_orig": "Replace the two table tennis players with two robots and change the players to robots",
+  "instruction_v2": "Replace the two table tennis players with two kangaroos.",
+  "flag": "contradiction",
+  "note": "instruction says robots; target_object + target prompt subject say kangaroo (prompt also mentions 'robot') (user-approved)"
+ },
+ {
+  "case_id": "edit2/0027_dance-jump",
+  "edit_type": 2,
+  "video_name": "0027_dance-jump",
+  "instruction_orig": "Replace the young girl with a bumblebee.",
+  "instruction_v2": "Replace the young girl with a bumblebee.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0028_kite-walk",
+  "edit_type": 2,
+  "video_name": "0028_kite-walk",
+  "instruction_orig": "Replace the person with a Pikachu.",
+  "instruction_v2": "Replace the person with a Pikachu.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0029_horsejump-stick",
+  "edit_type": 2,
+  "video_name": "0029_horsejump-stick",
+  "instruction_orig": "Change the horse to a monkey and the horse to a kangaroo.",
+  "instruction_v2": "Replace the horse with a monkey.",
+  "flag": "contradiction",
+  "note": "instruction says monkey AND kangaroo; target_object/prompt say monkey"
+ },
+ {
+  "case_id": "edit2/0030_rallye",
+  "edit_type": 2,
+  "video_name": "0030_rallye",
+  "instruction_orig": "Replace the rally car with a hovercraft.",
+  "instruction_v2": "Replace the rally car with a hovercraft.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0031_soccerball",
+  "edit_type": 2,
+  "video_name": "0031_soccerball",
+  "instruction_orig": "Replace the soccer ball with a cube.",
+  "instruction_v2": "Replace the soccer ball with a cube.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0032_mermaid",
+  "edit_type": 2,
+  "video_name": "0032_mermaid",
+  "instruction_orig": "Change the woman into an alien.",
+  "instruction_v2": "Change the woman into an alien.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0033_horsejump-low",
+  "edit_type": 2,
+  "video_name": "0033_horsejump-low",
+  "instruction_orig": "Change the horse to a lion and the horse to a kangaroo.",
+  "instruction_v2": "Replace the white horse with a lion.",
+  "flag": "contradiction",
+  "note": "instruction says lion AND kangaroo; target_object/prompt say lion"
+ },
+ {
+  "case_id": "edit2/0034_cows",
+  "edit_type": 2,
+  "video_name": "0034_cows",
+  "instruction_orig": "Replace the cow with a dragon.",
+  "instruction_v2": "Replace the cow with a dragon.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0035_helicopter",
+  "edit_type": 2,
+  "video_name": "0035_helicopter",
+  "instruction_orig": "Change the helicopter into a UFO, and change the rotors spinning rapidly into the UFO's lights spinning rapidly.",
+  "instruction_v2": "Replace the helicopter with a UFO with spinning lights.",
+  "flag": "multi_edit",
+  "note": "kept the visible lights; rotors→lights (user decision)"
+ },
+ {
+  "case_id": "edit2/0036_camel",
+  "edit_type": 2,
+  "video_name": "0036_camel",
+  "instruction_orig": "Replace the camels with monkeys.",
+  "instruction_v2": "Replace the camel with a monkey.",
+  "flag": "count_mismatch",
+  "note": "frame 0 shows one camel; plural produced a monkey pile in tests"
+ },
+ {
+  "case_id": "edit2/0037_snowboard-sand",
+  "edit_type": 2,
+  "video_name": "0037_snowboard-sand",
+  "instruction_orig": "Change the woman to a Wizard.",
+  "instruction_v2": "Replace the woman with a wizard.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit2/0038_motorbike",
+  "edit_type": 2,
+  "video_name": "0038_motorbike",
+  "instruction_orig": "Change the motorbike to a hovercraft.",
+  "instruction_v2": "Change the motorbike to a hovercraft.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0039_chamaleon",
+  "edit_type": 2,
+  "video_name": "0039_chamaleon",
+  "instruction_orig": "Replace the green chameleon with a robotic spider.",
+  "instruction_v2": "Replace the green chameleon with a spider.",
+  "flag": "contradiction",
+  "note": "instruction says robotic spider; target_object/prompt say spider (user-approved)"
+ },
+ {
+  "case_id": "edit2/0040_tennis",
+  "edit_type": 2,
+  "video_name": "0040_tennis",
+  "instruction_orig": "Replace the tennis player with a dinosaur.",
+  "instruction_v2": "Replace the tennis player with a dinosaur.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0041_longboard",
+  "edit_type": 2,
+  "video_name": "0041_longboard",
+  "instruction_orig": "Replace'man' with 'ultraman' and 'longboard' with 'hoverboard' and 'him' with 'it'.",
+  "instruction_v2": "Replace the man with Ultraman and the longboard with a hoverboard.",
+  "flag": "multi_edit",
+  "note": "kept both object edits; dropped him→it (user decision)"
+ },
+ {
+  "case_id": "edit2/0042_gym-ball",
+  "edit_type": 2,
+  "video_name": "0042_gym-ball",
+  "instruction_orig": "Replace the man with a panda.",
+  "instruction_v2": "Replace the man with a panda.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0043_parkour",
+  "edit_type": 2,
+  "video_name": "0043_parkour",
+  "instruction_orig": "Replace the man with a bear.",
+  "instruction_v2": "Replace the man with a bear.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0044_snowboard",
+  "edit_type": 2,
+  "video_name": "0044_snowboard",
+  "instruction_orig": "Replace the snowboarder with a robotic penguin.",
+  "instruction_v2": "Replace the snowboarder with a robotic penguin.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0045_butterfly",
+  "edit_type": 2,
+  "video_name": "0045_butterfly",
+  "instruction_orig": "Replace the butterfly with a drone.",
+  "instruction_v2": "Replace the butterfly with a drone.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0046_blackswan",
+  "edit_type": 2,
+  "video_name": "0046_blackswan",
+  "instruction_orig": "Change the black swan to a boat.",
+  "instruction_v2": "Change the black swan to a boat.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0047_judo",
+  "edit_type": 2,
+  "video_name": "0047_judo",
+  "instruction_orig": "Replace the judo practitioners with robots.",
+  "instruction_v2": "Replace the two judo practitioners with two robots.",
+  "flag": "ok",
+  "note": "count made explicit"
+ },
+ {
+  "case_id": "edit2/0048_hike",
+  "edit_type": 2,
+  "video_name": "0048_hike",
+  "instruction_orig": "Replace the man with a robot.",
+  "instruction_v2": "Replace the man with a robot.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0049_speed-skating",
+  "edit_type": 2,
+  "video_name": "0049_speed-skating",
+  "instruction_orig": "Change the human skaters into robotic skaters.",
+  "instruction_v2": "Replace the three speed skaters with three robots.",
+  "flag": "ok",
+  "note": "target_object truncated to 'robotic'"
+ },
+ {
+  "case_id": "edit2/0050_slackline",
+  "edit_type": 2,
+  "video_name": "0050_slackline",
+  "instruction_orig": "Replace the person with a Pikachu.",
+  "instruction_v2": "Replace the person with a Pikachu.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0051_dogs-jump",
+  "edit_type": 2,
+  "video_name": "0051_dogs-jump",
+  "instruction_orig": "Replace the woman with a robot and the dogs with robotic dogs.",
+  "instruction_v2": "Replace the dogs with robotic dogs.",
+  "flag": "mask_scope",
+  "note": "kept both FiVE edits (user decision); reduced to the masked edit (user 2026-10-07); was: Replace the woman with a robot and the dogs with robotic dogs."
+ },
+ {
+  "case_id": "edit2/0052_mallard-fly",
+  "edit_type": 2,
+  "video_name": "0052_mallard-fly",
+  "instruction_orig": "Replace the mallard duck with a robotic dog.",
+  "instruction_v2": "Replace the mallard duck with a robotic dog.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0053_swing",
+  "edit_type": 2,
+  "video_name": "0053_swing",
+  "instruction_orig": "Replace the person with a robot.",
+  "instruction_v2": "Replace the person with a robot.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0054_train",
+  "edit_type": 2,
+  "video_name": "0054_train",
+  "instruction_orig": "Change the train into a spaceship.",
+  "instruction_v2": "Replace the model train with a model spaceship.",
+  "flag": "ok",
+  "note": "target_object 'A model spaceship'"
+ },
+ {
+  "case_id": "edit2/0055_pigs",
+  "edit_type": 2,
+  "video_name": "0055_pigs",
+  "instruction_orig": "Replace the pigs with robotic dragons.",
+  "instruction_v2": "Replace the pigs with robotic dragons.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0056_kart-turn",
+  "edit_type": 2,
+  "video_name": "0056_kart-turn",
+  "instruction_orig": "Change go-karts to hovercrafts and drivers to pilots",
+  "instruction_v2": "Replace the two go-karts with two hovercraft.",
+  "flag": "multi_edit",
+  "note": "dropped drivers→pilots"
+ },
+ {
+  "case_id": "edit2/0057_dog",
+  "edit_type": 2,
+  "video_name": "0057_dog",
+  "instruction_orig": "Replace the golden retriever with a robotic dog.",
+  "instruction_v2": "Replace the golden retriever with a robotic dog.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0058_boat",
+  "edit_type": 2,
+  "video_name": "0058_boat",
+  "instruction_orig": "Replace the fishing boat with a hovercraft.",
+  "instruction_v2": "Replace the fishing boat with a hovercraft.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0059_drift-straight",
+  "edit_type": 2,
+  "video_name": "0059_drift-straight",
+  "instruction_orig": "Change the sports car to a hovercraft.",
+  "instruction_v2": "Change the sports car to a hovercraft.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0060_motocross-bumps",
+  "edit_type": 2,
+  "video_name": "0060_motocross-bumps",
+  "instruction_orig": "Replace the motocross rider with a kangaroo.",
+  "instruction_v2": "Replace the motocross rider with a kangaroo.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0061_mbike-santa",
+  "edit_type": 2,
+  "video_name": "0061_mbike-santa",
+  "instruction_orig": "Replace the person with a robot and the motorcycle with a hovercraft.",
+  "instruction_v2": "Replace the person in the Santa Claus outfit with a robot and the motorcycle with a hovercraft.",
+  "flag": "multi_edit",
+  "note": "kept both edits: rider + vehicle (user decision)"
+ },
+ {
+  "case_id": "edit2/0062_elephant",
+  "edit_type": 2,
+  "video_name": "0062_elephant",
+  "instruction_orig": "Replace the elephant with a jeep.",
+  "instruction_v2": "Replace the elephant with a jeep.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0063_drift-turn",
+  "edit_type": 2,
+  "video_name": "0063_drift-turn",
+  "instruction_orig": "Replace 'race car' with 'hovercraft'.",
+  "instruction_v2": "Replace the race car with a hovercraft.",
+  "flag": "caption_edit",
+  "note": "was a quoted word swap"
+ },
+ {
+  "case_id": "edit2/0064_rollerblade",
+  "edit_type": 2,
+  "video_name": "0064_rollerblade",
+  "instruction_orig": "Replace the person with a Pikachu.",
+  "instruction_v2": "Replace the person with a Pikachu.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0065_twist-dance",
+  "edit_type": 2,
+  "video_name": "0065_twist-dance",
+  "instruction_orig": "Replace the dancers with robots.",
+  "instruction_v2": "Replace the dancers with robots.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0066_deer",
+  "edit_type": 2,
+  "video_name": "0066_deer",
+  "instruction_orig": "Change the deer to pandas.",
+  "instruction_v2": "Replace the two deer with two pandas.",
+  "flag": "ok",
+  "note": "count made explicit"
+ },
+ {
+  "case_id": "edit2/0067_mbike-trick",
+  "edit_type": 2,
+  "video_name": "0067_mbike-trick",
+  "instruction_orig": "Replace the motorcyclist with a robot and the motorcycle with a hovercraft.",
+  "instruction_v2": "Replace the motorcyclist with a robot and the motorcycle with a hovercraft.",
+  "flag": "multi_edit",
+  "note": "kept both edits: rider + vehicle (user decision)"
+ },
+ {
+  "case_id": "edit2/0068_planes-water",
+  "edit_type": 2,
+  "video_name": "0068_planes-water",
+  "instruction_orig": "Replace the airplane with a spaceship.",
+  "instruction_v2": "Replace the airplane with a spaceship.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0069_car-turn",
+  "edit_type": 2,
+  "video_name": "0069_car-turn",
+  "instruction_orig": "Change the silver SUV to a hovercraft.",
+  "instruction_v2": "Change the silver SUV to a hovercraft.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0070_dance-twirl",
+  "edit_type": 2,
+  "video_name": "0070_dance-twirl",
+  "instruction_orig": "Change the dancer to a robot.",
+  "instruction_v2": "Change the dancer to a robot.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0071_mallard-water",
+  "edit_type": 2,
+  "video_name": "0071_mallard-water",
+  "instruction_orig": "Change the mallard duck to a boad.",
+  "instruction_v2": "Replace the mallard duck with a boat.",
+  "flag": "typo",
+  "note": "'boad' typo"
+ },
+ {
+  "case_id": "edit2/0072_dog-agility",
+  "edit_type": 2,
+  "video_name": "0072_dog-agility",
+  "instruction_orig": "Replace the border collie with a unicorn.",
+  "instruction_v2": "Replace the border collie with a unicorn.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0073_bmx-rider",
+  "edit_type": 2,
+  "video_name": "0073_bmx-rider",
+  "instruction_orig": "Replace the BMX rider with a robot.",
+  "instruction_v2": "Replace the BMX rider with a robot.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0074_rhino",
+  "edit_type": 2,
+  "video_name": "0074_rhino",
+  "instruction_orig": "Replace the rhinoceros with a robotic dinosaur.",
+  "instruction_v2": "Replace the rhinoceros with a robotic dinosaur.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0075_A_bicycle",
+  "edit_type": 2,
+  "video_name": "0075_A_bicycle",
+  "instruction_orig": "Change the bicycle to a skateboard.",
+  "instruction_v2": "Change the bicycle to a skateboard.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0076_A_rabbit",
+  "edit_type": 2,
+  "video_name": "0076_A_rabbit",
+  "instruction_orig": "Change the rabbit to a drone.",
+  "instruction_v2": "Change the rabbit to a drone.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0077_A_hawk",
+  "edit_type": 2,
+  "video_name": "0077_A_hawk",
+  "instruction_orig": "Replace the hawk with a paraglider.",
+  "instruction_v2": "Replace the hawk with a paraglider.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0078_A_cat",
+  "edit_type": 2,
+  "video_name": "0078_A_cat",
+  "instruction_orig": "Replace the cat with a ferret.",
+  "instruction_v2": "Replace the cat with a ferret.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0079_A_bus",
+  "edit_type": 2,
+  "video_name": "0079_A_bus",
+  "instruction_orig": "Replace the bus with a hovercraft.",
+  "instruction_v2": "Replace the bus with a hovercraft.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0080_A_motorcycle",
+  "edit_type": 2,
+  "video_name": "0080_A_motorcycle",
+  "instruction_orig": "Change the motorcycle to a cheetah.",
+  "instruction_v2": "Change the motorcycle to a cheetah.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0081_A_horse",
+  "edit_type": 2,
+  "video_name": "0081_A_horse",
+  "instruction_orig": "Replace the horse with a car and change the camera's focus from the horse to a dolphin.",
+  "instruction_v2": "Replace the horse with a car.",
+  "flag": "target_prompt_error",
+  "note": "dropped dolphin; target prompt still says 'the dolphin's dynamic motion'"
+ },
+ {
+  "case_id": "edit2/0082_A_tram",
+  "edit_type": 2,
+  "video_name": "0082_A_tram",
+  "instruction_orig": "Change the tram to a sleigh.",
+  "instruction_v2": "Change the tram to a sleigh.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0083_A_boat",
+  "edit_type": 2,
+  "video_name": "0083_A_boat",
+  "instruction_orig": "Replace the boat with a swan.",
+  "instruction_v2": "Replace the boat with a swan.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0084_A_squirrel",
+  "edit_type": 2,
+  "video_name": "0084_A_squirrel",
+  "instruction_orig": "Replace the squirrel with a monkey and change 'climbing' to'swinging'.",
+  "instruction_v2": "Replace the squirrel with a monkey.",
+  "flag": "multi_edit",
+  "note": "dropped climbing→swinging"
+ },
+ {
+  "case_id": "edit2/0085_A_tram",
+  "edit_type": 2,
+  "video_name": "0085_A_tram",
+  "instruction_orig": "Replace the tram with a horse-drawn carriage.",
+  "instruction_v2": "Replace the tram with a horse-drawn carriage.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0086_A_red_sports_car",
+  "edit_type": 2,
+  "video_name": "0086_A_red_sports_car",
+  "instruction_orig": "Replace the red sports car with a rocket and change the action from speeding down to launching up.",
+  "instruction_v2": "Replace the red sports car with a rocket.",
+  "flag": "multi_edit",
+  "note": "dropped speeding down→launching up"
+ },
+ {
+  "case_id": "edit2/0087_A_seagull",
+  "edit_type": 2,
+  "video_name": "0087_A_seagull",
+  "instruction_orig": "Change the seagull to a kite.",
+  "instruction_v2": "Change the seagull to a kite.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0088_A_cyclist",
+  "edit_type": 2,
+  "video_name": "0088_A_cyclist",
+  "instruction_orig": "Change the cyclist to a rollerblader.",
+  "instruction_v2": "Change the cyclist to a rollerblader.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0089_A_dog",
+  "edit_type": 2,
+  "video_name": "0089_A_dog",
+  "instruction_orig": "Change the dog into a seal, replace wagging its tail with clapping its flippers.",
+  "instruction_v2": "Replace the dog with a seal.",
+  "flag": "multi_edit",
+  "note": "dropped tail wagging→flipper clapping"
+ },
+ {
+  "case_id": "edit2/0090_A_deer",
+  "edit_type": 2,
+  "video_name": "0090_A_deer",
+  "instruction_orig": "Replace the deer with a snowmobile and change bounding to racing and leap to turn.",
+  "instruction_v2": "Replace the deer with a snowmobile.",
+  "flag": "multi_edit",
+  "note": "dropped bounding→racing, leap→turn"
+ },
+ {
+  "case_id": "edit2/0091_A_hawk",
+  "edit_type": 2,
+  "video_name": "0091_A_hawk",
+  "instruction_orig": "Replace the hawk with a hot air balloon.",
+  "instruction_v2": "Replace the hawk with a hot air balloon.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0092_A_fox",
+  "edit_type": 2,
+  "video_name": "0092_A_fox",
+  "instruction_orig": "Replace the fox with a robot, and change 'paw prints' to 'tracks'.",
+  "instruction_v2": "Replace the fox with a robot.",
+  "flag": "multi_edit",
+  "note": "dropped paw prints→tracks"
+ },
+ {
+  "case_id": "edit2/0093_A_helicopter",
+  "edit_type": 2,
+  "video_name": "0093_A_helicopter",
+  "instruction_orig": "Change the helicopter to a UFO and its blades to lights, and change downdraft to glow.",
+  "instruction_v2": "Replace the helicopter with a UFO.",
+  "flag": "multi_edit",
+  "note": "kept the visible lights/glow (user decision); consistency-audit (user 2026-10-07): 'with glowing lights' dropped, the target prompt has no lights after the effect-edit revert; was: Replace the helicopter with a UFO with glowing lights."
+ },
+ {
+  "case_id": "edit2/0094_A_swan",
+  "edit_type": 2,
+  "video_name": "0094_A_swan",
+  "instruction_orig": "Replace the swan with a paper boat.",
+  "instruction_v2": "Replace the swan with a paper boat.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0095_A_crow",
+  "edit_type": 2,
+  "video_name": "0095_A_crow",
+  "instruction_orig": "Replace the crow with a drone and change cawing to buzzing.",
+  "instruction_v2": "Replace the crow with a drone.",
+  "flag": "multi_edit",
+  "note": "dropped cawing→buzzing"
+ },
+ {
+  "case_id": "edit2/0096_A_car",
+  "edit_type": 2,
+  "video_name": "0096_A_car",
+  "instruction_orig": "Change the car to a spaceship, the coastal road to a cosmic path, the waves to stars, and the cliffs to the void.",
+  "instruction_v2": "Replace the car with a spaceship.",
+  "flag": "multi_edit",
+  "note": "dropped road/waves/cliffs→cosmic scene"
+ },
+ {
+  "case_id": "edit2/0097_A_bird",
+  "edit_type": 2,
+  "video_name": "0097_A_bird",
+  "instruction_orig": "Replace the bird with a dragon.",
+  "instruction_v2": "Replace the bird with a dragon.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0098_A_squirrel",
+  "edit_type": 2,
+  "video_name": "0098_A_squirrel",
+  "instruction_orig": "Change the squirrel to a bear.",
+  "instruction_v2": "Change the squirrel to a bear.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0099_A_jogger",
+  "edit_type": 2,
+  "video_name": "0099_A_jogger",
+  "instruction_orig": "Replace the jogger with a robot.",
+  "instruction_v2": "Replace the jogger with a robot.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit2/0100_A_deer",
+  "edit_type": 2,
+  "video_name": "0100_A_deer",
+  "instruction_orig": "Replace the deer with a unicorn and change the word serene to magical.",
+  "instruction_v2": "Replace the deer with a unicorn.",
+  "flag": "caption_edit",
+  "note": "dropped 'the word serene to magical'"
+ },
+ {
+  "case_id": "edit3/0001_bus",
+  "edit_type": 3,
+  "video_name": "0001_bus",
+  "instruction_orig": "Change the color of the city bus to purple.",
+  "instruction_v2": "Change the color of the city bus to purple.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0002_girl-dog",
+  "edit_type": 3,
+  "video_name": "0002_girl-dog",
+  "instruction_orig": "Change the gray dog to a pink dog.",
+  "instruction_v2": "Change the color of the gray dog to pink.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit3/0003_ocean-birds",
+  "edit_type": 3,
+  "video_name": "0003_ocean-birds",
+  "instruction_orig": "Change the color of the ibises from white to orange.",
+  "instruction_v2": "Change the color of the two ibises from white to orange.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0004_car-roundabout",
+  "edit_type": 3,
+  "video_name": "0004_car-roundabout",
+  "instruction_orig": "Change the color of the Mini Cooper from grey to yellow.",
+  "instruction_v2": "Change the color of the Mini Cooper from grey to yellow.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0005_breakdance",
+  "edit_type": 3,
+  "video_name": "0005_breakdance",
+  "instruction_orig": "Change the red hoodie to a black hoodie.",
+  "instruction_v2": "Change the color of the breakdancer's hoodie from red to black.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit3/0006_paragliding",
+  "edit_type": 3,
+  "video_name": "0006_paragliding",
+  "instruction_orig": "Change the paraglider to pink.",
+  "instruction_v2": "Change the color of the paraglider to pink.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0007_guitar-violin",
+  "edit_type": 3,
+  "video_name": "0007_guitar-violin",
+  "instruction_orig": "Add blue clothing to the musician playing the violin.",
+  "instruction_v2": "Change the color of the clothing of the musician playing the violin to blue.",
+  "flag": "caption_edit",
+  "note": "was 'Add blue clothing'; names the violinist (user)"
+ },
+ {
+  "case_id": "edit3/0008_snowboard-race",
+  "edit_type": 3,
+  "video_name": "0008_snowboard-race",
+  "instruction_orig": "Change the color of the snowboarders to pink.",
+  "instruction_v2": "Change the color of the snowboarders' outfits to pink.",
+  "flag": "other",
+  "note": "'colour of the snowboarders' made specific to outfits (user-approved)"
+ },
+ {
+  "case_id": "edit3/0009_bear",
+  "edit_type": 3,
+  "video_name": "0009_bear",
+  "instruction_orig": "Change the bear's color from brown to purple.",
+  "instruction_v2": "Change the color of the bear from brown to purple.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0010_giant-slalom",
+  "edit_type": 3,
+  "video_name": "0010_giant-slalom",
+  "instruction_orig": "Change the skier's outfit from red and white to purple and black.",
+  "instruction_v2": "Change the color of the skier's outfit from red and white to purple and black.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0011_lucia",
+  "edit_type": 3,
+  "video_name": "0011_lucia",
+  "instruction_orig": "Change the black dress to a red dress.",
+  "instruction_v2": "Change the color of the woman's dress from black to red.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit3/0012_goat",
+  "edit_type": 3,
+  "video_name": "0012_goat",
+  "instruction_orig": "Add the color blue to the mountain goat.",
+  "instruction_v2": "Change the color of the mountain goat to blue.",
+  "flag": "caption_edit",
+  "note": "was 'Add the color blue'"
+ },
+ {
+  "case_id": "edit3/0013_golf",
+  "edit_type": 3,
+  "video_name": "0013_golf",
+  "instruction_orig": "Change the color of the man's shirt from black to yellow.",
+  "instruction_v2": "Change the color of the man's shirt from black to yellow.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0014_burnout",
+  "edit_type": 3,
+  "video_name": "0014_burnout",
+  "instruction_orig": "Change the color of the car from black to pink.",
+  "instruction_v2": "Change the color of the car from black to pink.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0015_car-shadow",
+  "edit_type": 3,
+  "video_name": "0015_car-shadow",
+  "instruction_orig": "Change the color of the car from silver to green.",
+  "instruction_v2": "Change the color of the car from silver to green.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0016_horsejump-high",
+  "edit_type": 3,
+  "video_name": "0016_horsejump-high",
+  "instruction_orig": "Change the color of the horse to blue.",
+  "instruction_v2": "Change the color of the horse to blue.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0017_kid-football",
+  "edit_type": 3,
+  "video_name": "0017_kid-football",
+  "instruction_orig": "Change the color of the boy's cap from red to yellow.",
+  "instruction_v2": "Change the color of the boy's cap from red to yellow.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0018_breakdance-flare",
+  "edit_type": 3,
+  "video_name": "0018_breakdance-flare",
+  "instruction_orig": "Add a black shirt to the breakdancer.",
+  "instruction_v2": "Change the color of the breakdancer's shirt to black.",
+  "flag": "caption_edit",
+  "note": "was 'Add a black shirt'"
+ },
+ {
+  "case_id": "edit3/0019_tennis-vest",
+  "edit_type": 3,
+  "video_name": "0019_tennis-vest",
+  "instruction_orig": "Change the white shorts to black shorts.",
+  "instruction_v2": "Change the color of the tennis player's shorts from white to black.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit3/0020_monkeys",
+  "edit_type": 3,
+  "video_name": "0020_monkeys",
+  "instruction_orig": "Change the monkeys to be blue.",
+  "instruction_v2": "Change the color of the monkeys to blue.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit3/0021_landing",
+  "edit_type": 3,
+  "video_name": "0021_landing",
+  "instruction_orig": "Change the color of the fighter jet to pink.",
+  "instruction_v2": "Change the color of the fighter jet to pink.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0022_skate-jump",
+  "edit_type": 3,
+  "video_name": "0022_skate-jump",
+  "instruction_orig": "Add the color red to the skateboarder's clothing.",
+  "instruction_v2": "Change the color of the skateboarder's clothing to red.",
+  "flag": "caption_edit",
+  "note": "was 'Add the color red'"
+ },
+ {
+  "case_id": "edit3/0023_kayak-race",
+  "edit_type": 3,
+  "video_name": "0023_kayak-race",
+  "instruction_orig": "Add blue color to the kayakers.",
+  "instruction_v2": "Change the color of the kayakers' clothing to blue.",
+  "flag": "caption_edit",
+  "note": "was 'Add blue color to the kayakers'"
+ },
+ {
+  "case_id": "edit3/0024_hockey",
+  "edit_type": 3,
+  "video_name": "0024_hockey",
+  "instruction_orig": "Change the person's attire to pink.",
+  "instruction_v2": "Change the color of the person's clothing to pink.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit3/0025_baseball",
+  "edit_type": 3,
+  "video_name": "0025_baseball",
+  "instruction_orig": "Change the player's uniform color to yellow.",
+  "instruction_v2": "Change the color of the baseball player's uniform to yellow.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0026_table-tennis",
+  "edit_type": 3,
+  "video_name": "0026_table-tennis",
+  "instruction_orig": "Change the player in red and black outfit to be in a black outfit.",
+  "instruction_v2": "Change the outfit of the player in red and black to all black.",
+  "flag": "contradiction",
+  "note": "target prompt says both players in black and still mentions the red and black outfit (user-approved)"
+ },
+ {
+  "case_id": "edit3/0027_dance-jump",
+  "edit_type": 3,
+  "video_name": "0027_dance-jump",
+  "instruction_orig": "Change the color of the dress from pink and white to blue and black.",
+  "instruction_v2": "Change the color of the girl's dress from pink and white to blue and black.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0028_kite-walk",
+  "edit_type": 3,
+  "video_name": "0028_kite-walk",
+  "instruction_orig": "Change the blue helmet to a yellow helmet.",
+  "instruction_v2": "Change the color of the helmet from blue to yellow.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit3/0029_horsejump-stick",
+  "edit_type": 3,
+  "video_name": "0029_horsejump-stick",
+  "instruction_orig": "Change the color of the horse to green.",
+  "instruction_v2": "Change the color of the horse to green.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0030_rallye",
+  "edit_type": 3,
+  "video_name": "0030_rallye",
+  "instruction_orig": "Add the color red to the rally car.",
+  "instruction_v2": "Change the color of the rally car to red.",
+  "flag": "caption_edit",
+  "note": "was 'Add the color red'"
+ },
+ {
+  "case_id": "edit3/0031_soccerball",
+  "edit_type": 3,
+  "video_name": "0031_soccerball",
+  "instruction_orig": "Add the color purple to the soccer ball.",
+  "instruction_v2": "Change the color of the soccer ball to purple.",
+  "flag": "caption_edit",
+  "note": "was 'Add the color purple'"
+ },
+ {
+  "case_id": "edit3/0032_mermaid",
+  "edit_type": 3,
+  "video_name": "0032_mermaid",
+  "instruction_orig": "Add the color red to the mermaid's costume.",
+  "instruction_v2": "Change the color of the mermaid costume to red.",
+  "flag": "caption_edit",
+  "note": "was 'Add the color red'"
+ },
+ {
+  "case_id": "edit3/0033_horsejump-low",
+  "edit_type": 3,
+  "video_name": "0033_horsejump-low",
+  "instruction_orig": "Change the white horse to a black horse.",
+  "instruction_v2": "Change the color of the horse from white to black.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit3/0034_cows",
+  "edit_type": 3,
+  "video_name": "0034_cows",
+  "instruction_orig": "Change the brown color of the cow to purple.",
+  "instruction_v2": "Change the brown patches of the cow to purple.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit3/0035_helicopter",
+  "edit_type": 3,
+  "video_name": "0035_helicopter",
+  "instruction_orig": "Add the color'red' to describe the helicopter.",
+  "instruction_v2": "Change the color of the helicopter to red.",
+  "flag": "caption_edit",
+  "note": "was 'Add the color red to describe'"
+ },
+ {
+  "case_id": "edit3/0036_camel",
+  "edit_type": 3,
+  "video_name": "0036_camel",
+  "instruction_orig": "Change the color of the first camel to purple.",
+  "instruction_v2": "Change the color of the front camel to purple.",
+  "flag": "ok",
+  "note": "'first' → 'front'"
+ },
+ {
+  "case_id": "edit3/0037_snowboard-sand",
+  "edit_type": 3,
+  "video_name": "0037_snowboard-sand",
+  "instruction_orig": "Change the woman's outfit to red.",
+  "instruction_v2": "Change the color of the woman's outfit to red.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0038_motorbike",
+  "edit_type": 3,
+  "video_name": "0038_motorbike",
+  "instruction_orig": "Add the color red to the motorbike.",
+  "instruction_v2": "Change the color of the motorbike to red.",
+  "flag": "caption_edit",
+  "note": "was 'Add the color red'"
+ },
+ {
+  "case_id": "edit3/0039_chamaleon",
+  "edit_type": 3,
+  "video_name": "0039_chamaleon",
+  "instruction_orig": "Change the color of the chameleon from green to red.",
+  "instruction_v2": "Change the color of the chameleon from green to red.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0040_tennis",
+  "edit_type": 3,
+  "video_name": "0040_tennis",
+  "instruction_orig": "Change the player's outfit from white shirt and black shorts to black shirt and red shorts.",
+  "instruction_v2": "Change the tennis player's outfit to a black shirt and red shorts.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit3/0041_longboard",
+  "edit_type": 3,
+  "video_name": "0041_longboard",
+  "instruction_orig": "Change the yellow shirt to a red shirt.",
+  "instruction_v2": "Change the color of the man's shirt from yellow to red.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit3/0042_gym-ball",
+  "edit_type": 3,
+  "video_name": "0042_gym-ball",
+  "instruction_orig": "Change the man's clothing to yellow.",
+  "instruction_v2": "Change the color of the man's clothing to yellow.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0043_parkour",
+  "edit_type": 3,
+  "video_name": "0043_parkour",
+  "instruction_orig": "Add purple color to the man.",
+  "instruction_v2": "Change the color of the man's clothing to purple.",
+  "flag": "caption_edit",
+  "note": "was 'Add purple color to the man'"
+ },
+ {
+  "case_id": "edit3/0044_snowboard",
+  "edit_type": 3,
+  "video_name": "0044_snowboard",
+  "instruction_orig": "Add green to the snowboarder's clothing.",
+  "instruction_v2": "Change the color of the snowboarder's clothing to green.",
+  "flag": "caption_edit",
+  "note": "was 'Add green'"
+ },
+ {
+  "case_id": "edit3/0045_butterfly",
+  "edit_type": 3,
+  "video_name": "0045_butterfly",
+  "instruction_orig": "Change the color of the butterfly from blue to pink.",
+  "instruction_v2": "Change the color of the butterfly from blue to pink.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0046_blackswan",
+  "edit_type": 3,
+  "video_name": "0046_blackswan",
+  "instruction_orig": "Change the black swan to a red swan.",
+  "instruction_v2": "Change the color of the swan from black to red.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit3/0047_judo",
+  "edit_type": 3,
+  "video_name": "0047_judo",
+  "instruction_orig": "Change the judo practitioners' uniforms to red.",
+  "instruction_v2": "Change the color of the judo practitioners' uniforms to red.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0048_hike",
+  "edit_type": 3,
+  "video_name": "0048_hike",
+  "instruction_orig": "Change the man's clothing to red.",
+  "instruction_v2": "Change the color of the man's clothing to red.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0049_speed-skating",
+  "edit_type": 3,
+  "video_name": "0049_speed-skating",
+  "instruction_orig": "Change the color of the speed skaters' suits from pink to the original colors",
+  "instruction_v2": "Change the color of the speed skaters' suits to pink.",
+  "flag": "no_op",
+  "note": "instruction said 'from pink to the original colors'; target_object/prompt say pink (user-approved)"
+ },
+ {
+  "case_id": "edit3/0050_slackline",
+  "edit_type": 3,
+  "video_name": "0050_slackline",
+  "instruction_orig": "Add green attire to the person.",
+  "instruction_v2": "Change the color of the person's clothing to green.",
+  "flag": "caption_edit",
+  "note": "was 'Add green attire'"
+ },
+ {
+  "case_id": "edit3/0051_dogs-jump",
+  "edit_type": 3,
+  "video_name": "0051_dogs-jump",
+  "instruction_orig": "Change the color of the woman's jacket from yellow to blue.",
+  "instruction_v2": "Change the color of the woman's jacket from yellow to blue.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0052_mallard-fly",
+  "edit_type": 3,
+  "video_name": "0052_mallard-fly",
+  "instruction_orig": "Add the color 'blue' to describe the mallard duck.",
+  "instruction_v2": "Change the color of the mallard duck to blue.",
+  "flag": "caption_edit",
+  "note": "was 'Add the color blue to describe'"
+ },
+ {
+  "case_id": "edit3/0053_swing",
+  "edit_type": 3,
+  "video_name": "0053_swing",
+  "instruction_orig": "Change the color of the person's clothes to purple.",
+  "instruction_v2": "Change the color of the person's clothes to purple.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0054_train",
+  "edit_type": 3,
+  "video_name": "0054_train",
+  "instruction_orig": "Change the color of the engine and carriages from blue, red, and gray to pink.",
+  "instruction_v2": "Change the color of the model train's engine and carriages to pink.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0055_pigs",
+  "edit_type": 3,
+  "video_name": "0055_pigs",
+  "instruction_orig": "Change the pigs to blue pigs.",
+  "instruction_v2": "Change the color of the pigs to blue.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit3/0056_kart-turn",
+  "edit_type": 3,
+  "video_name": "0056_kart-turn",
+  "instruction_orig": "Change the color of the go-karts to black.",
+  "instruction_v2": "Change the color of the two go-karts to black.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0057_dog",
+  "edit_type": 3,
+  "video_name": "0057_dog",
+  "instruction_orig": "Change the color of the retriever from golden to blue.",
+  "instruction_v2": "Change the color of the golden retriever to blue.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0058_boat",
+  "edit_type": 3,
+  "video_name": "0058_boat",
+  "instruction_orig": "Change the color of the boat from white to pink.",
+  "instruction_v2": "Change the color of the fishing boat from white to pink.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0059_drift-straight",
+  "edit_type": 3,
+  "video_name": "0059_drift-straight",
+  "instruction_orig": "Change the car's color from red to yellow.",
+  "instruction_v2": "Change the color of the sports car from red to yellow.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0060_motocross-bumps",
+  "edit_type": 3,
+  "video_name": "0060_motocross-bumps",
+  "instruction_orig": "Add the color red to describe the motocross rider.",
+  "instruction_v2": "Change the color of the motocross rider's outfit to red.",
+  "flag": "caption_edit",
+  "note": "was 'Add the color red to describe'"
+ },
+ {
+  "case_id": "edit3/0061_mbike-santa",
+  "edit_type": 3,
+  "video_name": "0061_mbike-santa",
+  "instruction_orig": "Change the color of the Santa Claus outfit from the original color to yellow.",
+  "instruction_v2": "Change the color of the Santa Claus outfit to yellow.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0062_elephant",
+  "edit_type": 3,
+  "video_name": "0062_elephant",
+  "instruction_orig": "Change the elephant's color to blue.",
+  "instruction_v2": "Change the color of the elephant to blue.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0063_drift-turn",
+  "edit_type": 3,
+  "video_name": "0063_drift-turn",
+  "instruction_orig": "Add the color black to the car.",
+  "instruction_v2": "Change the color of the race car to black.",
+  "flag": "caption_edit",
+  "note": "was 'Add the color black'"
+ },
+ {
+  "case_id": "edit3/0064_rollerblade",
+  "edit_type": 3,
+  "video_name": "0064_rollerblade",
+  "instruction_orig": "Add the color white to the person's outfit.",
+  "instruction_v2": "Change the color of the person's outfit to white.",
+  "flag": "caption_edit",
+  "note": "was 'Add the color white'"
+ },
+ {
+  "case_id": "edit3/0065_twist-dance",
+  "edit_type": 3,
+  "video_name": "0065_twist-dance",
+  "instruction_orig": "Change the dancers' outfits from red to white.",
+  "instruction_v2": "Change the color of the dancers' outfits to white.",
+  "flag": "ok",
+  "note": "target prompt: white skirts and white tops"
+ },
+ {
+  "case_id": "edit3/0066_deer",
+  "edit_type": 3,
+  "video_name": "0066_deer",
+  "instruction_orig": "Change the color of the deer to pink.",
+  "instruction_v2": "Change the color of the two deer to pink.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0067_mbike-trick",
+  "edit_type": 3,
+  "video_name": "0067_mbike-trick",
+  "instruction_orig": "Change the motorcyclist to wear red.",
+  "instruction_v2": "Change the color of the motorcyclist's outfit to red.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit3/0068_planes-water",
+  "edit_type": 3,
+  "video_name": "0068_planes-water",
+  "instruction_orig": "Add the color blue to the airplane.",
+  "instruction_v2": "Change the color of the airplane to blue.",
+  "flag": "caption_edit",
+  "note": "was 'Add the color blue'"
+ },
+ {
+  "case_id": "edit3/0069_car-turn",
+  "edit_type": 3,
+  "video_name": "0069_car-turn",
+  "instruction_orig": "Change the color of the SUV from silver to pink.",
+  "instruction_v2": "Change the color of the SUV from silver to pink.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0070_dance-twirl",
+  "edit_type": 3,
+  "video_name": "0070_dance-twirl",
+  "instruction_orig": "Change the color of the dancer's costume from blue and green to yellow.",
+  "instruction_v2": "Change the color of the dancer's costume from blue and green to yellow.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0071_mallard-water",
+  "edit_type": 3,
+  "video_name": "0071_mallard-water",
+  "instruction_orig": "Add 'blue' to describe the mallard duck.",
+  "instruction_v2": "Change the color of the mallard duck to blue.",
+  "flag": "caption_edit",
+  "note": "was 'Add blue to describe'"
+ },
+ {
+  "case_id": "edit3/0072_dog-agility",
+  "edit_type": 3,
+  "video_name": "0072_dog-agility",
+  "instruction_orig": "Change the border collie to a red border collie.",
+  "instruction_v2": "Change the color of the border collie to red.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit3/0073_bmx-rider",
+  "edit_type": 3,
+  "video_name": "0073_bmx-rider",
+  "instruction_orig": "Change the rider's color to green.",
+  "instruction_v2": "Change the color of the BMX rider's outfit to green.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit3/0074_rhino",
+  "edit_type": 3,
+  "video_name": "0074_rhino",
+  "instruction_orig": "Change the color of the rhinoceros to pink.",
+  "instruction_v2": "Change the color of the rhinoceros to pink.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0075_A_bicycle",
+  "edit_type": 3,
+  "video_name": "0075_A_bicycle",
+  "instruction_orig": "Add purple color to the bicycle.",
+  "instruction_v2": "Change the color of the bicycle to purple.",
+  "flag": "caption_edit",
+  "note": "was 'Add purple color'"
+ },
+ {
+  "case_id": "edit3/0076_A_rabbit",
+  "edit_type": 3,
+  "video_name": "0076_A_rabbit",
+  "instruction_orig": "Change the color of the rabbit to turquoise.",
+  "instruction_v2": "Change the color of the rabbit to turquoise.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0077_A_hawk",
+  "edit_type": 3,
+  "video_name": "0077_A_hawk",
+  "instruction_orig": "Change the color of the hawk to pink.",
+  "instruction_v2": "Change the color of the hawk to pink.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0078_A_cat",
+  "edit_type": 3,
+  "video_name": "0078_A_cat",
+  "instruction_orig": "Change the cat to green.",
+  "instruction_v2": "Change the color of the cat to green.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit3/0079_A_bus",
+  "edit_type": 3,
+  "video_name": "0079_A_bus",
+  "instruction_orig": "Change the color of the bus to lavender.",
+  "instruction_v2": "Change the color of the bus to lavender.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0080_A_motorcycle",
+  "edit_type": 3,
+  "video_name": "0080_A_motorcycle",
+  "instruction_orig": "Change the motorcycle to golden.",
+  "instruction_v2": "Change the color of the motorcycle to gold.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit3/0081_A_horse",
+  "edit_type": 3,
+  "video_name": "0081_A_horse",
+  "instruction_orig": "Change the horse to a silver horse.",
+  "instruction_v2": "Change the color of the horse to silver.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit3/0082_A_tram",
+  "edit_type": 3,
+  "video_name": "0082_A_tram",
+  "instruction_orig": "Change the color of the tram to teal.",
+  "instruction_v2": "Change the color of the tram to teal.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0083_A_boat",
+  "edit_type": 3,
+  "video_name": "0083_A_boat",
+  "instruction_orig": "Change the color of the boat to magenta.",
+  "instruction_v2": "Change the color of the boat to magenta.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0084_A_squirrel",
+  "edit_type": 3,
+  "video_name": "0084_A_squirrel",
+  "instruction_orig": "Change the squirrel to a crimson squirrel.",
+  "instruction_v2": "Change the color of the squirrel to crimson.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit3/0085_A_tram",
+  "edit_type": 3,
+  "video_name": "0085_A_tram",
+  "instruction_orig": "Change the color of the tram to chartreuse.",
+  "instruction_v2": "Change the color of the tram to chartreuse.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0086_A_red_sports_car",
+  "edit_type": 3,
+  "video_name": "0086_A_red_sports_car",
+  "instruction_orig": "Change the color of the sports car from red to cyan.",
+  "instruction_v2": "Change the color of the sports car from red to cyan.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0087_A_seagull",
+  "edit_type": 3,
+  "video_name": "0087_A_seagull",
+  "instruction_orig": "Change the seagull to violet",
+  "instruction_v2": "Change the color of the seagull to violet.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit3/0088_A_cyclist",
+  "edit_type": 3,
+  "video_name": "0088_A_cyclist",
+  "instruction_orig": "Change the cyclist's color to maroon.",
+  "instruction_v2": "Change the color of the cyclist's outfit to maroon.",
+  "flag": "other",
+  "note": "'cyclist's color' made specific to outfit (user-approved)"
+ },
+ {
+  "case_id": "edit3/0089_A_dog",
+  "edit_type": 3,
+  "video_name": "0089_A_dog",
+  "instruction_orig": "Change the dog to a lime dog.",
+  "instruction_v2": "Change the color of the dog to lime green.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit3/0090_A_deer",
+  "edit_type": 3,
+  "video_name": "0090_A_deer",
+  "instruction_orig": "Change the deer into a coral deer.",
+  "instruction_v2": "Change the color of the deer to coral.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit3/0091_A_hawk",
+  "edit_type": 3,
+  "video_name": "0091_A_hawk",
+  "instruction_orig": "Change the hawk to a mustard hawk.",
+  "instruction_v2": "Change the color of the hawk to mustard yellow.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit3/0092_A_fox",
+  "edit_type": 3,
+  "video_name": "0092_A_fox",
+  "instruction_orig": "Change the fox to an indigo fox.",
+  "instruction_v2": "Change the color of the fox to indigo.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit3/0093_A_helicopter",
+  "edit_type": 3,
+  "video_name": "0093_A_helicopter",
+  "instruction_orig": "Change the helicopter's color to fuchsia.",
+  "instruction_v2": "Change the color of the helicopter to fuchsia.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit3/0094_A_swan",
+  "edit_type": 3,
+  "video_name": "0094_A_swan",
+  "instruction_orig": "Add 'bronze' to the swan.",
+  "instruction_v2": "Change the color of the swan to bronze.",
+  "flag": "caption_edit",
+  "note": "was \"Add 'bronze' to the swan\""
+ },
+ {
+  "case_id": "edit3/0095_A_crow",
+  "edit_type": 3,
+  "video_name": "0095_A_crow",
+  "instruction_orig": "Add \"azure\" to describe the crow.",
+  "instruction_v2": "Change the color of the crow to azure.",
+  "flag": "caption_edit",
+  "note": "was 'Add \"azure\" to describe'"
+ },
+ {
+  "case_id": "edit3/0096_A_car",
+  "edit_type": 3,
+  "video_name": "0096_A_car",
+  "instruction_orig": "Add the color beige to the car.",
+  "instruction_v2": "Change the color of the car to beige.",
+  "flag": "caption_edit",
+  "note": "was 'Add the color beige'"
+ },
+ {
+  "case_id": "edit3/0097_A_bird",
+  "edit_type": 3,
+  "video_name": "0097_A_bird",
+  "instruction_orig": "Change the bird to an olive bird.",
+  "instruction_v2": "Change the color of the bird to olive.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit3/0098_A_squirrel",
+  "edit_type": 3,
+  "video_name": "0098_A_squirrel",
+  "instruction_orig": "Change the squirrel to a salmon squirrel.",
+  "instruction_v2": "Change the color of the squirrel to salmon pink.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit3/0099_A_jogger",
+  "edit_type": 3,
+  "video_name": "0099_A_jogger",
+  "instruction_orig": "Change the jogger to lavender.",
+  "instruction_v2": "Change the color of the jogger's outfit to lavender.",
+  "flag": "other",
+  "note": "'jogger to lavender' made specific to outfit (user-approved)"
+ },
+ {
+  "case_id": "edit3/0100_A_deer",
+  "edit_type": 3,
+  "video_name": "0100_A_deer",
+  "instruction_orig": "Replace 'deer' with 'periwinkle deer",
+  "instruction_v2": "Change the color of the deer to periwinkle.",
+  "flag": "caption_edit",
+  "note": "was a quoted word swap with unclosed quote"
+ },
+ {
+  "case_id": "edit4/0001_bus",
+  "edit_type": 4,
+  "video_name": "0001_bus",
+  "instruction_orig": "Change the city bus to a glass city bus.",
+  "instruction_v2": "Make the city bus out of glass.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0002_girl-dog",
+  "edit_type": 4,
+  "video_name": "0002_girl-dog",
+  "instruction_orig": "Change the wheelchair from standard to wooden.",
+  "instruction_v2": "Make the wheelchair out of wood.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0003_ocean-birds",
+  "edit_type": 4,
+  "video_name": "0003_ocean-birds",
+  "instruction_orig": "Change 'Two white ibises' to 'Two crystal white ibises",
+  "instruction_v2": "Make the two white ibises out of crystal.",
+  "flag": "caption_edit",
+  "note": "was a quoted phrase swap"
+ },
+ {
+  "case_id": "edit4/0004_car-roundabout",
+  "edit_type": 4,
+  "video_name": "0004_car-roundabout",
+  "instruction_orig": "Add the color descriptor \"metallic\" to the Mini Cooper.",
+  "instruction_v2": "Give the grey Mini Cooper a metallic finish.",
+  "flag": "caption_edit",
+  "note": "was 'Add the color descriptor metallic'"
+ },
+ {
+  "case_id": "edit4/0005_breakdance",
+  "edit_type": 4,
+  "video_name": "0005_breakdance",
+  "instruction_orig": "Change the breakdancer to a holographic breakdancer.",
+  "instruction_v2": "Turn the breakdancer into a hologram.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0006_paragliding",
+  "edit_type": 4,
+  "video_name": "0006_paragliding",
+  "instruction_orig": "Add silk to describe the paraglider.",
+  "instruction_v2": "Make the paraglider's wing out of silk.",
+  "flag": "caption_edit",
+  "note": "was 'Add silk to describe'"
+ },
+ {
+  "case_id": "edit4/0007_guitar-violin",
+  "edit_type": 4,
+  "video_name": "0007_guitar-violin",
+  "instruction_orig": "Change the musician playing the violin to a wooden musician.",
+  "instruction_v2": "Turn the musician into a wooden figure.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0008_snowboard-race",
+  "edit_type": 4,
+  "video_name": "0008_snowboard-race",
+  "instruction_orig": "Replace the human snowboarders with robotic snowboarders.",
+  "instruction_v2": "Turn the two snowboarders into robots.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0009_bear",
+  "edit_type": 4,
+  "video_name": "0009_bear",
+  "instruction_orig": "Change the bear from brown to bronze.",
+  "instruction_v2": "Make the bear out of bronze.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0010_giant-slalom",
+  "edit_type": 4,
+  "video_name": "0010_giant-slalom",
+  "instruction_orig": "Replace the skier with a glass skier.",
+  "instruction_v2": "Make the skier out of glass.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0011_lucia",
+  "edit_type": 4,
+  "video_name": "0011_lucia",
+  "instruction_orig": "Change the woman to a porcelain woman.",
+  "instruction_v2": "Make the woman out of porcelain.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0012_goat",
+  "edit_type": 4,
+  "video_name": "0012_goat",
+  "instruction_orig": "Change the mountain goat from a living creature to a stone sculpture.",
+  "instruction_v2": "Turn the mountain goat into a stone sculpture.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0013_golf",
+  "edit_type": 4,
+  "video_name": "0013_golf",
+  "instruction_orig": "Change the color of the man to silver and the material of the golf cart to wood.",
+  "instruction_v2": "Make the man out of silver metal.",
+  "flag": "mask_scope",
+  "note": "kept both material edits (user decision); reduced to the masked edit (user 2026-10-07); was: Make the man out of silver metal and the golf cart out of wood."
+ },
+ {
+  "case_id": "edit4/0014_burnout",
+  "edit_type": 4,
+  "video_name": "0014_burnout",
+  "instruction_orig": "Add carbon fiber to the car's description.",
+  "instruction_v2": "Make the black car out of carbon fiber.",
+  "flag": "caption_edit",
+  "note": "was 'Add carbon fiber to the car's description'"
+ },
+ {
+  "case_id": "edit4/0015_car-shadow",
+  "edit_type": 4,
+  "video_name": "0015_car-shadow",
+  "instruction_orig": "Change the car into a holographic car.",
+  "instruction_v2": "Turn the silver car into a hologram.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0016_horsejump-high",
+  "edit_type": 4,
+  "video_name": "0016_horsejump-high",
+  "instruction_orig": "Replace the real horse with a wooden horse.",
+  "instruction_v2": "Turn the horse into a wooden horse.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0017_kid-football",
+  "edit_type": 4,
+  "video_name": "0017_kid-football",
+  "instruction_orig": "Change the young boy to a wooden young boy and change the soccer ball to a rubber soccer ball.",
+  "instruction_v2": "Make the young boy out of wood.",
+  "flag": "mask_scope",
+  "note": "kept both material edits (user decision); reduced to the masked edit (user 2026-10-07); was: Make the young boy out of wood and the soccer ball out of rubber."
+ },
+ {
+  "case_id": "edit4/0018_breakdance-flare",
+  "edit_type": 4,
+  "video_name": "0018_breakdance-flare",
+  "instruction_orig": "Change the breakdancer to metallic.",
+  "instruction_v2": "Make the breakdancer metallic.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0019_tennis-vest",
+  "edit_type": 4,
+  "video_name": "0019_tennis-vest",
+  "instruction_orig": "Change \"tennis\" to \"clay\" in the description of the player.",
+  "instruction_v2": "Make the tennis player out of clay.",
+  "flag": "caption_edit",
+  "note": "was a word swap in the description"
+ },
+ {
+  "case_id": "edit4/0020_monkeys",
+  "edit_type": 4,
+  "video_name": "0020_monkeys",
+  "instruction_orig": "Change the real monkeys to plush monkeys.",
+  "instruction_v2": "Turn the young monkey into a plush monkey.",
+  "flag": "count_mismatch",
+  "note": "instruction says monkeys; target_object/prompt only the young monkey (user-approved)"
+ },
+ {
+  "case_id": "edit4/0021_landing",
+  "edit_type": 4,
+  "video_name": "0021_landing",
+  "instruction_orig": "Change the fighter jet to be made of wood.",
+  "instruction_v2": "Make the fighter jet out of wood.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit4/0022_skate-jump",
+  "edit_type": 4,
+  "video_name": "0022_skate-jump",
+  "instruction_orig": "Replace the skateboarder with a cardboard cutout of the skateboarder.",
+  "instruction_v2": "Turn the skateboarder into a cardboard cutout.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0023_kayak-race",
+  "edit_type": 4,
+  "video_name": "0023_kayak-race",
+  "instruction_orig": "Change the material of the kayakers from human to wooden.",
+  "instruction_v2": "Make the two kayakers out of wood.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0024_hockey",
+  "edit_type": 4,
+  "video_name": "0024_hockey",
+  "instruction_orig": "Change the rollerblades to metallic rollerblades.",
+  "instruction_v2": "Make the rollerblades metallic.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0025_baseball",
+  "edit_type": 4,
+  "video_name": "0025_baseball",
+  "instruction_orig": "Change the baseball player to be made of clay.",
+  "instruction_v2": "Make the baseball player out of clay.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit4/0026_table-tennis",
+  "edit_type": 4,
+  "video_name": "0026_table-tennis",
+  "instruction_orig": "Change the players from human to wooden.",
+  "instruction_v2": "Make the two table tennis players out of wood.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0027_dance-jump",
+  "edit_type": 4,
+  "video_name": "0027_dance-jump",
+  "instruction_orig": "Change the girl to be made of porcelain.",
+  "instruction_v2": "Make the young girl out of porcelain.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0028_kite-walk",
+  "edit_type": 4,
+  "video_name": "0028_kite-walk",
+  "instruction_orig": "Change the person to a wooden person and the kiteboard to a wooden kiteboard.",
+  "instruction_v2": "Make the person out of wood.",
+  "flag": "multi_edit",
+  "note": "dropped kiteboard→wood"
+ },
+ {
+  "case_id": "edit4/0029_horsejump-stick",
+  "edit_type": 4,
+  "video_name": "0029_horsejump-stick",
+  "instruction_orig": "Replace the real horse with a wooden horse.",
+  "instruction_v2": "Turn the horse into a wooden horse.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0030_rallye",
+  "edit_type": 4,
+  "video_name": "0030_rallye",
+  "instruction_orig": "Replace the car with a carbon fiber car.",
+  "instruction_v2": "Make the rally car out of carbon fiber.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0031_soccerball",
+  "edit_type": 4,
+  "video_name": "0031_soccerball",
+  "instruction_orig": "Add rubber to describe the soccer ball.",
+  "instruction_v2": "Make the soccer ball out of rubber.",
+  "flag": "caption_edit",
+  "note": "was 'Add rubber to describe'"
+ },
+ {
+  "case_id": "edit4/0032_mermaid",
+  "edit_type": 4,
+  "video_name": "0032_mermaid",
+  "instruction_orig": "Change the woman's costume from a regular mermaid to a wooden mermaid.",
+  "instruction_v2": "Make the mermaid costume out of wood.",
+  "flag": "other",
+  "note": "woman dressed as a wooden mermaid — costume only (user-approved)"
+ },
+ {
+  "case_id": "edit4/0033_horsejump-low",
+  "edit_type": 4,
+  "video_name": "0033_horsejump-low",
+  "instruction_orig": "Replace the real horse with a wooden horse.",
+  "instruction_v2": "Turn the white horse into a wooden horse.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0034_cows",
+  "edit_type": 4,
+  "video_name": "0034_cows",
+  "instruction_orig": "Change the cow from real to clay.",
+  "instruction_v2": "Make the cow out of clay.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0035_helicopter",
+  "edit_type": 4,
+  "video_name": "0035_helicopter",
+  "instruction_orig": "Change the helicopter from metal to wood.",
+  "instruction_v2": "Make the helicopter out of wood.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0036_camel",
+  "edit_type": 4,
+  "video_name": "0036_camel",
+  "instruction_orig": "Replace one of the camels with a wooden camel.",
+  "instruction_v2": "Turn the front camel into a wooden camel.",
+  "flag": "ok",
+  "note": "'one of the camels' → front camel (target prompt)"
+ },
+ {
+  "case_id": "edit4/0037_snowboard-sand",
+  "edit_type": 4,
+  "video_name": "0037_snowboard-sand",
+  "instruction_orig": "Change the woman into a holographic woman",
+  "instruction_v2": "Turn the woman into a hologram.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0038_motorbike",
+  "edit_type": 4,
+  "video_name": "0038_motorbike",
+  "instruction_orig": "Change the motorbike to a wooden motorbike.",
+  "instruction_v2": "Make the motorbike out of wood.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0039_chamaleon",
+  "edit_type": 4,
+  "video_name": "0039_chamaleon",
+  "instruction_orig": "Change the real chameleon to a glass one.",
+  "instruction_v2": "Make the chameleon out of glass.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0040_tennis",
+  "edit_type": 4,
+  "video_name": "0040_tennis",
+  "instruction_orig": "No change needed.",
+  "instruction_v2": "Make the tennis player out of clay.",
+  "flag": "no_op",
+  "note": "instruction was 'No change needed.'; target_object/prompt say clay (user-approved)"
+ },
+ {
+  "case_id": "edit4/0041_longboard",
+  "edit_type": 4,
+  "video_name": "0041_longboard",
+  "instruction_orig": "Change the man to a wooden man.",
+  "instruction_v2": "Make the man out of wood.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0042_gym-ball",
+  "edit_type": 4,
+  "video_name": "0042_gym-ball",
+  "instruction_orig": "Change the man to a metallic man.",
+  "instruction_v2": "Make the man metallic.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0043_parkour",
+  "edit_type": 4,
+  "video_name": "0043_parkour",
+  "instruction_orig": "Change the man into a holographic man",
+  "instruction_v2": "Turn the man into a hologram.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0044_snowboard",
+  "edit_type": 4,
+  "video_name": "0044_snowboard",
+  "instruction_orig": "Change the snowboarder to be metallic.",
+  "instruction_v2": "Make the snowboarder metallic.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0045_butterfly",
+  "edit_type": 4,
+  "video_name": "0045_butterfly",
+  "instruction_orig": "Change the material of the butterfly from a living creature to glass.",
+  "instruction_v2": "Make the butterfly out of glass.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0046_blackswan",
+  "edit_type": 4,
+  "video_name": "0046_blackswan",
+  "instruction_orig": "Add velvet before black to describe the swan.",
+  "instruction_v2": "Make the black swan out of velvet.",
+  "flag": "caption_edit",
+  "note": "was 'Add velvet before black to describe'"
+ },
+ {
+  "case_id": "edit4/0047_judo",
+  "edit_type": 4,
+  "video_name": "0047_judo",
+  "instruction_orig": "Change the judo practitioners from human to metallic.",
+  "instruction_v2": "Make the two judo practitioners metallic.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0048_hike",
+  "edit_type": 4,
+  "video_name": "0048_hike",
+  "instruction_orig": "Change the man to be metallic.",
+  "instruction_v2": "Make the man metallic.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0049_speed-skating",
+  "edit_type": 4,
+  "video_name": "0049_speed-skating",
+  "instruction_orig": "Replace the human skaters with metallic ones.",
+  "instruction_v2": "Make the three speed skaters metallic.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0050_slackline",
+  "edit_type": 4,
+  "video_name": "0050_slackline",
+  "instruction_orig": "Change the person into a metallic person.",
+  "instruction_v2": "Make the person metallic.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0051_dogs-jump",
+  "edit_type": 4,
+  "video_name": "0051_dogs-jump",
+  "instruction_orig": "Change the real dogs to plush dogs.",
+  "instruction_v2": "Turn the two dogs into plush dogs.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0052_mallard-fly",
+  "edit_type": 4,
+  "video_name": "0052_mallard-fly",
+  "instruction_orig": "Add 'glass' before'mallard duck'.",
+  "instruction_v2": "Make the mallard duck out of glass.",
+  "flag": "caption_edit",
+  "note": "was \"Add 'glass' before 'mallard duck'\""
+ },
+ {
+  "case_id": "edit4/0053_swing",
+  "edit_type": 4,
+  "video_name": "0053_swing",
+  "instruction_orig": "Change the person to a metallic person.",
+  "instruction_v2": "Make the person metallic.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0054_train",
+  "edit_type": 4,
+  "video_name": "0054_train",
+  "instruction_orig": "Change 'A model train' to 'A wooden model train",
+  "instruction_v2": "Make the model train out of wood.",
+  "flag": "caption_edit",
+  "note": "was a quoted phrase swap with unclosed quote"
+ },
+ {
+  "case_id": "edit4/0055_pigs",
+  "edit_type": 4,
+  "video_name": "0055_pigs",
+  "instruction_orig": "Replace the real pigs with clay pigs.",
+  "instruction_v2": "Make the pigs out of clay.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0056_kart-turn",
+  "edit_type": 4,
+  "video_name": "0056_kart-turn",
+  "instruction_orig": "Add metallic to the go-karts",
+  "instruction_v2": "Make the two go-karts metallic.",
+  "flag": "caption_edit",
+  "note": "was 'Add metallic to the go-karts'"
+ },
+ {
+  "case_id": "edit4/0057_dog",
+  "edit_type": 4,
+  "video_name": "0057_dog",
+  "instruction_orig": "Change the real golden retriever to a plush golden retriever.",
+  "instruction_v2": "Turn the golden retriever into a plush golden retriever.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0058_boat",
+  "edit_type": 4,
+  "video_name": "0058_boat",
+  "instruction_orig": "Add 'wooden' to describe the boat.",
+  "instruction_v2": "Make the white fishing boat out of wood.",
+  "flag": "caption_edit",
+  "note": "was \"Add 'wooden' to describe\""
+ },
+ {
+  "case_id": "edit4/0059_drift-straight",
+  "edit_type": 4,
+  "video_name": "0059_drift-straight",
+  "instruction_orig": "Add carbon fiber to the car's description.",
+  "instruction_v2": "Make the red sports car out of carbon fiber.",
+  "flag": "caption_edit",
+  "note": "was 'Add carbon fiber to the car's description'"
+ },
+ {
+  "case_id": "edit4/0060_motocross-bumps",
+  "edit_type": 4,
+  "video_name": "0060_motocross-bumps",
+  "instruction_orig": "Add 'holographic' to the rider.",
+  "instruction_v2": "Turn the motocross rider into a hologram.",
+  "flag": "caption_edit",
+  "note": "was \"Add 'holographic' to the rider\""
+ },
+ {
+  "case_id": "edit4/0061_mbike-santa",
+  "edit_type": 4,
+  "video_name": "0061_mbike-santa",
+  "instruction_orig": "Change the person to a robotic person and the motorcycle to a wooden motorcycle.",
+  "instruction_v2": "Turn the person in the Santa Claus outfit into a robot and make the motorcycle out of wood.",
+  "flag": "multi_edit",
+  "note": "kept both edits: rider + vehicle (user decision)"
+ },
+ {
+  "case_id": "edit4/0062_elephant",
+  "edit_type": 4,
+  "video_name": "0062_elephant",
+  "instruction_orig": "Replace the living elephant with a stone elephant.",
+  "instruction_v2": "Turn the elephant into a stone elephant.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0063_drift-turn",
+  "edit_type": 4,
+  "video_name": "0063_drift-turn",
+  "instruction_orig": "Add 'carbon fiber' to describe the race car.",
+  "instruction_v2": "Make the race car out of carbon fiber.",
+  "flag": "caption_edit",
+  "note": "was \"Add 'carbon fiber' to describe\""
+ },
+ {
+  "case_id": "edit4/0064_rollerblade",
+  "edit_type": 4,
+  "video_name": "0064_rollerblade",
+  "instruction_orig": "Add a holographic effect to the person.",
+  "instruction_v2": "Turn the person into a hologram.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0065_twist-dance",
+  "edit_type": 4,
+  "video_name": "0065_twist-dance",
+  "instruction_orig": "Replace the dancers with holographic dancers.",
+  "instruction_v2": "Turn the two dancers into holograms.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0066_deer",
+  "edit_type": 4,
+  "video_name": "0066_deer",
+  "instruction_orig": "Change the deer from living creatures to wooden statues.",
+  "instruction_v2": "Turn the two deer into wooden statues.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0067_mbike-trick",
+  "edit_type": 4,
+  "video_name": "0067_mbike-trick",
+  "instruction_orig": "Change the motorcyclist to a holographic motorcyclist.",
+  "instruction_v2": "Turn the motorcyclist into a hologram.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0068_planes-water",
+  "edit_type": 4,
+  "video_name": "0068_planes-water",
+  "instruction_orig": "Add 'chrome' to describe the airplane.",
+  "instruction_v2": "Make the airplane out of chrome.",
+  "flag": "caption_edit",
+  "note": "was \"Add 'chrome' to describe\""
+ },
+ {
+  "case_id": "edit4/0069_car-turn",
+  "edit_type": 4,
+  "video_name": "0069_car-turn",
+  "instruction_orig": "Add a holographic effect to the silver SUV.",
+  "instruction_v2": "Turn the silver SUV into a hologram.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0070_dance-twirl",
+  "edit_type": 4,
+  "video_name": "0070_dance-twirl",
+  "instruction_orig": "Change the dancer to a holographic dancer.",
+  "instruction_v2": "Turn the dancer into a hologram.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0071_mallard-water",
+  "edit_type": 4,
+  "video_name": "0071_mallard-water",
+  "instruction_orig": "Add 'glass' before'mallard duck'.",
+  "instruction_v2": "Make the mallard duck out of glass.",
+  "flag": "caption_edit",
+  "note": "was \"Add 'glass' before 'mallard duck'\""
+ },
+ {
+  "case_id": "edit4/0072_dog-agility",
+  "edit_type": 4,
+  "video_name": "0072_dog-agility",
+  "instruction_orig": "Add plush to the border collie.",
+  "instruction_v2": "Turn the border collie into a plush border collie.",
+  "flag": "caption_edit",
+  "note": "was 'Add plush to the border collie'"
+ },
+ {
+  "case_id": "edit4/0073_bmx-rider",
+  "edit_type": 4,
+  "video_name": "0073_bmx-rider",
+  "instruction_orig": "Change the rider to a holographic version.",
+  "instruction_v2": "Turn the BMX rider into a hologram.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0074_rhino",
+  "edit_type": 4,
+  "video_name": "0074_rhino",
+  "instruction_orig": "Add stone to the rhinoceros.",
+  "instruction_v2": "Make the rhinoceros out of stone.",
+  "flag": "caption_edit",
+  "note": "was 'Add stone to the rhinoceros'"
+ },
+ {
+  "case_id": "edit4/0075_A_bicycle",
+  "edit_type": 4,
+  "video_name": "0075_A_bicycle",
+  "instruction_orig": "Change the bicycle to glass.",
+  "instruction_v2": "Make the bicycle out of glass.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0076_A_rabbit",
+  "edit_type": 4,
+  "video_name": "0076_A_rabbit",
+  "instruction_orig": "Add the adjective'velvet' to the rabbit.",
+  "instruction_v2": "Make the rabbit out of velvet.",
+  "flag": "caption_edit",
+  "note": "was \"Add the adjective 'velvet'\""
+ },
+ {
+  "case_id": "edit4/0077_A_hawk",
+  "edit_type": 4,
+  "video_name": "0077_A_hawk",
+  "instruction_orig": "Change the hawk to a metallic hawk.",
+  "instruction_v2": "Make the hawk metallic.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0078_A_cat",
+  "edit_type": 4,
+  "video_name": "0078_A_cat",
+  "instruction_orig": "Add woolen to the cat.",
+  "instruction_v2": "Make the cat out of wool.",
+  "flag": "caption_edit",
+  "note": "was 'Add woolen to the cat'"
+ },
+ {
+  "case_id": "edit4/0079_A_bus",
+  "edit_type": 4,
+  "video_name": "0079_A_bus",
+  "instruction_orig": "Replace the bus with a wooden bus.",
+  "instruction_v2": "Make the bus out of wood.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0080_A_motorcycle",
+  "edit_type": 4,
+  "video_name": "0080_A_motorcycle",
+  "instruction_orig": "Change the motorcycle to a holographic motorcycle.",
+  "instruction_v2": "Turn the motorcycle into a hologram.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0081_A_horse",
+  "edit_type": 4,
+  "video_name": "0081_A_horse",
+  "instruction_orig": "Change the horse to a crystal horse.",
+  "instruction_v2": "Make the horse out of crystal.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0082_A_tram",
+  "edit_type": 4,
+  "video_name": "0082_A_tram",
+  "instruction_orig": "Change the material of the tram to ceramic.",
+  "instruction_v2": "Make the tram out of ceramic.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0083_A_boat",
+  "edit_type": 4,
+  "video_name": "0083_A_boat",
+  "instruction_orig": "Replace the boat with a bamboo boat.",
+  "instruction_v2": "Make the boat out of bamboo.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0084_A_squirrel",
+  "edit_type": 4,
+  "video_name": "0084_A_squirrel",
+  "instruction_orig": "Replace the squirrel with a clay squirrel.",
+  "instruction_v2": "Make the squirrel out of clay.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0085_A_tram",
+  "edit_type": 4,
+  "video_name": "0085_A_tram",
+  "instruction_orig": "Add leather to the tram.",
+  "instruction_v2": "Make the tram out of leather.",
+  "flag": "caption_edit",
+  "note": "was 'Add leather to the tram'"
+ },
+ {
+  "case_id": "edit4/0086_A_red_sports_car",
+  "edit_type": 4,
+  "video_name": "0086_A_red_sports_car",
+  "instruction_orig": "Add'velvet' to describe the color of the car.",
+  "instruction_v2": "Make the red sports car out of red velvet.",
+  "flag": "caption_edit",
+  "note": "was \"Add 'velvet' to describe the color\""
+ },
+ {
+  "case_id": "edit4/0087_A_seagull",
+  "edit_type": 4,
+  "video_name": "0087_A_seagull",
+  "instruction_orig": "Change the seagull to porcelain.",
+  "instruction_v2": "Make the seagull out of porcelain.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0088_A_cyclist",
+  "edit_type": 4,
+  "video_name": "0088_A_cyclist",
+  "instruction_orig": "Replace the cyclist with a cardboard cutout of the cyclist.",
+  "instruction_v2": "Turn the cyclist into a cardboard cutout.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0089_A_dog",
+  "edit_type": 4,
+  "video_name": "0089_A_dog",
+  "instruction_orig": "Replace the real dog with a plush dog.",
+  "instruction_v2": "Turn the dog into a plush dog.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0090_A_deer",
+  "edit_type": 4,
+  "video_name": "0090_A_deer",
+  "instruction_orig": "Add bronze to the deer's description.",
+  "instruction_v2": "Make the deer out of bronze.",
+  "flag": "caption_edit",
+  "note": "was \"Add bronze to the deer's description\""
+ },
+ {
+  "case_id": "edit4/0091_A_hawk",
+  "edit_type": 4,
+  "video_name": "0091_A_hawk",
+  "instruction_orig": "Replace the hawk with a glass hawk.",
+  "instruction_v2": "Make the hawk out of glass.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0092_A_fox",
+  "edit_type": 4,
+  "video_name": "0092_A_fox",
+  "instruction_orig": "Add \"velvet\" to describe the fox.",
+  "instruction_v2": "Make the fox out of velvet.",
+  "flag": "caption_edit",
+  "note": "was 'Add \"velvet\" to describe'"
+ },
+ {
+  "case_id": "edit4/0093_A_helicopter",
+  "edit_type": 4,
+  "video_name": "0093_A_helicopter",
+  "instruction_orig": "Add'steel' to describe the helicopter.",
+  "instruction_v2": "Make the helicopter out of steel.",
+  "flag": "caption_edit",
+  "note": "was \"Add 'steel' to describe\""
+ },
+ {
+  "case_id": "edit4/0094_A_swan",
+  "edit_type": 4,
+  "video_name": "0094_A_swan",
+  "instruction_orig": "Add'silk' before'swan",
+  "instruction_v2": "Make the swan out of silk.",
+  "flag": "caption_edit",
+  "note": "was \"Add 'silk' before 'swan'\" with unclosed quote"
+ },
+ {
+  "case_id": "edit4/0095_A_crow",
+  "edit_type": 4,
+  "video_name": "0095_A_crow",
+  "instruction_orig": "Replace the real crow with a rubber crow.",
+  "instruction_v2": "Make the crow out of rubber.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0096_A_car",
+  "edit_type": 4,
+  "video_name": "0096_A_car",
+  "instruction_orig": "Add 'chrome' to describe the car.",
+  "instruction_v2": "Make the car out of chrome.",
+  "flag": "caption_edit",
+  "note": "was \"Add 'chrome' to describe\""
+ },
+ {
+  "case_id": "edit4/0097_A_bird",
+  "edit_type": 4,
+  "video_name": "0097_A_bird",
+  "instruction_orig": "Add 'feathered' to describe the bird.",
+  "instruction_v2": "Make the bird out of feathers.",
+  "flag": "no_op",
+  "note": "'feathered bird' is already true of a bird — no-op; target prompt may change — OPEN"
+ },
+ {
+  "case_id": "edit4/0098_A_squirrel",
+  "edit_type": 4,
+  "video_name": "0098_A_squirrel",
+  "instruction_orig": "Add knitted to describe the squirrel.",
+  "instruction_v2": "Make the squirrel out of knitted wool.",
+  "flag": "caption_edit",
+  "note": "was 'Add knitted to describe'"
+ },
+ {
+  "case_id": "edit4/0099_A_jogger",
+  "edit_type": 4,
+  "video_name": "0099_A_jogger",
+  "instruction_orig": "Replace the human jogger with a robotic jogger",
+  "instruction_v2": "Turn the jogger into a robot.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit4/0100_A_deer",
+  "edit_type": 4,
+  "video_name": "0100_A_deer",
+  "instruction_orig": "Change the deer to be made of marble.",
+  "instruction_v2": "Make the deer out of marble.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit5/0007_guitar-violin",
+  "edit_type": 5,
+  "video_name": "0007_guitar-violin",
+  "instruction_orig": "Add a hat to the violinist.",
+  "instruction_v2": "Add a hat to the violinist.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit5/0009_bear",
+  "edit_type": 5,
+  "video_name": "0009_bear",
+  "instruction_orig": "Add a cap to the bear.",
+  "instruction_v2": "Add a cap to the bear.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit5/0011_lucia",
+  "edit_type": 5,
+  "video_name": "0011_lucia",
+  "instruction_orig": "Add a dog following the woman",
+  "instruction_v2": "Add a dog following the woman.",
+  "flag": "ok",
+  "note": "period"
+ },
+ {
+  "case_id": "edit5/0019_tennis-vest",
+  "edit_type": 5,
+  "video_name": "0019_tennis-vest",
+  "instruction_orig": "Add a bright yellow fedora to the player's outfit.",
+  "instruction_v2": "Add a bright yellow fedora to the tennis player.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit5/0034_cows",
+  "edit_type": 5,
+  "video_name": "0034_cows",
+  "instruction_orig": "Add a flower garland to the cow.",
+  "instruction_v2": "Add a flower garland to the cow.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit5/0036_camel",
+  "edit_type": 5,
+  "video_name": "0036_camel",
+  "instruction_orig": "Add a big basket to the first camel.",
+  "instruction_v2": "Add a big basket to the front camel.",
+  "flag": "ok",
+  "note": "'first' → 'front'"
+ },
+ {
+  "case_id": "edit5/0057_dog",
+  "edit_type": 5,
+  "video_name": "0057_dog",
+  "instruction_orig": "Add a crown to the dog's head.",
+  "instruction_v2": "Add a crown on the golden retriever's head.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit5/0069_car-turn",
+  "edit_type": 5,
+  "video_name": "0069_car-turn",
+  "instruction_orig": "Add a giant inflatable flamingo to the roof of the silver SUV.",
+  "instruction_v2": "Add a giant inflatable flamingo to the roof of the silver SUV.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit5/0089_A_dog",
+  "edit_type": 5,
+  "video_name": "0089_A_dog",
+  "instruction_orig": "Add sunglasses to the dog.",
+  "instruction_v2": "Add sunglasses to the dog.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit6/0002_girl-dog",
+  "edit_type": 6,
+  "video_name": "0002_girl-dog",
+  "instruction_orig": "Remove the gray dog from the scene.",
+  "instruction_v2": "Remove the gray dog from the scene.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit6/0017_kid-football",
+  "edit_type": 6,
+  "video_name": "0017_kid-football",
+  "instruction_orig": "Remove the red cap from the boy.",
+  "instruction_v2": "Remove the red cap from the boy.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit6/0025_baseball",
+  "edit_type": 6,
+  "video_name": "0025_baseball",
+  "instruction_orig": "Remove the helmet from the baseball player.",
+  "instruction_v2": "Remove the helmet from the baseball player.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit6/0041_longboard",
+  "edit_type": 6,
+  "video_name": "0041_longboard",
+  "instruction_orig": "Remove the backpack from the man.",
+  "instruction_v2": "Remove the backpack from the man.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit6/0042_gym-ball",
+  "edit_type": 6,
+  "video_name": "0042_gym-ball",
+  "instruction_orig": "Remove the heavy gym ball from the scene.",
+  "instruction_v2": "Remove the heavy gym ball.",
+  "flag": "ok",
+  "note": "reworded"
+ },
+ {
+  "case_id": "edit6/0048_hike",
+  "edit_type": 6,
+  "video_name": "0048_hike",
+  "instruction_orig": "Remove the backpack from the man.",
+  "instruction_v2": "Remove the backpack from the man.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit6/0051_dogs-jump",
+  "edit_type": 6,
+  "video_name": "0051_dogs-jump",
+  "instruction_orig": "Remove the two dogs from the scene, but keep the woman and the open field under the cloudy sky.",
+  "instruction_v2": "Remove the two dogs.",
+  "flag": "ok",
+  "note": "dropped the 'keep the woman…' clause"
+ },
+ {
+  "case_id": "edit6/0055_pigs",
+  "edit_type": 6,
+  "video_name": "0055_pigs",
+  "instruction_orig": "Remove the two smaller pigs from the scene.",
+  "instruction_v2": "Remove the two smaller pigs from the scene.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit6/0078_A_cat",
+  "edit_type": 6,
+  "video_name": "0078_A_cat",
+  "instruction_orig": "Remove the toy from the scene.",
+  "instruction_v2": "Remove the toy from the scene.",
+  "flag": "ok",
+  "note": ""
+ },
+ {
+  "case_id": "edit6/0088_A_cyclist",
+  "edit_type": 6,
+  "video_name": "0088_A_cyclist",
+  "instruction_orig": "Remove the helmet.",
+  "instruction_v2": "Remove the cyclist's helmet.",
+  "flag": "ok",
+  "note": "reworded"
+ }
+]

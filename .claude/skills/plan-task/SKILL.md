@@ -49,9 +49,10 @@ Use the AskQuestion tool when available; otherwise numbered questions in chat.
 name: ...
 overview: ...
 task_id: R1          # workboard id
-todos:               # human checklist — code, config, analysis
-  - id: ...
-    content: ...
+todos:               # code-prep work items (ONE deliverable each) + optional run milestones
+  - id: launch-sbatch-script        # code-prep: id never equals a step id
+    content: "slurm_scripts/<benchmark>/r1_<desc>.sh -- array over the configs, post-run count guard"
+    needed_by: [launch-sbatch]      # step ids that cannot run until this exists
     status: pending
 steps:               # machine-readable — for /run-step
   - id: launch-sbatch
@@ -116,7 +117,20 @@ Each fact belongs in **one** section only. YAML **`steps`** = runnable pipeline 
 | **Types** | Free-text `content` | `sbatch` · `local` · `srun` · `manual` |
 | **In plan body** | Listed in **Code to touch**; optional *(prep)* row in Execution steps | Mirrored in Execution steps + **Step commands** |
 
-Every **`steps`** entry should have a clear `id`. Reuse the same `id` as a `todos` row when they are the same milestone (e.g. `launch-sbatch`).
+Every **`steps`** entry should have a clear `id`. A `todos` row may reuse a step's `id` only as a **run milestone** (it tracks the step itself and `/run-step` marks both completed). A **code-prep** todo (one that writes or edits a file) must **never** share an id with a step: `/build-step` only builds todos whose id is not a step id, so a code-prep todo named like a step would silently never be built.
+
+### Todo granularity (code-prep todos)
+
+`/build-step` builds only the todos a target step needs and tracks one `status` per todo, so a bundled todo cannot be partly completed. Write code-prep todos so that this never happens:
+
+1. **One deliverable per todo.** `content` names exactly **one** new file, or **one** edit to one existing file. Never a list of files ("`a.py`, `b.py`, `c.py`"), never a brace expansion (`r1_{x,y,z}.sh`). A Python driver and the Slurm script that runs it are two todos.
+2. **`needed_by`** (required on every code-prep todo): the list of `steps[].id` that cannot run until this todo is done, e.g. `needed_by: [se-stage3, full-render]`. Include steps that need the file only *indirectly* (a smoke script that calls a hook needs the hook's todo too).
+3. **Id convention:** `<what>-<kind>` naming the deliverable, e.g. `se-stage3-sbatch`, `field-script`, `attn-hook`. Never equal to a step id (see above).
+4. **Coverage check before you finish the plan:**
+   - every script that appears in any step's `command` and does not exist yet is created by exactly one todo;
+   - every code-prep todo has at least one `needed_by` entry, and every entry is a real `steps[].id`;
+   - every row of **Code to touch** is covered by exactly one todo, and vice versa.
+   Fix the plan until all three hold.
 
 **Schema reference:** [steps-schema.md](../../steps-schema.md)
 

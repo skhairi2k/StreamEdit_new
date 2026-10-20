@@ -10,7 +10,7 @@ from utils.wan_wrapper import WanDiffusionWrapper, WanTextEncoder, WanVAEWrapper
 
 from utils.memory import gpu, get_cuda_free_memory_gb, DynamicSwapInstaller, move_model_to_device_with_memory_preservation, log_gpu_memory
 from utils.debug_option import DEBUG
-from .utils import find_phrase_token_indices
+from .utils import find_phrase_token_indices, _schedule_blend_rate, blender_rate_from_rho
 import torch.distributed as dist
 
 class EditCausalInferencePipeline(torch.nn.Module):
@@ -89,8 +89,77 @@ class EditCausalInferencePipeline(torch.nn.Module):
 
         fg_scale=1.0,
         reuse_noise_temporal_mean=True,
+
+        #✨ R45 (SF R20/R38): named blend-rate schedule (None / "paper" => Eq. 4 unchanged)
+        blend_sched: Optional[str] = None,
+
+        #✨ R45 (SF R22): per-denoising-step latent dump. Pass a list to have this call
+        # append one [S, B, F, C, H, W] tensor holding, for every step index s, the target
+        # branch's x0 prediction at step s of EVERY block. None => not a single extra op.
+        step_dump: Optional[list] = None,
+
+        #✨ R45 (SF R31): continuous per-token exponents, float32 [F_video, frame_seq_length]
+        # in ABSOLUTE video latent-frame coordinates, already tau (evaluation/r31_rho_map.py).
+        # Same name and contract as SF's `rollout_inference(rho_frames=...)`. LL has no
+        # rollout windows, so the whole clip is one call and the offset is always 0.
+        # None => untouched scalar path.
+        rho_frames: Optional[torch.Tensor] = None,
     ) -> torch.Tensor:
         assert not (independent_first_frame and triple_first_frame)
+
+        #✨ R45: validation ported from SF `rollout_inference` (R31), which LL lacks.
+        spatial_active = rho_frames is not None
+        if spatial_active:
+            if blend_sched not in (None, "paper"):
+                raise ValueError(
+                    f"R45: blend_sched {blend_sched!r} overrides the per-step scalar rate the "
+                    "spatial field is built on, so combining them would discard one of the "
+                    "two. Run the field against Eq. 4 only."
+                )
+            if rho_frames.dim() != 2:
+                raise ValueError(
+                    f"R45: rho_frames must be [F_video, frame_seq_length], got "
+                    f"{tuple(rho_frames.shape)}."
+                )
+            if rho_frames.shape[0] != src_video.shape[1]:
+                raise ValueError(
+                    f"R45: rho_frames holds {rho_frames.shape[0]} latent frames but this "
+                    f"clip has {src_video.shape[1]}. Rebuild the field for this pair."
+                )
+            if rho_frames.shape[1] != self.frame_seq_length:
+                raise ValueError(
+                    f"R45: rho_frames has frame_seq_length {rho_frames.shape[1]}, but "
+                    f"this model uses {self.frame_seq_length}."
+                )
+            if not bool(torch.isfinite(rho_frames).all()):
+                raise ValueError("R45: rho_frames holds a non-finite exponent.")
+            if bool((rho_frames < 0).any()):
+                raise ValueError(
+                    "R45: rho_frames holds a negative exponent; W_src = t ** rho would "
+                    "diverge as t -> 0."
+                )
+            rho_frames = rho_frames.to(device=src_video.device, dtype=torch.float32)
+
+        #✨ R45 (SF R26): `output` is trimmed by exactly this many leading frames in Step 4,
+        # so LOCAL output row j is VIDEO latent frame `j - num_trim`.
+        num_trim = (1 if independent_first_frame else 0) + (3 if triple_first_frame else 0)
+
+        def _chunk_rho(local_left: int, local_right: int) -> torch.Tensor:
+            '''✨ R45 (SF R26/R31): [B, (local_right - local_left) * frame_seq_length] float32
+            exponents for local output frames [local_left, local_right).'''
+            idx = torch.arange(local_left, local_right, device=rho_frames.device) - num_trim
+            hi = int(idx.max().item())
+            if hi >= rho_frames.shape[0]:
+                raise ValueError(
+                    f"R45: the field has {rho_frames.shape[0]} latent frames but this block "
+                    f"asked for video frame {hi} (local [{local_left}, {local_right}), trim "
+                    f"{num_trim})."
+                )
+            # Only the trimmed VP prefix (j < num_trim) indexes before frame 0. It is never
+            # rendered, but its keys sit in the cache and are blended as PREVIOUS keys, so
+            # it borrows video frame 0's exponents -- the frame it anchors.
+            rows = rho_frames[idx.clamp(min=0)].reshape(-1)
+            return rows.unsqueeze(0).expand(batch_size, -1).to(torch.float32)
 
         batch_size, num_frames, num_channels, height, width = src_video.shape
         if not independent_first_frame or (independent_first_frame and trg_initial_latent is not None):
@@ -169,7 +238,10 @@ class EditCausalInferencePipeline(torch.nn.Module):
         )
         trg_fg_mask_cache = self._initialize_trg_fg_mask_cache(
             batch_size=batch_size,
-            device=src_video.device
+            device=src_video.device,
+            #✨ R45 (SF R31): cache-aligned exponent buffer, filled with the field's minimum
+            # (its most source-preserving exponent) for never-written slots.
+            blend_rho_init=(float(rho_frames.min()) if spatial_active else None),
         )
         crossattn_cache_src = self._initialize_crossattn_cache(
             batch_size=batch_size,
@@ -252,7 +324,12 @@ class EditCausalInferencePipeline(torch.nn.Module):
 
                 #✨ src & trg union
                 current_trg_fg_mask = trg_fg_mask_bin | src_fg_mask_bin
-                self._update_trg_fg_mask_cache(trg_fg_mask_cache, current_trg_fg_mask, kv_cache_trg)
+                #✨ R45 (SF R26): the VP prefix's keys are blended as PREVIOUS keys during the
+                # first block, so they need an exponent too.
+                self._update_trg_fg_mask_cache(
+                    trg_fg_mask_cache, current_trg_fg_mask, kv_cache_trg,
+                    current_rho=(_chunk_rho(left, right) if spatial_active else None),
+                )
 
                 output[:, left: right] = current_trg_ref_latents
                 current_start_frame = right
@@ -264,6 +341,12 @@ class EditCausalInferencePipeline(torch.nn.Module):
 
         # Step 3: Temporal denoising loop
         denoising_step_list = self.denoising_step_list
+        #✨ R45 (SF R22): one full-video buffer per denoising step, cloned AFTER Step 2 wrote
+        # the VP prefix, so step_out[-1] is identical to `output`, not merely close to it.
+        step_out = (
+            output.unsqueeze(0).repeat(len(denoising_step_list), *([1] * output.ndim))
+            if step_dump is not None else None
+        )
         all_num_frames = [self.num_frame_per_block] * num_blocks
         if independent_first_frame and trg_initial_latent is None:
             all_num_frames = [1] + all_num_frames
@@ -304,7 +387,13 @@ class EditCausalInferencePipeline(torch.nn.Module):
                 src_fg_mask_bin, size=(current_num_frames, height, width)
             )
             inloop_trg_fg_mask = src_fg_mask_bin
-            
+
+            #✨ R45 (SF R26): this block's exponents, timestep-independent.
+            chunk_rho = (
+                _chunk_rho(current_start_frame, current_start_frame + current_num_frames)
+                if spatial_active else None
+            )
+
             # Step 3.1: Spatial denoising loop
             noisy_pred_input = None
             for index, current_timestep in tqdm(enumerate(denoising_step_list), total=len(denoising_step_list), leave=False):
@@ -319,7 +408,22 @@ class EditCausalInferencePipeline(torch.nn.Module):
                 shared_dict_dual['current_timestep_index'] = index
                 shared_dict_dual['total_timestep'] = len(denoising_step_list)
                 shared_dict_dual['blend_power'] = blend_power
-                
+                #✨ R45 (SF R20/R38): scheduled rate for this step, or None to leave the
+                # bridge on Eq. 4. `t_cur` is the INPUT timestep, taken from the loop
+                # variable -- shared_dict_dual['current_timestep'] holds t_next on LL.
+                shared_dict_dual['blender_rate'] = (
+                    None if blend_sched in (None, "paper")
+                    else 1.0 - _schedule_blend_rate(blend_sched, index, len(denoising_step_list),
+                                                    t_cur=float(current_timestep) / 1000)
+                )
+                #✨ R45 (SF R26): spatial twin -- W^src = t_next ** tau(p) per token.
+                if spatial_active:
+                    rate_prev, comp_prev = blender_rate_from_rho(
+                        trg_fg_mask_cache['blend_rho_tok'], float(timestep_next))
+                    rate_cur, comp_cur = blender_rate_from_rho(chunk_rho, float(timestep_next))
+                    self._inject_blend_rates_to_kv_cache(
+                        kv_cache_dual, rate_prev, comp_prev, rate_cur, comp_cur)
+
                 # use previous statistics on noise
                 fwd_noise = torch.randn_like(src_input)
                 fwd_noise = self._reuse_noise_statistics(fwd_noise, index, fg_mask=src_fg_mask_map)
@@ -372,6 +476,12 @@ class EditCausalInferencePipeline(torch.nn.Module):
                 v_t = v_trg + bg_mask * (v_gt - v_src)
                 denoised_pred = noisy_pred_input - t_i * v_t
 
+                #✨ R45 (SF R22): this step's x0 prediction for the current block, written
+                # after S.O.G.; at the last index it is the tensor Step 3.2 records.
+                if step_dump is not None:
+                    step_out[index][:, current_start_frame:current_start_frame + current_num_frames] = \
+                        denoised_pred.to(step_out.device)
+
                 #✨ target mask grounding
                 if index == len(denoising_step_list) // 2:
                     _, inloop_src_trg_fg_mask_bin, mask_soft_vis, mask_bin_vis = self._aggregate_crossattn_mask(
@@ -402,7 +512,11 @@ class EditCausalInferencePipeline(torch.nn.Module):
             #✨ store clean target kv cache, and obtain clean target mask
             _, trg_fg_mask_bin, _, _ = self._aggregate_crossattn_mask(crossattn_cache_trg)
             current_trg_fg_mask = trg_fg_mask_bin | src_fg_mask_bin
-            self._update_trg_fg_mask_cache(trg_fg_mask_cache, current_trg_fg_mask, kv_cache_trg)
+            self._update_trg_fg_mask_cache(
+                trg_fg_mask_cache, current_trg_fg_mask, kv_cache_trg,
+                #✨ R45 (SF R26): roll this block's exponents alongside its mask.
+                current_rho=chunk_rho,
+            )
             self._kv_cache_to(kv_cache_trg, 'cpu', low_memory)
             
             if profile:
@@ -427,6 +541,18 @@ class EditCausalInferencePipeline(torch.nn.Module):
             output = output[:, 1: ]
         if triple_first_frame:
             output = output[:, 3: ]
+        #✨ R45 (SF R22): same trims on the step buffer (frame axis is dim 2), plus the
+        # identity gate: the last denoising step must BE the returned latent.
+        if step_dump is not None:
+            if independent_first_frame:
+                step_out = step_out[:, :, 1: ]
+            if triple_first_frame:
+                step_out = step_out[:, :, 3: ]
+            assert torch.equal(step_out[-1], output), (
+                "R45: step-dump final step diverged from `output` -- the per-step buffer "
+                "is no longer being written from the same tensor Step 3.2 records."
+            )
+            step_dump.append(step_out)
         if wo_video_decode:
             video = None
         else:
@@ -535,9 +661,13 @@ class EditCausalInferencePipeline(torch.nn.Module):
         return crossattn_cache
     
 
-    def _initialize_trg_fg_mask_cache(self, batch_size, device):
+    def _initialize_trg_fg_mask_cache(self, batch_size, device, blend_rho_init=None):
         '''
         ✨ initialize target mask as ones
+
+        ✨ R45 (SF R26): `blend_rho_init` (a float) additionally allocates a CACHE-ALIGNED
+        per-token release exponent buffer, rolled by exactly the same arithmetic as
+        `trg_fg_mask` in `_update_trg_fg_mask_cache`. None => the buffer does not exist.
         '''
         if self.local_attn_size != -1:
             # Use the local attention size to compute the KV cache size
@@ -550,16 +680,26 @@ class EditCausalInferencePipeline(torch.nn.Module):
             "global_end_index": torch.tensor([0], dtype=torch.long, device=device),
             "local_end_index": torch.tensor([0], dtype=torch.long, device=device)
         }
+        if blend_rho_init is not None:
+            trg_fg_mask_cache["blend_rho_tok"] = torch.full(
+                [batch_size, kv_cache_size], float(blend_rho_init),
+                dtype=torch.float32, device=device
+            )
         return trg_fg_mask_cache
 
     def _update_trg_fg_mask_cache(
-        self, trg_fg_mask_cache, current_trg_fg_mask, kv_cache_trg, 
-        sink_recache_after_switch=False
+        self, trg_fg_mask_cache, current_trg_fg_mask, kv_cache_trg,
+        sink_recache_after_switch=False, current_rho=None,
     ):
         '''
         ✨ update trg_fg_mask similar to kv cache update
+
+        ✨ R45 (SF R26): `current_rho` ([B, num_new_tokens] float32) is rolled and written
+        with the SAME indices computed for the mask, so the exponent field cannot drift out
+        of alignment with the mask under eviction.
         '''
         temp_mask = trg_fg_mask_cache["trg_fg_mask"].clone()
+        temp_rho = trg_fg_mask_cache["blend_rho_tok"].clone() if current_rho is not None else None
 
         update_info = kv_cache_trg[0]["update_info"]
         current_end = kv_cache_trg[0]["global_end_index"].item()
@@ -583,12 +723,17 @@ class EditCausalInferencePipeline(torch.nn.Module):
             # Apply rolling update to the temporary cache
             temp_mask[:, sink_tokens:sink_tokens + num_rolled_tokens] = \
                 temp_mask[:, sink_tokens + num_evicted_tokens:sink_tokens + num_evicted_tokens + num_rolled_tokens].clone()
+            if temp_rho is not None:
+                temp_rho[:, sink_tokens:sink_tokens + num_rolled_tokens] = \
+                    temp_rho[:, sink_tokens + num_evicted_tokens:sink_tokens + num_evicted_tokens + num_rolled_tokens].clone()
 
             write_start_index = max(local_start_index, sink_tokens) if is_recompute else local_start_index
             roped_offset = max(0, write_start_index - local_start_index)
             write_len = max(0, local_end_index - write_start_index)
             if write_len > 0:
                 temp_mask[:, write_start_index:local_end_index] = current_trg_fg_mask[:, roped_offset:roped_offset + write_len]
+                if temp_rho is not None:
+                    temp_rho[:, write_start_index:local_end_index] = current_rho[:, roped_offset:roped_offset + write_len]
 
         else:
             # Assign new keys/values directly up to current_end
@@ -603,8 +748,12 @@ class EditCausalInferencePipeline(torch.nn.Module):
             write_len = max(0, local_end_index - write_start_index)
             if write_len > 0:
                 temp_mask[:, write_start_index:local_end_index] = current_trg_fg_mask[:, roped_offset:roped_offset + write_len]
+                if temp_rho is not None:
+                    temp_rho[:, write_start_index:local_end_index] = current_rho[:, roped_offset:roped_offset + write_len]
 
         trg_fg_mask_cache["trg_fg_mask"] = temp_mask
+        if temp_rho is not None:
+            trg_fg_mask_cache["blend_rho_tok"] = temp_rho
         trg_fg_mask_cache["global_end_index"].fill_(current_end)
         trg_fg_mask_cache["local_end_index"].fill_(local_end_index)
 
@@ -652,7 +801,23 @@ class EditCausalInferencePipeline(torch.nn.Module):
                 "trg_fg_mask": trg_fg_mask_cache['trg_fg_mask'],
                 "current_src_fg_mask": current_src_fg_mask,
             })
-    
+
+    def _inject_blend_rates_to_kv_cache(self, kv_cache, rate_prev, comp_prev, rate_cur, comp_cur):
+        '''
+        ✨ R45 (SF R26): publish this denoising step's spatial blender rate to every block.
+        `blend_rate_tok` is CACHE-ALIGNED ([B, kv_cache_size], same layout as `trg_fg_mask`,
+        gathered in the bridge through `attn_seq_slice_list`); `current_blend_rate` is
+        [B, Lq] for the block being denoised. Complements travel alongside so the bridge
+        never recovers `1 - rate` from a rounded float32 (see `blender_rate_from_rho`).
+        '''
+        for b_idx in range(self.num_transformer_blocks):
+            kv_cache[b_idx].update({
+                "blend_rate_tok": rate_prev,
+                "blend_comp_tok": comp_prev,
+                "current_blend_rate": rate_cur,
+                "current_blend_comp": comp_cur,
+            })
+
     def _kv_cache_to(self, kvc, device, low_memory):
         if not low_memory:
             return

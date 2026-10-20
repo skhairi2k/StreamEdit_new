@@ -365,6 +365,13 @@ def parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
                         "samples (one per latent frame), float16, so the figure can show "
                         "native resolution beside the reduced field. ~16 MB/arm/clip for "
                         "lpips and normals; negligible for dino_patch and latent.")
+    #✨ R48: for hosts with no saved latents (Wan-Edit drafts). Pixel arms only: the number of latent frames is
+    # given instead of read from {latent_dir}/edit{T}/{video}.npz, and the npz records measure_kind =
+    # "no_latents__<n>". None (default) => every existing path is unchanged.
+    p.add_argument("--n_latent_frames", type=int, default=None,
+                   help="No stage-1 latents: take this many latent frames (41 pixel frames -> 11), or 0 = per clip from the "
+                        "draft frame count. Refused for "
+                        "the `latent` arm, which needs z_trg/z_src.")
     p.add_argument("--normals_steps", type=int, default=4)
     p.add_argument("--normals_ensemble", type=int, default=5,
                    help=">=5 so Marigold returns an ensemble average, not one sample")
@@ -387,6 +394,8 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                / f"edit{args.edit_type}")
     out_dir.mkdir(parents=True, exist_ok=True)
 
+    if args.n_latent_frames is not None and args.arm == "latent":
+        raise SystemExit("[r31_div] --n_latent_frames: the `latent` arm needs z_trg/z_src, so it cannot run without latents")
     cases = [c for c in json.loads(args.cases.expanduser().read_text())
              if int(c["edit_type"]) == args.edit_type]
     if not cases:
@@ -416,11 +425,21 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         # its position in the list.
         set_seed(args.seed)
         try:
-            npz_path = latent_dir / f"edit{args.edit_type}" / f"{name}.npz"
-            if not npz_path.exists():
-                raise FileNotFoundError(f"stage-1 latents missing: {npz_path}")
-            z = np.load(npz_path)
-            z_trg, z_src = z["z_trg"], z["z_src"]
+            if args.n_latent_frames is not None:           #✨ R48: no latents, only the frame count
+                z = {"measure_index": np.int32(-1)}
+                n_lat_clip = args.n_latent_frames
+                if n_lat_clip == 0:      # 0 = auto: from the draft's own frames (4*(n-1)+1 pixel frames per n latent frames)
+                    n_png = len(list((target_root / f"edit{args.edit_type}" / name).glob("*.png")))
+                    n_lat_clip = (n_png - 1) // 4 + 1
+                z_trg = z_src = np.empty((n_lat_clip,), np.float32)
+                z_files = []
+            else:
+                npz_path = latent_dir / f"edit{args.edit_type}" / f"{name}.npz"
+                if not npz_path.exists():
+                    raise FileNotFoundError(f"stage-1 latents missing: {npz_path}")
+                z = np.load(npz_path)
+                z_trg, z_src = z["z_trg"], z["z_src"]
+                z_files = z.files
             n_latent = int(z_trg.shape[0])
 
             if args.arm in PIXEL_ARMS:
@@ -457,7 +476,8 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                 # Stage 1 is now a 7-step run measured POST-injection, so a localised
                 # map is partly mask-derived -- check-stage2 must be able to see which
                 # regime produced the target without re-opening the stage-1 npz.
-                measure_kind=(z["measure_kind"] if "measure_kind" in z.files
+                measure_kind=(np.str_(f"no_latents__{n_latent}") if args.n_latent_frames is not None else
+                              z["measure_kind"] if "measure_kind" in z_files
                               else np.str_("unknown__pre_2026_09_15")),
                 **({} if d_native is None else {
                     "d_native": d_native,

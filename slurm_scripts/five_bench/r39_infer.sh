@@ -23,8 +23,13 @@
 # A failed edit type does NOT stop the loop: the remaining types still render, and the
 # task exits non-zero at the end so the failure is visible.
 # --mem=64G: the partition default host-OOMs loading UMT5-XXL + the checkpoint (R9 job 900404).
+# --exclude: node52 advertises gpu:8 but exposes no device to batch jobs ("No devices found",
+# CUDA unknown error at init) -- job 1016629 lost 14/16 tasks to it in 12 min, each one
+# freeing the node for the next. node01/51/57 kept defensively (stale-mount history), as in
+# R38's scripts.
 #SBATCH --job-name=r39_infer
 #SBATCH --partition=L40S
+#SBATCH --exclude=node01,node51,node52,node57
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:1

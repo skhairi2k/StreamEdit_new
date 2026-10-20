@@ -1,0 +1,60 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,hyperref}
+\title{Exposure-matched per-token control for training-free video editing (R48 v2)}
+\begin{document}
+\maketitle
+
+\section{Motivation and problem statement}
+Training-free video editors set edit strength with one global knob: StreamEdit's Q/K-blend exponent $\rho$, FlowEdit/Wan-Edit's $n_{\max}$. Tokens of one clip need different strengths (new outline: early release; colour/texture: late release, keep motion; background: none), so a global knob only trades alignment against preservation.
+\textbf{Problem.} Input: source video, source/target prompts, a host editor $H$ with control $c$. Output: a per-token control $c_j$ for $H$, chosen automatically, by \emph{one} procedure for every host, without fitting anything to rendered outputs or benchmark scores.
+\textbf{Gap.} Per-token \emph{where} exists (masks, Differential Diffusion's user map, Follow-Your-Shape's divergence mask); automatic \emph{how much}, expressed consistently on hosts with different release mechanisms, does not. R48 v1 showed that linear maps in knob units fail in opposite directions on the two hosts.
+
+\section{Method}
+\textbf{Stage 1 -- draft} at $\sigma_d\approx0.95$ (StreamEdit $N=5$, \texttt{tgt0.9}; Wan-Edit 17-step grid from step 3, $\sigma=0.958$), recording trigger-phrase cross-attention (first 20 blocks, $\sigma\in[0.55,0.9]$) and prompt mass.
+
+\textbf{Stage 2 -- demand.} Support $S_j=\exp(-\lambda\,\mathrm{dist}(j,M_f))$, $\lambda=0.5$, $M=M_{\mathrm{src}}\lor M_{\mathrm{tgt}}$ from selectivity-weighted ($w_p=1-\mathcal H/\log J$) Eq.~7 masks. Divergence
+\[
+d_j=\max\!\big(\min(D^{\mathrm{DINOv3}}_j/0.55,1),\ \min(D^{\mathrm{LPIPS}}_j/0.75,1)\big),\qquad q_j=S_j d_j\in[0,1],
+\]
+absolute, no per-video normalisation.
+
+\textbf{Stage 3 -- exposure-matched control.} Host coefficient $a_H(c,i)$ = target weight at step $i$, read from the control equation: $a_{\mathrm{SE}}(\rho,i)=1-t_i^{\rho}$ (Q/K blend), $a_{\mathrm{Wan}}(n,i)=\mathbb 1[i\ge N-n]$ (velocity gate). Exposure $Q_H(c)=\frac1N\sum_i a_H(c,i)$, $U_H(c)=\frac{Q_H(c)-Q_H(c_{\min})}{Q_H(c_{\max})-Q_H(c_{\min})}$, $c_j=\arg\min_c|U_H(c)-q_j|$.
+\begin{itemize}
+\item StreamEdit, $\rho\in[2,50]$ on the real 15-step $t_{\mathrm{next}}$ grid: $B(\rho_j)=(1-q_j)B(2)+q_jB(50)$, $B(\rho)=\frac1N\sum_i t_i^\rho$ (= \texttt{budget\_linear\_tau(q, t\_next, 2, 50)}).
+\item Wan-Edit, $N=50$, steps $i=0..49$: gate $\mathbb 1[i\ge 50-n]$ on the edit velocity before Wan-Edit's UniPC update, $U=n/N$ exactly, $n_j=\mathrm{round}(50q_j)$ (half to even), start $s_j=50-n_j\ge s_{\min}$; $s_j=50$ = never edited. Both floors rendered in R49: $s_{\min}=9$ (55 active steps) and $s_{\min}=0$ (64). % UNVALIDATED: which floor is the method
+\end{itemize}
+NFE: StreamEdit $5+15=20$; Wan-Edit $14+41=55$ active steps ($s_{\min}=9$) or $14+50=64$ ($s_{\min}=0$); equal-NFE Wan baselines at 55 ($N=69/79/104$) and 64 ($N=81/92/120$) active steps.
+
+\section{Novelty claims}
+\begin{enumerate}
+\item A per-token control mapping derived by inverting the host's own per-step target-weight response, with no fitted parameter, gives equal mean target exposure for equal demand on hosts with soft (attention-blend) and hard (velocity-gate) release. \emph{Falsifiable:} at equal exposure, the two hosts' global sweeps should give similar edit alignment (preliminary: yes on 18 clips at $B\in[0.18,0.31]$); and v2 should beat v1's knob-unit linear maps on both hosts at matched preservation.
+\item One procedure (same draft rule, demand field, mapping rule) improves each host over its own tuned global-knob curve at equal NFE on FiVE-Bench. \emph{Falsifiable:} positive alignment delta at matched bg LPIPS and PSNR on the 401 held-out pairs, on both hosts. % UNVALIDATED
+\item Combining semantic and perceptual divergence by a maximum, gated by attention support, recovers colour/material/add-object edits that a DINO-only demand misses, without releasing background. \emph{Falsifiable:} per-type (3--5) alignment gain over the DINO-only arm with no bg-LPIPS loss. % UNVALIDATED
+\end{enumerate}
+
+\section{Relation to prior work}
+\textbf{StreamEdit / R38 (ours, previous).} Per-token $\rho_j$ from DINO divergence via budget-linear on $[2,50]$; single host. v2 = same mapping on StreamEdit applied to a supported, DINO$\lor$LPIPS demand, derived as an exposure inverse that also covers FlowEdit.
+\textbf{Differential Diffusion.} Continuous per-pixel release time, but from a user-given map; no automatic demand, single host type.
+\textbf{Follow-Your-Shape.} Mask from measured velocity divergence inside a global schedule, images. Ours: continuous strength, video, two hosts.
+\textbf{FlowDirector.} FlowEdit + MAD-FC + DA-FC + DAG; spatial mask softening, global $n_{\max}$. Cited for mask softening only.
+\textbf{UniEdit-Flow, AnyV2V, Stable Flow.} Region masks under one global delay / global thresholds / layer choice: not per-token strength.
+Thin spot: the mapping is a short derivation; the contribution rests on showing it is \emph{needed} (v1 failure) and \emph{sufficient} (v2 on both hosts). Literature search for ``per-token strength across editors'' not done yet.
+
+\section{Open questions and risks}
+\begin{itemize}
+\item Exposure is a proxy, not visible edit strength: soft blend vs.\ hard gate; StreamEdit also anchors through bg K/V injection and source-oriented guidance, outside $a_{\mathrm{SE}}$.
+\item Wan-Edit's useful exposure band is narrow ($U\gtrsim0.7$, start $\sigma\ge0.88$); mid demand still under-edits colour edits (dry run: start $\sigma\approx0.82$ with mean, earlier with max).
+\item Demand is draft-dependent: the same edit gives $q=0.43$ (StreamEdit) vs $0.94$ (Wan) on 0076\_A\_rabbit -- ``same demand on both hosts'' only holds if drafts agree.
+\item StreamEdit's $N=5$ draft barely changes colour edits (m\_LPIPS 0.11--0.17 on 0017, 0058): no divergence can recover what the draft does not make.
+\item Thin fast parts at the support edge (rabbit leg) are left unedited; frame-0 support is broader on both hosts (known, not fixed).
+\item No motion-fidelity metric inside the edited region yet; ``preserves motion'' is not measurable with current metrics.
+\item Gains of R38 on full FiVE were only significant on CLIP-D (PSNR-matched): effect sizes may be small.
+\item 18 subset clips are now a development set; claims must hold on the 401 held-out pairs.
+\end{itemize}
+
+\section{Changelog}
+\subsection*{2026-10-16 -- initial snapshot: R48 v2 exposure-matched control}
+Replaces R48 v1's linear maps in knob units ($\rho=0.3+49.7E$, start $\sigma=0.1+0.86E$), which put mid demand at saturated release on StreamEdit and in Wan-Edit's no-edit regime. Rejected along the way: per-host response curves fitted on rendered sweeps (tuning on benchmark outputs); binary max-strength routing ($\rho=50$ inside the edit destroys source motion); edit-emergence timing from the draft (no clean knob model for StreamEdit's Q/K blend); comparing hosts by release noise level $t_{1/2}$ (StreamEdit anchors from $t=1$ for every $\rho$, so its control is a quantity, not a time). Kept DINO$\lor$LPIPS via max over mean because the support already removes LPIPS background noise. $\rho_{\min}=2$ (stock StreamEdit) instead of 0.
+\subsection*{2026-10-16 -- aligned with the R49 implementation}
+Wan-Edit's gate acts on the edit velocity fed to its UniPC multistep solver (not an Euler update) with 0-indexed steps; StreamEdit's per-token rate blends current queries/keys and the cached previous keys inside its foreground mask. The Wan floor is no longer decided by the global-start test: R49 renders both $s_{\min}=9$ and $s_{\min}=0$, the latter against a 64-step matched curve. Only the max divergence arm is run (mean dropped).
+\end{document}

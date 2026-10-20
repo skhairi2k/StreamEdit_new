@@ -357,7 +357,43 @@ class CausalWanSelfAttention(nn.Module):
                 src_query, trg_query = roped_query.chunk(2, dim=0)
                 src_key, trg_key = attn_key.chunk(2, dim=0)
                 src_value, trg_value = attn_value.chunk(2, dim=0)
-                blender_rate = 1 - kv_cache['shared_dict']['current_timestep'] ** kv_cache['shared_dict']['blend_power']
+                shared_dict = kv_cache['shared_dict']
+                #✨ R45: blender-rate precedence ported from Self-Forcing_StreamEdit
+                # causal_model.py:352-397 (R10 blend_off / R20 scheduled rate / R26 spatial).
+                # Every override absent => the stock LL expression, bit for bit.
+                # ⚠️ LL's shared_dict['current_timestep'] already holds t_NEXT
+                # (edit_causal_inference.py:317-318) -- paper Eq. 4, the same value SF
+                # reads as 'current_timestep_next'. Do not copy SF lines that read
+                # shared_dict['current_timestep'] (t_cur there).
+                blend_off = shared_dict.get('blend_off', False)
+                if blend_off:
+                    blender_rate = 1.0
+                elif shared_dict.get('blender_rate') is not None:
+                    blender_rate = shared_dict['blender_rate']
+                else:
+                    blender_rate = 1 - shared_dict['current_timestep'] ** shared_dict['blend_power']
+
+                #✨ R45 (SF R26): optional SPATIAL blender rate. Cache-aligned field for the
+                # previous tokens ([B, L_cache_size], same layout as `trg_fg_mask`) plus a
+                # [B, Lq] field for the current chunk, each with its float32 complement.
+                # The previous-token field is gathered with EXACTLY the `attn_seq_slice_list`
+                # used for `trg_fg_mask` below (sink + local window on LL), so it stays
+                # aligned under eviction. `rate_tok is None` => scalar path, bit for bit.
+                if blend_off:
+                    rate_tok = comp_tok = cur_rate_tok = cur_comp_tok = None
+                else:
+                    rate_tok = kv_cache.get('blend_rate_tok', None)          # [B, L_cache_size]
+                    comp_tok = kv_cache.get('blend_comp_tok', None)          # [B, L_cache_size]
+                    cur_rate_tok = kv_cache.get('current_blend_rate', None)  # [B, Lq]
+                    cur_comp_tok = kv_cache.get('current_blend_comp', None)  # [B, Lq]
+                    if rate_tok is not None and (
+                            comp_tok is None or cur_rate_tok is None or cur_comp_tok is None):
+                        raise RuntimeError(
+                            "R45: a spatial blend rate was installed without its "
+                            "complement or its current-chunk half; all four of "
+                            "blend_rate_tok / blend_comp_tok / current_blend_rate / "
+                            "current_blend_comp must be set together."
+                        )
 
                 src_prev_key = src_key[:, : -num_new_tokens]
                 src_prev_value = src_value[:, : -num_new_tokens]
@@ -382,8 +418,28 @@ class CausalWanSelfAttention(nn.Module):
                     ], dim=0)
                     b_trg_prev_fg_mask = b_trg_attn_fg_mask[: -num_new_tokens]
                     b_trg_prev_fg_key = trg_prev_key[b_idx]
-                    b_trg_prev_fg_key[b_trg_prev_fg_mask] = b_trg_prev_fg_key[b_trg_prev_fg_mask] * blender_rate \
-                        + src_prev_key[b_idx, b_trg_prev_fg_mask] * (1 - blender_rate)
+                    #✨ R45 (SF R26): the per-token rate rides EXACTLY the slices above.
+                    # Scalar path => Python floats.
+                    if rate_tok is None:
+                        br_prev, bc_prev = blender_rate, 1 - blender_rate
+                        br_cur, bc_cur = blender_rate, 1 - blender_rate
+                    else:
+                        br_prev = torch.cat([rate_tok[b_idx][ass] for ass in attn_seq_slice_list],
+                                            dim=0)[: -num_new_tokens].view(-1, 1, 1)
+                        bc_prev = torch.cat([comp_tok[b_idx][ass] for ass in attn_seq_slice_list],
+                                            dim=0)[: -num_new_tokens].view(-1, 1, 1)
+                        br_cur = cur_rate_tok[b_idx].view(-1, 1, 1)
+                        bc_cur = cur_comp_tok[b_idx].view(-1, 1, 1)
+                    if not blend_off:
+                        # (skipped when blending is off, to avoid the in-place masked write;
+                        # `.to(dtype)` rounds each product back to the key dtype before the
+                        # add -- a no-op on the scalar path, so it is the stock expression)
+                        _dt = b_trg_prev_fg_key.dtype
+                        _rp = br_prev if rate_tok is None else br_prev[b_trg_prev_fg_mask]
+                        _cp = bc_prev if rate_tok is None else bc_prev[b_trg_prev_fg_mask]
+                        b_trg_prev_fg_key[b_trg_prev_fg_mask] = \
+                            (b_trg_prev_fg_key[b_trg_prev_fg_mask] * _rp).to(_dt) \
+                            + (src_prev_key[b_idx, b_trg_prev_fg_mask] * _cp).to(_dt)
                     b_trg_prev_fg_value = trg_prev_value[b_idx]
                     b_key_list.append(b_trg_prev_fg_key)
                     b_value_list.append(b_trg_prev_fg_value)
@@ -399,8 +455,10 @@ class CausalWanSelfAttention(nn.Module):
                         b_value_list.append(b_src_current_bg_value)
                     
                     #✨ masked-blended current target condition
-                    b_trg_current_key = trg_current_key[b_idx]     
-                    b_trg_current_key = b_trg_current_key * blender_rate + src_current_key[b_idx] * (1 - blender_rate)
+                    b_trg_current_key = trg_current_key[b_idx]
+                    #✨ R45 (SF R26): current-chunk half of the field (see br_prev above).
+                    b_trg_current_key = (b_trg_current_key * br_cur).to(b_trg_current_key.dtype) \
+                        + (src_current_key[b_idx] * bc_cur).to(b_trg_current_key.dtype)
                     b_trg_current_value = trg_current_value[b_idx]
                     b_key_list.append(b_trg_current_key)
                     b_value_list.append(b_trg_current_value)
@@ -410,7 +468,8 @@ class CausalWanSelfAttention(nn.Module):
                     b_trg_value = torch.cat(b_value_list, dim=0)
 
                     #✨ query blending
-                    b_query = trg_query[b_idx] * blender_rate + src_query[b_idx] * (1 - blender_rate)
+                    b_query = (trg_query[b_idx] * br_cur).to(trg_query.dtype) \
+                        + (src_query[b_idx] * bc_cur).to(trg_query.dtype)
                     x_list.append(
                         attention(b_query.unsqueeze(0), b_trg_key.unsqueeze(0), b_trg_value.unsqueeze(0))
                     )

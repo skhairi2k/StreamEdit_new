@@ -29,18 +29,18 @@ A strong global anchor blocks the new shape; a weak one damages the background.
 | C3 · Evidence                             | At equal NFE, beats: the *tuned* global-strength curve, mask-region timing (R26), and the zero-draft anchor-only field. Gain concentrated on shape-changing edits; holds with two image editors                                                                                                        |
 
 
-**Evidence so far** (*evidence*, R35 vs R36, full FiVE; figures `evaluation/figures/r35_*_vs_lpips.pdf`; numbers recomputed 2026-09-29 with the §3 definition of "matched" from the per-clip CSVs, plain per-clip mean):
+**Evidence so far** (*evidence*, R38 vs R36, full FiVE; figures `evaluation/figures/r38_*_vs_lpips.pdf`; all-edits browser `r38_qual_html` (script `evaluation/r38_qual_html.py`); numbers computed 2026-10-07 with the §3 definition of "matched" (linear interpolation between neighbouring ρ, most-favourable-to-baseline if non-monotonic, no extrapolation) from the per-clip CSVs, plain per-clip mean, 95% bootstrap CIs over clips):
 
-- `lpips_first2` beats the ρ curve on full FiVE-Acc in all 4 main edit types.
-  - FiVE-official LPIPS-matched: +0.019 / +0.028 / +0.008 / +0.023 (types 1–4).
-  - FiVE-official PSNR-matched: +0.019 / +0.030 / +0.006 / +0.024.
-  - Full bench: +0.021 under both.
-  - CLIP-D is also positive in all four (LPIPS-matched; full bench +0.003 under both).
-  - No significance test yet: the type 3 gain (+0.006/+0.008) may be noise.
-  - Type 5 (n=9) +0.15 and type 6 (n=10) +0.000: too small to read.
-- The gain is largest on type 2 (non-rigid) and smallest on type 3 (colour).
-- Small effect; 2× NFE; no comparison with R26 or the anchor-only field on the full bench yet.
-- **Committed arm:** `lpips_first2`**.** It routes on LPIPS and is scored on LPIPS. The gain holds when matched on FiVE-official PSNR (above). Still to check: SSIM-matched, and the anchor-zone metric.
+- **Final config: DINO · τ = 0.9 at N = 5** (`dino_n5_tgt09`; chosen 2026-10-07). Gains over the tuned global-ρ curve have the same sign under both §3 matchings, but only one is significant:
+  - FiVE-Acc (full): LPIPS-matched +0.012 [−0.005, +0.029], PSNR-matched +0.015 [−0.002, +0.032].
+  - CLIP-D: LPIPS-matched +0.0019 [−0.0007, +0.0045], PSNR-matched **+0.0031 [+0.0008, +0.0057]**.
+  - Preservation at matched FiVE-Acc: LPIPS +0.004 better [−0.002, +0.012], PSNR +1.08 dB [−0.26, +2.51].
+  - Per type (FiVE-Acc, LPIPS- / PSNR-matched): type 1 −0.008 / −0.005, **type 2 +0.035 / +0.040**, type 3 0.000 / 0.000, type 4 +0.014 / +0.022. Type 5 (n=9) +0.11 and type 6 (n=10) 0.000: too small to read.
+- The gain is concentrated on type 2 (non-rigid object substitution): against LPIPS · τ = 0.9 at N=5 it is significantly better there (CLIP-D +0.0077), and it visibly completes shape edits that LPIPS-routed arms half-edit. On rigid/material edits (types 3–4) LPIPS-routed arms are slightly better on CLIP-D.
+- **Claim wording:** matches the tuned global-ρ trade-off on full FiVE (alignment gains positive under both matchings, significant only for CLIP-D PSNR-matched) and is better on shape-changing edits. Do **not** write "significantly beats the global-ρ curve on FiVE-official".
+- Why this config: DINO · τ = 0.9 and LPIPS · τ = 0.9 at N=5 are statistically tied overall (gap difference CLIP-D +0.0013 [−0.0008, +0.0033], FiVE-Acc −0.0015 [−0.019, +0.016]); DINO wins on shape changes and routes on a metric it is not scored on (no LPIPS circularity). N=15 rejected on cost, although `lpips_first2` at N=15 (R35) is the only config with a significant FiVE-Acc gain (+0.021 [+0.008, +0.034]).
+- Cost: 5-step draft + 15-step render = 20 sampler steps (1.33× a plain render by steps; **measured wall-clock 1.54×**, ~33 s/clip fixed draft overhead). Matched-NFE baseline: N = 20.
+- Known weaknesses: edits can fade late in the clip (e.g. `0069_car-turn`, `0021_landing`); slightly worse than LPIPS-routed arms on rigid/material edits. No comparison with R26 or the anchor-only field on the full bench yet. Still to check: SSIM-matched, and the anchor-zone metric.
 
 ---
 
@@ -128,7 +128,7 @@ Precedent: FREE-Edit (preprint) uses a binary, all-timestep version of this fiel
 
 - **The claim is sign-consistency within each axis.** Against the tuned baseline, alignment must improve *at matched preservation*, and preservation *at matched alignment*. Reading axes separately would count a move along the trade-off curve as a gain.
 - **What "matched" means.** The baseline is the tuned global-ρ curve: one point per ρ, same host, same subset. At our arm's value of the matching metric, the baseline's value is **linearly interpolated between the two neighbouring ρ points**. The gain is ours minus the interpolated value. If the curve is not monotonic, take the baseline value most favourable to the baseline. If our point is outside the curve's range, report "outside curve" with no gain (**no extrapolation**).
-  - *Alignment at matched preservation:* match **separately** on **FiVE-official LPIPS** and on **FiVE-official PSNR**. The gain must hold **under both**. LPIPS alone is circular, because `lpips_first2` routes on LPIPS.
+  - *Alignment at matched preservation:* match **separately** on **FiVE-official LPIPS** and on **FiVE-official PSNR**. The gain must hold **under both**. (Kept although the final config routes on DINO: matching on one bg metric alone would let a routing metric that correlates with it look better than it is, and the LPIPS-routed arms are still reported as ablations.)
   - *Preservation at matched alignment:* match on **FiVE-Acc (full)**.
 - **Primary vs secondary metrics (fixed now).** The claim requires sign agreement on the **primary** metrics only: alignment = FiVE-Acc (full), CLIP-D; preservation = FiVE-official PSNR/SSIM/LPIPS.
   - **Secondary:** CLIP-T (already considered weak), EditReward (per frame, blind to time), PSC-Δ (our variant, not externally validated), EditVerseBench VLM score, anchor-zone bg metric (ours, not human-validated).
@@ -271,7 +271,7 @@ If (1) or (2) fails, there is no CVPR method paper: C2 is now a reported metric,
 - **Novelty is a combination** (T0). Differential Diffusion (continuous per-pixel time), Follow-Your-Shape (divergence-derived mask) and, as concurrent preprints, Constrained Edit Fields (proposal → continuous strength field) and FREE-Edit (anchor-derived Q/K weight) each cover one part. Gate A (> R26 and > anchor-only at equal NFE) carries the paper.
 - **Removal:** the StreamEdit family (and so Ours) scores FiVE-Acc ≈ 0 on type 6; ContextFlow does deletion and is expected to win that row. Report it in the per-type table and state removal as a limitation. Do not drop the row.
 - **Field flicker across frames** (Follow-Your-Shape observed it qualitatively for its divergence map on Wan2.1, appendix Fig. 8): measure the field's temporal stability.
-- **Metric circularity** (LPIPS-routed, LPIPS-scored): gains are also matched on FiVE-official PSNR (they hold on full FiVE, §1). **Anchor-zone metric limits**: it forgives leakage already in the anchor, and its flow warp is approximate for non-rigid shapes. Both are stated; it stays secondary.
+- **Metric circularity:** the final config routes on DINO, not on the LPIPS it is scored on; the LPIPS-routed ablation arms are additionally matched on FiVE-official PSNR (§1). **Anchor-zone metric limits**: it forgives leakage already in the anchor, and its flow warp is approximate for non-rigid shapes. Both are stated; it stays secondary.
 - **Many metrics:** all are reported; the claim is sign-consistency per axis at matched other axis; losses are shown.
 - **EditVerseBench portability** (prompts, aspect ratios, protocol availability) could cost more than expected: it stays secondary.
 - **Compute:** a full-bench curve is ~85 L40S GPU-h per host (8 points). Use 5 points on Shape + Control, full bench for final tables only.

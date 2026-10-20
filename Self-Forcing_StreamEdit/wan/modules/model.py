@@ -288,6 +288,57 @@ class WanT2VCrossAttention(WanSelfAttention):
             # store
             crossattn_cache["fg_mask_soft"] = mask_soft
 
+        '''✨ R48: opt-in per-token attention recorder, same mask-value/flash_attention
+        trick as the fg_mask_soft block above but independent of it -- never reads or
+        writes "fg_indices"/"obtain_mask"/"fg_mask_soft". Gated by
+        crossattn_cache["rec_state"], a single Python dict SHARED BY REFERENCE across
+        all 30 layers' crossattn_cache entries, so every layer's call accumulates into
+        the SAME tensors (already divided by rec_state["n_blocks"] here) with no
+        separate per-layer harvest/average pass needed afterwards. A no-op (one dict
+        lookup) whenever rec_state is None or rec_state["active"] is False, so default
+        behaviour (attn_record=None end to end) is bit-for-bit unaffected.
+        Assumes batch_size == 1 (single clip per rollout_inference call, true for every
+        R48 draft run) -- asserts rather than silently mishandling a larger batch.
+        '''
+        rec_state = crossattn_cache.get("rec_state", None) if crossattn_cache is not None else None
+        if rec_state is not None and rec_state.get("active", False) and crossattn_cache.get("rec_use", True):
+            assert b == 2, f"R48 attn recorder assumes batch_size=1 (b=2 dual), got b={b}"
+            s0, s1 = rec_state["cur_slice"]
+            # dividing by both here (rather than by n_blocks only, then by n_window once
+            # at the end) avoids needing a second pass over the finished rollout to find
+            # the function's return point -- every write already lands pre-averaged.
+            denom = rec_state["n_blocks"] * rec_state["n_window"]   # n_blocks = blocks actually recorded
+            for half, idx_key, nprompt_key, tok_key, prompt_key in (
+                (slice(0, 1), "idx_src", "n_prompt_src", "accum_src_tok", "accum_src_prompt"),
+                (slice(1, 2), "idx_trg", "n_prompt_trg", "accum_trg_tok", "accum_trg_prompt"),
+            ):
+                qh, kh, vh = q[half], k[half], v[half]
+                idx = rec_state[idx_key]
+                nprompt = rec_state[nprompt_key]
+                assert len(idx) > 0, f"R48 attn recorder: empty trigger-token index list for {idx_key}"
+                # per-token maps: one flash_attention call per trigger token, mask_value
+                # = 1 at that single key position, 0 elsewhere -- the attention-weighted
+                # mass the query places on exactly that token (mean over heads).
+                tok_vals = []
+                for ti in idx:
+                    mv = torch.zeros_like(vh)              # [1, Lk, Nk, dim]
+                    mv[:, ti] = 1.0
+                    tok_vals.append(mv)
+                mv_cat = torch.cat(tok_vals, dim=0)         # [nT, Lk, Nk, dim]
+                nT = len(tok_vals)
+                qh_rep = qh.expand(nT, -1, -1, -1)
+                kh_rep = kh.expand(nT, -1, -1, -1)
+                tok_mass = flash_attention(qh_rep, kh_rep, mv_cat, k_lens=context_lens).mean(dim=[2, 3])  # [nT, Lq]
+                # prompt-total mass: mask_value = 1 for every real (non-pad) prompt
+                # token, 0 elsewhere -- the Eq. 7 "other tokens" denominator.
+                mv_prompt = torch.zeros_like(vh)
+                mv_prompt[:, :nprompt] = 1.0
+                prompt_mass = flash_attention(qh, kh, mv_prompt, k_lens=context_lens).mean(dim=[2, 3])  # [1, Lq]
+                tok_grid = tok_mass.view(nT, s1 - s0, 30, 52)
+                prompt_grid = prompt_mass.view(1, s1 - s0, 30, 52)
+                rec_state[tok_key][:, s0:s1] += tok_grid.float() / denom
+                rec_state[prompt_key][s0:s1] += prompt_grid[0].float() / denom
+
         # output
         x = x.flatten(2)
         x = self.o(x)

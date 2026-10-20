@@ -1,0 +1,26 @@
+[
+ {
+  "case_id": "edit1/0001_bus",
+  "edit_type": 1,
+  "video_name": "0001_bus",
+  "src_first_frame": "images/0001_bus/00001.jpg",
+  "first_frame_edit_prompt": "Change the city bus to a jeep.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchor_r43_smoke/repro/edit1/0001_bus.png"
+ },
+ {
+  "case_id": "edit2/0081_A_horse",
+  "edit_type": 2,
+  "video_name": "0081_A_horse",
+  "src_first_frame": "images/0081_A_horse/00001.jpg",
+  "first_frame_edit_prompt": "Replace the horse with a car and change the camera's focus from the horse to a dolphin.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchor_r43_smoke/repro/edit2/0081_A_horse.png"
+ },
+ {
+  "case_id": "edit5/0007_guitar-violin",
+  "edit_type": 5,
+  "video_name": "0007_guitar-violin",
+  "src_first_frame": "images/0007_guitar-violin/00001.jpg",
+  "first_frame_edit_prompt": "Add a hat to the violinist.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchor_r43_smoke/repro/edit5/0007_guitar-violin.png"
+ }
+]

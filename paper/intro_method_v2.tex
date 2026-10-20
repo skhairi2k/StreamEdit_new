@@ -1,0 +1,191 @@
+% CVPR-style draft: Introduction + Method for the R48 v2 idea (exposure-matched per-token control).
+% Status 2026-10-16: DESIGN ONLY. No v2 result exists yet; every quantitative claim is a \todo{}.
+% Citation keys are placeholders -- verify every bib entry (authors, venue, year) before submission.
+\documentclass[10pt,twocolumn]{article}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,bm,booktabs,xcolor}
+\usepackage[ruled,linesnumbered]{algorithm2e}
+\usepackage{hyperref}
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+\newcommand{\src}{\mathrm{src}}
+\newcommand{\tgt}{\mathrm{tgt}}
+\newtheorem{proposition}{Proposition}
+\title{Exposure-Matched Per-Token Control for Training-Free Video Editing}
+\author{Anonymous CVPR submission}
+\date{}
+\begin{document}
+\maketitle
+
+%==========================================================================================
+\section{Introduction}
+%==========================================================================================
+
+Training-free video editors built on pre-trained video diffusion and flow models~\cite{wan2025,selfforcing2025} change a source video according to a target prompt without any per-video optimisation~\cite{flowedit2025,streamedit2026,tokenflow2024}. Each exposes \emph{one global knob} that sets how strongly the target is allowed to override the source: the number of edited steps $n_{\max}$ in FlowEdit-style samplers~\cite{flowedit2025,flowdirector2026}, the exponent $\rho$ of the source/target query--key blend in StreamEdit~\cite{streamedit2026}, or the strength of SDEdit-style re-noising~\cite{sdedit2022}. Sweeping this knob traces a trade-off curve between edit alignment and source preservation, and practitioners pick one point on it per method.
+
+A single strength cannot serve every token of a clip. In an edit such as ``a rabbit running through grass'' $\rightarrow$ ``a drone flying over grass'', tokens on the rabbit must take a new outline, which forms early at high noise; tokens whose change is only colour or texture can be edited late, keeping the source's structure and motion; background tokens should not change at all. A global strength high enough for the outline releases the background and destroys the source motion inside the object; one low enough to protect them leaves the outline unedited. The trade-off curve of a global knob is therefore an artefact of applying one strength to heterogeneous tokens.
+
+Per-token control is the natural fix, and choosing \emph{where} to edit is well studied: masks from users, benchmarks or cross-attention restrict the edit to a region~\cite{diffedit2023,p2p2023}; Differential Diffusion releases each pixel at its own time, from a user-given map~\cite{diffdiff}; Follow-Your-Shape builds a mask from measured velocity divergence inside a global schedule, on images~\cite{followyourshape}. Two questions remain open for video. \textbf{(i) How much} should each token be released, estimated automatically rather than given as a map? \textbf{(ii) How} should one per-token demand be expressed on editors whose knobs differ in mechanism and units? We find that (ii) is not cosmetic. Mapping the same demand linearly onto each host's knob sends mid-range demand to saturated release on StreamEdit (most tokens at $\rho>10$, where editability no longer increases but background damage does) and to a regime where Wan-Edit~\cite{five2025} barely edits (start noise level $0.45$--$0.75$), so the same estimate produces opposite failures on the two hosts (\S\ref{sec:ablation-linear}).
+
+We propose a procedure with two parts that is shared across hosts. First, a cheap \emph{draft} at high editability estimates a per-token \emph{edit demand} $q_j\in[0,1]$: the product of an attention support, which says whether token $j$ belongs to the edited content, and the draft--source divergence, which says how much it changes. The divergence takes the larger of a semantic (DINOv3~\cite{dino}) and a perceptual (LPIPS~\cite{lpips2018}) distance, so that both shape and appearance changes register, and is clipped at fixed absolute references rather than normalised per video. Second, an \emph{exposure-matched mapping} turns $q_j$ into each host's native control. We write every host's control as a per-step coefficient $a_H(c,i)\in[0,1]$, the weight the target branch receives at solver step $i$ under control value $c$, read directly from the host's update equation. Its step average $Q_H(c)$ is the token's \emph{target exposure}. Normalising $Q_H$ over the host's native range and inverting it gives the control value: $c_j=U_H^{-1}(q_j)$. Nothing is fitted to rendered outputs or benchmark scores, and the same demand means the same mean target exposure on every host. For StreamEdit, the inverse is the budget-linear mapping over the source weight $t^{\rho}$; for FlowEdit, it reduces exactly to $n_{\max}=\mathrm{round}(Nq_j)$.
+
+We instantiate the procedure on two editors that release tokens by different mechanisms: StreamEdit, a few-step streaming editor on Self-Forcing~\cite{selfforcing2025} that anchors tokens softly through a query--key blend, and Wan-Edit, the FlowEdit~\cite{flowedit2025} sampler on Wan2.1-T2V-1.3B~\cite{wan2025} that gates the edit velocity per step. On FiVE-Bench~\cite{five2025}, at equal sampler budget including the draft, \todo{headline result vs.\ each host's tuned global-knob curve at matched preservation; per-type breakdown; motion fidelity inside the edit}.
+
+\paragraph{Contributions.}
+\begin{itemize}\setlength\itemsep{1pt}
+\item A host-agnostic, draft-derived \textbf{edit-demand field}: attention support times absolute draft--source divergence, combining semantic and perceptual distances, with no per-video normalisation.
+\item \textbf{Exposure-matched control}: a mapping from demand to each editor's native knob by inverting a response derived from the editor's own control equation, with no fitting, applicable to soft (attention-blend) and hard (velocity-gate) release.
+\item Evidence that the mapping matters: linear mappings in knob units fail in opposite directions on the two hosts, while \todo{exposure-matched control result}. Equal-NFE comparison against each host's tuned global curve on FiVE-Bench, \todo{results}.
+\end{itemize}
+
+%==========================================================================================
+\section{Method}
+\label{sec:method}
+%==========================================================================================
+
+Given a source video $x^{\src}$ with $F$ frames, a source prompt $c_{\src}$ and a target prompt $c_{\tgt}$, an editor (\emph{host}) $H$ produces an edited video. We work on the host's latent token grid: $j$ indexes a token (latent frame $f$, position $(u,v)$), $J=F'\!\times h\times w$ tokens in total. Our procedure has three stages (Alg.~\ref{alg:main}): a draft (\S\ref{sec:draft}), an edit-demand field (\S\ref{sec:demand}), and an exposure-matched per-token control for the final render (\S\ref{sec:exposure}). Stages 1 and 2 are identical for every host; only the last line of stage 3 is host-specific.
+
+\subsection{Hosts and their release controls}
+\label{sec:hosts}
+
+Both hosts evaluate a source branch and a target branch at every solver step $i=0,\dots,N-1$ (step $0$ at the highest noise level) and combine them under a control value $c$.
+
+\paragraph{StreamEdit.}
+StreamEdit~\cite{streamedit2026} edits causally, chunk by chunk, with a few-step Self-Forcing generator~\cite{selfforcing2025}. Inside self-attention, the target branch's queries and keys are blended toward the source branch's:
+\begin{equation}
+\tilde Q = a\,Q_{\tgt} + (1-a)\,Q_{\src},\qquad \tilde K = a\,K_{\tgt} + (1-a)\,K_{\src},\qquad a = 1 - t_{i}^{\,\rho},
+\label{eq:se-blend}
+\end{equation}
+where $t_i\in[0,1]$ is the next timestep of step $i$ and $\rho$ is the release exponent. The blend applies to the queries and keys of the chunk being denoised and to the cached keys of previous frames inside StreamEdit's foreground mask; values stay the target's own. At $t\approx 1$ the target is fully anchored for any $\rho$; larger $\rho$ releases it earlier. StreamEdit uses one global $\rho$ (default $\rho=2$); we make it per token, $\rho_j$, so token $j$'s query, key and cached key use $a_j = 1-t_i^{\rho_j}$.
+
+\paragraph{Wan-Edit (FlowEdit).}
+FlowEdit~\cite{flowedit2025} integrates an edit state $Z$ in clean-sample space from $Z=x^{\src}$, driven at each active step by the difference of the target and source velocities, $\Delta V_i = V_{\tgt}(z_i^{\tgt},t_i)-V_{\src}(z_i^{\src},t_i)$, which Wan-Edit passes to its multistep (UniPC) solver. With a per-token start we gate this velocity per token before the solver update:
+\begin{equation}
+\Delta V_{i,j} \leftarrow \mathbb{1}\!\left[i \ge N - n_j\right]\,\Delta V_{i,j},
+\label{eq:wan-gate}
+\end{equation}
+so token $j$ receives an edit velocity during its last $n_j$ steps and stays at the source before. The global method is $n_j\equiv n_{\max}$; stock Wan-Edit uses $N=50$, $n_{\max}=35$.
+
+\paragraph{A common abstraction.}
+Both updates give the target branch a per-step weight $a_H(c,i)\in[0,1]$ that depends only on the control value and the step index:
+\begin{equation}
+a_{\mathrm{SE}}(\rho,i) = 1 - t_i^{\,\rho}, \qquad a_{\mathrm{Wan}}(n,i) = \mathbb{1}[\,i \ge N-n\,].
+\label{eq:coef}
+\end{equation}
+This is the only host-specific quantity our method needs, and it is read from the host's code, not measured.
+
+\subsection{Draft}
+\label{sec:draft}
+We first run the host once at high editability, a short \emph{draft}. Its start noise level is $\sigma_d\approx 0.95$ on both hosts: StreamEdit with $N_d=5$ steps and only the first step anchored; Wan-Edit with a 17-step schedule started at step 3 ($\sigma=0.958$, 14 active steps). During the draft we record, from the first 20 transformer blocks and the steps with $\sigma\in[0.55,0.9]$, each branch's cross-attention to the source and target trigger phrases and its total attention mass on the real prompt tokens, averaged over heads, blocks and steps. The draft video $x^{d}$ and these maps are the only inputs to the next stage.
+
+\subsection{Edit-demand field}
+\label{sec:demand}
+
+\paragraph{Attention support.}
+For branch $b\in\{\src,\tgt\}$ with trigger tokens $p\in\mathcal{T}_b$ and maps $A_p\in\mathbb{R}^{J}$, we weight each trigger token by its spatial selectivity,
+\begin{equation}
+w_p = 1 - \frac{\mathcal{H}\!\left(A_p/\textstyle\sum_{j}A_{p,j}\right)}{\log J},\qquad
+\bar A_b = \frac{\sum_{p} w_p A_p}{\sum_p w_p},
+\end{equation}
+where $\mathcal{H}$ is the entropy, so diffuse maps (e.g.\ of function words) contribute little. A token belongs to the branch's region if its trigger attention exceeds the mean attention it gives to the other prompt tokens (StreamEdit's grounding rule):
+\begin{equation}
+M_{b,j} = \mathbb{1}\!\left[\bar A_{b,j} > \frac{\Pi_{b,j}-\sum_{p}A_{p,j}}{n_b - |\mathcal{T}_b|}\right],
+\end{equation}
+with $\Pi_{b,j}$ the token's total mass on the $n_b$ real prompt tokens. The support is the union of both branches, softened per latent frame by a distance decay,
+\begin{equation}
+S_j = \exp\!\big(-\lambda\,\mathrm{dist}(j, M_f)\big),\qquad M = M_{\src}\lor M_{\tgt},
+\end{equation}
+with $\lambda=0.5$ per token and $S_j=0$ on frames whose mask is empty. The source branch localises what must disappear, the target branch what must appear.
+
+\paragraph{Absolute divergence.}
+We compare $x^{d}$ and $x^{\src}$ on the token grid with two feature distances, $D^{\mathrm{dino}}_j$ (DINOv3 ViT-B/16 features, semantic, sensitive to shape and identity) and $D^{\mathrm{lp}}_j$ (LPIPS, perceptual, sensitive to colour and texture), averaged over the pixel frames of each latent frame. Each is clipped at a fixed absolute reference and the two are combined by a maximum:
+\begin{equation}
+m^{k}_j = \min\!\big(D^{k}_j/\kappa_k,\,1\big),\qquad d_j = \max\big(m^{\mathrm{dino}}_j,\, m^{\mathrm{lp}}_j\big),
+\end{equation}
+with $\kappa_{\mathrm{dino}}=0.55$ and $\kappa_{\mathrm{lp}}=0.75$, set once at the $\approx$91st percentile of in-object distances of StreamEdit drafts and frozen. There is no per-video normalisation: a weak edit stays weak even at its most-changed token. The maximum lets either distance register a change; on a colour-only edit a mean would cap the demand at half.
+% NOTE: max vs mean -- R49 renders the max only; the mean is not run.
+
+\paragraph{Demand.}
+\begin{equation}
+q_j = S_j\, d_j \in [0,1].
+\end{equation}
+The support removes divergence the draft introduced outside the edited content (Wan-Edit drafts alter background texture noticeably), and the divergence modulates strength inside it.
+
+\subsection{Exposure-matched control}
+\label{sec:exposure}
+
+The same $q_j$ must translate into each host's control. A linear map in knob units is not meaningful: $\rho$ acts through $t^{\rho}$, and equal increments of $\rho$ change the blend very unequally; $n$ acts through the step grid of a shifted schedule. We instead match a quantity both hosts share.
+
+\paragraph{Target exposure.}
+For control value $c$, the target exposure of a token is the step average of its target weight,
+\begin{equation}
+Q_H(c) = \frac{1}{N}\sum_{i=0}^{N-1} a_H(c,i),
+\end{equation}
+over the host's own step grid. We normalise it over the host's native range $[c_{\min},c_{\max}]$,
+\begin{equation}
+U_H(c) = \frac{Q_H(c)-Q_H(c_{\min})}{Q_H(c_{\max})-Q_H(c_{\min})}\in[0,1],
+\end{equation}
+and set each token's control by the inverse response,
+\begin{equation}
+\boxed{\,c_{H,j} = \arg\min_{c\in\mathcal{C}_H}\big|\,U_H(c) - q_j\,\big|\,}
+\label{eq:inverse}
+\end{equation}
+(the exact inverse for a continuous control, the nearest admissible value for an integer one). $U_H$ is monotone for both hosts, so Eq.~\eqref{eq:inverse} is well defined.
+
+\paragraph{StreamEdit.}
+With Eq.~\eqref{eq:coef}, $Q_{\mathrm{SE}}(\rho) = 1 - B(\rho)$ where $B(\rho)=\frac1N\sum_i t_i^{\rho}$ is the token's mean source weight over the real $N=15$-step grid (including its final $t=0$). Over $\rho\in[2,50]$ the inverse is
+\begin{equation}
+B(\rho_j) = (1-q_j)\,B(2) + q_j\,B(50),
+\end{equation}
+solved by bisection, since $B$ is strictly decreasing. The lower end $\rho=2$ is StreamEdit's default: a token with $q_j=0$ is anchored exactly as in the stock method, and only demand above zero releases more. On this grid $q=0.5$ gives $\rho=4.5$ and $q=0.9$ gives $\rho=15.7$.
+
+\paragraph{Wan-Edit.}
+With Eq.~\eqref{eq:coef}, $Q_{\mathrm{Wan}}(n)=n/N$ exactly, so $U_{\mathrm{Wan}}(n)=n/N$ over $n\in\{0,\dots,N\}$ and
+\begin{equation}
+n_j = \mathrm{round}(N q_j),\qquad s_j = N - n_j,
+\end{equation}
+with ties rounded to even. A token with $q_j=0$ is never edited ($s_j=N$). The render loop starts at the earliest admissible step $s_{\min}$, so $s_j$ is clipped to $s_j\ge s_{\min}$. We report two floors: $s_{\min}=9$ ($\sigma=0.958$, the draft's own start, so $q_j\gtrsim0.82$ saturates) and $s_{\min}=0$ (the full range, where $q_j=1$ starts a token from pure noise). \todo{which floor is reported as the method, from the subset results}
+
+\paragraph{What is matched, and what is not.}
+Two tokens with the same demand receive the same mean target exposure on either host. This is a property of the control equations, not a claim of equal visible edit strength: the hosts release differently (a soft attention blend versus a hard velocity gate), and StreamEdit also anchors the background through mechanisms outside Eq.~\eqref{eq:se-blend}. Empirically, the global sweeps of the two hosts give matching edit alignment at equal exposure where both have data (preliminary, 18 clips: Wan-Edit $n=40$, $B=0.20$ vs.\ StreamEdit $\rho=4$, $B=0.18$: FiVE-Acc $0.78$ for both; Wan-Edit stock vs.\ StreamEdit $\rho=2$, both $B\approx0.30$) \todo{confirm on the 401 held-out pairs}. Unlike per-host calibration on rendered outputs, the mapping contains no fitted parameter.
+
+\subsection{Cost}
+\label{sec:cost}
+The draft adds $N_d$ steps to the render: StreamEdit $5+15=20$ steps; Wan-Edit $14+41=55$ active steps with $s_{\min}=9$ and $14+50=64$ with $s_{\min}=0$ (both branches at every step). All baselines are compared at the same total budget: StreamEdit's global-$\rho$ sweep at $N=20$, and Wan-Edit's global start sweep at start $\sigma\in\{0.95,0.92,0.85\}$ with the number of steps chosen so that exactly 55 ($N=69/79/104$) or 64 ($N=81/92/120$) are active. The field computation runs no model call beyond the two feature extractors.
+
+\begin{algorithm}[t]
+\caption{Exposure-matched per-token editing}
+\label{alg:main}
+\KwIn{$x^{\src}$, $c_{\src}$, $c_{\tgt}$, host $H$ with coefficient $a_H(c,i)$ and range $[c_{\min},c_{\max}]$}
+$x^{d}$, $\{A_p\}$, $\Pi$ $\leftarrow$ draft of $H$ at $\sigma_d\approx0.95$ with attention recording\;
+$S \leftarrow$ soft support from selectivity-weighted trigger attention (\S\ref{sec:demand})\;
+$d \leftarrow \max\big(\min(D^{\mathrm{dino}}/\kappa_{\mathrm{dino}},1),\, \min(D^{\mathrm{lp}}/\kappa_{\mathrm{lp}},1)\big)$\;
+$q \leftarrow S\odot d$\;
+$U_H \leftarrow$ normalised step-mean of $a_H(\cdot,i)$ over $[c_{\min},c_{\max}]$\;
+$c_j \leftarrow U_H^{-1}(q_j)$ for every token $j$ \tcp*{only host-specific line}
+\KwRet{render of $H$ with per-token control $\{c_j\}$}
+\end{algorithm}
+
+% ---- placeholders for sections referenced above
+\section{Experiments (placeholder)}
+\subsection{Linear mapping in knob units}
+\label{sec:ablation-linear}
+\todo{R48 v1 subset results: $\rho=0.3+49.7E$ and $\sigma=0.1+0.86E$; opposite failure modes; equal-exposure alignment of the two global sweeps.}
+
+\begin{thebibliography}{99}\small
+% PLACEHOLDERS -- verify every entry before use.
+\bibitem{wan2025} Wan2.1 (Wan Team), 2025. \todo{verify}
+\bibitem{selfforcing2025} Self-Forcing, 2025. \todo{verify}
+\bibitem{flowedit2025} FlowEdit: inversion-free text-based editing using pre-trained flow models. \todo{verify venue}
+\bibitem{streamedit2026} StreamEdit: Training-Free Video Editing via Few-Step Streaming Video Generation, arXiv:2605.21466. \todo{verify}
+\bibitem{tokenflow2024} TokenFlow. \todo{verify}
+\bibitem{flowdirector2026} FlowDirector. \todo{verify}
+\bibitem{sdedit2022} SDEdit. \todo{verify}
+\bibitem{diffedit2023} DiffEdit. \todo{verify}
+\bibitem{p2p2023} Prompt-to-Prompt. \todo{verify}
+\bibitem{diffdiff} Differential Diffusion. \todo{verify}
+\bibitem{followyourshape} Follow-Your-Shape. \todo{verify}
+\bibitem{five2025} FiVE-Bench. \todo{verify}
+\bibitem{dino} DINOv3 (facebook/dinov3-vitb16-pretrain-lvd1689m, as used in r31\_divergence.py). \todo{verify}
+\bibitem{lpips2018} LPIPS. \todo{verify}
+\end{thebibliography}
+\end{document}

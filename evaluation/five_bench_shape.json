@@ -1,0 +1,710 @@
+{
+ "name": "FiVE-Bench-Shape",
+ "task": "R42",
+ "chosen_score": "patch",
+ "k": 100,
+ "source_csv": "evaluation/csv/r42_shape_scores.csv",
+ "frozen_on": "2026-10-01",
+ "cases": [
+  {
+   "case_id": "edit2/0030_rallye",
+   "edit_type": 2,
+   "video_name": "0030_rallye",
+   "rank": 1,
+   "score": 0.663378
+  },
+  {
+   "case_id": "edit2/0062_elephant",
+   "edit_type": 2,
+   "video_name": "0062_elephant",
+   "rank": 2,
+   "score": 0.658103
+  },
+  {
+   "case_id": "edit1/0018_breakdance-flare",
+   "edit_type": 1,
+   "video_name": "0018_breakdance-flare",
+   "rank": 3,
+   "score": 0.652609
+  },
+  {
+   "case_id": "edit2/0006_paragliding",
+   "edit_type": 2,
+   "video_name": "0006_paragliding",
+   "rank": 4,
+   "score": 0.649351
+  },
+  {
+   "case_id": "edit1/0030_rallye",
+   "edit_type": 1,
+   "video_name": "0030_rallye",
+   "rank": 5,
+   "score": 0.648993
+  },
+  {
+   "case_id": "edit2/0081_A_horse",
+   "edit_type": 2,
+   "video_name": "0081_A_horse",
+   "rank": 6,
+   "score": 0.642662
+  },
+  {
+   "case_id": "edit4/0030_rallye",
+   "edit_type": 4,
+   "video_name": "0030_rallye",
+   "rank": 7,
+   "score": 0.639111
+  },
+  {
+   "case_id": "edit2/0005_breakdance",
+   "edit_type": 2,
+   "video_name": "0005_breakdance",
+   "rank": 8,
+   "score": 0.636682
+  },
+  {
+   "case_id": "edit2/0027_dance-jump",
+   "edit_type": 2,
+   "video_name": "0027_dance-jump",
+   "rank": 9,
+   "score": 0.632777
+  },
+  {
+   "case_id": "edit2/0021_landing",
+   "edit_type": 2,
+   "video_name": "0021_landing",
+   "rank": 10,
+   "score": 0.629806
+  },
+  {
+   "case_id": "edit2/0011_lucia",
+   "edit_type": 2,
+   "video_name": "0011_lucia",
+   "rank": 11,
+   "score": 0.627152
+  },
+  {
+   "case_id": "edit5/0036_camel",
+   "edit_type": 5,
+   "video_name": "0036_camel",
+   "rank": 12,
+   "score": 0.622524
+  },
+  {
+   "case_id": "edit2/0091_A_hawk",
+   "edit_type": 2,
+   "video_name": "0091_A_hawk",
+   "rank": 13,
+   "score": 0.621692
+  },
+  {
+   "case_id": "edit2/0046_blackswan",
+   "edit_type": 2,
+   "video_name": "0046_blackswan",
+   "rank": 14,
+   "score": 0.619806
+  },
+  {
+   "case_id": "edit2/0040_tennis",
+   "edit_type": 2,
+   "video_name": "0040_tennis",
+   "rank": 15,
+   "score": 0.618216
+  },
+  {
+   "case_id": "edit2/0043_parkour",
+   "edit_type": 2,
+   "video_name": "0043_parkour",
+   "rank": 16,
+   "score": 0.617483
+  },
+  {
+   "case_id": "edit2/0036_camel",
+   "edit_type": 2,
+   "video_name": "0036_camel",
+   "rank": 17,
+   "score": 0.615728
+  },
+  {
+   "case_id": "edit2/0012_goat",
+   "edit_type": 2,
+   "video_name": "0012_goat",
+   "rank": 18,
+   "score": 0.615655
+  },
+  {
+   "case_id": "edit2/0009_bear",
+   "edit_type": 2,
+   "video_name": "0009_bear",
+   "rank": 19,
+   "score": 0.615526
+  },
+  {
+   "case_id": "edit2/0018_breakdance-flare",
+   "edit_type": 2,
+   "video_name": "0018_breakdance-flare",
+   "rank": 20,
+   "score": 0.615028
+  },
+  {
+   "case_id": "edit2/0095_A_crow",
+   "edit_type": 2,
+   "video_name": "0095_A_crow",
+   "rank": 21,
+   "score": 0.614017
+  },
+  {
+   "case_id": "edit1/0045_butterfly",
+   "edit_type": 1,
+   "video_name": "0045_butterfly",
+   "rank": 22,
+   "score": 0.613215
+  },
+  {
+   "case_id": "edit5/0069_car-turn",
+   "edit_type": 5,
+   "video_name": "0069_car-turn",
+   "rank": 23,
+   "score": 0.606957
+  },
+  {
+   "case_id": "edit2/0086_A_red_sports_car",
+   "edit_type": 2,
+   "video_name": "0086_A_red_sports_car",
+   "rank": 24,
+   "score": 0.602229
+  },
+  {
+   "case_id": "edit2/0076_A_rabbit",
+   "edit_type": 2,
+   "video_name": "0076_A_rabbit",
+   "rank": 25,
+   "score": 0.59742
+  },
+  {
+   "case_id": "edit2/0017_kid-football",
+   "edit_type": 2,
+   "video_name": "0017_kid-football",
+   "rank": 26,
+   "score": 0.596457
+  },
+  {
+   "case_id": "edit2/0015_car-shadow",
+   "edit_type": 2,
+   "video_name": "0015_car-shadow",
+   "rank": 27,
+   "score": 0.594996
+  },
+  {
+   "case_id": "edit2/0014_burnout",
+   "edit_type": 2,
+   "video_name": "0014_burnout",
+   "rank": 28,
+   "score": 0.594152
+  },
+  {
+   "case_id": "edit2/0096_A_car",
+   "edit_type": 2,
+   "video_name": "0096_A_car",
+   "rank": 29,
+   "score": 0.593964
+  },
+  {
+   "case_id": "edit6/0002_girl-dog",
+   "edit_type": 6,
+   "video_name": "0002_girl-dog",
+   "rank": 30,
+   "score": 0.593577
+  },
+  {
+   "case_id": "edit2/0045_butterfly",
+   "edit_type": 2,
+   "video_name": "0045_butterfly",
+   "rank": 31,
+   "score": 0.589292
+  },
+  {
+   "case_id": "edit2/0003_ocean-birds",
+   "edit_type": 2,
+   "video_name": "0003_ocean-birds",
+   "rank": 32,
+   "score": 0.587869
+  },
+  {
+   "case_id": "edit1/0057_dog",
+   "edit_type": 1,
+   "video_name": "0057_dog",
+   "rank": 33,
+   "score": 0.587803
+  },
+  {
+   "case_id": "edit2/0052_mallard-fly",
+   "edit_type": 2,
+   "video_name": "0052_mallard-fly",
+   "rank": 34,
+   "score": 0.585281
+  },
+  {
+   "case_id": "edit4/0059_drift-straight",
+   "edit_type": 4,
+   "video_name": "0059_drift-straight",
+   "rank": 35,
+   "score": 0.584686
+  },
+  {
+   "case_id": "edit2/0098_A_squirrel",
+   "edit_type": 2,
+   "video_name": "0098_A_squirrel",
+   "rank": 36,
+   "score": 0.582801
+  },
+  {
+   "case_id": "edit2/0007_guitar-violin",
+   "edit_type": 2,
+   "video_name": "0007_guitar-violin",
+   "rank": 37,
+   "score": 0.580894
+  },
+  {
+   "case_id": "edit2/0094_A_swan",
+   "edit_type": 2,
+   "video_name": "0094_A_swan",
+   "rank": 38,
+   "score": 0.57936
+  },
+  {
+   "case_id": "edit4/0051_dogs-jump",
+   "edit_type": 4,
+   "video_name": "0051_dogs-jump",
+   "rank": 39,
+   "score": 0.579079
+  },
+  {
+   "case_id": "edit5/0057_dog",
+   "edit_type": 5,
+   "video_name": "0057_dog",
+   "rank": 40,
+   "score": 0.572989
+  },
+  {
+   "case_id": "edit2/0039_chamaleon",
+   "edit_type": 2,
+   "video_name": "0039_chamaleon",
+   "rank": 41,
+   "score": 0.572761
+  },
+  {
+   "case_id": "edit2/0097_A_bird",
+   "edit_type": 2,
+   "video_name": "0097_A_bird",
+   "rank": 42,
+   "score": 0.570841
+  },
+  {
+   "case_id": "edit4/0045_butterfly",
+   "edit_type": 4,
+   "video_name": "0045_butterfly",
+   "rank": 43,
+   "score": 0.569337
+  },
+  {
+   "case_id": "edit1/0097_A_bird",
+   "edit_type": 1,
+   "video_name": "0097_A_bird",
+   "rank": 44,
+   "score": 0.565824
+  },
+  {
+   "case_id": "edit2/0093_A_helicopter",
+   "edit_type": 2,
+   "video_name": "0093_A_helicopter",
+   "rank": 45,
+   "score": 0.565333
+  },
+  {
+   "case_id": "edit6/0051_dogs-jump",
+   "edit_type": 6,
+   "video_name": "0051_dogs-jump",
+   "rank": 46,
+   "score": 0.562685
+  },
+  {
+   "case_id": "edit2/0008_snowboard-race",
+   "edit_type": 2,
+   "video_name": "0008_snowboard-race",
+   "rank": 47,
+   "score": 0.560729
+  },
+  {
+   "case_id": "edit2/0034_cows",
+   "edit_type": 2,
+   "video_name": "0034_cows",
+   "rank": 48,
+   "score": 0.560602
+  },
+  {
+   "case_id": "edit2/0060_motocross-bumps",
+   "edit_type": 2,
+   "video_name": "0060_motocross-bumps",
+   "rank": 49,
+   "score": 0.55687
+  },
+  {
+   "case_id": "edit2/0090_A_deer",
+   "edit_type": 2,
+   "video_name": "0090_A_deer",
+   "rank": 50,
+   "score": 0.554268
+  },
+  {
+   "case_id": "edit2/0050_slackline",
+   "edit_type": 2,
+   "video_name": "0050_slackline",
+   "rank": 51,
+   "score": 0.554262
+  },
+  {
+   "case_id": "edit5/0011_lucia",
+   "edit_type": 5,
+   "video_name": "0011_lucia",
+   "rank": 52,
+   "score": 0.55182
+  },
+  {
+   "case_id": "edit1/0021_landing",
+   "edit_type": 1,
+   "video_name": "0021_landing",
+   "rank": 53,
+   "score": 0.551034
+  },
+  {
+   "case_id": "edit4/0021_landing",
+   "edit_type": 4,
+   "video_name": "0021_landing",
+   "rank": 54,
+   "score": 0.550863
+  },
+  {
+   "case_id": "edit2/0024_hockey",
+   "edit_type": 2,
+   "video_name": "0024_hockey",
+   "rank": 55,
+   "score": 0.546024
+  },
+  {
+   "case_id": "edit1/0072_dog-agility",
+   "edit_type": 1,
+   "video_name": "0072_dog-agility",
+   "rank": 56,
+   "score": 0.545587
+  },
+  {
+   "case_id": "edit2/0035_helicopter",
+   "edit_type": 2,
+   "video_name": "0035_helicopter",
+   "rank": 57,
+   "score": 0.543643
+  },
+  {
+   "case_id": "edit2/0037_snowboard-sand",
+   "edit_type": 2,
+   "video_name": "0037_snowboard-sand",
+   "rank": 58,
+   "score": 0.543408
+  },
+  {
+   "case_id": "edit2/0074_rhino",
+   "edit_type": 2,
+   "video_name": "0074_rhino",
+   "rank": 59,
+   "score": 0.543082
+  },
+  {
+   "case_id": "edit2/0072_dog-agility",
+   "edit_type": 2,
+   "video_name": "0072_dog-agility",
+   "rank": 60,
+   "score": 0.540594
+  },
+  {
+   "case_id": "edit2/0083_A_boat",
+   "edit_type": 2,
+   "video_name": "0083_A_boat",
+   "rank": 61,
+   "score": 0.538747
+  },
+  {
+   "case_id": "edit2/0075_A_bicycle",
+   "edit_type": 2,
+   "video_name": "0075_A_bicycle",
+   "rank": 62,
+   "score": 0.534228
+  },
+  {
+   "case_id": "edit2/0055_pigs",
+   "edit_type": 2,
+   "video_name": "0055_pigs",
+   "rank": 63,
+   "score": 0.5305
+  },
+  {
+   "case_id": "edit2/0020_monkeys",
+   "edit_type": 2,
+   "video_name": "0020_monkeys",
+   "rank": 64,
+   "score": 0.530062
+  },
+  {
+   "case_id": "edit1/0006_paragliding",
+   "edit_type": 1,
+   "video_name": "0006_paragliding",
+   "rank": 65,
+   "score": 0.529717
+  },
+  {
+   "case_id": "edit5/0034_cows",
+   "edit_type": 5,
+   "video_name": "0034_cows",
+   "rank": 66,
+   "score": 0.528998
+  },
+  {
+   "case_id": "edit2/0068_planes-water",
+   "edit_type": 2,
+   "video_name": "0068_planes-water",
+   "rank": 67,
+   "score": 0.528326
+  },
+  {
+   "case_id": "edit2/0089_A_dog",
+   "edit_type": 2,
+   "video_name": "0089_A_dog",
+   "rank": 68,
+   "score": 0.526273
+  },
+  {
+   "case_id": "edit2/0084_A_squirrel",
+   "edit_type": 2,
+   "video_name": "0084_A_squirrel",
+   "rank": 69,
+   "score": 0.525172
+  },
+  {
+   "case_id": "edit2/0042_gym-ball",
+   "edit_type": 2,
+   "video_name": "0042_gym-ball",
+   "rank": 70,
+   "score": 0.522714
+  },
+  {
+   "case_id": "edit6/0042_gym-ball",
+   "edit_type": 6,
+   "video_name": "0042_gym-ball",
+   "rank": 71,
+   "score": 0.521389
+  },
+  {
+   "case_id": "edit4/0095_A_crow",
+   "edit_type": 4,
+   "video_name": "0095_A_crow",
+   "rank": 72,
+   "score": 0.520807
+  },
+  {
+   "case_id": "edit4/0057_dog",
+   "edit_type": 4,
+   "video_name": "0057_dog",
+   "rank": 73,
+   "score": 0.519299
+  },
+  {
+   "case_id": "edit4/0077_A_hawk",
+   "edit_type": 4,
+   "video_name": "0077_A_hawk",
+   "rank": 74,
+   "score": 0.519297
+  },
+  {
+   "case_id": "edit2/0051_dogs-jump",
+   "edit_type": 2,
+   "video_name": "0051_dogs-jump",
+   "rank": 75,
+   "score": 0.518525
+  },
+  {
+   "case_id": "edit1/0074_rhino",
+   "edit_type": 1,
+   "video_name": "0074_rhino",
+   "rank": 76,
+   "score": 0.517515
+  },
+  {
+   "case_id": "edit2/0067_mbike-trick",
+   "edit_type": 2,
+   "video_name": "0067_mbike-trick",
+   "rank": 77,
+   "score": 0.515993
+  },
+  {
+   "case_id": "edit2/0092_A_fox",
+   "edit_type": 2,
+   "video_name": "0092_A_fox",
+   "rank": 78,
+   "score": 0.513581
+  },
+  {
+   "case_id": "edit1/0052_mallard-fly",
+   "edit_type": 1,
+   "video_name": "0052_mallard-fly",
+   "rank": 79,
+   "score": 0.511499
+  },
+  {
+   "case_id": "edit1/0056_kart-turn",
+   "edit_type": 1,
+   "video_name": "0056_kart-turn",
+   "rank": 80,
+   "score": 0.50982
+  },
+  {
+   "case_id": "edit1/0098_A_squirrel",
+   "edit_type": 1,
+   "video_name": "0098_A_squirrel",
+   "rank": 81,
+   "score": 0.5091
+  },
+  {
+   "case_id": "edit1/0001_bus",
+   "edit_type": 1,
+   "video_name": "0001_bus",
+   "rank": 82,
+   "score": 0.508839
+  },
+  {
+   "case_id": "edit4/0091_A_hawk",
+   "edit_type": 4,
+   "video_name": "0091_A_hawk",
+   "rank": 83,
+   "score": 0.508185
+  },
+  {
+   "case_id": "edit2/0001_bus",
+   "edit_type": 2,
+   "video_name": "0001_bus",
+   "rank": 84,
+   "score": 0.504843
+  },
+  {
+   "case_id": "edit2/0044_snowboard",
+   "edit_type": 2,
+   "video_name": "0044_snowboard",
+   "rank": 85,
+   "score": 0.504421
+  },
+  {
+   "case_id": "edit2/0064_rollerblade",
+   "edit_type": 2,
+   "video_name": "0064_rollerblade",
+   "rank": 86,
+   "score": 0.503989
+  },
+  {
+   "case_id": "edit1/0086_A_red_sports_car",
+   "edit_type": 1,
+   "video_name": "0086_A_red_sports_car",
+   "rank": 87,
+   "score": 0.502951
+  },
+  {
+   "case_id": "edit1/0077_A_hawk",
+   "edit_type": 1,
+   "video_name": "0077_A_hawk",
+   "rank": 88,
+   "score": 0.500982
+  },
+  {
+   "case_id": "edit2/0087_A_seagull",
+   "edit_type": 2,
+   "video_name": "0087_A_seagull",
+   "rank": 89,
+   "score": 0.50058
+  },
+  {
+   "case_id": "edit1/0005_breakdance",
+   "edit_type": 1,
+   "video_name": "0005_breakdance",
+   "rank": 90,
+   "score": 0.500017
+  },
+  {
+   "case_id": "edit2/0082_A_tram",
+   "edit_type": 2,
+   "video_name": "0082_A_tram",
+   "rank": 91,
+   "score": 0.498621
+  },
+  {
+   "case_id": "edit2/0059_drift-straight",
+   "edit_type": 2,
+   "video_name": "0059_drift-straight",
+   "rank": 92,
+   "score": 0.493705
+  },
+  {
+   "case_id": "edit2/0057_dog",
+   "edit_type": 2,
+   "video_name": "0057_dog",
+   "rank": 93,
+   "score": 0.492454
+  },
+  {
+   "case_id": "edit2/0004_car-roundabout",
+   "edit_type": 2,
+   "video_name": "0004_car-roundabout",
+   "rank": 94,
+   "score": 0.491824
+  },
+  {
+   "case_id": "edit1/0041_longboard",
+   "edit_type": 1,
+   "video_name": "0041_longboard",
+   "rank": 95,
+   "score": 0.490704
+  },
+  {
+   "case_id": "edit2/0038_motorbike",
+   "edit_type": 2,
+   "video_name": "0038_motorbike",
+   "rank": 96,
+   "score": 0.490109
+  },
+  {
+   "case_id": "edit2/0029_horsejump-stick",
+   "edit_type": 2,
+   "video_name": "0029_horsejump-stick",
+   "rank": 97,
+   "score": 0.488303
+  },
+  {
+   "case_id": "edit4/0089_A_dog",
+   "edit_type": 4,
+   "video_name": "0089_A_dog",
+   "rank": 98,
+   "score": 0.487852
+  },
+  {
+   "case_id": "edit1/0027_dance-jump",
+   "edit_type": 1,
+   "video_name": "0027_dance-jump",
+   "rank": 99,
+   "score": 0.486744
+  },
+  {
+   "case_id": "edit2/0085_A_tram",
+   "edit_type": 2,
+   "video_name": "0085_A_tram",
+   "rank": 100,
+   "score": 0.486573
+  }
+ ]
+}

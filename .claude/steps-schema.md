@@ -9,12 +9,21 @@ Machine-readable `steps` block in plan YAML frontmatter. Used by `/run-step`.
 | `name` | string | Human-readable plan title |
 | `overview` | string | One-sentence summary |
 | `task_id` | string | Workboard id (e.g. `R2`) |
-| `todos` | list | High-level checklist — implementation tasks and steps; managed alongside `steps` |
+| `todos` | list | Code-prep work items (one deliverable each, see **Todo fields**) and optional run milestones that share a step's `id`; managed alongside `steps` |
 | `steps` | list | Ordered execution steps (see below) |
 | `isProject` | bool | Set `true` for Claude to treat as a persistent project plan |
 | `report_url` | string | Published Claude Artifact URL for this task, set by `/report-task`. Its presence means a re-run of `/report-task` updates this artifact in place instead of publishing a new one. |
 
 ---
+
+## Todo fields
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `id` | string | ✅ | Unique within `todos`. A **code-prep** todo's id never equals a step id; a **run milestone** todo reuses its step's id and is completed by `/run-step`. |
+| `content` | string | ✅ | Code-prep: exactly one deliverable (one new file, or one edit to one existing file). Never a file list or brace expansion. |
+| `needed_by` | list[string] | ✅ code-prep | Step ids that cannot run until this todo is done. `/build-step <step>` builds exactly the pending code-prep todos whose `needed_by` contains `<step>`. |
+| `status` | enum | ✅ | `pending` · `completed`. |
 
 ## Step fields
 

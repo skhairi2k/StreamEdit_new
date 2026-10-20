@@ -14,6 +14,7 @@ __all__ = [
     'T5Encoder',
     'T5Decoder',
     'T5EncoderModel',
+    'umt5_xxl_encoder_from_checkpoint',
 ]
 
 
@@ -467,6 +468,55 @@ def umt5_xxl(**kwargs):
         dropout=0.1)
     cfg.update(**kwargs)
     return _t5('umt5-xxl', **cfg)
+
+def umt5_xxl_encoder_from_checkpoint(
+    checkpoint_path,
+    dtype=torch.bfloat16,
+    device='cpu',
+    **kwargs,
+):
+    """Load UMT5-XXL encoder without allocating full random-init weights."""
+    cfg = dict(
+        vocab_size=256384,
+        dim=4096,
+        dim_attn=4096,
+        dim_ffn=10240,
+        num_heads=64,
+        encoder_layers=24,
+        decoder_layers=24,
+        num_buckets=32,
+        shared_pos=False,
+        dropout=0.1,
+    )
+    cfg.update(**kwargs)
+
+    with torch.device('meta'):
+        model = T5Encoder(
+            vocab=cfg['vocab_size'],
+            dim=cfg['dim'],
+            dim_attn=cfg['dim_attn'],
+            dim_ffn=cfg['dim_ffn'],
+            num_heads=cfg['num_heads'],
+            num_layers=cfg['encoder_layers'],
+            num_buckets=cfg['num_buckets'],
+            shared_pos=cfg['shared_pos'],
+            dropout=cfg['dropout'],
+        )
+
+    logging.info(f'loading {checkpoint_path}')
+    try:
+        state_dict = torch.load(
+            checkpoint_path, map_location='cpu', weights_only=True, mmap=True)
+    except TypeError:
+        state_dict = torch.load(
+            checkpoint_path, map_location='cpu', weights_only=True)
+    model.load_state_dict(state_dict, assign=True)
+    del state_dict
+
+    first_param = next(model.parameters())
+    if first_param.dtype != dtype or first_param.device != torch.device(device):
+        model = model.to(dtype=dtype, device=device)
+    return model
 
 
 class T5EncoderModel:

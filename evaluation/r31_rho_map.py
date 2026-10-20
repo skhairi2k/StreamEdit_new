@@ -66,6 +66,17 @@ above says hides 34-97% fictitious released mass) looks like next to the calibra
 ``--tau_min`` is not used in this mode: the floor is 0 by construction, matching the
 user's spec verbatim, not R30's calibrated ``tau_min=2``.
 
+``--mapping binary`` (added 2026-10-03 for R41, ABLATION of budget-linear)
+--------------------------------------------------------------------------
+Two-level field from the SAME ``m``, same ``tau_min`` / ``tau_max``:
+
+    tau(m) = tau_min   if m <  thresh
+    tau(m) = tau_max   if m >= thresh
+
+Tests continuous vs binary timing with everything upstream (draft, divergence, div_max)
+held fixed. ``--thresh`` has NO default in this mode: the cut is a free parameter, and R41
+sweeps it rather than defending any single value.
+
 RECREATED 2026-09-15 after this file was found deleted from disk by an external process
 (root cause unknown, no destructive command in any tracked shell history) -- recreated
 verbatim from conversation context. Its already-run outputs (r31_rho/, r31_rho_lin_t0.4/)
@@ -182,6 +193,24 @@ def linear_threshold_tau(m: np.ndarray, thresh: float, tau_max: float) -> np.nda
     return tau_max * np.clip((m - thresh) / (1.0 - thresh), 0.0, 1.0)
 
 
+def binary_tau(m: np.ndarray, thresh: float,
+               tau_min: float, tau_max: float) -> np.ndarray:
+    """R41 ABLATION mapping (2026-10-03) -- see module docstring.
+
+    ``tau_min`` below ``thresh``, ``tau_max`` at or above it. Same endpoints as
+    ``budget_linear_tau``, so the only difference from the continuous arm is that ``m``
+    is cut at ``thresh`` instead of interpolated.
+    """
+    if not (0.0 < thresh < 1.0):
+        raise ValueError(f"thresh must be in (0, 1), got {thresh}")
+    if tau_max <= tau_min:
+        raise ValueError(f"tau_max must exceed tau_min, got {tau_min} / {tau_max}")
+    m = np.asarray(m, dtype=np.float64)
+    if np.isnan(m).any():
+        raise ValueError("m contains NaN -- refusing to route a gate on it")
+    return np.where(m >= thresh, float(tau_max), float(tau_min))
+
+
 def self_test(step: int, flow_shift: float,
               tau_min: float, tau_max: float) -> None:
     """Assert the vectorized inversion matches r30's scalar one, and print the curve.
@@ -228,15 +257,17 @@ def parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
                         "alternative, not the default.")
     p.add_argument("--tau_max", type=float, default=DEFAULT_TAU_MAX,
                    help="Exponent at m = 1. Default 50 (R30's calibrated ceiling).")
-    p.add_argument("--mapping", choices=("budget_linear", "linear_threshold"),
+    p.add_argument("--mapping", choices=("budget_linear", "linear_threshold", "binary"),
                    default="budget_linear",
                    help="Default: R30's calibrated budget-linear inversion (unchanged "
                         "behavior). 'linear_threshold' is a 2026-09-15 EXPLORATORY "
                         "alternative for comparison only -- see module docstring: "
-                        "tau=0 below --thresh, then linear IN THE EXPONENT to tau_max.")
-    p.add_argument("--thresh", type=float, default=0.4,
-                   help="Only used by --mapping linear_threshold: m below this routes "
-                        "tau=0 (source fully pinned). Default 0.4.")
+                        "tau=0 below --thresh, then linear IN THE EXPONENT to tau_max. "
+                        "'binary' (R41 ablation): tau_min below --thresh, tau_max at or "
+                        "above it.")
+    p.add_argument("--thresh", type=float, default=None,
+                   help="Cut on m. --mapping linear_threshold: m below this routes tau=0 "
+                        "(default 0.4). --mapping binary: REQUIRED, no default.")
     p.add_argument("--step", type=int, default=DEFAULT_STAGE3_STEP,
                    help="STAGE 3's denoising step count -- the grid the blend runs on. "
                         "NOT stage 1's 7. A_disc is schedule-dependent, so changing this "
@@ -265,6 +296,11 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
 
     t_next = t_next_schedule(args.step, args.flow_shift)
     linear = args.mapping == "linear_threshold"
+    binary = args.mapping == "binary"
+    if linear and args.thresh is None:
+        args.thresh = 0.4                # pre-R41 default, kept for old callers
+    if binary and args.thresh is None:
+        raise SystemExit("[r31_rho_map] --mapping binary needs an explicit --thresh")
     if linear:
         # No A_disc/schedule dependence at all in this mode -- see module docstring.
         eff_tau_min = 0.0
@@ -275,6 +311,16 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
               f"tau_max={args.tau_max} (tau_min forced to 0, --tau_min ignored)")
         print(f"[r31_rho_map] m=0.5 -> tau={tau_half:.4f} "
               f"(sanity: m<thresh -> 0, m=1 -> {args.tau_max})", flush=True)
+    elif binary:
+        eff_tau_min = args.tau_min
+        # A_disc endpoints recorded for provenance only; the binary map never inverts it.
+        a_lo, a_hi = a_disc(args.tau_min, t_next), a_disc(args.tau_max, t_next)
+        tau_half = float(binary_tau(np.array([0.5]), args.thresh,
+                                    args.tau_min, args.tau_max)[0])
+        print(f"[r31_rho_map] div_root={div_root}")
+        print(f"[r31_rho_map] ABLATION mapping=binary thresh={args.thresh} "
+              f"tau: m<{args.thresh} -> {args.tau_min}, m>={args.thresh} -> "
+              f"{args.tau_max}", flush=True)
     else:
         eff_tau_min = args.tau_min
         a_lo, a_hi = a_disc(args.tau_min, t_next), a_disc(args.tau_max, t_next)
@@ -314,6 +360,8 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
 
             if linear:
                 rho = linear_threshold_tau(m, args.thresh, args.tau_max)
+            elif binary:
+                rho = binary_tau(m, args.thresh, args.tau_min, args.tau_max)
             else:
                 rho = budget_linear_tau(m, t_next, args.tau_min, args.tau_max)
 
@@ -326,7 +374,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                 # the schedule it was inverted on, so both are recorded (NaN for
                 # linear_threshold, which has no schedule dependence at all).
                 mapping=np.str_(args.mapping),
-                thresh=np.float32(args.thresh if linear else float("nan")),
+                thresh=np.float32(args.thresh if (linear or binary) else float("nan")),
                 tau_at_m_half=np.float32(tau_half),
                 step=np.int32(args.step),
                 flow_shift=np.float32(args.flow_shift),
@@ -347,9 +395,10 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                 measure_kind=(z["measure_kind"] if "measure_kind" in z.files
                               else np.str_("unknown__pre_2026_09_15")),
             )
+            fg_note = (f" fg_frac {(rho == args.tau_max).mean():.4f}" if binary else "")
             print(f"[ok] {edit_dir}/{f.stem}: rho {rho.shape} "
                   f"range [{rho.min():.3f}, {rho.max():.3f}] "
-                  f"mean {rho.mean():.3f} -> {out}", flush=True)
+                  f"mean {rho.mean():.3f}{fg_note} -> {out}", flush=True)
             n_ok += 1
         except Exception as ex:          # record and continue -- never swallow silently
             print(f"[ERROR] {edit_dir}/{f.stem}: {type(ex).__name__}: {ex}", flush=True)

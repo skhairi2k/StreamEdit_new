@@ -1,9 +1,13 @@
+logs/
+outputs/
 __pycache__/
 checkpoints/
 wan_models/
-figures/
-csv/
-old_streamedit
+old_streamedit/
+evaluation/csv/
+evaluation/figures/
+evaluation/*.html
+evaluation/**/_archive*/
 *.png
 *.pdf
 *.pth
@@ -15,5 +19,5 @@ old_streamedit
 *.ckpt
 *.bin
 *.pt
-wan_models/
-checkpoints/
+*.npy
+*.npz

@@ -53,6 +53,8 @@ import torch
 from PIL import Image
 from torchvision import transforms
 
+import backbone as bb   #✨ R45: --backbone sf|ll (evaluation/backbone.py)
+
 _DEFAULT_SF_ROOT = Path(__file__).resolve().parent.parent / "Self-Forcing_StreamEdit"
 
 FRAME_SEQ_LENGTH = 1560          # == pipeline's self.frame_seq_length (30 x 52)
@@ -103,11 +105,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--flow_shift", type=float, default=1.0)
     parser.add_argument("--seed", type=int, default=0)
     parser.add_argument("--sink_size", type=int, default=0)
-    parser.add_argument("--config_path", type=str, default="configs/self_forcing_dmd.yaml")
     parser.add_argument("--checkpoint_path", type=str,
                         default="checkpoints/self_forcing_dmd.pt")
     parser.add_argument("--use_ema", action="store_true", default=True)
-    parser.add_argument("--sf_root", type=str, default=str(_DEFAULT_SF_ROOT))
+    bb.add_backbone_args(parser)   #✨ R45: --backbone, --sf_root, --config_path
     parser.add_argument("--allow_schedule_mismatch", action="store_true",
                         help="Proceed even if a rho npz was built for a different "
                              "step/flow_shift. Diagnostic only -- the exponents would be "
@@ -180,6 +181,10 @@ def save_frames_png(frames: torch.Tensor, out_dir: Path) -> int:
 
 def main() -> None:
     args = parse_args()
+    bb.resolve_defaults(args)   #✨ R45: per-backbone --sf_root / --config_path
+    if args.backbone == "ll" and args.vp_mode == "pvp":
+        raise SystemExit("--vp_mode pvp (R10 persistent VP bank) is Self-Forcing-only; "
+                         "LongLive implements vp and novp.")
 
     sf_root = Path(args.sf_root).expanduser().resolve()
     data_root = Path(args.data_root).expanduser().resolve()
@@ -190,11 +195,9 @@ def main() -> None:
     cases_json = (Path(args.cases_json).expanduser().resolve()
                   if args.cases_json else None)
 
-    sys.path.insert(0, str(sf_root))
-    os.chdir(sf_root)
-
-    from inference_edit_streamedit import load_pipe, find_closest_num_frame, read_json
-    from utils.misc import set_seed
+    #✨ R45: the chosen backbone build goes on sys.path and becomes the cwd.
+    _bb = bb.activate(args.backbone, sf_root)
+    find_closest_num_frame, read_json, set_seed = _bb.find_closest_num_frame, _bb.read_json, _bb.set_seed
     from diffusers.utils import load_video
 
     edit_json = data_root / "edit_prompt" / f"edit{args.edit_type}_FiVE.json"
@@ -244,7 +247,7 @@ def main() -> None:
         raise SystemExit(1)
     print(f"[r31_stage3] preflight PASS for all {len(entries)} clips", flush=True)
 
-    pipeline, low_memory, device, local_rank = load_pipe(args)
+    pipeline, low_memory, device = bb.load_backbone(args.backbone, args)   #✨ R45
 
     transform = transforms.Compose([
         transforms.Resize((480, 832)),
@@ -297,16 +300,13 @@ def main() -> None:
                 # Encode order (src first frame, THEN anchor) and the single trailing
                 # clear_cache are load bearing: the VAE carries temporal-conv state
                 # between calls, so reordering breaks bit-parity with R7/R26/R30.
-                src_first_frame_latent = pipeline.vae.encode_to_latent(
-                    transform(src_video[0]).unsqueeze(0).unsqueeze(2).to(
-                        device=device, dtype=torch.bfloat16)
-                ).to(device=device, dtype=torch.bfloat16)
-                trg_first_frame_latent = pipeline.vae.encode_to_latent(
-                    transform(trg_first_frame).unsqueeze(0).unsqueeze(2).to(
-                        device=device, dtype=torch.bfloat16)
-                ).to(device=device, dtype=torch.bfloat16)
-                pipeline.vae.model.clear_cache()
-                independent_first_frame = True
+                #✨ R45: same two encodes, same order, one clear_cache -- via
+                # backbone.encode_vp, which also applies LongLive's x3 repeat
+                # (triple_first_frame) on --backbone ll.
+                src_first_frame_latent, trg_first_frame_latent, _vp_flags = bb.encode_vp(
+                    args.backbone, pipeline, transform, src_video[0], trg_first_frame, device)
+                independent_first_frame = _vp_flags["independent_first_frame"]
+                triple_first_frame = _vp_flags["triple_first_frame"]
                 vp_latent = None
             elif vp_mode == "pvp":
                 vp_latent = pipeline.vae.encode_to_latent(
@@ -315,13 +315,15 @@ def main() -> None:
                 ).to(device=device, dtype=torch.bfloat16)
                 pipeline.vae.model.clear_cache()
                 independent_first_frame = False
+                triple_first_frame = False
                 src_first_frame_latent = trg_first_frame_latent = None
             else:
                 independent_first_frame = False
+                triple_first_frame = False
                 src_first_frame_latent = trg_first_frame_latent = vp_latent = None
 
             steps: list = []
-            _, final_latent = pipeline.rollout_inference(
+            _, final_latent = bb.edit_call(args.backbone, pipeline,   #✨ R45: sf -> rollout_inference, ll -> inference
                 src_video=video_latents,
                 src_prompts=e["source_prompt"],
                 trg_prompts=e["target_prompt"],
@@ -332,6 +334,7 @@ def main() -> None:
                 profile=False,
                 low_memory=low_memory,
                 independent_first_frame=independent_first_frame,
+                triple_first_frame=triple_first_frame,
                 src_initial_latent=src_first_frame_latent,
                 trg_initial_latent=trg_first_frame_latent,
                 fg_boost_factor=args.fg_boost_factor,

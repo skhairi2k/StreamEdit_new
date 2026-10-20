@@ -9,7 +9,7 @@ from utils.scheduler import SchedulerInterface, FlowMatchScheduler
 from wan.modules.tokenizers import HuggingfaceTokenizer
 from wan.modules.model import WanModel, RegisterTokens, GanAttentionBlock
 from wan.modules.vae import _video_vae
-from wan.modules.t5 import umt5_xxl
+from wan.modules.t5 import umt5_xxl_encoder_from_checkpoint
 from wan.modules.causal_model import CausalWanModel
 from wan.modules.causal_model_infinity import CausalWanModel as CausalWanModelInfinity
 
@@ -18,20 +18,16 @@ class WanTextEncoder(torch.nn.Module):
     def __init__(self) -> None:
         super().__init__()
 
-        self.text_encoder = umt5_xxl(
-            encoder_only=True,
-            return_tokenizer=False,
-            dtype=torch.float32,
-            device=torch.device('cpu')
+        #✨ R45: Self-Forcing's loader (utils/wan_wrapper.py there), user-requested
+        # 2026-10-06. The stock fp32 build put ~23 GB on the GPU before the driver's bf16
+        # cast and saturated memory; this mmaps the checkpoint and lands it in fp16 (~11 GB).
+        # After the driver's cast both routes end in bf16, but bf16 -> fp16 -> bf16 flushes
+        # 267,815 / 5.68 B tiny weights (4.7e-5), so embeddings match SF, not stock LL.
+        self.text_encoder = umt5_xxl_encoder_from_checkpoint(
+            "wan_models/Wan2.1-T2V-1.3B/models_t5_umt5-xxl-enc-bf16.pth",
+            dtype=torch.float16,
+            device='cuda'
         ).eval().requires_grad_(False)
-        self.text_encoder.load_state_dict(
-            torch.load("wan_models/Wan2.1-T2V-1.3B/models_t5_umt5-xxl-enc-bf16.pth",
-                       map_location='cpu', weights_only=False)
-        )
-        
-        # Move text encoder to GPU if available
-        if torch.cuda.is_available():
-            self.text_encoder = self.text_encoder.cuda()
 
         self.tokenizer = HuggingfaceTokenizer(
             name="wan_models/Wan2.1-T2V-1.3B/google/umt5-xxl/", seq_len=512, clean='whitespace')

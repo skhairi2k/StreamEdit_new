@@ -1,0 +1,191 @@
+% CVPR-style draft: Introduction + Method for the R48 v2 idea (exposure-matched per-token control).
+% Status 2026-10-16: DESIGN ONLY. No v2 result exists yet; every quantitative claim is a \todo{}.
+% Citation keys are placeholders -- verify every bib entry (authors, venue, year) before submission.
+\documentclass[10pt,twocolumn]{article}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,bm,booktabs,xcolor}
+\usepackage[ruled,linesnumbered]{algorithm2e}
+\usepackage{hyperref}
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+\newcommand{\src}{\mathrm{src}}
+\newcommand{\tgt}{\mathrm{tgt}}
+\newtheorem{proposition}{Proposition}
+\title{Exposure-Matched Per-Token Control for Training-Free Video Editing}
+\author{Anonymous CVPR submission}
+\date{}
+\begin{document}
+\maketitle
+
+%==========================================================================================
+\section{Introduction}
+%==========================================================================================
+
+Training-free video editors built on pretrained video diffusion and flow models~\cite{wan2025,selfforcing2025} can edit a source video from a target instruction without per-video optimisation~\cite{flowedit2025,streamedit2026,tokenflow2024}. Many expose a global control that trades target adherence against source preservation. Examples include the number of active editing steps $n_{\max}$ in FlowEdit-style samplers~\cite{flowedit2025,flowdirector2026}, and the exponent $\rho$ that controls source/target query--key blending in StreamEdit~\cite{streamedit2026}. Varying such a control yields different operating points on an edit-alignment--preservation trade-off, but the selected value is shared across the video.
+
+Different parts of a video edit can require different degrees of freedom. In an edit such as ``a rabbit running through grass'' $\rightarrow$ ``a drone flying over grass'', the object's silhouette may need substantial structural change, while unrelated background content should remain source-dominated. Appearance-only changes may require less structural freedom than a complete object replacement. A single global setting can therefore be too conservative for the desired shape change yet too permissive elsewhere. This motivates allocating editability locally rather than imposing one shared strength on all tokens.
+
+Spatial localisation is well studied: user- or benchmark-provided masks and cross-attention can restrict editing to a region~\cite{diffedit2023,p2p2023}; Differential Diffusion assigns per-pixel release times from a user-provided map~\cite{diffdiff}; and Follow-Your-Shape derives an image-editing mask from measured velocity divergence within a global schedule~\cite{followyourshape}. Our focus is different: estimating token-level edit demand automatically from a draft, then translating that demand into the native control of a video editor. The two steps should be distinguished. A demand estimate is expressed in a shared representation, whereas each host implements editability through its own control mechanism. In preliminary pilots, a direct linear map in raw knob units behaved inconsistently: it pushed many StreamEdit tokens into a high-$\rho$ regime, while assigning Wan-Edit~\cite{five2025} settings that often produced weak edits. These observations motivate a control mapping based on each host's update equation rather than on the numerical units of its knob (\S\ref{sec:ablation-linear}).
+
+We propose a shared controller with a host-specific control adapter. A short, high-editability \emph{draft} provides two signals. First, source- and target-branch attention defines a soft spatial support $S_j$ for the edited content. Second, DINOv3~\cite{dino} and LPIPS~\cite{lpips2018} measure semantic and perceptual draft--source divergence. We scale these distances by fixed reference values and do not renormalise them independently for each video. Their maximum, multiplied by $S_j$, gives the token's edit demand $q_j\in[0,1]$. To translate demand into a host's control, we express its native knob $c$ as a per-step coefficient $a_H(c,i)\in[0,1]$ derived from the update equation, average this coefficient over the host's solver steps, and normalise the resulting response over a stated control range. Inverting that normalised response maps $q_j$ to a native control value. This procedure does not fit the mapping to rendered outputs or benchmark scores. Equal $q_j$ values correspond to the same fraction of each host's normalised control-exposure range; they do not imply equal visible effects. The adapter is therefore host-specific, while the demand field and mapping rule are shared.
+
+We study two hosts with different release mechanisms: StreamEdit, a few-step streaming editor built on Self-Forcing~\cite{selfforcing2025} that controls source anchoring through query--key blending, and Wan-Edit, a FlowEdit~\cite{flowedit2025} sampler on Wan2.1-T2V-1.3B~\cite{wan2025} that gates the edit-velocity contribution over solver steps. We evaluate both on FiVE-Bench~\cite{five2025}, counting the draft in the total sampling budget, and compare against each host's tuned global-control baseline. \todo{Report results at equal NFE, matched preservation/alignment, and by edit type; include motion-fidelity analysis.}
+
+\paragraph{Contributions.}
+\begin{itemize}\setlength\itemsep{1pt}
+\item A shared, draft-derived \textbf{edit-demand field} that combines source/target attention support with fixed-reference semantic and perceptual divergence, without per-video rescaling.
+\item A deterministic \textbf{control adapter} that maps demand to each host's native knob by inverting a normalised response derived from its update equation, for both soft blending and step-gated editing.
+\item An evaluation of whether control-exposure matching improves on direct linear mapping in raw knob units and on each host's tuned global-control curve at equal NFE. \todo{Insert results only after the final experiments.}
+\end{itemize}
+
+%==========================================================================================
+\section{Method}
+\label{sec:method}
+%==========================================================================================
+
+Given a source video $x^{\src}$, source prompt $c_{\src}$, target prompt $c_{\tgt}$, and editing host $H$, the method produces an edited video. We define tokens on the host's latent grid: $j$ indexes latent frame $f$ and spatial position $(u,v)$, for $J=F'\times h\times w$ tokens. The procedure has three stages (Alg.~\ref{alg:main}): generate a draft, compute a shared edit-demand field, and convert that field into per-token native controls for the final render. The high-level field construction is shared; the draft schedule and the final control adapter must respect each host's implementation.
+
+\subsection{Hosts and their release controls}
+\label{sec:hosts}
+
+Both evaluated hosts compute source- and target-conditioned branches over solver steps $i=0,\dots,N-1$, with step $0$ at the highest noise level. Their native controls differ, so we define a common scalar summary of the control response rather than assuming their updates are otherwise equivalent.
+
+\paragraph{StreamEdit.}
+StreamEdit~\cite{streamedit2026} edits causally, chunk by chunk, with a few-step Self-Forcing generator~\cite{selfforcing2025}. Inside self-attention, the target branch's queries and keys are blended toward the source branch's:
+\begin{equation}
+\tilde Q = a\,Q_{\tgt} + (1-a)\,Q_{\src},\qquad \tilde K = a\,K_{\tgt} + (1-a)\,K_{\src},\qquad a = 1 - t_{i}^{\,\rho},
+\label{eq:se-blend}
+\end{equation}
+where $t_i\in[0,1]$ is the next timestep of step $i$ and $\rho$ is the release exponent. The blend applies to the queries and keys of the chunk being denoised and to the cached keys of previous frames inside StreamEdit's foreground mask; values stay the target's own. At $t\approx 1$ the target is fully anchored for any $\rho$; larger $\rho$ releases it earlier. StreamEdit uses one global $\rho$ (default $\rho=2$); we make it per token, $\rho_j$, so token $j$'s query, key and cached key use $a_j = 1-t_i^{\rho_j}$.
+
+\paragraph{Wan-Edit (FlowEdit).}
+FlowEdit~\cite{flowedit2025} evolves an edit state $Z$ from $Z=x^{\src}$ using the target--source velocity difference $\Delta V_i=V_{\tgt}(z_i^{\tgt},t_i)-V_{\src}(z_i^{\src},t_i)$, which Wan-Edit supplies to its multistep UniPC solver. We introduce a token-dependent active interval by gating each token's direct edit-velocity contribution before the solver update:
+\begin{equation}
+\Delta V_{i,j} \leftarrow \mathbb{1}\!\left[i \ge N - n_j\right]\,\Delta V_{i,j},
+\label{eq:wan-gate}
+\end{equation}
+so token $j$ receives a direct edit-velocity contribution during its last $n_j$ active steps. Before that interval, its edit-velocity contribution is zero; because model interactions and solver history can couple tokens, this does not guarantee that its rendered pixels remain unchanged. The global baseline uses $n_j\equiv n_{\max}$; the stock configuration considered here uses $N=50$ and $n_{\max}=35$.
+
+\paragraph{A common abstraction.}
+For comparison, we define a nominal per-step target-influence coefficient $a_H(c,i)\in[0,1]$ from each host's update equation. This coefficient is a control-level proxy: its semantics differ between query--key blending and velocity gating, and it is not a direct measure of the visible change in a rendered frame.
+\begin{equation}
+a_{\mathrm{SE}}(\rho,i) = 1 - t_i^{\,\rho}, \qquad a_{\mathrm{Wan}}(n,i) = \mathbb{1}[\,i \ge N-n\,].
+\label{eq:coef}
+\end{equation}
+The host-specific control coefficient is obtained from the update equation rather than fitted to rendered outputs. The attention extractor and draft schedule must still be compatible with the host implementation.
+
+\subsection{Draft}
+\label{sec:draft}
+We run a short, high-editability draft using a solver-specific schedule: StreamEdit uses $N_d=5$ steps with only the first step anchored; Wan-Edit uses a 17-step schedule starting at step 3 ($\sigma=0.958$, 14 active steps). Thus, the draft recipe is shared conceptually but its discrete schedule is host-specific. During the draft, we record cross-attention from the first 20 transformer blocks over steps with $\sigma\in[0.55,0.9]$. For each branch, we retain attention to the source/target trigger phrases and total attention mass on real prompt tokens, averaged over heads, selected blocks, and selected steps. The draft video $x^d$ and these attention maps feed the demand estimator.
+
+\subsection{Edit-demand field}
+\label{sec:demand}
+
+\paragraph{Attention support.}
+For branch $b\in\{\src,\tgt\}$ with trigger tokens $p\in\mathcal{T}_b$ and maps $A_p\in\mathbb{R}^{J}$, we weight each trigger token by its spatial selectivity,
+\begin{equation}
+w_p = 1 - \frac{\mathcal{H}\!\left(A_p/\textstyle\sum_{j}A_{p,j}\right)}{\log J},\qquad
+\bar A_b = \frac{\sum_{p} w_p A_p}{\sum_p w_p},
+\end{equation}
+where $\mathcal{H}$ is the entropy, so diffuse maps (e.g.\ of function words) contribute little. A token belongs to the branch's region if its trigger attention exceeds the mean attention it gives to the other prompt tokens (StreamEdit's grounding rule):
+\begin{equation}
+M_{b,j} = \mathbb{1}\!\left[\bar A_{b,j} > \frac{\Pi_{b,j}-\sum_{p}A_{p,j}}{n_b - |\mathcal{T}_b|}\right],
+\end{equation}
+with $\Pi_{b,j}$ the token's total mass on the $n_b$ real prompt tokens. We take the union of the two branch masks and soften its boundary independently in each latent frame using a spatial distance decay,
+\begin{equation}
+S_j = \exp\!\big(-\lambda\,\mathrm{dist}(j, M_f)\big),\qquad M = M_{\src}\lor M_{\tgt},
+\end{equation}
+with $\lambda=0.5$ per latent-grid token and $S_j=0$ on frames whose mask is empty. The source branch indicates where source content may need to change; the target branch indicates where target content is expected to appear. Because the distance decay is soft, it downweights rather than strictly eliminates divergence just outside the estimated support.
+
+\paragraph{Fixed-reference divergence.}
+We compare $x^{d}$ and $x^{\src}$ on the token grid with two feature distances, $D^{\mathrm{dino}}_j$ (DINOv3 ViT-B/16 features, semantic, sensitive to shape and identity) and $D^{\mathrm{lp}}_j$ (LPIPS, perceptual, sensitive to colour and texture), averaged over the pixel frames of each latent frame. Each distance is divided by a fixed reference value, clipped to $[0,1]$, and the two are combined by a maximum:
+\begin{equation}
+m^{k}_j = \min\!\big(D^{k}_j/\kappa_k,\,1\big),\qquad d_j = \max\big(m^{\mathrm{dino}}_j,\, m^{\mathrm{lp}}_j\big),
+\end{equation}
+with $\kappa_{\mathrm{dino}}=0.55$ and $\kappa_{\mathrm{lp}}=0.75$. These references are selected once from approximately the 91st percentile of in-object distances in StreamEdit development drafts, then frozen and applied unchanged to Wan-Edit. Thus, divergence is not rescaled by each video's observed maximum: a weak draft remains weak even at its most-changed token. The maximum allows either feature distance to raise edit demand when the other is less responsive. The references are fixed across the evaluated hosts; they should not be interpreted as universal physical units for semantic or perceptual change.
+% NOTE: max vs mean -- R49 renders the max only; the mean is not run.
+
+\paragraph{Demand.}
+\begin{equation}
+q_j = S_j\, d_j \in [0,1].
+\end{equation}
+The support downweights divergence outside the estimated edited content, where Wan-Edit drafts can also introduce background texture changes. Within the support, divergence modulates the requested degree of editability. This separation is an approximation: attention support is not a ground-truth segmentation mask and may include leakage or miss parts of a shape-changing target.
+
+\subsection{Exposure-matched control}
+\label{sec:exposure}
+
+The same $q_j$ must translate into each host's control. A linear map in knob units is not meaningful: $\rho$ acts through $t^{\rho}$, and equal increments of $\rho$ change the blend very unequally; $n$ acts through the step grid of a shifted schedule. We instead match a quantity both hosts share.
+
+\paragraph{Target exposure.}
+For control value $c$, define the host's nominal control exposure as the step average of its per-step coefficient,
+\begin{equation}
+Q_H(c) = \frac{1}{N}\sum_{i=0}^{N-1} a_H(c,i),
+\end{equation}
+over the host's own step grid. We normalise this response over a specified native control interval $[c_{\min},c_{\max}]$,
+\begin{equation}
+U_H(c) = \frac{Q_H(c)-Q_H(c_{\min})}{Q_H(c_{\max})-Q_H(c_{\min})}\in[0,1],
+\end{equation}
+and set each token's control by the inverse response,
+\begin{equation}
+\boxed{\,c_{H,j} = \arg\min_{c\in\mathcal{C}_H}\big|\,U_H(c) - q_j\,\big|\,}
+\label{eq:inverse}
+\end{equation}
+(the exact inverse for a continuous control and the nearest admissible value for a discrete control). This mapping is well defined when the sampled response $U_H$ is monotone over the chosen range. Matching $q_j$ matches a fraction of each host's normalised control-exposure interval; it does not imply equal absolute per-step coefficients or equal perceptual effects.
+
+\paragraph{StreamEdit.}
+With Eq.~\eqref{eq:coef}, the nominal exposure is $Q_{\mathrm{SE}}(\rho)=1-B(\rho)$, where $B(\rho)=\frac1N\sum_i t_i^{\rho}$ is the mean source coefficient on the actual $N=15$-step grid, including the final $t=0$ step. For the range used in this draft, $\rho\in[2,50]$, the inverse satisfies
+\begin{equation}
+B(\rho_j) = (1-q_j)\,B(2) + q_j\,B(50),
+\end{equation}
+and is solved by bisection because $B(\rho)$ decreases over this interval. The lower endpoint $\rho=2$ is StreamEdit's default, so $q_j=0$ retains the stock control rather than disabling target influence entirely. The reported inverse values ($q=0.5\mapsto\rho=4.5$ and $q=0.9\mapsto\rho=15.7$) should be verified against the exact timestep array used in the released implementation. \textbf{Range decision to resolve:} this draft uses $[2,50]$ for StreamEdit, whereas an earlier design considered $[0,50]$ for both hosts. The submitted method must state one range consistently and recompute the mapping accordingly.
+
+\paragraph{Wan-Edit.}
+Under the hard-gate definition in Eq.~\eqref{eq:coef}, the nominal exposure is $Q_{\mathrm{Wan}}(n)=n/N$ for $n\in\{0,\dots,N\}$. If the full range $[0,N]$ is allowed, then $U_{\mathrm{Wan}}(n)=n/N$ and
+\begin{equation}
+n_j = \mathrm{round}(N q_j),\qquad s_j = N - n_j,
+\end{equation}
+with ties rounded to even. A token with $q_j=0$ receives no direct edit-velocity contribution ($n_j=0$, $s_j=N$). If the render loop is restricted to start no earlier than $s_{\min}$, then $n_j$ is capped at $N-s_{\min}$. We evaluate $s_{\min}=9$ (the draft's start; requests above $(N-s_{\min})/N$ saturate) and $s_{\min}=0$ (the full range). \textbf{Normalisation decision to resolve:} for $s_{\min}=9$, either define $U_{\mathrm{Wan}}$ over the effective admissible range $n\in[0,N-s_{\min}]$, or explicitly describe the current rule as a full-range request followed by clipping. These are different mappings and must not be conflated. \todo{Choose and freeze the reported floor and its corresponding mapping.}
+
+\paragraph{What is matched, and what is not.}
+Two tokens with the same demand are assigned the same fraction of their host's normalised control-exposure interval. This is a property of the defined control responses, not a claim that the hosts produce equal visible edits: StreamEdit uses a soft query--key blend, Wan-Edit gates the edit velocity, and StreamEdit has additional anchoring mechanisms outside Eq.~\eqref{eq:se-blend}. In an 18-clip pilot, points with similar mean source coefficients had the same reported FiVE-Acc (Wan-Edit $n=40$, mean source coefficient $B=0.20$; StreamEdit $\rho=4$, $B=0.18$; FiVE-Acc $0.78$ for both). Stock settings also yielded similar mean source coefficients ($B\approx0.30$). These pilot observations motivate the exposure proxy but do not establish equivalence; confirm the comparison on the held-out benchmark. The adapter is calculated from the update equation and fixed interval, rather than fitted to the rendered adaptive results.
+
+\subsection{Cost}
+\label{sec:cost}
+We count the draft in the total sampling budget. StreamEdit uses $5$ draft steps plus a $15$-step final render (20 step units). Wan-Edit uses 14 active draft steps plus 41 active final steps (55) when $s_{\min}=9$, or 14 plus 50 (64) when $s_{\min}=0$; source and target branches are evaluated at each active step. The global baselines are run at matched total budgets: StreamEdit's global-$\rho$ sweep at 20 steps, and Wan-Edit global-start sweeps at $\sigma\in\{0.95,0.92,0.85\}$ with schedules chosen to match 55 ($N=69/79/104$) or 64 ($N=81/92/120$) active steps. The demand-field calculation adds no model forward pass beyond the draft, although it does require the two feature-extractor computations.
+
+\begin{algorithm}[t]
+\caption{Exposure-matched per-token editing}
+\label{alg:main}
+\KwIn{$x^{\src}$, $c_{\src}$, $c_{\tgt}$, host $H$ with coefficient $a_H(c,i)$ and range $[c_{\min},c_{\max}]$}
+$x^{d}$, $\{A_p\}$, $\Pi$ $\leftarrow$ draft of $H$ at $\sigma_d\approx0.95$ with attention recording\;
+$S \leftarrow$ soft support from selectivity-weighted trigger attention (\S\ref{sec:demand})\;
+$d \leftarrow \max\big(\min(D^{\mathrm{dino}}/\kappa_{\mathrm{dino}},1),\, \min(D^{\mathrm{lp}}/\kappa_{\mathrm{lp}},1)\big)$\;
+$q \leftarrow S\odot d$\;
+$U_H \leftarrow$ normalised step-mean of $a_H(\cdot,i)$ over $[c_{\min},c_{\max}]$\;
+$c_j \leftarrow U_H^{-1}(q_j)$ for every token $j$ \tcp*{only host-specific line}
+\KwRet{render of $H$ with per-token control $\{c_j\}$}
+\end{algorithm}
+
+% ---- placeholders for sections referenced above
+\section{Experiments (placeholder)}
+\subsection{Linear mapping in knob units}
+\label{sec:ablation-linear}
+\todo{R48 v1 subset results: $\rho=0.3+49.7E$ and $\sigma=0.1+0.86E$; opposite failure modes; equal-exposure alignment of the two global sweeps.}
+
+\begin{thebibliography}{99}\small
+% PLACEHOLDERS -- verify every entry before use.
+\bibitem{wan2025} Wan2.1 (Wan Team), 2025. \todo{verify}
+\bibitem{selfforcing2025} Self-Forcing, 2025. \todo{verify}
+\bibitem{flowedit2025} FlowEdit: inversion-free text-based editing using pre-trained flow models. \todo{verify venue}
+\bibitem{streamedit2026} StreamEdit: Training-Free Video Editing via Few-Step Streaming Video Generation, arXiv:2605.21466. \todo{verify}
+\bibitem{tokenflow2024} TokenFlow. \todo{verify}
+\bibitem{flowdirector2026} FlowDirector. \todo{verify}
+\bibitem{sdedit2022} SDEdit. \todo{verify}
+\bibitem{diffedit2023} DiffEdit. \todo{verify}
+\bibitem{p2p2023} Prompt-to-Prompt. \todo{verify}
+\bibitem{diffdiff} Differential Diffusion. \todo{verify}
+\bibitem{followyourshape} Follow-Your-Shape. \todo{verify}
+\bibitem{five2025} FiVE-Bench. \todo{verify}
+\bibitem{dino} DINOv3 (facebook/dinov3-vitb16-pretrain-lvd1689m, as used in r31\_divergence.py). \todo{verify}
+\bibitem{lpips2018} LPIPS. \todo{verify}
+\end{thebibliography}
+\end{document}
