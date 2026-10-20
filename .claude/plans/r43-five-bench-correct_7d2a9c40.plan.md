@@ -32,10 +32,10 @@ todos:
   - id: harness-edit-json-dir
     content: "Add --edit_json_dir (default data_root/edit_prompt) to evaluation/run_fivebench.py and evaluation/r33_clip_directional.py (split from harness-support, 2026-10-20); no R43 step runs them, R46 renders and scores through them"
     needed_by: []
-    status: pending
+    status: completed
   - id: gen-anchors-script
     content: "Write slurm_scripts/five_bench/r43_gen_anchors.sh (H100 sbatch, single-stage, R7 generator flags written out explicitly; modes smoke / full, full = --array=0-5 one edit type per task), evaluation/r43_check_repro.py (pixel comparison of the 3 repro anchors against R7's anchors/) and evaluation/r43_contact_sheets.py"
-    status: pending
+    status: completed
 steps:
   - id: question-dump
     type: local
@@ -162,7 +162,9 @@ steps:
       - evaluation/csv/r43_repro_check.csv
       - evaluation/figures/r43_smoke_sheet_edit1.jpg
       - evaluation/figures/r43_smoke_sheet_edit2.jpg
-    status: pending
+    status: completed
+    completed_at: 2026-10-20
+    job_id: "1052045"
   - id: inspect-smoke
     type: manual
     wait_for: anchor-smoke
@@ -174,7 +176,9 @@ steps:
     command: |
       sbatch --array=0-5 slurm_scripts/five_bench/r43_gen_anchors.sh full
     sets_status: running
-    status: pending
+    status: completed
+    completed_at: 2026-10-20
+    job_id: "1052047"
   - id: wait-anchors
     type: manual
     wait_for: generate-anchors
@@ -298,7 +302,7 @@ The original FiVE files and `anchors/` stay untouched. Re-rendering the methods 
 | Anchor sets | FiVE as released: R7's `~/Data/dataggen/outputs/five_bench/anchors/` (not regenerated). FiVE-Bench-Correct: `~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit{T}/{video}.png`, **every** non-excluded pair regenerated (no hard-linking; most instructions change) |
 | R7 generator check | `anchor-smoke` regenerates 3 pairs with FiVE's official instruction and no suffix (`edit1/0001_bus`, `edit2/0081_A_horse`, `edit5/0007_guitar-violin`) and compares decoded pixels with R7's `anchors/`. IDENTICAL confirms the claim "same generator"; DIFFERS is reported with max abs diff / PSNR and does not block (a node-level kernel difference, not a setting change) |
 | Anchor smoke | 26 anchors = edit 1–2 × `0012_goat 0045_butterfly 0059_drift-straight 0081_A_horse 0098_A_squirrel 0074_rhino 0005_breakdance 0036_camel 0003_ocean-birds 0022_skate-jump 0030_rallye 0062_elephant 0018_breakdance-flare`, taken from the correct manifest (instruction_v2 + suffix), to `~/Data/dataggen/outputs/five_bench/anchor_r43_smoke/`; the 3 repro anchors to `anchor_r43_smoke/repro/` |
-| Compute | H100 sbatch, cloned from `r7_gen_anchors.sh` (which fit 100 anchors per task in its 4 h limit), plus `--exclude=node01,node51,node52,node57`, `--time=06:00:00`, `cd` to this repo (R7's script `cd`s to the old `Code/StreamEdit`). Resumable: existing PNGs are skipped |
+| Compute | H100 sbatch, cloned from `r7_gen_anchors.sh` (which fit 100 anchors per task in its 4 h limit), plus `--exclude=node52`, `--time=06:00:00`, `cd` to this repo (R7's script `cd`s to the old `Code/StreamEdit`). Resumable: existing PNGs are skipped. **Node exclusion (2026-10-20): `--exclude=node52` only**, per the current cluster note (node01/51/57 were re-allowed 2026-10-08); the plan originally listed all four. Log files: `#SBATCH --output` cannot see the mode, so the script redirects itself to `logs/r43_gen_anchors_{mode}_{jobid}_{task}.{out,err}` after echoing a pointer line into the default `%A_%a` files |
 | Out of scope | Re-rendering methods on FiVE-Bench-Correct (separate task: anchor-based rows on every pair, text-only rows on the changed pairs only); redrawing masks |
 
 ## Step commands
@@ -478,6 +482,6 @@ flowchart LR
 | `evaluation/run_fivebench.py` | Add `--edit_json_dir` (default `data_root/edit_prompt`), used at the `edit_json` read (line 262). |
 | `evaluation/fivebench/evaluate.py` | Line 366: `save_dir` built from `item.get("target_prompt_orig", item["target_prompt"])`. |
 | `evaluation/r33_clip_directional.py` | Add `--edit_json_dir` (default `data_root/edit_prompt`); `fullbench_cases()` reads from it. |
-| `slurm_scripts/five_bench/r43_gen_anchors.sh` | **New**, cloned from `r7_gen_anchors.sh`: `--partition=H100`, `--gres=gpu:1`, `--cpus-per-task=8`, `--time=06:00:00`, `--exclude=node01,node51,node52,node57`, `cd` to this repo, qwen-edit python called with `-u -E -s`. Generator flags written out even though they equal the defaults: `--true_cfg_scale 3.0 --guidance_scale 1.0 --num_inference_steps 40 --seed 0 --negative_prompt " "`, NO `--two_stage`, NO `--cpu_offload`. Mode from `$1`: `smoke` (single task; repro manifest → `anchor_r43_smoke/repro`, then `r43_check_repro.py`; smoke manifest → `anchor_r43_smoke`, then `r43_contact_sheets.py --smoke`); `full` (array task i → `--edit_type $((i+1))` on the correct manifest → `anchors_r43_correct`). Header echoes mode, edit type, node, GPU name and the qwen-edit package versions. Logs `logs/r43_gen_anchors_{mode}_%A_%a.{out,err}`. |
+| `slurm_scripts/five_bench/r43_gen_anchors.sh` | **New**, cloned from `r7_gen_anchors.sh`: `--partition=H100`, `--gres=gpu:1`, `--cpus-per-task=8`, `--time=06:00:00`, `--exclude=node52`, `cd` to this repo, qwen-edit python called with `-u -E -s`. Generator flags written out even though they equal the defaults: `--true_cfg_scale 3.0 --guidance_scale 1.0 --num_inference_steps 40 --seed 0 --negative_prompt " "`, NO `--two_stage`, NO `--cpu_offload`. Mode from `$1`: `smoke` (single task; repro manifest → `anchor_r43_smoke/repro`, then `r43_check_repro.py`; smoke manifest → `anchor_r43_smoke`, then `r43_contact_sheets.py --smoke`); `full` (array task i → `--edit_type $((i+1))` on the correct manifest → `anchors_r43_correct`). Header echoes mode, edit type, node, GPU name and the qwen-edit package versions. Logs `logs/r43_gen_anchors_{mode}_%A_%a.{out,err}`. |
 | `evaluation/r43_check_repro.py` | **New** (numpy + PIL). For each repro-manifest pair: decode the new PNG and R7's `anchors/edit{T}/{video}.png`, report `IDENTICAL` or `DIFFERS` with max abs diff, mean abs diff and PSNR → `evaluation/csv/r43_repro_check.csv`. Exit 0 either way (informational gate); exit 1 only if a file is missing. |
 | `evaluation/r43_contact_sheets.py` | **New.** `--smoke`: per edit type 1–2, rows = smoke cases, columns source \| R7 anchor \| smoke anchor. Full mode: per edit type, columns source \| R7 anchor \| `anchors_r43_correct`, each row labelled with FiVE's instruction and the Correct instruction (suffix shown as `+keep-pose`). Cells 320×185, JPEG quality 85, missing images drawn as grey "n/a". |

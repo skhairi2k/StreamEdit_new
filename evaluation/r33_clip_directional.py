@@ -186,8 +186,10 @@ def method_specs(which: str, r31_root: Path, r26_root: Path, r30_root: Path,
     return out
 
 
-def fullbench_cases(data_root: Path) -> List[Dict[str, object]]:
-    """All 419 pairs straight from edit_prompt/edit{T}_FiVE.json, in cases.json's shape.
+def fullbench_cases(data_root: Path, edit_json_dir: Optional[Path] = None) -> List[Dict[str, object]]:
+    """All pairs straight from edit{T}_FiVE.json, in cases.json's shape (419 pairs from
+    data_root/edit_prompt; R43: --edit_json_dir evaluation/five_bench_correct for the 414
+    FiVE-Bench-Correct pairs).
 
     Added for R35 (2026-09-24): cases.json covers 22 clips, and the full-bench case list
     (r7_anchor_manifest.json) carries no prompts. Field mapping, checked against the 22
@@ -198,8 +200,9 @@ def fullbench_cases(data_root: Path) -> List[Dict[str, object]]:
     bench uses FiVE's raw objects, not those edits.
     """
     out: List[Dict[str, object]] = []
+    edit_dir = edit_json_dir if edit_json_dir is not None else data_root / "edit_prompt"
     for t in range(1, 7):
-        for e in json.loads((data_root / "edit_prompt" / f"edit{t}_FiVE.json").read_text()):
+        for e in json.loads((edit_dir / f"edit{t}_FiVE.json").read_text()):
             out.append({"case_id": f"edit{t}/{e['video_name']}", "video_name": e["video_name"],
                         "edit_type": t, "src_prompt": e["source_prompt"],
                         "trg_prompt": e["target_prompt"], "src_word": e["source_object"],
@@ -211,7 +214,8 @@ def fullbench_cases(data_root: Path) -> List[Dict[str, object]]:
 
 def run(args: argparse.Namespace) -> int:
     data_root = args.data_root.expanduser()
-    cases = (fullbench_cases(data_root) if args.fullbench
+    edit_json_dir = args.edit_json_dir.expanduser() if args.edit_json_dir else None
+    cases = (fullbench_cases(data_root, edit_json_dir) if args.fullbench
              else json.loads(args.cases.expanduser().read_text()))
     clip = Clip(args.device)
 
@@ -343,6 +347,9 @@ def parse_args(argv: Optional[Sequence[str]] = None) -> argparse.Namespace:
                         "target). Default: no truncation. R34's first chunk is "
                         "--frame_stride 1 --max_frames 9.")
     #✨ R35 2026-09-24: both default off -- every existing invocation is unchanged.
+    p.add_argument("--edit_json_dir", type=Path, default=None,
+                   help="Directory holding edit{T}_FiVE.json for --fullbench "
+                        "(default: data_root/edit_prompt). R43: evaluation/five_bench_correct")
     p.add_argument("--methods", nargs="+", default=None, metavar="NAME=DIR",
                    help="Explicit methods to score, each NAME=DIR with frames at "
                         "DIR/edit{T}/{video}/. Overrides --which.")

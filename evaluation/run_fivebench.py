@@ -69,6 +69,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--data_root", type=str,
                         default="~/Data/FiVE-Fine-Grained-Video-Editing-Benchmark",
                         help="FiVE-Bench root (videos/, edit_prompt/)")
+    parser.add_argument("--edit_json_dir", type=str, default=None,
+                        help="Directory holding edit{T}_FiVE.json (default: data_root/edit_prompt). "
+                             "R43: evaluation/five_bench_correct for FiVE-Bench-Correct")
     parser.add_argument("--out_root", type=str, default="outputs/five_bench",
                         help="Root for produced frames (method subdir created underneath)")
 
@@ -260,7 +263,9 @@ def main() -> None:
         transforms.Normalize([0.5], [0.5]),
     ])
 
-    edit_json = data_root / "edit_prompt" / f"edit{args.edit_type}_FiVE.json"
+    edit_json_dir = (Path(args.edit_json_dir).expanduser().resolve()
+                     if args.edit_json_dir else data_root / "edit_prompt")
+    edit_json = edit_json_dir / f"edit{args.edit_type}_FiVE.json"
     entries = read_json(edit_json)
 
     # R20: optional subset. Filter on video_name AND edit_type, because a video can

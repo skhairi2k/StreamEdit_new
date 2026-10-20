@@ -4,7 +4,7 @@ overview: "Move R49 to Jean Zay (H100) in one verified pass: code by shallow git
 task_id: R50
 todos:
   - id: env-template-file
-    content: "jz/r50_jz.env.example -- the only file with site-specific values, copied to jz/r50_jz.env and filled in: JZ_HOST (user@host for rsync), JZ_WORK (absolute $WORK on Jean Zay), JZ_REPO (clone path, default $JZ_WORK/StreamEdit_new), JZ_ACCOUNT_GPU (<project>@h100), JZ_ACCOUNT_CPU (<project>@cpu), JZ_QOS_GPU (default qos_gpu_h100-t3), JZ_CPU_PARTITION (default cpu_p1), JZ_CPUS_PER_GPU (default 24), JZ_MODULE_streamgve (pytorch-gpu/py3/2.8.0), JZ_MODULE_five_bench (pytorch-gpu/py3/2.5.1), LOCAL_STAGE (staging dir on this cluster, default ~/Data/r50_stage)"
+    content: "jz/r50_jz.env.example -- the only file with site-specific values, copied to jz/r50_jz.env and filled in: JZ_HOST (user@host for rsync), JZ_WORK (absolute $WORK on Jean Zay), JZ_REPO (clone path, default $JZ_WORK/StreamEdit_new), JZ_ACCOUNT_GPU (default empty = no -A line; <project>@h100 only for multi-project logins or CPU+GPU projects), JZ_QOS_GPU (default qos_gpu_h100-t3), JZ_CPUS_PER_GPU (default 24), JZ_MODULE_streamgve (pytorch-gpu/py3/2.8.0), JZ_MODULE_five_bench (pytorch-gpu/py3/2.5.1), LOCAL_STAGE (staging dir on this cluster, default ~/Data/r50_stage)"
     needed_by: [fill-config]
     status: completed
   - id: gitignore-edit
@@ -36,7 +36,7 @@ todos:
     needed_by: [jz-overlay]
     status: pending
   - id: port-script
-    content: "jz/r50_port.sh -- reads jz/r50_jz.env and rewrites the R49/R48 job scripts the chain runs (slurm_scripts/five_bench/r49_*.sh, r48_se_stage1.sh, r48_wan_draft.sh, r48_div.sh, r48_wan_render.sh, r50_preflight.sh): REPO= -> ${SLURM_SUBMIT_DIR:-$PWD}; the two env interpreters (~/anaconda3/envs/<env>/bin/python, absolute or ~) -> $JZ_WORK/pyenv/<env>/python; GPU headers --partition=L40S / --exclude=node52 / --mem -> -C h100, -A $JZ_ACCOUNT_GPU, --qos=$JZ_QOS_GPU, --cpus-per-task=$JZ_CPUS_PER_GPU; CPU headers -> --partition=$JZ_CPU_PARTITION, -A $JZ_ACCOUNT_CPU; --time capped at 20:00:00; adds export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 where missing; evaluation/fivebench/config.yaml IQA_PyTorch_model_path -> $JZ_WORK/code/iqa_cli; then greps the same files for /home/ids/skhairi, anaconda3, L40S, node52, --partition=CPU and prints '[r50_port] leftovers: N' (must be 0)"
+    content: "jz/r50_port.sh -- reads jz/r50_jz.env and rewrites the R49/R48 job scripts the chain runs (slurm_scripts/five_bench/r49_*.sh, r48_se_stage1.sh, r48_wan_draft.sh, r48_div.sh, r48_wan_render.sh, r50_preflight.sh): REPO= -> ${SLURM_SUBMIT_DIR:-$PWD}; the two env interpreters (~/anaconda3/envs/<env>/bin/python, absolute or ~) -> $JZ_WORK/pyenv/<env>/python; GPU headers --partition=L40S / --exclude=node52 / --mem -> -C h100, --qos=$JZ_QOS_GPU, --cpus-per-task=$JZ_CPUS_PER_GPU, -A $JZ_ACCOUNT_GPU only if set (IDRIS exec_batch H100 example); CPU headers (--partition=CPU: r49_field.sh, r49_post.sh) -> the same H100 headers plus --gres=gpu:1 (GPU hours only); --time capped at 20:00:00; adds export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 where missing; evaluation/fivebench/config.yaml IQA_PyTorch_model_path -> $JZ_WORK/code/iqa_cli; then greps the same files for /home/ids/skhairi, anaconda3, L40S, node52, --partition=CPU and prints '[r50_port] leftovers: N' (must be 0)"
     needed_by: [jz-port]
     status: pending
   - id: preflight-py
@@ -62,8 +62,9 @@ todos:
 steps:
   - id: fill-config
     type: manual
-    check_hint: "cp jz/r50_jz.env.example jz/r50_jz.env and fill JZ_HOST, JZ_WORK, JZ_ACCOUNT_GPU, JZ_ACCOUNT_CPU (and defaults if they differ); git check-ignore jz/r50_jz.env must print the file"
-    status: pending
+    check_hint: "cp jz/r50_jz.env.example jz/r50_jz.env and fill JZ_HOST, JZ_WORK (JZ_ACCOUNT_GPU stays empty for a single GPU-only project); no value contains '<'; git check-ignore jz/r50_jz.env must print the file"
+    status: completed
+    completed_at: 2026-10-20
   - id: make-bundle
     type: local
     wait_for: fill-config
@@ -139,8 +140,8 @@ Invoke: `/run-step R50 fill-config`, `/run-step R50 make-bundle`, `/run-step R50
 
 | Item | Choice |
 |---|---|
-| Target | Jean Zay H100 partition (`-C h100`, `-A <project>@h100`); CPU jobs on the CPU partition with `<project>@cpu` |
-| Site values | only in `jz/r50_jz.env` (from `jz/r50_jz.env.example`, git-ignored): host, `$WORK` path, accounts, QOS (default `qos_gpu_h100-t3`), CPU partition (default `cpu_p1`), CPUs per GPU (default 24), the two module names — QOS / partition / CPU defaults to confirm against the IDRIS documentation |
+| Target | Jean Zay H100 partition (`gpu_p6`) for every job, headers as in the IDRIS `exec_batch` H100 example: `-C h100`, `--gres=gpu:1`, `--cpus-per-task=24`, `--hint=nomultithread`, `module purge` + `module load arch/h100`; no `-A` (single project with GPU hours only); the two short CPU-only jobs (`r49_field.sh`, `r49_post.sh`) also run there with 1 GPU |
+| Site values | only in `jz/r50_jz.env` (from `jz/r50_jz.env.example`, git-ignored): host, `$WORK` path, optional account (empty), QOS `qos_gpu_h100-t3` (confirmed by the user), CPUs per GPU 24 (IDRIS example), the two module names |
 | Code | `git clone --depth 1` of `skhairi2k/StreamEdit_new` on the frontal into `$WORK/StreamEdit_new`; byte-identity of the files R49 runs checked with `CODE.sha256` |
 | Python environments | IDRIS modules under `arch/h100`: `pytorch-gpu/py3/2.8.0` (torch 2.8.0, CUDA 12.8) for `streamgve`, `pytorch-gpu/py3/2.5.1` for `five-bench`; every other package that differs from our `pip freeze` is pinned to our version with `pip install --user --no-deps` into `$WORK/pyenv/<env>` (module ships e.g. transformers 4.55.4 / diffusers 0.35.0, ours 5.12.0 / 0.31.0); torch builds come from IDRIS, so they are not byte-identical to ours |
 | Why not conda-pack | `$WORK` inode quota: 500k, 253k used; the unpacked envs are 286k files (streamgve 165k, five-bench 121k); modules live on shared storage and cost no user inodes |
