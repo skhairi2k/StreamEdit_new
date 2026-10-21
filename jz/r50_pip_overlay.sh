@@ -9,7 +9,7 @@
 #      another version is pinned to OUR version.
 #      Also left to the module, on purpose: numpy (the module's torch is compiled against its NumPy 1.x; ours, 2.x, makes torch.from_numpy /
 #      .numpy() fail) and OpenCV (4.12+ needs numpy>=2; the module's is kept, else 4.10.0.84). Added although the lab env lacks it: peft 0.18.1
-#      when the module's peft is < 0.17 (diffusers 0.36 refuses an old peft). Anything of that kind found in the overlay is removed first.
+#      when the module's peft is < 0.17 (diffusers 0.36 refuses an old peft), mistral-common 1.8.8 when the module's is older (transformers 5.3). Anything of that kind found in the overlay is removed first.
 #   3. `pip install --user --no-deps --ignore-installed --no-cache-dir -r ...` into PYTHONUSERBASE=$WORK/pyenv/five-bench (the user site comes
 #      before the module's site-packages, so e.g. our transformers 5.x shadows the module's 4.x). A failed bulk install is retried one package at
 #      a time to name the culprits.
@@ -18,7 +18,7 @@
 #      GitHub release (never compiled on the frontal). If there is no such wheel: download it on a machine with access, copy it to
 #      $WORK/pyenv/wheels/, rerun.
 #   5. write the interpreter wrapper $WORK/pyenv/five-bench/python (module purge + load, PYTHONPATH = overlay first + the pyiqa source
-#      $WORK/code/iqa_cli, exec python). Job scripts call this wrapper (jz/r50_port.sh).
+#      $WORK/code/iqa_cli, HF_HOME / TORCH_HOME = $WORK/cache/{huggingface,torch}, exec python). Job scripts call this wrapper (jz/r50_port.sh).
 #   6. verify THROUGH THE WRAPPER: every pin that was meant to be applied is, everything we installed is imported from the overlay (not shadowed
 #      by the module), a real torch<->numpy round trip works without warnings, numpy / scipy / pandas / cv2 / PIL / torchvision import, `pip check`
 #      has no complaint made BY a package we installed (the module's own packages complaining about our newer pins are only counted; full list in
@@ -91,10 +91,11 @@ SKIP = {"torch", "torchvision", "torchaudio", "triton", "pip", "setuptools", "wh
 OPENCV = ("opencv-python", "opencv-python-headless", "opencv-contrib-python", "opencv-contrib-python-headless")
 OPENCV_NP1 = "4.10.0.84"          # last OpenCV that runs on NumPy 1.26 (4.12+ declares numpy>=2); only used if the module has no OpenCV at all
 PEFT_FIX = ("0.17.0", "0.18.1")   # diffusers 0.36 refuses peft < 0.17; peft 0.17.x does not import with transformers 5.3; 0.18.1 is the oldest that works
+MISTRAL_FIX = "1.8.8"            # transformers 5.3 (dependency_versions_table) wants mistral-common >= 1.8.8; the module's older one breaks every AutoProcessor load
 KEY_MODULES = {"transformers": "transformers", "diffusers": "diffusers", "huggingface-hub": "huggingface_hub", "tokenizers": "tokenizers",
                "safetensors": "safetensors", "accelerate": "accelerate", "numpy": "numpy", "pandas": "pandas", "scipy": "scipy",
                "timm": "timm", "torchmetrics": "torchmetrics", "lpips": "lpips", "omegaconf": "omegaconf", "einops": "einops",
-               "opencv-python": "cv2", "qwen-vl-utils": "qwen_vl_utils", "flash-attn": "flash_attn", "pillow": "PIL", "pyiqa": "pyiqa"}
+               "opencv-python": "cv2", "qwen-vl-utils": "qwen_vl_utils", "flash-attn": "flash_attn", "pillow": "PIL", "pyiqa": "pyiqa", "peft": "peft", "mistral-common": "mistral_common"}
 
 
 def norm(n):
@@ -166,6 +167,11 @@ def cmd_plan(freeze, req_out, plan_out, user_site):
     if pv and vkey(pv) < vkey(PEFT_FIX[0]) and "peft" not in pins:
         pins["peft"] = PEFT_FIX[1]
         notes.append(f"peft: the module's {pv} is older than diffusers allows (>={PEFT_FIX[0]}): peft=={PEFT_FIX[1]} added to the overlay")
+    # mistral-common: transformers 5.3 imports it as soon as it is installed (our lab env has none, so it is not in the freeze) and needs >= 1.8.8
+    mv = base.get("mistral-common", (None,))[0]
+    if mv and vkey(mv) < vkey(MISTRAL_FIX) and "mistral-common" not in pins:
+        pins["mistral-common"] = MISTRAL_FIX
+        notes.append(f"mistral-common: the module's {mv} is older than transformers 5.3 allows (>={MISTRAL_FIX}): mistral-common=={MISTRAL_FIX} added to the overlay")
     install, same, wheel, skipped_n, effective = [], 0, None, 0, {}
     for n, v in sorted(pins.items()):
         if skipped(n) or n in left:
@@ -250,6 +256,16 @@ def cmd_verify(plan_path, user_site):
     print(f"[r50_overlay]    torch<->numpy bridge: {(br.stdout.strip().splitlines() or [br.stderr.strip().splitlines()[-1] if br.stderr.strip() else '?'])[-1]}")
     rt_bad = []
     for mod in ("numpy", "scipy", "pandas", "cv2", "PIL", "torchvision"):
+        try:
+            __import__(mod)
+        except Exception as e:                                 # noqa: BLE001
+            rt_bad.append(mod)
+            print(f"[r50_overlay]    IMPORT {mod}: import failed: {type(e).__name__}: {e}")
+    # modules transformers imports lazily (an AutoProcessor / CLIP / Qwen load goes through them) only when an optional package is installed
+    import importlib.util
+    for mod, dep in (("transformers.tokenization_mistral_common", "mistral_common"), ("diffusers.loaders.peft", "peft")):
+        if importlib.util.find_spec(dep) is None:
+            continue
         try:
             __import__(mod)
         except Exception as e:                                 # noqa: BLE001
@@ -370,6 +386,8 @@ type module >/dev/null 2>&1 || { echo "r50 python wrapper: no 'module' command" 
 module purge >/dev/null 2>&1
 module load arch/h100 ${MODULE} >/dev/null 2>&1 || { echo "r50 python wrapper: 'module load arch/h100 ${MODULE}' failed" >&2; exit 98; }
 export PYTHONUSERBASE=${ENVDIR}
+# IDRIS sets XDG_CACHE_HOME=\$WORK/.cache, which HF (HF_HOME) and torch (TORCH_HOME) prefer over ~/.cache: the shipped caches live in \$WORK/cache
+export HF_HOME=${WORK}/cache/huggingface TORCH_HOME=${WORK}/cache/torch
 export PYTHONPATH=${USER_SITE}:${IQA}\${PYTHONPATH:+:\$PYTHONPATH}
 exec python "\$@"
 EOF

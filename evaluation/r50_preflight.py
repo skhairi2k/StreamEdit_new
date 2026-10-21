@@ -188,7 +188,8 @@ def report_env(dev: str) -> None:
     print(f"[r50_preflight]   torch cuda build {torch.version.cuda}, device request '{dev}', cuda available {torch.cuda.is_available()}")
     print(f"[r50_preflight]   user site {site.getusersitepackages()}  PYTHONUSERBASE={os.environ.get('PYTHONUSERBASE')}")
     print(f"[r50_preflight]   HF_HUB_OFFLINE={os.environ.get('HF_HUB_OFFLINE')} TRANSFORMERS_OFFLINE={os.environ.get('TRANSFORMERS_OFFLINE')} "
-          f"HF_HOME={os.environ.get('HF_HOME', '~/.cache/huggingface')}")
+          f"HF_HOME={os.environ.get('HF_HOME', '(unset)')} TORCH_HOME={os.environ.get('TORCH_HOME', '(unset)')} "
+          f"XDG_CACHE_HOME={os.environ.get('XDG_CACHE_HOME', '(unset)')}")
     import socket
     try:
         socket.create_connection(("huggingface.co", 443), timeout=3).close()
