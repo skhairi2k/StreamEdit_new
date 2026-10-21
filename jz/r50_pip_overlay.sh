@@ -92,10 +92,11 @@ OPENCV = ("opencv-python", "opencv-python-headless", "opencv-contrib-python", "o
 OPENCV_NP1 = "4.10.0.84"          # last OpenCV that runs on NumPy 1.26 (4.12+ declares numpy>=2); only used if the module has no OpenCV at all
 PEFT_FIX = ("0.17.0", "0.18.1")   # diffusers 0.36 refuses peft < 0.17; peft 0.17.x does not import with transformers 5.3; 0.18.1 is the oldest that works
 MISTRAL_FIX = "1.8.8"            # transformers 5.3 (dependency_versions_table) wants mistral-common >= 1.8.8; the module's older one breaks every AutoProcessor load
+MISTRAL_DEPS = {"pydantic-extra-types": "2.10.5", "pycountry": "24.6.1"}   # mistral-common 1.8.8 imports pydantic_extra_types.language_code (needs pycountry); its other requirements are in the module
 KEY_MODULES = {"transformers": "transformers", "diffusers": "diffusers", "huggingface-hub": "huggingface_hub", "tokenizers": "tokenizers",
                "safetensors": "safetensors", "accelerate": "accelerate", "numpy": "numpy", "pandas": "pandas", "scipy": "scipy",
                "timm": "timm", "torchmetrics": "torchmetrics", "lpips": "lpips", "omegaconf": "omegaconf", "einops": "einops",
-               "opencv-python": "cv2", "qwen-vl-utils": "qwen_vl_utils", "flash-attn": "flash_attn", "pillow": "PIL", "pyiqa": "pyiqa", "peft": "peft", "mistral-common": "mistral_common"}
+               "opencv-python": "cv2", "qwen-vl-utils": "qwen_vl_utils", "flash-attn": "flash_attn", "pillow": "PIL", "pyiqa": "pyiqa", "peft": "peft", "mistral-common": "mistral_common", "pydantic-extra-types": "pydantic_extra_types", "pycountry": "pycountry"}
 
 
 def norm(n):
@@ -171,6 +172,10 @@ def cmd_plan(freeze, req_out, plan_out, user_site):
     mv = base.get("mistral-common", (None,))[0]
     if mv and vkey(mv) < vkey(MISTRAL_FIX) and "mistral-common" not in pins:
         pins["mistral-common"] = MISTRAL_FIX
+        for dep, ver in MISTRAL_DEPS.items():             # --no-deps: the requirements of mistral-common 1.8.8 that the module lacks
+            if dep not in base and dep not in pins:
+                pins[dep] = ver
+                notes.append(f"{dep}=={ver} added (required by mistral-common {MISTRAL_FIX}; the module has none)")
         notes.append(f"mistral-common: the module's {mv} is older than transformers 5.3 allows (>={MISTRAL_FIX}): mistral-common=={MISTRAL_FIX} added to the overlay")
     install, same, wheel, skipped_n, effective = [], 0, None, 0, {}
     for n, v in sorted(pins.items()):

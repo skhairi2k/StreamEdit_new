@@ -115,6 +115,14 @@ todos:
     content: "slurm_scripts/five_bench/r49_wan_full_chain.sh -- run ON JEAN ZAY after jz/r50_port.sh; sbatch --parsable: draft r48_wan_draft.sh full -> r48_div.sh full --array=2-3 -> r49_field.sh wan full -> r49_wan_render.sh arms full --array=1 (max_s5); with no dependency: r48_wan_render.sh full --array=0-5 (6 native) and r48_wan_render.sh explore_full --array=0 (native_s0.978), r49_wan_render.sh m59 full --array=0-3; evals afterok on their renders: r49_eval_all.sh wan full, base full --array=0-6, m59 full --array=0-3; refuses if logs/r49_wan_full_chain_jobs.txt exists; writes it (one '<stage> <id>' per line)"
     needed_by: [wan-full-chain]
     status: pending
+  - id: scratch-links-script
+    content: "jz/r50_scratch_links.sh -- ON JEAN ZAY, run once before wan-full-chain (and before the R50 jz-repro): for each Wan output folder (r48_wan_draft, r48_div, r48_field, r48_wan_arms, r49_wan_draft, r49_div, r49_field, r49_field_full, r49_wan_arms, r50_preflight, r50_repro) create $SCRATCH/five_bench_out/<dir> and a symlink $JZ_WORK/Data/dataggen/outputs/five_bench/<dir> -> it, so the job scripts (D=~/Data/dataggen/outputs/five_bench) write to $SCRATCH without any edit; idempotent, refuses to replace a non-empty real directory (CONFLICT), prints the idr_quota_user inode lines and '[r50_scratch] failures: N'"
+    needed_by: [wan-full-chain]
+    status: pending
+  - id: fetch-outputs-script
+    content: "jz/r50_fetch_outputs.sh -- ON THE LAB FRONTAL (gpu-gw): rsync -a --partial the Wan output folders from zay:$SCRATCH/five_bench_out/ to the lab store (/store/PERSO/skhairi/Outputs/jz_five_bench/), one folder per run (resumable, no --delete), then compares per-folder file counts and total bytes with the Jean Zay side and prints '[r50_fetch] failures: N'; prints, never runs, the commands that delete the scratch copy and the lab-side symlinks (~/Data/.../<dir> -> store) to create"
+    needed_by: [wan-full-fetch]
+    status: pending
   - id: score-full
     content: "evaluation/r49_score.py -- --mode full --host se|wan (one host per run, so each track scores on its own): scope = 419 pairs, also reported on the 401 pairs outside the 18-clip set; se (lab L40S): curve R39 N=20 + official R36 rho2 + R38 (full CSVs exist) and se_max; wan (Jean Zay H100, CSVs fetched by wan-full-fetch): native curve = 7 points from base (native_s0.978 .. native_s0.4, official native_s0.92 marked), equal-NFE curve = matched-59 from m59 (4 points incl. s0.978), wan_max_s5 (deltas vs matched-59 and vs official; paired vs native_s0.978); CLIP-D read from the per-unit files r49_clip_directional_{group}_full_{base}.csv; writes r49_full_{host}_points.csv, r49_full_{host}_deltas.csv (with a platform column L40S / H100) and figures/r49_full_pareto/{host}_*.{pdf,png} with the platform in the title; R48 references skipped"
     needed_by: [se-full-score, wan-full-score]
@@ -213,7 +221,7 @@ steps:
   - id: wan-full-fetch
     type: manual
     wait_for: wait-wan-full-chain
-    check_hint: "ON THE LAB CLUSTER'S FRONTAL (compute nodes cannot reach Jean Zay): rsync the Jean Zay full-mode Wan CSVs (edit*_FiVE_r49_*wan*_full*, edit*_FiVE_r49_fiveacc_*wan*_full*, r49_clip_directional_wan_full.csv, r49_clip_directional_{base,m59}_full_*.csv) into evaluation/csv here; counts match the Jean Zay listing"
+    check_hint: "ON THE LAB CLUSTER'S FRONTAL (compute nodes cannot reach Jean Zay): rsync the Jean Zay full-mode Wan CSVs and move the scratch output folders to the lab store (`bash jz/r50_fetch_outputs.sh`: '[r50_fetch] failures: 0', file counts and bytes equal to Jean Zay) — the CSVs (edit*_FiVE_r49_*wan*_full*, edit*_FiVE_r49_fiveacc_*wan*_full*, r49_clip_directional_wan_full.csv, r49_clip_directional_{base,m59}_full_*.csv) into evaluation/csv here; counts match the Jean Zay listing"
     status: pending
   - id: wan-full-score
     type: local
@@ -252,7 +260,7 @@ Done when: on the 18 clips of `evaluation/r49_cases.json`, StreamEdit (1 arm) an
 | 3 | `matched59` | local (submits 5 Slurm entries, run last) | chain | — |
 | 4 | `wait-matched59` | manual | matched59 | — |
 | 5 | `score` | local | wait-chain, wait-matched59 | analyzed |
-| — | *(prep)* todos `se-stage3-full`, `field-full`, `se-chain-driver`, `units-full`, `eval-full` (→ `se-full-chain`); `wan-render-py-full`, `wan-render-sbatch-full`, `native0978-full-sbatch`, `units-full-v2`, `eval-full-array`, `wan-chain-driver` (→ `wan-full-chain`); `score-full` | /build-step | — | — |
+| — | *(prep)* todos `se-stage3-full`, `field-full`, `se-chain-driver`, `units-full`, `eval-full` (→ `se-full-chain`); `wan-render-py-full`, `wan-render-sbatch-full`, `native0978-full-sbatch`, `units-full-v2`, `eval-full-array`, `wan-chain-driver`, `scratch-links-script` (→ `wan-full-chain`); `fetch-outputs-script` (→ `wan-full-fetch`); `score-full` | /build-step | — | — |
 | | **StreamEdit track — lab cluster (L40S); no Wan-Edit dependency** | | | |
 | 6 | `se-full-gate` | manual (user decision) | wait-chain | — |
 | 7 | `se-full-draft` | sbatch | se-full-gate | — |
@@ -263,7 +271,7 @@ Done when: on the 18 clips of `evaluation/r49_cases.json`, StreamEdit (1 arm) an
 | 11 | `wan-full-gate` | manual (user decision + R50 PASS) | wait-matched59 | — |
 | 12 | `wan-full-chain` | manual (JZ: one driver submits draft → div 2-3 → field → `max_s5`; 7 native + 4 matched-59 renders; evals as arrays) | wan-full-gate | — |
 | 13 | `wait-wan-full-chain` | manual (JZ) | wan-full-chain | — |
-| 14 | `wan-full-fetch` | manual (rsync CSVs back here) | wait-wan-full-chain | — |
+| 14 | `wan-full-fetch` | manual (lab frontal: CSVs into `evaluation/csv`; scratch outputs moved to the lab store, counts compared) | wait-wan-full-chain | — |
 | 15 | `wan-full-score` | local | wan-full-fetch | — |
 | | **End — both hosts read together, no compute** | | | |
 | 16 | `full-verdict` | manual | se-full-score, wan-full-score | analyzed |
@@ -297,6 +305,7 @@ Invoke: `/run-step R49 wait-chain`, `/run-step R49 wait-matched59`, `/run-step R
 | Slurm | lab cluster: `--partition=L40S` (GPU) / `CPU`, `--exclude=node52` only; StreamEdit stages in `streamgve`, everything else in `five-bench`; serial loops inside one job instead of arrays where the per-user submit cap matters. Jean Zay: headers and interpreter rewritten by `jz/r50_port.sh` (R50) |
 | Host split (full stage) | StreamEdit on the lab cluster (L40S, `streamgve`; its curves R39 / R36 / R38 are L40S already); Wan-Edit, all of it (draft, divergence, field, 9 baselines, `max_s5`, matched-59, eval), on Jean Zay (H100, `five-bench` rebuilt by R50) after R50's 18-clip check passes (part of `wan-full-gate`) (user, 2026-10-20). Each host's arms, baselines and curves come from one platform; full-stage numbers are never mixed with the 18-clip L40S Wan numbers in one table or figure; tables and figures carry the platform |
 | Wan full-stage configs | (user, 2026-10-20) adaptive `max_s5`; native curve N = 50, 7 points: `native_s0.978` (uniform start at step 5 = the floor of `max_s5`, 45 active steps) and `native_s0.95 / 0.92 (official) / 0.85 / 0.75 / 0.6 / 0.4`; equal-NFE curve matched-59, 4 points: `matched59_s0.978` (N 66, skip 7, real σ 0.9766), `s0.95` (75/16), `s0.92` (85/26), `s0.85` (111/52); matched-55 dropped (it only serves `max_s9`, not in the full stage); not rerun on the 18 clips |
+| Wan full-stage outputs (user, 2026-10-21) | every Wan-Edit output folder of the full stage (drafts, divergence, field, all 12 render arms, preflight/repro) is written to Jean Zay `$SCRATCH` (the full stage is ~220k PNG files, which `$WORK`'s 500k-file quota cannot hold next to the env and the bundle), through symlinks under `$WORK/Data/dataggen/outputs/five_bench/` so no job script changes (`scratch-links-script`); eval CSVs stay in the repo's `evaluation/csv` on `$WORK`; after the evals, `wan-full-fetch` moves the folders to the lab store and the CSVs here; `$SCRATCH` has no per-user line in `idr_quota_user` and, per the IDRIS disk-space page (user, 2026-10-21), only very large security quotas shared by all users (4.6 PB), so the 500k-file `$WORK` limit does not apply; IDRIS purges unused scratch files after a retention period (30 days from my memory, to be confirmed on that page), so fetch right after `wait-wan-full-chain` and delete the scratch copy only after the counts match |
 | Jean Zay job sizing | 20 h limit: evals run one unit per array task (~5 h harness + <1 h FiVE-Acc per 419-pair unit on L40S); renders are resumable, a timed-out render task is resubmitted alone (matched59_s0.85 at N = 111 is the longest); the R50 18-clip reproduction gives the H100 per-clip times |
 | Full stage | gated per host (`se-full-gate` after `wait-chain`; `wan-full-gate` after `wait-matched59` and R50 PASS), each host scored separately (`r49_score.py --mode full --host se|wan`), `full-verdict` reads both: R48's scripts for the full drafts (`r48_se_stage1.sh` here, `r48_wan_draft.sh` on Jean Zay), the divergence (`r48_div.sh full`, array 0-1 = StreamEdit here, 2-3 = Wan on Jean Zay) and the 9 Wan-Edit global configs on 419 pairs (`r48_wan_render.sh full`, array 0-8, ~155 L40S GPU-h, on Jean Zay); R49 field (`--hosts se` / `--hosts wan`), renders, matched-59, eval (groups `se` / `wan` / `base` / `m59`) and score in `full` mode (outputs end in `_full`); the Wan CSVs come back by rsync for scoring; the claim is read on the 401 pairs outside the 18 clips as well as on all 419 |
 | Outputs | `~/Data/dataggen/outputs/five_bench/r49_{se_stage1,se_attn,wan_draft,div,field,se_arms,wan_arms}/`, `evaluation/csv/r49_*.csv`, `evaluation/figures/r49_{pareto,grids}/` |
@@ -390,10 +399,11 @@ grep -hE 'failures|unit failures|dirs total' logs/r48_wan_draft_*.out logs/r48_d
 
 ### wan-full-fetch
 ```bash
-# here; JZ_HOST / JZ_REPO from jz/r50_jz.env
+# lab frontal (gpu-gw), inside tmux; JZ_HOST / JZ_REPO from jz/r50_jz.env
 source jz/r50_jz.env
 rsync -av --include='*_full*.csv' --include='r49_clip_directional_*_full*.csv' --exclude='*' \
   "$JZ_HOST:$JZ_REPO/evaluation/csv/" evaluation/csv/
+bash jz/r50_fetch_outputs.sh 2>&1 | tee logs/r50_fetch.log     # scratch -> lab store; '[r50_fetch] failures: 0'
 ```
 
 ### wan-full-score
@@ -472,5 +482,7 @@ flowchart LR
 | `slurm_scripts/five_bench/r48_wan_render.sh` | new MODE `explore_full`: r7 manifest, `--mode full`, `--list_explore` index 0 = `native_s0.978` → `r48_wan_arms/native_s0.978_full` |
 | `evaluation/r49_units.py` | full Wan groups v2: `base` = 6 native + `native_s0.978` (7), `m59` = 4 incl. `matched59_s0.978` |
 | `slurm_scripts/five_bench/r49_eval_all.sh` | full mode as a Slurm array: task i scores unit i only, CLIP-D `r49_clip_directional_{group}_full_{base}.csv` |
+| `jz/r50_scratch_links.sh` | new (Jean Zay): symlinks the Wan output folders under `$WORK/Data/dataggen/outputs/five_bench` to `$SCRATCH/five_bench_out/`, so job scripts are unchanged |
+| `jz/r50_fetch_outputs.sh` | new (lab frontal): rsync scratch outputs to `/store/PERSO/skhairi/Outputs/jz_five_bench/`, compare counts and bytes, print (not run) the cleanup commands |
 | `slurm_scripts/five_bench/r49_wan_full_chain.sh` | new (Jean Zay): draft → div 2-3 → field → `max_s5`; 6 native + `native_s0.978` + 4 matched-59 renders; evals `wan`, `base` array 0-6, `m59` array 0-3, each afterok on its renders; ids to `logs/r49_wan_full_chain_jobs.txt` |
 | `evaluation/r49_score.py` | full mode: `--mode full --host se|wan` (one host per run), scope 419 + the 401 outside the 18 clips; se: R39/R36/R38 curves + se_max (L40S); wan: base + m59 curves + wan_max_s5 vs matched-59 (H100, fetched CSVs); `platform` column and figure titles; R48 references skipped; `r49_full_{host}_points.csv`, `r49_full_{host}_deltas.csv`, `figures/r49_full_pareto/{host}_*` |
