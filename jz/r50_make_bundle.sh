@@ -10,7 +10,9 @@
 #   cache/huggingface/hub/models--...           DINOv3 ViT-B/16 (divergence), CLIP ViT-L/14, Qwen2.5-VL-7B-Instruct (eval)
 #   cache/torch/hub                             DINO ViT-B/8 repo + weights, AlexNet/VGG (LPIPS), RAFT, pyiqa NIQE
 #   data/FiVE-Fine-Grained-Video-Editing-Benchmark/{videos,images,bmasks,edit_prompt}
-#   ref/evaluation_csv                          our CSVs: the reference r50_compare.py reads (kept apart on Jean Zay)
+#   ref/evaluation_csv                          a FROZEN COPY (not a link: the folder is live) of the 23 CSVs r50_compare.py reads: the
+#                                               per-type harness + FiVE-Acc files of wan_max_s5 and wan_native_s0p92, CLIP-D main / base,
+#                                               r49_deltas.csv (read-only reference on Jean Zay)
 #   code/iqa_cli                                pyiqa source (editable install, NIQE via inference_iqa.py)
 #   freeze/five-bench.txt, .editable.json, .versions.txt   what r50_pip_overlay.sh must reproduce
 #   MANIFEST.sha256   sha256 of every file reachable in the stage (paths relative to the stage)
@@ -21,7 +23,7 @@
 set -euo pipefail
 
 REPO=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
-CFG="$REPO/jz/r50_jz.env"
+CFG="${R50_ENV:-$REPO/jz/r50_jz.env}"
 [ -f "$CFG" ] || { echo "[r50_bundle] FATAL: $CFG missing -- cp jz/r50_jz.env.example jz/r50_jz.env and fill it"; exit 1; }
 # shellcheck source=/dev/null
 source "$CFG"
@@ -49,7 +51,6 @@ declare -A SRC=(
   [data/FiVE-Fine-Grained-Video-Editing-Benchmark/images]="$FIVE/images"
   [data/FiVE-Fine-Grained-Video-Editing-Benchmark/bmasks]="$FIVE/bmasks"
   [data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt]="$FIVE/edit_prompt"
-  [ref/evaluation_csv]="$REPO/evaluation/csv"
   [code/iqa_cli]="$HOME/Code/iqa_cli"
 )
 
@@ -68,6 +69,30 @@ for DST in $(printf '%s\n' "${!SRC[@]}" | sort); do
   ln -sfn "$R" "$STAGE/$DST"
   printf '[r50_bundle] link %-72s -> %s\n' "$DST" "$R"
 done
+[ "$FAILED" -gt 0 ] && { echo "[r50_bundle] failures: $FAILED (fix the sources above, then rerun)"; exit 1; }
+
+# ---- 1b. reference CSVs: a FROZEN COPY of exactly the 23 files evaluation/r50_compare.py reads ------------------
+# evaluation/csv is LIVE (running evals create, rewrite and delete files in it while we hash and send), so it is never linked: a link
+# gave a manifest entry for a temp file that had vanished by the time rsync ran, and a CSV rewritten after its checksum. A copy is
+# hashed once and cannot change under its checksum. Jean Zay needs none of the other ~7000 files.
+CSV_SRC="$REPO/evaluation/csv"
+REF="$STAGE/ref/evaluation_csv"
+[ -L "$REF" ] && rm "$REF"                                       # an earlier version of this script linked the live folder
+mkdir -p "$REF"
+find "$REF" -mindepth 1 -type f -delete                          # our own copy only (the path was just created under $STAGE)
+N_REF=0
+for P in 'edit[1-5]_FiVE_r49_wan_max_s5_frame_stride8.csv' 'edit[1-5]_FiVE_r49_fiveacc_wan_max_s5_frame_stride8.csv' \
+         'edit[1-5]_FiVE_r49_wan_native_s0p92_frame_stride8.csv' 'edit[1-5]_FiVE_r49_fiveacc_wan_native_s0p92_frame_stride8.csv'; do
+  shopt -s nullglob; M=("$CSV_SRC"/$P); shopt -u nullglob
+  if [ "${#M[@]}" -ne 5 ]; then echo "[r50_bundle] MISSING reference CSVs: $P matches ${#M[@]} files in $CSV_SRC (expected 5, one per edit type 1-5)"; FAILED=$((FAILED + 1)); continue; fi
+  cp -p "${M[@]}" "$REF/"; N_REF=$((N_REF + ${#M[@]}))
+done
+for F in r49_clip_directional_main.csv r49_clip_directional_base.csv r49_deltas.csv; do
+  if [ ! -s "$CSV_SRC/$F" ]; then echo "[r50_bundle] MISSING reference CSV $CSV_SRC/$F"; FAILED=$((FAILED + 1)); continue; fi
+  cp -p "$CSV_SRC/$F" "$REF/"; N_REF=$((N_REF + 1))
+done
+echo "[r50_bundle] reference CSVs: ${N_REF} frozen copies in ref/evaluation_csv (expect 23)"
+[ "$N_REF" -ne 23 ] && FAILED=$((FAILED + 1))
 [ "$FAILED" -gt 0 ] && { echo "[r50_bundle] failures: $FAILED (fix the sources above, then rerun)"; exit 1; }
 
 # ---- 2. package list of the five-bench env (read by r50_pip_overlay.sh on Jean Zay) --------------------

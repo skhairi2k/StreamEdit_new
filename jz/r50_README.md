@@ -89,7 +89,7 @@ models load from the shipped caches.
 
 | Item | Files |
 |---|---|
-| bundle (weights, caches, data, CSVs, `iqa_cli`) | ~8k |
+| bundle (weights, caches, FiVE data 16k files, 23 reference CSVs, `iqa_cli`) | ~16.4k |
 | pip overlay | ~5–15k (printed by step 5) |
 | outputs | ~100 PNG frames per clip and render arm, plus drafts, maps and npz |
 
