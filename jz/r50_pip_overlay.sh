@@ -223,7 +223,10 @@ def cmd_verify(plan_path, user_site):
     plan = json.loads(Path(plan_path).read_text())
     eff = plan["effective"]                     # the pins that were meant to be applied (numpy / opencv left out on purpose)
     have = installed()
-    ours = {i["name"] for i in plan["install"]} | ({"flash-attn"} if plan["wheel"] else set())
+    # ours = what this run installs PLUS every pinned package already living in the overlay, so that a rerun with nothing to install still
+    # checks import origin and pip-check ownership for the whole overlay (not for "0 packages")
+    ours = ({i["name"] for i in plan["install"]} | ({"flash-attn"} if plan["wheel"] else set())
+            | {n for n in eff if n in have and have[n][1].startswith(user_site)})
     problems = 0
     mism = [(n, v, have.get(n, (None,))[0]) for n, v in sorted(eff.items()) if have.get(n, (None,))[0] != v]
     for n, v, h in mism:

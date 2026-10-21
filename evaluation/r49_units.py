@@ -11,8 +11,10 @@
 --mode full: the 419 pairs, groups split by host (each host runs on its own platform: StreamEdit lab L40S, Wan-Edit Jean Zay H100)
   se  : se_max (r49_se_arms/r49_max_full/step14)
   wan : wan_max_s5 (r49_wan_arms/max_s5_full)
-  base: the 9 Wan-Edit global baselines (r48_wan_arms/{config}_full); no native_s0.978, no R48 reference arm
-  m59 : matched59_s0.95 / s0.92 / s0.85 (r49_wan_arms/matched59_s{sg}_full)
+  base: the native sweep, N = 50 (r48_wan_arms/{config}_full): the 6 native_s0.95 .. native_s0.4 (native_s0.92 = the official Wan-Edit
+        baseline) + native_s0.978 last (index 6, rendered by r48_wan_render.sh explore_full); matched-55 dropped (it serves max_s9 only),
+        no R48 reference arm
+  m59 : matched59_s0.95 / s0.92 / s0.85 / s0.978 (r49_wan_arms/matched59_s{sg}_full; 0.978 last, like the render index)
 Output (TSV, one per line):  base <TAB> dir <TAB> host <TAB> config
   base = "{host}_{config with '.' -> 'p'}" (+ "_full" in full mode); metric stems are r49_{base} / r49_fiveacc_{base}
 usage: python evaluation/r49_units.py --group main [--mode subset|full] [--count | --index N]
@@ -44,8 +46,8 @@ GROUPS = {
 GROUPS_FULL = {
     "se": [("se", "max", D / "r49_se_arms" / "r49_max_full" / "step14")],
     "wan": [("wan", "max_s5", D / "r49_wan_arms" / "max_s5_full")],
-    "base": [("wan", cfg, R48_WAN / f"{cfg}_full") for cfg in SCH.configs()],
-    "m59": [("wan", f"matched59_s{sg}", D / "r49_wan_arms" / f"matched59_s{sg}_full") for sg in ("0.95", "0.92", "0.85")],
+    "base": [("wan", cfg, R48_WAN / f"{cfg}_full") for cfg in list(SCH.configs())[:6] + ["native_s0.978"]],
+    "m59": [("wan", f"matched59_s{sg}", D / "r49_wan_arms" / f"matched59_s{sg}_full") for sg in ("0.95", "0.92", "0.85", "0.978")],
 }
 MODES = {"subset": GROUPS, "full": GROUPS_FULL}
 

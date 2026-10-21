@@ -5,7 +5,9 @@
 #        sbatch --array=9-12 slurm_scripts/five_bench/r48_wan_render.sh subset      # the 4 adaptive arms on the 18 clips (wan-render)
 #        sbatch --array=0-$((8+N)) slurm_scripts/five_bench/r48_wan_render.sh full   # 9 baselines + the N `wan` arms of evaluation/r48_selected_arms.txt, 419 pairs
 #        sbatch --array=0-1 slurm_scripts/five_bench/r48_wan_render.sh explore      # R48 v2a: the 2 global starts above step 9 (native_s0.978, native_s1) on the 18 clips
-# MODE explore uses `r48_wan_sched.py --list_explore` (index 0..1) instead of the 9-baseline list and writes {config}_subset.
+#        sbatch --array=0   slurm_scripts/five_bench/r48_wan_render.sh explore_full # R49 full stage: native_s0.978 (index 0 of --list_explore) on the 419 pairs
+#        sbatch --array=0-5 slurm_scripts/five_bench/r48_wan_render.sh full         # R49 full stage, Jean Zay: the 6 native configs native_s0.95 .. native_s0.4 (0.92 = official)
+# MODES explore / explore_full use `r48_wan_sched.py --list_explore` (index 0..1) instead of the 9-baseline list and write {config}_subset / {config}_full.
 # Array index -> config:  0..8 = `r48_wan_sched.py --list` (native_s0.95 .. native_s0.4, matched_s0.95 .. matched_s0.85),
 #                         9.. = adapt_{arm}  (subset: dino_SD lpips_SD dino_D S; full: `wan` lines of r48_selected_arms.txt, file order)
 # Adaptive configs read $D/r48_field/wan_{arm}/edit{T}/{video}.npy (start step per token, from r48_field.py).
@@ -29,7 +31,8 @@ case "$MODE" in
   subset)  CASES=evaluation/r48_cases.json;        PYMODE=subset ;;
   full)    CASES=evaluation/r7_anchor_manifest.json; PYMODE=full ;;
   explore) CASES=evaluation/r48_cases.json;        PYMODE=subset ;;   # v2a explore configs, on the subset clips
-  *) echo "[r48_wan_render] usage: r48_wan_render.sh subset|full|explore"; exit 1 ;;
+  explore_full) CASES=evaluation/r7_anchor_manifest.json; PYMODE=full ;;   # R49 full stage: native_s0.978 on the 419 pairs
+  *) echo "[r48_wan_render] usage: r48_wan_render.sh subset|full|explore|explore_full"; exit 1 ;;
 esac
 
 REPO=/home/ids/skhairi/Code/StreamEdit_bigchantier
@@ -44,7 +47,7 @@ export HF_HUB_OFFLINE=1
 
 TID=${SLURM_ARRAY_TASK_ID}
 if [ -z "$TID" ] || [ "$TID" -lt 0 ]; then echo "[r48_wan_render] bad array id '${TID}'"; exit 1; fi
-if [ "$MODE" = explore ]; then
+if [ "$MODE" = explore ] || [ "$MODE" = explore_full ]; then
   mapfile -t CONFIGS < <($PY_FB evaluation/r48_wan_sched.py --list_explore 2>/dev/null)
   [ "${#CONFIGS[@]}" -eq 2 ] || { echo "[r48_wan_render] FATAL: expected 2 explore configs, got ${#CONFIGS[@]}"; exit 1; }
 else
@@ -53,7 +56,7 @@ else
 fi
 # The adaptive arms (ids 9+) are only listed when this task needs one: the 9 baselines (ids 0-8) depend on neither the field
 # nor the gate, so a full-mode baseline job must not require evaluation/r48_selected_arms.txt.
-if [ "$MODE" != explore ] && [ "$TID" -ge 9 ]; then
+if [ "$MODE" != explore ] && [ "$MODE" != explore_full ] && [ "$TID" -ge 9 ]; then
   if [ "$MODE" = subset ]; then
     for A in dino_SD lpips_SD dino_D S; do CONFIGS+=("adapt_${A}"); done
   else

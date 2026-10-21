@@ -86,15 +86,15 @@ todos:
   - id: wan-render-py-full
     content: "evaluation/r49_wan_render.py -- --mode subset|full (default subset): output dir {config}_{mode}; MATCHED59 gains 0.978 APPENDED (index 3, so subset indices 0-2 are unchanged): matched59_s0.978 = r48_wan_sched.matched_n(0.978, 59) = N 66, skip 7, real start sigma 0.9766 (passes the existing 0.015 assert); nothing else changes"
     needed_by: [wan-full-chain]
-    status: pending
+    status: completed
   - id: wan-render-sbatch-full
     content: "slurm_scripts/five_bench/r49_wan_render.sh -- optional second argument subset|full (default subset): full = evaluation/r7_anchor_manifest.json, passes --mode full, guard via r48_units.py --mode full --missing; MODE m59 accepts array index 3 (matched59_s0.978); runs on Jean Zay after jz/r50_port.sh"
     needed_by: [wan-full-chain]
-    status: pending
+    status: completed
   - id: native0978-full-sbatch
     content: "slurm_scripts/five_bench/r48_wan_render.sh -- new MODE explore_full: CASES evaluation/r7_anchor_manifest.json, PYMODE full, configs from r48_wan_sched.py --list_explore (array index 0 = native_s0.978 = N 50, skip 5) -> r48_wan_arms/native_s0.978_full; subset / full / explore unchanged"
     needed_by: [wan-full-chain]
-    status: pending
+    status: completed
   - id: units-full
     content: "evaluation/r49_units.py -- --mode subset|full (default subset): full dirs end in _full; full-mode groups split by host (one platform each): se = se_max (r49_se_arms/r49_max_full/step14, lab cluster), wan = wan_max_s5 (r49_wan_arms/max_s5_full, Jean Zay), base = the 9 Wan-Edit global configs on 419 pairs (r48_wan_arms/{config}_full, Jean Zay), m59 = matched59_*_full (Jean Zay); no R48 reference units; base names get a _full suffix in full mode"
     needed_by: [se-full-chain, wan-full-chain, se-full-score, wan-full-score]
@@ -104,29 +104,29 @@ todos:
     needed_by: [se-full-chain, wan-full-chain]
     status: completed
   - id: units-full-v2
-    content: "evaluation/r49_units.py -- full-mode Wan groups follow the 2026-10-20 config list: base = the 6 native configs (r48_wan_sched.configs()[:6]: native_s0.95 .. native_s0.4, incl. the official native_s0.92) + native_s0.978 (7 units, r48_wan_arms/{config}_full; matched-55 dropped, it only serves max_s9); m59 = matched59_s0.978, s0.95, s0.92, s0.85 (4 units); se / wan unchanged; subset groups unchanged"
+    content: "evaluation/r49_units.py -- full-mode Wan groups follow the 2026-10-20 config list: base = the 6 native configs (r48_wan_sched.configs()[:6]: native_s0.95 .. native_s0.4, incl. the official native_s0.92) + native_s0.978 (7 units, r48_wan_arms/{config}_full; matched-55 dropped, it only serves max_s9); m59 = matched59_s0.95, s0.92, s0.85, s0.978 (4 units; 0.978 last, like its render index) and base = the 6 natives then native_s0.978 last (index 6); se / wan unchanged; subset groups unchanged"
     needed_by: [wan-full-chain, wan-full-score]
-    status: pending
+    status: completed
   - id: eval-full-array
-    content: "slurm_scripts/five_bench/r49_eval_all.sh -- full mode run as a Slurm array: task i scores only unit i (r49_units.py --index i) and writes CLIP-D to r49_clip_directional_{group}_full_{base}.csv, so no job exceeds Jean Zay's 20 h (one 419-pair unit took ~5 h harness + <1 h FiVE-Acc on L40S); without an array, unchanged (all units of the group, one CLIP-D file)"
+    content: "slurm_scripts/five_bench/r49_eval_all.sh -- full mode run as a Slurm array: task i scores only unit i (r49_units.py --index i) and writes CLIP-D to r49_clip_directional_{group}_full_{unit}.csv (unit = the unit base without its _full, e.g. r49_clip_directional_base_full_wan_native_s0p92.csv), so no job exceeds Jean Zay's 20 h (one 419-pair unit took ~5 h harness + <1 h FiVE-Acc on L40S); without an array, unchanged (all units of the group, one CLIP-D file)"
     needed_by: [wan-full-chain, wan-full-score]
-    status: pending
+    status: completed
   - id: wan-chain-driver
     content: "slurm_scripts/five_bench/r49_wan_full_chain.sh -- run ON JEAN ZAY after jz/r50_port.sh; sbatch --parsable: draft r48_wan_draft.sh full -> r48_div.sh full --array=2-3 -> r49_field.sh wan full -> r49_wan_render.sh arms full --array=1 (max_s5); with no dependency: r48_wan_render.sh full --array=0-5 (6 native) and r48_wan_render.sh explore_full --array=0 (native_s0.978), r49_wan_render.sh m59 full --array=0-3; evals afterok on their renders: r49_eval_all.sh wan full, base full --array=0-6, m59 full --array=0-3; refuses if logs/r49_wan_full_chain_jobs.txt exists; writes it (one '<stage> <id>' per line)"
     needed_by: [wan-full-chain]
-    status: pending
+    status: completed
   - id: scratch-links-script
-    content: "jz/r50_scratch_links.sh -- ON JEAN ZAY, run once before wan-full-chain (and before the R50 jz-repro): for each Wan output folder (r48_wan_draft, r48_div, r48_field, r48_wan_arms, r49_wan_draft, r49_div, r49_field, r49_field_full, r49_wan_arms, r50_preflight, r50_repro) create $SCRATCH/five_bench_out/<dir> and a symlink $JZ_WORK/Data/dataggen/outputs/five_bench/<dir> -> it, so the job scripts (D=~/Data/dataggen/outputs/five_bench) write to $SCRATCH without any edit; idempotent, refuses to replace a non-empty real directory (CONFLICT), prints the idr_quota_user inode lines and '[r50_scratch] failures: N'"
+    content: "jz/r50_scratch_links.sh -- ON JEAN ZAY, run once before wan-full-chain (and before the R50 jz-repro): for each Wan output folder (r48_wan_draft, r48_div, r48_field, r48_wan_arms, r49_wan_draft, r49_div, r49_field, r49_field_full, r49_wan_arms, r50_preflight; r50_repro dropped, no script writes it) create $SCRATCH/five_bench_out/<dir> and a symlink $JZ_WORK/Data/dataggen/outputs/five_bench/<dir> -> it, so the job scripts (D=~/Data/dataggen/outputs/five_bench) write to $SCRATCH without any edit; idempotent, refuses to replace a non-empty real directory (CONFLICT), prints the idr_quota_user inode lines and '[r50_scratch] failures: N'"
     needed_by: [wan-full-chain]
-    status: pending
+    status: completed
   - id: fetch-outputs-script
-    content: "jz/r50_fetch_outputs.sh -- ON THE LAB FRONTAL (gpu-gw): rsync -a --partial the Wan output folders from zay:$SCRATCH/five_bench_out/ to the lab store (/store/PERSO/skhairi/Outputs/jz_five_bench/), one folder per run (resumable, no --delete), then compares per-folder file counts and total bytes with the Jean Zay side and prints '[r50_fetch] failures: N'; prints, never runs, the commands that delete the scratch copy and the lab-side symlinks (~/Data/.../<dir> -> store) to create"
+    content: "jz/r50_fetch_outputs.sh -- ON THE LAB FRONTAL (gpu-gw): rsync -a --partial the Wan output folders from zay:$SCRATCH/five_bench_out/ to the lab store (/store/PERSO/skhairi/Outputs/jz_five_bench/), one folder per run (resumable, no --delete), then compares per-folder file counts and total bytes with the Jean Zay side and prints '[r50_fetch] failures: N'; prints, never runs, the commands that delete the scratch copy; no lab-side symlinks into ~/Data (those folders hold L40S renders; H100 and L40S results are never merged), the CSVs travel separately through the wan-full-fetch rsync; --check counts only"
     needed_by: [wan-full-fetch]
-    status: pending
+    status: completed
   - id: score-full
-    content: "evaluation/r49_score.py -- --mode full --host se|wan (one host per run, so each track scores on its own): scope = 419 pairs, also reported on the 401 pairs outside the 18-clip set; se (lab L40S): curve R39 N=20 + official R36 rho2 + R38 (full CSVs exist) and se_max; wan (Jean Zay H100, CSVs fetched by wan-full-fetch): native curve = 7 points from base (native_s0.978 .. native_s0.4, official native_s0.92 marked), equal-NFE curve = matched-59 from m59 (4 points incl. s0.978), wan_max_s5 (deltas vs matched-59 and vs official; paired vs native_s0.978); CLIP-D read from the per-unit files r49_clip_directional_{group}_full_{base}.csv; writes r49_full_{host}_points.csv, r49_full_{host}_deltas.csv (with a platform column L40S / H100) and figures/r49_full_pareto/{host}_*.{pdf,png} with the platform in the title; R48 references skipped"
+    content: "evaluation/r49_score.py -- --mode full --host se|wan (one host per run, so each track scores on its own): scope = 419 pairs, also reported on the 401 pairs outside the 18-clip set; se (lab L40S): curve R39 N=20 + official R36 rho2 + R38 (full CSVs exist) and se_max; wan (Jean Zay H100, CSVs fetched by wan-full-fetch): native curve = 7 points from base (native_s0.978 .. native_s0.4, official native_s0.92 marked), equal-NFE curve = matched-59 from m59 (4 points incl. s0.978), wan_max_s5 (deltas vs matched-59 and vs official; paired vs native_s0.978); CLIP-D read from the per-unit files r49_clip_directional_{base,m59}_full_{unit}.csv (unit = base without _full) and r49_clip_directional_{wan,se}_full.csv; paired CIs: se vs official + R38, wan vs official + native_s0.978; writes r49_full_{host}_points.csv, r49_full_{host}_deltas.csv (with a platform column L40S / H100) and figures/r49_full_pareto/{host}_*.{pdf,png} with the platform in the title; R48 references skipped"
     needed_by: [se-full-score, wan-full-score]
-    status: pending
+    status: completed
 steps:
   - id: chain
     type: local
@@ -483,6 +483,6 @@ flowchart LR
 | `evaluation/r49_units.py` | full Wan groups v2: `base` = 6 native + `native_s0.978` (7), `m59` = 4 incl. `matched59_s0.978` |
 | `slurm_scripts/five_bench/r49_eval_all.sh` | full mode as a Slurm array: task i scores unit i only, CLIP-D `r49_clip_directional_{group}_full_{base}.csv` |
 | `jz/r50_scratch_links.sh` | new (Jean Zay): symlinks the Wan output folders under `$WORK/Data/dataggen/outputs/five_bench` to `$SCRATCH/five_bench_out/`, so job scripts are unchanged |
-| `jz/r50_fetch_outputs.sh` | new (lab frontal): rsync scratch outputs to `/store/PERSO/skhairi/Outputs/jz_five_bench/`, compare counts and bytes, print (not run) the cleanup commands |
+| `jz/r50_fetch_outputs.sh` | new (lab frontal): rsync scratch outputs to `/store/PERSO/skhairi/Outputs/jz_five_bench/` (resumable, no --delete), compare file counts and bytes per folder, print (not run) the commands that free the scratch copy; no links into `~/Data` (platforms stay separate) |
 | `slurm_scripts/five_bench/r49_wan_full_chain.sh` | new (Jean Zay): draft → div 2-3 → field → `max_s5`; 6 native + `native_s0.978` + 4 matched-59 renders; evals `wan`, `base` array 0-6, `m59` array 0-3, each afterok on its renders; ids to `logs/r49_wan_full_chain_jobs.txt` |
 | `evaluation/r49_score.py` | full mode: `--mode full --host se|wan` (one host per run), scope 419 + the 401 outside the 18 clips; se: R39/R36/R38 curves + se_max (L40S); wan: base + m59 curves + wan_max_s5 vs matched-59 (H100, fetched CSVs); `platform` column and figure titles; R48 references skipped; `r49_full_{host}_points.csv`, `r49_full_{host}_deltas.csv`, `figures/r49_full_pareto/{host}_*` |

@@ -9,11 +9,15 @@
 #                                                                   # CLIP-D -> r49_clip_directional_wan_pair.csv)
 #        sbatch slurm_scripts/five_bench/r49_eval_all.sh GROUP full   # 419 pairs; GROUP = se | wan | base | m59 (r49_units.py --mode full):
 #                                                                     # se on the lab cluster, wan / base / m59 on Jean Zay
+#        sbatch --array=0-6 slurm_scripts/five_bench/r49_eval_all.sh base full   # Jean Zay: one UNIT per array task (task i = unit i of
+#        sbatch --array=0-3 slurm_scripts/five_bench/r49_eval_all.sh m59 full    # `r49_units.py --group GROUP --mode full`), so no job nears the 20 h limit
+#                                                                     # (a 419-pair unit took ~5 h harness + <1 h FiVE-Acc on the L40S)
 # Same evaluate.py calls as r48_eval.sh / r48_fiveacc.sh / r48_clipd.sh. subset: the 18 clips of evaluation/r49_cases.json
 # (--cases_json), only the annotation files of edit types that have cases (types 1-5; no type-6 clip). full: no --cases_json
 # (the full bench of every edit{T}_FiVE.json, counts from evaluation/r7_anchor_manifest.json), CLIP-D --fullbench.
 # Output: evaluation/csv/edit{T}_FiVE_r49_{base}_frame_stride8.csv, ..._r49_fiveacc_{base}_..., r49_clip_directional_{GROUP}.csv
-#         (full: unit bases end in _full, CLIP-D r49_clip_directional_{GROUP}_full.csv)
+#         (full: unit bases end in _full, CLIP-D r49_clip_directional_{GROUP}_full.csv; as an array task, CLIP-D of that one unit goes
+#          to r49_clip_directional_{GROUP}_full_{unit}.csv with the unit name = base minus its _full, e.g. r49_clip_directional_base_full_wan_native_s0p92.csv)
 #SBATCH --job-name=r49_eval_all
 #SBATCH --partition=L40S
 #SBATCH --exclude=node52
@@ -54,7 +58,14 @@ for T in 1 2 3 4 5 6; do
   [ "${EXPECT[$((T - 1))]}" -gt 0 ] && ANNOTATIONS+=("$DATA_ROOT/edit_prompt/edit${T}_FiVE.json")
 done
 echo "[r49_eval] annotation files: ${#ANNOTATIONS[@]} (edit types with cases)"
-echo "[r49_eval] job=${JOB} group=${GROUP} mode=${MODE} cases=${CASES} expect per type: ${EXPECT[*]}"
+# Array task (full mode only): score the single unit with this index instead of the whole group
+UNIT_ARG=()
+if [ "$MODE" = full ] && [ -n "${SLURM_ARRAY_TASK_ID:-}" ]; then
+  NU=$($PY_FB evaluation/r49_units.py --group "$GROUP" --mode "$MODE" --count 2>/dev/null)
+  [ "$SLURM_ARRAY_TASK_ID" -ge "${NU:-0}" ] && { echo "[r49_eval] array id ${SLURM_ARRAY_TASK_ID} >= ${NU} units of group ${GROUP} -- nothing to do"; exit 0; }
+  UNIT_ARG=(--index "$SLURM_ARRAY_TASK_ID")
+fi
+echo "[r49_eval] job=${JOB} group=${GROUP} mode=${MODE} cases=${CASES} expect per type: ${EXPECT[*]}${UNIT_ARG[*]:+ unit index ${SLURM_ARRAY_TASK_ID}}"
 echo "[r49_eval] node=$(hostname)"; nvidia-smi -L 2>&1 | head -2
 
 # per-type row counts of one result stem; for five_acc also the binary columns (as r48_fiveacc.sh)
@@ -118,12 +129,14 @@ while IFS=$'\t' read -r BASE DIR HOST CONFIG; do
     check_rows "$STEM" "$KIND" || F=1
   done
   [ "$F" -ne 0 ] && { echo "[r49_eval] FAILED unit ${BASE}"; UNIT_FAIL=$((UNIT_FAIL + 1)); }
-done < <($PY_FB evaluation/r49_units.py --group "$GROUP" --mode "$MODE" 2>/dev/null)
+done < <($PY_FB evaluation/r49_units.py --group "$GROUP" --mode "$MODE" "${UNIT_ARG[@]}" 2>/dev/null)
 
 # ---- CLIP-D over the group's rendered units
 OUT="evaluation/csv/r49_clip_directional_${GROUP}${SUFFIX}.csv"
+[ "${#UNIT_ARG[@]}" -gt 0 ] && [ "${#NAMES[@]}" -gt 0 ] && OUT="evaluation/csv/r49_clip_directional_${GROUP}${SUFFIX}_${NAMES[0]#r49_}.csv" && OUT=${OUT%_full.csv}.csv
 if [ "${#METHODS[@]}" -gt 0 ]; then
   RUNLOG="logs/r49_eval_${JOB}_clipd.run.log"
+  [ "${#UNIT_ARG[@]}" -gt 0 ] && RUNLOG="logs/r49_eval_${JOB}_${NAMES[0]}_clipd.run.log"
   $PY_FB evaluation/r33_clip_directional.py "${CLIPD_SCOPE[@]}" --methods "${METHODS[@]}" --data_root "$DATA_ROOT" \
     --frame_stride 8 -o "$OUT" > "$RUNLOG" 2>&1
   RC=$?

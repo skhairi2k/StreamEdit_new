@@ -120,7 +120,9 @@ steps:
     type: manual
     wait_for: jz-port
     check_hint: "ON JEAN ZAY: sbatch slurm_scripts/five_bench/r50_preflight.sh; its log ends with '[r50_preflight] failures: 0' (every model OK offline, the one-clip Wan draft written)"
-    status: pending
+    status: completed
+    completed_at: 2026-10-21
+    job_id: "1399496"
   - id: jz-repro
     type: manual
     wait_for: jz-preflight
