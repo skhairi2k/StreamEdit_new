@@ -107,6 +107,9 @@ Check `idr_quota_user` after steps 5 and 8, and before launching the full stage.
 | 5 | a pinned package fails to install or `pip check` complains | read `$WORK/pyenv/five-bench/overlay.txt`, fix the pin, rerun step 5 (reinstalls only what still differs) |
 | 5 | flash-attn wheel cannot be downloaded (frontal blocks GitHub) or no wheel matches the module's torch / python | download `flash_attn-<ver>+cu12torch<X.Y>cxx11abi<TRUE\|FALSE>-cp<NNN>-cp<NNN>-linux_x86_64.whl` (the name is printed) elsewhere, copy it to `$WORK/pyenv/wheels/`, rerun; or pick another `JZ_MODULE` |
 | 5 | `python ... < 3.10` refusal | the module is too old for transformers 5.x: `module avail pytorch-gpu`, change `JZ_MODULE` in `jz/r50_jz.env` |
+| 5 | `Failed to initialize NumPy` / `torch<->numpy bridge: BROKEN` | numpy of the overlay is not the one the module's torch was built against: rerun `r50_pip_overlay.sh` (it removes it; numpy is left to the module) |
+| 5 | `IMPORT diffusers ... peft` | the module's peft is too old for diffusers 0.36: the overlay adds peft 0.18.1 itself; if it persists check `overlay.txt` |
+| 4+ | a code-only refresh after `r50_setup_dirs.sh` | commit + push, `make-bundle` (compute node, ~1 min), then `bash jz/r50_push.sh --meta` (seconds; a plain push would re-send 38 GB), on Jean Zay `git pull` and `bash jz/r50_verify.sh --code-only` |
 | 6 | leftovers > 0 | the printed lines show what the port missed; `git checkout -- slurm_scripts evaluation/fivebench/config.yaml`, fix `jz/r50_port.sh`, rerun |
 | 7 | a model fails offline | its cache entry is missing: add it to the bundle (step 2), push, `r50_setup_dirs.sh`, rerun the preflight |
 | 8 | one job failed | the R49 scripts are resumable: resubmit that script alone, then its dependents |

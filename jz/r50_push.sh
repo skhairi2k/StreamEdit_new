@@ -9,8 +9,11 @@
 # No --delete: nothing on Jean Zay is ever removed by this script.
 #
 # Usage: bash jz/r50_push.sh               (35 GiB the first time; run it inside tmux/screen, it can take a while)
-#        bash jz/r50_push.sh --dry-run     (extra arguments go to rsync: lists what would be sent, sends nothing)
-# Rerun after a new `make-bundle`: only the changed files (e.g. CODE.sha256) are sent.
+#        bash jz/r50_push.sh --meta        ONLY the small files: CODE.sha256, MANIFEST.sha256, freeze/, r50_jz.env (seconds). Use this for every
+#                                          refresh AFTER r50_setup_dirs.sh has run on Jean Zay: setup MOVES the big folders out of r50_stage, so a
+#                                          full push would find them missing and re-send all 38 GB (it did, once).
+#        bash jz/r50_push.sh --dry-run     (other arguments go to rsync: lists what would be sent, sends nothing; combinable with --meta)
+# A full rerun after a new `make-bundle` (before setup) sends only the changed files.
 set -euo pipefail
 
 REPO=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
@@ -28,13 +31,22 @@ for F in MANIFEST.sha256 CODE.sha256 freeze/five-bench.txt; do
   [ -s "$STAGE/$F" ] || { echo "[r50_push] FATAL: $STAGE/$F missing -- run bash jz/r50_make_bundle.sh first"; exit 1; }
 done
 
+META=0; ARGS=()
+for A in "$@"; do if [ "$A" = "--meta" ]; then META=1; else ARGS+=("$A"); fi; done
+
 # the filled config travels inside the stage (a real file, not a link), so one connection sends everything
 cp "$CFG" "$STAGE/r50_jz.env"
 
 DEST="$JZ_HOST:$JZ_WORK/r50_stage/"
 # one SSH connection for the test and the rsync (ControlMaster): at most one password / key prompt
 SSH_CMD="ssh -o ConnectTimeout=20 -o ControlMaster=auto -o ControlPath=$HOME/.ssh/cm-r50-%r@%h:%p -o ControlPersist=10m"
-echo "[r50_push] on $(hostname): $STAGE/ -> $DEST  $(date '+%F %T')"
+if [ "$META" -eq 1 ]; then
+  SRCS=("$STAGE/CODE.sha256" "$STAGE/MANIFEST.sha256" "$STAGE/r50_jz.env" "$STAGE/freeze")        # the big folders are not touched
+  WHAT="only CODE.sha256, MANIFEST.sha256, freeze/, r50_jz.env"
+else
+  SRCS=("$STAGE/"); WHAT="$STAGE/"
+fi
+echo "[r50_push] on $(hostname): ${WHAT} -> $DEST  $(date '+%F %T')"
 # Jean Zay only accepts SSH from registered machines (the lab frontal, not compute nodes such as nodemm06):
 # test the connection first so a wrong machine fails in 20 s instead of hanging silently.
 if ! $SSH_CMD "$JZ_HOST" true; then
@@ -44,13 +56,13 @@ if ! $SSH_CMD "$JZ_HOST" true; then
 fi
 T0=$(date +%s)
 set +e
-rsync -a --copy-unsafe-links --partial --info=progress2 --stats --human-readable -e "$SSH_CMD" "$@" "$STAGE/" "$DEST"
+rsync -a --copy-unsafe-links --partial --info=progress2 --stats --human-readable -e "$SSH_CMD" "${ARGS[@]+"${ARGS[@]}"}" "${SRCS[@]}" "$DEST"
 RC=$?
 set -e
 echo "[r50_push] rsync exit $RC, elapsed $(( $(date +%s) - T0 )) s"
 case "$RC" in
   0)  echo "[r50_push] OK -- next, on the Jean Zay frontal: git clone (see jz/r50_README.md step 4)" ;;
-  23|24) echo "[r50_push] PARTIAL transfer (some files not sent or vanished) -- rerun bash jz/r50_push.sh" ;;
+  23|24) echo "[r50_push] PARTIAL transfer (some files not sent or vanished) -- rerun bash jz/r50_push.sh$([ "$META" -eq 1 ] && echo ' --meta')" ;;
   *)  echo "[r50_push] FAILED -- check ssh access to $JZ_HOST, then rerun (resumes with --partial)" ;;
 esac
 echo "[r50_push] failures: $(( RC != 0 ))"
