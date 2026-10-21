@@ -1,7 +1,9 @@
 #!/bin/bash
 # R49 stage 2a: draft-vs-source divergence maps (DINOv3 patch features and LPIPS) for both hosts, 18 clips.
 #
-# Usage: sbatch slurm_scripts/five_bench/r49_div.sh        (normally submitted by r49_chain.sh, afterok on both drafts)
+# Usage: sbatch slurm_scripts/five_bench/r49_div.sh [HOSTS]    (normally submitted by r49_chain.sh, afterok on both drafts)
+#   HOSTS: "se wan" (default, the lab cluster), se or wan -- only those hosts' names are computed and checked
+#          (Jean Zay runs `wan` only: r50_repro_chain.sh)
 # One GPU job loops the four names that r48_div.sh runs as array tasks 0-3 (se_dino, se_lpips, wan_dino, wan_lpips), with the
 # same r31_divergence.py flags, so it takes one queue entry instead of four.
 # Input : StreamEdit draft frames $D/r49_se_stage1/frames/n5_tgt09/step04 + latents; Wan-Edit draft frames $D/r49_wan_draft/frames/step00
@@ -18,6 +20,11 @@
 #SBATCH --output=logs/r49_div_%j.out
 #SBATCH --error=logs/r49_div_%j.err
 
+HOSTS=${1:-se wan}
+read -r -a HOST_LIST <<< "$HOSTS"
+for H in "${HOST_LIST[@]}"; do
+  case "$H" in se|wan) ;; *) echo "[r49_div] usage: r49_div.sh [\"se wan\"|se|wan] -- bad host '$H'"; exit 1 ;; esac
+done
 CASES=evaluation/r49_cases.json
 REPO=/home/ids/skhairi/Code/StreamEdit_bigchantier
 DATA_ROOT=~/Data/FiVE-Fine-Grained-Video-Editing-Benchmark
@@ -36,12 +43,13 @@ c = collections.Counter(int(x["edit_type"]) for x in json.load(open(sys.argv[1])
 print(" ".join(str(c.get(t, 0)) for t in range(1, 7)))
 PYEOF
 )"
-echo "[r49_div] job=${SLURM_JOB_ID:-local} cases=${CASES} expect per type: ${EXPECT[*]}"
+echo "[r49_div] job=${SLURM_JOB_ID:-local} hosts=${HOST_LIST[*]} cases=${CASES} expect per type: ${EXPECT[*]}"
 echo "[r49_div] node=$(hostname)"; nvidia-smi -L 2>&1 | head -2
 
 FAILED=0
 for NAME in se_dino se_lpips wan_dino wan_lpips; do
   HOST=${NAME%%_*}; METRIC=${NAME##*_}
+  [[ " ${HOST_LIST[*]} " == *" $HOST "* ]] || continue          # not a requested host
   case "$METRIC" in dino) ARM=dino_patch ;; lpips) ARM=lpips ;; esac
   if [ "$HOST" = se ]; then
     TARGET_ROOT=$D/r49_se_stage1/frames/n5_tgt09/step04

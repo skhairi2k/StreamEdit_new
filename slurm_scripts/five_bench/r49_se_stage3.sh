@@ -1,9 +1,12 @@
 #!/bin/bash
-# R49 stage 3 (StreamEdit): the adaptive 15-step render with the inverse-response rho field, arm `max`, the 18 clips of evaluation/r49_cases.json.
+# R49 stage 3 (StreamEdit): the adaptive 15-step render with the inverse-response rho field, arm `max`.
 #
-# Usage: sbatch slurm_scripts/five_bench/r49_se_stage3.sh        (normally submitted by r49_chain.sh, afterok on r49_field.sh)
-# Input : $D/r49_field/se_max/edit{T}/{video}.npz   (key `rho`, step 15, flow_shift 1.0 -- r31_stage3 validates both)
-# Output: $D/r49_se_arms/r49_max_subset/step14/edit{T}/{video}/*.png   (+ _manifest_edit{T}.csv)
+# Usage: sbatch slurm_scripts/five_bench/r49_se_stage3.sh [subset]   18 clips of evaluation/r49_cases.json (r49_chain.sh, afterok on r49_field.sh)
+#        sbatch slurm_scripts/five_bench/r49_se_stage3.sh full       419 pairs of evaluation/r7_anchor_manifest.json (R49 se-full-render)
+# Input : subset $D/r49_field/se_max/edit{T}/{video}.npz, full $D/r49_field_full/se_max/...   (key `rho`, step 15, flow_shift 1.0 --
+#         r31_stage3 validates both)
+# Output: $D/r49_se_arms/r49_max_{subset,full}/step14/edit{T}/{video}/*.png   (+ _manifest_edit{T}.csv)
+# Full mode passes no --cases_json: r31_stage3 renders the full bench from run_fivebench's own edit{T}_FiVE.json, as R38 / r48_se_stage3.sh.
 # Flags identical to r48_se_stage3.sh / r38_stage3.sh (VP + Qwen anchors, fg_boost 4, blend_power 2 -- inert under a rho
 # field --, rollout_chunk_size 21, seed 0). Total NFE = 5 (R49 draft) + 15 (this render) = 20.
 #SBATCH --job-name=r49_se_stage3
@@ -18,16 +21,20 @@
 #SBATCH --output=logs/r49_se_stage3_%j.out
 #SBATCH --error=logs/r49_se_stage3_%j.err
 
-CASES=evaluation/r49_cases.json; CASES_ARG=(--cases_json "$CASES")
+MODE=${1:-subset}
 REPO=/home/ids/skhairi/Code/StreamEdit_bigchantier
 DATA_ROOT=~/Data/FiVE-Fine-Grained-Video-Editing-Benchmark
 D=~/Data/dataggen/outputs/five_bench
-FIELD_DIR=$D/r49_field/se_max
+case "$MODE" in
+  subset) CASES=evaluation/r49_cases.json;          CASES_ARG=(--cases_json "$CASES"); FIELD_DIR=$D/r49_field/se_max ;;
+  full)   CASES=evaluation/r7_anchor_manifest.json; CASES_ARG=();                      FIELD_DIR=$D/r49_field_full/se_max ;;
+  *) echo "[r49_se_stage3] usage: r49_se_stage3.sh [subset|full]"; exit 1 ;;
+esac
 OUT_ROOT=$D/r49_se_arms
 ANCHOR_ROOT=$D/anchors
 PY_SG=/home/ids/skhairi/anaconda3/envs/streamgve/bin/python
 PY_FB=/home/ids/skhairi/anaconda3/envs/five-bench/bin/python
-METHOD="r49_max_subset"
+METHOD="r49_max_${MODE}"
 
 cd "$REPO" || exit 1
 mkdir -p logs "$OUT_ROOT"
@@ -40,7 +47,7 @@ print(" ".join(str(c.get(t, 0)) for t in range(1, 7)))
 PYEOF
 )"
 TOTAL=0; for n in "${EXPECT[@]}"; do TOTAL=$((TOTAL + n)); done
-echo "[r49_se_stage3] job=${SLURM_JOB_ID:-local} method=${METHOD} expect per type: ${EXPECT[*]} (total ${TOTAL})"
+echo "[r49_se_stage3] job=${SLURM_JOB_ID:-local} mode=${MODE} method=${METHOD} cases=${CASES} expect per type: ${EXPECT[*]} (total ${TOTAL})"
 echo "[r49_se_stage3] node=$(hostname)"; nvidia-smi -L 2>&1 | head -2
 
 # ---- preflight: the field must be complete

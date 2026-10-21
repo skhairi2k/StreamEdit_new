@@ -3,7 +3,9 @@
 Each row shows frame 0, R7's anchor for the same pair, and the new anchor, labelled with
 FiVE's instruction and the Correct instruction (the keep-pose suffix is shown as
 ``+keep-pose``). Cells are 320x185, JPEG quality 85; a missing image is drawn as a grey
-"n/a" cell, so a partial run still gives a sheet.
+"n/a" cell, so a partial run still gives a sheet. In full mode the script then exits 1 if any
+new anchor is missing (smoke mode stays tolerant), so an unreachable anchor directory cannot pass
+as a success.
 
   --smoke   rows = the smoke cases of ``--smoke_manifest`` (anchors read from the manifest's
             ``anchor_image``), one sheet per edit type -> ``r43_smoke_sheet_edit{T}.jpg``
@@ -153,6 +155,7 @@ def main() -> None:
     by_type = defaultdict(list)
     for m in manifest:
         by_type[m["edit_type"]].append(m)
+    total_missing = 0
     for t in sorted(by_type):
         blocks = []
         for m in by_type[t]:
@@ -168,6 +171,10 @@ def main() -> None:
                              Path(args.correct_root).expanduser() / f"edit{t}" / f"{m['video_name']}.png"
                              ).is_file() for m in by_type[t])
         print(f"[r43_contact_sheets] edit{t}: {len(blocks)} rows ({n_missing} new anchors missing) -> {path}")
+        total_missing += n_missing
+    if total_missing and not args.smoke:
+        sys.exit(f"[r43_contact_sheets] FAILED: {total_missing} new anchors missing under "
+                 f"{args.correct_root} (is the directory / its symlink target mounted on this node?)")
 
 
 if __name__ == "__main__":

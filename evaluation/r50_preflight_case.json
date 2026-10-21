@@ -1,0 +1,17 @@
+[
+  {
+    "case_id": "0076_A_rabbit",
+    "edit_type": 2,
+    "video_name": "0076_A_rabbit",
+    "src_video": "videos/0076_A_rabbit.mp4",
+    "src_first_frame": "images/0076_A_rabbit/00001.jpg",
+    "src_word": "A rabbit",
+    "trg_word": "A drone",
+    "src_prompt": "A rabbit is hopping quickly through a meadow, with wildflowers and tall grass swaying in the breeze. The camera remains fixed, focusing on the rabbit's rapid movements.",
+    "trg_prompt": "A drone is buzzing quickly through a meadow, with wildflowers and tall grass swaying in the breeze. The camera remains fixed, focusing on the drone's rapid movements.",
+    "negative_prompt": "worst quality, low quality, blurry, absolute black, absolute white, low res, extra limbs, extra digits, misplaced objects, mutated anatomy, monochrome, horror",
+    "instruction": "Change the rabbit to a drone.",
+    "first_frame_edit_prompt": "Change the rabbit to a drone.",
+    "anchor_image": "/projects/dataggen/outputs/five_bench/anchors/edit2/0076_A_rabbit.png"
+  }
+]

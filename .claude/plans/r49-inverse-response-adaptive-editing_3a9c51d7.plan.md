@@ -73,27 +73,51 @@ todos:
     status: completed
   - id: se-stage3-full
     content: "slurm_scripts/five_bench/r49_se_stage3.sh -- optional MODE argument subset|full (default subset): full = evaluation/r7_anchor_manifest.json without --cases_json, METHOD r49_max_full, 419-pair guards"
-    needed_by: [full-render]
-    status: pending
+    needed_by: [se-full-chain]
+    status: completed
+  - id: field-full
+    content: "slurm_scripts/five_bench/r49_field.sh -- optional arguments HOSTS ('se', 'wan' or 'se wan', default 'se wan') and MODE (subset|full, default subset) = current behaviour when called with none; passes --hosts to r49_field.py (and, subset only, to r48_field.py for the new-clip reference); full = --cases evaluation/r7_anchor_manifest.json --attn_se r48_se_attn --attn_wan r48_wan_draft/attn --div_root r48_div --out_root r49_field_full, no r48_field reference; guards only the listed hosts' dirs (se_max; wan_max_s9/s5 + start maps) with the mode's count (18 or 419); also covers R50's field-hosts-edit"
+    needed_by: [se-full-chain, wan-full-chain]
+    status: completed
+  - id: se-chain-driver
+    content: "slurm_scripts/five_bench/r49_se_full_chain.sh -- argument DRAFT_JOB (the running r48_se_stage1.sh full job); sbatch --parsable with afterok: r48_div.sh full --array=0-1 (afterok:DRAFT_JOB) -> r49_field.sh se full -> r49_se_stage3.sh full -> r49_eval_all.sh se full; refuses if DRAFT_JOB is unknown to squeue and r48_se_attn lacks 419 npz; writes logs/r49_se_full_chain_jobs.txt (draft, div, field, render, eval); on a refused submission prints the stage and exits non-zero"
+    needed_by: [se-full-chain]
+    status: completed
   - id: wan-render-py-full
-    content: "evaluation/r49_wan_render.py -- --mode subset|full (default subset): output dir {config}_{mode}; nothing else changes"
-    needed_by: [full-render, full-m59]
+    content: "evaluation/r49_wan_render.py -- --mode subset|full (default subset): output dir {config}_{mode}; MATCHED59 gains 0.978 APPENDED (index 3, so subset indices 0-2 are unchanged): matched59_s0.978 = r48_wan_sched.matched_n(0.978, 59) = N 66, skip 7, real start sigma 0.9766 (passes the existing 0.015 assert); nothing else changes"
+    needed_by: [wan-full-chain]
     status: pending
   - id: wan-render-sbatch-full
-    content: "slurm_scripts/five_bench/r49_wan_render.sh -- optional second argument subset|full (default subset): full = evaluation/r7_anchor_manifest.json, passes --mode full, guard via r48_units.py --mode full --missing"
-    needed_by: [full-render, full-m59]
+    content: "slurm_scripts/five_bench/r49_wan_render.sh -- optional second argument subset|full (default subset): full = evaluation/r7_anchor_manifest.json, passes --mode full, guard via r48_units.py --mode full --missing; MODE m59 accepts array index 3 (matched59_s0.978); runs on Jean Zay after jz/r50_port.sh"
+    needed_by: [wan-full-chain]
+    status: pending
+  - id: native0978-full-sbatch
+    content: "slurm_scripts/five_bench/r48_wan_render.sh -- new MODE explore_full: CASES evaluation/r7_anchor_manifest.json, PYMODE full, configs from r48_wan_sched.py --list_explore (array index 0 = native_s0.978 = N 50, skip 5) -> r48_wan_arms/native_s0.978_full; subset / full / explore unchanged"
+    needed_by: [wan-full-chain]
     status: pending
   - id: units-full
-    content: "evaluation/r49_units.py -- --mode subset|full (default subset): full dirs end in _full; group main in full mode = se_max (r49_max_full) and wan_max_s5 (max_s5_full) only; group base = the 9 Wan-Edit global configs on 419 pairs (r48_wan_arms/{config}_full, rendered by wan-baselines-full), no R48 reference units; base names get a _full suffix in full mode"
-    needed_by: [full-eval, full-score]
-    status: pending
+    content: "evaluation/r49_units.py -- --mode subset|full (default subset): full dirs end in _full; full-mode groups split by host (one platform each): se = se_max (r49_se_arms/r49_max_full/step14, lab cluster), wan = wan_max_s5 (r49_wan_arms/max_s5_full, Jean Zay), base = the 9 Wan-Edit global configs on 419 pairs (r48_wan_arms/{config}_full, Jean Zay), m59 = matched59_*_full (Jean Zay); no R48 reference units; base names get a _full suffix in full mode"
+    needed_by: [se-full-chain, wan-full-chain, se-full-score, wan-full-score]
+    status: completed
   - id: eval-full
-    content: "slurm_scripts/five_bench/r49_eval_all.sh -- optional second argument subset|full (default subset): full = r7_anchor_manifest.json counts, no --cases_json, CLIP-D --fullbench, output r49_clip_directional_{group}_full.csv"
-    needed_by: [full-eval]
+    content: "slurm_scripts/five_bench/r49_eval_all.sh -- optional second argument subset|full (default subset): full = r7_anchor_manifest.json counts, no --cases_json, CLIP-D --fullbench, output r49_clip_directional_{group}_full.csv; accepts the full-mode groups se, wan, base, m59"
+    needed_by: [se-full-chain, wan-full-chain]
+    status: completed
+  - id: units-full-v2
+    content: "evaluation/r49_units.py -- full-mode Wan groups follow the 2026-10-20 config list: base = the 6 native configs (r48_wan_sched.configs()[:6]: native_s0.95 .. native_s0.4, incl. the official native_s0.92) + native_s0.978 (7 units, r48_wan_arms/{config}_full; matched-55 dropped, it only serves max_s9); m59 = matched59_s0.978, s0.95, s0.92, s0.85 (4 units); se / wan unchanged; subset groups unchanged"
+    needed_by: [wan-full-chain, wan-full-score]
+    status: pending
+  - id: eval-full-array
+    content: "slurm_scripts/five_bench/r49_eval_all.sh -- full mode run as a Slurm array: task i scores only unit i (r49_units.py --index i) and writes CLIP-D to r49_clip_directional_{group}_full_{base}.csv, so no job exceeds Jean Zay's 20 h (one 419-pair unit took ~5 h harness + <1 h FiVE-Acc on L40S); without an array, unchanged (all units of the group, one CLIP-D file)"
+    needed_by: [wan-full-chain, wan-full-score]
+    status: pending
+  - id: wan-chain-driver
+    content: "slurm_scripts/five_bench/r49_wan_full_chain.sh -- run ON JEAN ZAY after jz/r50_port.sh; sbatch --parsable: draft r48_wan_draft.sh full -> r48_div.sh full --array=2-3 -> r49_field.sh wan full -> r49_wan_render.sh arms full --array=1 (max_s5); with no dependency: r48_wan_render.sh full --array=0-5 (6 native) and r48_wan_render.sh explore_full --array=0 (native_s0.978), r49_wan_render.sh m59 full --array=0-3; evals afterok on their renders: r49_eval_all.sh wan full, base full --array=0-6, m59 full --array=0-3; refuses if logs/r49_wan_full_chain_jobs.txt exists; writes it (one '<stage> <id>' per line)"
+    needed_by: [wan-full-chain]
     status: pending
   - id: score-full
-    content: "evaluation/r49_score.py -- --mode full: scope = 419 pairs, also reported on the 401 pairs outside the 18-clip set; StreamEdit curve R39 N=20 + official R36 rho2 + R38 (full CSVs exist); Wan native / matched-55 from the base group, matched-59 from m59; R49 arms se_max and wan_max_s5 (deltas vs matched-59); R48 references skipped; writes r49_full_points.csv, r49_full_deltas.csv, figures/r49_full_pareto"
-    needed_by: [full-score]
+    content: "evaluation/r49_score.py -- --mode full --host se|wan (one host per run, so each track scores on its own): scope = 419 pairs, also reported on the 401 pairs outside the 18-clip set; se (lab L40S): curve R39 N=20 + official R36 rho2 + R38 (full CSVs exist) and se_max; wan (Jean Zay H100, CSVs fetched by wan-full-fetch): native curve = 7 points from base (native_s0.978 .. native_s0.4, official native_s0.92 marked), equal-NFE curve = matched-59 from m59 (4 points incl. s0.978), wan_max_s5 (deltas vs matched-59 and vs official; paired vs native_s0.978); CLIP-D read from the per-unit files r49_clip_directional_{group}_full_{base}.csv; writes r49_full_{host}_points.csv, r49_full_{host}_deltas.csv (with a platform column L40S / H100) and figures/r49_full_pareto/{host}_*.{pdf,png} with the platform in the title; R48 references skipped"
+    needed_by: [se-full-score, wan-full-score]
     status: pending
 steps:
   - id: chain
@@ -108,7 +132,8 @@ steps:
     wait_for: chain
     check_hint: "cat logs/r49_chain_jobs.txt; squeue -u $USER -- all 12 entries gone; per job log: r49_se_stage1 / r49_wan_draft 'failures: 0' and 18 attention npz each; r49_div 4 x 18 npz; r49_field 18 npz x 3 dirs; r49_se_arms/r49_max_subset/step14: 18 dirs; r49_wan_arms/{max_s9,max_s5}_subset: 18 complete dirs each; newclip + ref render logs 'failures: 0'; logs/r49_eval_all_*.out '[r49_eval] unit failures: 0' for main and base; r49_post 'failures: 0'; 0 Traceback in .err"
     sets_status: finished
-    status: pending
+    status: completed
+    completed_at: 2026-10-20
   - id: matched59
     type: local
     wait_for: chain
@@ -134,91 +159,76 @@ steps:
       - evaluation/figures/r49_grids
     sets_status: analyzed
     status: pending
-  - id: full-gate
+  # ---- StreamEdit track: lab cluster (L40S, streamgve); independent of every Wan-Edit step
+  - id: se-full-gate
     type: manual
-    wait_for: score
-    check_hint: "read r49_deltas.csv, the r49_pareto figures and the r49_grids frame grids; user decides whether R49 goes to the 419 pairs; the Wan floor is already chosen (max_s5, 2026-10-20); record the decision in the R49 Run log"
-    status: pending
-  - id: wan-baselines-full
+    wait_for: wait-chain
+    check_hint: "read the StreamEdit rows of r49_deltas.csv, figures/r49_pareto/se_*.png and r49_grids/frames_se.png (written by the chain's post job); user decides whether StreamEdit max goes to the 419 pairs; record the decision in the R49 Run log"
+    status: completed
+    completed_at: 2026-10-20
+  - id: se-full-draft
     type: sbatch
-    wait_for: full-gate
-    command: sbatch --array=0-8 slurm_scripts/five_bench/r48_wan_render.sh full
-    output_paths:
-      - ~/Data/dataggen/outputs/five_bench/r48_wan_arms
-    status: pending
-  - id: wait-wan-baselines-full
-    type: manual
-    wait_for: wan-baselines-full
-    check_hint: "grep -E 'dirs total|failures:' logs/r48_wan_render_{job_id}_*.out -- 9 configs x 419 pairs (100/100/100/100/9/10), failures: 0; timed-out tasks are re-submitted (resumable)"
-    status: pending
-  - id: full-drafts
-    type: sbatch
-    wait_for: full-gate
-    command: |
-      sbatch slurm_scripts/five_bench/r48_se_stage1.sh full
-      sbatch slurm_scripts/five_bench/r48_wan_draft.sh full
-    status: pending
-  - id: wait-full-drafts
-    type: manual
-    wait_for: full-drafts
-    check_hint: "both draft jobs: 419 attention npz per host (r48_se_attn, r48_wan_draft/attn), failures 0"
-    status: pending
-  - id: full-div
-    type: sbatch
-    wait_for: wait-full-drafts
-    command: sbatch slurm_scripts/five_bench/r48_div.sh full
-    status: pending
-  - id: wait-full-div
-    type: manual
-    wait_for: full-div
-    check_hint: "4 array tasks (se/wan x dino/lpips): 419 npz each in r48_div, failures 0"
-    status: pending
-  - id: full-field
+    wait_for: se-full-gate
+    command: sbatch slurm_scripts/five_bench/r48_se_stage1.sh full
+    status: completed
+    completed_at: 2026-10-20
+    job_id: "1052246"
+  - id: se-full-chain
     type: local
-    wait_for: wait-full-div
-    command: python evaluation/r49_field.py --cases evaluation/r7_anchor_manifest.json --attn_se ~/Data/dataggen/outputs/five_bench/r48_se_attn --attn_wan ~/Data/dataggen/outputs/five_bench/r48_wan_draft/attn --div_root ~/Data/dataggen/outputs/five_bench/r48_div --out_root ~/Data/dataggen/outputs/five_bench/r49_field_full
-    output_paths:
-      - ~/Data/dataggen/outputs/five_bench/r49_field_full
-    status: pending
-  - id: full-render
-    type: sbatch
-    wait_for: full-field
-    command: |
-      sbatch slurm_scripts/five_bench/r49_se_stage3.sh full
-      sbatch --array=1 slurm_scripts/five_bench/r49_wan_render.sh arms full
-    status: pending
-  - id: full-m59
-    type: sbatch
-    wait_for: full-gate
-    command: sbatch --array=0-2 slurm_scripts/five_bench/r49_wan_render.sh m59 full
-    status: pending
-  - id: wait-full-render
+    wait_for: se-full-draft
+    command: bash slurm_scripts/five_bench/r49_se_full_chain.sh 1052246
+    status: completed
+    completed_at: 2026-10-20
+    job_id: "div 1052283 (array 0-1), field 1052284, render 1052285, eval 1052286 (afterok chain behind draft 1052246; FAILED in its preflight, see Run log) -> eval resubmitted alone 1054280"
+  - id: wait-se-full-chain
     type: manual
-    wait_for: [full-render, full-m59, wait-wan-baselines-full]
-    check_hint: "419 complete dirs for r49_max_full (StreamEdit) and max_s5_full (Wan-Edit), and per matched59_*_full config, failures 0"
-    sets_status: finished
+    wait_for: se-full-chain
+    check_hint: "cat logs/r49_se_full_chain_jobs.txt; squeue -u $USER -- the draft and the 4 chain entries gone; r48_se_stage1 log 'bit-identical 419/419', 'failures: 0' and 419 npz in r48_se_attn; r48_div tasks 0-1 'failures: 0', 419 npz each; r49_field (se full) 'failures: 0', 419 npz in r49_field_full/se_max; r49_se_stage3 (full) 419 step14 dirs, 'failures: 0'; r49_eval_all (se full, job 1054280) 'unit failures: 0', 419 rows; 0 Traceback in .err"
     status: pending
-  - id: full-eval
-    type: sbatch
-    wait_for: wait-full-render
-    command: |
-      sbatch slurm_scripts/five_bench/r49_eval_all.sh main full
-      sbatch slurm_scripts/five_bench/r49_eval_all.sh m59 full
-      sbatch slurm_scripts/five_bench/r49_eval_all.sh base full
-    status: pending
-  - id: wait-full-eval
-    type: manual
-    wait_for: full-eval
-    check_hint: "the 3 eval jobs: '[r49_eval] unit failures: 0'; 419 rows per unit"
-    status: pending
-  - id: full-score
+  - id: se-full-score
     type: local
-    wait_for: wait-full-eval
-    command: python evaluation/r49_score.py --mode full
+    wait_for: wait-se-full-chain
+    command: python evaluation/r49_score.py --mode full --host se
     output_paths:
-      - evaluation/csv/r49_full_points.csv
-      - evaluation/csv/r49_full_deltas.csv
+      - evaluation/csv/r49_full_se_points.csv
+      - evaluation/csv/r49_full_se_deltas.csv
       - evaluation/figures/r49_full_pareto
+    status: pending
+  # ---- Wan-Edit track: Jean Zay (H100, five-bench via R50 wrapper); every step is run there and recorded here
+  - id: wan-full-gate
+    type: manual
+    wait_for: wait-matched59
+    check_hint: "read the Wan-Edit rows of r49_deltas.csv, figures/r49_pareto/wan_*.png (with the matched-59 curve) and r49_grids/frames_wan.png; user decides whether Wan-Edit max_s5 goes to the 419 pairs (floor chosen 2026-10-20); AND R50 jz-compare is completed with PASS; AND jz/r50_port.sh reports 0 leftovers on the full-stage Wan scripts (r48_wan_draft.sh, r48_div.sh, r48_wan_render.sh, r49_wan_render.sh, r49_eval_all.sh) after pulling them; record in the R49 Run log"
+    status: pending
+  - id: wan-full-chain
+    type: manual
+    wait_for: wan-full-gate
+    check_hint: "ON JEAN ZAY (after git pull + bash jz/r50_port.sh, 0 leftovers): bash slurm_scripts/five_bench/r49_wan_full_chain.sh -> 'submitted', ids in logs/r49_wan_full_chain_jobs.txt; paste the ids here"
+    status: pending
+  - id: wait-wan-full-chain
+    type: manual
+    wait_for: wan-full-chain
+    check_hint: "ON JEAN ZAY: every id of logs/r49_wan_full_chain_jobs.txt gone from squeue; draft 419 attention npz, failures 0; r48_div tasks 2-3 419 npz each; r49_field (wan full) failures 0, 419 npz + 419 npy per floor; renders 419 complete dirs each for max_s5_full, the 7 native configs (native_s0.978 .. native_s0.4) and the 4 matched59 configs, failures 0 (timed-out render tasks are resubmitted alone: renders are resumable); evals: wan 1 unit, base 7 tasks, m59 4 tasks, 'unit failures: 0', 419 rows each"
+    status: pending
+  - id: wan-full-fetch
+    type: manual
+    wait_for: wait-wan-full-chain
+    check_hint: "ON THE LAB CLUSTER'S FRONTAL (compute nodes cannot reach Jean Zay): rsync the Jean Zay full-mode Wan CSVs (edit*_FiVE_r49_*wan*_full*, edit*_FiVE_r49_fiveacc_*wan*_full*, r49_clip_directional_wan_full.csv, r49_clip_directional_{base,m59}_full_*.csv) into evaluation/csv here; counts match the Jean Zay listing"
+    status: pending
+  - id: wan-full-score
+    type: local
+    wait_for: wan-full-fetch
+    command: python evaluation/r49_score.py --mode full --host wan
+    output_paths:
+      - evaluation/csv/r49_full_wan_points.csv
+      - evaluation/csv/r49_full_wan_deltas.csv
+      - evaluation/figures/r49_full_pareto
+    status: pending
+  # ---- end: both hosts read together (no compute)
+  - id: full-verdict
+    type: manual
+    wait_for: [se-full-score, wan-full-score]
+    check_hint: "read r49_full_{se,wan}_deltas.csv and figures/r49_full_pareto (each host on its own platform); write the full-benchmark verdict in Progress / outcomes"
     sets_status: analyzed
     status: pending
 isProject: true
@@ -230,7 +240,7 @@ isProject: true
 
 Run one draft-derived per-token procedure on two training-free video editors. Stage 1 runs the host once at high editability and records cross-attention. Stage 2 turns the attention support and the draft–source divergence (the larger of the clipped DINO and LPIPS maps) into a per-token demand q, then inverts each host's exposure response, read from the host's own code, to get its native control (StreamEdit ρ, Wan-Edit start step). Stage 3 runs the host again with those per-token controls.
 
-Done when: on the 18 clips of `evaluation/r49_cases.json`, StreamEdit (1 arm) and Wan-Edit (floors s_min 9 and 5) are rendered, scored against each host's official baseline and equal-compute curves, and the frame grids, field pages and pareto/deltas exist. If `full-gate` says go: the same on all 419 pairs (also reported on the 401 pairs outside the 18 clips).
+Done when: on the 18 clips of `evaluation/r49_cases.json`, StreamEdit (1 arm) and Wan-Edit (floors s_min 9 and 5) are rendered, scored against each host's official baseline and equal-compute curves, and the frame grids, field pages and pareto/deltas exist. For each host whose full gate says go (`se-full-gate`, `wan-full-gate`): the same on all 419 pairs (also reported on the 401 pairs outside the 18 clips), StreamEdit on the lab cluster and Wan-Edit on Jean Zay, each scored on its own.
 
 ## Execution steps
 
@@ -242,23 +252,25 @@ Done when: on the 18 clips of `evaluation/r49_cases.json`, StreamEdit (1 arm) an
 | 3 | `matched59` | local (submits 5 Slurm entries, run last) | chain | — |
 | 4 | `wait-matched59` | manual | matched59 | — |
 | 5 | `score` | local | wait-chain, wait-matched59 | analyzed |
-| 6 | `full-gate` | manual | score | — |
-| 7 | *(prep)* todos `se-stage3-full`, `wan-render-py-full`, `wan-render-sbatch-full`, `units-full`, `eval-full`, `score-full` | /build-step | — | — |
-| 8 | `wan-baselines-full` | sbatch (9-task array) | full-gate | — |
-| 9 | `wait-wan-baselines-full` | manual | wan-baselines-full | — |
-| 10 | `full-drafts` | sbatch ×2 | full-gate | — |
-| 11 | `wait-full-drafts` | manual | full-drafts | — |
-| 12 | `full-div` | sbatch (4-task array) | wait-full-drafts | — |
-| 13 | `wait-full-div` | manual | full-div | — |
-| 14 | `full-field` | local | wait-full-div | — |
-| 15 | `full-render` | sbatch ×2 | full-field | — |
-| 16 | `full-m59` | sbatch (3-task array) | full-gate | — |
-| 17 | `wait-full-render` | manual | full-render, full-m59, wait-wan-baselines-full | finished |
-| 18 | `full-eval` | sbatch ×3 | wait-full-render | — |
-| 19 | `wait-full-eval` | manual | full-eval | — |
-| 20 | `full-score` | local | wait-full-eval | analyzed |
+| — | *(prep)* todos `se-stage3-full`, `field-full`, `se-chain-driver`, `units-full`, `eval-full` (→ `se-full-chain`); `wan-render-py-full`, `wan-render-sbatch-full`, `native0978-full-sbatch`, `units-full-v2`, `eval-full-array`, `wan-chain-driver` (→ `wan-full-chain`); `score-full` | /build-step | — | — |
+| | **StreamEdit track — lab cluster (L40S); no Wan-Edit dependency** | | | |
+| 6 | `se-full-gate` | manual (user decision) | wait-chain | — |
+| 7 | `se-full-draft` | sbatch | se-full-gate | — |
+| 8 | `se-full-chain` | local (submits div → field → render → eval with afterok on the draft) | se-full-draft | — |
+| 9 | `wait-se-full-chain` | manual | se-full-chain | — |
+| 10 | `se-full-score` | local | wait-se-full-chain | — |
+| | **Wan-Edit track — Jean Zay (H100), run there, recorded here; no StreamEdit dependency** | | | |
+| 11 | `wan-full-gate` | manual (user decision + R50 PASS) | wait-matched59 | — |
+| 12 | `wan-full-chain` | manual (JZ: one driver submits draft → div 2-3 → field → `max_s5`; 7 native + 4 matched-59 renders; evals as arrays) | wan-full-gate | — |
+| 13 | `wait-wan-full-chain` | manual (JZ) | wan-full-chain | — |
+| 14 | `wan-full-fetch` | manual (rsync CSVs back here) | wait-wan-full-chain | — |
+| 15 | `wan-full-score` | local | wan-full-fetch | — |
+| | **End — both hosts read together, no compute** | | | |
+| 16 | `full-verdict` | manual | se-full-score, wan-full-score | analyzed |
 
-Invoke: `/build-step chain R49`, `/build-step matched59 R49`, then `/run-step R49 chain`, `/run-step R49 matched59`, `/run-step R49 wait-chain`, `/run-step R49 wait-matched59`, `/run-step R49 score`.
+Steps 1–5 ran both hosts in one chain (already submitted); everything after them is per host.
+
+Invoke: `/run-step R49 wait-chain`, `/run-step R49 wait-matched59`, `/run-step R49 score`, then per host `/run-step R49 se-full-gate` … and `/run-step R49 wan-full-gate` ….
 
 ## Decisions
 
@@ -282,8 +294,11 @@ Invoke: `/build-step chain R49`, `/build-step matched59 R49`, then `/run-step R4
 | Metrics | FiVE harness (bg LPIPS/PSNR/SSIM, CLIP-T, …), FiVE-Acc, CLIP-D; plain per-clip mean over the 18 clips (never `_avg.csv`); figures x = alignment, y = preservation |
 | Grids | frame grids per host (middle and last frame, cells labelled bg LPIPS / FiVE-Acc) and 36 field pages; no grids on the full set |
 | Chain | `chain` submits 12 entries with afterok: newclip baselines (GPU, serial, no dependency), StreamEdit draft, Wan draft → divergence (GPU, serial over 4 names) → field (CPU) → StreamEdit render, Wan render array 0-1, reference render → eval base (afterok newclip baselines, reference render), eval main (afterok both renders) → post (CPU). `matched59` submits the m59 render array 0-2 → eval m59 → post, the render `afterok` on the main post job so it runs last |
-| Slurm | `--partition=L40S` (GPU) / `CPU`, `--exclude=node52` only; StreamEdit stages in `streamgve`, everything else in `five-bench`; serial loops inside one job instead of arrays where the per-user submit cap matters |
-| Full stage | gated by `full-gate`: R48's scripts for the full drafts (`r48_se_stage1.sh`, `r48_wan_draft.sh` full), the divergence (`r48_div.sh` full) and the 9 Wan-Edit global configs on 419 pairs (`r48_wan_render.sh full`, array 0-8, ~155 GPU-h); R49 field, renders, matched-59, eval and score in `full` mode (outputs end in `_full`); the claim is read on the 401 pairs outside the 18 clips as well as on all 419 |
+| Slurm | lab cluster: `--partition=L40S` (GPU) / `CPU`, `--exclude=node52` only; StreamEdit stages in `streamgve`, everything else in `five-bench`; serial loops inside one job instead of arrays where the per-user submit cap matters. Jean Zay: headers and interpreter rewritten by `jz/r50_port.sh` (R50) |
+| Host split (full stage) | StreamEdit on the lab cluster (L40S, `streamgve`; its curves R39 / R36 / R38 are L40S already); Wan-Edit, all of it (draft, divergence, field, 9 baselines, `max_s5`, matched-59, eval), on Jean Zay (H100, `five-bench` rebuilt by R50) after R50's 18-clip check passes (part of `wan-full-gate`) (user, 2026-10-20). Each host's arms, baselines and curves come from one platform; full-stage numbers are never mixed with the 18-clip L40S Wan numbers in one table or figure; tables and figures carry the platform |
+| Wan full-stage configs | (user, 2026-10-20) adaptive `max_s5`; native curve N = 50, 7 points: `native_s0.978` (uniform start at step 5 = the floor of `max_s5`, 45 active steps) and `native_s0.95 / 0.92 (official) / 0.85 / 0.75 / 0.6 / 0.4`; equal-NFE curve matched-59, 4 points: `matched59_s0.978` (N 66, skip 7, real σ 0.9766), `s0.95` (75/16), `s0.92` (85/26), `s0.85` (111/52); matched-55 dropped (it only serves `max_s9`, not in the full stage); not rerun on the 18 clips |
+| Jean Zay job sizing | 20 h limit: evals run one unit per array task (~5 h harness + <1 h FiVE-Acc per 419-pair unit on L40S); renders are resumable, a timed-out render task is resubmitted alone (matched59_s0.85 at N = 111 is the longest); the R50 18-clip reproduction gives the H100 per-clip times |
+| Full stage | gated per host (`se-full-gate` after `wait-chain`; `wan-full-gate` after `wait-matched59` and R50 PASS), each host scored separately (`r49_score.py --mode full --host se|wan`), `full-verdict` reads both: R48's scripts for the full drafts (`r48_se_stage1.sh` here, `r48_wan_draft.sh` on Jean Zay), the divergence (`r48_div.sh full`, array 0-1 = StreamEdit here, 2-3 = Wan on Jean Zay) and the 9 Wan-Edit global configs on 419 pairs (`r48_wan_render.sh full`, array 0-8, ~155 L40S GPU-h, on Jean Zay); R49 field (`--hosts se` / `--hosts wan`), renders, matched-59, eval (groups `se` / `wan` / `base` / `m59`) and score in `full` mode (outputs end in `_full`); the Wan CSVs come back by rsync for scoring; the claim is read on the 401 pairs outside the 18 clips as well as on all 419 |
 | Outputs | `~/Data/dataggen/outputs/five_bench/r49_{se_stage1,se_attn,wan_draft,div,field,se_arms,wan_arms}/`, `evaluation/csv/r49_*.csv`, `evaluation/figures/r49_{pareto,grids}/` |
 | Out of scope | mean / DINO-only / LPIPS-only arms; the Wan-Edit global start sweep above σ 0.978; tuning λ, κ or the ρ range after seeing renders |
 
@@ -319,80 +334,77 @@ grep -E 'dirs total|failures' logs/r49_wan_render_<job>_*.out logs/r49_eval_all_
 ~/anaconda3/envs/five-bench/bin/python evaluation/r49_grids.py
 ```
 
-### full-gate
+### se-full-gate
 ```bash
-cat evaluation/csv/r49_deltas.csv
-xdg-open evaluation/figures/r49_pareto/wan_five_acc.png   # and the other pareto / grid figures
+grep -E '^(host|se)' evaluation/csv/r49_deltas.csv
+xdg-open evaluation/figures/r49_pareto/se_five_acc.png    # and se_clip_d_prompt.png, r49_grids/frames_se.png
 ```
 
-### wan-baselines-full
-```bash
-sbatch --array=0-8 slurm_scripts/five_bench/r48_wan_render.sh full
-```
-
-### wait-wan-baselines-full
-```bash
-grep -E 'dirs total|failures:' logs/r48_wan_render_<job>_*.out
-```
-
-### full-drafts
+### se-full-draft
 ```bash
 sbatch slurm_scripts/five_bench/r48_se_stage1.sh full
-sbatch slurm_scripts/five_bench/r48_wan_draft.sh full
 ```
 
-### wait-full-drafts
+### se-full-chain
 ```bash
-ls ~/Data/dataggen/outputs/five_bench/r48_se_attn/edit*/*.npz | wc -l
-ls ~/Data/dataggen/outputs/five_bench/r48_wan_draft/attn/edit*/*.npz | wc -l
+bash slurm_scripts/five_bench/r49_se_full_chain.sh 1052246     # 1052246 = the running r48_se_stage1.sh full draft
+cat logs/r49_se_full_chain_jobs.txt
 ```
 
-### full-div
+### wait-se-full-chain
 ```bash
-sbatch slurm_scripts/five_bench/r48_div.sh full
+cat logs/r49_se_full_chain_jobs.txt
+squeue -u $USER
+grep -E 'bit-identical|failures|unit failures|dirs total' logs/r48_se_stage1_1052246.out logs/r48_div_<div>_*.out logs/r49_field_<field>.out logs/r49_se_stage3_<render>.out logs/r49_eval_all_<eval>.out
 ```
 
-### wait-full-div
+### se-full-score
 ```bash
-grep -E 'failures' logs/r48_div_<job>_*.out
+~/anaconda3/envs/five-bench/bin/python evaluation/r49_score.py --mode full --host se
 ```
 
-### full-field
+### wan-full-gate
 ```bash
-~/anaconda3/envs/five-bench/bin/python evaluation/r49_field.py --cases evaluation/r7_anchor_manifest.json --attn_se ~/Data/dataggen/outputs/five_bench/r48_se_attn --attn_wan ~/Data/dataggen/outputs/five_bench/r48_wan_draft/attn --div_root ~/Data/dataggen/outputs/five_bench/r48_div --out_root ~/Data/dataggen/outputs/five_bench/r49_field_full
+grep -E '^(host|wan)' evaluation/csv/r49_deltas.csv
+xdg-open evaluation/figures/r49_pareto/wan_five_acc.png   # and wan_clip_d_prompt.png, r49_grids/frames_wan.png
+grep -A3 'jz-compare' daily.md          # R50 Run log: PASS
+# on Jean Zay, after git pull of the full-stage scripts:
+bash jz/r50_port.sh                     # [r50_port] leftovers: 0
 ```
 
-### full-render
+### wan-full-chain
 ```bash
-sbatch slurm_scripts/five_bench/r49_se_stage3.sh full
-sbatch --array=1 slurm_scripts/five_bench/r49_wan_render.sh arms full     # array index 1 = max_s5 (the only Wan arm in the full stage)
+# on Jean Zay (ssh zay), in the clone
+cd $WORK/StreamEdit_new && git pull && bash jz/r50_port.sh        # [r50_port] leftovers: 0
+bash slurm_scripts/five_bench/r49_wan_full_chain.sh
+cat logs/r49_wan_full_chain_jobs.txt
 ```
 
-### full-m59
+### wait-wan-full-chain
 ```bash
-sbatch --array=0-2 slurm_scripts/five_bench/r49_wan_render.sh m59 full
+# on Jean Zay
+cat logs/r49_wan_full_chain_jobs.txt
+squeue -u $USER
+grep -hE 'failures|unit failures|dirs total' logs/r48_wan_draft_*.out logs/r48_div_*.out logs/r49_field_*.out logs/r48_wan_render_*.out logs/r49_wan_render_*.out logs/r49_eval_all_*.out | sort | uniq -c
 ```
 
-### wait-full-render
+### wan-full-fetch
 ```bash
-grep -E 'dirs total|failures:' logs/r49_se_stage3_<job>.out logs/r49_wan_render_<job>_*.out
+# here; JZ_HOST / JZ_REPO from jz/r50_jz.env
+source jz/r50_jz.env
+rsync -av --include='*_full*.csv' --include='r49_clip_directional_*_full*.csv' --exclude='*' \
+  "$JZ_HOST:$JZ_REPO/evaluation/csv/" evaluation/csv/
 ```
 
-### full-eval
+### wan-full-score
 ```bash
-sbatch slurm_scripts/five_bench/r49_eval_all.sh main full
-sbatch slurm_scripts/five_bench/r49_eval_all.sh m59 full
-sbatch slurm_scripts/five_bench/r49_eval_all.sh base full
+~/anaconda3/envs/five-bench/bin/python evaluation/r49_score.py --mode full --host wan
 ```
 
-### wait-full-eval
+### full-verdict
 ```bash
-grep -E 'unit failures' logs/r49_eval_all_<job>.out
-```
-
-### full-score
-```bash
-~/anaconda3/envs/five-bench/bin/python evaluation/r49_score.py --mode full
+cat evaluation/csv/r49_full_se_deltas.csv evaluation/csv/r49_full_wan_deltas.csv
+ls evaluation/figures/r49_full_pareto/
 ```
 
 ## Pipeline
@@ -418,8 +430,15 @@ flowchart LR
   P -->|afterok, last| M59[r49_matched59.sh: matched-59 Wan curve, N 75/85/111]
   M59 --> E59[r49_eval_all.sh m59]
   E59 --> P2[r49_post.sh again: adds the matched-59 curve]
-  P2 --> FG{full-gate}
-  FG -->|go| FULL[full stage: R48 full drafts + div + Wan baselines, R49 field/renders/m59/eval/score in full mode]
+  P --> SG{se-full-gate}
+  SG -->|go, lab L40S| SEF[StreamEdit full: r48 draft, then r49_se_full_chain.sh: div 0-1 -> r49_field.sh se full -> r49_se_stage3 full -> eval se]
+  SEF --> SS[r49_score.py --mode full --host se]
+  P2 --> WG{wan-full-gate: go + R50 PASS}
+  WG -->|Jean Zay H100| WF[r49_wan_full_chain.sh: draft -> div 2-3 -> r49_field.sh wan full -> max_s5; 7 native incl. native_s0.978 + official; matched-59 x4 incl. s0.978; eval wan / base x7 / m59 x4]
+  WF --> FE[wan-full-fetch: CSVs back by rsync]
+  FE --> WS[r49_score.py --mode full --host wan]
+  SS --> FV{full-verdict}
+  WS --> FV
 ```
 
 ## Code to touch
@@ -443,9 +462,15 @@ flowchart LR
 | `slurm_scripts/five_bench/r49_post.sh` | new: `#SBATCH --partition=CPU`; runs `r49_score.py` then `r49_grids.py`; checks the CSVs, figure dirs and 36 field pages exist |
 | `slurm_scripts/five_bench/r49_chain.sh` | new: `sbatch --parsable` each stage with `--dependency=afterok:<ids>` as in Decisions → Chain; writes `logs/r49_chain_jobs.txt` (one `<stage> <id>` per line: newclip_baselines, se_stage1, wan_draft, div, field, se_stage3, wan_render, ref_render, eval_base, eval_main, post) |
 | `slurm_scripts/five_bench/r49_matched59.sh` | new: reads the main `post` id from `logs/r49_chain_jobs.txt`; submits `r49_wan_render.sh m59` (array 0-2, `afterok:<post>`) → `r49_eval_all.sh m59` → `r49_post.sh`, appends its ids; on a refused submission prints the stage and exits non-zero |
-| `slurm_scripts/five_bench/r49_se_stage3.sh` | full mode: optional MODE argument (default subset); full = r7 manifest, METHOD `r49_max_full`, 419-pair guards |
-| `evaluation/r49_wan_render.py` | full mode: `--mode subset|full` (default subset) → output `{config}_{mode}` |
+| `slurm_scripts/five_bench/r49_field.sh` | full mode + hosts: optional `HOSTS` (default `se wan`) and `MODE` (default subset); full = r7 manifest, r48 attention/divergence roots, out `r49_field_full`, no r48_field reference; guards per listed host with 18 / 419 |
+| `slurm_scripts/five_bench/r49_se_full_chain.sh` | new: `DRAFT_JOB` argument; afterok chain `r48_div.sh full` (array 0-1) → `r49_field.sh se full` → `r49_se_stage3.sh full` → `r49_eval_all.sh se full`; ids to `logs/r49_se_full_chain_jobs.txt` |
+| `slurm_scripts/five_bench/r49_se_stage3.sh` | full mode: optional MODE argument (default subset); full = r7 manifest without `--cases_json` (as `r48_se_stage3.sh`), field `r49_field_full/se_max`, METHOD `r49_max_full`, 419-pair guards |
+| `evaluation/r49_wan_render.py` | full mode: `--mode subset|full` (default subset) → output `{config}_{mode}`; `MATCHED59` += 0.978 appended (index 3) |
 | `slurm_scripts/five_bench/r49_wan_render.sh` | full mode: optional second argument subset|full (default subset); full cases, `--mode full`, guard with `r48_units.py --mode full --missing` |
-| `evaluation/r49_units.py` | full mode: `--mode subset|full` (default subset); `_full` dirs and base names; group `main` = se_max + wan_max_s5 only; group `base` = the 9 R48 Wan-Edit configs `{config}_full` |
-| `slurm_scripts/five_bench/r49_eval_all.sh` | full mode: optional second argument (default subset); r7 counts, no `--cases_json`, CLIP-D `--fullbench`, `r49_clip_directional_{group}_full.csv` |
-| `evaluation/r49_score.py` | full mode: `--mode full`, scope 419 + the 401 outside the 18 clips; Wan curves from groups base + m59; arms se_max and wan_max_s5 (vs matched-59); R48 references skipped; `r49_full_points.csv`, `r49_full_deltas.csv`, `figures/r49_full_pareto` |
+| `evaluation/r49_units.py` | full mode: `--mode subset|full` (default subset); `_full` dirs and base names; full-mode groups by host: `se` = se_max, `wan` = wan_max_s5, `base` = the 9 R48 Wan-Edit configs `{config}_full`, `m59` = matched59 `_full` |
+| `slurm_scripts/five_bench/r49_eval_all.sh` | full mode: optional second argument (default subset); r7 counts, no `--cases_json`, CLIP-D `--fullbench`, `r49_clip_directional_{group}_full.csv`; groups `se`, `wan`, `base`, `m59` |
+| `slurm_scripts/five_bench/r48_wan_render.sh` | new MODE `explore_full`: r7 manifest, `--mode full`, `--list_explore` index 0 = `native_s0.978` → `r48_wan_arms/native_s0.978_full` |
+| `evaluation/r49_units.py` | full Wan groups v2: `base` = 6 native + `native_s0.978` (7), `m59` = 4 incl. `matched59_s0.978` |
+| `slurm_scripts/five_bench/r49_eval_all.sh` | full mode as a Slurm array: task i scores unit i only, CLIP-D `r49_clip_directional_{group}_full_{base}.csv` |
+| `slurm_scripts/five_bench/r49_wan_full_chain.sh` | new (Jean Zay): draft → div 2-3 → field → `max_s5`; 6 native + `native_s0.978` + 4 matched-59 renders; evals `wan`, `base` array 0-6, `m59` array 0-3, each afterok on its renders; ids to `logs/r49_wan_full_chain_jobs.txt` |
+| `evaluation/r49_score.py` | full mode: `--mode full --host se|wan` (one host per run), scope 419 + the 401 outside the 18 clips; se: R39/R36/R38 curves + se_max (L40S); wan: base + m59 curves + wan_max_s5 vs matched-59 (H100, fetched CSVs); `platform` column and figure titles; R48 references skipped; `r49_full_{host}_points.csv`, `r49_full_{host}_deltas.csv`, `figures/r49_full_pareto/{host}_*` |

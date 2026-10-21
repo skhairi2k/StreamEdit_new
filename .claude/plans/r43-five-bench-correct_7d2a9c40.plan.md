@@ -169,7 +169,8 @@ steps:
     type: manual
     wait_for: anchor-smoke
     check_hint: "Check logs/r43_gen_anchors_smoke_*.out for '[gen_anchors] done: 3/3' (repro) and 'done: 26/26' (smoke), 0 '[ERROR'. Read evaluation/csv/r43_repro_check.csv: IDENTICAL on the 3 repro pairs confirms that R7's anchors/ are this generator's output. DIFFERS (max abs diff, PSNR reported) means node-level non-determinism, not a config change; report it and let the user decide. Then view evaluation/figures/r43_smoke_sheet_edit{1,2}.jpg (source | R7 anchor | Correct anchor, both instructions in the label). The user approves the protocol before the full run."
-    status: pending
+    status: completed
+    completed_at: 2026-10-21
   - id: generate-anchors
     type: sbatch
     wait_for: inspect-smoke
@@ -184,7 +185,8 @@ steps:
     wait_for: generate-anchors
     check_hint: "Each logs/r43_gen_anchors_full_*_{0..5}.out ends with '[gen_anchors] done: n/n'; grep -c '^\\[ERROR' = 0 on all six; find anchors_r43_correct -name '*.png' | wc -l = number of FiVE-Bench-Correct pairs (418 minus any mask exclusions), per type = the correct manifest's per-type counts. If a task timed out, resubmit that array index (existing PNGs are skipped)."
     sets_status: finished
-    status: pending
+    status: completed
+    completed_at: 2026-10-21
   - id: contact-sheets
     type: local
     wait_for: wait-anchors
@@ -203,7 +205,8 @@ steps:
       - evaluation/figures/r43_sheet_correct_edit4.jpg
       - evaluation/figures/r43_sheet_correct_edit5.jpg
       - evaluation/figures/r43_sheet_correct_edit6.jpg
-    status: pending
+    status: completed
+    completed_at: 2026-10-21
   - id: inspect-sheets
     type: manual
     wait_for: contact-sheets
