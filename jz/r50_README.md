@@ -43,7 +43,7 @@ What goes where:
 | 2 | here | `bash jz/r50_make_bundle.sh` | `[r50_bundle] failures: 0`; size and file count printed; `MANIFEST.sha256`, `CODE.sha256`, `freeze/` written |
 | 3 | lab frontal | `bash jz/r50_push.sh 2>&1 \| tee logs/r50_push.log` (inside tmux) | `[r50_push] failures: 0` |
 | 4 | JZ frontal | `git clone --depth 1 git@github.com:skhairi2k/StreamEdit_new.git $WORK/StreamEdit_new`<br>`cd $WORK/StreamEdit_new && cp $WORK/r50_stage/r50_jz.env jz/`<br>`bash jz/r50_setup_dirs.sh && bash jz/r50_verify.sh` | `[r50_setup] failures: 0`, then `[r50_verify] failures: 0` (hashing 36 GB takes a few minutes) |
-| 5 | JZ frontal (internet) | `bash jz/r50_pip_overlay.sh --dry-run` (plan only), `bash jz/r50_pip_overlay.sh`, then `idr_quota_user` | `[r50_overlay] failures: 0`, `mismatches 0`; flash-attn line shows the wheel or `kept` |
+| 5 | JZ frontal (internet) | `bash jz/r50_pip_overlay.sh --dry-run` (plan only), `bash jz/r50_pip_overlay.sh`, then `idr_quota_user` | `--dry-run` first: it prints python / torch / C++ ABI and the flash-attn wheel it needs (`reachable`, `NO SUCH WHEEL` or `NOT reachable` = stop, see Recovery); then `[r50_overlay] failures: 0`, `mismatches 0` |
 | 6 | JZ frontal | `bash jz/r50_port.sh --check` (preview), `bash jz/r50_port.sh`, then `git diff --stat` | `[r50_port] leftovers: 0`, `failures: 0`; only job scripts and `evaluation/fivebench/config.yaml` changed; run `sbatch` from the repo root |
 | 7 | JZ | `sbatch slurm_scripts/five_bench/r50_preflight.sh` | log ends with `[r50_preflight] failures: 0` |
 | 8 | JZ | `bash jz/r50_repro_chain.sh`, wait for `squeue -u $USER` to empty | every log listed in `logs/r50_repro_jobs.txt` ends with `failures: 0` / `unit failures: 0` |

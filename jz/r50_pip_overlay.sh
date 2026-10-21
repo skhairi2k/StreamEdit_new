@@ -216,9 +216,27 @@ say "2. plan: ${FREEZE}"
 PLAN=$ENVDIR/overlay_plan.json
 REQ=$TMPD/requirements.txt
 python "$TOOLS" plan "$FREEZE" "$REQ" "$PLAN" || { say "FATAL: could not build the plan"; exit 1; }
-if [ "$DRY" -eq 1 ]; then say "dry run: nothing installed. failures: 0"; exit 0; fi
 N_INSTALL=$(grep -c . "$REQ")
 WHEEL_VER=$(python -c "import json; w = json.load(open('$PLAN'))['wheel']; print(w['version'] if w else '')")
+# flash-attn: say NOW (also in --dry-run) whether the wheel this module needs exists and is reachable, instead of failing midway
+if [ -n "$WHEEL_VER" ]; then
+  mapfile -t WH < <(python "$TOOLS" wheel "$WHEEL_VER")
+  if [ -s "$WHEELS/${WH[0]}" ]; then
+    say "   flash-attn wheel ${WH[0]}: already in ${WHEELS}"
+  else
+    HTTP=$(curl -sIL -m 25 -o /dev/null -w '%{http_code}' "${WH[1]}" 2>/dev/null); HTTP=${HTTP:-000}
+    case "$HTTP" in
+      200) say "   flash-attn wheel ${WH[0]}: reachable on GitHub (HTTP 200), the install will download it" ;;
+      404) say "   flash-attn wheel ${WH[0]}: NO SUCH WHEEL (HTTP 404): none is published for this module's torch / CUDA / python / C++ ABI -> choose another JZ_MODULE, or build one elsewhere and put it in ${WHEELS}/"
+           [ "$DRY" -eq 1 ] && FAILED=$((FAILED + 1)) ;;
+      000) say "   flash-attn wheel ${WH[0]}: GitHub NOT reachable from this node -> download ${WH[1]} on a machine with access, copy it to ${WHEELS}/, then rerun"
+           [ "$DRY" -eq 1 ] && FAILED=$((FAILED + 1)) ;;
+      *)   say "   flash-attn wheel ${WH[0]}: unexpected HTTP ${HTTP} for ${WH[1]}"
+           [ "$DRY" -eq 1 ] && FAILED=$((FAILED + 1)) ;;
+    esac
+  fi
+fi
+if [ "$DRY" -eq 1 ]; then say "dry run: nothing installed. failures: ${FAILED}"; exit $(( FAILED > 0 )); fi
 PIP=(python -m pip install --user --no-deps --ignore-installed --no-cache-dir --prefer-binary --disable-pip-version-check)
 
 # ---- 3. pinned packages
