@@ -43,7 +43,7 @@ case "$REPO" in
 esac
 
 cd "$REPO" || exit 1
-SCRIPTS=(slurm_scripts/five_bench/{r48_wan_draft,r48_div,r48_wan_render,r49_wan_draft,r49_div,r49_field,r49_wan_render,r49_eval_all,r50_wan_official,r50_preflight,r49_wan_full_chain}.sh
+SCRIPTS=(slurm_scripts/five_bench/{r48_wan_draft,r48_div,r48_wan_render,r49_wan_draft,r49_div,r49_field,r49_wan_render,r49_eval_all,r50_wan_official,r50_preflight,r49_wan_full_chain,r51_field,r51_wan_render,r51_eval,r51_wan_chain}.sh
          jz/r50_repro_chain.sh)
 CONFIG=evaluation/fivebench/config.yaml
 FAILED=0; LEFT=0; CHANGED=0

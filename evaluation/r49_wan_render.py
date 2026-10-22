@@ -29,7 +29,7 @@ import r48_wan_common as C  # noqa: E402
 import r48_wan_sched as SCH  # noqa: E402
 
 D = Path.home() / "Data/dataggen/outputs/five_bench"
-ADAPT = {"max_s9": 9, "max_s5": 5}                      # arm -> loop start (= the arm's s_min)
+ADAPT = {"max_s9": 9, "max_s5": 5, "nosupp_s5": 5}      # arm -> loop start (= the arm's s_min); nosupp_s5 = R51's A4
 A_ACTIVE_59 = 59                                         # max_s5's worst case: 14 draft + 45 final active steps
 MATCHED59 = (0.95, 0.92, 0.85, 0.978)                 # 0.978 appended: subset indices 0-2 are unchanged
 

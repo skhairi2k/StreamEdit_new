@@ -11,6 +11,7 @@
 # Run it inside tmux: ~220k files (a few hundred GB). Eval CSVs travel separately (the rsync of wan-full-fetch, evaluation/csv).
 #
 # Folders: r48_wan_draft r48_div r48_field r48_wan_arms r49_wan_draft r49_div r49_field r49_field_full r49_wan_arms r50_preflight
+#          r51_field_full r51_wan_arms
 # Usage: bash jz/r50_fetch_outputs.sh                 all folders
 #        bash jz/r50_fetch_outputs.sh r49_wan_arms r48_wan_arms     only these
 #        bash jz/r50_fetch_outputs.sh --check         count what is on Jean Zay and in the store, send nothing
@@ -25,7 +26,8 @@ CFG=${R50_ENV:-$REPO/jz/r50_jz.env}
 source "$CFG"
 : "${JZ_HOST:?JZ_HOST not set in $CFG}"
 LAB_DEST=${LAB_DEST:-/store/PERSO/skhairi/Outputs/jz_five_bench}
-ALL=(r48_wan_draft r48_div r48_field r48_wan_arms r49_wan_draft r49_div r49_field r49_field_full r49_wan_arms r50_preflight)
+ALL=(r48_wan_draft r48_div r48_field r48_wan_arms r49_wan_draft r49_div r49_field r49_field_full r49_wan_arms r50_preflight
+     r51_field_full r51_wan_arms)
 FOLDERS=("${ALL[@]}"); [ "${#ONLY[@]}" -gt 0 ] && FOLDERS=("${ONLY[@]}")
 for X in "${FOLDERS[@]}"; do
   case " ${ALL[*]} " in *" $X "*) ;; *) echo "[r50_fetch] FATAL: unknown folder '$X' (choose from: ${ALL[*]})"; exit 1 ;; esac
