@@ -21,9 +21,12 @@ usage: python evaluation/r49_score.py
 --mode full --host se|wan: the R49 FULL STAGE, 419 pairs, ONE host per run (each track runs on its own platform: StreamEdit on the lab
 L40S, Wan-Edit on Jean Zay H100; a table or figure never mixes the two). Reported on all 419 pairs and on the 401 pairs outside the 18-clip
 set (scope column). Same maths as above (plain per-clip means, interpolated deltas at the arm's own bg LPIPS, paired 95% bootstrap CIs).
-  se : curve R39 N=20; official R36 rho2; reference R38 dino_n5_tgt09; arm se_max (r49_se_max_full)  -> deltas vs R39; pairs vs official, R38
-  wan: curves native N=50 (6 points + native_s0.978, official native_s0.92) and matched-59 (4 points); arm wan_max_s5
-       -> deltas vs matched-59 (equal NFE) and vs the native curve (context); pairs vs official and vs native_s0.978 (same floor, uniform)
+  se : equal-NFE curve R39 rho sweep, N=20; NATIVE sweep R36 rho sweep, N=15 (stock budget; its rho=2 point is the official baseline);
+       reference R38 dino_n5_tgt09; arm se_max (r49_se_max_full) -> deltas vs R39 (matched) and vs the R36 sweep (context); pairs vs official, R38
+  wan: NATIVE sweep N=50 (6 points + native_s0.978, official native_s0.92) and equal-NFE curve matched-59 (4 points); arm wan_max_s5
+       -> deltas vs matched-59 (equal NFE) and vs the native sweep (context); pairs vs official and vs native_s0.978 (same floor, uniform)
+  Three figures per host: FiVE-Acc, CLIP-D and CLIP-T (target image, file name *_clip_tgt) against background LPIPS, each with the native
+  sweep AND the equal-NFE curve; the same three metrics get curve deltas and paired CIs.
   CLIP-D per unit: r49_clip_directional_{base,m59}_full_{unit}.csv (array eval tasks), r49_clip_directional_{wan,se}_full.csv.
   R48 reference arms are skipped. Outputs evaluation/csv/r49_full_{host}_points.csv, r49_full_{host}_deltas.csv (platform + scope columns),
   evaluation/figures/r49_full_pareto/{host}_{five_acc,clip_d_prompt}.{pdf,png} (419 pairs; the platform in the title).
@@ -69,11 +72,13 @@ def plot(host: str, xkey: str, curves, official, refs, arms, out: Path, title: O
         ax.plot([p[xkey] for p in pts], [p[Y] for p in pts], "-o", color=col, ms=4, lw=1.4, label=name, alpha=0.9)
         for p in pts:
             ax.annotate(p["label"], (p[xkey], p[Y]), fontsize=6, color=col, xytext=(3, 3), textcoords="offset points")
-    ax.plot(official[xkey], official[Y], "*", color=COL["official"], ms=13, label=official["label"])
+    # small markers: the exact position of the official point and of the arm must be readable against the curves
+    ax.plot(official[xkey], official[Y], "*", color=COL["official"], ms=6, label=official["label"])
     for p in refs:
-        ax.plot(p[xkey], p[Y], "s", color=COL["ref"], mfc="none", ms=7, mew=1.3, label=p["label"])
+        ax.plot(p[xkey], p[Y], "s", color=COL["ref"], mfc="none", ms=5, mew=1.0, label=p["label"])
     for i, p in enumerate(arms):
-        ax.plot(p[xkey], p[Y], "o" if i == 0 else "D", color=COL["arm"] if i == 0 else COL["arm2"], ms=9, mew=1.5, label=p["label"])
+        ax.plot(p[xkey], p[Y], "o" if i == 0 else "D", color=COL["arm"] if i == 0 else COL["arm2"], ms=7, mew=0.6, mec="white",
+                label=p["label"])
     ax.set_xlabel(f"{R.X[xkey]}  → more edit")
     ax.set_ylabel("background LPIPS (unedited part)  ↓ better")
     ax.set_title(title or f"R49 subset (18 clips): {'StreamEdit' if host == 'se' else 'Wan-Edit'} — plain per-clip mean", fontsize=9)
@@ -86,6 +91,10 @@ def plot(host: str, xkey: str, curves, official, refs, arms, out: Path, title: O
 
 
 PLATFORM = {"se": "L40S", "wan": "H100"}
+CLIP_T = "clip_similarity_target_image"
+FIG_X_FULL = (*R.FIG_X, CLIP_T)                       # FiVE-Acc, CLIP-D, CLIP-T (target image): the three figures
+PAIR_FULL = (*PAIR_METRICS, CLIP_T)
+FIG_NAME = {"five_acc": "five_acc", "clip_d_prompt": "clip_d_prompt", CLIP_T: "clip_tgt"}
 
 
 def clipd_file(group: str, base: str) -> str:
@@ -125,15 +134,17 @@ def main_full(a) -> int:
                                                                            clipd_file("se", "se_max_full"), "r49_se_max_full")))
             curve = [point(f"rho={rho}", "se", "curve", uv(f"r39_n20_rho{rho}_vp", f"r39_fiveacc_n20_rho{rho}_vp",
                                                            "r39_clip_directional.csv", f"r39_n20_rho{rho}_vp")) for rho in R.RHOS]
+            native_sweep = [point(f"rho={rho}", "se", "native", uv(f"r36_rho{rho}_vp", f"r36_fiveacc_rho{rho}_vp",
+                                                                   "r36_clip_directional.csv", f"r36_rho{rho}_vp")) for rho in R.RHOS]
             official = point("official: StreamEdit rho=2, N=15", "se", "official",
                              uv("r36_rho2_vp", "r36_fiveacc_rho2_vp", "r36_clip_directional.csv", "r36_rho2_vp"))
             r38 = point("R38 dino τ0.9 (budget-linear, no S)", "se", "ref",
                         uv("r38_dino_n5_tgt09", "r38_fiveacc_dino_n5_tgt09", "r38_clip_directional.csv", "r38_dino_n5_tgt09"))
-            refs = [("R39 N=20 (equal NFE)", curve, "matched")]
+            refs = [("R39 N=20 (equal NFE)", curve, "matched"), ("R36 N=15 (native sweep)", native_sweep, "unmatched_nfe")]
             others = [official, r38]
-            fig_curves = [("R39 N=20 (equal NFE)", curve, COL["curve"])]
+            fig_curves = [("native sweep: R36 rho, N=15", native_sweep, COL["native"]), ("equal NFE: R39 rho, N=20", curve, COL["curve"])]
             fig_refs = [r38]
-            allpts = [arm, *curve, official, r38]
+            allpts = [arm, *curve, *native_sweep, official, r38]
         else:
             base_pts = group_points("base", "baseline")
             m59_pts = group_points("m59", "baseline")
@@ -143,9 +154,9 @@ def main_full(a) -> int:
             matched59 = sorted(m59_pts.values(), key=lambda p: -float(str(p["label"]).split("_s")[1]))
             official = dict(base_pts["native_s0.92"], label="official: Wan-Edit N=50, skip 15", role="official")
             n978 = dict(base_pts["native_s0.978"], label="native_s0.978 (uniform start at the floor)")
-            refs = [("matched-59 (equal NFE)", matched59, "matched"), ("native N=50", native, "unmatched_nfe")]
+            refs = [("matched-59 (equal NFE)", matched59, "matched"), ("native N=50 (native sweep)", native, "unmatched_nfe")]
             others = [official, n978]
-            fig_curves = [("native N=50", native, COL["native"]), ("matched-59", matched59, COL["m59"])]
+            fig_curves = [("native sweep: N=50, global start", native, COL["native"]), ("equal NFE: matched-59", matched59, COL["m59"])]
             fig_refs = []
             allpts = [arm, *native, *matched59]
         for p in allpts:
@@ -154,7 +165,7 @@ def main_full(a) -> int:
         print(f"\n=== R49 full, {host} ({plat}), scope {tag} ({len(scope)} pairs) ===")
         print(f"[{host}] {arm['label']}: bg LPIPS {arm[Y]:.4f}, bg PSNR {arm[Y2]:.2f}, FiVE-Acc {arm['five_acc']:.3f}, CLIP-D {arm['clip_d_prompt']:.4f}")
         for refname, curve_pts, kind in refs:
-            for x in R.FIG_X:
+            for x in FIG_X_FULL:
                 r, flag = R.interp_at(curve_pts, float(arm[Y]), x)
                 d = arm[x] - r if not math.isnan(r) else math.nan
                 delta_rows.append({"host": host, "platform": plat, "scope": tag, "arm": arm["label"], "metric": x, "reference": refname,
@@ -162,7 +173,7 @@ def main_full(a) -> int:
                 print(f"   {x:14s} vs {refname} at own LPIPS: {'n/a' if math.isnan(d) else format(d, '+.4f')} ({flag}, {kind})")
         rng = np.random.default_rng(0)
         for other in others:
-            for m in PAIR_METRICS:
+            for m in PAIR_FULL:
                 dm, lo, hi = R.paired_ci(arm["vals"][m], other["vals"][m], rng)
                 delta_rows.append({"host": host, "platform": plat, "scope": tag, "arm": arm["label"], "metric": m, "reference": other["label"],
                                    "kind": "paired", "value": arm[m], "ref_value": other[m], "delta": dm, "ci_lo": lo, "ci_hi": hi, "flag": "ok"})
@@ -182,8 +193,8 @@ def main_full(a) -> int:
         w.writeheader()
         w.writerows(delta_rows)
     print(f"\n[r49_score] wrote {out_p} ({len(pts_rows)} points), {out_d} ({len(delta_rows)} rows)")
-    for xkey in R.FIG_X:
-        plot(host, xkey, figs["curves"], figs["official"], figs["refs"], [figs["arm"]], fig_dir / f"{host}_{xkey}.pdf",
+    for xkey in FIG_X_FULL:
+        plot(host, xkey, figs["curves"], figs["official"], figs["refs"], [figs["arm"]], fig_dir / f"{host}_{FIG_NAME[xkey]}.pdf",
              title=f"R49 full (419 pairs, {plat}): {'StreamEdit' if host == 'se' else 'Wan-Edit'} — plain per-clip mean")
     print(f"[r49_score] figures -> {fig_dir}")
     return 0

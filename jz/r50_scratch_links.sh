@@ -16,7 +16,7 @@
 # A non-empty real folder without --adopt, or a link pointing elsewhere, is a CONFLICT: nothing is touched for it. R50_ENV=<file> overrides jz/r50_jz.env.
 # Ends with "[r50_scratch] failures: N" (0 = go ahead).
 set -u
-REPO=/home/ids/skhairi/Code/StreamEdit_bigchantier
+REPO=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 CHECK=0; ADOPT=0
 for A in "$@"; do
   case "$A" in --check) CHECK=1 ;; --adopt) ADOPT=1 ;; *) echo "[r50_scratch] usage: bash jz/r50_scratch_links.sh [--check] [--adopt]"; exit 1 ;; esac
@@ -65,7 +65,7 @@ for X in "${FOLDERS[@]}"; do
 done
 
 if command -v idr_quota_user >/dev/null 2>&1; then
-  echo "[r50_scratch] quota (idr_quota_user):"; idr_quota_user 2>&1 | grep -i -E 'WORK|SCRATCH|INODE|STORAGE' | cut -c1-200 | sed 's/^/  /'
+  echo "[r50_scratch] quota (idr_quota_user):"; idr_quota_user 2>&1 | cut -c1-200 | sed 's/^/  /'
 fi
 echo "[r50_scratch] failures: ${FAILED}"
 exit $(( FAILED > 0 ))

@@ -16,7 +16,7 @@
 #        bash jz/r50_fetch_outputs.sh --check         count what is on Jean Zay and in the store, send nothing
 # R50_ENV=<file> overrides jz/r50_jz.env; LAB_DEST=<dir> overrides the destination. Ends with "[r50_fetch] failures: N".
 set -u
-REPO=/home/ids/skhairi/Code/StreamEdit_bigchantier
+REPO=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 CHECK=0; ONLY=()
 for A in "$@"; do if [ "$A" = "--check" ]; then CHECK=1; else ONLY+=("$A"); fi; done
 CFG=${R50_ENV:-$REPO/jz/r50_jz.env}

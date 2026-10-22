@@ -128,13 +128,16 @@ steps:
     wait_for: jz-preflight
     check_hint: "ON JEAN ZAY: bash jz/r50_repro_chain.sh; when the queue is empty, every log in logs/r50_repro_jobs.txt ends with 'failures: 0' / 'unit failures: 0'"
     sets_status: finished
-    status: pending
+    status: completed
+    completed_at: 2026-10-22
+    job_id: "wan_draft 1400033, div 1400034, field 1400035, wan_render 1400036 (array task 1), official 1400037, eval 1400038"
   - id: jz-compare
     type: manual
     wait_for: jz-repro
     check_hint: "ON JEAN ZAY: $JZ_WORK/pyenv/five-bench/python evaluation/r50_compare.py -> PASS, evaluation/csv/r50_compare.csv written; paste the table here"
     sets_status: analyzed
-    status: pending
+    status: completed
+    completed_at: 2026-10-22
 isProject: true
 ---
 
