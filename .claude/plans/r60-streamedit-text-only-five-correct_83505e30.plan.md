@@ -1,6 +1,6 @@
 ---
 name: "R60 — StreamEdit Text-Only on FiVE-Correct"
-overview: "StreamEdit text-only (Self-Forcing, --vp_mode novp) on the 415 FiVE-Bench-Correct pairs, lab L40S: native N=15 curve (8 ρ, official = ρ 2), equal-NFE N=20 curve (8 ρ) and se_max_novp. The 16 uniform-ρ configs are re-rendered only on the 190 pairs whose prompt or trigger word changed (StreamEdit reads source_object/target_object in every arm); the other 225 reuse R44 / R53 renders after a 2-pair reproducibility gate. se_max_novp runs its whole chain (draft + attention, DINO + LPIPS divergence, field, render) on all 415 with the Correct annotations. Assembled 415-pair trees per config are scored with R57's lab suite, then read as Pareto curves + paired deltas."
+overview: "StreamEdit text-only (Self-Forcing, --vp_mode novp) on the 415 FiVE-Bench-Correct pairs, lab L40S: native N=15 curve (8 ρ, official = ρ 2), equal-NFE N=20 curve (8 ρ) and se_max_novp. The 12 uniform-ρ configs R44 rendered (N=15 all ρ, N=20 ρ 2/4/10/50) are re-rendered only on the 190 pairs whose prompt or trigger word changed (StreamEdit reads source_object/target_object in every arm); the other 225 reuse R44 renders after a 2-pair reproducibility gate. The 4 N=20 points R44 lacks (ρ 3/6/8/20; R53, which was to render them, is dropped) are rendered on all 415. se_max_novp runs its whole chain (draft + attention, DINO + LPIPS divergence, field, render) on all 415 with the Correct annotations. Assembled 415-pair trees per config are scored with R57's lab suite, then read as Pareto curves + paired deltas."
 task_id: R60
 todos:
   - id: stage1-anno-flag
@@ -16,7 +16,7 @@ todos:
     needed_by: [build-cases]
     status: pending
   - id: render-sbatch
-    content: "slurm_scripts/five_bench/r60_render.sh -- copy of r44_infer.sh's run_fivebench.py call (--vp_mode novp, fg_boost 4, flow_shift 1.0, chunk 21, seed 0) plus --edit_json_dir evaluation/five_bench_correct; MODE correct (array 0-15): 0-7 N=15 ρ 2,3,4,6,8,10,20,50, 8-15 N=20 same ρ, --cases_json evaluation/r60_cases_regen.json, out $D/r60_rho_sweep/r60_n{N}_rho{R}_novp; MODE repro (array 0-1): n15_rho2 / n20_rho2 on r60_cases_repro.json, out $D/r60_repro; per-type expected counts read from the case file; r44_infer.sh's skip / count / manifest guards; L40S, --exclude=node52, 64G, 12 h"
+    content: "slurm_scripts/five_bench/r60_render.sh -- copy of r44_infer.sh's run_fivebench.py call (--vp_mode novp, fg_boost 4, flow_shift 1.0, chunk 21, seed 0) plus --edit_json_dir evaluation/five_bench_correct; MODE correct (array 0-15): 0-7 N=15 ρ 2,3,4,6,8,10,20,50 and 8-11 N=20 ρ 2,4,10,50 with --cases_json evaluation/r60_cases_regen.json (190), 12-15 N=20 ρ 3,6,8,20 with --cases_json evaluation/r43_anchor_manifest_correct.json (415), out $D/r60_rho_sweep/r60_n{N}_rho{R}_novp; MODE repro (array 0-1): n15_rho2 / n20_rho2 on r60_cases_repro.json, out $D/r60_repro; per-type expected counts read from the case file; r44_infer.sh's skip / count / manifest guards; L40S, --exclude=node52, 64G, 24 h (indices 12-15: 415 clips at N=20, ~14 h by R39's estimate)"
     needed_by: [repro-render, render-chain]
     status: pending
   - id: stage1-sbatch
@@ -44,7 +44,7 @@ todos:
     needed_by: [repro-check]
     status: pending
   - id: assemble-script
-    content: "evaluation/r60_assemble.py -- builds $D/r60_correct/{config}/edit{T}/{video} for the 17 configs over the 415 Correct pairs: regen pair -> symlink to $D/r60_rho_sweep/r60_{config}_novp/...; unchanged pair -> source r44_rho_sweep/r44_{config}_novp (n15 all ρ, n20 ρ 2/4/10/50) or r53_rho_sweep/r53_{config}_novp (n20 ρ 3/6/8/20), symlinked if it resolves under /home, copied (shutil.copytree) if it resolves under /store; max_novp -> symlink to $D/r60_se_arms/r60_max_novp_correct/step14/... for all 415; checks every clip's PNG count equals its source's; idempotent; writes evaluation/csv/r60_assembly.csv (config, case_id, source new|reused, storage link|copy, n_png); exit 1 on a missing/incomplete clip or a count other than 415 per config"
+    content: "evaluation/r60_assemble.py -- builds $D/r60_correct/{config}/edit{T}/{video} for the 17 configs over the 415 Correct pairs: regen pair -> symlink to $D/r60_rho_sweep/r60_{config}_novp/...; unchanged pair -> source r44_rho_sweep/r44_{config}_novp (n15 all ρ, n20 ρ 2/4/10/50), symlinked if it resolves under /home, copied (shutil.copytree) if it resolves under /store; n20 ρ 3/6/8/20 -> symlink to $D/r60_rho_sweep/r60_{config}_novp/... for all 415; max_novp -> symlink to $D/r60_se_arms/r60_max_novp_correct/step14/... for all 415; checks every clip's PNG count equals its source's; idempotent; writes evaluation/csv/r60_assembly.csv (config, case_id, source new|reused, storage link|copy, n_png); exit 1 on a missing/incomplete clip or a count other than 415 per config"
     needed_by: [assemble]
     status: pending
   - id: assemble-sbatch
@@ -94,17 +94,12 @@ steps:
   - id: wait-chain
     type: manual
     wait_for: render-chain
-    check_hint: "no r60 job in squeue; grep -h failures logs/r60_*.out | sort | uniq -c -> all 'failures: 0'; 16 base tasks report 190 dirs; 415 attention + latent npz (all novp), 2 x 415 divergence, 415 field npz, 415 r60_max_novp_correct clips"
+    check_hint: "no r60 job in squeue; grep -h failures logs/r60_*.out | sort | uniq -c -> all 'failures: 0'; base tasks 0-11 report 190 dirs and 12-15 report 415; 415 attention + latent npz (all novp), 2 x 415 divergence, 415 field npz, 415 r60_max_novp_correct clips"
     sets_status: finished
-    status: pending
-  - id: wait-r53-sweep
-    type: manual
-    wait_for: render-chain
-    check_hint: "R53's sweep (r53_sweep_n20.sh, launched by r53_se_chain.sh) is done: 4 x 419 dirs under $D/r53_rho_sweep/r53_n20_rho{3,6,8,20}_novp, logs 'failures: 0'"
     status: pending
   - id: assemble
     type: sbatch
-    wait_for: wait-r53-sweep
+    wait_for: wait-chain
     command: sbatch slurm_scripts/five_bench/r60_assemble.sh
     output_paths:
       - evaluation/csv/r60_assembly.csv
@@ -112,7 +107,7 @@ steps:
   - id: wait-assemble
     type: manual
     wait_for: assemble
-    check_hint: "log '[r60_assemble] failures: 0'; summary 17 configs x 415 clips, new = 190 (16 baselines) / 415 (max_novp), 0 missing"
+    check_hint: "log '[r60_assemble] failures: 0'; summary 17 configs x 415 clips, new = 190 (12 R44 configs) / 415 (n20 ρ 3/6/8/20, max_novp), 0 missing"
     status: pending
   - id: eval
     type: local
@@ -137,7 +132,7 @@ steps:
   - id: analyze
     type: manual
     wait_for: score
-    check_hint: "Read r60_points.csv / r60_deltas.csv and the Pareto figures: is max_novp above the N=20 text-only curve on Correct? per-type pattern; regen-vs-reused split shows no shift; compare with R53 (official) once it is scored. Record the readout in the Run log."
+    check_hint: "Read r60_points.csv / r60_deltas.csv and the Pareto figures: is max_novp above the N=20 text-only curve on Correct? per-type pattern; regen-vs-reused split shows no shift. Record the readout in the Run log."
     sets_status: analyzed
     status: pending
 isProject: true
@@ -146,7 +141,7 @@ isProject: true
 # R60: StreamEdit Text-Only on FiVE-Correct
 
 ## Context
-FiVE-Bench-Correct is the paper's main benchmark (supervisor, 2026-10-23). This task covers the text-only StreamEdit rows (Self-Forcing, `--vp_mode novp`): the native N=15 ρ curve (the official setting is ρ = 2), the equal-NFE N=20 ρ curve, and the adaptive se_max_novp (5-step draft + 15-step render = 20 NFE). Text-only renders read only `source_prompt`, `target_prompt`, `source_object` and `target_object`, so a pair whose four fields Correct left unchanged renders exactly as on official FiVE. The uniform-ρ configs are therefore re-rendered only on the changed pairs. se_max_novp has no official render to reuse, because R53 hasn't run yet, so it runs on all 415 pairs. Every config is evaluated again on all 415 pairs, because Correct changed the FiVE-Acc questions, objects and instructions that the metrics read.
+FiVE-Bench-Correct is the paper's main benchmark (supervisor, 2026-10-23). This task covers the text-only StreamEdit rows (Self-Forcing, `--vp_mode novp`): the native N=15 ρ curve (the official setting is ρ = 2), the equal-NFE N=20 ρ curve, and the adaptive se_max_novp (5-step draft + 15-step render = 20 NFE). Text-only renders read only `source_prompt`, `target_prompt`, `source_object` and `target_object`, so a pair whose four fields Correct left unchanged renders exactly as on official FiVE. The uniform-ρ configs R44 rendered are therefore re-rendered only on the changed pairs. The 4 N=20 ρ values R44 lacks (3/6/8/20) and se_max_novp have no official render to reuse (R53, which was to produce them, is dropped), so they run on all 415 pairs. Every config is evaluated again on all 415 pairs, because Correct changed the FiVE-Acc questions, objects and instructions that the metrics read.
 
 **Done when:** 17 configs × 415 pairs are scored with R57's lab suite, and `r60_points.csv` / `r60_deltas.csv` / `r60_pareto/` have been read.
 
@@ -161,13 +156,12 @@ FiVE-Bench-Correct is the paper's main benchmark (supervisor, 2026-10-23). This 
 | 4 | `repro-check` | srun (CPU, nodecpu12) | wait-repro | — |
 | 5 | `render-chain` | local (submits 21 tasks) | repro-check | `running` |
 | 6 | `wait-chain` | manual | render-chain | `finished` |
-| 7 | `wait-r53-sweep` | manual (R53's own chain) | render-chain | — |
-| 8 | `assemble` | sbatch (CPU, nodecpu12) | wait-r53-sweep | — |
-| 9 | `wait-assemble` | manual | assemble | — |
-| 10 | `eval` | local (batches; needs R57 `adopt`) | wait-assemble | — |
-| 11 | `wait-eval` | manual | eval | — |
-| 12 | `score` | local | wait-eval | — |
-| 13 | `analyze` | manual | score | `analyzed` |
+| 7 | `assemble` | sbatch (CPU, nodecpu12) | wait-chain | — |
+| 8 | `wait-assemble` | manual | assemble | — |
+| 9 | `eval` | local (batches; needs R57 `adopt`) | wait-assemble | — |
+| 10 | `wait-eval` | manual | eval | — |
+| 11 | `score` | local | wait-eval | — |
+| 12 | `analyze` | manual | score | `analyzed` |
 
 ```
 /build-step build-cases R60
@@ -183,7 +177,6 @@ FiVE-Bench-Correct is the paper's main benchmark (supervisor, 2026-10-23). This 
 /run-step R60 repro-check
 /run-step R60 render-chain
 /run-step R60 wait-chain
-/run-step R60 wait-r53-sweep
 /run-step R60 assemble
 /run-step R60 wait-assemble
 /run-step R60 eval
@@ -197,10 +190,10 @@ FiVE-Bench-Correct is the paper's main benchmark (supervisor, 2026-10-23). This 
 | Decision | Choice |
 |---|---|
 | Benchmark | FiVE-Bench-Correct, 415 pairs (`evaluation/r43_anchor_manifest_correct.json`, annotations `evaluation/five_bench_correct/`). The uncommitted edits to `edit1_FiVE.json` / `edit6_FiVE.json` are committed before `build-cases`, and the regen set is computed from the committed files |
-| Regen set | Computed from the JSON files (official vs Correct): pairs with a changed `source_prompt`, `target_prompt`, `source_object` or `target_object` = **190** (47 prompt + 143 trigger-word only; per type 15/32/54/70/9/10; edit5 and edit6 entirely). Unlike Wan's baselines (47), StreamEdit's cross-attention grounding/boosting reads the trigger words in every arm. Checked 2026-10-26 |
+| Regen set (R44 configs) | Computed from the JSON files (official vs Correct): pairs with a changed `source_prompt`, `target_prompt`, `source_object` or `target_object` = **190** (47 prompt + 143 trigger-word only; per type 15/32/54/70/9/10; edit5 and edit6 entirely). Unlike Wan's baselines (47), StreamEdit's cross-attention grounding/boosting reads the trigger words in every arm. Checked 2026-10-26 |
 | Configs (17) | `n15_rho{2,3,4,6,8,10,20,50}` (native; `n15_rho2` = official text-only), `n20_rho{2,3,4,6,8,10,20,50}` (equal NFE; `n20_rho2` = equal-NFE official), `max_novp` (se_max text-only) |
-| Reuse sources (225 unchanged pairs) | `n15_*` and `n20_rho{2,4,10,50}` ← `$D/r44_rho_sweep/r44_{config}_novp` (all on /store except `n15_rho2`); `n20_rho{3,6,8,20}` ← `$D/r53_rho_sweep/r53_{config}_novp` (R53's sweep, which has not run yet: `assemble` waits for it) |
-| se_max_novp | Own run on all 415 (user's choice), independent of R53: R53's settings (N=5 `tgt0.9` draft, seed 0, attention recorder at defaults, DINOv3 + LPIPS divergence with temporal mean, `r49_field.py` unchanged, render N=15 at `dump_steps 14`) plus the Correct annotations |
+| Reuse sources (225 unchanged pairs) | `n15_*` and `n20_rho{2,4,10,50}` ← `$D/r44_rho_sweep/r44_{config}_novp` (all on /store except `n15_rho2`). `n20_rho{3,6,8,20}` have no official render (R53 dropped): rendered on all 415 by R60 |
+| se_max_novp | Own run on all 415 (user's choice; R53 dropped): R53's settings, via copies of its never-run `r53_*.sh` scripts, so R60's chain is their first run (N=5 `tgt0.9` draft, seed 0, attention recorder at defaults, DINOv3 + LPIPS divergence with temporal mean, `r49_field.py` unchanged, render N=15 at `dump_steps 14`) plus the Correct annotations |
 | Render settings | As R44: `--vp_mode novp`, no anchor, fg_boost 4, flow_shift 1.0, chunk 21, seed 0; only `--edit_json_dir` and `--cases_json` are added |
 | Reuse gate | 2 unchanged pairs (first of edit1 and of edit4) rendered again with `n15_rho2` and `n20_rho2` and compared against R44's renders; PASS iff max \|diff\| ≤ 2/255 on every frame. A FAIL stops the task and goes back to the user to decide (full 415 re-render) |
 | Platform | Lab L40S, env `streamgve` for every render, `five-bench` for divergence / field / eval; all reused renders are L40S + streamgve too |
@@ -210,7 +203,7 @@ FiVE-Bench-Correct is the paper's main benchmark (supervisor, 2026-10-23). This 
 | Queue | Per-user cap ~30 tasks: the chain driver and eval launcher refuse to exceed it; base (16) and max (5) can be submitted separately, and eval in config batches (3 jobs each) |
 | Averaging / plots | Plain per-clip mean from the suite CSV, never `_avg.csv`; Pareto plots with x = alignment, y = preservation |
 | Readout | max_novp vs `n20_rho2` (equal NFE, headline) and vs `n15_rho2` (official), placed on both curves; paired bootstrap 95% CI; per edit type; regen-vs-reused split as a sanity check |
-| Out of scope | VP StreamEdit on Correct (R59), LongLive, Wan-Edit (R58), R53's official-FiVE run |
+| Out of scope | VP StreamEdit on Correct (R59), LongLive, Wan-Edit (R58), any text-only run on official FiVE (R53 dropped) |
 
 ## Step commands
 
@@ -247,12 +240,6 @@ cat logs/r60_chain_jobs.txt
 ```bash
 squeue -u $USER
 grep -h failures logs/r60_*.out | sort | uniq -c
-```
-
-### wait-r53-sweep
-```bash
-for R in 3 6 8 20; do ls -d ~/Data/dataggen/outputs/five_bench/r53_rho_sweep/r53_n20_rho${R}_novp/edit*/*/ | grep -vc '_resize/$'; done   # 419 each
-grep -h failures logs/r53_sweep_*.out | sort | uniq -c
 ```
 
 ### assemble
@@ -299,8 +286,11 @@ flowchart LR
   B --> E[r60_cases_repro 2]
   E --> F[r60_render.sh repro] --> G[r60_repro_check.py]
   R44[R44 renders /home + /store] --> G
-  D --> H[r60_render.sh correct 16 configs]
+  D --> H[r60_render.sh correct 0-11 on 190]
+  M2[Correct manifest 415] --> H2[r60_render.sh correct 12-15 on 415]
   C --> H
+  C --> H2
+  H2 --> AS
   M[Correct manifest 415] --> S1[r60_se_stage1.sh draft + attention]
   C --> S1
   S1 --> DV[r60_div.sh DINO / LPIPS] --> FD[r60_field.sh]
@@ -309,7 +299,6 @@ flowchart LR
   H --> AS[r60_assemble.sh / r60_assemble.py]
   S3 --> AS
   R44 --> AS
-  R53[R53 N=20 sweep rho 3/6/8/20] --> AS
   AS --> T[r60_correct 17 x 415]
   T --> EV[r60_eval.sh -> eval_suite.sh R57]
   EV --> CSV[suite_r60 CSVs]
@@ -324,14 +313,14 @@ flowchart LR
 | `evaluation/r31_stage1.py` | `--edit_json_dir` (default None → `data_root / "edit_prompt"`), used at the `edit_json` read |
 | `evaluation/r31_stage3.py` | `--edit_json_dir` (default None → `data_root / "edit_prompt"`), used at the `edit_json` read |
 | `evaluation/r60_build_cases.py` (new) | Regen set from the JSON comparison → `r60_cases_regen.json`, `r60_cases_repro.json`, `r60_regen_sets.csv`; asserts 190 (15/32/54/70/9/10) and 2 |
-| `slurm_scripts/five_bench/r60_render.sh` (new) | `correct` (array 0-15: index → (N, ρ)) and `repro` (array 0-1) modes; `--edit_json_dir evaluation/five_bench_correct --cases_json <case file>`; expected per-type counts read from the case file |
+| `slurm_scripts/five_bench/r60_render.sh` (new) | `correct` (array 0-15: index → (N, ρ, case file)) and `repro` (array 0-1) modes; `--edit_json_dir evaluation/five_bench_correct --cases_json <case file>`; expected per-type counts read from the case file |
 | `slurm_scripts/five_bench/r60_se_stage1.sh` (new) | `r53_se_stage1.sh` with the Correct manifest, `--edit_json_dir`, `r60_se_stage1` / `r60_se_attn`, 415 guards |
 | `slurm_scripts/five_bench/r60_div.sh` (new) | `r53_div.sh` with the Correct manifest and `r60_*` roots, 415 guard |
 | `slurm_scripts/five_bench/r60_field.sh` (new) | `r53_field.sh` with the Correct manifest and `r60_*` roots, 415 guard |
 | `slurm_scripts/five_bench/r60_se_stage3.sh` (new) | `r53_se_stage3.sh` with the Correct manifest, `--edit_json_dir`, `r60_field/se_max`, method `r60_max_novp_correct` |
 | `slurm_scripts/five_bench/r60_chain.sh` (new) | `--only base\|max\|all`, `--dry-run`, queue-cap check (30); base array 0-15 + afterok chain stage1 → div → field → stage3; `logs/r60_chain_jobs.txt` |
 | `evaluation/r60_repro_check.py` (new) | Pixel comparison of the repro renders vs R44 (`n15_rho2` /home, `n20_rho2` /store), PASS ≤ 2/255 → `r60_repro_check.csv` |
-| `evaluation/r60_assemble.py` (new) | `$D/r60_correct/{config}` over 415 pairs: link new renders, link /home reuse, copy /store reuse; PNG-count check; `r60_assembly.csv` |
+| `evaluation/r60_assemble.py` (new) | `$D/r60_correct/{config}` over 415 pairs: link new renders (all 415 for `n20_rho{3,6,8,20}` and `max_novp`), link /home reuse, copy /store reuse; PNG-count check; `r60_assembly.csv` |
 | `slurm_scripts/five_bench/r60_assemble.sh` (new) | CPU job pinned to nodecpu12, /store preflight, runs `r60_assemble.py` |
 | `slurm_scripts/five_bench/r60_eval.sh` (new) | Loop of `eval_suite.sh` over the given configs, tag `r60`, refuses existing CSVs and queue overflow, `logs/r60_eval_jobs.txt` |
 | `evaluation/r60_score.py` (new) | Points (overall + per type), deltas with paired bootstrap, Pareto PDFs |
@@ -339,7 +328,8 @@ flowchart LR
 `r60_render.sh correct` index → config:
 
 ```
-0-7   N=15  rho 2 3 4 6 8 10 20 50   -> r60_n15_rho{R}_novp
-8-15  N=20  rho 2 3 4 6 8 10 20 50   -> r60_n20_rho{R}_novp
+0-7   N=15  rho 2 3 4 6 8 10 20 50   r60_cases_regen.json (190)              -> r60_n15_rho{R}_novp
+8-11  N=20  rho 2 4 10 50            r60_cases_regen.json (190)              -> r60_n20_rho{R}_novp
+12-15 N=20  rho 3 6 8 20             r43_anchor_manifest_correct.json (415)  -> r60_n20_rho{R}_novp
 repro 0 n15_rho2 / 1 n20_rho2 on r60_cases_repro.json -> $D/r60_repro
 ```

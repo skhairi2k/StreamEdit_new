@@ -56,12 +56,16 @@ steps:
     type: sbatch
     command: sbatch slurm_scripts/five_bench/r59_infer.sh
     sets_status: running
-    status: pending
+    status: completed
+    completed_at: 2026-10-26
+    job_id: "1066770"
   - id: se-chain
     type: local
     command: bash slurm_scripts/five_bench/r59_se_chain.sh
     sets_status: running
-    status: pending
+    status: completed
+    completed_at: 2026-10-26
+    job_id: "stage1 1066777, div 1066778, field 1066779, render 1066780"
   - id: wait-renders
     type: manual
     wait_for: [render-baselines, se-chain]

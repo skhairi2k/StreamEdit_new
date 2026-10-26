@@ -1,0 +1,18 @@
+[
+ {
+  "case_id": "edit1/0001_bus",
+  "edit_type": 1,
+  "video_name": "0001_bus",
+  "src_first_frame": "images/0001_bus/00001.jpg",
+  "first_frame_edit_prompt": "Change the city bus to a jeep. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit1/0001_bus.png"
+ },
+ {
+  "case_id": "edit4/0001_bus",
+  "edit_type": 4,
+  "video_name": "0001_bus",
+  "src_first_frame": "images/0001_bus/00001.jpg",
+  "first_frame_edit_prompt": "Make the city bus out of glass. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit4/0001_bus.png"
+ }
+]

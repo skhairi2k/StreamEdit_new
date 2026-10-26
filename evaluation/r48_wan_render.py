@@ -48,6 +48,8 @@ def main() -> int:
     ap.add_argument("--config", required=True)
     ap.add_argument("--mode", choices=("subset", "full"), required=True)
     ap.add_argument("--cases", required=True)
+    ap.add_argument("--anno_dir", default=None,
+                    help="annotation folder with edit{T}_FiVE.json (default: the released FiVE edit_prompt)")
     ap.add_argument("--field_root", default=str(D / "r48_field"))
     ap.add_argument("--out_root", default=str(D / "r48_wan_arms"))
     a = ap.parse_args()
@@ -57,11 +59,11 @@ def main() -> int:
     # Every config, baseline or adaptive, has its own directory per mode: the full run re-renders the 18 subset clips rather
     # than reuse them, so every clip of the full benchmark comes from one job with one complete guard.
     out_base = Path(a.out_root).expanduser() / f"{a.config}_{a.mode}"
-    cases = C.load_cases(a.cases)
+    cases = C.load_cases(a.cases, a.anno_dir)
     cli = C.load_cli()
     pipe, d = C.build_pipeline(cli)
     print(f"[r48_wan_render] config={a.config} ({kind}) sample_steps={n_steps} skip={skip} "
-          f"active={n_steps - skip} mode={a.mode} cases={len(cases)} -> {out_base}", flush=True)
+          f"active={n_steps - skip} mode={a.mode} cases={len(cases)} anno={a.anno_dir or 'released FiVE'} -> {out_base}", flush=True)
     n_fail = n_done = 0
     for c in cases:
         vid, t = c["video_name"], c["edit_type"]

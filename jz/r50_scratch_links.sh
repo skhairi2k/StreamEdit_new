@@ -8,6 +8,7 @@
 # store with jz/r50_fetch_outputs.sh (run on the lab frontal). IDRIS purges unused $SCRATCH files after a retention period: fetch promptly.
 #
 # Folders: r48_wan_draft r48_div r48_field r48_wan_arms r49_wan_draft r49_div r49_field r49_field_full r49_wan_arms r50_preflight
+#          r51_field_full r51_wan_arms r58_wan_draft r58_div r58_field r58_wan_arms r58_repro r58_wan_correct
 #
 # Usage: bash jz/r50_scratch_links.sh            create folders and links (idempotent)
 #        bash jz/r50_scratch_links.sh --check    change nothing; say what would happen
@@ -32,7 +33,7 @@ SCR=${SCRATCH:-}
 D=$WORK/Data/dataggen/outputs/five_bench
 DEST=$SCR/five_bench_out
 FOLDERS=(r48_wan_draft r48_div r48_field r48_wan_arms r49_wan_draft r49_div r49_field r49_field_full r49_wan_arms r50_preflight
-         r51_field_full r51_wan_arms)
+         r51_field_full r51_wan_arms r58_wan_draft r58_div r58_field r58_wan_arms r58_repro r58_wan_correct)
 [ -d "$D" ] || { echo "[r50_scratch] FATAL: $D missing -- run: bash jz/r50_setup_dirs.sh"; exit 1; }
 echo "[r50_scratch] $([ $CHECK -eq 1 ] && echo CHECK || echo LINK) $D -> $DEST $(date '+%F %T') on $(hostname)"
 

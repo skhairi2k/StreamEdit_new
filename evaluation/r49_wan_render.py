@@ -59,6 +59,8 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", required=True)
     ap.add_argument("--cases", required=True)
+    ap.add_argument("--anno_dir", default=None,
+                    help="annotation folder with edit{T}_FiVE.json (default: the released FiVE edit_prompt)")
     ap.add_argument("--field_root", default=str(D / "r49_field"))
     ap.add_argument("--out_root", default=str(D / "r49_wan_arms"))
     ap.add_argument("--mode", choices=("subset", "full"), default="subset")
@@ -66,11 +68,11 @@ def main() -> int:
 
     kind, n_steps, skip, arm = resolve(a.config)
     out_base = Path(a.out_root).expanduser() / f"{a.config}_{a.mode}"
-    cases = C.load_cases(a.cases)
+    cases = C.load_cases(a.cases, a.anno_dir)
     cli = C.load_cli()
     pipe, d = C.build_pipeline(cli)
     print(f"[r49_wan_render] config={a.config} ({kind}) sample_steps={n_steps} skip={skip} "
-          f"active={n_steps - skip} mode={a.mode} cases={len(cases)} -> {out_base}", flush=True)
+          f"active={n_steps - skip} mode={a.mode} cases={len(cases)} anno={a.anno_dir or 'released FiVE'} -> {out_base}", flush=True)
     n_fail = n_done = 0
     for c in cases:
         vid, t = c["video_name"], c["edit_type"]

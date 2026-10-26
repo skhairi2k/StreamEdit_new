@@ -76,7 +76,7 @@ else
   "${PIP[@]}" install -U datasets pillow openai megfile sentencepiece deepspeed fire omegaconf \
     matplotlib peft trl==0.8.6 tensorboard scipy transformers==4.57.0 accelerate \
     requests packaging pandas opencv-python einops timm huggingface_hub qwen-vl-utils \
-    av regex safetensors tqdm
+    av regex safetensors tqdm rich   # rich: imported by trl 0.8.6's reward_trainer, missing from EditReward's README list
   say "pip install -e $EDITREWARD_DIR"
   "${PIP[@]}" install -e "$EDITREWARD_DIR"
 fi

@@ -49,14 +49,16 @@ steps:
     command: bash evaluation/eval_suite/fetch_weights.sh
     output_paths:
       - evaluation/eval_suite/weights_manifest.json
-    status: pending
+    status: completed
+    completed_at: 2026-10-26
   - id: make-env
     type: local
     wait_for: fetch-weights
     command: bash evaluation/eval_suite/make_editreward_env.sh
     output_paths:
       - evaluation/eval_suite/freeze/editreward.txt
-    status: pending
+    status: completed
+    completed_at: 2026-10-26
   - id: smoke-lab
     type: sbatch
     wait_for: make-env
@@ -65,11 +67,13 @@ steps:
         --root ~/Data/dataggen/outputs/five_bench/r49_se_arms/r49_max_full/step14 --layout edit_video \
         --cases evaluation/r57_smoke_cases.json --tag r57_smoke_lab
     sets_status: running
-    status: pending
+    status: completed
+    completed_at: 2026-10-26
+    job_id: "1066766,1066767,1066768"
   - id: check-smoke-lab
     type: manual
     wait_for: smoke-lab
-    check_hint: "logs/eval_suite_{metrics,cf,merge}_{job_id}.out: 0 'Error:', the merge log ends with the merge line; evaluation/csv/suite_r57_smoke_lab_r49_max_full.csv has 3 rows, every metric non-NaN (motion fidelity included); edit6/0048 has psc_rule=removal_drop; EditReward and PSC values are finite and differ across the 3 clips; cf in [1,5] for all 3 and each cf_raw is a readable judgement of the right pair; the cf log shows libx264 found, use_fast=False and second_per_grid_ts=1.0; the metrics log shows the EditReward stage on transformers 4.57.0"
+    check_hint: "job_id = metrics,cf,merge (in that order): logs/eval_suite_metrics_<id1>.out, eval_suite_cf_<id2>.out, eval_suite_merge_<id3>.out: 0 'Error:', the merge log ends with the merge line; evaluation/csv/suite_r57_smoke_lab_r49_max_full.csv has 3 rows, every metric non-NaN (motion fidelity included); edit6/0048 has psc_rule=removal_drop; EditReward and PSC values are finite and differ across the 3 clips; cf in [1,5] for all 3 and each cf_raw is a readable judgement of the right pair; the cf log shows libx264 found, use_fast=False and second_per_grid_ts=1.0; the metrics log shows the EditReward stage on transformers 4.57.0"
     status: pending
   - id: jz-sync
     type: manual

@@ -59,7 +59,8 @@ steps:
     type: local
     wait_for: wait-se-chain
     command: python evaluation/r56_score.py
-    status: pending
+    status: completed
+    completed_at: 2026-10-26
   - id: verdict
     type: manual
     wait_for: score

@@ -53,9 +53,11 @@ def build_pipeline(cli):
     return pipe, args
 
 
-def load_cases(cases_path: str) -> List[Dict]:
+def load_cases(cases_path: str, anno_dir: str | None = None) -> List[Dict]:
     """Cases json (cases.json or r7_anchor_manifest.json: only video_name/edit_type are read) ->
-    prompts and trigger words from edit{T}_FiVE.json, the same source r31_stage1.py uses."""
+    prompts and trigger words from edit{T}_FiVE.json, the same source r31_stage1.py uses.
+    ``anno_dir`` (default: the released FiVE ``edit_prompt``) selects another annotation set, e.g. FiVE-Bench-Correct (R58)."""
+    anno_root = Path(anno_dir).expanduser() if anno_dir else FIVE / "edit_prompt"
     cases = json.loads(Path(cases_path).read_text())
     by_type: Dict[int, Dict[str, dict]] = {}
     out = []
@@ -63,7 +65,7 @@ def load_cases(cases_path: str) -> List[Dict]:
         t = int(c["edit_type"])
         if t not in by_type:
             by_type[t] = {e["video_name"]: e for e in json.loads(
-                (FIVE / "edit_prompt" / f"edit{t}_FiVE.json").read_text())}
+                (anno_root / f"edit{t}_FiVE.json").read_text())}
         e = by_type[t][c["video_name"]]
         out.append(dict(video_name=c["video_name"], edit_type=t,
                         source_prompt=e["source_prompt"], target_prompt=e["target_prompt"],

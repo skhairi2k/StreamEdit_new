@@ -82,7 +82,8 @@ steps:
     type: manual
     wait_for: se-chain
     check_hint: "squeue empty of r51_*; every logs/r51_*.out ends 'failures: 0' / 'unit failures: 0'; A0 gate PASS line in the field log; 4 x 419 renders; 4 harness + 4 FiVE-Acc + 4 CLIP-D units, 6 motion units, all row counts ok"
-    status: pending
+    status: completed
+    completed_at: 2026-10-26
   - id: wait-wan-chain
     type: manual
     wait_for: wan-chain
@@ -94,18 +95,21 @@ steps:
     type: manual
     wait_for: wait-wan-chain
     check_hint: "on gpu-gw: bash jz/r50_fetch_outputs.sh r51_field_full r51_wan_arms -> 'failures: 0'; rsync of evaluation/csv/*r51*wan_nosupp_s5_full* back to the lab repo"
-    status: pending
+    status: completed
+    completed_at: 2026-10-26
   - id: score
     type: local
     wait_for: [wait-se-chain, wan-fetch]
     command: "python evaluation/r51_score.py --host se && python evaluation/r51_score.py --host wan"
     sets_status: finished
-    status: pending
+    status: completed
+    completed_at: 2026-10-26
   - id: grids
     type: local
     wait_for: wait-se-chain
     command: python evaluation/r51_grids.py
-    status: pending
+    status: completed
+    completed_at: 2026-10-26
   - id: verdict
     type: manual
     wait_for: [score, grids]

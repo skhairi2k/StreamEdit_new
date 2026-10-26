@@ -6,7 +6,7 @@ todos:
   - id: anno-dir-common
     content: "evaluation/r48_wan_common.py -- load_cases(cases_path, anno_dir=None): read edit{T}_FiVE.json from anno_dir when given, else FIVE/edit_prompt (default unchanged, R48/R49/R51 calls keep their behaviour)"
     needed_by: [repro-render, wan-chain]
-    status: pending
+    status: completed
   - id: anno-dir-draft
     content: "evaluation/r48_wan_draft.py -- new --anno_dir argument (default None = official FiVE) passed to C.load_cases; printed in the start line"
     needed_by: [wan-chain]
@@ -14,19 +14,19 @@ todos:
   - id: anno-dir-render48
     content: "evaluation/r48_wan_render.py -- new --anno_dir argument (default None) passed to C.load_cases; printed in the start line"
     needed_by: [repro-render, wan-chain]
-    status: pending
+    status: completed
   - id: anno-dir-render49
     content: "evaluation/r49_wan_render.py -- new --anno_dir argument (default None) passed to C.load_cases; printed in the start line"
     needed_by: [repro-render, wan-chain]
-    status: pending
+    status: completed
   - id: cases-script
     content: "evaluation/r58_build_cases.py -- compares evaluation/five_bench_correct/edit{T}_FiVE.json with the official ~/Data/FiVE-.../edit_prompt/edit{T}_FiVE.json per pair (415 = r43_anchor_manifest_correct.json); writes evaluation/r58_cases_base.json (pairs with a changed source_prompt/target_prompt, expect 47), evaluation/r58_cases_maxs5.json (changed prompt OR source_object/target_object, expect 190), evaluation/r58_cases_repro.json (2 unchanged pairs: the first unchanged pair of edit1 and of edit4) and evaluation/csv/r58_regen_sets.csv (case_id, changed fields, in_base, in_maxs5); all case files in the r7 manifest format; exit 1 if the counts differ from 47 / 190 / 2 or a case is missing from the official files"
     needed_by: [build-cases]
-    status: pending
+    status: completed
   - id: render-sbatch
     content: "slurm_scripts/five_bench/r58_wan_render.sh -- MODE correct (array 0-11): 0-5 native_s0.95..s0.4 and 6 native_s0.978 via r48_wan_render.py, 7-10 matched59_s0.95/0.92/0.85/0.978 via r49_wan_render.py, all on r58_cases_base.json; 11 max_s5 via r49_wan_render.py on r58_cases_maxs5.json with --field_root $D/r58_field; MODE repro (array 0-1): native_s0.92 (r48) and matched59_s0.92 (r49) on r58_cases_repro.json -> $D/r58_repro; always --anno_dir evaluation/five_bench_correct --mode full --out_root $D/r58_wan_arms (repro: $D/r58_repro); NO-OVERWRITE guard: refuses to start unless OUT is exactly $D/r58_wan_arms or $D/r58_repro (never an r48_/r49_ folder), and the renderers' resume logic skips any clip that already has its PNGs, so no existing frame is rewritten; max_s5 preflight on the start maps; post-run guard with r48_units.py --missing; lab header with --exclude=node52 (ported by r50_port.sh)"
     needed_by: [repro-render, wan-chain]
-    status: pending
+    status: completed
   - id: draft-sbatch
     content: "slurm_scripts/five_bench/r58_wan_draft.sh -- r48_wan_draft.py on r58_cases_maxs5.json with --anno_dir evaluation/five_bench_correct -> $D/r58_wan_draft/{attn,frames}; same draft settings as R49 (17-step grid from step 3, seed 0); post-run per-type count guard against the 190-pair case file"
     needed_by: [wan-chain]
@@ -46,7 +46,7 @@ todos:
   - id: repro-check-script
     content: "evaluation/r58_repro_check.py -- for each repro pair and config, compares $D/r58_repro/{config}_full/edit{T}/{video}/*.png with the R49 render ($D/r48_wan_arms/native_s0.92_full, $D/r49_wan_arms/matched59_s0.92_full): same frame count, max |diff| per frame and PSNR; PASS iff every frame has max |diff| <= 2 (of 255); writes evaluation/csv/r58_repro_check.csv; exit 1 on FAIL"
     needed_by: [repro-check]
-    status: pending
+    status: completed
   - id: assemble-script
     content: "evaluation/r58_assemble.py -- for the 12 configs builds $D/r58_wan_correct/{config}/edit{T}/{video} as a symlink, over the 415 pairs of r43_anchor_manifest_correct.json: to $D/r58_wan_arms/{config}_full/... if the pair is in that config's regen set (r58_cases_base.json for the 11 baselines, r58_cases_maxs5.json for max_s5), else to the R49 render ($D/r48_wan_arms/{config}_full for native_*, $D/r49_wan_arms/{config}_full for matched59_* and max_s5); checks the target holds the expected PNG count (r48_wan_common.expected_frames), read through the link; only ever creates symlinks inside $D/r58_wan_correct and never writes into a link target; an existing entry that is not a symlink, or a symlink into neither r58_wan_arms nor the R48/R49 render dirs, is a CONFLICT (left untouched, exit 1); re-running is idempotent (an identical link is kept); writes evaluation/csv/r58_assembly.csv (config, case_id, source new|reused, n_png); exit 1 on any missing/incomplete clip or a count other than 415 per config"
     needed_by: [assemble]
@@ -58,11 +58,11 @@ todos:
   - id: port-list
     content: "jz/r50_port.sh -- add r58_wan_draft, r58_div, r58_field, r58_wan_render, r58_wan_chain to SCRIPTS"
     needed_by: [jz-sync]
-    status: pending
+    status: completed
   - id: scratch-folders
     content: "jz/r50_scratch_links.sh -- add r58_wan_draft r58_div r58_field r58_wan_arms r58_repro r58_wan_correct to FOLDERS (and the header comment)"
     needed_by: [jz-sync]
-    status: pending
+    status: completed
   - id: fetch-folders
     content: "jz/r50_fetch_outputs.sh -- add r58_wan_draft r58_div r58_field r58_wan_arms to ALL (and the header comment); r58_wan_correct is links only and is not fetched"
     needed_by: [fetch]
@@ -80,7 +80,8 @@ steps:
       - evaluation/r58_cases_maxs5.json
       - evaluation/r58_cases_repro.json
       - evaluation/csv/r58_regen_sets.csv
-    status: pending
+    status: completed
+    completed_at: 2026-10-26
   - id: jz-sync
     type: manual
     wait_for: build-cases
@@ -89,7 +90,7 @@ steps:
   - id: repro-render
     type: manual
     wait_for: jz-sync
-    check_hint: "User, on Jean Zay: `sbatch -A omt@h100 --qos=qos_gpu_h100-dev --array=0-1 slurm_scripts/five_bench/r58_wan_render.sh repro`; paste the job id and, when done, both log tails ('failures: 0')"
+    check_hint: "User, on Jean Zay: `sbatch -A omt@h100 --qos=qos_gpu_h100-dev --time=01:00:00 --array=0-1 slurm_scripts/five_bench/r58_wan_render.sh repro`; paste the job id and, when done, both log tails ('failures: 0')"
     status: pending
   - id: repro-check
     type: manual
@@ -234,7 +235,7 @@ ls ~/Data/dataggen/outputs/five_bench/r48_wan_arms/native_s0.92_full/edit1 | wc 
 ### repro-render
 ```bash
 # Jean Zay
-sbatch -A omt@h100 --qos=qos_gpu_h100-dev --array=0-1 slurm_scripts/five_bench/r58_wan_render.sh repro
+sbatch -A omt@h100 --qos=qos_gpu_h100-dev --time=01:00:00 --array=0-1 slurm_scripts/five_bench/r58_wan_render.sh repro
 ```
 
 ### repro-check

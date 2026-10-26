@@ -1,0 +1,378 @@
+[
+ {
+  "case_id": "edit1/0019_tennis-vest",
+  "edit_type": 1,
+  "video_name": "0019_tennis-vest",
+  "src_first_frame": "images/0019_tennis-vest/00001.jpg",
+  "first_frame_edit_prompt": "Replace the tennis player with Ultraman. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit1/0019_tennis-vest.png"
+ },
+ {
+  "case_id": "edit1/0020_monkeys",
+  "edit_type": 1,
+  "video_name": "0020_monkeys",
+  "src_first_frame": "images/0020_monkeys/00001.jpg",
+  "first_frame_edit_prompt": "Change the monkeys to chimpanzees. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit1/0020_monkeys.png"
+ },
+ {
+  "case_id": "edit1/0046_blackswan",
+  "edit_type": 1,
+  "video_name": "0046_blackswan",
+  "src_first_frame": "images/0046_blackswan/00001.jpg",
+  "first_frame_edit_prompt": "Change the swan to a duck. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit1/0046_blackswan.png"
+ },
+ {
+  "case_id": "edit1/0085_A_tram",
+  "edit_type": 1,
+  "video_name": "0085_A_tram",
+  "src_first_frame": "images/0085_A_tram/00001.jpg",
+  "first_frame_edit_prompt": "Replace the tram with a bus. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit1/0085_A_tram.png"
+ },
+ {
+  "case_id": "edit2/0007_guitar-violin",
+  "edit_type": 2,
+  "video_name": "0007_guitar-violin",
+  "src_first_frame": "images/0007_guitar-violin/00001.jpg",
+  "first_frame_edit_prompt": "Replace the violinist with a tiger. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit2/0007_guitar-violin.png"
+ },
+ {
+  "case_id": "edit2/0013_golf",
+  "edit_type": 2,
+  "video_name": "0013_golf",
+  "src_first_frame": "images/0013_golf/00001.jpg",
+  "first_frame_edit_prompt": "Replace the man with a robot. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit2/0013_golf.png"
+ },
+ {
+  "case_id": "edit2/0017_kid-football",
+  "edit_type": 2,
+  "video_name": "0017_kid-football",
+  "src_first_frame": "images/0017_kid-football/00001.jpg",
+  "first_frame_edit_prompt": "Replace the young boy with a dog. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit2/0017_kid-football.png"
+ },
+ {
+  "case_id": "edit2/0018_breakdance-flare",
+  "edit_type": 2,
+  "video_name": "0018_breakdance-flare",
+  "src_first_frame": "images/0018_breakdance-flare/00001.jpg",
+  "first_frame_edit_prompt": "Replace the breakdancer with a dragon. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit2/0018_breakdance-flare.png"
+ },
+ {
+  "case_id": "edit2/0024_hockey",
+  "edit_type": 2,
+  "video_name": "0024_hockey",
+  "src_first_frame": "images/0024_hockey/00001.jpg",
+  "first_frame_edit_prompt": "Replace the person with a dragon. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit2/0024_hockey.png"
+ },
+ {
+  "case_id": "edit2/0025_baseball",
+  "edit_type": 2,
+  "video_name": "0025_baseball",
+  "src_first_frame": "images/0025_baseball/00001.jpg",
+  "first_frame_edit_prompt": "Replace the baseball player with a tiger. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit2/0025_baseball.png"
+ },
+ {
+  "case_id": "edit2/0026_table-tennis",
+  "edit_type": 2,
+  "video_name": "0026_table-tennis",
+  "src_first_frame": "images/0026_table-tennis/00001.jpg",
+  "first_frame_edit_prompt": "Replace the two table tennis players with two kangaroos. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit2/0026_table-tennis.png"
+ },
+ {
+  "case_id": "edit2/0029_horsejump-stick",
+  "edit_type": 2,
+  "video_name": "0029_horsejump-stick",
+  "src_first_frame": "images/0029_horsejump-stick/00001.jpg",
+  "first_frame_edit_prompt": "Replace the horse with a monkey. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit2/0029_horsejump-stick.png"
+ },
+ {
+  "case_id": "edit2/0033_horsejump-low",
+  "edit_type": 2,
+  "video_name": "0033_horsejump-low",
+  "src_first_frame": "images/0033_horsejump-low/00001.jpg",
+  "first_frame_edit_prompt": "Replace the white horse with a lion. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit2/0033_horsejump-low.png"
+ },
+ {
+  "case_id": "edit2/0036_camel",
+  "edit_type": 2,
+  "video_name": "0036_camel",
+  "src_first_frame": "images/0036_camel/00001.jpg",
+  "first_frame_edit_prompt": "Replace the camel with a monkey. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit2/0036_camel.png"
+ },
+ {
+  "case_id": "edit2/0039_chamaleon",
+  "edit_type": 2,
+  "video_name": "0039_chamaleon",
+  "src_first_frame": "images/0039_chamaleon/00001.jpg",
+  "first_frame_edit_prompt": "Replace the green chameleon with a spider. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit2/0039_chamaleon.png"
+ },
+ {
+  "case_id": "edit2/0040_tennis",
+  "edit_type": 2,
+  "video_name": "0040_tennis",
+  "src_first_frame": "images/0040_tennis/00001.jpg",
+  "first_frame_edit_prompt": "Replace the tennis player with a dinosaur. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit2/0040_tennis.png"
+ },
+ {
+  "case_id": "edit2/0041_longboard",
+  "edit_type": 2,
+  "video_name": "0041_longboard",
+  "src_first_frame": "images/0041_longboard/00001.jpg",
+  "first_frame_edit_prompt": "Replace the man with Ultraman and the longboard with a hoverboard. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit2/0041_longboard.png"
+ },
+ {
+  "case_id": "edit2/0051_dogs-jump",
+  "edit_type": 2,
+  "video_name": "0051_dogs-jump",
+  "src_first_frame": "images/0051_dogs-jump/00001.jpg",
+  "first_frame_edit_prompt": "Replace the dogs with robotic dogs. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit2/0051_dogs-jump.png"
+ },
+ {
+  "case_id": "edit2/0055_pigs",
+  "edit_type": 2,
+  "video_name": "0055_pigs",
+  "src_first_frame": "images/0055_pigs/00001.jpg",
+  "first_frame_edit_prompt": "Replace the pigs with robotic dragons. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit2/0055_pigs.png"
+ },
+ {
+  "case_id": "edit2/0062_elephant",
+  "edit_type": 2,
+  "video_name": "0062_elephant",
+  "src_first_frame": "images/0062_elephant/00001.jpg",
+  "first_frame_edit_prompt": "Replace the elephant with a jeep. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit2/0062_elephant.png"
+ },
+ {
+  "case_id": "edit2/0066_deer",
+  "edit_type": 2,
+  "video_name": "0066_deer",
+  "src_first_frame": "images/0066_deer/00001.jpg",
+  "first_frame_edit_prompt": "Replace the two deer with two pandas. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit2/0066_deer.png"
+ },
+ {
+  "case_id": "edit2/0071_mallard-water",
+  "edit_type": 2,
+  "video_name": "0071_mallard-water",
+  "src_first_frame": "images/0071_mallard-water/00001.jpg",
+  "first_frame_edit_prompt": "Replace the mallard duck with a boat. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit2/0071_mallard-water.png"
+ },
+ {
+  "case_id": "edit2/0080_A_motorcycle",
+  "edit_type": 2,
+  "video_name": "0080_A_motorcycle",
+  "src_first_frame": "images/0080_A_motorcycle/00001.jpg",
+  "first_frame_edit_prompt": "Change the motorcycle to a cheetah. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit2/0080_A_motorcycle.png"
+ },
+ {
+  "case_id": "edit2/0081_A_horse",
+  "edit_type": 2,
+  "video_name": "0081_A_horse",
+  "src_first_frame": "images/0081_A_horse/00001.jpg",
+  "first_frame_edit_prompt": "Replace the horse with a car. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit2/0081_A_horse.png"
+ },
+ {
+  "case_id": "edit2/0086_A_red_sports_car",
+  "edit_type": 2,
+  "video_name": "0086_A_red_sports_car",
+  "src_first_frame": "images/0086_A_red_sports_car/00001.jpg",
+  "first_frame_edit_prompt": "Replace the red sports car with a rocket. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit2/0086_A_red_sports_car.png"
+ },
+ {
+  "case_id": "edit2/0091_A_hawk",
+  "edit_type": 2,
+  "video_name": "0091_A_hawk",
+  "src_first_frame": "images/0091_A_hawk/00001.jpg",
+  "first_frame_edit_prompt": "Replace the hawk with a hot air balloon. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit2/0091_A_hawk.png"
+ },
+ {
+  "case_id": "edit2/0093_A_helicopter",
+  "edit_type": 2,
+  "video_name": "0093_A_helicopter",
+  "src_first_frame": "images/0093_A_helicopter/00001.jpg",
+  "first_frame_edit_prompt": "Replace the helicopter with a UFO. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit2/0093_A_helicopter.png"
+ },
+ {
+  "case_id": "edit2/0095_A_crow",
+  "edit_type": 2,
+  "video_name": "0095_A_crow",
+  "src_first_frame": "images/0095_A_crow/00001.jpg",
+  "first_frame_edit_prompt": "Replace the crow with a drone. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit2/0095_A_crow.png"
+ },
+ {
+  "case_id": "edit2/0096_A_car",
+  "edit_type": 2,
+  "video_name": "0096_A_car",
+  "src_first_frame": "images/0096_A_car/00001.jpg",
+  "first_frame_edit_prompt": "Replace the car with a spaceship. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit2/0096_A_car.png"
+ },
+ {
+  "case_id": "edit2/0100_A_deer",
+  "edit_type": 2,
+  "video_name": "0100_A_deer",
+  "src_first_frame": "images/0100_A_deer/00001.jpg",
+  "first_frame_edit_prompt": "Replace the deer with a unicorn. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit2/0100_A_deer.png"
+ },
+ {
+  "case_id": "edit3/0026_table-tennis",
+  "edit_type": 3,
+  "video_name": "0026_table-tennis",
+  "src_first_frame": "images/0026_table-tennis/00001.jpg",
+  "first_frame_edit_prompt": "Change the outfit of the player in red and black to all red. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit3/0026_table-tennis.png"
+ },
+ {
+  "case_id": "edit3/0049_speed-skating",
+  "edit_type": 3,
+  "video_name": "0049_speed-skating",
+  "src_first_frame": "images/0049_speed-skating/00001.jpg",
+  "first_frame_edit_prompt": "Change the color of the speed skaters' suits to pink. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit3/0049_speed-skating.png"
+ },
+ {
+  "case_id": "edit3/0054_train",
+  "edit_type": 3,
+  "video_name": "0054_train",
+  "src_first_frame": "images/0054_train/00001.jpg",
+  "first_frame_edit_prompt": "Change the color of the model train's engine and carriages to pink. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit3/0054_train.png"
+ },
+ {
+  "case_id": "edit3/0095_A_crow",
+  "edit_type": 3,
+  "video_name": "0095_A_crow",
+  "src_first_frame": "images/0095_A_crow/00001.jpg",
+  "first_frame_edit_prompt": "Change the color of the crow to azure. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit3/0095_A_crow.png"
+ },
+ {
+  "case_id": "edit4/0013_golf",
+  "edit_type": 4,
+  "video_name": "0013_golf",
+  "src_first_frame": "images/0013_golf/00001.jpg",
+  "first_frame_edit_prompt": "Make the man out of silver metal. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit4/0013_golf.png"
+ },
+ {
+  "case_id": "edit4/0017_kid-football",
+  "edit_type": 4,
+  "video_name": "0017_kid-football",
+  "src_first_frame": "images/0017_kid-football/00001.jpg",
+  "first_frame_edit_prompt": "Make the young boy out of wood. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit4/0017_kid-football.png"
+ },
+ {
+  "case_id": "edit4/0028_kite-walk",
+  "edit_type": 4,
+  "video_name": "0028_kite-walk",
+  "src_first_frame": "images/0028_kite-walk/00001.jpg",
+  "first_frame_edit_prompt": "Make the person out of wood. Keep the coarse position, size, facing direction and coarse pose of the original object.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit4/0028_kite-walk.png"
+ },
+ {
+  "case_id": "edit6/0002_girl-dog",
+  "edit_type": 6,
+  "video_name": "0002_girl-dog",
+  "src_first_frame": "images/0002_girl-dog/00001.jpg",
+  "first_frame_edit_prompt": "Remove the gray dog from the scene.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit6/0002_girl-dog.png"
+ },
+ {
+  "case_id": "edit6/0017_kid-football",
+  "edit_type": 6,
+  "video_name": "0017_kid-football",
+  "src_first_frame": "images/0017_kid-football/00001.jpg",
+  "first_frame_edit_prompt": "Remove the red cap from the boy.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit6/0017_kid-football.png"
+ },
+ {
+  "case_id": "edit6/0025_baseball",
+  "edit_type": 6,
+  "video_name": "0025_baseball",
+  "src_first_frame": "images/0025_baseball/00001.jpg",
+  "first_frame_edit_prompt": "Remove the helmet from the baseball player.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit6/0025_baseball.png"
+ },
+ {
+  "case_id": "edit6/0041_longboard",
+  "edit_type": 6,
+  "video_name": "0041_longboard",
+  "src_first_frame": "images/0041_longboard/00001.jpg",
+  "first_frame_edit_prompt": "Remove the backpack from the man.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit6/0041_longboard.png"
+ },
+ {
+  "case_id": "edit6/0042_gym-ball",
+  "edit_type": 6,
+  "video_name": "0042_gym-ball",
+  "src_first_frame": "images/0042_gym-ball/00001.jpg",
+  "first_frame_edit_prompt": "Remove the heavy gym ball.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit6/0042_gym-ball.png"
+ },
+ {
+  "case_id": "edit6/0048_hike",
+  "edit_type": 6,
+  "video_name": "0048_hike",
+  "src_first_frame": "images/0048_hike/00001.jpg",
+  "first_frame_edit_prompt": "Remove the backpack from the man.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit6/0048_hike.png"
+ },
+ {
+  "case_id": "edit6/0051_dogs-jump",
+  "edit_type": 6,
+  "video_name": "0051_dogs-jump",
+  "src_first_frame": "images/0051_dogs-jump/00001.jpg",
+  "first_frame_edit_prompt": "Remove the two dogs.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit6/0051_dogs-jump.png"
+ },
+ {
+  "case_id": "edit6/0055_pigs",
+  "edit_type": 6,
+  "video_name": "0055_pigs",
+  "src_first_frame": "images/0055_pigs/00001.jpg",
+  "first_frame_edit_prompt": "Remove the two smaller pigs from the scene.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit6/0055_pigs.png"
+ },
+ {
+  "case_id": "edit6/0078_A_cat",
+  "edit_type": 6,
+  "video_name": "0078_A_cat",
+  "src_first_frame": "images/0078_A_cat/00001.jpg",
+  "first_frame_edit_prompt": "Remove the toy from the scene.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit6/0078_A_cat.png"
+ },
+ {
+  "case_id": "edit6/0088_A_cyclist",
+  "edit_type": 6,
+  "video_name": "0088_A_cyclist",
+  "src_first_frame": "images/0088_A_cyclist/00001.jpg",
+  "first_frame_edit_prompt": "Remove the cyclist's helmet.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit6/0088_A_cyclist.png"
+ }
+]
