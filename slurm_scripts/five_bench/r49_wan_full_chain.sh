@@ -99,5 +99,9 @@ EW=$(submit eval_wan --dependency=afterok:${MX} $SB/r49_eval_all.sh wan full) ||
 EB=$(submit eval_base --dependency=afterok:${NA}:${N0} --array=0-6 $SB/r49_eval_all.sh base full) || exit 1
 EM=$(submit eval_m59 --dependency=afterok:${M5} --array=0-3 $SB/r49_eval_all.sh m59 full) || exit 1
 
-echo "[r49_wan_full_chain] submitted: draft ${DR} -> div ${DV} -> field ${FD} -> max_s5 ${MX} | native ${NA} native0978 ${N0} m59 ${M5} | eval wan ${EW} base ${EB} m59 ${EM}"
-echo "[r49_wan_full_chain] ids in ${JOBS}; follow with: squeue -u \$USER"
+if [ "$DRY" -eq 1 ]; then
+  echo "[r49_wan_full_chain] DRY RUN, nothing submitted (the ids above are placeholders): draft ${DR} -> div ${DV} -> field ${FD} -> max_s5 ${MX} | native ${NA} native0978 ${N0} m59 ${M5} | eval wan ${EW} base ${EB} m59 ${EM}"
+else
+  echo "[r49_wan_full_chain] submitted: draft ${DR} -> div ${DV} -> field ${FD} -> max_s5 ${MX} | native ${NA} native0978 ${N0} m59 ${M5} | eval wan ${EW} base ${EB} m59 ${EM}"
+  echo "[r49_wan_full_chain] ids in ${JOBS}; follow with: squeue -u \$USER"
+fi

@@ -176,14 +176,6 @@
   "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit1/0022_skate-jump.png"
  },
  {
-  "case_id": "edit1/0023_kayak-race",
-  "edit_type": 1,
-  "video_name": "0023_kayak-race",
-  "src_first_frame": "images/0023_kayak-race/00001.jpg",
-  "first_frame_edit_prompt": "Replace the two kayakers with two canoeists. Keep the coarse position, size, facing direction and coarse pose of the original object.",
-  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit1/0023_kayak-race.png"
- },
- {
   "case_id": "edit1/0024_hockey",
   "edit_type": 1,
   "video_name": "0024_hockey",
@@ -3280,6 +3272,14 @@
   "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit6/0041_longboard.png"
  },
  {
+  "case_id": "edit6/0042_gym-ball",
+  "edit_type": 6,
+  "video_name": "0042_gym-ball",
+  "src_first_frame": "images/0042_gym-ball/00001.jpg",
+  "first_frame_edit_prompt": "Remove the heavy gym ball.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit6/0042_gym-ball.png"
+ },
+ {
   "case_id": "edit6/0048_hike",
   "edit_type": 6,
   "video_name": "0048_hike",
@@ -3302,6 +3302,14 @@
   "src_first_frame": "images/0055_pigs/00001.jpg",
   "first_frame_edit_prompt": "Remove the two smaller pigs from the scene.",
   "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit6/0055_pigs.png"
+ },
+ {
+  "case_id": "edit6/0078_A_cat",
+  "edit_type": 6,
+  "video_name": "0078_A_cat",
+  "src_first_frame": "images/0078_A_cat/00001.jpg",
+  "first_frame_edit_prompt": "Remove the toy from the scene.",
+  "anchor_image": "~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit6/0078_A_cat.png"
  },
  {
   "case_id": "edit6/0088_A_cyclist",

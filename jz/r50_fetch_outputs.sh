@@ -15,7 +15,7 @@
 # Usage: bash jz/r50_fetch_outputs.sh                 all folders
 #        bash jz/r50_fetch_outputs.sh r49_wan_arms r48_wan_arms     only these
 #        bash jz/r50_fetch_outputs.sh --check         count what is on Jean Zay and in the store, send nothing
-# R50_ENV=<file> overrides jz/r50_jz.env; LAB_DEST=<dir> overrides the destination. Ends with "[r50_fetch] failures: N".
+# R50_ENV=<file> overrides jz/r50_jz.env; LAB_DEST=<dir> overrides the destination; JZ_SCRATCH=<dir> gives $SCRATCH on Jean Zay if the login-shell lookup fails. Ends with "[r50_fetch] failures: N".
 set -u
 REPO=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 CHECK=0; ONLY=()
@@ -39,8 +39,11 @@ if ! $SSH_CMD "$JZ_HOST" true; then
   echo "[r50_fetch] FAILED: cannot open an SSH connection to $JZ_HOST from $(hostname) (run on the lab frontal, not on a compute node)"
   echo "[r50_fetch] failures: 1"; exit 255
 fi
-SRC_ROOT=$($SSH_CMD "$JZ_HOST" 'echo ${SCRATCH:-}') || SRC_ROOT=""
-[ -n "$SRC_ROOT" ] || { echo "[r50_fetch] FATAL: \$SCRATCH is empty on $JZ_HOST (a login shell is needed there)"; echo "[r50_fetch] failures: 1"; exit 1; }
+# $SCRATCH is set by the login profile, which a non-interactive `ssh host cmd` does not read: ask a login shell, or take JZ_SCRATCH
+# (environment or jz/r50_jz.env), e.g. JZ_SCRATCH=/lustre/fsn1/projects/rech/omt/<user>
+SRC_ROOT=${JZ_SCRATCH:-}
+[ -n "$SRC_ROOT" ] || SRC_ROOT=$($SSH_CMD "$JZ_HOST" 'bash -lc "echo \${SCRATCH:-}"' 2>/dev/null | tail -n 1) || SRC_ROOT=""
+[ -n "$SRC_ROOT" ] || { echo "[r50_fetch] FATAL: \$SCRATCH is empty on $JZ_HOST even in a login shell; set JZ_SCRATCH=<path of \$SCRATCH on Jean Zay> and rerun"; echo "[r50_fetch] failures: 1"; exit 1; }
 SRC_ROOT=$SRC_ROOT/five_bench_out
 mkdir -p "$LAB_DEST" || { echo "[r50_fetch] FATAL: cannot create $LAB_DEST"; exit 1; }
 echo "[r50_fetch] on $(hostname): $JZ_HOST:$SRC_ROOT -> $LAB_DEST $([ $CHECK -eq 1 ] && echo '(check only)') $(date '+%F %T')"

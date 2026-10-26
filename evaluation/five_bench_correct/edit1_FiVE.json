@@ -404,25 +404,6 @@
         "multiple_choice_question_orig": "What object is present in the image? \na) A skateboarder \nb) A spiderman"
     },
     {
-        "id": "0023_kayak-race",
-        "video_name": "0023_kayak-race",
-        "editing_type_id": 1,
-        "source_prompt": "Two kayakers are racing across a calm lake, paddling vigorously with the forested shoreline in the background. The camera follows them steadily, capturing their synchronized movements and the splashes of water as they propel forward.",
-        "target_prompt": "Two canoeists are racing across a calm lake, paddling vigorously with the forested shoreline in the background. The camera follows them steadily, capturing their synchronized movements and the splashes of water as they propel forward.",
-        "negative_prompt": "worst quality, low quality, blurry, absolute black, absolute white, low res, extra limbs, extra digits, misplaced objects, mutated anatomy, monochrome, horror",
-        "source_object": "two kayakers",
-        "target_object": "canoeists",
-        "instruction_orig": "Change 'kayakers' to 'canoeists",
-        "instruction": "Replace the two kayakers with two canoeists.",
-        "multiple_choice_question": "What object is present? \na) two kayakers \nb) two canoeists",
-        "source_yes_no_question": "Are two kayakers racing across a calm lake?",
-        "target_yes_no_question": "Are two canoeists racing across a calm lake?",
-        "save_dir": "1_Two canoeists are ra",
-        "source_yes_no_question_orig": "Are two kayakers racing across a calm lake in the image?",
-        "target_yes_no_question_orig": "Are two canoeists racing across a calm lake in the image?",
-        "multiple_choice_question_orig": "What object is present in the image? \na) two kayakers \nb) two canoeists"
-    },
-    {
         "id": "0024_hockey",
         "video_name": "0024_hockey",
         "editing_type_id": 1,

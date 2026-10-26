@@ -1,0 +1,64 @@
+{
+  "editreward_code": {
+    "files": {},
+    "kind": "code",
+    "path": "/home/ids/skhairi/Code/EditReward",
+    "repo": "https://github.com/TIGER-AI-Lab/EditReward",
+    "revision": "77a93aaa461fe9187e0ff841b59ecc0d0620bb7f"
+  },
+  "editreward_mimo_vl_7b": {
+    "files": {
+      "model.safetensors": {
+        "sha256": "37c547903a71480d0379b62fcb9bc327f979167ad454b251ec8ec09ce39a93ad",
+        "size": 16629155672
+      }
+    },
+    "kind": "weights",
+    "path": "/home/ids/skhairi/Data/weights/EditReward-MiMo-VL-7B-SFT-2508",
+    "repo": "TIGER-Lab/EditReward-MiMo-VL-7B-SFT-2508",
+    "revision": "4a702b4c1d6b45e597ced81beddcfaea3741f675"
+  },
+  "ivebench_code": {
+    "files": {},
+    "kind": "code",
+    "path": "/home/ids/skhairi/Code/IVEBench",
+    "repo": "https://github.com/RyanChenYN/IVEBench",
+    "revision": "2dcf8900ee65197f43854c76f61c66a32bb8dbfc"
+  },
+  "mimo_vl_7b_sft_base": {
+    "files": {
+      "model-00001-of-00004.safetensors": {
+        "sha256": "83a8c2448089324c49532c1f952fda8bc74f01547ee14fd638b857b0d89d4480",
+        "size": 4910570456
+      },
+      "model-00002-of-00004.safetensors": {
+        "sha256": "dc9150a1f9210396415f19659eddd9fb1f7f2cc618b3df730ca09aa6d84c6270",
+        "size": 4962282336
+      },
+      "model-00003-of-00004.safetensors": {
+        "sha256": "392ab6bf70180a2da587633e74cc8bc273257992a9fd6cefe612d6c6fe890ab5",
+        "size": 4962282376
+      },
+      "model-00004-of-00004.safetensors": {
+        "sha256": "1510c3384f60a5c9e725686bd41995e81e1ee8e0cad0638289b73954cb762f04",
+        "size": 1777391632
+      }
+    },
+    "kind": "weights",
+    "path": "/home/ids/skhairi/Data/weights/MiMo-VL-7B-SFT-2508",
+    "repo": "XiaomiMiMo/MiMo-VL-7B-SFT-2508",
+    "revision": "d5281c5ee88b4d696f6e0f3e73b2ae9efc1d9da3"
+  },
+  "videoclip_xl_v2": {
+    "files": {
+      "VideoCLIP-XL-v2.bin": {
+        "sha256": "4b51b9311c2cd38a6f35f705a4cc6076764d0a9f6164b67b945b03a82fb79123",
+        "size": 1711974168
+      }
+    },
+    "kind": "weights",
+    "path": "/home/ids/skhairi/Data/weights/VideoCLIP-XL-v2",
+    "repo": "alibaba-pai/VideoCLIP-XL-v2",
+    "revision": "552b698005f54886fb94dd534e4968fd20e4fbf2"
+  }
+}
