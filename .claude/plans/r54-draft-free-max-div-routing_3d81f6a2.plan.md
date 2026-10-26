@@ -6,35 +6,47 @@ todos:
   - id: field-script
     content: "evaluation/r54_field.py -- per pair: load r40_div/{dino_warp,lpips_warp} raw d, m = clip(d, 0, cap)/cap (caps 0.55 / 1.0), q = max(m_dino, m_lpips), rho = r49_field.se_rho(q, t_next); write r31_stage3 --rho_dir npz; checks: both maps [F_lat, 1560] and F_lat == r49_field_full/se_max n_latent_frames; --selftest"
     needed_by: [se-chain]
-    status: pending
+    status: completed
   - id: field-sbatch
     content: "slurm_scripts/five_bench/r54_field.sh -- CPU job pinned to nodecpu12 (mounts /store), preflight that r40_div is readable with 419 npz per arm, selftest, field into $D/r54_field_full (on /home), 419-npz guard"
     needed_by: [se-chain]
-    status: pending
+    status: completed
   - id: units-r54-groups
     content: "evaluation/r51_units.py -- groups r54_se and r54_motion = one unit (se, warp_max, $D/r54_se_arms/r54_warp_max_full/step14), stem prefix r54"
     needed_by: [se-chain, score]
-    status: pending
+    status: completed
+  - id: eval-sbatch-groups
+    content: "slurm_scripts/five_bench/r51_eval.sh -- accept the group r54_se in the usage `case`"
+    needed_by: [se-chain]
+    status: completed
+  - id: motion-sbatch-groups
+    content: "slurm_scripts/five_bench/r51_motion.sh -- accept the group r54_motion in the usage `case`"
+    needed_by: [se-chain]
+    status: completed
   - id: se-chain-driver
     content: "slurm_scripts/five_bench/r54_se_chain.sh -- lab driver: field (r54_field.sh) -> render (r51_se_stage3.sh warp_max $D/r54_field_full r54, no array) -> eval (r51_eval.sh r54_se --array=0) + motion (r51_motion.sh r54_motion --array=0), afterok; logs/r54_se_chain_jobs.txt, refuses if it exists"
     needed_by: [se-chain]
-    status: pending
+    status: completed
   - id: score-script
     content: "evaluation/r54_score.py -- R54, R51 A4 (se_nosupp), A0 (R49 se_max full) and official rho=2 on the R39 N=20 and R36 N=15 curves: figures r54_se_{five_acc,clip_d,clip_tgt}.pdf, r54_points_se.csv (419 and 401), r54_motion.csv"
     needed_by: [score]
-    status: pending
+    status: completed
 steps:
   - id: se-chain
     type: local
     command: bash slurm_scripts/five_bench/r54_se_chain.sh
     sets_status: running
-    status: pending
+    status: completed
+    completed_at: 2026-10-23
+    job_id: "field 1059953, render 1059954, eval 1059955, motion 1059956"
   - id: wait-se-chain
     type: manual
     wait_for: se-chain
     check_hint: "no r54 job left in squeue; field log 'failures: 0' and 'frame-count check PASS 419/419'; 419 renders under r54_se_arms/r54_warp_max_full/step14, manifests all ok; 1 harness + 1 FiVE-Acc + 1 CLIP-D + 1 motion unit with full row counts"
     sets_status: finished
-    status: pending
+    status: completed
+    completed_at: 2026-10-26
+    job_id: "checked 2026-10-26: jobs 1059953-1059956 + motion rerun 1064394"
   - id: score
     type: local
     wait_for: wait-se-chain
@@ -61,7 +73,7 @@ Done when: the warped-max arm is rendered and scored on the 419 pairs (harness, 
 
 | # | Step id | Type | Waits for | Sets status |
 |---|---|---|---|---|
-| 0 | *(prep)* todos `field-script`, `field-sbatch`, `units-r54-groups`, `se-chain-driver`, `score-script` (after R51's and R52's script changes) | /build-step | — | implemented |
+| 0 | *(prep)* todos `field-script`, `field-sbatch`, `units-r54-groups`, `eval-sbatch-groups`, `motion-sbatch-groups`, `se-chain-driver`, `score-script` (after R51's and R52's script changes) | /build-step | — | implemented |
 | 1 | `se-chain` | local (submits field → render → eval + motion on the lab cluster) | — | running |
 | 2 | `wait-se-chain` | manual | se-chain | finished |
 | 3 | `score` | local | wait-se-chain | — |
@@ -136,5 +148,7 @@ flowchart LR
 | `evaluation/r54_field.py` (new) | Imports `r49_field` (`se_rho`, `DIV_MAX`, `RHO_MIN`, `RHO_MAX`, `SE_STEP`, `SE_FLOW_SHIFT`) and `t_next_schedule`. Per pair of `--cases`: load `d` from `{warp_root}/dino_warp/edit{T}/{vid}.npz` and `.../lpips_warp/...`; assert both `[F, 1560]`, finite, and `F == np.load(r49_field_full/se_max/...)["n_latent_frames"]`; `m_* = clip(d, 0, cap)/cap`; `q = maximum(m_dino, m_lpips)`; `rho = se_rho(q, t_next).reshape(F, -1)`; save `rho, rho_min, rho_max, step, flow_shift, arm="warp_max", q, m_dino, m_lpips, d_dino, d_lpips, div_max_*` to `{out_root}/se_warp_max/edit{T}/{vid}.npz`; print `frame-count check PASS n/n` and `failures: N`. `--selftest`: toy maps, q = max of the capped maps, ρ(q = 0) = 2, ρ(q = 1) = 50. |
 | `slurm_scripts/five_bench/r54_field.sh` (new) | `--partition=CPU --nodelist=nodecpu12`, 4 cpus, 32G, 2 h; preflight `[ -d /store/PERSO/skhairi/Outputs/five_bench/r40_div ]` and 419 npz under each arm (fails with "/store not mounted on $(hostname)"); selftest; `r54_field.py --cases evaluation/r7_anchor_manifest.json --warp_root $D/r40_div --ref_root $D/r49_field_full --out_root $D/r54_field_full`; guard 419 npz. |
 | `evaluation/r51_units.py` | Groups `r54_se` and `r54_motion` = `(se, warp_max, $D/r54_se_arms/r54_warp_max_full/step14)`, stem prefix `r54`. |
+| `slurm_scripts/five_bench/r51_eval.sh` | the usage `case` accepts `r54_se` (R51 / R52 / R53 groups unchanged; the group names are validated there). |
+| `slurm_scripts/five_bench/r51_motion.sh` | the usage `case` accepts `r54_motion` (same reason). |
 | `slurm_scripts/five_bench/r54_se_chain.sh` (new) | Refuses if `logs/r54_se_chain_jobs.txt` exists; submits `field` (`r54_field.sh`), `render` (`r51_se_stage3.sh warp_max $D/r54_field_full r54`, afterok field), `eval` (`r51_eval.sh r54_se --array=0`) and `motion` (`r51_motion.sh r54_motion --array=0`), both afterok render; writes `<stage> <id>` lines headed by the commit. |
 | `evaluation/r54_score.py` (new) | Reuses `r49_score` helpers (`point`, `plot`, R39 / R36 curve loading, official and `se_max` full CSVs); A4 from R51's `r51_*se_nosupp_full*` stems (fails clearly if missing); R54 from `r54_*`; per-clip means on 419 and 401; motion table joins `r54_motion_se_warp_max_full` with R51's motion stems for A4, A0 and official. |

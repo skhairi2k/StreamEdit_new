@@ -6,35 +6,43 @@ todos:
   - id: stage1-sbatch
     content: "slurm_scripts/five_bench/r53_se_stage1.sh -- r48_se_stage1.sh full with --vp_mode novp and no --first_frame_edit_dir; out r53_se_stage1 (frames + latents) and r53_se_attn; no bit-identity check; post-run guard: 419 attention npz, 419 latent npz, every latent records vp_mode == novp"
     needed_by: [se-chain]
-    status: pending
+    status: completed
   - id: div-sbatch
     content: "slurm_scripts/five_bench/r53_div.sh -- array 0-1 (dino, lpips): r31_divergence.py exactly as r48_div.sh's se tasks, target r53_se_stage1/frames/n5_tgt09/step04, latents r53_se_stage1/latents, out r53_div/se_{metric}; 419-npz guard"
     needed_by: [se-chain]
-    status: pending
+    status: completed
   - id: field-sbatch
     content: "slurm_scripts/five_bench/r53_field.sh -- CPU: r49_field.py --selftest, then r49_field.py --hosts se --cases evaluation/r7_anchor_manifest.json --attn_se r53_se_attn --div_root r53_div --out_root r53_field_full; 419-npz guard on se_max"
     needed_by: [se-chain]
-    status: pending
+    status: completed
   - id: render-sbatch
     content: "slurm_scripts/five_bench/r53_se_stage3.sh -- r49_se_stage3.sh full with --vp_mode novp and no --first_frame_edit_dir; rho field r53_field_full/se_max; method r53_max_novp_full; out r53_se_arms; same guards"
     needed_by: [se-chain]
-    status: pending
+    status: completed
   - id: sweep-sbatch
     content: "slurm_scripts/five_bench/r53_sweep_n20.sh -- array 0-3 over rho 3, 6, 8, 20: r44_infer.sh's uniform text-only render at N=20 (same flags), out r53_rho_sweep/r53_n20_rho{R}_novp; per-type count and manifest guards"
     needed_by: [se-chain]
-    status: pending
+    status: completed
   - id: units-r53-groups
     content: "evaluation/r51_units.py -- groups r53_se (se_max_novp), r53_sweep (the 4 N=20 sweep units), r53_motion (se_max_novp, then official text-only rho=2 N=15 at r44_rho_sweep/r44_n15_rho2_novp, last), stem prefix r53"
     needed_by: [se-chain, score]
-    status: pending
+    status: completed
+  - id: eval-sbatch-groups
+    content: "slurm_scripts/five_bench/r51_eval.sh -- accept the groups r53_se and r53_sweep in the usage `case` (the prefix column of r51_units.py already handles the stems)"
+    needed_by: [se-chain]
+    status: completed
+  - id: motion-sbatch-groups
+    content: "slurm_scripts/five_bench/r51_motion.sh -- accept the group r53_motion in the usage `case`"
+    needed_by: [se-chain]
+    status: completed
   - id: se-chain-driver
     content: "slurm_scripts/five_bench/r53_se_chain.sh -- lab driver: stage1 -> div (array 0-1) -> field -> render -> eval r53_se + motion r53_motion index 0 (afterok render); motion index 1 pinned to node39 (no dependency); sweep (array 0-3, no dependency) -> eval r53_sweep (array 0-3, afterok sweep); prints the user's queue count first; logs/r53_se_chain_jobs.txt, refuses if it exists"
     needed_by: [se-chain]
-    status: pending
+    status: completed
   - id: score-script
     content: "evaluation/r53_score.py -- se_max_novp and official text-only rho=2 on the text-only N=20 curve (R44 rho 2, 4, 10, 50 + R53 rho 3, 6, 8, 20) and N=15 curve (R44, 8 rho): figures r53_se_{five_acc,clip_d,clip_tgt}.pdf, r53_points_se.csv (419 and 401), r53_motion.csv"
     needed_by: [score]
-    status: pending
+    status: completed
 steps:
   - id: se-chain
     type: local
@@ -73,7 +81,7 @@ Done when: se_max_novp and the four extra N = 20 sweep points are rendered and s
 
 | # | Step id | Type | Waits for | Sets status |
 |---|---|---|---|---|
-| 0 | *(prep)* todos `stage1-sbatch`, `div-sbatch`, `field-sbatch`, `render-sbatch`, `sweep-sbatch`, `units-r53-groups`, `se-chain-driver`, `score-script` (after R51's and R52's script changes) | /build-step | — | implemented |
+| 0 | *(prep)* todos `stage1-sbatch`, `div-sbatch`, `field-sbatch`, `render-sbatch`, `sweep-sbatch`, `units-r53-groups`, `eval-sbatch-groups`, `motion-sbatch-groups`, `se-chain-driver`, `score-script` (after R51's and R52's script changes) | /build-step | — | implemented |
 | 1 | `se-chain` | local (submits 9 queue entries on the lab cluster) | — | running |
 | 2 | `wait-se-chain` | manual | se-chain | finished |
 | 3 | `score` | local | wait-se-chain | — |
@@ -159,5 +167,7 @@ flowchart LR
 | `slurm_scripts/five_bench/r53_se_stage3.sh` (new) | Copy of `r49_se_stage3.sh` full mode: `--vp_mode novp`, no `--first_frame_edit_dir`; `FIELD_DIR=$D/r53_field_full/se_max`, `METHOD=r53_max_novp_full`, `OUT_ROOT=$D/r53_se_arms`; same preflight and guards. |
 | `slurm_scripts/five_bench/r53_sweep_n20.sh` (new) | Copy of `r44_infer.sh` fixed at N = 20: `RHOS=(3 6 8 20)`, `--array=0-3`, 24 h; `OUT_ROOT=$D/r53_rho_sweep`, `METHOD=r53_n20_rho${R}_novp`; same run_fivebench.py flags and guards. |
 | `evaluation/r51_units.py` | Groups `r53_se` = `(se, max_novp, $D/r53_se_arms/r53_max_novp_full/step14)`; `r53_sweep` = `(se, n20_rho{R}_novp, $D/r53_rho_sweep/r53_n20_rho{R}_novp)` for R in 3, 6, 8, 20; `r53_motion` = se_max_novp then `(se, n15_rho2_novp, $D/r44_rho_sweep/r44_n15_rho2_novp)`; prefix `r53`. |
+| `slurm_scripts/five_bench/r51_eval.sh` | the usage `case` accepts `r53_se` and `r53_sweep` (R51 and R52 groups unchanged; added during the build: the group names are validated there, so R53's eval could not run otherwise). |
+| `slurm_scripts/five_bench/r51_motion.sh` | the usage `case` accepts `r53_motion` (same reason). |
 | `slurm_scripts/five_bench/r53_se_chain.sh` (new) | Refuses if `logs/r53_se_chain_jobs.txt` exists; prints `squeue -u $USER -h | wc -l`; submits `stage1`, `div` (`--array=0-1`, afterok stage1), `field` (afterok div), `render` (afterok field), `eval` (`r51_eval.sh r53_se --array=0`, afterok render), `motion` (`r51_motion.sh r53_motion --array=0`, afterok render), `motion_official` (`--array=1 --nodelist=node39`), `sweep` (`--array=0-3`), `eval_sweep` (`r51_eval.sh r53_sweep --array=0-3`, afterok sweep); writes `<stage> <id>` lines headed by the commit. |
 | `evaluation/r53_score.py` (new) | Reuses `r49_score` helpers (`point`, `plot`); text-only curves from R44 CSVs (`r44_n15_rho{R}_novp`, `r44_n20_rho{R}_novp`, `r44_fiveacc_*`, `r44_clip_directional_sweep_n{15,20}.csv`) merged with R53's N = 20 points by ρ; se_max_novp and official from `r53_*`; per-clip means on 419 and 401; motion table from the two `r53_motion_*` stems. |

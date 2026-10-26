@@ -4,7 +4,10 @@
 #
 # Usage: sbatch --array=0-3 slurm_scripts/five_bench/r51_eval.sh se    # lab L40S: the 4 StreamEdit arms   (r51_se_chain.sh)
 #        sbatch --array=0   slurm_scripts/five_bench/r51_eval.sh wan   # Jean Zay: wan_nosupp_s5           (r51_wan_chain.sh)
-# Output: evaluation/csv/edit{T}_FiVE_r51_{base}_frame_stride8.csv, ..._r51_fiveacc_{base}_..., r51_clip_directional_{base}.csv
+#        sbatch --array=0   slurm_scripts/five_bench/r51_eval.sh r52_se   # R52's B1 arm                   (r52_se_chain.sh)
+#        sbatch --array=0   slurm_scripts/five_bench/r51_eval.sh r53_se   # R53 text-only se_max; r53_sweep (--array=0-3): its 4 extra N=20 rho points
+# Output: evaluation/csv/edit{T}_FiVE_{prefix}_{base}_frame_stride8.csv, ..._{prefix}_fiveacc_{base}_..., {prefix}_clip_directional_{base}.csv
+#         where {prefix} is the 5th column of `r51_units.py` (r52 for the R52 groups) and `r51` when the unit line has only four columns.
 #SBATCH --job-name=r51_eval
 #SBATCH --partition=L40S
 #SBATCH --exclude=node52
@@ -18,7 +21,7 @@
 #SBATCH --error=logs/r51_eval_%A_%a.err
 
 GROUP=${1:-}
-case "$GROUP" in se|wan) ;; *) echo "[r51_eval] usage: sbatch --array=I r51_eval.sh se|wan"; exit 1 ;; esac
+case "$GROUP" in se|wan|r52_se|r53_se|r53_sweep|r54_se|r55_se|r56_se) ;; *) echo "[r51_eval] usage: sbatch --array=I r51_eval.sh se|wan|r52_se|r53_se|r53_sweep|r54_se|r55_se|r56_se"; exit 1 ;; esac
 REPO=/home/ids/skhairi/Code/StreamEdit_bigchantier
 DATA_ROOT=~/Data/FiVE-Fine-Grained-Video-Editing-Benchmark
 PY_FB=/home/ids/skhairi/anaconda3/envs/five-bench/bin/python
@@ -31,7 +34,8 @@ JOB=${SLURM_ARRAY_JOB_ID:-local}_${SLURM_ARRAY_TASK_ID:-0}
 TID=${SLURM_ARRAY_TASK_ID:-}
 [[ "$TID" =~ ^[0-9]+$ ]] || { echo "[r51_eval] needs an array task id (sbatch --array=I)"; exit 1; }
 UNIT=$($PY_FB evaluation/r51_units.py --group "$GROUP" --index "$TID") || { echo "[r51_eval] no unit ${TID} in group ${GROUP}"; exit 1; }
-IFS=$'\t' read -r BASE DIR HOST CONFIG <<< "$UNIT"
+IFS=$'\t' read -r BASE DIR HOST CONFIG PREFIX <<< "$UNIT"
+PREFIX=${PREFIX:-r51}
 
 read -r -a EXPECT <<< "$($PY_FB - "$CASES" <<'PYEOF'
 import json, sys, collections
@@ -84,11 +88,11 @@ fi
 UNIT_FAIL=0
 for KIND in harness fiveacc; do
   if [ "$KIND" = harness ]; then
-    STEM="r51_${BASE}"
+    STEM="${PREFIX}_${BASE}"
     METRICS=(structure_distance psnr_unedit_part lpips_unedit_part mse_unedit_part ssim_unedit_part
              clip_similarity_source_image clip_similarity_target_image clip_similarity_target_image_edit_part niqe_target_image)
   else
-    STEM="r51_fiveacc_${BASE}"; METRICS=(five_acc)
+    STEM="${PREFIX}_fiveacc_${BASE}"; METRICS=(five_acc)
   fi
   LOG="logs/r51_eval_${JOB}_${BASE}_${KIND}.metrics.log"
   $PY_FB evaluation/fivebench/evaluate.py \
@@ -104,8 +108,8 @@ for KIND in harness fiveacc; do
 done
 
 # ---- CLIP-D of this unit
-NAME="r51_${BASE}"
-OUT="evaluation/csv/r51_clip_directional_${BASE}.csv"
+NAME="${PREFIX}_${BASE}"
+OUT="evaluation/csv/${PREFIX}_clip_directional_${BASE}.csv"
 RUNLOG="logs/r51_eval_${JOB}_${BASE}_clipd.run.log"
 $PY_FB evaluation/r33_clip_directional.py --fullbench --methods "${NAME}=${DIR}" --data_root "$DATA_ROOT" \
   --frame_stride 8 -o "$OUT" > "$RUNLOG" 2>&1

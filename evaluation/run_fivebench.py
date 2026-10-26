@@ -52,6 +52,7 @@ from PIL import Image
 from torchvision import transforms
 
 import backbone as bb   #✨ R45: --backbone sf|ll (evaluation/backbone.py)
+import r59_check_prompts as r59p   #✨ R59: prompt provenance sidecar
 
 
 # Default location of the Self-Forcing StreamEdit build, relative to the repo root.
@@ -307,6 +308,9 @@ def main() -> None:
 
     method_dir = out_root / args.method / f"edit{args.edit_type}"
     method_dir.mkdir(parents=True, exist_ok=True)
+    #✨ R59: record the exact prompts / trigger words / anchors this run will use (checked by r59_check_prompts.py)
+    r59p.write_sidecar(method_dir / "_prompts.json", edit_json,
+                       first_frame_edit_dir if vp_mode != "novp" else None, args.edit_type, entries)
 
     print(f"[run_fivebench] edit_type={args.edit_type} method={args.method} "
           f"pairs={len(entries)} vp_mode={vp_mode} "

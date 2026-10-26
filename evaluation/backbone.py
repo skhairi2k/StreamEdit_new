@@ -38,8 +38,9 @@ BACKBONES = {
 # non-None value on LL is refused rather than dropped: a silently ignored option would still
 # produce a full set of renders that is not the arm it claims to be.
 _SF_ONLY = ("vp_latent", "union_dump_path", "split_dump_path", "union_mask_path",
-            "tau_bg", "tau_fg", "seg_bias_table", "vp_head_gate", "src_kv_full",
-            "attn_record")  # R48: opt-in per-token cross-attention recorder
+            "tau_bg", "tau_fg", "seg_bias_table", "vp_head_gate", "src_kv_full")
+# `attn_record` (R48's opt-in per-token cross-attention recorder) is NOT in this list any more: R55 ported it to LongLive's `inference`,
+# so it is forwarded on both backbones (None by default => no extra op anywhere).
 
 
 def add_backbone_args(parser) -> None:

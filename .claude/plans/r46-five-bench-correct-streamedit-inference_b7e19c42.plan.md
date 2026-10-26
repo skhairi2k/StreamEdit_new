@@ -1,6 +1,6 @@
 ---
 name: "R46 — FiVE-Bench-Correct StreamEdit Inference"
-overview: "Replay the 12 StreamEdit arms (Self-Forcing text-only, Self-Forcing VP, LongLive VP; each with ρ=2 official, ρ=2 matched NFE, Ours, best global ρ*) on FiVE-Bench-Correct with every setting frozen from FiVE official, in one launch once R43/R44/R45 and the routing-config decision are done. Every arm renders all 414 FiVE-Bench-Correct pairs (VP arms with anchors_r43_correct); no FiVE-official render is reused. Score everything (9 metrics, FiVE-Acc, CLIP-D), build the Correct table, and check that within-host rankings and Ours − matched-NFE gains agree in sign with FiVE official."
+overview: "Replay the 12 StreamEdit arms (Self-Forcing text-only, Self-Forcing VP, LongLive VP; each with ρ=2 official, ρ=2 matched NFE, Ours, best global ρ*) on FiVE-Bench-Correct with every setting frozen from FiVE official, in one launch once R43/R44/R45 and the routing-config decision are done. Every arm renders all 415 FiVE-Bench-Correct pairs (VP arms with anchors_r43_correct); no FiVE-official render is reused. Score everything (9 metrics, FiVE-Acc, CLIP-D), build the Correct table, and check that within-host rankings and Ours − matched-NFE gains agree in sign with FiVE official."
 task_id: R46
 todos:
   - id: arms-lib
@@ -25,7 +25,7 @@ todos:
     content: "slurm_scripts/five_bench/r46_launch.sh -- bash, run on the login node. `render`: sbatch r46_infer.sh over render-array, and the Ours chain stage1 → stage2 → absnorm → stage3 with --dependency=afterok; prints every job id. `eval`: sbatch r46_eval.sh / r46_fiveacc.sh over eval-array and r46_clipd.sh."
     status: pending
   - id: eval-scripts
-    content: "slurm_scripts/five_bench/r46_eval.sh, r46_fiveacc.sh, r46_clipd.sh -- clones of r38_eval/fiveacc/clipd over the 12 arms (eval-array), --annotation_mapping_files evaluation/five_bench_correct/edit{1..6}_FiVE.json, r33_clip_directional.py --edit_json_dir evaluation/five_bench_correct; stems r46_{method}, r46_fiveacc_{method}, r46_clip_directional.csv. Count guard: 414 per arm."
+    content: "slurm_scripts/five_bench/r46_eval.sh, r46_fiveacc.sh, r46_clipd.sh -- clones of r38_eval/fiveacc/clipd over the 12 arms (eval-array), --annotation_mapping_files evaluation/five_bench_correct/edit{1..6}_FiVE.json, r33_clip_directional.py --edit_json_dir evaluation/five_bench_correct; stems r46_{method}, r46_fiveacc_{method}, r46_clip_directional.csv. Count guard: 415 per arm."
     status: pending
   - id: table-script
     content: "evaluation/r46_table.py -- per arm, plain per-clip mean over the Correct pairs from the per-clip CSVs (never _avg.csv) → evaluation/csv/r46_correct_table.csv; the same arms on FiVE official from their counterpart CSVs → evaluation/csv/r46_sign_check.csv (per host: rank of each arm per metric on both benchmarks, and Ours − matched-NFE ρ=2 / Ours − ρ* per metric on both, with a sign_agrees column)."
@@ -108,7 +108,7 @@ isProject: true
 # R46: FiVE-Bench-Correct StreamEdit Inference
 
 ## Context
-Run the StreamEdit arms on FiVE-Bench-Correct (R43: 414 pairs) with **every setting frozen from FiVE official**, so the Correct table checks the paper's conclusions instead of retuning them. FlowDirector arms are deferred until FlowDirector is implemented. The task waits for R43, R44, R45 and the routing-config decision, then launches all 12 arms at once.
+Run the StreamEdit arms on FiVE-Bench-Correct (R43: 415 pairs) with **every setting frozen from FiVE official**, so the Correct table checks the paper's conclusions instead of retuning them. FlowDirector arms are deferred until FlowDirector is implemented. The task waits for R43, R44, R45 and the routing-config decision, then launches all 12 arms at once.
 
 **Done when:** all 12 arms are rendered on the Correct pairs and scored (9 metrics, FiVE-Acc, CLIP-D); `evaluation/csv/r46_correct_table.csv` holds the plain per-clip means; `evaluation/csv/r46_sign_check.csv` compares within-host rankings and Ours − baseline gains with FiVE official, and every sign flip is reported.
 
@@ -156,9 +156,9 @@ Run the StreamEdit arms on FiVE-Bench-Correct (R43: 414 pairs) with **every sett
 | Frozen settings | One file, `evaluation/r46_frozen.json`, written once at `freeze`: draft N_d, routing combo (metric {DINO, LPIPS} × regime {unblended, τ = 0.9}), ρ* per host. The same combo for all three Ours arms; never reselected on Correct or on LongLive |
 | Best global ρ* rule | Per host, on FiVE official: the grid ρ ∈ {2,3,4,6,8,10,20,50} of the **matched-NFE** sweep (SF·VP: R39 at N=M; SF·TEXT: R44's matched sweep; LL·VP: R45 sweepM) whose plain per-clip mean `lpips_unedit_part` is closest to that host's Ours arm on FiVE official. Rendered at N = M. If ρ* = 2, the arm is a link to the matched-NFE ρ=2 arm, not a second render |
 | Official counterparts | 1 `r44_n15_rho2_novp` · 2 `r44_n{M}_rho2_novp` · 3 `r44_{combo}` · 10 `r44_n{M}_rho{ρ*}_novp` · 4 `r36_rho2_vp` · 5 `r39_n{M}_rho2_vp` · 6 R35 (N_d=15) / R38 (N_d=5) arm of the combo · 11 `r39_n{M}_rho{ρ*}_vp` · 7 `ll_rho2_n15_vp` · 8 `ll_rho2_n{M}_vp` · 9 `r45_ll_{combo}` · 12 `ll_rho{ρ*}_n{M}_vp`. Used for the sign check only |
-| Text-only render scope | **Every Correct pair** (user, 2026-10-07): after R43 most pairs changed in a field the method reads (objects re-spanned on most of types 3–4, edit5/edit6 object conventions, multi-edit pairs reduced to their masked edit), so partial reuse would save little and add a reuse/sha256 path. All 12 arms render all 414 pairs; no FiVE-official render is reused |
+| Text-only render scope | **Every Correct pair** (user, 2026-10-07): after R43 most pairs changed in a field the method reads (objects re-spanned on most of types 3–4, edit5/edit6 object conventions, multi-edit pairs reduced to their masked edit), so partial reuse would save little and add a reuse/sha256 path. All 12 arms render all 415 pairs; no FiVE-official render is reused |
 | VP render scope | Every Correct pair: every anchor in `anchors_r43_correct/` is new. Ours VP arms re-run draft + render |
-| Inputs | `--edit_json_dir evaluation/five_bench_correct` for every render, draft and divergence call; VP anchors `~/Data/dataggen/outputs/five_bench/anchors_r43_correct`; VP divergence cases `evaluation/r43_anchor_manifest_correct.json`; text-only cases `evaluation/r46_text_cases.json` (all 414). Excluded pairs (edit4/0097, edit1/0082, edit3/0051, edit6/0042, edit6/0078) are absent from the Correct files and so from every arm |
+| Inputs | `--edit_json_dir evaluation/five_bench_correct` for every render, draft and divergence call; VP anchors `~/Data/dataggen/outputs/five_bench/anchors_r43_correct`; VP divergence cases `evaluation/r43_anchor_manifest_correct.json`; text-only cases `evaluation/r46_text_cases.json` (all 415). Excluded pairs (edit4/0097, edit1/0082, edit1/0023, edit3/0051) are absent from the Correct files and so from every arm |
 | Backbone settings | As on FiVE official: SF `fg_boost 4`, single VP frame; LL `fg_boost 2`, tripled VP frame, base + LoRA (R45). Both: `flow_shift 1.0`, seed 0, render `--step 15` for Ours, `div_max` 0.65 DINO / 1.0 LPIPS, `tau_min 2` / `tau_max 50`, `budget_linear` |
 | Scoring | `evaluate.py` 9 metrics (stride 8, as R36) + FiVE-Acc with `--annotation_mapping_files evaluation/five_bench_correct/edit{1..6}_FiVE.json`; CLIP-D via `r33_clip_directional.py --edit_json_dir evaluation/five_bench_correct`. Plain per-clip mean, never `_avg.csv` |
 | Sign check | Per host and per metric (CLIP-T, CLIP-D, FiVE-Acc, bg LPIPS, PSNR, SSIM): arm ranking on Correct vs FiVE official; Ours − matched ρ=2 and Ours − ρ* on both benchmarks; `sign_agrees` flag. Absolute scores are never compared across benchmarks |
@@ -242,7 +242,7 @@ column -s, -t < evaluation/csv/r46_sign_check.csv
 ```mermaid
 flowchart LR
   OFF[FiVE-official CSVs<br/>R36 R39 R35/R38 R44 R45] --> FR[r46_arms.py freeze] --> FJ[r46_frozen.json]
-  FC[five_bench_correct/<br/>R43] --> BC[r46_build_cases.py] --> TC[r46_text_cases.json<br/>all 414 pairs]
+  FC[five_bench_correct/<br/>R43] --> BC[r46_build_cases.py] --> TC[r46_text_cases.json<br/>all 415 pairs]
   FJ --> SM[r46_smoke.sh] --> G{G1-G4}
   TC --> SM
   G --> LA[r46_launch.sh render]

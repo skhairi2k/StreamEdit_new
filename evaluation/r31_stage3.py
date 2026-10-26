@@ -54,6 +54,7 @@ from PIL import Image
 from torchvision import transforms
 
 import backbone as bb   #✨ R45: --backbone sf|ll (evaluation/backbone.py)
+import r59_check_prompts as r59p   #✨ R59: prompt provenance sidecar
 
 _DEFAULT_SF_ROOT = Path(__file__).resolve().parent.parent / "Self-Forcing_StreamEdit"
 
@@ -74,6 +75,10 @@ def parse_args() -> argparse.Namespace:
                              ".../r31_rho/{arm}, containing edit{T}/{video}.npz")
     parser.add_argument("--data_root", type=str,
                         default="~/Data/FiVE-Fine-Grained-Video-Editing-Benchmark")
+    #✨ R59: same flag as run_fivebench.py; the default keeps every earlier call byte-identical.
+    parser.add_argument("--edit_json_dir", type=str, default=None,
+                        help="Directory holding edit{T}_FiVE.json (default: data_root/edit_prompt). "
+                             "R59: evaluation/five_bench_correct for FiVE-Bench-Correct")
     parser.add_argument("--out_root", type=str,
                         default="/projects/dataggen/outputs/five_bench/r31_arms")
 
@@ -188,6 +193,8 @@ def main() -> None:
 
     sf_root = Path(args.sf_root).expanduser().resolve()
     data_root = Path(args.data_root).expanduser().resolve()
+    edit_json_dir = (Path(args.edit_json_dir).expanduser().resolve()   #✨ R59 (resolved before the chdir)
+                     if args.edit_json_dir else data_root / "edit_prompt")
     out_root = Path(args.out_root).expanduser().resolve()
     rho_dir = Path(args.rho_dir).expanduser().resolve()
     first_frame_edit_dir = (Path(args.first_frame_edit_dir).expanduser().resolve()
@@ -200,7 +207,7 @@ def main() -> None:
     find_closest_num_frame, read_json, set_seed = _bb.find_closest_num_frame, _bb.read_json, _bb.set_seed
     from diffusers.utils import load_video
 
-    edit_json = data_root / "edit_prompt" / f"edit{args.edit_type}_FiVE.json"
+    edit_json = edit_json_dir / f"edit{args.edit_type}_FiVE.json"   #✨ R59: was data_root/edit_prompt
     entries = read_json(edit_json)
     if cases_json is not None:
         wanted = {c["video_name"] for c in json.loads(cases_json.read_text())
@@ -261,6 +268,10 @@ def main() -> None:
           f"pairs={len(entries)} vp_mode={vp_mode} steps={n_steps} "
           f"dump_steps={len(args.dump_step_list)} indices "
           f"rho_dir={rho_dir}", flush=True)
+
+    #✨ R59: record the exact prompts / trigger words / anchors this run will use (checked by r59_check_prompts.py)
+    r59p.write_sidecar(out_root / args.method / f"_prompts_edit{args.edit_type}.json", edit_json,
+                       first_frame_edit_dir if vp_mode != "novp" else None, args.edit_type, entries)
 
     rows = []
     for e in entries:

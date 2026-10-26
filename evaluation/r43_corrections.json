@@ -107,6 +107,14 @@
   "note": "ambiguous target question ('a spiderman a human?') rebuilt from the source question"
  },
  {
+  "case_id": "edit1/0023_kayak-race",
+  "level": "L3",
+  "changed_spans": [],
+  "must_not_contain": [],
+  "exclude": true,
+  "note": "EXCLUDED: near no-op (kayakers -> canoeists: neither anchor renders canoeists (still closed sprint kayaks, double-blade paddles); questions cannot separate the two)"
+ },
+ {
   "case_id": "edit1/0024_hockey",
   "level": "L2",
   "changed_spans": [],
@@ -2252,8 +2260,7 @@
   "target_prompt": "A man is performing a workout. The exercise takes place in a modern gym environment with motivational posters and equipment in the background. The camera remains stationary, focusing on the man's dynamic movements.",
   "source_object": "a heavy gym ball",
   "target_object": "",
-  "exclude": true,
-  "note": "removal by negation; EXCLUDED: the removed heavy gym ball is outside the video mask (user 2026-10-07)"
+  "note": "removal by negation; EXCLUDED: the removed heavy gym ball is outside the video mask (user 2026-10-07); RESTORED (user 2026-10-23): a single edit is kept even when its object is outside the source mask, as for edit5 insertions"
  },
  {
   "case_id": "edit6/0048_hike",
@@ -2318,8 +2325,7 @@
   "target_prompt": "A cat is pouncing playfully in a cozy living room, with a sofa and a window in the background. The camera remains fixed, focusing on the cat's playful behavior.",
   "source_object": "a toy",
   "target_object": "",
-  "exclude": true,
-  "note": "removal by negation (target question kept: no natural positive form); EXCLUDED: the removed toy is outside the video mask (user 2026-10-07)"
+  "note": "removal by negation (target question kept: no natural positive form); EXCLUDED: the removed toy is outside the video mask (user 2026-10-07); RESTORED (user 2026-10-23): a single edit is kept even when its object is outside the source mask, as for edit5 insertions"
  },
  {
   "case_id": "edit6/0088_A_cyclist",

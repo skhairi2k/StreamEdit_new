@@ -75,7 +75,9 @@ steps:
     type: manual
     command: "ON JEAN ZAY, in the clone: git pull && bash jz/r50_port.sh && bash jz/r50_scratch_links.sh && bash slurm_scripts/five_bench/r51_wan_chain.sh"
     check_hint: "logs/r51_wan_chain_jobs.txt has field / render / eval ids; the field waits afterok on R49's Wan field job"
-    status: pending
+    status: completed
+    completed_at: 2026-10-22
+    job_id: "field 1449247, render 1449248, eval 1449249"
   - id: wait-se-chain
     type: manual
     wait_for: se-chain
@@ -85,7 +87,9 @@ steps:
     type: manual
     wait_for: wan-chain
     check_hint: "on Jean Zay: sacct on the 3 ids COMPLETED; logs 'failures: 0'; A0 gate PASS (wan_max_s5); 419 renders under r51_wan_arms/nosupp_s5_full"
-    status: pending
+    status: completed
+    completed_at: 2026-10-26
+    job_id: "1449247, 1449248, 1449249_0 (Jean Zay; COMPLETED, logs read by the user)"
   - id: wan-fetch
     type: manual
     wait_for: wait-wan-chain

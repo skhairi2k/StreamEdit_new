@@ -3,8 +3,10 @@
 #
 # Usage: sbatch --array=0-3 slurm_scripts/five_bench/r51_se_stage3.sh      (r51_se_chain.sh, afterok on r51_field.sh se)
 #   task 0 nodiv (A1)   1 dino (A2)   2 lpips (A3)   3 nosupp (A4)
-# Input : $D/r51_field_full/se_{arm}/edit{T}/{video}.npz   (key `rho`, step 15, flow_shift 1.0 -- r31_stage3 validates both)
-# Output: $D/r51_se_arms/r51_{arm}_full/step14/edit{T}/{video}/*.png   (+ _manifest_edit{T}.csv)
+#        sbatch --array=0 slurm_scripts/five_bench/r51_se_stage3.sh "max_linrho" $D/r52_field_full r52   (R52's B1, r52_se_chain.sh)
+# Optional arguments, with the R51 values as defaults:  ARMS (quoted list, task id = index), FIELD_ROOT, PREFIX (method / out-root prefix).
+# Input : $FIELD_ROOT/se_{arm}/edit{T}/{video}.npz   (key `rho`, step 15, flow_shift 1.0 -- r31_stage3 validates both)
+# Output: $D/{PREFIX}_se_arms/{PREFIX}_{arm}_full/step14/edit{T}/{video}/*.png   (+ _manifest_edit{T}.csv)
 # Flags identical to r49_se_stage3.sh full (VP + Qwen anchors, fg_boost 4, blend_power 2 -- inert under a rho field --,
 # rollout_chunk_size 21, seed 0; no --cases_json: the full bench of run_fivebench's own edit{T}_FiVE.json). NFE 5 + 15 = 20.
 #SBATCH --job-name=r51_se_stage3
@@ -19,20 +21,22 @@
 #SBATCH --output=logs/r51_se_stage3_%A_%a.out
 #SBATCH --error=logs/r51_se_stage3_%A_%a.err
 
-ARMS=(nodiv dino lpips nosupp)
-TID=${SLURM_ARRAY_TASK_ID:-}
-[[ "$TID" =~ ^[0-3]$ ]] || { echo "[r51_se_stage3] bad array id '${TID}' (expected 0-3)"; exit 1; }
-ARM=${ARMS[$TID]}
 REPO=/home/ids/skhairi/Code/StreamEdit_bigchantier
 DATA_ROOT=~/Data/FiVE-Fine-Grained-Video-Editing-Benchmark
 D=~/Data/dataggen/outputs/five_bench
+read -r -a ARMS <<< "${1:-nodiv dino lpips nosupp}"
+FIELD_ROOT=${2:-$D/r51_field_full}
+PREFIX=${3:-r51}
+TID=${SLURM_ARRAY_TASK_ID:-}
+[[ "$TID" =~ ^[0-9]+$ ]] && [ "$TID" -lt "${#ARMS[@]}" ] || { echo "[r51_se_stage3] bad array id '${TID}' (expected 0-$((${#ARMS[@]} - 1)) for arms: ${ARMS[*]})"; exit 1; }
+ARM=${ARMS[$TID]}
 CASES=evaluation/r7_anchor_manifest.json
-FIELD_DIR=$D/r51_field_full/se_${ARM}
-OUT_ROOT=$D/r51_se_arms
+FIELD_DIR=$FIELD_ROOT/se_${ARM}
+OUT_ROOT=$D/${PREFIX}_se_arms
 ANCHOR_ROOT=$D/anchors
 PY_SG=/home/ids/skhairi/anaconda3/envs/streamgve/bin/python
 PY_FB=/home/ids/skhairi/anaconda3/envs/five-bench/bin/python
-METHOD="r51_${ARM}_full"
+METHOD="${PREFIX}_${ARM}_full"
 
 cd "$REPO" || exit 1
 mkdir -p logs "$OUT_ROOT"

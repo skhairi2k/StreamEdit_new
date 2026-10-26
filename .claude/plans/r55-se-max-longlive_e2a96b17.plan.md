@@ -6,56 +6,66 @@ todos:
   - id: ll-model-recorder
     content: "LongLive_StreamEdit/wan/modules/model.py -- port Self-Forcing's R48 per-token cross-attention accumulation (accum_src_tok / accum_trg_tok / accum_*_prompt, first n_blocks_used blocks, sigma window, divided by n_blocks * n_window); no-op when attn_record is None"
     needed_by: [smoke, chain]
-    status: pending
+    status: completed
   - id: ll-pipeline-recorder
     content: "LongLive_StreamEdit/pipeline/edit_causal_inference.py -- accept attn_record in inference() and pass it (window + n_blocks_used, per-window copy as Self-Forcing's rollout) down to the model calls, mirroring Self-Forcing's edit_causal_inference.py R48 lines"
     needed_by: [smoke, chain]
-    status: pending
+    status: completed
   - id: backbone-ll-attn
     content: "evaluation/backbone.py -- drop attn_record from _SF_ONLY and forward it in the ll branch of edit_call"
     needed_by: [smoke, chain]
-    status: pending
+    status: completed
   - id: stage1-help-text
     content: "evaluation/r31_stage1.py -- --attn_out_dir help text: both backbones (was 'sf backbone only')"
     needed_by: [smoke]
-    status: pending
+    status: completed
   - id: smoke-sbatch
     content: "slurm_scripts/five_bench/r55_smoke.sh -- 2 clips (0001_bus e1, 0011_lucia e5), LongLive draft with recorder on and off: G1 latents bit-identical on vs off, G2 attention npz shapes consistent with the latent frame count and the 30x52 grid, finite, G3 Self-Forcing regression: recorder output on 0001_bus e1 equal to r48_se_attn, G4 r48-style DINO / LPIPS divergence + r49_field.py build on the 2 clips with finite q in [0, 1]; prints each gate PASS/FAIL and 'failures: N'"
     needed_by: [smoke]
-    status: pending
+    status: completed
   - id: stage1-sbatch
     content: "slurm_scripts/five_bench/r55_ll_stage1.sh -- r48_se_stage1.sh full on --backbone ll: N=5, --blend_sched tgt0.9, VP + Qwen anchors, fg_boost 2, flow_shift 1, chunk 21, seed 0, attention recorder; out r55_ll_stage1 (frames + latents) and r55_ll_attn; no bit-identity check; 419-npz guards"
     needed_by: [chain]
-    status: pending
+    status: completed
   - id: div-sbatch
     content: "slurm_scripts/five_bench/r55_div.sh -- array 0-1 (dino, lpips): r31_divergence.py as r48_div.sh's se tasks, target r55_ll_stage1/frames/n5_tgt09/step04, latents r55_ll_stage1/latents, out r55_div/se_{metric}; 419-npz guard"
     needed_by: [chain]
-    status: pending
+    status: completed
   - id: field-sbatch
     content: "slurm_scripts/five_bench/r55_field.sh -- CPU: r49_field.py --selftest, then --hosts se --cases evaluation/r7_anchor_manifest.json --attn_se r55_ll_attn --div_root r55_div --out_root r55_field_full; 419-npz guard on se_max"
     needed_by: [chain]
-    status: pending
+    status: completed
   - id: render-sbatch
     content: "slurm_scripts/five_bench/r55_ll_stage3.sh -- r31_stage3.py --backbone ll with the R45 stage-3 flags (VP + anchors, step 15, flow_shift 1.0, fg_boost 2, blend_power 2, chunk 21, seed 0, dump step 14), rho field r55_field_full/se_max, method r55_max_ll_full, out r55_ll_arms; per-type count + manifest guards"
     needed_by: [chain]
-    status: pending
+    status: completed
   - id: units-r55-groups
     content: "evaluation/r51_units.py -- groups r55_se (se, max_ll, r55_ll_arms/r55_max_ll_full/step14) and r55_motion (that unit, then official LongLive rho=2 N=15 at r45_sweep/n15/ll_rho2_n15_vp, last), stem prefix r55"
     needed_by: [chain, score]
-    status: pending
+    status: completed
+  - id: eval-sbatch-groups
+    content: "slurm_scripts/five_bench/r51_eval.sh -- accept the group r55_se in the usage `case`"
+    needed_by: [chain]
+    status: completed
+  - id: motion-sbatch-groups
+    content: "slurm_scripts/five_bench/r51_motion.sh -- accept the group r55_motion in the usage `case`"
+    needed_by: [chain]
+    status: completed
   - id: chain-driver
     content: "slurm_scripts/five_bench/r55_chain.sh -- lab driver: stage1 -> div (array 0-1) -> field -> render -> eval r55_se + motion r55_motion index 0 (afterok render); motion index 1 pinned to node39 (no dependency); prints the queue count first; logs/r55_chain_jobs.txt, refuses if it exists"
     needed_by: [chain]
-    status: pending
+    status: completed
   - id: score-script
     content: "evaluation/r55_score.py -- se_max_ll and official LongLive rho=2 on R45's N=20 (equal NFE) and N=15 curves: figures r55_ll_{five_acc,clip_d,clip_tgt}.pdf, r55_points_ll.csv (419 and 401), r55_motion.csv"
     needed_by: [score]
-    status: pending
+    status: completed
 steps:
   - id: smoke
     type: sbatch
     command: sbatch slurm_scripts/five_bench/r55_smoke.sh
-    status: pending
+    status: completed
+    completed_at: 2026-10-22
+    job_id: "1057789"
   - id: wait-smoke
     type: manual
     wait_for: smoke
@@ -104,7 +114,7 @@ Done when: se_max_ll is rendered and scored on the 419 pairs (harness, FiVE-Acc,
 
 | # | Step id | Type | Waits for | Sets status |
 |---|---|---|---|---|
-| 0 | *(prep)* todos `ll-model-recorder`, `ll-pipeline-recorder`, `backbone-ll-attn`, `stage1-help-text`, `smoke-sbatch`, then `stage1-sbatch`, `div-sbatch`, `field-sbatch`, `render-sbatch`, `units-r55-groups`, `chain-driver`, `score-script` (after R51 and R52's script changes) | /build-step | — | implemented |
+| 0 | *(prep)* todos `ll-model-recorder`, `ll-pipeline-recorder`, `backbone-ll-attn`, `stage1-help-text`, `smoke-sbatch`, then `stage1-sbatch`, `div-sbatch`, `field-sbatch`, `render-sbatch`, `units-r55-groups`, `eval-sbatch-groups`, `motion-sbatch-groups`, `chain-driver`, `score-script` (after R51 and R52's script changes) | /build-step | — | implemented |
 | 1 | `smoke` | sbatch | — | — |
 | 2 | `wait-smoke` | manual | smoke | — |
 | 3 | `chain` | local (submits 7 queue entries on the lab cluster) | wait-smoke | running |
@@ -214,5 +224,7 @@ flowchart LR
 | `slurm_scripts/five_bench/r55_field.sh` (new) | CPU, 4 cpus, 32G, 2 h; selftest, then `r49_field.py --hosts se --cases evaluation/r7_anchor_manifest.json --attn_se $D/r55_ll_attn --div_root $D/r55_div --out_root $D/r55_field_full`; 419-npz guard. |
 | `slurm_scripts/five_bench/r55_ll_stage3.sh` (new) | Copy of `r49_se_stage3.sh` full mode with `--backbone ll --fg_boost_factor 2`; `FIELD_DIR=$D/r55_field_full/se_max`, `METHOD=r55_max_ll_full`, `OUT_ROOT=$D/r55_ll_arms`; same guards. |
 | `evaluation/r51_units.py` | Groups `r55_se` = `(se, max_ll, $D/r55_ll_arms/r55_max_ll_full/step14)`; `r55_motion` = that unit, then `(se, ll_rho2_n15_vp, $D/r45_sweep/n15/ll_rho2_n15_vp)`; prefix `r55`. |
+| `slurm_scripts/five_bench/r51_eval.sh` | the usage `case` accepts `r55_se` (R51 to R54 groups unchanged; the group names are validated there). |
+| `slurm_scripts/five_bench/r51_motion.sh` | the usage `case` accepts `r55_motion` (same reason). |
 | `slurm_scripts/five_bench/r55_chain.sh` (new) | Refuses if `logs/r55_chain_jobs.txt` exists; prints the queue count; submits `stage1`, `div` (`--array=0-1`, afterok stage1), `field` (afterok div), `render` (afterok field), `eval` (`r51_eval.sh r55_se --array=0`) and `motion` (`r51_motion.sh r55_motion --array=0`), both afterok render, `motion_official` (`--array=1 --nodelist=node39`); writes `<stage> <id>` lines headed by the commit. |
 | `evaluation/r55_score.py` (new) | Reuses `r49_score` helpers (`point`, `plot`); LongLive curves from R45's CSVs (`r45_ll_rho{R}_n{15,20}_vp`, `r45_fiveacc_*`, R45 CLIP-D), official = ρ 2 at N = 15; se_max_ll from `r55_*`; per-clip means on 419 and 401; motion table from the two `r55_motion_*` stems; fails clearly if an R45 CSV is missing. |

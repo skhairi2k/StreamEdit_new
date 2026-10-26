@@ -87,6 +87,7 @@ from PIL import Image
 from torchvision import transforms
 
 import backbone as bb   #✨ R45: --backbone sf|ll (evaluation/backbone.py)
+import r59_check_prompts as r59p   #✨ R59: prompt provenance sidecar
 
 
 # Default location of the Self-Forcing StreamEdit build, relative to the repo root.
@@ -112,6 +113,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--data_root", type=str,
                         default="~/Data/FiVE-Fine-Grained-Video-Editing-Benchmark",
                         help="FiVE-Bench root (videos/, edit_prompt/)")
+    #✨ R59: same flag as run_fivebench.py; the default keeps every earlier call byte-identical.
+    parser.add_argument("--edit_json_dir", type=str, default=None,
+                        help="Directory holding edit{T}_FiVE.json (default: data_root/edit_prompt). "
+                             "R59: evaluation/five_bench_correct for FiVE-Bench-Correct")
     parser.add_argument("--out_root", type=str,
                         default="/projects/dataggen/outputs/five_bench/r31_stage1",
                         help="Root for produced frames (method subdir created underneath)")
@@ -127,7 +132,7 @@ def parse_args() -> argparse.Namespace:
                         help="record the FIRST N cross-attention blocks only (default 20 = StreamEdit's own mask_layers; 30 = all)")
     parser.add_argument("--attn_out_dir", type=str, default=None,
                         help="Root for the per-clip attention npz ({dir}/edit{T}/{video}.npz); "
-                             "sf backbone only (R48 does not implement this on ll)")
+                             "both backbones (R48 on sf, ported to ll by R55)")
 
     # anchor injection -- same flags and semantics as run_fivebench.py / r22_dump_steps.py
     parser.add_argument("--first_frame_edit_dir", type=str, default=None,
@@ -164,14 +169,17 @@ def parse_args() -> argparse.Namespace:
     # A CLOSED set, not a free string -- see the note where it used to be pinned.
     parser.add_argument("--blend_sched", type=str, default="zero",
                         #✨ R38 2026-10-01: + tgt0.9 (still a closed set).
-                        choices=("zero", "first1", "first2", "first3", "tgt0.9"),
+                        #✨ R56 2026-10-23: + tgt0.96 (the paper's sigma_d = 0.96; == tgt0.9 at 5 steps,
+                        # == first1 at 15 steps -- still a closed set).
+                        choices=("zero", "first1", "first2", "first3", "tgt0.9", "tgt0.96"),
                         help="Stage-1 gating regime. 'zero' (default, R31's regime) "
                              "holds s(p) = 0 for every step, i.e. blender_rate = 1 and "
                              "the Q/K blend is OFF for the whole rollout. 'firstK' holds "
                              "s(p) = 1 for the first K steps -- Q/K blend fully ON, "
                              "source-anchored -- then 0 for the rest. 'tgt0.9' holds "
                              "s(p) = 1 for every call whose warped input t > 0.9 (R38; "
-                             "== first2 at 15 steps, first1 at 5). The resolved "
+                             "== first2 at 15 steps, first1 at 5); 'tgt0.96' the same with "
+                             "t > 0.96 (R56; == first1 at 15 steps and at 5). The resolved "
                              "per-step rate is echoed at startup and the name is written "
                              "into every npz.")
     parser.add_argument("--fg_boost_factor", type=float, default=4.0, help="omega")
@@ -269,6 +277,8 @@ def main() -> None:
     # run_fivebench.py -- the build reads configs/checkpoints via relative paths).
     sf_root = Path(args.sf_root).expanduser().resolve()
     data_root = Path(args.data_root).expanduser().resolve()
+    edit_json_dir = (Path(args.edit_json_dir).expanduser().resolve()   #✨ R59 (resolved before the chdir)
+                     if args.edit_json_dir else data_root / "edit_prompt")
     out_root = Path(args.out_root).expanduser().resolve()
     latent_dir = Path(args.latent_dir).expanduser().resolve()
     attn_out_dir = (Path(args.attn_out_dir).expanduser().resolve()
@@ -291,7 +301,7 @@ def main() -> None:
         transforms.Normalize([0.5], [0.5]),
     ])
 
-    edit_json = data_root / "edit_prompt" / f"edit{args.edit_type}_FiVE.json"
+    edit_json = edit_json_dir / f"edit{args.edit_type}_FiVE.json"   #✨ R59: was data_root/edit_prompt
     entries = read_json(edit_json)
 
     # Filter on video_name AND edit_type: a video can appear under two edit types
@@ -337,6 +347,10 @@ def main() -> None:
     print(f"[r31_stage1] input t per step     = {[round(t, 4) for t in _grid]}", flush=True)
     print(f"[r31_stage1] frames -> {out_root / args.method}", flush=True)
     print(f"[r31_stage1] latents -> {latent_dir / f'edit{args.edit_type}'}", flush=True)
+
+    #✨ R59: record the exact prompts / trigger words / anchors this run will use (checked by r59_check_prompts.py)
+    r59p.write_sidecar(latent_dir / f"_prompts_edit{args.edit_type}.json", edit_json,
+                       first_frame_edit_dir if vp_mode != "novp" else None, args.edit_type, entries)
 
     rows = []
     for e in entries:
@@ -400,7 +414,7 @@ def main() -> None:
             steps: list = []
             #✨ R48: attn_record is a plain dict bb.edit_call/rollout_inference fills
             # in; None (attn_out_dir not set) => not a single extra op anywhere in the
-            # render. backbone.py's _SF_ONLY list refuses this on ll explicitly.
+            # render. (R55 ported the recorder to ll, so backbone.py no longer refuses it there.)
             attn_record = ({"window": tuple(args.attn_window), "n_blocks_used": args.attn_blocks}
                            if attn_out_dir is not None else None)
             _, final_latent = bb.edit_call(args.backbone, pipeline,   #✨ R45: sf -> rollout_inference, ll -> inference

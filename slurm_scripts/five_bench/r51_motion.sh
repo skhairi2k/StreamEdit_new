@@ -5,7 +5,10 @@
 #
 # Usage: sbatch --array=0-4 slurm_scripts/five_bench/r51_motion.sh                         A1..A4 + A0 (r51_se_chain.sh, afterok render)
 #        sbatch --array=5 --nodelist=node39 slurm_scripts/five_bench/r51_motion.sh         official rho = 2 (r36_rho2_vp lives on /store)
-# Output: evaluation/csv/edit{T}_FiVE_r51_motion_{base}_frame_stride8.csv
+#        sbatch --array=0 slurm_scripts/five_bench/r51_motion.sh r52_motion                R52's B1 arm (r52_se_chain.sh)
+#        sbatch --array=0 slurm_scripts/five_bench/r51_motion.sh r53_motion                R53 se_max_novp; array 1 = the text-only official rho=2 (on /store, node39)
+# Optional argument GROUP (default motion): `motion` or `r52_motion`; the stem prefix is the 5th column of `r51_units.py` (r51 if absent).
+# Output: evaluation/csv/edit{T}_FiVE_{prefix}_motion_{base}_frame_stride8.csv
 # Known degeneracy: motion_fidelity_score_edit_part raises on an empty edit mask (~1 clip in 53, ~8 over the bench; R2/R14) and
 # evaluate.py writes NaN for that cell and logs an 'Error:' line. Those cells are COUNTED and reported; the unit fails only if
 # motion_fidelity_score itself has a NaN, a row count is off, or edit_part has more than MAX_NAN_EDIT NaN cells in total.
@@ -21,6 +24,8 @@
 #SBATCH --output=logs/r51_motion_%A_%a.out
 #SBATCH --error=logs/r51_motion_%A_%a.err
 
+GROUP=${1:-motion}
+case "$GROUP" in motion|r52_motion|r53_motion|r54_motion|r55_motion|r56_motion) ;; *) echo "[r51_motion] usage: sbatch --array=I r51_motion.sh [motion|r52_motion|r53_motion|r54_motion|r55_motion|r56_motion]"; exit 1 ;; esac
 MAX_NAN_EDIT=20
 REPO=/home/ids/skhairi/Code/StreamEdit_bigchantier
 DATA_ROOT=~/Data/FiVE-Fine-Grained-Video-Editing-Benchmark
@@ -33,8 +38,9 @@ JOB=${SLURM_ARRAY_JOB_ID:-local}_${SLURM_ARRAY_TASK_ID:-0}
 
 TID=${SLURM_ARRAY_TASK_ID:-}
 [[ "$TID" =~ ^[0-9]+$ ]] || { echo "[r51_motion] needs an array task id (sbatch --array=I)"; exit 1; }
-UNIT=$($PY_FB evaluation/r51_units.py --group motion --index "$TID") || { echo "[r51_motion] no unit ${TID} in group motion"; exit 1; }
-IFS=$'\t' read -r BASE DIR HOST CONFIG <<< "$UNIT"
+UNIT=$($PY_FB evaluation/r51_units.py --group "$GROUP" --index "$TID") || { echo "[r51_motion] no unit ${TID} in group ${GROUP}"; exit 1; }
+IFS=$'\t' read -r BASE DIR HOST CONFIG PREFIX <<< "$UNIT"
+PREFIX=${PREFIX:-r51}
 echo "[r51_motion] job=${JOB} unit=${BASE} (${HOST}/${CONFIG}) dir=${DIR} node=$(hostname)"
 nvidia-smi -L 2>&1 | head -2
 
@@ -55,7 +61,7 @@ for T in 1 2 3 4 5 6; do
   [ "${EXPECT[$((T - 1))]}" -gt 0 ] && ANNOTATIONS+=("$DATA_ROOT/edit_prompt/edit${T}_FiVE.json")
 done
 
-STEM="r51_motion_${BASE}"
+STEM="${PREFIX}_motion_${BASE}"
 LOG="logs/r51_motion_${JOB}_${BASE}.metrics.log"
 $PY_FB evaluation/fivebench/evaluate.py \
   --config_path evaluation/fivebench/config.yaml --metrics motion_fidelity_score motion_fidelity_score_edit_part \

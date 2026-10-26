@@ -91,13 +91,14 @@ def r51_values(csv_dir: Path, base: str, scope, names):
                          scope, names)
 
 
-def points_se(csv_dir: Path, scope, names):
+def se_references(csv_dir: Path, scope, names):
+    """StreamEdit reference points shared with r52_score.py: A0 (R49 se_max), the equal-NFE R39 N=20 curve, the native R36 N=15 curve
+    and the official rho=2 point, as (a0, equal_nfe, native, official, curves)."""
     def uv(stem, fstem, clipd, method):
         return R.unit_values(csv_dir, stem, fstem, csv_dir / clipd, method, scope, names)
 
     a0 = S49.point("A0 full (R49 se_max)", "se", "r49",
                    uv("r49_se_max_full", "r49_fiveacc_se_max_full", S49.clipd_file("se", "se_max_full"), "r49_se_max_full"))
-    arms = [a0] + [S49.point(label, "se", "r51", r51_values(csv_dir, f"se_{arm}_full", scope, names)) for arm, label in SE_ARMS.items()]
     equal_nfe = [S49.point(f"rho={rho}", "se", "curve", uv(f"r39_n20_rho{rho}_vp", f"r39_fiveacc_n20_rho{rho}_vp",
                                                           "r39_clip_directional.csv", f"r39_n20_rho{rho}_vp")) for rho in R.RHOS]
     native = [S49.point(f"rho={rho}", "se", "native", uv(f"r36_rho{rho}_vp", f"r36_fiveacc_rho{rho}_vp",
@@ -105,6 +106,12 @@ def points_se(csv_dir: Path, scope, names):
     official = S49.point("official: StreamEdit rho=2, N=15", "se", "official",
                          uv("r36_rho2_vp", "r36_fiveacc_rho2_vp", "r36_clip_directional.csv", "r36_rho2_vp"))
     curves = [("native sweep: R36 rho, N=15", native, S49.COL["native"]), ("equal NFE: R39 rho, N=20", equal_nfe, S49.COL["curve"])]
+    return a0, equal_nfe, native, official, curves
+
+
+def points_se(csv_dir: Path, scope, names):
+    a0, equal_nfe, native, official, curves = se_references(csv_dir, scope, names)
+    arms = [a0] + [S49.point(label, "se", "r51", r51_values(csv_dir, f"se_{arm}_full", scope, names)) for arm, label in SE_ARMS.items()]
     return arms, curves, official, [*equal_nfe, *native, official]
 
 
@@ -127,17 +134,21 @@ def points_wan(csv_dir: Path, scope, names):
     return [a0, a4], curves, official, [*native, *matched59]
 
 
-def motion_table(csv_dir: Path, scopes, names) -> List[Dict[str, object]]:
+def motion_items() -> List[Tuple[str, str, str]]:
+    """(unit, label, CSV stem) of R51's motion units."""
+    return [(base, MOTION_LABEL[base], f"r51_motion_{base}") for base, _d, _h, _cfg in U51.units("motion")]
+
+
+def motion_table(csv_dir: Path, scopes, names, items: Optional[List[Tuple[str, str, str]]] = None) -> List[Dict[str, object]]:
     rows: List[Dict[str, object]] = []
-    for base, _d, _h, _cfg in U51.units("motion"):
-        label = MOTION_LABEL[base]
+    for base, label, stem in (items or motion_items()):
         for tag, scope in scopes:
-            v = R.load_harness(csv_dir, f"r51_motion_{base}", MOTION, scope, names)
+            v = R.load_harness(csv_dir, stem, MOTION, scope, names)
             for m in MOTION:
                 if set(v[m]) != scope:
-                    raise SystemExit(f"[r51_score] r51_motion_{base}: '{m}' covers {len(v[m])} of the {len(scope)} clips in scope {tag}")
+                    raise SystemExit(f"[r51_score] {stem}: '{m}' covers {len(v[m])} of the {len(scope)} clips in scope {tag}")
             for etype in ["all", *range(1, 7)]:
-                keys = [k for k in scope if etype == "all" or k[0] == etype]
+                keys = sorted(k for k in scope if etype == "all" or k[0] == etype)      # sorted: a set iterates in hash order, which changed the last float digit between runs
                 if not keys:
                     continue
                 row = {"unit": base, "label": label, "scope": tag, "edit_type": etype, "n_clips": len(keys)}

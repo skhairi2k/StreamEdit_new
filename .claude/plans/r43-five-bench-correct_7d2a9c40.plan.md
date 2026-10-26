@@ -207,12 +207,54 @@ steps:
       - evaluation/figures/r43_sheet_correct_edit6.jpg
     status: completed
     completed_at: 2026-10-21
+  - id: rebuild-415
+    type: local
+    wait_for: contact-sheets
+    command: |
+      python evaluation/r43_build_correct.py \
+        --data_root ~/Data/FiVE-Fine-Grained-Video-Editing-Benchmark \
+        --corrections evaluation/r43_corrections.json \
+        --instructions evaluation/r43_instructions.json \
+        --issues evaluation/csv/r43_five_prompt_issues.csv \
+        --r7_manifest evaluation/r7_anchor_manifest.json \
+        --out_dir evaluation/five_bench_correct \
+        --diff_csv evaluation/csv/r43_correct_diff.csv \
+        --manifest_dir evaluation && \
+      python evaluation/r43_trigger_check.py --correct_dir evaluation/five_bench_correct --out_csv evaluation/csv/r43_trigger_check.csv && \
+      python evaluation/r43_consistency_dump.py --correct_dir evaluation/five_bench_correct --out_csv evaluation/csv/r43_consistency_dump.csv
+    output_paths:
+      - evaluation/five_bench_correct/edit6_FiVE.json
+      - evaluation/r43_anchor_manifest_correct.json
+    status: completed
+    completed_at: 2026-10-23
+  - id: anchors-edit6
+    type: sbatch
+    wait_for: rebuild-415
+    command: |
+      sbatch --array=5 slurm_scripts/five_bench/r43_gen_anchors.sh full
+    status: completed
+    completed_at: 2026-10-23
+    job_id: "1060703"
+  - id: sheets-refresh
+    type: local
+    wait_for: anchors-edit6
+    command: |
+      /home/ids/skhairi/anaconda3/envs/qwen-edit/bin/python -E -s evaluation/r43_contact_sheets.py \
+        --data_root ~/Data/FiVE-Fine-Grained-Video-Editing-Benchmark \
+        --r7_manifest evaluation/r7_anchor_manifest.json \
+        --correct_manifest evaluation/r43_anchor_manifest_correct.json \
+        --r7_root ~/Data/dataggen/outputs/five_bench/anchors \
+        --correct_root ~/Data/dataggen/outputs/five_bench/anchors_r43_correct \
+        --out_dir evaluation/figures
+    status: completed
+    completed_at: 2026-10-23
   - id: inspect-sheets
     type: manual
-    wait_for: contact-sheets
+    wait_for: sheets-refresh
     check_hint: "View evaluation/figures/r43_sheet_correct_edit{1..6}.jpg; note failures (expected: occasional facing flips, small/occluded objects such as 0045_butterfly)."
     sets_status: analyzed
-    status: pending
+    status: completed
+    completed_at: 2026-10-23
 isProject: true
 ---
 
@@ -248,7 +290,10 @@ The original FiVE files and `anchors/` stay untouched. Re-rendering the methods 
 | 12 | `generate-anchors` | sbatch (H100, array 0-5, one edit type per task, under 4 h each as in R7) | inspect-smoke | `running` |
 | 13 | `wait-anchors` | manual | generate-anchors | `finished` |
 | 14 | `contact-sheets` | local | wait-anchors | — |
-| 15 | `inspect-sheets` | manual | contact-sheets | `analyzed` |
+| 15 | `rebuild-415` | local (build + trigger-check + consistency-dump) | contact-sheets | — |
+| 16 | `anchors-edit6` | sbatch (H100, edit6 task only: the 2 missing anchors, existing PNGs skipped) | rebuild-415 | — |
+| 17 | `sheets-refresh` | local | anchors-edit6 | — |
+| 18 | `inspect-sheets` | manual | sheets-refresh | `analyzed` |
 
 ```
 /build-step question-dump R43
@@ -291,7 +336,7 @@ The original FiVE files and `anchors/` stay untouched. Re-rendering the methods 
 | FiVE-Acc semantics (verified in `metrics_calculator.py`, 2026-10-07) | All three questions are asked on the **edited** video. Yes/no is correct iff the source question is answered "no" and the target question "yes" (empty source question → target "yes" only); the MCQ is correct iff the answer is "b". Question fixes are judged by this rule: a source question that is true on a correctly edited video, a target question that is false on it, or an MCQ whose b) is not the target, always fails. Fixes: swap when both questions are in each other's slot; otherwise move the target-true source question to the target slot and empty the source question; swap a) / b) text for an inverted MCQ |
 | Objects are method-agnostic | The objects describe the edit, not what a given method needs: the benchmark is not adapted to StreamEdit (user, 2026-10-06). An object that is absent on one side of the edit is empty on that side, even where a method would prefer an anchor |
 | edit5 objects | Added-object convention for all 9 edit5 pairs (user, 2026-10-06): `source_object` = `""` (the added object does not exist in the source, and need not be attached to anything, e.g. a dog added in the background), `target_object` = the added object alone as a verbatim span of `target_prompt` ("a hat", "a cap", "a dog", "a bright yellow fedora", "a giant inflatable flamingo", "sunglasses", ...), without the host. Replaces FiVE's host-as-source convention (consistent across the 9, but method-shaped) and its inconsistent targets (5 host + added, 4 added phrase only, e.g. `wearing sunglasses`, `followed closely by a dog`). **Expected effect on StreamEdit, to report rather than hide:** with an empty source trigger the source foreground mask is empty, so (a) the editable region before denoising is the target-trigger mask alone (`edit_causal_inference.py:782`, `trg | src`), and (b) in the second half of denoising the background source-K/V injection covers the whole current chunk (`causal_model.py:479-495`), which pulls the attachment region toward the source; StreamEdit's edit5 scores on FiVE-Bench-Correct may drop vs FiVE as released, and that gap is a method limitation, not a benchmark artifact. CLIP-D's word direction on edit5 becomes `target_object − ""` |
-| Exclusions | User, 2026-10-07 / 2026-10-20. **414 pairs** in FiVE-Bench-Correct (419 − 5). `edit4/0097_A_bird`: no-op edit (a bird is already feathered). `edit1/0082_A_tram`: tram → trolley is a near no-op (same vehicle in most English usage; no question can discriminate). `edit3/0051_dogs-jump`: the woman whose jacket is recoloured is outside the video mask (dogs only). `edit6/0042_gym-ball`: the removed gym ball is outside the mask (man only). `edit6/0078_A_cat`: the removed toy is outside the mask (cat only). Rule: a single-edit pair whose edited object is entirely outside the mask is excluded, since background preservation would penalise a correct edit; edit6 drops from 10 to 8 pairs |
+| Exclusions | **415 pairs** in FiVE-Bench-Correct (419 − 4). No-op or near no-op edits, which no anchor shows and no question can discriminate: `edit4/0097_A_bird` (a bird is already feathered), `edit1/0082_A_tram` (tram → trolley, same vehicle in most English usage), `edit1/0023_kayak-race` (kayakers → canoeists: the anchors keep closed sprint kayaks with double-blade paddles). `edit3/0051_dogs-jump`: the woman whose jacket is recoloured is outside the video mask. Rule: a pair whose edited object is entirely outside the mask is excluded, except removals (edit6), which are kept like edit5 insertions with the background-preservation bias reported (`edit6/0042_gym-ball`, `edit6/0078_A_cat`; their anchors are generated by the `anchors-edit6` step) |
 | edit5 masks | Keep FiVE's edit5 masks, which cover the host (the musician, the bear, the woman), for now (user, 2026-10-06): no mask of the added object exists yet. The L3 "mask doesn't cover the edited object" exclusion does not apply to edit5 host masks. Known bias, reported with the edit5 numbers: background-preservation metrics are computed outside the host mask, so an added object placed away from the host (e.g. the dog following the woman in `0011_lucia`) counts as a background change. Revisit if added-object masks are produced |
 | edit6 objects | Removed-object convention for all 10 edit6 pairs (user, 2026-10-03): `source_object` = the removed object as a verbatim span of `source_prompt` (e.g. "a gray dog", "a helmet"), `target_object` = `""`. The inference supports an empty target trigger ("all background for null trigger", `wan/modules/model.py`). Side effect: CLIP-D's word direction on edit6 becomes `"" − source_object` ("away from the removed object") instead of FiVE's negated phrase; reported next to the edit6 CLIP-D numbers. `trigger-check` treats exactly these two empties (edit5 source, edit6 target) as intended |
 | Copy rule | For target prompts and questions, every word inserted by a correction must already exist in that pair's own FiVE fields (`source_prompt`, `target_prompt`, `source_object`, `target_object`, `instruction`, questions), unless the correction names a sibling FiVE pair whose phrasing it reuses (`template_from`, flagged); checked by machine and reported per word in the diff. **Typo-fix exception (mandatory, user 2026-10-06):** a word that replaces a misspelled word is always accepted, even if the correct spelling appears nowhere in the pair's fields: a replacement within edit distance 2 of the word it replaces (`boad` → `boat`, `monekys` → `monkeys`, `forging` → `foraging`) or the article swap `a` ↔ `an` (`A azure` → `An azure`). Reported in the diff as `inserted_from = L1-spelling`. **Grammar-fix exception (user 2026-10-07):** subject-verb agreement `is` ↔ `are` (`Is the table tennis players` → `Are the table tennis players`), reported as `inserted_from = L1-grammar`; and deleting `made of` before an adjective (`made of metallic` → `metallic`, `made of wooden` → `wooden`), which is delete-only |
@@ -305,6 +350,7 @@ The original FiVE files and `anchors/` stay untouched. Re-rendering the methods 
 | Anchor sets | FiVE as released: R7's `~/Data/dataggen/outputs/five_bench/anchors/` (not regenerated). FiVE-Bench-Correct: `~/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit{T}/{video}.png`, **every** non-excluded pair regenerated (no hard-linking; most instructions change) |
 | R7 generator check | `anchor-smoke` regenerates 3 pairs with FiVE's official instruction and no suffix (`edit1/0001_bus`, `edit2/0081_A_horse`, `edit5/0007_guitar-violin`) and compares decoded pixels with R7's `anchors/`. IDENTICAL confirms the claim "same generator"; DIFFERS is reported with max abs diff / PSNR and does not block (a node-level kernel difference, not a setting change) |
 | Anchor smoke | 26 anchors = edit 1–2 × `0012_goat 0045_butterfly 0059_drift-straight 0081_A_horse 0098_A_squirrel 0074_rhino 0005_breakdance 0036_camel 0003_ocean-birds 0022_skate-jump 0030_rallye 0062_elephant 0018_breakdance-flare`, taken from the correct manifest (instruction_v2 + suffix), to `~/Data/dataggen/outputs/five_bench/anchor_r43_smoke/`; the 3 repro anchors to `anchor_r43_smoke/repro/` |
+| Anchor failures | Anchors are kept exactly as generated (user, 2026-10-23): the Qwen oracle sometimes flips the facing direction or mishandles small or occluded objects (e.g. `edit2/0045_butterfly`). They are reported as a limitation of the visual-prompt pipeline, shared with R7's anchors in the FiVE-as-released table; no regeneration with other seeds or prompts, no exclusion of pairs, no failure list |
 | Compute | H100 sbatch, cloned from `r7_gen_anchors.sh` (which fit 100 anchors per task in its 4 h limit), plus `--exclude=node52`, `--time=06:00:00`, `cd` to this repo (R7's script `cd`s to the old `Code/StreamEdit`). Resumable: existing PNGs are skipped. **Node exclusion (2026-10-20): `--exclude=node52` only**, per the current cluster note (node01/51/57 were re-allowed 2026-10-08); the plan originally listed all four. Log files: `#SBATCH --output` cannot see the mode, so the script redirects itself to `logs/r43_gen_anchors_{mode}_{jobid}_{task}.{out,err}` after echoing a pointer line into the default `%A_%a` files |
 | Out of scope | Re-rendering methods on FiVE-Bench-Correct (separate task: anchor-based rows on every pair, text-only rows on the changed pairs only); redrawing masks |
 

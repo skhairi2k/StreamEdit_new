@@ -6,47 +6,51 @@ todos:
   - id: field-mapping-flag
     content: "evaluation/r51_field.py -- add --mapping {inverse, linear} (linear: rho = 2 + 48 q, endpoints exact) and arm suffix '_linrho' on the output dir under linear; the A0 gate still recomputes the INVERSE max field; selftest covers linear (rho(0)=2, rho(1)=50, rho(0.5)=26)"
     needed_by: [se-chain]
-    status: pending
+    status: completed
   - id: field-sbatch-args
     content: "slurm_scripts/five_bench/r51_field.sh -- optional args MAPPING (default inverse), ARMS (default per host), OUT (default $D/r51_field_full), passed through to r51_field.py; guard counts the dirs it actually wrote"
     needed_by: [se-chain]
-    status: pending
+    status: completed
   - id: render-sbatch-args
     content: "slurm_scripts/five_bench/r51_se_stage3.sh -- optional args ARMS, FIELD_ROOT, PREFIX (default 'nodiv dino lpips nosupp', $D/r51_field_full, r51): --rho_dir $FIELD_ROOT/se_$ARM, --method ${PREFIX}_${ARM}_full, --out_root $D/${PREFIX}_se_arms"
     needed_by: [se-chain]
-    status: pending
+    status: completed
   - id: units-r52-groups
     content: "evaluation/r51_units.py -- 5th TSV column stem_prefix (r51 for R51's groups); new groups r52_se and r52_motion = one unit se_max_linrho_full at r52_se_arms/r52_max_linrho_full/step14, prefix r52"
     needed_by: [se-chain, score]
-    status: pending
+    status: completed
   - id: eval-sbatch-prefix
     content: "slurm_scripts/five_bench/r51_eval.sh -- read the stem_prefix column: stems ${PREFIX}_{base} / ${PREFIX}_fiveacc_{base}, CLIP-D ${PREFIX}_clip_directional_{base}.csv"
     needed_by: [se-chain]
-    status: pending
+    status: completed
   - id: motion-sbatch-prefix
     content: "slurm_scripts/five_bench/r51_motion.sh -- read the stem_prefix column: stem ${PREFIX}_motion_{base}"
     needed_by: [se-chain]
-    status: pending
+    status: completed
   - id: se-chain-driver
     content: "slurm_scripts/five_bench/r52_se_chain.sh -- lab driver: field (r51_field.sh se linear max $D/r52_field_full) -> render (r51_se_stage3.sh max_linrho $D/r52_field_full r52, no array) -> eval (r51_eval.sh r52_se, --array=0) + motion (r51_motion.sh r52_motion, --array=0), afterok; logs/r52_se_chain_jobs.txt, refuses if it exists"
     needed_by: [se-chain]
-    status: pending
+    status: completed
   - id: score-script
     content: "evaluation/r52_score.py -- B1, A0 (R49 se_max full) and official rho=2 on the R39 N=20 and R36 N=15 curves: figures r52_se_{five_acc,clip_d,clip_tgt}.pdf, r52_points_se.csv (419 and 401), r52_motion.csv (B1 from R52, A0 and official from R51's motion CSVs)"
     needed_by: [score]
-    status: pending
+    status: completed
 steps:
   - id: se-chain
     type: local
     command: bash slurm_scripts/five_bench/r52_se_chain.sh
     sets_status: running
-    status: pending
+    status: completed
+    completed_at: 2026-10-22
+    job_id: "field 1057711, render 1057712, eval 1057713, motion 1057714"
   - id: wait-se-chain
     type: manual
     wait_for: se-chain
     check_hint: "squeue empty of r52 jobs; logs 'failures: 0' / 'unit failures: 0'; 'A0 gate PASS 419/419' and 'linear check PASS' in the field log; 419 renders; 1 harness + 1 FiVE-Acc + 1 CLIP-D + 1 motion unit, row counts ok"
     sets_status: finished
-    status: pending
+    status: completed
+    completed_at: 2026-10-26
+    job_id: "checked 2026-10-26: jobs 1057711-1057714 + motion rerun 1064393"
   - id: score
     type: local
     wait_for: wait-se-chain

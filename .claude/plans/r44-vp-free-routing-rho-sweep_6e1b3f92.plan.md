@@ -240,7 +240,9 @@ steps:
     type: manual
     wait_for: eval-matched
     check_hint: "as wait-eval-sweep, for n<N>"
-    status: pending
+    status: completed
+    completed_at: 2026-10-25
+    note: "verified on disk: 24/24 harness CSVs, 24/24 fiveacc CSVs (4 rho x 6 edit types), r44_clip_directional_sweep_n20.csv present, 0 Error:/OOM in the 1035818/1035819 metrics logs."
   - id: figures
     type: local
     wait_for: [wait-eval-matched, wait-eval-arms, summarize-sweep]
@@ -260,8 +262,10 @@ steps:
       - evaluation/figures/r44_clipd_vs_lpips.pdf
       - evaluation/figures/r44_fiveacc_vs_lpips.pdf
     sets_status: analyzed
-    status: pending
-    note: "QOSMaxSubmitJobPerUserLimit hit submitting this right after eval-matched (queue was exactly 30/30). A minimal poller (/tmp/r44_figures_poll.sh, background task bo2l0wukq) is waiting for >=1 free slot to submit, --dependency=afterok:1035818:1035819:1035820."
+    status: completed
+    completed_at: 2026-10-25
+    job_id: "1064405"
+    note: "every poller attempt (b1mqj02fq/b14ap80wh/bo2l0wukq/bk7zoeis2) died across session-compaction boundaries before firing, across a 16-day gap -- but the underlying eval-matched work (1035818/19/20) had actually completed cleanly in the background regardless (24/24 harness + 24/24 fiveacc CSVs, clipd table, 0 errors), confirmed on disk 2026-10-25. Submitted this step directly (queue had 12 free slots, no poller needed) and it ran clean, exit 0. RESULT: dino_n5_tgt09 vs its own-modality N=20 equal-NFE uniform curve -- CLIP-T gain_text +0.1395 vs gain_vp +0.1264 (diff +0.0131, comparable); CLIP-D (R33 axis of record) gain_text +0.0025 vs gain_vp +0.0052 (both near zero -- routing matches uniform rho, does not clearly beat it, in EITHER modality); FiVE-Acc gain_text -0.0083 vs gain_vp +0.0168 (diff -0.0251, the one real divergence -- VP-routing has a small edge over text-only-routing on this metric). Same pattern holds at N=15 (secondary): CLIP-T diff +0.0398, CLIP-D diff -0.0031, FiVE-Acc diff -0.0314. All gain flags ok (no outside_range), so the reduced 4-point N=20 curve (keeping both grid endpoints) interpolated cleanly as designed. **Headline: the routing gain is NOT strongly tied to Visual Prompting** -- CLIP-T and CLIP-D transfer to text-only at comparable magnitude; only FiVE-Acc shows a modest, reproducible VP edge."
 isProject: true
 ---
 

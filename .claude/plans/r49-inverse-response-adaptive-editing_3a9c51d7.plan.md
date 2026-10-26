@@ -167,7 +167,8 @@ steps:
       - evaluation/figures/r49_pareto
       - evaluation/figures/r49_grids
     sets_status: analyzed
-    status: pending
+    status: completed
+    completed_at: 2026-10-22
   # ---- StreamEdit track: lab cluster (L40S, streamgve); independent of every Wan-Edit step
   - id: se-full-gate
     type: manual
@@ -210,22 +211,27 @@ steps:
     type: manual
     wait_for: wait-matched59
     check_hint: "read the Wan-Edit rows of r49_deltas.csv, figures/r49_pareto/wan_*.png (with the matched-59 curve) and r49_grids/frames_wan.png; user decides whether Wan-Edit max_s5 goes to the 419 pairs (floor chosen 2026-10-20); AND R50 jz-compare is completed with PASS; AND jz/r50_port.sh reports 0 leftovers on the full-stage Wan scripts (r48_wan_draft.sh, r48_div.sh, r48_wan_render.sh, r49_wan_render.sh, r49_eval_all.sh) after pulling them; record in the R49 Run log"
-    status: pending
+    status: completed
+    completed_at: 2026-10-22
   - id: wan-full-chain
     type: manual
     wait_for: wan-full-gate
     check_hint: "ON JEAN ZAY (after git pull + bash jz/r50_port.sh, 0 leftovers): bash slurm_scripts/five_bench/r49_wan_full_chain.sh -> 'submitted', ids in logs/r49_wan_full_chain_jobs.txt; paste the ids here"
-    status: pending
+    status: completed
+    completed_at: 2026-10-22
+    job_id: "draft 1434689, div 1434692 (array 2-3), field 1434694, render_max_s5 1434696 (array 1), render_native 1434700 (array 0-5), render_native0978 1434702 (array 0), render_m59 1434703 (array 0-3), eval_wan 1434704, eval_base 1434705 (array 0-6), eval_m59 1434706 (array 0-3)"
   - id: wait-wan-full-chain
     type: manual
     wait_for: wan-full-chain
     check_hint: "ON JEAN ZAY: every id of logs/r49_wan_full_chain_jobs.txt gone from squeue; draft 419 attention npz, failures 0; r48_div tasks 2-3 419 npz each; r49_field (wan full) failures 0, 419 npz + 419 npy per floor; renders 419 complete dirs each for max_s5_full, the 7 native configs (native_s0.978 .. native_s0.4) and the 4 matched59 configs, failures 0 (timed-out render tasks are resubmitted alone: renders are resumable); evals: wan 1 unit, base 7 tasks, m59 4 tasks, 'unit failures: 0', 419 rows each"
-    status: pending
+    status: completed
+    completed_at: 2026-10-25
   - id: wan-full-fetch
     type: manual
     wait_for: wait-wan-full-chain
     check_hint: "ON THE LAB CLUSTER'S FRONTAL (compute nodes cannot reach Jean Zay): rsync the Jean Zay full-mode Wan CSVs and move the scratch output folders to the lab store (`bash jz/r50_fetch_outputs.sh`: '[r50_fetch] failures: 0', file counts and bytes equal to Jean Zay) — the CSVs (edit*_FiVE_r49_*wan*_full*, edit*_FiVE_r49_fiveacc_*wan*_full*, r49_clip_directional_wan_full.csv, r49_clip_directional_{base,m59}_full_*.csv) into evaluation/csv here; counts match the Jean Zay listing"
-    status: pending
+    status: completed
+    completed_at: 2026-10-26
   - id: wan-full-score
     type: local
     wait_for: wan-full-fetch
@@ -234,14 +240,16 @@ steps:
       - evaluation/csv/r49_full_wan_points.csv
       - evaluation/csv/r49_full_wan_deltas.csv
       - evaluation/figures/r49_full_pareto
-    status: pending
+    status: completed
+    completed_at: 2026-10-26
   # ---- end: both hosts read together (no compute)
   - id: full-verdict
     type: manual
     wait_for: [se-full-score, wan-full-score]
     check_hint: "read r49_full_{se,wan}_deltas.csv and figures/r49_full_pareto (each host on its own platform); write the full-benchmark verdict in Progress / outcomes"
     sets_status: analyzed
-    status: pending
+    status: completed
+    completed_at: 2026-10-26
 isProject: true
 ---
 
@@ -310,7 +318,7 @@ Invoke: `/run-step R49 wait-chain`, `/run-step R49 wait-matched59`, `/run-step R
 | Wan full-stage configs | (user, 2026-10-20) adaptive `max_s5`; native curve N = 50, 7 points: `native_s0.978` (uniform start at step 5 = the floor of `max_s5`, 45 active steps) and `native_s0.95 / 0.92 (official) / 0.85 / 0.75 / 0.6 / 0.4`; equal-NFE curve matched-59, 4 points: `matched59_s0.978` (N 66, skip 7, real σ 0.9766), `s0.95` (75/16), `s0.92` (85/26), `s0.85` (111/52); matched-55 dropped (it only serves `max_s9`, not in the full stage); not rerun on the 18 clips |
 | Full-stage figures (user, 2026-10-22) | per host three pareto figures against background LPIPS: FiVE-Acc, CLIP-D and CLIP-T (target image, `clip_tgt`); each draws the NATIVE sweep next to the equal-NFE curve. StreamEdit: native = R36 ρ sweep at N = 15 (stock budget; ρ = 2 is the official baseline, drawn as the star), equal NFE = R39 ρ sweep at N = 20; Wan-Edit: native = N = 50 global-start sweep (7 points incl. `native_s0.978`, official `native_s0.92`), equal NFE = matched-59 (4 points). The arm's curve deltas (and paired CIs vs the official baseline) cover the same three metrics. Full mode only: the 18-clip outputs (`r49_points.csv`, `r49_deltas.csv`, `r49_pareto/`) stay as they are |
 | Wan full-stage outputs (user, 2026-10-21) | every Wan-Edit output folder of the full stage (drafts, divergence, field, all 12 render arms, preflight/repro) is written to Jean Zay `$SCRATCH` (the full stage is ~220k PNG files, which `$WORK`'s 500k-file quota cannot hold next to the env and the bundle), through symlinks under `$WORK/Data/dataggen/outputs/five_bench/` so no job script changes (`scratch-links-script`); eval CSVs stay in the repo's `evaluation/csv` on `$WORK`; after the evals, `wan-full-fetch` moves the folders to the lab store and the CSVs here; `$SCRATCH` has no per-user line in `idr_quota_user` and, per the IDRIS disk-space page (user, 2026-10-21), only very large security quotas shared by all users (4.6 PB), so the 500k-file `$WORK` limit does not apply; IDRIS purges unused scratch files after a retention period (30 days from my memory, to be confirmed on that page), so fetch right after `wait-wan-full-chain` and delete the scratch copy only after the counts match |
-| Jean Zay job sizing | 20 h limit: evals run one unit per array task (~5 h harness + <1 h FiVE-Acc per 419-pair unit on L40S); renders are resumable, a timed-out render task is resubmitted alone (matched59_s0.85 at N = 111 is the longest); the R50 18-clip reproduction gives the H100 per-clip times. **Measured on H100 (R50 `jz-repro`, 18 clips, jobs 1400033-1400038, code `c7e2bc1`):** draft 11 min 30 s (38 s/clip), divergence 3 min 41 s, field 13 s, official `native_s0.92` render 21 min 25 s (71 s/clip, 35 active steps), `max_s5` render 26 min 9 s (87 s/clip, up to 59 active steps), eval `wan_pair` 25 min 56 s for 2 units (43 s per clip and unit). **Extrapolation to 419 pairs** (render: 48 s fixed + 0.66 s per active step per clip, from the two measured renders, treat as ±20%): draft ~4.5 h, divergence ~1.4 h, each render 6.1 h (`native_s0.4`) to 10.1 h (`max_s5`, 4 x matched-59), each eval unit ~5 h; total **~170 H100 GPU-h** (renders ~104, evals ~60, draft + divergence ~6) = 3.4% of the project's 5000 h.gpu H100 allocation (valid until 2027-09-04, 1.69 h used on 2026-10-22); every task is about 2x under the 20 h cap, so nothing is split; wall time ~21 h if everything starts at once (the adaptive chain: draft, div, field, `max_s5`, eval) |
+| Jean Zay job sizing | 20 h limit: evals run one unit per array task (~5 h harness + <1 h FiVE-Acc per 419-pair unit on L40S); renders are resumable, a timed-out render task is resubmitted alone (matched59_s0.85 at N = 111 is the longest); the R50 18-clip reproduction gives the H100 per-clip times. **Measured on H100 (R50 `jz-repro`, 18 clips, jobs 1400033-1400038, code `c7e2bc1`):** draft 11 min 30 s (38 s/clip), divergence 3 min 41 s, field 13 s, official `native_s0.92` render 21 min 25 s (71 s/clip, 35 active steps), `max_s5` render 26 min 9 s (87 s/clip, up to 59 active steps), eval `wan_pair` 25 min 56 s for 2 units (43 s per clip and unit). **Extrapolation to 419 pairs** (render: 48 s fixed + 0.66 s per active step per clip, from the two measured renders, treat as ±20%): draft ~4.5 h, divergence ~1.4 h, each render 6.1 h (`native_s0.4`) to 10.1 h (`max_s5`, 4 x matched-59), each eval unit ~5 h; total **~170 H100 GPU-h** (renders ~104, evals ~60, draft + divergence ~6) = 3.4% of the project's 5000 h.gpu H100 allocation (valid until 2027-09-04, 1.69 h used on 2026-10-22); every task is about 2x under the 20 h cap, so nothing is split; wall time ~21 h if everything starts at once (the adaptive chain: draft, div, field, `max_s5`, eval). **Measured on the real full stage** (jobs 1434689-1434706, started 2026-10-22 11:33, all `COMPLETED 0:0`): **155.4 H100 GPU-h** (3.1% of the allocation): draft 3.9 h, div 19 + 10 min, field 44 s, `max_s5` render 9.5 h, native renders 8.6 / 7.6 / 6.2 / 4.7 / 3.5 / 2.3 h (`native_s0.95` .. `native_s0.4`), `native_s0.978` 9.4 h, matched-59 renders 12.0 / 12.0 / 11.9 / 11.9 h, evals 4.1-4.4 h per unit (12 units, 51.3 GPU-h); the linear render model (48 s + 0.66 s per active step) was right for `native_s0.95` and `max_s5` but overestimated the cheap native configs (`native_s0.4` 6.1 h predicted, 2.3 h real) and underestimated the matched-59 ones (N 66-111; 10.1 h predicted, ~12 h real); longest task 12.0 h, well under the 20 h cap; the array evals write their logs under their own job ids (`r49_eval_all_%j.out`), not the array id |
 | Full stage | gated per host (`se-full-gate` after `wait-chain`; `wan-full-gate` after `wait-matched59` and R50 PASS), each host scored separately (`r49_score.py --mode full --host se|wan`), `full-verdict` reads both: R48's scripts for the full drafts (`r48_se_stage1.sh` here, `r48_wan_draft.sh` on Jean Zay), the divergence (`r48_div.sh full`, array 0-1 = StreamEdit here, 2-3 = Wan on Jean Zay) and the 9 Wan-Edit global configs on 419 pairs (`r48_wan_render.sh full`, array 0-8, ~155 L40S GPU-h, on Jean Zay); R49 field (`--hosts se` / `--hosts wan`), renders, matched-59, eval (groups `se` / `wan` / `base` / `m59`) and score in `full` mode (outputs end in `_full`); the Wan CSVs come back by rsync for scoring; the claim is read on the 401 pairs outside the 18 clips as well as on all 419 |
 | Outputs | `~/Data/dataggen/outputs/five_bench/r49_{se_stage1,se_attn,wan_draft,div,field,se_arms,wan_arms}/`, `evaluation/csv/r49_*.csv`, `evaluation/figures/r49_{pareto,grids}/` |
 | Out of scope | mean / DINO-only / LPIPS-only arms; the Wan-Edit global start sweep above σ 0.978; tuning λ, κ or the ρ range after seeing renders |

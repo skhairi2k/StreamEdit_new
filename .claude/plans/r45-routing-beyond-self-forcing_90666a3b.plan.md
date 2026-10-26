@@ -54,7 +54,7 @@ todos:
   - id: eval-scripts
     content: "slurm_scripts/five_bench/r45_eval.sh, r45_fiveacc.sh, r45_clipd.sh -- R38's three, indexing the method table printed by `r45_select.py eval --table` (sweep n15 x8, sweep nM x8, selected routed combos)."
     status: completed
-    note: "BUILT 2026-10-07. r45_eval.sh / r45_fiveacc.sh: array id -> row of `r45_select.py eval --table` (method, frame root), guarded by `check <id> eval`; stems r45_{method} (sweeps) / {method} (routed, already r45_) and r45_fiveacc_{method minus r45_}; same 9 metrics / five_acc-only + R38's guards. r45_clipd.sh: one job, all table methods or a positional subset (so the N=15 sweep can be scored before sweepM exists), labels as r45_eval stems, -> evaluation/csv/r45_clip_directional.csv, --time 24 h (up to 24 methods). VERIFIED: bash -n x3; dry runs on a temp selection resolve tasks 0 / 9 / 16 / 17 to the right method, stem and frame root, then stop at the missing-render preflight before evaluate.py; out-of-table id 18 refused; clipd subset preflight + unknown-method refusal; no CSVs or method json created."
+    note: "BUILT 2026-10-07. [2026-10-22: r45_fiveacc.sh REWRITTEN as ONE sequential, resumable job looping over all table rows (user: fiveacc must be sequential; Qwen2.5-VL-7B, ~30 min/method, 1 queue entry instead of one array task per method -- the 17-row table made eval 17 + fiveacc 17 + clipd 1 = 35 > the 30-job cap, now 19). `--array=i` still reruns one row; positional args select rows; a method whose CSVs are already complete is skipped.] r45_eval.sh / r45_fiveacc.sh (originally): array id -> row of `r45_select.py eval --table` (method, frame root), guarded by `check <id> eval`; stems r45_{method} (sweeps) / {method} (routed, already r45_) and r45_fiveacc_{method minus r45_}; same 9 metrics / five_acc-only + R38's guards. r45_clipd.sh: one job, all table methods or a positional subset (so the N=15 sweep can be scored before sweepM exists), labels as r45_eval stems, -> evaluation/csv/r45_clip_directional.csv, --time 24 h (up to 24 methods). VERIFIED: bash -n x3; dry runs on a temp selection resolve tasks 0 / 9 / 16 / 17 to the right method, stem and frame root, then stop at the missing-render preflight before evaluate.py; out-of-table id 18 refused; clipd subset preflight + unknown-method refusal; no CSVs or method json created."
   - id: divstats
     content: "evaluation/r45_div_stats.py -- reuse r38_div_stats.py functions on r45_div/{combo} next to r35_div/r38_div (SF): mean, p50/p90/p99, saturation fraction at div_max 0.65/1.0."
     status: completed
@@ -147,7 +147,10 @@ steps:
     command: python evaluation/r45_div_stats.py
     output_paths:
       - evaluation/csv/r45_div_stats.csv
-    status: pending
+    status: completed
+    completed_at: 2026-10-26
+    note: "run by the user on gpu-gw (/store mounted), exit 0, 0 saturation flags. dino_n5_tgt09 at N=5, LL vs SF: d_mean 0.0902 vs 0.0794 (x1.136), p50 0.0391 vs 0.0338, p90 0.2472 vs 0.2037, p99 0.6248 vs 0.6090, sat_frac(d >= 0.65) 0.00644 vs 0.00516 (x1.25, below the 2x flag). The fixed div_max 0.65 fits LL's map; LL diverges ~14% more on average."
+
   - id: absnorm
     type: sbatch
     command: sbatch slurm_scripts/five_bench/r45_absnorm.sh
@@ -176,27 +179,45 @@ steps:
     wait_for: [sweep15, sweepM, stage3]
     check_hint: "16 sweep methods + selected routed combos: 419 frame dirs each, 0 non-ok manifest rows (count per file); per-clip frame count == R36 r36_rho2_vp on all 419 (python evaluation/r45_select.py framecheck)"
     sets_status: finished
-    status: pending
+    status: completed
+    completed_at: 2026-10-22
+    note: "verified 2026-10-22 from disk (R45 outputs restored from /store to /home): 16 sweep methods + the routed arm, 419 clip dirs each, 6704 sweep clips = 16x419 all manifest rows ok, per-clip PNG count == manifest n_frames (0 mismatches), all 456048 sweep PNGs have a valid signature + IEND trailer, r45_sweep byte-compared to /store with rsync -rtni (only a directory mtime differs). NOT run: framecheck vs R36's r36_rho2_vp frames (R36 still on /store, unreadable from this node)."
+
   - id: eval
     type: sbatch
     command: sbatch --array=$(python evaluation/r45_select.py eval) slurm_scripts/five_bench/r45_eval.sh
     wait_for: wait-renders
-    status: pending
+    status: completed
+    job_id: "1057624/1064402"
+    note: "Two submissions covering all 17 table rows: 1057624 = rows 0-7 (N=15 sweep) + 16 (routed arm ll_dino_n5_tgt09), all OK by 2026-10-25; 1064402 = rows 8-15 (N=20 sweep), submitted by the user 2026-10-25 (array 8-15, PENDING at submit). Step is completed once both are submitted; wait-eval verifies the results."
+    completed_at: 2026-10-25
+
   - id: fiveacc
     type: sbatch
-    command: sbatch --array=$(python evaluation/r45_select.py eval) slurm_scripts/five_bench/r45_fiveacc.sh
+    command: sbatch slurm_scripts/five_bench/r45_fiveacc.sh
     wait_for: wait-renders
-    status: pending
+    status: completed
+    completed_at: 2026-10-22
+    job_id: "1057622"
+    note: "ONE sequential job over all 17 table rows (~30 min each)."
+
   - id: clipd
     type: sbatch
     command: sbatch slurm_scripts/five_bench/r45_clipd.sh
     wait_for: wait-renders
-    status: pending
+    status: completed
+    completed_at: 2026-10-22
+    job_id: "1057623"
+    note: "single job over all 17 table methods."
+
   - id: wait-eval
     type: manual
     wait_for: [eval, fiveacc, clipd]
-    check_hint: "per method: 6 metric CSVs + 6 five_acc CSVs, 419 rows, 0 NaN; r45_clip_directional.csv n_methods*419 rows; 0 Error:/OOM"
-    status: pending
+    check_hint: "17 methods: 6 metric CSVs + 6 five_acc CSVs each, 419 rows, 0 NaN; r45_clip_directional.csv 17*419 rows; 0 Error:/OOM; the single fiveacc job exits 0 with no FAILED rows (grep FAILED logs/r45_fiveacc_*.out)"
+    status: completed
+    completed_at: 2026-10-26
+    note: "verified 2026-10-26: 17 methods, all 6 per-edit-type 9-metric CSVs + 6 five_acc CSVs complete (0 problems), r45_clip_directional.csv 17 x 419, 0 Error:/OOM lines in any eval/fiveacc metric log; eval jobs 1057624 (rows 0-7,16) + 1064402 (rows 8-15) all OK."
+
   - id: figures
     type: local
     wait_for: wait-eval
@@ -207,7 +228,10 @@ steps:
       - evaluation/figures/r45_clipd_vs_lpips.pdf
       - evaluation/figures/r45_fiveacc_vs_lpips.pdf
     sets_status: analyzed
-    status: pending
+    status: completed
+    completed_at: 2026-10-26
+    note: "python evaluation/r45_score.py --all, exit 0: r45_rho_sweep_n15/n20.csv rebuilt via r36_summarize, r45_arms.csv (6 rows), 3 two-panel figures; all 6 gains flagged ok (inside both curves). divstats (step above) NOT run: r45_div/r38_div/r35_div are on /store, unreadable from nodemm06 -- run on gpu-gw."
+
 isProject: true
 ---
 
@@ -240,7 +264,7 @@ Is the spatial divergence routing (R35 at draft N=15, R38 at N=5) a property of 
 | 12 | `stage3` | sbatch | Gated 15-step LL render per selected combo | |
 | 13 | `wait-renders` | manual | Sweeps + routed arms complete | `finished` |
 | 14 | `eval` | sbatch | 9-metric harness over the method table | |
-| 15 | `fiveacc` | sbatch | `five_acc` over the method table | |
+| 15 | `fiveacc` | sbatch | `five_acc` over the method table: **one sequential, resumable job** (17 rows, ~30 min each, ~12 h), not an array | |
 | 16 | `clipd` | sbatch | CLIP-directional, single job | |
 | 17 | `wait-eval` | manual | CSV coverage, 0 errors | |
 | 18 | `figures` | local | SF \| LL Pareto figures + `r45_arms.csv` | `analyzed` |
@@ -274,6 +298,8 @@ Is the spatial divergence routing (R35 at draft N=15, R38 at N=5) a property of 
 | Readout | Two-panel figures (SF \| LL), x = CLIP-target / `clip_d_prompt` / FiVE-Acc, y = `lpips_unedit_part`. **Routing gain** = x_arm − x_curve(y_arm), linear interpolation in y on the same-backbone curve. Reported against N=15 and against matched-N (**primary**: compute-fair). If y_arm is outside the curve's y-range, the gain is NaN with an `outside_range` flag, and the figure shows it. Plain per-clip mean over 419, never `_avg.csv` |
 | Scope | All **419** pairs. Stages 1, 3 and the sweeps pass no `--cases_json`. Stage 2 uses `evaluation/r7_anchor_manifest.json` |
 | Storage | `~/Data/dataggen/outputs/five_bench/r45_*`. ~15 GB per 419-clip render, ~17 GB per draft run. Typical (one N, 4 combos): sweeps 240 + drafts 34 + arms 60 ≈ **335 GB**. All 8 combos: ≈ 430 GB. R35 hit `Errno 122` once |
+| Eval layout + queue cap | Selection = `ll_dino_n5_tgt09` → the eval table has **17 rows** (8 sweep N=15 + 8 sweep N=20 + 1 routed arm). `eval` = array 0-16 (17 entries), `clipd` = 1, **`fiveacc` = 1 sequential job** (user: fiveacc must be sequential) → **19 queue entries**, under the 30-job cap. An arrayed fiveacc would have been 17 + 17 + 1 = 35. All three can be submitted together |
+| Output location | The R45 renders (and the R36/R39 reference frames) were moved to `/store/PERSO/skhairi/Outputs/five_bench/`, with symlinks under `~/Data/dataggen/outputs/five_bench/`. `/store` is mounted on only some nodes (gpu-gw, nodecpu12, node39; not nodemm06, node50), so a job on another node stops at its render-dir preflight. **2026-10-22: user restores `r45_sweep` and `r45_arms` to `/home`** (rsync to `$d.tmp`, file-count check, swap the symlink; the `/store` copy is kept). `r45_select.py framecheck` also reads `r36_rho_sweep/r36_rho2_vp` and `wait-renders` should be run from gpu-gw, or with that folder restored too |
 | Compute | From R39 (~0.7 L40S GPU-h per step per 419 clips on SF): sweep15 ≈ 84 h, sweepM ≈ 112 h (N=20) / 168 h (N=30), drafts N × 0.7 h per run, stage 3 ≈ 10.5 h per combo. LL speed is measured in smoke (G4) and these numbers updated |
 | Node / partition | `--partition=L40S`, `--exclude=node01,node51,node52,node57`, `PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True` |
 | Out of scope | Text-only (no-VP) LL arms (that is R44's axis); recalibrated `div_max`; tau grids; binary mapping (R41); FiVE-Bench-Correct anchors (R43) |
@@ -384,7 +410,7 @@ sbatch --array=$(python evaluation/r45_select.py eval) slurm_scripts/five_bench/
 ### fiveacc
 
 ```bash
-sbatch --array=$(python evaluation/r45_select.py eval) slurm_scripts/five_bench/r45_fiveacc.sh
+sbatch slurm_scripts/five_bench/r45_fiveacc.sh          # ONE sequential job over every table row (resumable)
 ```
 
 ### clipd
@@ -471,7 +497,7 @@ Keep the stock line as is: on LL the key `current_timestep` already holds t_next
 
 **`slurm_scripts/five_bench/r45_stage1.sh`, `r45_stage2.sh`, `r45_absnorm.sh`, `r45_stage3.sh`** *(new)* — copies of the `r38_*` scripts. First line after env setup: `python evaluation/r45_select.py check $SLURM_ARRAY_TASK_ID <stage> || exit 1`. Stage 1: `RUNS`/`SCHEDS`/`NSTEPS` tables over the 4 runs, `--backbone ll --fg_boost_factor 2 --step $N --dump_steps $((N-1)) --measure_index $((N-1))`. Stage 2: combo → (arm, run, N) case table, `TARGET_ROOT=r45_stage1/$RUN/step$(printf %02d $((N-1)))`. Absnorm: reads the selected combos from the json, `div_max` by prefix, `r31_rho_map.py --mapping budget_linear --tau_min 2 --tau_max 50 --step 15` (as R38). Stage 3: `r31_stage3.py --backbone ll --fg_boost_factor 2 --step 15 --dump_steps 14`, per-file manifest guard.
 
-**`slurm_scripts/five_bench/r45_eval.sh`, `r45_fiveacc.sh`, `r45_clipd.sh`** *(new)* — R38's three. The array id indexes `r45_select.py eval --table`. Stems `r45_{method}`. `r45_clipd.sh` passes one `--methods` entry per table row → `evaluation/csv/r45_clip_directional.csv`.
+**`slurm_scripts/five_bench/r45_eval.sh`, `r45_fiveacc.sh`, `r45_clipd.sh`** *(new)* — R38's three. `r45_eval.sh`: array id indexes `r45_select.py eval --table`. **`r45_fiveacc.sh`: ONE sequential job looping over every table row** (Qwen2.5-VL-7B, ~30 min per method; skips a method whose five_acc CSVs are already complete and valid, so a timed-out job is resubmitted as-is; continues past a failed row and exits non-zero at the end; `--array=i` / positional row ids rerun single rows). Stems `r45_{method}` / `r45_fiveacc_{method}`. `r45_clipd.sh` passes one `--methods` entry per table row → `evaluation/csv/r45_clip_directional.csv`.
 
 **`evaluation/r45_div_stats.py`** *(new)* — import the stats helpers from `r38_div_stats.py`. Rows for the selected `r45_div/{combo}` plus the matching SF combos (`r35_div` N=15, `r38_div` N=5), with `backbone` and `N` columns.
 

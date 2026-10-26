@@ -17,6 +17,10 @@ A0 GATE: before anything is written, A0 is recomputed with this code for every p
 (--gate_ref: se_max/.../{video}.npz key `rho`, or wan_max_s5/.../{video}.npy). Any mismatch or unreadable pair exits 1 with
 nothing written, so a wrong input root or cap can never reach a render.
 
+--mapping linear (R52, StreamEdit only): the same demand q mapped by rho = 2 + 48 q (R47's linear-in-rho map) instead of the exposure inverse;
+arm `max` is then writable (B1 = S * max, linear), outputs go to se_{arm}_linrho, and every written file is reloaded and checked against
+rho = 2 + 48 q (`linear check PASS n/n`). The A0 gate still recomputes the INVERSE max field, so it guards the shared inputs either way.
+
 Outputs {out_root}/se_{arm}/edit{T}/{video}.npz            rho [F, 1560] (r31_stage3 --rho_dir format) + q, S, m_dino, m_lpips
         {out_root}/wan_{arm}_s5/edit{T}/{video}.npz/.npy   start_step int [F, 30, 52] (.npy = --route_start_map) + the same fields
 usage: python evaluation/r51_field.py --host se --cases evaluation/r7_anchor_manifest.json
@@ -82,6 +86,11 @@ def control(host: str, q: np.ndarray, n_frames: int, t_next: np.ndarray) -> np.n
     return R49.wan_start(q, WAN_S_MIN)
 
 
+def linear_rho(q: np.ndarray, n_frames: int) -> np.ndarray:
+    """R52's B1 map: rho linear in q on [RHO_MIN, RHO_MAX] (R47's mapping), in the same dtype / shape as ``control("se", ...)``."""
+    return (R49.RHO_MIN + (R49.RHO_MAX - R49.RHO_MIN) * q).reshape(n_frames, -1).astype(np.float32)
+
+
 def gate_one(host: str, t: int, vid: str, attn_root: Path, div_root: Path, gate_ref: Path, t_next: np.ndarray) -> bool:
     n_frames, S, md, ml = load_inputs(host, t, vid, attn_root, div_root)
     a0 = control(host, demand("max", S, md, ml), n_frames, t_next)
@@ -92,16 +101,20 @@ def gate_one(host: str, t: int, vid: str, attn_root: Path, div_root: Path, gate_
     return a0.dtype == ref.dtype and np.array_equal(a0, ref)
 
 
+MAPPING_NAME = {"inverse": "inverse_exposure_response", "linear": "linear_in_rho"}
+DIR_SUFFIX = {"inverse": "", "linear": "_linrho"}                   # linear (R52) arms live in {host}_{arm}_linrho
+
+
 def write_arm(host: str, arm: str, t: int, vid: str, out_root: Path, ctrl: np.ndarray, q: np.ndarray, S: np.ndarray,
-              m_dino: np.ndarray, m_lpips: np.ndarray, n_frames: int) -> Path:
+              m_dino: np.ndarray, m_lpips: np.ndarray, n_frames: int, mapping: str = "inverse") -> Path:
     meta = dict(q=q.astype(np.float32), S=S.astype(np.float32), m_dino=m_dino.astype(np.float32),
                 m_lpips=m_lpips.astype(np.float32), arm=np.str_(arm), host=np.str_(host), video_name=np.str_(vid),
                 edit_type=np.int32(t), div_max_dino=np.float32(R49.DIV_MAX["dino"]),
                 div_max_lpips=np.float32(R49.DIV_MAX["lpips"]), lam=np.float32(R48.LAM),
-                mapping=np.str_("inverse_exposure_response"), n_latent_frames=np.int32(n_frames),
+                mapping=np.str_(MAPPING_NAME[mapping]), n_latent_frames=np.int32(n_frames),
                 grid_h=np.int32(R48.GRID[0]), grid_w=np.int32(R48.GRID[1]), frame_seq_length=np.int32(R48.FRAME_SEQ_LENGTH))
     if host == "se":
-        out = out_root / f"se_{arm}" / f"edit{t}" / f"{vid}.npz"
+        out = out_root / f"se_{arm}{DIR_SUFFIX[mapping]}" / f"edit{t}" / f"{vid}.npz"
         out.parent.mkdir(parents=True, exist_ok=True)
         np.savez_compressed(out, rho=ctrl, rho_min=np.float32(R49.RHO_MIN), rho_max=np.float32(R49.RHO_MAX),
                             step=np.int32(R49.SE_STEP), flow_shift=np.float32(R49.SE_FLOW_SHIFT), **meta)
@@ -130,7 +143,10 @@ def selftest() -> int:
     assert rho.shape == (3, 30 * 52) and rho.dtype == np.float32
     start = control("wan", q["max"], 3, t_next)
     assert start.shape == S.shape and start.min() >= WAN_S_MIN and start.max() <= R49.WAN_N
-    print(f"[r51_field] selftest PASS (arms {', '.join(ARMS)}; nosupp >= max; max == r49_field.demand)")
+    lin = linear_rho(np.array([0.0, 0.5, 1.0]), 1)                  # R52's B1: rho = 2 + 48 q
+    assert lin.dtype == np.float32 and np.allclose(lin[0], [2.0, 26.0, 50.0]), lin
+    assert linear_rho(q["max"], 3).shape == rho.shape and linear_rho(q["max"], 3).dtype == rho.dtype
+    print(f"[r51_field] selftest PASS (arms {', '.join(ARMS)}; nosupp >= max; max == r49_field.demand; linear rho 2 / 26 / 50)")
     return 0
 
 
@@ -139,7 +155,10 @@ def main() -> int:
     ap.add_argument("--selftest", action="store_true")
     ap.add_argument("--cases")
     ap.add_argument("--host", choices=("se", "wan"))
-    ap.add_argument("--arms", nargs="+", default=None, choices=[a for a in ARMS if a != "max"])
+    ap.add_argument("--arms", nargs="+", default=None, choices=list(ARMS),
+                    help="default per host. `max` (A0) is only writable under --mapping linear: under inverse it IS R49's field")
+    ap.add_argument("--mapping", choices=("inverse", "linear"), default="inverse",
+                    help="q -> control map: R49's exposure inverse (default) or R52's B1, rho = 2 + 48 q (StreamEdit only)")
     ap.add_argument("--attn_root", default=None, help="default: R49's full-stage attention for --host")
     ap.add_argument("--div_root", default=str(DIV_ROOT))
     ap.add_argument("--gate_ref", default=str(GATE_REF))
@@ -150,12 +169,16 @@ def main() -> int:
     if not (a.cases and a.host):
         ap.error("--cases and --host are required (or --selftest)")
     arms = a.arms or list(DEFAULT_ARMS[a.host])
+    if a.mapping == "linear" and a.host != "se":
+        ap.error("--mapping linear is StreamEdit only (on Wan-Edit the exposure inverse already is linear in the step knob)")
+    if a.mapping == "inverse" and "max" in arms:
+        ap.error("arm `max` (A0) is R49's own field: it is only recomputed for the gate; write it with --mapping linear (R52's B1)")
     attn_root = Path(a.attn_root) if a.attn_root else ATTN_ROOT[a.host]
     div_root, gate_ref, out_root = Path(a.div_root), Path(a.gate_ref), Path(a.out_root)
     t_next = t_next_schedule(R49.SE_STEP, R49.SE_FLOW_SHIFT)
     cases = [(c["video_name"], int(c["edit_type"])) for c in json.loads(Path(a.cases).read_text())]
-    print(f"[r51_field] host={a.host} arms={arms} cases={len(cases)} attn={attn_root} div={div_root} gate_ref={gate_ref} "
-          f"out={out_root}", flush=True)
+    print(f"[r51_field] host={a.host} arms={arms} mapping={a.mapping} cases={len(cases)} attn={attn_root} div={div_root} "
+          f"gate_ref={gate_ref} out={out_root}", flush=True)
 
     # ---- A0 gate: every pair, before anything is written
     bad: List[str] = []
@@ -174,23 +197,31 @@ def main() -> int:
     print(f"[r51_field] A0 gate PASS {len(cases)}/{len(cases)}", flush=True)
 
     # ---- the ablation arms
-    n_fail = 0
+    n_fail, n_lin = 0, 0
     stats: Dict[str, List[float]] = {arm: [] for arm in arms}
     for vid, t in cases:
         try:
             n_frames, S, md, ml = load_inputs(a.host, t, vid, attn_root, div_root)
             for arm in arms:
                 q = demand(arm, S, md, ml)
-                ctrl = control(a.host, q, n_frames, t_next)
-                write_arm(a.host, arm, t, vid, out_root, ctrl, q, S, md, ml, n_frames)
+                ctrl = linear_rho(q, n_frames) if a.mapping == "linear" else control(a.host, q, n_frames, t_next)
+                out = write_arm(a.host, arm, t, vid, out_root, ctrl, q, S, md, ml, n_frames, a.mapping)
                 stats[arm].append(float(ctrl.mean()))
+                if a.mapping == "linear":                  # R52 check: every written file satisfies rho = 2 + 48 q (reloaded from disk)
+                    z = np.load(out)
+                    err = float(np.abs(z["rho"] - (R49.RHO_MIN + (R49.RHO_MAX - R49.RHO_MIN) * z["q"].reshape(z["rho"].shape))).max())
+                    if err >= 1e-4 or z["rho"].min() < R49.RHO_MIN - 1e-4 or z["rho"].max() > R49.RHO_MAX + 1e-4:
+                        raise ValueError(f"linear check failed: max |rho - (2 + 48 q)| = {err:.2e}, rho in [{z['rho'].min():.3f}, {z['rho'].max():.3f}]")
+                    n_lin += 1
         except Exception as e:                       # noqa: BLE001 -- report per clip, keep going
             n_fail += 1
             print(f"[r51_field] FAILED {a.host} {t}/{vid}: {type(e).__name__}: {e}", flush=True)
     unit = "rho" if a.host == "se" else "start step"
     for arm in arms:
         if stats[arm]:
-            print(f"[r51_field] {a.host}_{arm}: {len(stats[arm])}/{len(cases)} clips, mean {unit} {np.mean(stats[arm]):.3f}")
+            print(f"[r51_field] {a.host}_{arm}{DIR_SUFFIX[a.mapping]}: {len(stats[arm])}/{len(cases)} clips, mean {unit} {np.mean(stats[arm]):.3f}")
+    if a.mapping == "linear":
+        print(f"[r51_field] linear check {'PASS' if n_lin == len(cases) * len(arms) else 'FAIL'} {n_lin}/{len(cases) * len(arms)}")
     print(f"[r51_field] failures: {n_fail}")
     return int(n_fail > 0)
 
