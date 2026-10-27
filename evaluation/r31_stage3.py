@@ -267,7 +267,7 @@ def main() -> None:
     print(f"[r31_stage3] edit_type={args.edit_type} method={args.method} "
           f"pairs={len(entries)} vp_mode={vp_mode} steps={n_steps} "
           f"dump_steps={len(args.dump_step_list)} indices "
-          f"rho_dir={rho_dir}", flush=True)
+          f"rho_dir={rho_dir} edit_json_dir={edit_json_dir}", flush=True)
 
     #✨ R59: record the exact prompts / trigger words / anchors this run will use (checked by r59_check_prompts.py)
     r59p.write_sidecar(out_root / args.method / f"_prompts_edit{args.edit_type}.json", edit_json,

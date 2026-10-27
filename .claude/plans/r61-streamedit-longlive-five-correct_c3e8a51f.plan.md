@@ -6,19 +6,19 @@ todos:
   - id: stage1-json-dir
     content: "evaluation/r31_stage1.py -- add --edit_json_dir (default data_root/edit_prompt), used where edit{T}_FiVE.json is read (line ~297), as run_fivebench.py already does; log the directory in the run header"
     needed_by: [smoke, se-chain]
-    status: pending
+    status: completed
   - id: stage3-json-dir
     content: "evaluation/r31_stage3.py -- add --edit_json_dir (default data_root/edit_prompt), used where edit{T}_FiVE.json is read (line ~203); log the directory in the run header"
     needed_by: [smoke, se-chain]
-    status: pending
+    status: completed
   - id: smoke-cases-json
     content: "evaluation/r61_smoke_cases.json -- [edit1/0001_bus (anchor changed by the keep-pose suffix), edit6/0042_gym-ball (target prompt changed, removal by negation fixed)] in the r43_anchor_manifest_correct.json entry shape, anchors from anchors_r43_correct"
     needed_by: [smoke]
-    status: pending
+    status: completed
   - id: smoke-sbatch
     content: "slurm_scripts/five_bench/r61_smoke.sh -- L40S, 3 h, --nodelist=node39 (r45_sweep is a /store link; fail-fast preflight that it is readable); G1 benchmark freeze: per-type counts of evaluation/five_bench_correct == (98 100 99 99 9 10), json pairs == r43_anchor_manifest_correct.json pairs, every anchor file exists; G2 sweep path: run_fivebench.py --backbone ll rho=2 N=15 with --edit_json_dir evaluation/five_bench_correct, anchors_r43_correct, --cases_json r61_smoke_cases.json, both renders differ from r45_sweep/n15/ll_rho2_n15_vp and the log shows the Correct target prompt of 0042_gym-ball; G3 se_max chain on the 2 pairs: r31_stage1 (Correct) -> r31_divergence dino + lpips -> r49_field.py -> r31_stage3 (Correct), stage-1 and stage-3 logs show the Correct target prompt, q finite in [0, 1], render frame count == G2's; G4 default unchanged: r31_stage1 on 0001_bus e1 without --edit_json_dir, official anchors, latents np.array_equal to $D/r55_smoke/on; prints each gate PASS/FAIL and 'failures: N'; out $D/r61_smoke/"
     needed_by: [smoke]
-    status: pending
+    status: completed
   - id: sweep-sbatch
     content: "slurm_scripts/five_bench/r61_sweep.sh -- clone of r45_sweep.sh: array 0-7 over RHOS (2 3 4 6 8 10 20 50), first argument N in {15, 20} (no r45_select.py lookup), run_fivebench.py --backbone ll --edit_json_dir evaluation/five_bench_correct --first_frame_edit_dir $D/anchors_r43_correct, fg_boost 2, flow_shift 1.0, seed 0; METHOD r61_ll_rho{R}_n{N}, OUT_ROOT $D/r61_sweep/n{N}; EXPECTED (98 100 99 99 9 10), total 415; same skip/resume, count and manifest guards; refuses if git status shows uncommitted changes under evaluation/five_bench_correct or r43_anchor_manifest_correct.json, logs the commit"
     needed_by: [sweep-n15, sweep-n20]

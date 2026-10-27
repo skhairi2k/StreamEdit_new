@@ -17,6 +17,7 @@ import argparse
 import csv
 import json
 import sys
+import time
 from pathlib import Path
 from typing import List, Tuple
 
@@ -28,6 +29,19 @@ D = Path.home() / "Data/dataggen/outputs/five_bench"
 CONFIGS = {"native_s0.92": "r48_wan_arms", "matched59_s0.92": "r49_wan_arms"}   # config -> R49 render folder
 
 
+def read_rgb(path: Path, tries: int = 4, wait_s: float = 5.0) -> np.ndarray:
+    """PNG -> int16 RGB. Retries an OSError (a transient Lustre read error was seen on $SCRATCH, R58 2026-10-26) before giving up."""
+    for k in range(tries):
+        try:
+            return np.asarray(Image.open(path).convert("RGB"), dtype=np.int16)
+        except OSError as e:
+            if k == tries - 1:
+                raise
+            print(f"[r58_repro] read error on {path} ({e}); retry {k + 1}/{tries - 1} in {wait_s:.0f}s", flush=True)
+            time.sleep(wait_s)
+    raise AssertionError("unreachable")
+
+
 def compare_dirs(new_dir: Path, ref_dir: Path) -> Tuple[int, int, str, float]:
     """-> (n_frames, max |diff| over all frames, worst frame name, min PSNR); raises on missing or differing frame names."""
     new = sorted(p.name for p in new_dir.glob("*.png"))
@@ -36,8 +50,8 @@ def compare_dirs(new_dir: Path, ref_dir: Path) -> Tuple[int, int, str, float]:
         raise ValueError(f"frame names differ: {len(new)} new vs {len(ref)} R49 ({new_dir} vs {ref_dir})")
     worst, worst_name, min_psnr = 0, new[0], float("inf")
     for name in new:
-        a = np.asarray(Image.open(new_dir / name).convert("RGB"), dtype=np.int16)
-        b = np.asarray(Image.open(ref_dir / name).convert("RGB"), dtype=np.int16)
+        a = read_rgb(new_dir / name)
+        b = read_rgb(ref_dir / name)
         if a.shape != b.shape:
             raise ValueError(f"{name}: shape {a.shape} vs {b.shape}")
         diff = np.abs(a - b)

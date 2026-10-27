@@ -10,7 +10,7 @@ todos:
   - id: anno-dir-draft
     content: "evaluation/r48_wan_draft.py -- new --anno_dir argument (default None = official FiVE) passed to C.load_cases; printed in the start line"
     needed_by: [wan-chain]
-    status: pending
+    status: completed
   - id: anno-dir-render48
     content: "evaluation/r48_wan_render.py -- new --anno_dir argument (default None) passed to C.load_cases; printed in the start line"
     needed_by: [repro-render, wan-chain]
@@ -30,19 +30,19 @@ todos:
   - id: draft-sbatch
     content: "slurm_scripts/five_bench/r58_wan_draft.sh -- r48_wan_draft.py on r58_cases_maxs5.json with --anno_dir evaluation/five_bench_correct -> $D/r58_wan_draft/{attn,frames}; same draft settings as R49 (17-step grid from step 3, seed 0); post-run per-type count guard against the 190-pair case file"
     needed_by: [wan-chain]
-    status: pending
+    status: completed
   - id: div-sbatch
     content: "slurm_scripts/five_bench/r58_div.sh -- array 0-1 = wan_dino / wan_lpips: r31_divergence.py on r58_cases_maxs5.json, --target_root $D/r58_wan_draft/frames/step00, --n_latent_frames 0, --temporal_reduce mean --no-save_native --seed 0 -> $D/r58_div/{wan_dino,wan_lpips}; per-type count guard"
     needed_by: [wan-chain]
-    status: pending
+    status: completed
   - id: field-sbatch
     content: "slurm_scripts/five_bench/r58_field.sh -- r49_field.py --selftest, then r49_field.py --hosts wan --cases evaluation/r58_cases_maxs5.json --attn_wan $D/r58_wan_draft/attn --div_root $D/r58_div --out_root $D/r58_field; guard: 190 npz + 190 .npy in wan_max_s5"
     needed_by: [wan-chain]
-    status: pending
+    status: completed
   - id: chain-driver
     content: "slurm_scripts/five_bench/r58_wan_chain.sh -- Jean Zay driver modelled on r49_wan_full_chain.sh: guards (ported scripts, wrapper python, r58_* case files, $D/r58_* are symlinks to $SCRATCH, the R49 render dirs exist), --dry-run, refuses if logs/r58_wan_chain_jobs.txt exists; submits draft -> div (afterok) -> field (afterok) -> render max_s5 (--array=11, afterok) and render baselines (--array=0-10, no dependency); records '<stage> <id>' lines headed by the git commit"
     needed_by: [wan-chain]
-    status: pending
+    status: completed
   - id: repro-check-script
     content: "evaluation/r58_repro_check.py -- for each repro pair and config, compares $D/r58_repro/{config}_full/edit{T}/{video}/*.png with the R49 render ($D/r48_wan_arms/native_s0.92_full, $D/r49_wan_arms/matched59_s0.92_full): same frame count, max |diff| per frame and PSNR; PASS iff every frame has max |diff| <= 2 (of 255); writes evaluation/csv/r58_repro_check.csv; exit 1 on FAIL"
     needed_by: [repro-check]
@@ -86,7 +86,8 @@ steps:
     type: manual
     wait_for: build-cases
     check_hint: "User: commit + push (incl. the final evaluation/five_bench_correct/*.json and the r58_cases_*.json). On Jean Zay in the clone: `git checkout -- slurm_scripts evaluation/fivebench/config.yaml && git pull && bash jz/r50_verify.sh --code-only && bash jz/r50_port.sh && bash jz/r50_scratch_links.sh`; paste the tails: '[r50_port] leftovers: 0', '[r50_port] failures: 0', '[r50_scratch] failures: 0'; `ls $D/r48_wan_arms/native_s0.92_full/edit1 | wc -l` = 100 (R49 renders still on $SCRATCH)"
-    status: pending
+    status: completed
+    completed_at: 2026-10-26
   - id: repro-render
     type: manual
     wait_for: jz-sync
@@ -100,7 +101,7 @@ steps:
   - id: wan-chain
     type: manual
     wait_for: repro-check
-    check_hint: "User, on Jean Zay: `bash slurm_scripts/five_bench/r58_wan_chain.sh --dry-run` then `bash slurm_scripts/five_bench/r58_wan_chain.sh`; paste logs/r58_wan_chain_jobs.txt (5 stages: draft, div, field, render_max_s5, render_base)"
+    check_hint: "User, on Jean Zay: first `git pull && bash jz/r50_port.sh` (the 4 other r58_*.sh scripts were not in the first sync and must now be ported), then `bash slurm_scripts/five_bench/r58_wan_chain.sh --dry-run` then `bash slurm_scripts/five_bench/r58_wan_chain.sh`; paste logs/r58_wan_chain_jobs.txt (5 stages: draft, div, field, render_max_s5, render_base)"
     sets_status: running
     status: pending
   - id: wait-chain
@@ -330,7 +331,7 @@ flowchart LR
 | `slurm_scripts/five_bench/r58_wan_draft.sh` (new) | Clone of `r48_wan_draft.sh` on the 190 cases → `$D/r58_wan_draft` |
 | `slurm_scripts/five_bench/r58_div.sh` (new) | Clone of `r48_div.sh` wan tasks (array 0-1) → `$D/r58_div` |
 | `slurm_scripts/five_bench/r58_field.sh` (new) | `r49_field.py --hosts wan` on r58 roots → `$D/r58_field` |
-| `slurm_scripts/five_bench/r58_wan_chain.sh` (new) | Clone of `r49_wan_full_chain.sh`: 5 submissions, afterok chain for max_s5, jobs file `logs/r58_wan_chain_jobs.txt` |
+| `slurm_scripts/five_bench/r58_wan_chain.sh` (new) | Clone of `r49_wan_full_chain.sh`: 5 submissions, afterok chain for max_s5, jobs file `logs/r58_wan_chain_jobs.txt`; refuses to run unless `r58_repro_check.csv` has every row `pass=1` and the R49 render dirs exist |
 | `evaluation/r58_repro_check.py` (new) | Pixel comparison repro vs R49 render, PASS ≤ 2/255 → `r58_repro_check.csv` |
 | `evaluation/r58_assemble.py` (new) | Symlink tree `$D/r58_wan_correct/{config}` over 415 pairs + `r58_assembly.csv` |
 | `jz/r58_eval_jz.sh` (new) | Loop of `jz/eval_suite_jz.sh` over the 12 configs, tag `r58` |

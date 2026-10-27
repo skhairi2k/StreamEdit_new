@@ -100,13 +100,15 @@ class Recorder:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--cases", required=True)
+    ap.add_argument("--anno_dir", default=None,
+                    help="annotation folder with edit{T}_FiVE.json (default: the released FiVE edit_prompt)")
     ap.add_argument("--out_attn", required=True)
     ap.add_argument("--out_frames", required=True)
     a = ap.parse_args()
     out_attn, out_frames = Path(a.out_attn).expanduser(), Path(a.out_frames).expanduser()
 
     win = window_steps()
-    cases = C.load_cases(a.cases)
+    cases = C.load_cases(a.cases, a.anno_dir)
     cli = C.load_cli()
     se = C.load_se_utils()
     pipe, d = C.build_pipeline(cli)

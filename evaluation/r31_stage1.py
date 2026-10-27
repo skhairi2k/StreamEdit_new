@@ -340,7 +340,8 @@ def main() -> None:
     print(f"[r31_stage1] edit_type={args.edit_type} method={args.method} "
           f"pairs={len(entries)} vp_mode={vp_mode} steps={n_steps} "
           f"blend_sched={args.blend_sched} ({_regime}) src_kv={args.src_kv} "
-          f"dump_steps={args.dump_step_list} measure_index={args.measure_index}",
+          f"dump_steps={args.dump_step_list} measure_index={args.measure_index} "
+          f"edit_json_dir={edit_json_dir}",
           flush=True)
     print(f"[r31_stage1] blender_rate per step = {[int(1.0 - x) for x in _s]}"
           f"   (0 = blend ON / source-anchored, 1 = blend OFF)", flush=True)
