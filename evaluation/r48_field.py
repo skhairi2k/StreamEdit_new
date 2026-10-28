@@ -65,6 +65,8 @@ def selectivity(a: np.ndarray) -> float:
 def _branch_mask(attn: np.ndarray, prompt: np.ndarray, n_prompt: int) -> np.ndarray:
     """Eq. 7 on the selectivity-weighted trigger map -> bool [F, 30, 52]."""
     n_t = attn.shape[0]
+    if n_t == 0:   # empty side (Correct: no source object on an addition / no target object on a removal): no attention
+        return np.zeros(prompt.shape, bool)
     if n_prompt <= n_t:
         raise ValueError(f"n_prompt {n_prompt} <= number of trigger tokens {n_t}")
     w = np.array([selectivity(a) for a in attn])

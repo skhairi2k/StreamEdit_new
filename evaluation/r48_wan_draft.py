@@ -84,7 +84,7 @@ class Recorder:
             pt, pp = [], []
             for s in range(0, q.shape[0], 4096):
                 p = torch.softmax(torch.einsum("lnd,snd->nls", q[s:s + 4096], k) * d ** -0.5, dim=-1)
-                pt.append(p[..., idx].mean(0))                                  # [l, nT]
+                pt.append(p[..., idx].mean(0) if len(idx) else p.new_zeros(p.shape[1], 0))   # [l, nT]; nT = 0 on an empty side
                 pp.append(p[..., :npr].sum(-1).mean(0))                         # [l]
             tok = torch.cat(pt).cpu().numpy().T.reshape(self.tok[self.branch].shape)
             pro = torch.cat(pp).cpu().numpy().reshape(self.prompt[self.branch].shape)
@@ -124,7 +124,9 @@ def main() -> None:
         try:
             idx_src = se.find_phrase_token_indices(tokenizer, c["source_prompt"], c["source_object"])[0]
             idx_trg = se.find_phrase_token_indices(tokenizer, c["target_prompt"], c["target_object"])[0]
-            if not idx_src or not idx_trg:
+            # one empty side is allowed (FiVE-Bench-Correct: no source object on an addition, no target object on a removal):
+            # nothing to record there (zero-token map, see Recorder); both empty means the phrases were not found
+            if not idx_src and not idx_trg:
                 raise ValueError(f"trigger phrase not found (src {idx_src}, trg {idx_trg})")
             n_src = len(tokenizer(c["source_prompt"], add_special_tokens=True)["input_ids"])
             n_trg = len(tokenizer(c["target_prompt"], add_special_tokens=True)["input_ids"])
