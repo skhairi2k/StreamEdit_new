@@ -53,7 +53,8 @@ fi
 
 # ---- R58's Wan field job
 R58_JOBS=logs/r58_wan_chain_jobs.txt
-R58_FIELD=$(awk '$1 == "field" {print $2}' "$R58_JOBS" 2>/dev/null | tail -1)
+# the LAST "field <id>" anywhere in the file: a resubmitted chain is appended as one line ("resubmit-<date> draft <id> div <id> field <id> ...")
+R58_FIELD=$(grep -v '^#' "$R58_JOBS" 2>/dev/null | grep -o 'field [0-9][0-9]*' | tail -1 | awk '{print $2}')
 [[ "$R58_FIELD" =~ ^[0-9]+$ ]] || { echo "[r62_wan_chain] FATAL: no 'field <id>' line in $R58_JOBS -- submit R58's Wan chain first"; exit 1; }
 STATE=$(squeue -h -j "$R58_FIELD" -o %T 2>/dev/null | head -1)
 if [ -n "$STATE" ]; then

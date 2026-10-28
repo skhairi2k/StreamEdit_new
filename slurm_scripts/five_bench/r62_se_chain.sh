@@ -37,7 +37,7 @@ grep -q -- '--edit_json_dir' evaluation/r31_stage3.py && grep -q 'write_sidecar'
 
 # ---- upstream: R59's field job
 [ -f "$UPSTREAM" ] || { echo "[r62_se_chain] FATAL: $UPSTREAM missing -- R59's se-chain was not submitted from this checkout"; exit 1; }
-R59_FIELD=$(awk '$1=="field"{print $2}' "$UPSTREAM" | head -1)
+R59_FIELD=$(grep -v '^#' "$UPSTREAM" | grep -o 'field [0-9][0-9]*' | tail -1 | awk '{print $2}')   # the last "field <id>" on any line
 [[ "$R59_FIELD" =~ ^[0-9]+$ ]] || { echo "[r62_se_chain] FATAL: no 'field <id>' line in $UPSTREAM"; exit 1; }
 if [ -n "$(squeue -j "$R59_FIELD" -h 2>/dev/null)" ]; then
   DEP="--dependency=afterok:${R59_FIELD}"
