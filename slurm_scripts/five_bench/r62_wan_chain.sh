@@ -43,10 +43,8 @@ if [ "${R62_ALLOW_WORK_OUTPUT:-0}" != 1 ]; then
     [ -L "$D/$X" ] || { echo "[r62_wan_chain] FATAL: $D/$X is not a symlink to \$SCRATCH -- run: bash jz/r50_scratch_links.sh (R62_ALLOW_WORK_OUTPUT=1 overrides, at the risk of the \$WORK file quota)"; exit 1; }
   done
 fi
-# the inputs the field reads (R58's Correct draft attention + divergence) and the R51 renders the unchanged pairs will reuse must still exist
-for X in r58_wan_draft/attn r58_div/wan_dino r58_div/wan_lpips r58_field/wan_max_s5 r51_wan_arms/nosupp_s5_full; do
-  [ -d "$D/$X" ] || { echo "[r62_wan_chain] FATAL: $D/$X missing (R58 chain not finished, or the \$SCRATCH purge removed it)"; exit 1; }
-done
+# the R51 renders the unchanged pairs will reuse must still exist (R58's own outputs are checked below, only if R58's field is no longer queued)
+[ -d "$D/r51_wan_arms/nosupp_s5_full" ] || { echo "[r62_wan_chain] FATAL: $D/r51_wan_arms/nosupp_s5_full missing (the \$SCRATCH purge removed it?)"; exit 1; }
 REPRO=evaluation/csv/r58_repro_check.csv
 [ -s "$REPRO" ] || { echo "[r62_wan_chain] FATAL: $REPRO missing -- R58's repro-check has not run"; exit 1; }
 if awk -F, 'NR > 1 && $NF != 1 { bad++ } END { exit (bad > 0 || NR < 5) }' "$REPRO"; then :; else
@@ -63,6 +61,9 @@ if [ -n "$STATE" ]; then
   echo "[r62_wan_chain] R58 field ${R58_FIELD} is ${STATE}: the R62 field waits afterok on it"
 else
   N=$(ls "$D"/r58_field/wan_max_s5/edit*/*.npy 2>/dev/null | wc -l)
+  for X in r58_wan_draft/attn r58_div/wan_dino r58_div/wan_lpips; do
+    [ -d "$D/$X" ] || { echo "[r62_wan_chain] REFUSE: R58 field ${R58_FIELD} is not in squeue and $D/$X is missing"; exit 1; }
+  done
   if [ "$N" -eq 190 ]; then
     DEP=()
     echo "[r62_wan_chain] R58 field ${R58_FIELD} left the queue; 190 wan_max_s5 start maps exist -- no dependency"
