@@ -1,0 +1,93 @@
+diff --git a/wan/image2video.py b/wan/image2video.py
+index a3fa65b..d57620d 100644
+--- a/wan/image2video.py
++++ b/wan/image2video.py
+@@ -534,7 +534,7 @@ class WanI2V:
+         seed_g = torch.Generator(device=self.device)
+         seed_g.manual_seed(seed)
+         
+-        expected_latent_shape = (16, 21, lat_h, lat_w) if not is_delete else (16, 13, lat_h, lat_w)
++        expected_latent_shape = (16, (F - 1) // self.vae_stride[0] + 1, lat_h, lat_w)  # R66: was 21 / 13 (delete)
+         
+         num_t = load_intermediate_latent_t
+         intermediate_data = torch.load(load_intermediate_latent_path, map_location='cpu')
+@@ -548,7 +548,7 @@ class WanI2V:
+                 
+         latent_origin = latent.clone().detach().to(device=self.device, dtype=torch.float32)
+         
+-        msk = torch.ones(1, 81, lat_h, lat_w, device=self.device) if not is_delete else torch.ones(1, 49, lat_h, lat_w, device=self.device)
++        msk = torch.ones(1, F, lat_h, lat_w, device=self.device)  # R66: was 81 / 49 (delete)
+         msk[:, 1:] = 0
+         msk = torch.concat([
+             torch.repeat_interleave(msk[:, 0:1], repeats=4, dim=1), msk[:, 1:]
+@@ -588,7 +588,7 @@ class WanI2V:
+                 torch.nn.functional.interpolate(
+                     img_origin[None].cpu(), size=(h, w), mode='bicubic').transpose(
+                         0, 1),
+-                torch.zeros(3, 80, h, w)
++                torch.zeros(3, F - 1, h, w)
+             ],
+                          dim=1).to(self.device) 
+         ])[0] if not is_delete else self.vae.encode([
+@@ -596,7 +596,7 @@ class WanI2V:
+                 torch.nn.functional.interpolate(
+                     img_origin[None].cpu(), size=(h, w), mode='bicubic').transpose(
+                         0, 1),
+-                torch.zeros(3, 48, h, w)
++                torch.zeros(3, F - 1, h, w)
+             ],
+                          dim=1).to(self.device) 
+         ])[0]
+@@ -608,7 +608,7 @@ class WanI2V:
+                 torch.nn.functional.interpolate(
+                     img[None].cpu(), size=(h, w), mode='bicubic').transpose(
+                         0, 1),
+-                torch.zeros(3, 80, h, w)
++                torch.zeros(3, F - 1, h, w)
+             ],
+                          dim=1).to(self.device)
+         ])[0] if not is_delete else self.vae.encode([
+@@ -616,7 +616,7 @@ class WanI2V:
+                 torch.nn.functional.interpolate(
+                     img[None].cpu(), size=(h, w), mode='bicubic').transpose(
+                         0, 1),
+-                torch.zeros(3, 48, h, w)
++                torch.zeros(3, F - 1, h, w)
+             ],
+                          dim=1).to(self.device)
+         ])[0]
+@@ -846,14 +846,14 @@ class WanI2V:
+         seed_g.manual_seed(seed)
+         
+         # video_latent
+-        expected_latent_shape = (16, 21, lat_h, lat_w) if not is_delete else (16, 13, lat_h, lat_w)
++        expected_latent_shape = (16, (F - 1) // self.vae_stride[0] + 1, lat_h, lat_w)  # R66: was 21 / 13 (delete)
+         latent = self.vae.encode([video])[0]
+         if self.rank == 0:
+             print(latent.shape)
+         assert latent.shape == expected_latent_shape
+         
+         
+-        msk = torch.ones(1, 81, lat_h, lat_w, device=self.device) if not is_delete else torch.ones(1, 49, lat_h, lat_w, device=self.device)
++        msk = torch.ones(1, F, lat_h, lat_w, device=self.device)  # R66: was 81 / 49 (delete)
+         msk[:, 1:] = 0
+         msk = torch.concat([
+             torch.repeat_interleave(msk[:, 0:1], repeats=4, dim=1), msk[:, 1:]
+@@ -893,7 +893,7 @@ class WanI2V:
+                 torch.nn.functional.interpolate(
+                     img[None].cpu(), size=(h, w), mode='bicubic').transpose(
+                         0, 1),
+-                torch.zeros(3, 80, h, w)
++                torch.zeros(3, F - 1, h, w)
+             ],
+                          dim=1).to(self.device)
+         ])[0] if not is_delete else self.vae.encode([
+@@ -901,7 +901,7 @@ class WanI2V:
+                 torch.nn.functional.interpolate(
+                     img[None].cpu(), size=(h, w), mode='bicubic').transpose(
+                         0, 1),
+-                torch.zeros(3, 48, h, w)
++                torch.zeros(3, F - 1, h, w)
+             ],
+                          dim=1).to(self.device)
+         ])[0]

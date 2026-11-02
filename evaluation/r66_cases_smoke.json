@@ -1,0 +1,78 @@
+[
+ {
+  "case_id": "edit2/0002_girl-dog",
+  "edit_type": 2,
+  "video_name": "0002_girl-dog",
+  "target_prompt": "A young alien in a hovercraft is moving along a paved path beside a grassy area, accompanied by a robotic dog walking alongside it. The environment is a sunny urban setting with a mix of grass and paved walkways. The camera remains stationary, capturing the alien's smooth movement and the robotic dog's relaxed pace.",
+  "anchor_image": "dataggen/outputs/five_bench/anchors_r43_correct/edit2/0002_girl-dog.png",
+  "src_first_frame": "FiVE-Fine-Grained-Video-Editing-Benchmark/images/0002_girl-dog/00001.jpg",
+  "mode": "swap",
+  "pnp_layers": [
+   27,
+   29,
+   31,
+   32
+  ],
+  "is_delete": false,
+  "n_src": 86,
+  "n81": 81,
+  "n41": 41
+ },
+ {
+  "case_id": "edit3/0002_girl-dog",
+  "edit_type": 3,
+  "video_name": "0002_girl-dog",
+  "target_prompt": "A young girl in a wheelchair is moving along a paved path beside a grassy area, accompanied by a pink dog walking alongside her. The environment is a sunny urban setting with a mix of grass and paved walkways. The camera remains stationary, capturing the girl's smooth movement and the dog's relaxed pace.",
+  "anchor_image": "dataggen/outputs/five_bench/anchors_r43_correct/edit3/0002_girl-dog.png",
+  "src_first_frame": "FiVE-Fine-Grained-Video-Editing-Benchmark/images/0002_girl-dog/00001.jpg",
+  "mode": "swap",
+  "pnp_layers": [
+   27,
+   29,
+   31,
+   32
+  ],
+  "is_delete": false,
+  "n_src": 86,
+  "n81": 81,
+  "n41": 41
+ },
+ {
+  "case_id": "edit5/0009_bear",
+  "edit_type": 5,
+  "video_name": "0009_bear",
+  "target_prompt": "A large brown bear wearing a cap is walking slowly across a rocky terrain in a zoo enclosure, surrounded by stone walls and scattered greenery. The camera remains fixed, capturing the bear's deliberate movements.",
+  "anchor_image": "dataggen/outputs/five_bench/anchors_r43_correct/edit5/0009_bear.png",
+  "src_first_frame": "FiVE-Fine-Grained-Video-Editing-Benchmark/images/0009_bear/00001.jpg",
+  "mode": "insert",
+  "pnp_layers": [
+   6,
+   7,
+   8,
+   9
+  ],
+  "is_delete": false,
+  "n_src": 82,
+  "n81": 81,
+  "n41": 41
+ },
+ {
+  "case_id": "edit6/0002_girl-dog",
+  "edit_type": 6,
+  "video_name": "0002_girl-dog",
+  "target_prompt": "A young girl in a wheelchair is moving along a paved path beside a grassy area. The environment is a sunny urban setting with a mix of grass and paved walkways. The camera remains stationary, capturing the girl's smooth movement.",
+  "anchor_image": "dataggen/outputs/five_bench/anchors_r43_correct/edit6/0002_girl-dog.png",
+  "src_first_frame": "FiVE-Fine-Grained-Video-Editing-Benchmark/images/0002_girl-dog/00001.jpg",
+  "mode": "delete",
+  "pnp_layers": [
+   21,
+   26,
+   27,
+   29
+  ],
+  "is_delete": true,
+  "n_src": 86,
+  "n81": 81,
+  "n41": 41
+ }
+]
