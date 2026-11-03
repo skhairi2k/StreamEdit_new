@@ -68,6 +68,16 @@ if [[ "$(nvidia-smi -L | wc -l)" -ne 2 ]]; then
   echo "[r66_smoke_jz] ERROR: expected 2 GPUs, got $(nvidia-smi -L | wc -l)" >&2
   exit 1
 fi
+# imports that need a GPU at import time (wan t5.py, xfuser envs.py), deferred here from jz-env (no driver on the frontal)
+"$PY_CF" - "$CF_DIR" <<'EOF' || { echo "[r66_smoke_jz] ERROR: wan / xfuser import check failed on $(hostname)" >&2; exit 1; }
+import sys
+sys.path.insert(0, sys.argv[1])
+from wan import WanI2V  # noqa: F401
+from xfuser.core.distributed import initialize_model_parallel, init_distributed_environment  # noqa: F401
+from xfuser.core.long_ctx_attention import xFuserLongContextAttention  # noqa: F401
+from wan.distributed.xdit_context_parallel import usp_attn_forward, usp_dit_forward  # noqa: F401
+print("[r66_smoke_jz] wan + xfuser imports OK")
+EOF
 # outputs on $SCRATCH behind a symlink in $WORK/Data
 if [ -L "$LINK" ]; then
   [ "$(readlink "$LINK")" = "$TARGET" ] || { echo "[r66_smoke_jz] ERROR: $LINK links to $(readlink "$LINK"), not $TARGET" >&2; exit 1; }

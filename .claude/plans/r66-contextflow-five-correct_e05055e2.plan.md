@@ -54,7 +54,7 @@ todos:
     needed_by: [jz-smoke, jz-render]
     status: completed
   - id: jz-env-script
-    content: "evaluation/r66_make_contextflow_official_env.sh -- make it run unchanged on the Jean Zay frontal: ENV_PREFIX overridable (Jean Zay: $WORK/envs/contextflow), CONDA_BIN overridable (Jean Zay: the conda of `module load anaconda-py3`), and when CF_DIR has no clone yet: git clone + checkout a9b903edf4 + git apply evaluation/r66_contextflow_frames.patch (as the old script did); FREEZE_OUT overridable (Jean Zay: evaluation/r66_contextflow_official_env_freeze_jz.txt); same pins, same verification; on Jean Zay first prints `idr_quota_user` (read by the user, as in R50: its output is not machine-stable, so no automatic refusal; the env is ~51k files of the 500k $WORK quota), sends the conda package cache to $WORK/.conda/pkgs and turns pip's cache off (nothing in the small $HOME), and prints the env's file count at the end; lab behaviour unchanged"
+    content: "evaluation/r66_make_contextflow_official_env.sh -- make it run unchanged on the Jean Zay frontal: ENV_PREFIX overridable (Jean Zay: $WORK/envs/contextflow), CONDA_BIN overridable (Jean Zay: $CONDA_EXE after `module load anaconda-py3`, where `conda` is a shell function; default $CONDA_EXE, also the fallback when CONDA_BIN is not a file), and when CF_DIR has no clone yet: git clone + checkout a9b903edf4 + git apply evaluation/r66_contextflow_frames.patch (as the old script did); FREEZE_OUT overridable (Jean Zay: evaluation/r66_contextflow_official_env_freeze_jz.txt); same pins, same verification; on Jean Zay first prints `idr_quota_user` (read by the user, as in R50: its output is not machine-stable, so no automatic refusal; the env is ~51k files of the 500k $WORK quota), sends the conda package cache to $WORK/.conda/pkgs and turns pip's cache off (nothing in the small $HOME), and prints the env's file count at the end; lab behaviour unchanged"
     needed_by: [jz-env]
     status: completed
   - id: jz-push-script
@@ -125,16 +125,18 @@ steps:
     type: manual
     wait_for: build-cases
     check_hint: "User: commit + push the R66 files (evaluation/r66_*, jz/r66_*, slurm_scripts/five_bench/r66_*_jz.sh, the case JSONs). On Jean Zay: `cd $WORK/StreamEdit_new && git pull && ls evaluation/r66_cases_correct.json evaluation/r66_contextflow_frames.patch slurm_scripts/five_bench/r66_smoke_jz.sh`; `ls $WORK/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/images | wc -l` (the FiVE sources staged by R50); paste the output"
-    status: pending
+    status: completed
+    completed_at: 2026-11-02
   - id: jz-push
     type: manual
     wait_for: jz-sync
     check_hint: "User, on the lab frontal in tmux: `bash jz/r66_push.sh 2>&1 | tee logs/r66_push.log`; paste the tail: per part '<n> files, <bytes>: identical on Jean Zay' and '[r66_push] failures: 0'"
-    status: pending
+    status: completed
+    completed_at: 2026-11-02
   - id: jz-env
     type: manual
     wait_for: jz-push
-    check_hint: "User, on the Jean Zay frontal (PyPI and GitHub reachable there): `cd $WORK/StreamEdit_new && module purge && module load anaconda-py3 && CONDA_BIN=$(which conda) ENV_PREFIX=$WORK/envs/contextflow CF_DIR=$WORK/code/ContextFlow CF_WEIGHTS=$WORK/weights/Wan2.1-I2V-14B-480P FREEZE_OUT=evaluation/r66_contextflow_official_env_freeze_jz.txt bash evaluation/r66_make_contextflow_official_env.sh 2>&1 | tee logs/r66_setup_env_jz.log`; paste the [pins] lines and 'import check OK'; then bring the freeze file to the lab (rsync) and `diff` it with evaluation/r66_contextflow_official_env_freeze.txt (expect identical)"
+    check_hint: "User, on the Jean Zay frontal (PyPI and GitHub reachable there): `cd $WORK/StreamEdit_new && module purge && module load anaconda-py3 && CONDA_BIN=$CONDA_EXE ENV_PREFIX=$WORK/envs/contextflow CF_DIR=$WORK/code/ContextFlow CF_WEIGHTS=$WORK/weights/Wan2.1-I2V-14B-480P FREEZE_OUT=evaluation/r66_contextflow_official_env_freeze_jz.txt bash evaluation/r66_make_contextflow_official_env.sh 2>&1 | tee logs/r66_setup_env_jz.log`; paste the [pins] lines and 'import check OK' (on the frontal: 'wan + xfuser imports: deferred', no GPU driver there; r66_smoke_jz.sh runs them on the H100 node; a build stopped at the import check is finished with the same command + CHECK_ONLY=1); then bring the freeze file to the lab (rsync) and `diff` it with evaluation/r66_contextflow_official_env_freeze.txt (expect identical)"
     status: pending
   - id: jz-smoke
     type: manual
@@ -321,9 +323,11 @@ bash jz/r66_push.sh 2>&1 | tee logs/r66_push.log            # lab frontal, tmux
 ```bash
 # Jean Zay frontal
 cd $WORK/StreamEdit_new && module purge && module load anaconda-py3
-CONDA_BIN=$(which conda) ENV_PREFIX=$WORK/envs/contextflow CF_DIR=$WORK/code/ContextFlow \
+CONDA_BIN=$CONDA_EXE ENV_PREFIX=$WORK/envs/contextflow CF_DIR=$WORK/code/ContextFlow \
 CF_WEIGHTS=$WORK/weights/Wan2.1-I2V-14B-480P FREEZE_OUT=evaluation/r66_contextflow_official_env_freeze_jz.txt \
   bash evaluation/r66_make_contextflow_official_env.sh 2>&1 | tee logs/r66_setup_env_jz.log
+# 2026-11-02: the first build stopped at the import check (xfuser and wan query the GPU at import; the frontal has no
+# driver); finish it without reinstalling: same command with CHECK_ONLY=1 ... | tee -a logs/r66_setup_env_jz.log
 ```
 
 ### jz-smoke
