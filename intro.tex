@@ -1,0 +1,36 @@
+\section{Introduction}
+\label{sec:intro}
+
+%Broad motivation
+Video editing aims to transform an input video according to a textual or visual instruction while faithfully preserving content unrelated to the requested change. Building on powerful pre-trained video-generation models such as Wan~\cite{wan2025} and Self-Forcing~\cite{selfforcing2025}, recent training-free methods have achieved compelling editing results without task-specific fine-tuning or curated training data.
+
+%Limitation of prior work
+
+These methods steer a frozen generator between source preservation and target adherence, typically through inversion, attention injection, or velocity manipulation (citations!!). However, their editability–preservation trade-off is generally governed by manually selected global control settings shared across spatial locations and video frames. Such global control overlooks the heterogeneous nature of editing demand, which varies not only across editing tasks but, at a finer granularity, across spatial locations and frames within a video. A setting strong enough to realize a substantial structural change, such as object insertion or replacement, may also alter unrelated content, while a more conservative setting may preserve the scene but leave the requested transformation under-realized.
+Prior work addresses part of this problem by determining \emph{where} editing should act. Training-free video methods rely on user-supplied masks or attention-derived spatial supports to gate editing operations (Object-WIPER ~\cite{objwiper}, FlowDirector ~\cite{flowdirector}), while a recent related image-editing work infers editable regions from trajectory divergence (Follow-Your-Shape ~\cite{fys}). Such methods typically use binary support masks, sometimes softened to smooth the transition between edited regions and the background, but do not represent the degree of editability required at each location. The complementary question of \emph{how much} to edit remains open for training-free video editors. In image editing, it has been explored by Differential Diffusion ~\cite{diffdiff}, which enables continuous per-pixel edit strengths, but requires an external user-provided change map. 
+
+%Motivation of our method
+
+This raises a natural question: \textbf{can a training-free video editor infer, from its own editing process, both where to edit and how strongly?} Our key insight is to use a short, permissive \emph{draft} as a diagnostic probe of the editor's own behavior. Through source preservation relaxation, we measure draft-source divergence to identify where substantial transformations naturally emerge. By combining this divergence with source- and target-branch attention, we maintain robust focus on the requested concepts. Together, these signals yield a continuous, support-aware \emph{edit-demand field} that dictates not just the edit's footprint, but the exact degree of modification required at each pixel.
+
+%Broad explanation of our method 
+Building on this observation, we propose \textbf{X}, a plug-and-play method for adaptive
+edit strength in training-free video editing. Starting from a short, permissive draft, X estimates editable support and continuous per-token edit demand, then converts this demand into the host editor's native control.
+We normalize divergence using a single fixed reference shared across videos and host methods, and derive
+the control conversion from each editor's update rule rather than fitting a mapping to generated results. This allows X to replace globally shared control with spatially varying control while leaving the underlying editing mechanism unchanged. We instantiate our method on two training-free video editors covering complementary conditioning modalities. First, we consider visually prompted StreamEdit ~\cite{streamedit2026}, a few-step streaming editor which uses an edited first frame as a visual prompt to guide subsequent video frames. Its editing mechanism couples parallel source and target branches through query--key blending and source-feature injection. Second, we consider text-conditioned Wan-Edit ~\cite{five2025}, a FlowEdit-style editor ~\cite{flowedit} which performs inversion-free video editing through source- and target-conditioned velocity differences, with the editing start step controlling when the correction is applied. These two settings allow us to evaluate whether the same draft-derived edit-demand estimation transfers across both conditioning modalities and distinct editing mechanisms, without modifying the underlying host methods.
+
+%Eval Setup
+We evaluate X on FiVE-Bench~\cite{five2025}, comparing each adaptive editor against its own tuned global-control baseline over a range of control settings at equal total sampling budget, including the draft. We further compare against simpler spatial-control alternatives to assess whether continuous, draft-derived edit demand
+provides benefits beyond spatial localization alone.
+
+%Contributions
+Overall, our contributions are as follows:
+\begin{itemize}
+    \item \textbf{Draft-derived edit-demand field.}
+    We estimate per-token edit demand from a short draft, combining attention-based support with draft--source divergence scaled by fixed references rather than per video.
+    \item \textbf{Exposure-matched control mapping.}
+    We map this demand to each editor's native control by inverting a response computed from its update rule, without fitting to rendered outputs.
+    \item \textbf{Evaluation on two editing mechanisms.}
+    On FiVE-Bench-Correct (should be introduced.. where and how?), we apply the same procedure to StreamEdit
+    and Wan-Edit and compare each against its global-control sweep at equal sampling budget.
+\end{itemize}

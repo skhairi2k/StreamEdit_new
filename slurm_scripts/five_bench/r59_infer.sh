@@ -1,10 +1,12 @@
 #!/bin/bash
 # R59 render-baselines -- StreamEdit (Self-Forcing) + visual prompting, uniform rho, on the 415 FiVE-Bench-Correct pairs.
 #
-# ARRAY LAYOUT: 9 tasks, one per arm (each loops ALL 6 edit types: 98/100/99/99/9/10 = 415 pairs, counts read from the JSONs):
+# ARRAY LAYOUT: 16 tasks, one per arm (each loops ALL 6 edit types: 98/100/99/99/9/10 = 415 pairs, counts read from the JSONs):
 #   task 0    -> native baseline       N = 15, rho = 2     (method r59_n15_rho2_vp)
 #   tasks 1-8 -> equal-NFE curve       N = 20, rho in {2,3,4,6,8,10,20,50}  (method r59_n20_rho{R}_vp; N=20 = se_max's 5 + 15 steps;
 #                                      rho = 2 is the equal-NFE baseline, the 8-rho curve is R39's, re-rendered on Correct)
+#   tasks 9-15 -> native-budget curve  N = 15, rho in {3,4,6,8,10,20,50}  (method r59_n15_rho{R}_vp; with task 0 (rho = 2) this is the tuned
+#                                      uniform-rho curve at the official 15-step cost; added 2026-11-02 -- tasks 0-8 are unchanged)
 # Sampler byte-identical to r39_infer.sh apart from the inputs: fg_boost 4, flow_shift 1.0, seed 0 (chunk 21 / overlap 1 / sink 0 are
 # run_fivebench.py defaults). INPUTS differ: prompts + trigger words from evaluation/five_bench_correct (--edit_json_dir, absolute: the
 # runner resolves it after its chdir) and anchors from anchors_r43_correct. Every anchor changed, so nothing from R39 is reused.
@@ -21,10 +23,11 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:1
+#SBATCH --cpus-per-task=16
 #SBATCH --hint=nomultithread
 #SBATCH --mem=64G
 #SBATCH --time=24:00:00
-#SBATCH --array=0-8
+#SBATCH --array=0-15
 #SBATCH --output=logs/r59_infer_%A_%a.out
 #SBATCH --error=logs/r59_infer_%A_%a.err
 
@@ -37,12 +40,15 @@ ANCHOR_ROOT="$FIVE_ROOT/anchors_r43_correct"
 EDIT_JSON_DIR="$REPO/evaluation/five_bench_correct"
 OUT_ROOT="$FIVE_ROOT/r59_rho_sweep"
 
-RHOS=(2 3 4 6 8 10 20 50)
+RHOS=(2 3 4 6 8 10 20 50)         # N = 20, tasks 1-8
+RHOS15=(3 4 6 8 10 20 50)         # N = 15, tasks 9-15 (rho = 2 is task 0)
 TID=${SLURM_ARRAY_TASK_ID}
-if [ -z "$TID" ] || [ "$TID" -lt 0 ] || [ "$TID" -gt 8 ]; then
-  echo "[r59_infer] bad array id '${TID}' (expected 0-8)"; exit 1
+if [ -z "$TID" ] || [ "$TID" -lt 0 ] || [ "$TID" -gt 15 ]; then
+  echo "[r59_infer] bad array id '${TID}' (expected 0-15)"; exit 1
 fi
-if [ "$TID" -eq 0 ]; then STEPS=15; R=2; else STEPS=20; R=${RHOS[$((TID - 1))]}; fi
+if   [ "$TID" -eq 0 ]; then STEPS=15; R=2
+elif [ "$TID" -le 8 ]; then STEPS=20; R=${RHOS[$((TID - 1))]}
+else                        STEPS=15; R=${RHOS15[$((TID - 9))]}; fi
 METHOD="r59_n${STEPS}_rho${R}_vp"
 
 cd "$REPO" || exit 1

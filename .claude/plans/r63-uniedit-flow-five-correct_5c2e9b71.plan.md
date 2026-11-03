@@ -6,44 +6,51 @@ todos:
   - id: setup-script
     content: "slurm_scripts/five_bench/r63_setup.sh -- run with bash on the frontal: pip install opencv-python-headless==4.10.0.84 into ~/anaconda3/envs/unieditflow (no other package touched); hf download Wan-AI/Wan2.1-T2V-1.3B-Diffusers --revision 0fad780a534b6463e45facd96134c9f345acfa5b into the default HF cache; import check (torch, diffusers, transformers, cv2; diffusers >= 0.33 asserted); writes the env's pip freeze + torch/CUDA versions + the model revision to evaluation/r63_unieditflow_freeze.txt; exit 1 on any failure"
     needed_by: [setup]
-    status: pending
+    status: completed
   - id: render-script
     content: "evaluation/r63_uniedit_render.py -- unieditflow python; sys.path gets UniEdit-Flow_diffusers/ (schedulers, utils.encode_video/decode_video/pack_edit_input/seed_everything) and evaluation/ (r48_wan_common.load_cases / expected_frames / FIVE); args --cases --edit_json_dir (default evaluation/five_bench_correct) --edit_type (optional filter) --out_root --alpha 0.8 --omega 5.0 --step 25 --flow_shift 3.0 --seed 0 --model_path Wan-AI/Wan2.1-T2V-1.3B-Diffusers --revision 0fad780a… --verify; loads VAE (fp32) + WanPipeline (bf16) once, as demo_wan_video_edit.py; per pair: skip if expected_frames(n_src) PNGs exist; seed_everything(seed); frames = wan-edit load_frames logic (cv2, first min(41, n), resize 832×480, BGR→RGB) truncated to 4k+1, as PIL list; encode → invert (UniInvEulerScheduler, prompt '', guidance 1.0) → edit (UniEditEulerScheduler, [source_prompt, target_prompt] from the Correct JSON, guidance 1.0) → decode edit_latents[:1] as the demo does (UniEditEulerScheduler.step writes the same fused update into both batch slots, so they are identical) → {out_root}/edit{T}/{video}/00000.png…; skips the demo's ae_video / invert_noise_video exports; appends case_id, n_frames, seconds to {out_root}/_manifest_edit{T}.csv; logs hyperparameters, versions, node and GPU at start; prints '[r63_render] failures: N' and exits 1 if N > 0; --verify only counts complete clips per type and prints '[r63_render] missing: N'"
     needed_by: [smoke, render]
-    status: pending
+    status: completed
   - id: render-sbatch
     content: "slurm_scripts/five_bench/r63_render.sh -- MODE smoke|full; L40S, 1 GPU, --exclude=node52, 64G, --time=24:00:00 (smoke overridden on the command line), logs/r63_render_%A_%a.{out,err}; HF_HUB_OFFLINE=1, PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True; smoke = --cases evaluation/r57_smoke_cases.json, out $D/r63_uniedit_flow/smoke; full = --cases evaluation/r43_anchor_manifest_correct.json --edit_type $((SLURM_ARRAY_TASK_ID + 1)), out $D/r63_uniedit_flow/full; after the render, runs the driver with --verify and fails the task if anything is missing"
     needed_by: [smoke, render]
-    status: pending
+    status: completed
 steps:
   - id: setup
     type: local
     command: bash slurm_scripts/five_bench/r63_setup.sh
     output_paths:
       - evaluation/r63_unieditflow_freeze.txt
-    status: pending
+    status: completed
+    completed_at: 2026-10-28
   - id: smoke
     type: sbatch
     wait_for: setup
     command: sbatch --time=02:00:00 slurm_scripts/five_bench/r63_render.sh smoke
-    status: pending
+    status: completed
+    completed_at: 2026-10-28
+    job_id: "1071481"
   - id: check-smoke
     type: manual
     wait_for: smoke
     check_hint: "logs/r63_render_{job_id}_*.out: 'failures: 0', 'missing: 0'; 3 dirs under ~/Data/dataggen/outputs/five_bench/r63_uniedit_flow/smoke/edit{1,5,6}/ with expected_frames(n_src) PNGs each, 832×480; seconds per clip from _manifest_edit*.csv → full-run estimate per type (must fit 24 h for ~100 clips); look at the frames: bus→jeep visible, guitar→violin visible, hike removal attempted, background close to source, no colour drift or flicker that points at a VAE/scale bug"
-    status: pending
+    status: completed
+    completed_at: 2026-10-29
   - id: render
     type: sbatch
     wait_for: check-smoke
     command: sbatch --array=0-5 slurm_scripts/five_bench/r63_render.sh full
     sets_status: running
-    status: pending
+    status: completed
+    completed_at: 2026-10-30
+    job_id: "1076749"
   - id: wait-render
     type: manual
     wait_for: render
     check_hint: "sacct -j {job_id}: 6/6 COMPLETED; every log 'failures: 0' and 'missing: 0'; clip dirs per type under ~/Data/dataggen/outputs/five_bench/r63_uniedit_flow/full/ = 98/100/99/99/9/10 (415). A task that hit the time limit is resubmitted alone with its --array index (the driver skips finished clips)"
     sets_status: finished
-    status: pending
+    status: completed
+    completed_at: 2026-11-01
   - id: eval
     type: local
     wait_for: wait-render

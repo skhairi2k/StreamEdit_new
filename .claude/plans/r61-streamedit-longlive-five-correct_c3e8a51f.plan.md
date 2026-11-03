@@ -20,29 +20,29 @@ todos:
     needed_by: [smoke]
     status: completed
   - id: sweep-sbatch
-    content: "slurm_scripts/five_bench/r61_sweep.sh -- clone of r45_sweep.sh: array 0-7 over RHOS (2 3 4 6 8 10 20 50), first argument N in {15, 20} (no r45_select.py lookup), run_fivebench.py --backbone ll --edit_json_dir evaluation/five_bench_correct --first_frame_edit_dir $D/anchors_r43_correct, fg_boost 2, flow_shift 1.0, seed 0; METHOD r61_ll_rho{R}_n{N}, OUT_ROOT $D/r61_sweep/n{N}; EXPECTED (98 100 99 99 9 10), total 415; same skip/resume, count and manifest guards; refuses if git status shows uncommitted changes under evaluation/five_bench_correct or r43_anchor_manifest_correct.json, logs the commit"
+    content: "slurm_scripts/five_bench/r61_sweep.sh -- as R59's r59_infer.sh (not R45's r45_sweep.sh, superseded): array 0-7 over RHOS (2 3 4 6 8 10 20 50), first argument N in {15, 20}, run_fivebench.py --backbone ll --edit_json_dir evaluation/five_bench_correct --first_frame_edit_dir $D/anchors_r43_correct, fg_boost 2, flow_shift 1.0, seed 0; METHOD r61_ll_rho{R}_n{N}, OUT_ROOT $D/r61_sweep/n{N}; EXPECTED from the Correct JSONs directly (98 100 99 99 9 10, total 415); same skip/resume, count and manifest guards; PROMPT GUARD: r59_check_prompts.py on each edit type's _prompts.json (also when skipped) and once over all types at the end, consistent with R59/R60; refuses if evaluation/five_bench_correct or r43_anchor_manifest_correct.json has uncommitted changes (git diff --quiet HEAD), logs the commit. DONE 2026-10-26."
     needed_by: [sweep-n15, sweep-n20]
-    status: pending
+    status: completed
   - id: stage1-sbatch
-    content: "slurm_scripts/five_bench/r61_ll_stage1.sh -- clone of r55_ll_stage1.sh: --cases_json evaluation/r43_anchor_manifest_correct.json, --edit_json_dir evaluation/five_bench_correct, ANCHOR_ROOT $D/anchors_r43_correct; out $D/r61_ll_stage1 (frames + latents) and $D/r61_ll_attn; EXPECT (98 100 99 99 9 10); 415 attention + 415 latent npz guards"
+    content: "slurm_scripts/five_bench/r61_ll_stage1.sh -- as R59's r59_se_stage1.sh (SF -> LL, R55's porting): --backbone ll, --cases_json evaluation/r43_anchor_manifest_correct.json, --edit_json_dir evaluation/five_bench_correct (absolute), ANCHOR_ROOT $D/anchors_r43_correct; out $D/r61_ll_stage1 (frames + latents) and $D/r61_ll_attn; EXPECT from the cases file (98 100 99 99 9 10); 415 attention + 415 latent npz guards; PROMPT GUARD: r59_check_prompts.py on $OUT/latents/_prompts_edit*.json against the Correct JSONs + anchors_r43_correct, consistent with R59/R60. DONE 2026-10-27."
     needed_by: [se-chain]
-    status: pending
+    status: completed
   - id: div-sbatch
-    content: "slurm_scripts/five_bench/r61_div.sh -- clone of r55_div.sh: array 0-1 (dino, lpips), --cases evaluation/r43_anchor_manifest_correct.json, target $D/r61_ll_stage1/frames/n5_tgt09/step04, latents $D/r61_ll_stage1/latents, out $D/r61_div/se_{metric}; 415-npz guard"
+    content: "slurm_scripts/five_bench/r61_div.sh -- as R59's r59_div.sh (SF -> LL): array 0-1 (dino, lpips), --cases evaluation/r43_anchor_manifest_correct.json, target $D/r61_ll_stage1/frames/n5_tgt09/step04, latents $D/r61_ll_stage1/latents, out $D/r61_div/se_{metric}; 415-npz guard; no prompt guard here (R59's rule: divergence reads only source videos + draft frames, no prompts; the draft's guard is in stage1-sbatch). DONE 2026-10-27."
     needed_by: [se-chain]
-    status: pending
+    status: completed
   - id: field-sbatch
-    content: "slurm_scripts/five_bench/r61_field.sh -- clone of r55_field.sh: r49_field.py --selftest, then --hosts se --cases evaluation/r43_anchor_manifest_correct.json --attn_se $D/r61_ll_attn --div_root $D/r61_div --out_root $D/r61_field; 415-npz guard on se_max"
+    content: "slurm_scripts/five_bench/r61_field.sh -- as R59's r59_field.sh (SF -> LL): r49_field.py --selftest, then --hosts se --cases evaluation/r43_anchor_manifest_correct.json --attn_se $D/r61_ll_attn --div_root $D/r61_div --out_root $D/r61_field; 415-npz guard on se_max. DONE 2026-10-27."
     needed_by: [se-chain]
-    status: pending
+    status: completed
   - id: stage3-sbatch
-    content: "slurm_scripts/five_bench/r61_ll_stage3.sh -- clone of r55_ll_stage3.sh: --edit_json_dir evaluation/five_bench_correct, ANCHOR_ROOT $D/anchors_r43_correct, FIELD_DIR $D/r61_field/se_max, METHOD r61_max_ll, OUT_ROOT $D/r61_ll_arms; EXPECT (98 100 99 99 9 10); per-type count + manifest guards"
+    content: "slurm_scripts/five_bench/r61_ll_stage3.sh -- as R59's r59_se_stage3.sh (SF -> LL): --backbone ll, --edit_json_dir evaluation/five_bench_correct (absolute), ANCHOR_ROOT $D/anchors_r43_correct, FIELD_DIR $D/r61_field/se_max, METHOD r61_max_ll, OUT_ROOT $D/r61_ll_arms; EXPECT from the cases file (98 100 99 99 9 10); per-type count + manifest guards; PROMPT GUARD: r59_check_prompts.py on $OUT_ROOT/$METHOD/_prompts_edit*.json, consistent with R59/R60. DONE 2026-10-27."
     needed_by: [se-chain]
-    status: pending
+    status: completed
   - id: chain-driver
-    content: "slurm_scripts/five_bench/r61_chain.sh -- lab driver: refuses if logs/r61_chain_jobs.txt exists or the Correct files are uncommitted; prints the queue count; submits stage1 -> div (--array=0-1, afterok) -> field (afterok) -> stage3 (afterok); writes '<stage> <id>' lines headed by the commit to logs/r61_chain_jobs.txt"
+    content: "slurm_scripts/five_bench/r61_chain.sh -- as R59's r59_se_chain.sh / R60's r60_chain.sh: refuses if logs/r61_chain_jobs.txt exists or the Correct files are uncommitted; checks the per-user Slurm submit cap BEFORE submitting anything (queue + 5 tasks > 30 -> refuse; R61_QUEUE_CAP overrides), as R59/R60; submits stage1 -> div (--array=0-1, afterok) -> field (afterok) -> stage3 (afterok); writes '<stage> <id>' lines headed by the commit to logs/r61_chain_jobs.txt. DONE 2026-10-27."
     needed_by: [se-chain]
-    status: pending
+    status: completed
   - id: eval-driver
     content: "slurm_scripts/five_bench/r61_eval_all.sh -- argument arms|sweeps; arms = r61_ll_rho2_n15, r61_ll_rho2_n20, r61_max_ll; sweeps = the other 14 sweep methods; per method calls R57's `bash slurm_scripts/five_bench/eval_suite.sh --method M --root ROOT --layout edit_video --edit_json_dir evaluation/five_bench_correct --tag r61`; refuses if eval_suite.sh is missing or a render root has != 415 frame dirs; appends '<method> <metrics_id> <cf_id> <merge_id>' to logs/r61_eval_jobs.txt"
     needed_by: [eval-arms, eval-sweeps]
@@ -55,34 +55,42 @@ steps:
   - id: smoke
     type: sbatch
     command: sbatch slurm_scripts/five_bench/r61_smoke.sh
-    status: pending
+    status: completed
+    job_id: "1073223 PASSED 2026-10-29 (G1-G4 all PASS, failures: 0); earlier attempts 1067713 FAILED at preflight (/store unreadable on node39) and 1072463 FAILED (run_fivebench.py edit_json_dir resolved post-chdir, plus a vacuous-pass bug in G2's own comparison gate), both fixed -- see Decisions"
   - id: wait-smoke
     type: manual
     wait_for: smoke
     check_hint: "logs/r61_smoke_{job_id}.out: G1-G4 PASS, 'failures: 0', no Traceback in .err"
-    status: pending
+    status: completed
   - id: sweep-n15
     type: sbatch
     wait_for: wait-smoke
     command: sbatch --array=0-7 slurm_scripts/five_bench/r61_sweep.sh 15
     sets_status: running
-    status: pending
+    status: completed
+    completed_at: 2026-10-29
+    job_id: "1073924"
   - id: sweep-n20
     type: sbatch
     wait_for: wait-smoke
     command: sbatch --array=0-7 slurm_scripts/five_bench/r61_sweep.sh 20
-    status: pending
+    status: completed
+    completed_at: 2026-10-30
+    job_id: "1076744"
   - id: se-chain
     type: local
     wait_for: wait-smoke
     command: bash slurm_scripts/five_bench/r61_chain.sh
-    status: pending
+    status: completed
+    completed_at: 2026-10-29
+    job_id: "stage1 1073527 -> div 1073528 -> field 1073529 -> render 1073530"
   - id: wait-renders
     type: manual
     wait_for: [sweep-n15, sweep-n20, se-chain]
     check_hint: "no r61 job in squeue; every r61_sweep / r61_ll_stage* / r61_div / r61_field log 'failures: 0'; 16 sweep methods x 415 frame dirs with all-ok manifests; 415 attention + latent npz, 2 x 415 divergence npz, 415 field npz, 415 r61_max_ll step14 renders"
     sets_status: finished
-    status: pending
+    status: completed
+    completed_at: 2026-11-01
   - id: r57-check
     type: manual
     check_hint: "R57 is `analyzed` on the workboard (suite adopted after both smokes) and slurm_scripts/five_bench/eval_suite.sh exists"
@@ -134,8 +142,8 @@ Done when: the 16 sweep methods and se_max_ll are rendered on the 415 pairs, sco
 | # | Step id | Type | Waits for | Sets status |
 |---|---|---|---|---|
 | 0 | *(prep)* `stage1-json-dir`, `stage3-json-dir`, `smoke-cases-json`, `smoke-sbatch`, `sweep-sbatch`, `stage1-sbatch`, `div-sbatch`, `field-sbatch`, `stage3-sbatch`, `chain-driver`, `eval-driver`, `score-script` | /build-step | — | implemented |
-| 1 | `smoke` | sbatch (node39) | — | — |
-| 2 | `wait-smoke` | manual | smoke | — |
+| 1 | `smoke` | sbatch (node39) | — | done |
+| 2 | `wait-smoke` | manual | smoke | done |
 | 3 | `sweep-n15` | sbatch (array 0-7) | wait-smoke | running |
 | 4 | `sweep-n20` | sbatch (array 0-7) | wait-smoke | — |
 | 5 | `se-chain` | local (submits 5 queue entries) | wait-smoke | — |
@@ -163,6 +171,10 @@ Invoke: `/run-step R61 smoke`, `/run-step R61 wait-smoke`, `/run-step R61 sweep-
 | ρ sweeps | ρ ∈ {2, 3, 4, 6, 8, 10, 20, 50} at N = 15 and N = 20 → 16 methods `r61_ll_rho{R}_n{N}` |
 | Correct plumbing | shared `--edit_json_dir` on `r31_stage1.py` / `r31_stage3.py` (default unchanged, reused by R59 / R60); `r31_divergence.py` and `r49_field.py` read no prompts, so they are unchanged |
 | Benchmark freeze | sweep script and chain driver refuse to run with uncommitted changes to the Correct JSONs or manifest, and log the commit |
+| Consistency with R59/R60 (2026-10-27) | R61's scripts follow the pattern R59/R60 settled on after this plan was written: (1) the prompt-provenance sidecar (`r59_check_prompts.py`, already baked into `r31_stage1.py` / `r31_stage3.py` / `run_fivebench.py`) is checked after every render, not just written; (2) the chain driver enforces the per-user Slurm submit cap (30 tasks, `R61_QUEUE_CAP` override) before submitting anything, as `r59_se_chain.sh` / `r60_chain.sh` do |
+| Attention recorder empty-side fix (2026-10-28) | R59's rerun (job 1068493, 2026-10-28) found that FiVE-Correct has pairs with an empty `source_object` (pure addition, edit5) or empty `target_object` (pure removal, edit6, e.g. our own smoke pair `0042_gym-ball`) and fixed Self-Forcing's `wan/modules/model.py` recorder to skip an empty side (`if len(idx) == 0: continue`) instead of asserting. This was never ported to LongLive's `wan/modules/model.py` (still had the old unconditional `assert len(idx) > 0`), which would have crashed R61's smoke G3/G4 and the real stage1/stage3 runs on edit5/edit6. Ported verbatim 2026-10-28, confirmed no running job used LongLive at the time |
+| `/store` is frontal-only, not per-node (corrected 2026-10-28) | Smoke job 1067713 failed its preflight: `$D/r45_sweep` (G2's comparison reference) is a `/store`-backed symlink, and `/store` turned out to be readable only on the lab frontal, never from any compute node (node39, where this job was pinned specifically for it, does NOT have it either — the earlier memory note was wrong). Fix: the smoke script no longer reads `r45_sweep` live; it reads a STAGED copy at `$D/r61_ref/ll_rho2_n15_vp`, which the user copies from the frontal before submitting (2 clips, see the script's header comment); the `--nodelist=node39` pin was removed as pointless |
+| `run_fivebench.py`'s `--edit_json_dir` resolved post-chdir (fixed 2026-10-29) | Smoke job 1072463 (after the `/store` fix above) failed G2/G3 with `FileNotFoundError` on `LongLive_StreamEdit/evaluation/five_bench_correct/edit{1,6}_FiVE.json`: `run_fivebench.py:267` resolved `--edit_json_dir` to an absolute path AFTER `bb.activate()` chdirs into the backbone build dir, so the smoke script's relative `evaluation/five_bench_correct` resolved against the wrong cwd. Every sibling path arg (`data_root`, `out_root`, `first_frame_edit_dir`, `cases_json`, ...) is deliberately resolved before that chdir; `edit_json_dir` was missed when R59 added the flag. `r61_sweep.sh` and R59's own scripts were unaffected because they already pass a `$REPO`-absolute path, but the bug was in shared code, so fixed at the source (moved the resolution into the pre-chdir block). Also found and fixed a vacuous pass in the smoke script's own G2 comparison gate: it exited 0 whenever both render dirs were missing (`n_checked == 0`), instead of failing; now requires every clip to actually be checked |
 | Metrics | R57 unified suite only (harness incl. motion fidelity, FiVE-Acc, CLIP-D, EditReward, PSC, CF), tag `r61`; scoring blocked until R57 is adopted |
 | Eval order | 3 main arms first, then the 14 other sweep methods |
 | Scoring | plain per-clip means over 415; figures x = alignment (FiVE-Acc, CLIP-D, CLIP-T, EditReward, PSC), y = bg LPIPS; no CIs |
@@ -275,11 +287,11 @@ flowchart LR
 | `evaluation/r31_stage3.py` | Same flag and header line. |
 | `evaluation/r61_smoke_cases.json` (new) | Two entries copied from `r43_anchor_manifest_correct.json`: `edit1/0001_bus`, `edit6/0042_gym-ball`. |
 | `slurm_scripts/five_bench/r61_smoke.sh` (new) | L40S, 3 h, `--nodelist=node39`; preflight `ls $D/r45_sweep/n15/ll_rho2_n15_vp/edit1`; G1 Python check of counts / pair sets / anchor files; G2 `run_fivebench.py` ll ρ=2 N=15 into `$D/r61_smoke/sweep`, frames compared with `r45_sweep` (must differ), grep the Correct `target_prompt` of 0042 in the log; G3 stage1 → `r31_divergence.py` (dino, lpips) → `r49_field.py` → stage3 into `$D/r61_smoke/{stage1,attn,div,field,arms}`, q finite in [0, 1], frame counts equal G2's; G4 stage1 default path on 0001_bus e1 with `$D/anchors`, latents `np.array_equal` to `$D/r55_smoke/on`; `failures: N`. |
-| `slurm_scripts/five_bench/r61_sweep.sh` (new) | Copy of `r45_sweep.sh`: drop the `r45_select.py` block (`case 15|20`), `--edit_json_dir evaluation/five_bench_correct`, `ANCHOR_ROOT=$FIVE_ROOT/anchors_r43_correct`, `EXPECTED=(98 100 99 99 9 10)`, `TOTAL_EXPECTED=415`, `METHOD=r61_ll_rho${R}_n${STEPS}`, `OUT_ROOT=$FIVE_ROOT/r61_sweep/n${STEPS}`; `git status --porcelain` freeze check + commit echo before the loop. |
-| `slurm_scripts/five_bench/r61_ll_stage1.sh` (new) | Copy of `r55_ll_stage1.sh` with Correct cases, `--edit_json_dir`, Correct anchors, `OUT=$D/r61_ll_stage1`, `ATTN=$D/r61_ll_attn`, `EXPECT=(98 100 99 99 9 10)`. |
-| `slurm_scripts/five_bench/r61_div.sh` (new) | Copy of `r55_div.sh` with `CASES=evaluation/r43_anchor_manifest_correct.json`, `r61_ll_stage1` targets / latents, `--out_root $D/r61_div`, 415 guard. |
-| `slurm_scripts/five_bench/r61_field.sh` (new) | Copy of `r55_field.sh` with Correct cases, `--attn_se $D/r61_ll_attn --div_root $D/r61_div --out_root $D/r61_field`, 415 guard. |
-| `slurm_scripts/five_bench/r61_ll_stage3.sh` (new) | Copy of `r55_ll_stage3.sh` with `--edit_json_dir`, Correct anchors, `FIELD_DIR=$D/r61_field/se_max`, `METHOD=r61_max_ll`, `OUT_ROOT=$D/r61_ll_arms`, `EXPECT=(98 100 99 99 9 10)`. |
-| `slurm_scripts/five_bench/r61_chain.sh` (new) | As `r55_chain.sh` minus the eval / motion submissions; freeze check; `logs/r61_chain_jobs.txt`. |
+| `slurm_scripts/five_bench/r61_sweep.sh` (new) | Copy of R59's `r59_infer.sh` with `--backbone ll`, `ANCHOR_ROOT=$FIVE_ROOT/anchors_r43_correct`, `fg_boost_factor 2` (LongLive-native, not SF's 4), `METHOD=r61_ll_rho${R}_n${STEPS}`, `OUT_ROOT=$FIVE_ROOT/r61_sweep/n${STEPS}`, array 0-7 (one `$1` value per sbatch call instead of R59's single 9-task array); `git diff --quiet HEAD` freeze check + commit echo before the loop; `r59_check_prompts.py` after each edit type and once over all types, as R59. **Built 2026-10-26.** |
+| `slurm_scripts/five_bench/r61_ll_stage1.sh` (new) | Copy of R59's `r59_se_stage1.sh` with `--backbone ll`, Correct cases/anchors, `fg_boost_factor 2` (R55's LongLive setting), `OUT=$D/r61_ll_stage1`, `ATTN=$D/r61_ll_attn`, `EXPECT` from the cases file; `r59_check_prompts.py` on the stage-1 sidecar, as R59. |
+| `slurm_scripts/five_bench/r61_div.sh` (new) | Copy of R59's `r59_div.sh` (backbone-agnostic) with `CASES=evaluation/r43_anchor_manifest_correct.json`, `r61_ll_stage1` targets / latents, `--out_root $D/r61_div`, 415 guard; no prompt guard, as R59. |
+| `slurm_scripts/five_bench/r61_field.sh` (new) | Copy of R59's `r59_field.sh` (backbone-agnostic) with Correct cases, `--attn_se $D/r61_ll_attn --div_root $D/r61_div --out_root $D/r61_field`, 415 guard. |
+| `slurm_scripts/five_bench/r61_ll_stage3.sh` (new) | Copy of R59's `r59_se_stage3.sh` with `--backbone ll`, Correct anchors, `fg_boost_factor 2`, `FIELD_DIR=$D/r61_field/se_max`, `METHOD=r61_max_ll`, `OUT_ROOT=$D/r61_ll_arms`, `EXPECT` from the cases file; `r59_check_prompts.py` on the stage-3 sidecar, as R59. |
+| `slurm_scripts/five_bench/r61_chain.sh` (new) | As R59's `r59_se_chain.sh` / R60's `r60_chain.sh`: refuses if `logs/r61_chain_jobs.txt` exists or the Correct files are uncommitted; checks the per-user Slurm submit cap (queue + 7 tasks > 30, `R61_QUEUE_CAP` override) before submitting anything; `logs/r61_chain_jobs.txt`. |
 | `slurm_scripts/five_bench/r61_eval_all.sh` (new) | `case $1 in arms|sweeps)`; method → root map (`$D/r61_sweep/n{N}/r61_ll_rho{R}_n{N}`, `$D/r61_ll_arms/r61_max_ll/step14`); 415-dir guard per root; loop over R57's `eval_suite.sh` with `--layout edit_video --edit_json_dir evaluation/five_bench_correct --tag r61`; parse the three printed job ids into `logs/r61_eval_jobs.txt`. |
 | `evaluation/r61_score.py` (new) | Load the 17 `suite_r61_{method}.csv`; validate rows / NaN; per-clip means; write the four CSVs; plot with `r49_score`'s `plot` helper (x alignment, y `lpips_unedit_part`), N = 15 and N = 20 sweep curves, three marked points. |

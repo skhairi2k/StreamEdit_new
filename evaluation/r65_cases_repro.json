@@ -1,0 +1,18 @@
+[
+ {
+  "case_id": "edit1/0001_bus",
+  "edit_type": 1,
+  "video_name": "0001_bus",
+  "target_prompt": "A jeep is moving steadily along a street lined with trees and construction barriers. The camera remains stationary, capturing the jeep's smooth transit through the urban environment.",
+  "first_frame": "/home/ids/skhairi/Data/five_release/AnyV2V/edit1/0001_bus/video_00000.png",
+  "n_frames": 32
+ },
+ {
+  "case_id": "edit2/0081_A_horse",
+  "edit_type": 2,
+  "video_name": "0081_A_horse",
+  "target_prompt": "A car is driving powerfully across a sandy beach, with waves crashing and seagulls flying overhead. The camera remains fixed, capturing the dolphin's dynamic motion.",
+  "first_frame": "/home/ids/skhairi/Data/five_release/AnyV2V/edit2/0081_A_horse/video_00000.png",
+  "n_frames": 32
+ }
+]

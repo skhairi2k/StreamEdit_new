@@ -39,6 +39,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:1
+#SBATCH --cpus-per-task=16
 #SBATCH --hint=nomultithread
 #SBATCH --mem=32G
 # 20 arms on 9 frames each; R33's 28-arm/11-frame run fit in 2h with room to spare.

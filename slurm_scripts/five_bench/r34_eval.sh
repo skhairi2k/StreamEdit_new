@@ -56,6 +56,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:1
+#SBATCH --cpus-per-task=16
 #SBATCH --hint=nomultithread
 #SBATCH --mem=64G
 # 3h, not r31_eval.sh's 6h: two light metrics (LPIPS + CLIPScore) over 9 frames x 22

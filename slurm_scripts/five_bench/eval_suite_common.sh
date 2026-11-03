@@ -4,11 +4,19 @@
 # Arguments (same for the launcher and every job):
 #   --method NAME          label of the method (CSV column key, file names)
 #   --root DIR             method render root; frames at DIR/edit{T}/{video}/ (--layout edit_video) or DIR/{video}/ (flat)
+#   --unit NAME=DIR        one method, repeatable: a job scores its units one after the other (same tag, layout, cases).
+#                          --method/--root is one unit; the launcher builds units from --batch FILE and groups them
+#                          --per_job K to a job
 #   --layout edit_video|flat           (default edit_video)
 #   --edit_json_dir DIR    FiVE-Bench-Correct annotations (default evaluation/five_bench_correct)
 #   --cases FILE           optional subset, [{"video_name": ..., "edit_type": ...}]; default: every pair of --edit_json_dir
 #   --tag TAG              run tag, part of every output name
-#   --allow_nan COL...     (merge only) metric columns allowed to be NaN, e.g. motion_fidelity_score_edit_part on a full run
+#   --allow_nan COL...     metric columns allowed to be NaN (none needed by default): the merge
+#                          leaves them out of the NaN check, and the metrics job's 'Error:' gate ignores evaluate.py's
+#                          "Error: <COL>: ..." lines for them (any other 'Error:' line still fails the job)
+#   --part all|metrics|cf  (launcher) which GPU job(s) to submit, default all. metrics = the 1-GPU job + a merge without CF,
+#                          cf = the 4-GPU CF job + a full merge (needs the metrics CSVs from an earlier --part metrics run)
+#   --without_cf           (merge) build the tables without CF: its columns are left empty, not NaN (set by --part metrics)
 #
 # Output names (evaluation/csv/):
 #   edit{T}_FiVE_suite_{tag}_{method}_frame_stride8.csv         harness, one file per edit type
@@ -19,11 +27,14 @@
 REPO=/home/ids/skhairi/Code/StreamEdit_bigchantier
 DATA_ROOT=~/Data/FiVE-Fine-Grained-Video-Editing-Benchmark
 WEIGHTS_DIR=~/Data/weights
+# the 147 GB CF judge lives on /work (home quota); /work is readable from the L40S nodes (probe 2026-10-30, node57)
+QWEN72B_DIR=${QWEN72B_DIR:-/work/PERSO/skhairi/weights/Qwen2.5-VL-72B-Instruct}
 PY_FB=/home/ids/skhairi/anaconda3/envs/five-bench/bin/python
 PY_ER=/home/ids/skhairi/anaconda3/envs/editreward/bin/python
 SUITE_DIR=evaluation/eval_suite
 
 METHOD=""; ROOT=""; LAYOUT=edit_video; EDIT_JSON_DIR=evaluation/five_bench_correct; CASES=""; TAG=""; ALLOW_NAN=()
+PART=all; WITHOUT_CF=0; UNITS=()
 
 suite_parse_args() {
   while [ $# -gt 0 ]; do
@@ -35,17 +46,41 @@ suite_parse_args() {
       --cases) CASES=$2; shift 2 ;;
       --tag) TAG=$2; shift 2 ;;
       --allow_nan) shift; while [ $# -gt 0 ] && [[ "$1" != --* ]]; do ALLOW_NAN+=("$1"); shift; done ;;
+      --part) PART=$2; shift 2 ;;
+      --without_cf) WITHOUT_CF=1; shift ;;
+      --unit) UNITS+=("$2"); shift 2 ;;
       *) echo "[eval_suite] unknown argument: $1"; return 1 ;;
     esac
   done
-  [ -n "$METHOD" ] && { [ -n "$ROOT" ] || [ -n "${SUITE_NO_ROOT:-}" ]; } && [ -n "$TAG" ] \
-    || { echo "[eval_suite] --method, --root and --tag are required"; return 1; }
-  [[ "$METHOD" =~ ^[A-Za-z0-9_.-]+$ && "$TAG" =~ ^[A-Za-z0-9_.-]+$ ]] || { echo "[eval_suite] --method/--tag: letters, digits, _ . - only"; return 1; }
+  case "$PART" in all|metrics|cf) ;; *) echo "[eval_suite] --part must be all, metrics or cf"; return 1 ;; esac
+  local c
+  for c in "${ALLOW_NAN[@]}"; do
+    [[ "$c" =~ ^[a-z0-9_]+$ ]] || { echo "[eval_suite] --allow_nan: bad column name '$c'"; return 1; }
+  done
+  [ -n "$METHOD" ] && UNITS=("${METHOD}=${ROOT}" "${UNITS[@]}")
+  [ -n "$TAG" ] || { echo "[eval_suite] --tag is required"; return 1; }
+  [[ "$TAG" =~ ^[A-Za-z0-9_.-]+$ ]] || { echo "[eval_suite] --tag: letters, digits, _ . - only"; return 1; }
+  [ "${#UNITS[@]}" -gt 0 ] || [ -n "${SUITE_NO_UNITS:-}" ] || { echo "[eval_suite] give --method and --root, or --unit NAME=DIR"; return 1; }
+  local u seen=" "
+  for u in "${UNITS[@]}"; do
+    unit_set "$u"
+    [[ "$METHOD" =~ ^[A-Za-z0-9_.-]+$ ]] || { echo "[eval_suite] method '$METHOD': letters, digits, _ . - only"; return 1; }
+    [ -n "$ROOT" ] || [ -n "${SUITE_NO_ROOT:-}" ] || { echo "[eval_suite] method '$METHOD' has no root"; return 1; }
+    [[ "$seen" != *" $METHOD "* ]] || { echo "[eval_suite] method '$METHOD' given twice"; return 1; }
+    seen="${seen}${METHOD} "
+  done
   case "$LAYOUT" in edit_video|flat) ;; *) echo "[eval_suite] --layout must be edit_video or flat"; return 1 ;; esac
-  ROOT=${ROOT/#\~/$HOME}
   CASES_ARG=(); CASES_PY=()
   if [ -n "$CASES" ]; then CASES_ARG=(--cases_json "$CASES"); CASES_PY=(--cases "$CASES"); fi
   JOB=${SLURM_JOB_ID:-local}
+}
+
+# METHOD / ROOT of one unit "NAME=DIR" (split at the first '=')
+unit_set() {
+  METHOD=${1%%=*}
+  ROOT=${1#*=}
+  [ "$ROOT" = "$1" ] && ROOT=""
+  ROOT=${ROOT/#\~/$HOME}
 }
 
 # EXPECT = pair count per edit type (six integers) and ANNOTATIONS = the edit{T}_FiVE.json files of the types with pairs
@@ -104,9 +139,47 @@ PY
 
 # gate of one stage: exit code, 'Error:' lines of its log, optional row-count check run by the caller
 stage_gate() {  # $1 = name, $2 = exit code, $3 = log
-  local NERR NOOM
+  # 'Error:' lines of the --allow_nan columns (evaluate.py prints "Error: <metric>: ...") are counted apart and do not fail
+  local NERR NALLOW=0 NOOM RE
   NERR=$(grep -c 'Error:' "$3"); NOOM=$(grep -c 'out of memory' "$3")
-  echo "[eval_suite] $1 exit=$2 error_lines=${NERR} oom_lines=${NOOM} (log $3)"
-  { [ "$2" -ne 0 ] || [ "$NERR" -ne 0 ]; } && return 1
+  if [ "${#ALLOW_NAN[@]}" -gt 0 ]; then
+    RE="^Error: ($(IFS='|'; echo "${ALLOW_NAN[*]}")):"
+    NALLOW=$(grep -c -E "$RE" "$3")
+  fi
+  echo "[eval_suite] $1 exit=$2 error_lines=$((NERR - NALLOW)) allowed_nan_error_lines=${NALLOW} oom_lines=${NOOM} (log $3)"
+  { [ "$2" -ne 0 ] || [ "$((NERR - NALLOW))" -ne 0 ]; } && return 1
   return 0
+}
+
+# ---- completeness (stage skip on resume, and which merge to run), for the current METHOD
+suite_py() { $PY_FB -I "$SUITE_DIR/suite_common.py" "$@" --edit_json_dir "$EDIT_JSON_DIR" "${CASES_PY[@]}"; }
+
+harness_done() {  # $1 = stem: every pair has a row
+  local TMPJ N
+  TMPJ=$(mktemp -p "${TMPDIR:-/tmp}" suite_miss.XXXXXX)
+  N=$(suite_py harness_missing --stem "$1" --out "$TMPJ" ${ALLOW_NAN[@]:+--allow_nan "${ALLOW_NAN[@]}"} | tail -1)
+  rm -f "$TMPJ"
+  [ "$N" = 0 ]
+}
+
+cf_done() { suite_py keyed_complete --csv "evaluation/csv/suite_cf_${TAG}_${METHOD}.csv" --cols cf; }
+
+metrics_done() {  # every stage of the metrics job is complete for METHOD
+  harness_done "suite_${TAG}_${METHOD}" && harness_done "suite_fiveacc_${TAG}_${METHOD}" \
+    && suite_py keyed_complete --csv "evaluation/csv/suite_clipd_${TAG}_${METHOD}.csv" --cols clip_d_prompt,clip_d_word --method "$METHOD" \
+    && suite_py keyed_complete --csv "evaluation/csv/suite_editreward_${TAG}_${METHOD}.csv" --cols editreward,editreward_if,editreward_vq \
+    && suite_py keyed_complete --csv "evaluation/csv/suite_psc_${TAG}_${METHOD}.csv" --cols psc
+}
+
+# merge METHOD's tables: the full merge when its CF is complete, else --without_cf (CF columns empty). Run at the end of a
+# setting by the metrics job and by the CF job, so whichever of the two finishes last writes the full table.
+merge_unit() {
+  local MA=() KIND=full LOG="logs/eval_suite_${JOB}_${METHOD}_merge.log" RC
+  [ "${#ALLOW_NAN[@]}" -gt 0 ] && MA=(--allow_nan "${ALLOW_NAN[@]}")
+  if ! cf_done; then MA+=(--without_cf); KIND=without_cf; fi
+  $PY_FB -I "$SUITE_DIR/merge_suite.py" --tag "$TAG" --method "$METHOD" --edit_json_dir "$EDIT_JSON_DIR" \
+    "${CASES_PY[@]}" --csv_dir evaluation/csv "${MA[@]}" > "$LOG" 2>&1
+  RC=$?
+  echo "[eval_suite] ${METHOD} merge (${KIND}) exit=${RC}: $(tail -1 "$LOG") (log ${LOG})"
+  return "$RC"
 }

@@ -1,0 +1,18 @@
+[
+ {
+  "case_id": "edit1/0001_bus",
+  "edit_type": 1,
+  "video_name": "0001_bus",
+  "target_prompt": "A jeep is moving steadily along a street lined with trees and construction barriers. The camera remains stationary, capturing the jeep's smooth transit through the urban environment.",
+  "anchor_image": "/home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit1/0001_bus.png",
+  "n_frames": 16
+ },
+ {
+  "case_id": "edit1/0072_dog-agility",
+  "edit_type": 1,
+  "video_name": "0072_dog-agility",
+  "target_prompt": "A rabbit is skillfully weaving through a series of poles on a grassy agility course. The camera remains fixed, capturing the rabbit's swift and agile movements.",
+  "anchor_image": "/home/ids/skhairi/Data/dataggen/outputs/five_bench/anchors_r43_correct/edit1/0072_dog-agility.png",
+  "n_frames": 16
+ }
+]

@@ -137,13 +137,16 @@ steps:
     type: manual
     wait_for: jz-push
     check_hint: "User, on the Jean Zay frontal (PyPI and GitHub reachable there): `cd $WORK/StreamEdit_new && module purge && module load anaconda-py3 && CONDA_BIN=$CONDA_EXE ENV_PREFIX=$WORK/envs/contextflow CF_DIR=$WORK/code/ContextFlow CF_WEIGHTS=$WORK/weights/Wan2.1-I2V-14B-480P FREEZE_OUT=evaluation/r66_contextflow_official_env_freeze_jz.txt bash evaluation/r66_make_contextflow_official_env.sh 2>&1 | tee logs/r66_setup_env_jz.log`; paste the [pins] lines and 'import check OK' (on the frontal: 'wan + xfuser imports: deferred', no GPU driver there; r66_smoke_jz.sh runs them on the H100 node; a build stopped at the import check is finished with the same command + CHECK_ONLY=1); then bring the freeze file to the lab (rsync) and `diff` it with evaluation/r66_contextflow_official_env_freeze.txt (expect identical)"
-    status: pending
+    status: completed
+    completed_at: 2026-11-03
   - id: jz-smoke
     type: manual
     wait_for: jz-env
-    check_hint: "User, on Jean Zay: `cd $WORK/StreamEdit_new && sbatch slurm_scripts/five_bench/r66_smoke_jz.sh`; when it ends paste `grep -E '\\[r66_run\\] (model|edit|done)|\\[r66_smoke\\]' logs/r66_smoke_jz_<jobid>.out`. Record the job id"
+    check_hint: "User, on Jean Zay: `cd $WORK/StreamEdit_new && sbatch slurm_scripts/five_bench/r66_smoke_jz.sh`; when it ends paste `grep -E '\\[r66_run\\] (model|edit|done)|\\[r66_smoke_jz\\]' logs/r66_smoke_jz_<jobid>.out`. Record the job id"
     sets_status: running
-    status: pending
+    status: completed
+    completed_at: 2026-11-03
+    job_id: "1902592"
   - id: jz-smoke-check
     type: manual
     wait_for: jz-smoke

@@ -8,10 +8,14 @@
 * result CSV with resume: one row per pair, rewritten atomically after every pair, pairs already scored are skipped on a
   rerun (SLURM jobs get interrupted);
 * a small CLI used by the launcher / job scripts:
-    counts       six integers, the pair count per edit type (the row-count guards of the job scripts)
-    missing      pairs whose render has no frames (and no .mp4) under --root
-    clipd_cases  the cases file r33_clip_directional.py reads with --cases (it needs prompts, which --cases files of the
-                 suite do not carry)
+    counts           six integers, the pair count per edit type (the row-count guards of the job scripts)
+    missing          pairs whose render has no frames (and no .mp4) under --root
+    clipd_cases      the cases file r33_clip_directional.py reads with --cases (it needs prompts, which --cases files of the
+                     suite do not carry)
+    harness_missing  pairs without a row in a harness stem's CSVs (cleans cut-short rows first); prints the count, writes a
+                     cases JSON of them -- the resume of evaluate.py
+    harness_append   append a temporary stem's rows to the main stem, delete the temporary files
+    keyed_complete   exit 0 when a keyed suite CSV holds every pair with finite values (stage skip, merge decision)
 """
 
 from __future__ import annotations
@@ -179,12 +183,101 @@ def finish(store: ResultStore, expected: int, name: str) -> int:
     return 0
 
 
+# ----------------------------------------------------------------------------- resume ----------
+# evaluate.py (FiVE harness, FiVE-Acc) truncates its CSVs when it starts, but appends one row per video as soon as that video
+# is scored. The suite resumes it from the outside, without modifying it: list the pairs whose row is missing, run
+# evaluate.py on those only (--cases_json) under a temporary stem, then append the new rows to the main CSVs.
+
+def harness_csv(csv_dir: str, stem: str, edit_type: int) -> Path:
+    return Path(csv_dir) / f"edit{edit_type}_FiVE_{stem}_frame_stride8.csv"
+
+
+def harness_missing(csv_dir: str, stem: str, pairs: Sequence[Dict[str, object]],
+                    allow_nan: Sequence[str] = ()) -> List[Dict[str, object]]:
+    """Pairs without a usable row in the stem's per-type CSVs. Cleans those CSVs first: a row cut short when a job was killed
+    (wrong field count or a non-integer file_id), a row of a pair not expected here, a repeated file_id, and a row with a NaN
+    cell (a metric that raised for that video; columns in allow_nan excepted) are dropped, so a relaunch scores them again."""
+    missing: List[Dict[str, object]] = []
+    for t in EDIT_TYPES:
+        want = {int(q["file_id"]): q for q in pairs if int(q["edit_type"]) == t}
+        if not want:
+            continue
+        path = harness_csv(csv_dir, stem, t)
+        have = set()
+        if path.exists():
+            rows = list(csv.reader(path.open()))
+            if rows:
+                header, kept, dropped = rows[0], [rows[0]], 0
+                nan_ok = {i for i, h in enumerate(header) if h.split("|")[-1] in set(allow_nan)}
+                for r in rows[1:]:
+                    try:
+                        fid = int(r[0])
+                    except (ValueError, IndexError):
+                        dropped += 1
+                        continue
+                    if len(r) != len(header) or fid not in want or fid in have:
+                        dropped += 1
+                        continue
+                    if any(not finite(v) for i, v in enumerate(r[1:], start=1) if i not in nan_ok):
+                        dropped += 1
+                        continue
+                    have.add(fid)
+                    kept.append(r)
+                if dropped:
+                    tmp = path.with_suffix(".csv.tmp")
+                    with tmp.open("w", newline="") as fh:
+                        csv.writer(fh).writerows(kept)
+                    os.replace(tmp, path)
+                    print(f"[suite_common] {path.name}: dropped {dropped} cut-short / unexpected / repeated / NaN row(s)")
+        missing += [q for fid, q in sorted(want.items()) if fid not in have]
+    return missing
+
+
+def harness_append(csv_dir: str, stem: str, part_stem: str) -> int:
+    """Append the rows of part_stem's per-type CSVs to stem's (same header required), then delete every part_stem file."""
+    n = 0
+    for t in EDIT_TYPES:
+        part = harness_csv(csv_dir, part_stem, t)
+        if not part.exists():
+            continue
+        rows = list(csv.reader(part.open()))
+        if not rows:
+            continue
+        main = harness_csv(csv_dir, stem, t)
+        if main.exists() and main.stat().st_size > 0:
+            header = next(csv.reader(main.open()))
+            if header != rows[0]:
+                raise SystemExit(f"harness_append: header of {part.name} differs from {main.name}")
+            with main.open("a", newline="") as fh:
+                csv.writer(fh).writerows(rows[1:])
+        else:
+            with main.open("w", newline="") as fh:
+                csv.writer(fh).writerows(rows)
+        n += len(rows) - 1
+    for f in Path(csv_dir).glob(f"*{part_stem}*"):
+        f.unlink()
+    return n
+
+
+def keyed_complete(path: str, cols: Sequence[str], pairs: Sequence[Dict[str, object]], method: str = "") -> bool:
+    """A keyed suite CSV (CLIP-D, EditReward, PSC, CF) holds every expected pair once, with finite values in cols."""
+    if not Path(path).exists():
+        return False
+    expected = {(int(q["edit_type"]), str(q["video_name"])) for q in pairs}
+    got = {}
+    for r in csv.DictReader(Path(path).open()):
+        if method and r.get("method") != method:
+            continue
+        got[(int(r["edit_type"]), r["video_name"])] = r
+    return set(got) == expected and all(finite(r.get(c)) for r in got.values() for c in cols)
+
+
 # ----------------------------------------------------------------------------- CLI -------------
 
 def _cli(argv: Optional[Iterable[str]] = None) -> int:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = p.add_subparsers(dest="cmd", required=True)
-    for name in ("counts", "missing", "clipd_cases"):
+    for name in ("counts", "missing", "clipd_cases", "harness_missing", "harness_append", "keyed_complete"):
         s = sub.add_parser(name)
         s.add_argument("--edit_json_dir", default="evaluation/five_bench_correct")
         s.add_argument("--cases", default=None)
@@ -194,6 +287,18 @@ def _cli(argv: Optional[Iterable[str]] = None) -> int:
         if name == "clipd_cases":
             s.add_argument("--data_root", default=DEFAULT_DATA_ROOT)
             s.add_argument("--out", required=True)
+        if name in ("harness_missing", "harness_append"):
+            s.add_argument("--csv_dir", default="evaluation/csv")
+            s.add_argument("--stem", required=True)
+        if name == "harness_missing":
+            s.add_argument("--out", required=True, help="cases JSON of the missing pairs (written even when empty)")
+            s.add_argument("--allow_nan", nargs="*", default=[], metavar="COL")
+        if name == "harness_append":
+            s.add_argument("--part_stem", required=True)
+        if name == "keyed_complete":
+            s.add_argument("--csv", required=True)
+            s.add_argument("--cols", required=True, help="comma-separated metric columns that must be finite")
+            s.add_argument("--method", default="")
     a = p.parse_args(argv)
     pairs = load_pairs(a.edit_json_dir, a.cases)
     if a.cmd == "counts":
@@ -203,6 +308,14 @@ def _cli(argv: Optional[Iterable[str]] = None) -> int:
             d = render_dir(a.root, a.layout, int(q["edit_type"]), str(q["video_name"]))
             if not list_images(d) and not os.path.exists(d.rstrip("/") + ".mp4"):
                 print(f"edit{q['edit_type']}/{q['video_name']}")
+    elif a.cmd == "harness_missing":
+        miss = harness_missing(a.csv_dir, a.stem, pairs, a.allow_nan)
+        Path(a.out).write_text(json.dumps([{"video_name": q["video_name"], "edit_type": q["edit_type"]} for q in miss]))
+        print(len(miss))
+    elif a.cmd == "harness_append":
+        print(f"[suite_common] {harness_append(a.csv_dir, a.stem, a.part_stem)} row(s) appended to {a.stem}")
+    elif a.cmd == "keyed_complete":
+        return 0 if keyed_complete(a.csv, a.cols.split(","), pairs, a.method) else 1
     else:  # clipd_cases
         sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
         from r33_clip_directional import fullbench_cases  # lazy: pulls torch, only this subcommand needs it

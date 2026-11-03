@@ -18,9 +18,11 @@ Outputs
                                       rest are averaged over all pairs.
 
 Exit 1 (before writing) on a missing file / metric column, a pair set that differs from the expected one, or duplicated
-rows; exit 1 (after writing) when any metric cell is NaN, unless its column is listed in --allow_nan (the harness's
-motion_fidelity_score_edit_part is NaN on clips with an empty edit mask, ~1 in 50: allow it for full-bench runs, never for
-the smoke).
+rows; exit 1 (after writing) when any metric cell is NaN, unless its column is listed in --allow_nan (none needs it
+by default: the one column known to go NaN, motion_fidelity_score_edit_part, is not part of the suite).
+
+--without_cf builds both tables before CF has run (eval_suite.sh --part metrics): the CF CSV is not read, the cf / cf_raw
+columns are left EMPTY (a metric not run yet, not a NaN) and are not checked; a later merge without the flag fills them in.
 """
 
 from __future__ import annotations
@@ -28,6 +30,7 @@ from __future__ import annotations
 import argparse
 import csv
 import math
+import os
 import sys
 from pathlib import Path
 from typing import Dict, List, Sequence, Tuple
@@ -37,7 +40,7 @@ import suite_common as sc  # noqa: E402
 
 HARNESS = ("structure_distance", "psnr_unedit_part", "lpips_unedit_part", "mse_unedit_part", "ssim_unedit_part",
            "clip_similarity_source_image", "clip_similarity_target_image", "clip_similarity_target_image_edit_part",
-           "niqe_target_image", "motion_fidelity_score", "motion_fidelity_score_edit_part")
+           "niqe_target_image", "motion_fidelity_score")
 FIVEACC = ("five_acc_yes_no", "five_acc_multi_choice")
 CLIPD = ("clip_d_prompt", "clip_d_word", "delta_img_norm")
 EDITREWARD = ("editreward", "editreward_if", "editreward_vq")
@@ -115,6 +118,16 @@ def read_keyed(path: Path, wanted: Sequence[str], extra: Sequence[str] = (), met
     return out
 
 
+def write_atomic(path: Path, fields: Sequence[str], rows: Sequence[Dict[str, object]]) -> None:
+    """Write to a temp file then rename: the metrics job and the CF job may merge the same method at the same moment."""
+    tmp = path.with_name(f".{path.name}.{os.getpid()}.tmp")
+    with tmp.open("w", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=list(fields))
+        w.writeheader()
+        w.writerows(rows)
+    os.replace(tmp, path)
+
+
 def mean(x: Sequence[float]) -> float:
     x = [v for v in x if math.isfinite(v)]
     return sum(x) / len(x) if x else float("nan")
@@ -132,6 +145,7 @@ def main() -> int:
     p.add_argument("--cases", default=None)
     p.add_argument("--csv_dir", default="evaluation/csv")
     p.add_argument("--allow_nan", nargs="*", default=[], metavar="COL")
+    p.add_argument("--without_cf", action="store_true", help="CF has not run yet: leave its columns empty")
     a = p.parse_args()
 
     csv_dir = Path(a.csv_dir)
@@ -139,8 +153,9 @@ def main() -> int:
     expected = {(int(q["edit_type"]), str(q["video_name"])) for q in pairs}
     unknown = [c for c in a.allow_nan if c not in NUMERIC]
     if unknown:
-        print(f"[merge_suite] FAILED: --allow_nan names unknown column(s) {unknown}")
-        return 1
+        # e.g. motion_fidelity_score_edit_part, dropped from the suite on 2026-11-03 but still passed by older wrappers
+        print(f"[merge_suite] WARNING: --allow_nan names column(s) not in the suite, ignored: {unknown}")
+        a.allow_nan = [c for c in a.allow_nan if c in NUMERIC]
     try:
         parts: List[Dict[Key, Dict[str, object]]] = [
             read_harness(csv_dir, f"suite_{a.tag}_{a.method}", a.method, HARNESS, pairs),
@@ -148,9 +163,11 @@ def main() -> int:
             read_keyed(csv_dir / f"suite_clipd_{a.tag}_{a.method}.csv", CLIPD, method=a.method),
             read_keyed(csv_dir / f"suite_editreward_{a.tag}_{a.method}.csv", EDITREWARD),
             read_keyed(csv_dir / f"suite_psc_{a.tag}_{a.method}.csv", PSC, extra=("psc_rule",)),
-            read_keyed(csv_dir / f"suite_cf_{a.tag}_{a.method}.csv", CF, extra=("cf_raw",)),
         ]
-        names = ("harness", "five_acc", "clip_d", "editreward", "psc", "cf")
+        names = ["harness", "five_acc", "clip_d", "editreward", "psc"]
+        if not a.without_cf:
+            parts.append(read_keyed(csv_dir / f"suite_cf_{a.tag}_{a.method}.csv", CF, extra=("cf_raw",)))
+            names.append("cf")
         for n, part in zip(names, parts):
             if set(part) != expected:
                 raise MergeError(f"{n}: {len(part)} rows, expected {len(expected)}; "
@@ -166,17 +183,17 @@ def main() -> int:
         row: Dict[str, object] = {"edit_type": k[0], "video_name": k[1]}
         for part in parts:
             row.update(part[k])
+        if a.without_cf:
+            row.update(cf="", cf_raw="")
         table.append(row)
 
-    nan_cells = [(r["edit_type"], r["video_name"], c) for r in table for c in NUMERIC
+    checked = [c for c in NUMERIC if not (a.without_cf and c in CF)]
+    nan_cells = [(r["edit_type"], r["video_name"], c) for r in table for c in checked
                  if c not in a.allow_nan and not math.isfinite(float(r[c]))]  # type: ignore[arg-type]
     allowed_nan = {c: sum(1 for r in table if not math.isfinite(float(r[c]))) for c in a.allow_nan}  # type: ignore[arg-type]
 
     out_pair = csv_dir / f"suite_{a.tag}_{a.method}.csv"
-    with out_pair.open("w", newline="") as fh:
-        w = csv.DictWriter(fh, fieldnames=fields)
-        w.writeheader()
-        w.writerows([{k: fmt(v) for k, v in r.items()} for r in table])
+    write_atomic(out_pair, fields, [{k: fmt(v) for k, v in r.items()} for r in table])
 
     out_type = csv_dir / f"suite_{a.tag}_{a.method}_per_type.csv"
     type_fields = ["scope", "n"] + list(MEAN_COLS) + ["psc_removal"]
@@ -186,18 +203,20 @@ def main() -> int:
             continue
         line: Dict[str, object] = {"scope": scope, "n": len(sel)}
         for c in MEAN_COLS:
+            if a.without_cf and c in CF:
+                line[c] = ""
+                continue
             vals = [float(r[c]) for r in sel if not (c == "psc" and r["edit_type"] == 6)]  # type: ignore[arg-type]
             line[c] = mean(vals) if vals else ""
         rem = [float(r["psc"]) for r in sel if r["edit_type"] == 6]  # type: ignore[arg-type]
         line["psc_removal"] = mean(rem) if rem else ""
         lines.append(line)
-    with out_type.open("w", newline="") as fh:
-        w = csv.DictWriter(fh, fieldnames=type_fields)
-        w.writeheader()
-        w.writerows([{k: fmt(v) for k, v in ln.items()} for ln in lines])
+    write_atomic(out_type, type_fields, [{k: fmt(v) for k, v in ln.items()} for ln in lines])
 
     print(f"[merge_suite] {len(table)} pairs -> {out_pair}")
     print(f"[merge_suite] per-type means -> {out_type}")
+    if a.without_cf:
+        print("[merge_suite] --without_cf: CF not merged, its columns are empty (rerun the merge after eval_suite.sh --part cf)")
     for ln in lines:
         if ln["scope"] == "overall":
             print("[merge_suite] overall: " + "  ".join(f"{c}={fmt(ln[c])}" for c in ("editreward", "psc", "psc_removal", "cf",

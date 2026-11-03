@@ -8,7 +8,7 @@
 #                                                 its inferencer builds the model and the processor from it, then loads
 #                                                 the checkpoint above over it; the checkpoint repo has no tokenizer files)
 #   alibaba-pai/VideoCLIP-XL-v2               ->  $WEIGHTS_DIR/VideoCLIP-XL-v2                    (PSC)
-#   Qwen/Qwen2.5-VL-72B-Instruct              ->  $WEIGHTS_DIR/Qwen2.5-VL-72B-Instruct  (147 GB)  (CF judge)
+#   Qwen/Qwen2.5-VL-72B-Instruct              ->  $QWEN72B_DIR (/work/PERSO/skhairi/weights/Qwen2.5-VL-72B-Instruct)  (147 GB)  (CF judge)
 #   TIGER-AI-Lab/EditReward (code)            ->  $EDITREWARD_DIR   (git clone at a pinned commit)
 #   RyanChenYN/IVEBench (code)                ->  $IVEBENCH_DIR     (git clone at a pinned commit; CF prompt + video prep)
 #   evaluation/eval_suite/weights_manifest.json   (repo, revision/commit, local path, sha256 per weight file)
@@ -23,6 +23,7 @@ set -euo pipefail
 REPO=$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)
 MANIFEST="$REPO/evaluation/eval_suite/weights_manifest.json"
 WEIGHTS_DIR=${WEIGHTS_DIR:-$HOME/Data/weights}
+QWEN72B_DIR=${QWEN72B_DIR:-/work/PERSO/skhairi/weights/Qwen2.5-VL-72B-Instruct}   # on /work, not the home quota
 EDITREWARD_DIR=${EDITREWARD_DIR:-$HOME/Code/EditReward}
 IVEBENCH_DIR=${IVEBENCH_DIR:-$HOME/Code/IVEBench}
 QWEN72B_MIN_FREE_GB=170   # 147 GB of weights + the hub's partial-download slack
@@ -90,13 +91,14 @@ json.dump(m, open(manifest, "w"), indent=2, sort_keys=True); open(manifest, "a")
 PY
 }
 
-fetch_weights() {   # $1=key $2=repo $3=revision [$4=min free GB on $WEIGHTS_DIR before downloading]
-  local KEY=$1 HFREPO=$2 REV=$3 MINFREE=${4:-0} DEST="$WEIGHTS_DIR/${2##*/}"
+fetch_weights() {   # $1=key $2=repo $3=revision [$4=min free GB on the destination's filesystem] [$5=destination, default $WEIGHTS_DIR/<repo name>]
+  local KEY=$1 HFREPO=$2 REV=$3 MINFREE=${4:-0} DEST="${5:-$WEIGHTS_DIR/${2##*/}}"
   if m_current "$KEY" "$REV" "$DEST"; then
     echo "[fetch_weights] $HFREPO@${REV:0:10} already present in $DEST -- skipped"; return
   fi
-  local FREE; FREE=$(df -BG --output=avail "$WEIGHTS_DIR" | tail -n 1 | tr -dc '0-9')
-  [ "$FREE" -ge "$MINFREE" ] || { echo "[fetch_weights] FATAL: $WEIGHTS_DIR has ${FREE} GB free, $HFREPO needs ${MINFREE}"; exit 1; }
+  mkdir -p "$(dirname "$DEST")"
+  local FREE; FREE=$(df -BG --output=avail "$(dirname "$DEST")" | tail -n 1 | tr -dc '0-9')
+  [ "$FREE" -ge "$MINFREE" ] || { echo "[fetch_weights] FATAL: $(dirname "$DEST") has ${FREE} GB free, $HFREPO needs ${MINFREE}"; exit 1; }
   echo "[fetch_weights] $HFREPO@${REV:0:10} -> $DEST"
   "${HF_DL[@]}" "$HFREPO" --revision "$REV" --local-dir "$DEST"
   echo "[fetch_weights] hashing weight files of $KEY"
@@ -121,7 +123,7 @@ fetch_code    ivebench_code          "$IVEBENCH_REPO"   "$IVEBENCH_REV"   "$IVEB
 fetch_weights editreward_mimo_vl_7b  "$EDITREWARD_REPO" "$EDITREWARD_REV"
 fetch_weights mimo_vl_7b_sft_base    "$MIMO_BASE_REPO"  "$MIMO_BASE_REV"
 fetch_weights videoclip_xl_v2        "$VIDEOCLIP_REPO"  "$VIDEOCLIP_REV"
-fetch_weights qwen25_vl_72b_instruct "$QWEN72B_REPO"    "$QWEN72B_REV"    "$QWEN72B_MIN_FREE_GB"
+fetch_weights qwen25_vl_72b_instruct "$QWEN72B_REPO"    "$QWEN72B_REV"    "$QWEN72B_MIN_FREE_GB" "$QWEN72B_DIR"
 
 echo "[fetch_weights] done -- manifest: $MANIFEST"
 python - "$MANIFEST" <<'PY'

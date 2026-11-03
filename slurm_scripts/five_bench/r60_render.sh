@@ -14,7 +14,7 @@
 #   out: $D/r60_repro/r60_n{N}_rho2_novp. r60_repro_check.py compares them with R44's renders (gate for the reuse).
 #
 # Sampler identical to r44_infer.sh: --vp_mode novp, NO --first_frame_edit_dir, fg_boost 4, flow_shift 1.0,
-# rollout_chunk_size 21, seed 0. Added: --edit_json_dir evaluation/five_bench_correct, --cases_json.
+# rollout_chunk_size 21, seed 0. Added: --edit_json_dir $REPO/evaluation/five_bench_correct (absolute), --cases_json.
 # Expected clip count per edit type is read from the case file.
 #
 # --time=24:00:00 (partition max): R39 estimates ~14 h for 419 clips at N=20 (tasks 12-15 render 415).
@@ -29,6 +29,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:1
+#SBATCH --cpus-per-task=16
 #SBATCH --hint=nomultithread
 #SBATCH --mem=64G
 #SBATCH --time=24:00:00
@@ -42,7 +43,7 @@
 REPO=/home/ids/skhairi/Code/StreamEdit_bigchantier
 DATA_ROOT=~/Data/FiVE-Fine-Grained-Video-Editing-Benchmark
 D=~/Data/dataggen/outputs/five_bench
-ANNO_DIR=evaluation/five_bench_correct
+ANNO_DIR=$REPO/evaluation/five_bench_correct   # absolute: run_fivebench.py resolves it after chdir into Self-Forcing_StreamEdit
 CASES_REGEN=evaluation/r60_cases_regen.json
 CASES_REPRO=evaluation/r60_cases_repro.json
 CASES_ALL=evaluation/r43_anchor_manifest_correct.json

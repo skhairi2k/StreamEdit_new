@@ -196,6 +196,11 @@ def main() -> None:
                             if args.first_frame_edit_dir else None)
     cases_json = (Path(args.cases_json).expanduser().resolve()
                   if args.cases_json else None)
+    # Resolve edit_json_dir before chdir-ing into the backbone build too (✨ R59's flag
+    # was added below the chdir by mistake: a relative --edit_json_dir resolved against
+    # the backbone build dir instead of where the user ran this from).
+    edit_json_dir = (Path(args.edit_json_dir).expanduser().resolve()
+                     if args.edit_json_dir else None)
 
     # R26 cross-validation, BEFORE the pipeline loads: a misconfigured arm must fail in
     # seconds, not after a GPU-hour of sampling that silently produced the wrong thing.
@@ -264,8 +269,7 @@ def main() -> None:
         transforms.Normalize([0.5], [0.5]),
     ])
 
-    edit_json_dir = (Path(args.edit_json_dir).expanduser().resolve()
-                     if args.edit_json_dir else data_root / "edit_prompt")
+    edit_json_dir = edit_json_dir if edit_json_dir else data_root / "edit_prompt"
     edit_json = edit_json_dir / f"edit{args.edit_type}_FiVE.json"
     entries = read_json(edit_json)
 

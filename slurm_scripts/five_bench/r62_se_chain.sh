@@ -5,7 +5,7 @@
 #     -> render  r62_se_stage3.sh --array=0-3   nodiv, dino, lpips, nosupp                    -> r62_se_arms          afterok field
 # Scoring is not chained: it waits for R57's suite (r62_eval.sh se).  5 queue tasks (1 + 4).
 # R59's field job id is read from logs/r59_se_chain_jobs.txt ("field <id>"; fatal if absent). If that job is still known to squeue, our field
-# waits afterok on it; if it already left the queue, the chain is submitted (without dependency) only when sacct says it COMPLETED and its 415
+# waits afterok on it; if it already left the queue, the chain is submitted (without dependency) only when sacct says it COMPLETED (sacct unreachable: its log must show failures: 0 and 415 npz) and its 415
 # se_max fields are on disk; otherwise it REFUSES. NOTE: if R59's field job fails later, ours stays in DependencyNeverSatisfied: scancel it.
 # The per-user submit cap (30 tasks) is checked BEFORE anything is submitted (R62_QUEUE_CAP=<n> overrides). Writes "<stage> <id>" lines to
 # logs/r62_se_chain_jobs.txt, headed by the git commit, and REFUSES to run if that file exists (a second chain would render everything twice);
@@ -46,6 +46,11 @@ else
   STATE=$(sacct -j "$R59_FIELD" -X -n -o State 2>/dev/null | head -1 | tr -d ' ')
   N_FIELD=$(ls "$D"/r59_field_full/se_max/edit*/*.npz 2>/dev/null | wc -l)
   echo "[r62_se_chain] R59 field job ${R59_FIELD}: state '${STATE}', ${N_FIELD} se_max npz on disk"
+  # sacct's database can be unreachable from some nodes (empty STATE): fall back on the job's own log, which must end clean with all 415 fields
+  LOG59=logs/r59_field_${R59_FIELD}.out
+  if [ -z "$STATE" ] && [ -s "$LOG59" ] && grep -q '^\[r59_field\] se_max: 415 npz' "$LOG59" && [ "$(grep '^\[r59_field\] failures:' "$LOG59" | tail -1)" = "[r59_field] failures: 0" ]; then
+    STATE=COMPLETED; echo "[r62_se_chain] sacct unreachable: R59 field state taken from ${LOG59} (se_max 415 npz, failures: 0)"
+  fi
   if [ "$STATE" = "COMPLETED" ] && [ "$N_FIELD" -eq 415 ]; then
     DEP=""
   else

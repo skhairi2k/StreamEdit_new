@@ -62,6 +62,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:1
+#SBATCH --cpus-per-task=16
 #SBATCH --hint=nomultithread
 #SBATCH --time=02:00:00
 #SBATCH --output=logs/r10b_infer_%j.out

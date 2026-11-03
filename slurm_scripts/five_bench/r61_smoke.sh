@@ -9,9 +9,10 @@
 #       PNG under $D/anchors_r43_correct exists.
 #   G2  sweep path: run_fivebench.py --backbone ll rho=2 N=15 with --edit_json_dir pointed at
 #       evaluation/five_bench_correct and anchors_r43_correct, on the 2 smoke clips; the rendered
-#       frames differ from $D/r45_sweep/n15/ll_rho2_n15_vp (official-FiVE anchors/prompts), and the
-#       Correct target prompt of 0042_gym-ball (printed by this script, not by run_fivebench.py) is
-#       readable in the log next to the call that used it.
+#       frames differ from a STAGED copy of $D/r45_sweep/n15/ll_rho2_n15_vp (official-FiVE
+#       anchors/prompts; see the R45_REF note below), and the Correct target prompt of
+#       0042_gym-ball (printed by this script, not by run_fivebench.py) is readable in the log
+#       next to the call that used it.
 #   G3  se_max chain on the 2 pairs: r31_stage1.py (Correct draft) -> r31_divergence.py (dino, lpips)
 #       -> r49_field.py -> r31_stage3.py (Correct render); the Correct target prompt of 0042_gym-ball
 #       is printed next to both stage calls; the field's q is finite in [0, 1]; the render's frame
@@ -20,13 +21,23 @@
 #       data_root/edit_prompt, the official FiVE files) and the official anchors ($D/anchors) -- its
 #       latents are bit-identical to R55's smoke (job 1057789, run "on"), confirming the new flag's
 #       default did not change any existing behaviour.
+# R45_REF (G2's comparison target) is NOT read from /store directly: no compute node has that
+# mount (corrected 2026-10-28 -- node39 does not have it either, despite the earlier belief
+# that it did; job 1067713 failed this exact check pinned there). Before running this script,
+# stage the 2 reference clips from the frontal (where /store IS mounted) into a plain ~/Data
+# path:
+#   mkdir -p ~/Data/dataggen/outputs/five_bench/r61_ref/ll_rho2_n15_vp/edit{1,6}
+#   cp -r ~/Data/dataggen/outputs/five_bench/r45_sweep/n15/ll_rho2_n15_vp/edit1/0001_bus \
+#         ~/Data/dataggen/outputs/five_bench/r61_ref/ll_rho2_n15_vp/edit1/
+#   cp -r ~/Data/dataggen/outputs/five_bench/r45_sweep/n15/ll_rho2_n15_vp/edit6/0042_gym-ball \
+#         ~/Data/dataggen/outputs/five_bench/r61_ref/ll_rho2_n15_vp/edit6/
 # Prints each gate PASS/FAIL and `[r61_smoke] failures: N`.
 #SBATCH --job-name=r61_smoke
 #SBATCH --partition=L40S
-#SBATCH --nodelist=node39
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:1
+#SBATCH --cpus-per-task=16
 #SBATCH --hint=nomultithread
 #SBATCH --mem=64G
 #SBATCH --time=03:00:00
@@ -42,7 +53,7 @@ ANCHOR_ROOT=$D/anchors_r43_correct
 OFFICIAL_ANCHOR_ROOT=$D/anchors
 CASES=evaluation/r61_smoke_cases.json
 R55_ON_REF=$D/r55_smoke/job1057789/on/latents
-R45_REF=$D/r45_sweep/n15/ll_rho2_n15_vp
+R45_REF=$D/r61_ref/ll_rho2_n15_vp   # staged copy; see the header note (NOT the /store-backed r45_sweep)
 RUN=$D/r61_smoke/job${SLURM_JOB_ID:-local}
 PY_SG=~/anaconda3/envs/streamgve/bin/python
 PY_FB=~/anaconda3/envs/five-bench/bin/python
@@ -57,9 +68,9 @@ gate() {  # $1 = gate name, $2 = exit code of its check
   if [ "$2" -eq 0 ]; then echo "[r61_smoke] $1 PASS"; else echo "[r61_smoke] $1 FAIL"; FAILED=$((FAILED + 1)); fi
 }
 
-# ---- preflight: r45_sweep is a /store link; this job is pinned to node39 for it
+# ---- preflight: R45_REF must be the STAGED copy (see header), not read live from /store
 if [ ! -d "$R45_REF/edit1" ]; then
-  echo "[r61_smoke] FATAL: ${R45_REF}/edit1 missing or unreadable (node=$(hostname)); /store is per-node"
+  echo "[r61_smoke] FATAL: ${R45_REF}/edit1 missing (node=$(hostname)); stage it from the frontal first (see this script's header comment)"
   exit 1
 fi
 
@@ -146,7 +157,9 @@ for t, name in clips:
     same = all(a.read_bytes() == b.read_bytes() for a, b in zip(sf, rf))
     n_same += same
     print(f"  {name} edit{t}: frames {'IDENTICAL to the official-FiVE render (unexpected)' if same else 'differ from the official-FiVE render (expected)'}")
-sys.exit(1 if n_checked and n_same == n_checked else 0)
+# A missing render dir is a failure, not a vacuous pass: every clip must actually be
+# checked, and none of them may come out byte-identical to the official-FiVE reference.
+sys.exit(1 if n_checked != len(clips) or n_same > 0 else 0)
 EOF
 gate "G2 sweep path (Correct prompts/anchors render differently from official-FiVE)" $RC2
 

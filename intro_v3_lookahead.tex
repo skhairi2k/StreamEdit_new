@@ -1,0 +1,54 @@
+% Introduction v3 -- "look-ahead" framing, written after reading FlowAnchor (arXiv 2604.22586v1).
+% Status 2026-11-02: FiVE-Bench-Correct results are not scored yet (R57 suite) -> every result is a \todo{}.
+% \method = placeholder name. Citation keys are reused from intro.tex; unify \cite{flowedit} vs \cite{flowedit2025}.
+% Lines marked %CHECK need a fact verified before submission.
+
+\section{Introduction}
+\label{sec:intro}
+
+Training-free video editing reuses frozen pretrained video generators~\cite{wan2025,selfforcing2025} to apply a textual or visual edit to a source video while keeping everything the edit does not concern~\cite{flowedit,tokenflow2024,streamedit2026}.
+Each such editor balances these two goals with a control that sets how far the output may depart from the source: in FlowEdit-style samplers, the step from which the edit velocity is applied~\cite{flowedit,five2025}; in StreamEdit, the rate at which the target branch is released from source attention~\cite{streamedit2026}.
+In current editors this control is a single value, shared by every location and frame of the video.
+
+A single value cannot serve an edit whose parts need different amounts of change.
+Turning a rabbit into a drone requires a new outline, which must be allowed early in sampling, when structure forms. The grass around it should not change at all, and a colour change would need only late, appearance-level freedom.
+A global control set high enough to complete the new outline also releases the background; set low enough to protect the background, it leaves the shape half-edited (Fig.~\ref{fig:teaser}).
+The amount of change each token requires, which we call its \emph{edit demand}, varies across edits, locations and frames, and is not known before editing.
+
+Existing methods obtain spatially varying control from one of two sources.
+The first is the user: masks restrict where editing acts~\cite{objwiper,flowdirector}, and Differential Diffusion~\cite{diffdiff} applies continuous per-pixel strengths taken from a user-supplied change map.
+The second is the editor's own internal signal, read during sampling.
+In image editing, Follow-Your-Shape~\cite{fys} derives an editable region from trajectory divergence.
+Closest to our work, FlowAnchor~\cite{flowanchor} rescales the source--target velocity difference of a FlowEdit-style video editor at every step by that difference's own min--max-normalised contrast.
+Such online signals are read while the edit is still forming, and in video they are unreliable: FlowAnchor shows that the velocity difference is mislocalised in multi-object scenes and weakens as the number of frames grows, and it relies on a mask of the edited region to localise it~\cite{flowanchor}.
+Its per-video normalisation also makes the gain relative: the most strongly changing region of every video receives the same maximal gain, whether the edit changes a colour or replaces an object.
+
+We take a third route and \emph{measure} edit demand before the edit.
+Our observation is that a training-free editor shows where, and by how much, an edit must change the video once it is briefly allowed to edit freely.
+We therefore run a short, permissive \emph{draft}, the same editor with its source preservation relaxed, and compare its output with the source.
+Where the draft departs strongly from the source within the content named by the prompts, the edit needs freedom. Where it does not, the source can be kept.
+Because demand is measured on the draft's output rather than on an internal quantity of the sampler, it needs no mask, it applies to editors that have no additive velocity difference, and it can be expressed on a fixed scale shared by all videos.
+Measurement and control are thereby decoupled. The draft may damage the background, since only its divergence pattern is used, and the final video is rendered under per-token control.
+
+We turn this observation into \method, a plug-in controller for training-free video editors.
+From the draft, \method builds a continuous edit-demand field.
+Source- and target-branch cross-attention to the edited concepts gives a soft support. Inside it, draft--source divergence in DINO and LPIPS feature space gives the demand, scaled by fixed references rather than per video.
+\method then sets the editor's \emph{own} control separately for each token.
+Because editors expose different controls, a soft attention blend in StreamEdit and a hard step gate in Wan-Edit, equal knob values do not mean equal editability. A linear map in knob units fails in opposite directions on the two editors (Sec.~\ref{sec:ablation-linear}).
+Instead, from each editor's update rule we derive the average weight a control value gives to the target over the sampling steps, and invert it. Equal demand thus receives equal target exposure on every editor.
+Nothing is fitted to rendered outputs, and the editor's mechanism is otherwise left unchanged.
+
+We apply \method to two editors that differ in both conditioning and control.
+StreamEdit~\cite{streamedit2026} is a few-step streaming editor on Self-Forcing~\cite{selfforcing2025}. It is conditioned on an edited first frame and controls editing through a query--key blend between source and target branches.
+Wan-Edit~\cite{five2025} is a text-conditioned FlowEdit-style editor~\cite{flowedit} that controls editing through the step from which the edit velocity is applied.
+We evaluate on FiVE-Bench-Correct, a corrected version of FiVE-Bench~\cite{five2025}. It keeps the videos, masks, edit categories and intended edits, and repairs only textual inconsistencies, in \todo{N} prompts, with minimal span edits. %CHECK N (r59_check_prompts reports 190/415 differ) and why 415 vs 419 pairs
+Results on the official annotations are in the supplementary material.
+Each adaptive editor is compared at equal total sampling budget, draft included, with its own global control swept over its full range, with mask-region control, with a demand field computed without a draft, and with online velocity-contrast control in the style of FlowAnchor. %CHECK keep the last arm only if the AMM arm is run on the Wan-Edit host
+\todo{One-sentence result once R57 scoring on Correct is in. Wording supported so far (R38, official FiVE, StreamEdit only): matches the tuned global trade-off on the full benchmark and improves it on shape-changing edits. Do not write ``outperforms'' unless both matchings agree on Correct.}
+
+In summary, our contributions are:
+\begin{itemize}
+    \item \textbf{Look-ahead edit-demand estimation.} A short, permissive draft serves as a measurement of the editor's behaviour. Attention support and draft--source divergence on a fixed scale give a continuous, mask-free, per-token demand field.
+    \item \textbf{Exposure-matched native control.} Demand is mapped to the native control of editors with different control mechanisms by inverting a target-exposure response derived from each editor's update rule, without fitting to rendered outputs.
+    \item \textbf{Controlled evaluation.} On two editors with different conditioning and control, \method is compared with each editor's tuned global control at equal sampling budget, and with mask-region, draft-free and online-signal alternatives, on FiVE-Bench-Correct, which we release.
+\end{itemize}

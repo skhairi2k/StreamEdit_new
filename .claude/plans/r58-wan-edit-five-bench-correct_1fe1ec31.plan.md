@@ -50,13 +50,13 @@ todos:
   - id: assemble-script
     content: "evaluation/r58_assemble.py -- for the 12 configs builds $D/r58_wan_correct/{config}/edit{T}/{video} as a symlink, over the 415 pairs of r43_anchor_manifest_correct.json: to $D/r58_wan_arms/{config}_full/... if the pair is in that config's regen set (r58_cases_base.json for the 11 baselines, r58_cases_maxs5.json for max_s5), else to the R49 render ($D/r48_wan_arms/{config}_full for native_*, $D/r49_wan_arms/{config}_full for matched59_* and max_s5); checks the target holds the expected PNG count (r48_wan_common.expected_frames), read through the link; only ever creates symlinks inside $D/r58_wan_correct and never writes into a link target; an existing entry that is not a symlink, or a symlink into neither r58_wan_arms nor the R48/R49 render dirs, is a CONFLICT (left untouched, exit 1); re-running is idempotent (an identical link is kept); writes evaluation/csv/r58_assembly.csv (config, case_id, source new|reused, n_png); exit 1 on any missing/incomplete clip or a count other than 415 per config"
     needed_by: [assemble]
-    status: pending
+    status: completed
   - id: fetch-renders-script
-    content: "jz/r58_fetch_renders.sh -- lab frontal (gpu-gw) only, modelled on jz/r50_fetch_outputs.sh (same r50_jz.env, SSH ControlMaster, $SCRATCH lookup): first rsync of Jean Zay evaluation/csv/r58_assembly.csv into evaluation/csv/; then per config (all 12, or the configs given as arguments) rsync -aL --partial (follows the assembly's symlinks, so the lab gets real files) zay:$SCRATCH/five_bench_out/r58_wan_correct/{config}/ -> $R58_DEST/{config}/ (default R58_DEST=/work/PERSO/skhairi/five_bench/r58_wan_correct); preflight: R58_DEST's filesystem has >= 12 GB free per requested config; post-check per config: 415 clip dirs and every clip's PNG count equals n_png of r58_assembly.csv; --check mode counts only; never deletes anything on either side; ends with '[r58_fetch] failures: N'"
+    content: "jz/r58_fetch_renders.sh -- lab frontal (gpu-gw) only, modelled on jz/r50_fetch_outputs.sh (same r50_jz.env, SSH ControlMaster, $SCRATCH lookup): first rsync of Jean Zay evaluation/csv/r58_assembly.csv into evaluation/csv/; then per config (all 12, or the configs given as arguments) rsync -rL --partial --size-only --no-perms --no-owner --no-group (follows the assembly's symlinks, so the lab gets real files; mtimes are NOT preserved, so every file carries the copy date and the 30-day /scratch purge counts from it, as `tar -xm` would; --size-only makes a resumed run skip finished files) zay:$SCRATCH/five_bench_out/r58_wan_correct/{config}/ -> $R58_DEST/{config}/ (default R58_DEST=/scratch/PERSO/skhairi/five_bench/r58_wan_correct; the script refuses a destination under $HOME, ~/Data or /store, and requires /scratch to be mounted on the frontal); preflight: `df` of R58_DEST shows >= 12 GB free per requested config (the 2 TiB per-user quota cannot be read from here; it is checked by hand in probe-mounts); post-check per config: 415 clip dirs and every clip's PNG count equals n_png of r58_assembly.csv; --check mode counts only; never deletes anything on either side; ends with '[r58_fetch] failures: N'"
     needed_by: [fetch-renders]
     status: pending
   - id: eval-lab-launcher
-    content: "slurm_scripts/five_bench/r58_eval.sh -- lab launcher (bash, not sbatch): for each config given as argument (subset of the 12; no argument = refuse), bash slurm_scripts/five_bench/eval_suite.sh --method wan_{config, dot -> p}_correct --root $R58_DEST/{config} --layout edit_video --tag r58 --allow_nan motion_fidelity_score_edit_part (default --edit_json_dir = Correct, no --cases = 415 pairs); preflight: eval_suite.sh present, 415 clip dirs per root, the user's queue + 3 x n_configs <= 30 tasks; refuses a config whose suite_r58_wan_{config}_correct.csv already exists or whose method already has a line in logs/r58_eval_jobs.txt; appends '<method> <metrics> <cf> <merge>' job ids to logs/r58_eval_jobs.txt"
+    content: "slurm_scripts/five_bench/r58_eval.sh -- lab launcher (bash, not sbatch): for each config given as argument (subset of the 12; no argument = refuse), bash slurm_scripts/five_bench/eval_suite.sh --method wan_{config, dot -> p}_correct --root $R58_DEST/{config} --layout edit_video --tag r58 --allow_nan motion_fidelity_score_edit_part (default --edit_json_dir = Correct, no --cases = 415 pairs); preflight: eval_suite.sh present, R58_DEST (default /scratch/PERSO/skhairi/five_bench/r58_wan_correct) visible on the launching host, 415 clip dirs per root, the user's queue + 3 x n_configs <= 30 tasks; refuses a config whose suite_r58_wan_{config}_correct.csv already exists or whose method already has a line in logs/r58_eval_jobs.txt; exports SBATCH_EXCLUDE (an environment value overrides the scripts' #SBATCH --exclude) = every L40S node from `sinfo -p L40S -h -N -o %N` except node39, node50 and node57, so every job lands on a node that mounts /scratch (R58_DEST is read by the metrics, CF and merge jobs); appends '<method> <metrics> <cf> <merge>' job ids to logs/r58_eval_jobs.txt"
     needed_by: [eval-1, eval-2, eval-3]
     status: pending
   - id: port-list
@@ -117,7 +117,8 @@ steps:
     wait_for: wan-chain
     check_hint: "User, on Jean Zay, when `squeue -u $USER` is empty: `grep -h failures logs/r58_*.out | sort | uniq -c` -> every line 'failures: 0'; render logs report 47/47 dirs for configs 0-10 and 190/190 for max_s5; field log 'wan_max_s5: 190 npz'; R49 videos untouched: `find ~/Data/dataggen/outputs/five_bench/{r48_wan_arms,r49_wan_arms}/ -type f -newer logs/r58_wan_chain_jobs.txt | wc -l` = 0"
     sets_status: finished
-    status: pending
+    status: completed
+    completed_at: 2026-11-01
   - id: assemble
     type: manual
     wait_for: wait-chain
@@ -125,7 +126,7 @@ steps:
     status: pending
   - id: probe-mounts
     type: manual
-    check_hint: "User: R58_DEST (default /work/PERSO/skhairi/five_bench/r58_wan_correct) must be writable from the frontal AND readable from L40S compute nodes. On gpu-gw: `mkdir -p /work/PERSO/skhairi/five_bench/r58_wan_correct && df -h /work/PERSO/skhairi` (>= 140 GB free for 12 configs x ~9.3 GB); then `srun -p L40S --exclude=node52 --gres=gpu:1 -t 00:05:00 ls -d /work/PERSO/skhairi/five_bench/r58_wan_correct`. If either fails: pick another R58_DEST visible on both (not /store, not on every node), or fetch/evaluate in waves under ~/Data (home quota: ~/Data is at 418 GB)"
+    check_hint: "User, on gpu-gw: R58_DEST = /scratch/PERSO/skhairi/five_bench/r58_wan_correct (lab /scratch: NOT /home, NOT /work, NOT /store) must be writable from the frontal AND readable from L40S nodes. (1) `df -h /scratch && ls -ld /scratch/PERSO/skhairi && mkdir -p /scratch/PERSO/skhairi/five_bench/r58_wan_correct && touch /scratch/PERSO/skhairi/five_bench/r58_wan_correct/.probe && rm /scratch/PERSO/skhairi/five_bench/r58_wan_correct/.probe`; (2) quota: `myquota` (frontal) must leave >= 140 GB of the 2 TiB (12 configs x ~9.3 GB) next to R59-R65; (3) `for n in node39 node50 node57; do srun -p L40S -w $n --gres=gpu:1 -t 00:05:00 ls -d /scratch/PERSO/skhairi/five_bench/r58_wan_correct; done`; (4) the CF job needs 4 L40S on ONE node: `sinfo -N -p L40S -h -o '%N %G' | grep -E 'node(39|50|57)'` must show a node with 4 GPUs. If /scratch is not mounted on the frontal, fetch from an L40S node instead; if no /scratch node has 4 GPUs, tell Claude (CF needs another plan)"
     status: pending
   - id: fetch-renders
     type: manual
@@ -168,7 +169,7 @@ steps:
   - id: archive
     type: manual
     wait_for: wait-eval
-    check_hint: "User, on gpu-gw in tmux: `bash jz/r50_fetch_outputs.sh r58_wan_draft r58_div r58_field r58_wan_arms` -> '[r50_fetch] failures: 0' (intermediates + new renders archived to /store/PERSO/skhairi/Outputs/jz_five_bench); only then may the Jean Zay $SCRATCH copies be deleted"
+    check_hint: "User, on gpu-gw in tmux: `bash jz/r50_fetch_outputs.sh r58_wan_draft r58_div r58_field r58_wan_arms` -> '[r50_fetch] failures: 0' (intermediates + new renders archived to /store/PERSO/skhairi/Outputs/jz_five_bench); only then may the Jean Zay $SCRATCH copies be deleted. /store is the only long-term copy of the new renders (the reused R49 renders already live there); the lab /scratch evaluation copy is disposable (30-day purge) and nothing is ever kept under ~/Data or /work"
     status: pending
   - id: analyze
     type: manual
@@ -246,8 +247,9 @@ Rendering stays on Jean Zay H100 next to the R49 renders it reuses. Every Wan-Ed
 | Reuse gate | Before mixing new and reused renders: 2 unchanged pairs re-rendered with `native_s0.92` (r48 renderer) and `matched59_s0.92` (r49 renderer); PASS iff max \|diff\| ≤ 2/255 on every frame. FAIL stops the task (decision with the user: full re-render) |
 | Output dirs (Jean Zay) | New renders under `$D/r58_wan_arms/{config}_full/`; draft `$D/r58_wan_draft`, divergence `$D/r58_div`, field `$D/r58_field`, repro `$D/r58_repro`, assembly `$D/r58_wan_correct`; all on `$SCRATCH` via `r50_scratch_links.sh`. The R48/R49 renders must stay on `$SCRATCH` until `fetch-renders` passes (IDRIS purge) |
 | Assembly (two folders → one root) | Per config, `$D/r58_wan_correct/{config}/edit{T}/{video}` is a symlink on Jean Zay to the new render (`r58_wan_arms`) if the pair is in the regen set, else to the R49 render (`r48_wan_arms` / `r49_wan_arms`) |
-| Transfer | `jz/r58_fetch_renders.sh` on gpu-gw: `rsync -aL` of each assembled tree, so the lab holds one ordinary 415-clip tree of real PNGs per config at `R58_DEST/{config}` (default `/work/PERSO/skhairi/five_bench/r58_wan_correct`, ~9.3 GB per config, ~110 GB total; not `/store`, which L40S nodes cannot all read, and not `~/Data`, near the home quota); PNG count per clip checked against `r58_assembly.csv` |
-| Evaluation | `eval_suite.sh --root R58_DEST/{config} --layout edit_video --tag r58 --method wan_{config}_correct` (dot → `p`), all 415 pairs, `--allow_nan motion_fidelity_score_edit_part` → `evaluation/csv/suite_r58_wan_{config}_correct.csv`; submitted in 3 batches of 4 configs (12 jobs each) to stay under the 30-task lab queue cap, headline configs first (native_s0.92, native_s0.978, matched59_s0.92, max_s5) |
+| Transfer | `jz/r58_fetch_renders.sh` on gpu-gw: `rsync -rL --size-only` (no mtimes) of each assembled tree, so the lab holds one ordinary 415-clip tree of real PNGs per config at `R58_DEST/{config}`, default **`/scratch/PERSO/skhairi/five_bench/r58_wan_correct`** (lab /scratch, 2 TiB per-user quota outside the home quota, mounted on L40S nodes 39/50/57; ~9.3 GB per config, ~110 GB in total); PNG count per clip checked against `r58_assembly.csv`. Copy-date mtimes, because /scratch is purged after 30 days |
+| Storage policy | Videos live only on **Jean Zay `$SCRATCH`** (renders, until fetched and archived), **lab `/scratch`** (disposable evaluation copy, read by Slurm jobs) and **`/store`** (archive, frontal-only, never read by a job). Nothing under `~/Data` (home quota) or `/work`. `/store` cannot be read by Slurm jobs, which is why evaluation reads `/scratch` |
+| Evaluation | `eval_suite.sh --root R58_DEST/{config} --layout edit_video --tag r58 --method wan_{config}_correct` (dot → `p`), all 415 pairs, `--allow_nan motion_fidelity_score_edit_part` → `evaluation/csv/suite_r58_wan_{config}_correct.csv`; jobs restricted to the L40S nodes that mount /scratch (node39, node50, node57) through `SBATCH_EXCLUDE`; submitted in 3 batches of 4 configs (12 jobs each) to stay under the 30-task lab queue cap, headline configs first (native_s0.92, native_s0.978, matched59_s0.92, max_s5) |
 | Averaging / plots | Plain per-clip mean from the suite CSV, never `_avg.csv`; Pareto plots with x = alignment, y = preservation |
 | Readout | max_s5 vs matched-59 (equal NFE, headline), vs native_s0.92 (official) and native_s0.978 (same floor); paired bootstrap 95% CI; per edit type; regenerated vs reused split as a sanity check |
 | Out of scope | StreamEdit arms on Correct (separate tasks); the R51 A4 Wan arm; re-rendering unchanged pairs; Jean Zay scoring |
@@ -304,8 +306,11 @@ $WORK/pyenv/five-bench/python evaluation/r58_assemble.py
 ### probe-mounts
 ```bash
 # lab frontal (gpu-gw)
-mkdir -p /work/PERSO/skhairi/five_bench/r58_wan_correct && df -h /work/PERSO/skhairi
-srun -p L40S --exclude=node52 --gres=gpu:1 -t 00:05:00 ls -d /work/PERSO/skhairi/five_bench/r58_wan_correct
+R=/scratch/PERSO/skhairi/five_bench/r58_wan_correct
+df -h /scratch && ls -ld /scratch/PERSO/skhairi && mkdir -p $R && touch $R/.probe && rm $R/.probe
+myquota                                    # >= 140 GB free of the 2 TiB, next to R59-R65
+for n in node39 node50 node57; do srun -p L40S -w $n --gres=gpu:1 -t 00:05:00 ls -d $R; done
+sinfo -N -p L40S -h -o '%N %G' | grep -E 'node(39|50|57)'     # a node with 4 GPUs for the CF job
 ```
 
 ### fetch-renders
@@ -376,7 +381,7 @@ flowchart LR
   R49 --> N
   N --> O[r58_wan_correct 12 x 415 links]
   O --> P[r58_fetch_renders.sh<br/>rsync -L to lab]
-  P --> Q[R58_DEST 12 x 415 real PNG trees]
+  P --> Q["R58_DEST (lab /scratch) 12 x 415 real PNG trees"]
   Q --> U[r58_eval.sh x3 batches<br/>R57 eval_suite.sh, lab L40S]
   C --> U
   U --> V[suite_r58 CSVs]
@@ -401,8 +406,8 @@ flowchart LR
 | `slurm_scripts/five_bench/r58_wan_chain.sh` (new) | Clone of `r49_wan_full_chain.sh`: 5 submissions, afterok chain for max_s5 | `chain-driver` ✅ |
 | `evaluation/r58_repro_check.py` (new) | Pixel comparison repro vs R49 render, PASS ≤ 2/255 → `r58_repro_check.csv` | `repro-check-script` ✅ |
 | `evaluation/r58_assemble.py` (new) | Symlink tree `$D/r58_wan_correct/{config}` over 415 pairs + `r58_assembly.csv` (runs on Jean Zay) | `assemble-script` |
-| `jz/r58_fetch_renders.sh` (new) | gpu-gw: fetch `r58_assembly.csv`, then `rsync -aL` per config → `R58_DEST/{config}`; free-space preflight; per-clip PNG count check; `--check`; `failures: N` | `fetch-renders-script` |
-| `slurm_scripts/five_bench/r58_eval.sh` (new) | Lab launcher: `eval_suite.sh` per config given as argument, tag `r58`, queue-cap and duplicate guards, job ids → `logs/r58_eval_jobs.txt` | `eval-lab-launcher` |
+| `jz/r58_fetch_renders.sh` (new) | gpu-gw: fetch `r58_assembly.csv`, then `rsync -aL` per config → `R58_DEST/{config}` (default lab /scratch, never ~/Data or /store; no mtimes kept); free-space preflight; per-clip PNG count check; `--check`; `failures: N` | `fetch-renders-script` |
+| `slurm_scripts/five_bench/r58_eval.sh` (new) | Lab launcher: `eval_suite.sh` per config given as argument (jobs pinned to the /scratch nodes 39/50/57 through `SBATCH_EXCLUDE`), tag `r58`, queue-cap and duplicate guards, job ids → `logs/r58_eval_jobs.txt` | `eval-lab-launcher` |
 | `jz/r50_port.sh` | SCRIPTS += the 5 `r58_*.sh` job scripts | `port-list` ✅ |
 | `jz/r50_scratch_links.sh` | FOLDERS += `r58_wan_draft r58_div r58_field r58_wan_arms r58_repro r58_wan_correct` | `scratch-folders` ✅ |
 | `jz/r50_fetch_outputs.sh` | ALL += `r58_wan_draft r58_div r58_field r58_wan_arms` (archive only) | `fetch-folders` |

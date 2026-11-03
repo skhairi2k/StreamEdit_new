@@ -31,6 +31,9 @@ REPO=/home/ids/skhairi/Code/StreamEdit_bigchantier
 DATA_ROOT=$HOME/Data/FiVE-Fine-Grained-Video-Editing-Benchmark
 OUT_ROOT=$HOME/Data/dataggen/outputs/five_bench
 QWEN_PYTHON=/home/ids/skhairi/anaconda3/envs/qwen-edit/bin/python
+# Qwen/Qwen-Image-Edit-2511 lives in an HF hub cache on /work (moved out of ~/.cache, home quota); the repo id in
+# gen_anchors.py is unchanged, only where the hub cache is looked up. Override with HF_HUB_CACHE=... in --export.
+export HF_HUB_CACHE="${HF_HUB_CACHE:-/work/PERSO/skhairi/hf_hub}"
 
 MODE="${1:-}"
 if [ "$MODE" != "smoke" ] && [ "$MODE" != "full" ]; then

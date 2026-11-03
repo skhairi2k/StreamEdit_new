@@ -1,0 +1,108 @@
+% CVPR introduction reframed after FlowAnchor (arXiv:2604.22586v1).
+% Positioning: look-ahead demand estimation + normalized native-control allocation.
+% METHODNAME is a placeholder. Add a quantitative headline only after the final
+% official-FiVE and FiVE-C evaluations are frozen.
+
+\section{Introduction}
+\label{sec:intro}
+
+Training-free video editing repurposes frozen video generators to transform a
+source video according to a textual or visual instruction, without task-specific
+fine-tuning or paired editing data~\cite{wan2025,selfforcing2025,flowedit,
+tokenflow2024,streamedit2026}. Its central challenge is to realize the requested
+change while preserving the source content and motion that the instruction does
+not concern. Existing editors negotiate this trade-off through a native control:
+for example, the step at which a FlowEdit-style velocity correction begins, or
+the rate at which StreamEdit releases a target branch from source attention.
+This control is ordinarily a single value shared by all locations and frames.
+
+One global value is poorly matched to the local nature of an edit. Replacing a
+rabbit with a drone requires some tokens to abandon the source silhouette early,
+when structure forms; changing an object's colour requires less freedom; the
+surrounding grass should remain tied to the source throughout. A strong global
+setting may complete the replacement but disturb the background and source
+motion, whereas a conservative one preserves the video but under-realizes the
+edit. The problem is therefore not only to choose a better operating point on a
+global editability--preservation curve, but to allocate editability according to
+the different demands of individual video tokens.
+
+Prior work provides two important forms of spatial adaptation. User-provided
+masks and attention-derived supports constrain \emph{where} an edit acts
+~\cite{objwiper,flowdirector}; Differential Diffusion assigns continuous
+per-pixel strengths from an external change map~\cite{diffdiff}. Closest to our
+setting, FlowAnchor~\cite{flowanchor} stabilizes inversion-free flow-based video
+editing using a supplied spatial anchor: it refines cross-attention within that
+region and, at each sampling step, amplifies the source--target velocity
+difference according to its sample-wise normalized contrast and the video
+length. This is an important instance of online, spatially adaptive signal
+control. It remains tied, however, to the instantaneous velocity difference of
+a FlowEdit trajectory. It does not produce a persistent estimate of local edit
+demand before the final render, nor translate such an estimate into editors
+whose native controls have different mechanisms and units.
+
+We ask a complementary question: \textbf{can an editor look ahead at its own
+behaviour, infer a continuous local demand for the requested transformation, and
+then allocate its native edit budget accordingly?} Our key observation is that
+a short, permissive edit can serve as a diagnostic intervention. When source
+preservation is temporarily relaxed, the editor reveals the transformation it
+is capable of making: where the output departs from the source provides an
+output-space proxy for local edit demand. Unlike an online velocity magnitude,
+this evidence is available before the final render, is defined for editors
+without an additive editing signal, and can be placed on a fixed reference
+scale rather than re-ranked independently within every video.
+
+Based on this observation, we introduce \textbf{METHODNAME}, a look-ahead
+controller for training-free video editing. METHODNAME first generates a short,
+high-editability \emph{draft}. Source- and target-branch attention identifies
+the content implicated by the instruction, requiring no user-provided or
+benchmark mask. Within this support, semantic and perceptual draft--source
+divergence estimates how strongly each token responded to the permissive edit.
+We scale these distances by references frozen after calibration and shared
+across videos and hosts, yielding a continuous edit-demand field without
+per-video normalization. The draft is diagnostic only: its artifacts are not
+carried into the final output.
+
+Estimating demand and applying it are separate problems. A demand value cannot
+be mapped linearly to arbitrary editor knobs: a query--key blend exponent and
+an edit start step have different nonlinear effects over their respective
+sampling schedules. We therefore derive, from each host's update rule, the mean
+target-branch weight induced by every native control value. After normalizing
+this response over the host's admissible control range, we invert it to assign a
+native control to each token. Thus the same demand occupies the same normalized
+target-exposure level in each host, while the host's editing mechanism remains
+otherwise unchanged. The native-control mapping is analytic and is not fitted
+to rendered quality or benchmark scores.
+
+We instantiate METHODNAME on two substantially different editors.
+StreamEdit~\cite{streamedit2026} is a few-step, visually prompted streaming
+editor whose control governs a soft query--key blend between source and target
+branches. Wan-Edit~\cite{five2025}, following FlowEdit~\cite{flowedit}, is
+text-conditioned and controls a hard temporal gate on the source--target
+velocity correction. This pairing tests whether one demand representation can
+control both attention-based release and flow-based editing. We evaluate each
+adaptive editor against its own global-control sweep at equal total sampling
+budget, including the draft, and against support-only, region-level, and
+draft-free alternatives. We report the official FiVE-Bench protocol and an
+audited correction variant, FiVE-C, which preserves the videos, masks, edit
+categories, and intended transformations while documenting repairs to textual
+inconsistencies.
+% TODO: Insert one quantitative headline supported by both matched-budget
+% comparisons; do not claim an overall win if gains are limited to shape edits.
+
+Our contributions are:
+\begin{itemize}
+    \item \textbf{Look-ahead edit-demand estimation.} We use a permissive draft
+    as an output-space diagnostic and combine attention support with
+    fixed-reference semantic and perceptual divergence to obtain a continuous,
+    per-token demand field without an external mask.
+
+    \item \textbf{Normalized native-control allocation.} We translate demand
+    into heterogeneous editor controls by inverting a normalized
+    target-exposure response derived from each host's update rule, without
+    fitting the mapping to generated outputs.
+
+    \item \textbf{Cross-mechanism, budget-matched evaluation.} We test the same
+    demand estimator on attention-based StreamEdit and flow-based Wan-Edit,
+    comparing each with tuned global and spatial-control alternatives while
+    charging the diagnostic draft to the total sampling budget.
+\end{itemize}

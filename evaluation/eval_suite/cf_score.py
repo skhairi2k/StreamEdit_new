@@ -118,7 +118,7 @@ def main() -> int:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sc.add_common_args(p)
     p.add_argument("--ivebench_dir", default="~/Code/IVEBench")
-    p.add_argument("--model_path", default="~/Data/weights/Qwen2.5-VL-72B-Instruct")
+    p.add_argument("--model_path", default="/work/PERSO/skhairi/weights/Qwen2.5-VL-72B-Instruct")
     a = p.parse_args()
 
     import torch

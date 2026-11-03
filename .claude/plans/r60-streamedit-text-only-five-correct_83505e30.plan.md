@@ -5,11 +5,11 @@ task_id: R60
 todos:
   - id: stage1-anno-flag
     content: "evaluation/r31_stage1.py -- new --edit_json_dir (default None = data_root/edit_prompt, as run_fivebench.py); edit_json read from it; printed in the start line"
-    needed_by: [render-chain]
+    needed_by: [render-max]
     status: completed
   - id: stage3-anno-flag
     content: "evaluation/r31_stage3.py -- new --edit_json_dir (default None = data_root/edit_prompt); edit_json read from it; printed in the start line"
-    needed_by: [render-chain]
+    needed_by: [render-max]
     status: completed
   - id: cases-script
     content: "evaluation/r60_build_cases.py -- compares evaluation/five_bench_correct/edit{T}_FiVE.json with ~/Data/FiVE-Fine-Grained-Video-Editing-Benchmark/edit_prompt/edit{T}_FiVE.json over the 415 pairs of r43_anchor_manifest_correct.json; writes evaluation/r60_cases_regen.json (source_prompt / target_prompt / source_object / target_object changed, expect 190 = 15/32/54/70/9/10 per type), evaluation/r60_cases_repro.json (first unchanged pair of edit1 and of edit4) and evaluation/csv/r60_regen_sets.csv (case_id, edit_type, video_name, changed fields, regen 0/1); r7 manifest format; exit 1 if the counts differ or a pair is missing from either JSON"
@@ -17,27 +17,27 @@ todos:
     status: completed
   - id: render-sbatch
     content: "slurm_scripts/five_bench/r60_render.sh -- copy of r44_infer.sh's run_fivebench.py call (--vp_mode novp, fg_boost 4, flow_shift 1.0, chunk 21, seed 0) plus --edit_json_dir evaluation/five_bench_correct; MODE correct (array 0-15): 0-7 N=15 ρ 2,3,4,6,8,10,20,50 and 8-11 N=20 ρ 2,4,10,50 with --cases_json evaluation/r60_cases_regen.json (190), 12-15 N=20 ρ 3,6,8,20 with --cases_json evaluation/r43_anchor_manifest_correct.json (415), out $D/r60_rho_sweep/r60_n{N}_rho{R}_novp; MODE repro (array 0-1): n15_rho2 / n20_rho2 on r60_cases_repro.json, out $D/r60_repro; per-type expected counts read from the case file; r44_infer.sh's skip / count / manifest guards; L40S, --exclude=node52, 64G, 24 h (indices 12-15: 415 clips at N=20, ~14 h by R39's estimate)"
-    needed_by: [repro-render, render-chain]
+    needed_by: [repro-render, render-base]
     status: completed
   - id: stage1-sbatch
     content: "slurm_scripts/five_bench/r60_se_stage1.sh -- copy of r53_se_stage1.sh with CASES=evaluation/r43_anchor_manifest_correct.json and --edit_json_dir evaluation/five_bench_correct; OUT=$D/r60_se_stage1, ATTN=$D/r60_se_attn; guard: 415 attention npz, 415 latents, every latent records vp_mode == novp"
-    needed_by: [render-chain]
+    needed_by: [render-max]
     status: completed
   - id: div-sbatch
     content: "slurm_scripts/five_bench/r60_div.sh -- copy of r53_div.sh (array 0-1 se_dino / se_lpips) with CASES = Correct manifest, TARGET_ROOT=$D/r60_se_stage1/frames/n5_tgt09/step04, --latent_dir $D/r60_se_stage1/latents, out $D/r60_div; 415-npz guard"
-    needed_by: [render-chain]
+    needed_by: [render-max]
     status: completed
   - id: field-sbatch
     content: "slurm_scripts/five_bench/r60_field.sh -- copy of r53_field.sh: r49_field.py --selftest, then --hosts se --cases Correct manifest --attn_se $D/r60_se_attn --div_root $D/r60_div --out_root $D/r60_field; 415-npz guard on se_max"
-    needed_by: [render-chain]
+    needed_by: [render-max]
     status: completed
   - id: stage3-sbatch
     content: "slurm_scripts/five_bench/r60_se_stage3.sh -- copy of r53_se_stage3.sh with CASES = Correct manifest, --edit_json_dir evaluation/five_bench_correct, FIELD_DIR=$D/r60_field/se_max, METHOD=r60_max_novp_correct, OUT_ROOT=$D/r60_se_arms; same preflight, 415-clip and manifest guards"
-    needed_by: [render-chain]
+    needed_by: [render-max]
     status: completed
   - id: chain-driver
     content: "slurm_scripts/five_bench/r60_chain.sh -- lab driver, --only base|max|all (default all), --dry-run; refuses if logs/r60_chain_jobs.txt exists (all) or already lists the part; prints squeue -u $USER -h -r | wc -l and refuses if it plus the new tasks (base 16, max 5) exceeds 30; base = r60_render.sh correct --array=0-15; max = stage1 -> div (--array=0-1, afterok) -> field (afterok) -> stage3 (afterok); appends '<stage> <id>' lines headed by the git commit"
-    needed_by: [render-chain]
+    needed_by: [render-max, render-base]
     status: completed
   - id: repro-check-script
     content: "evaluation/r60_repro_check.py -- for the 2 repro pairs x {n15_rho2, n20_rho2} compares $D/r60_repro/r60_n{N}_rho2_novp/edit{T}/{video}/*.png with $D/r44_rho_sweep/r44_n{N}_rho2_novp/... (n20 is on /store: run on nodecpu12): same frame count, max |diff| and PSNR per frame; PASS iff every frame has max |diff| <= 2 (of 255); writes evaluation/csv/r60_repro_check.csv; exit 1 on FAIL"
@@ -46,11 +46,11 @@ todos:
   - id: merge-script
     content: "evaluation/r60_merge_renders.py -- builds $D/r60_correct/{config}/edit{T}/{video} for the 17 configs over the 415 Correct pairs: regen pair -> symlink to $D/r60_rho_sweep/r60_{config}_novp/...; unchanged pair -> source r44_rho_sweep/r44_{config}_novp (n15 all ρ, n20 ρ 2/4/10/50), symlinked if it resolves under /home, copied (shutil.copytree) if it resolves under /store; n20 ρ 3/6/8/20 -> symlink to $D/r60_rho_sweep/r60_{config}_novp/... for all 415; max_novp -> symlink to $D/r60_se_arms/r60_max_novp_correct/step14/... for all 415; checks every clip's PNG count equals its source's; idempotent; writes evaluation/csv/r60_merge_renders.csv (config, case_id, source new|reused, storage link|copy, n_png); exit 1 on a missing/incomplete clip or a count other than 415 per config"
     needed_by: [merge-renders]
-    status: pending
+    status: completed
   - id: merge-sbatch
     content: "slurm_scripts/five_bench/r60_merge_renders.sh -- CPU partition, --nodelist=nodecpu12 (sees /store), 4 cpus, 16G, 6 h; fail-fast if /store/PERSO/skhairi/Outputs/five_bench/r44_rho_sweep is not readable; runs r60_merge_renders.py with the five-bench python; prints '[r60_merge_renders] failures: N'"
     needed_by: [merge-renders]
-    status: pending
+    status: completed
   - id: eval-launcher
     content: "slurm_scripts/five_bench/r60_eval.sh -- bash loop over the configs given as arguments (or all 17): bash slurm_scripts/five_bench/eval_suite.sh --method r60_{config}_correct --root $D/r60_correct/{config} --layout edit_video --tag r60 (default --edit_json_dir = Correct, no --cases = 415 pairs); refuses a config whose evaluation/csv/suite_r60_r60_{config}_correct.csv exists; refuses if queue + 3 x n_configs > 30; appends the job ids per config to logs/r60_eval_jobs.txt"
     needed_by: [eval]
@@ -69,37 +69,49 @@ steps:
       - evaluation/csv/r60_regen_sets.csv
     status: completed
     completed_at: 2026-10-26
+  - id: render-max
+    type: local
+    command: bash slurm_scripts/five_bench/r60_chain.sh --only max
+    sets_status: running
+    status: completed
+    completed_at: 2026-10-27
+    job_id: "1070898,1070899,1070900,1070901"   # resubmitted 2026-10-28; attempt 1 (1067561-4) failed: empty-side trigger tokens on edit5/6
   - id: repro-render
     type: sbatch
     wait_for: build-cases
     command: sbatch --array=0-1 slurm_scripts/five_bench/r60_render.sh repro
     status: completed
-    completed_at: 2026-10-26
-    job_id: "1066821"
+    completed_at: 2026-10-27
+    job_id: "1068718"   # resubmitted 2026-10-27 (1066821 crashed: relative --edit_json_dir)
   - id: wait-repro
     type: manual
     wait_for: repro-render
     check_hint: "sacct -j {job_id}: both tasks COMPLETED; both logs 'failures: 0'; 2 clip dirs under each $D/r60_repro/r60_n{15,20}_rho2_novp"
-    status: pending
+    status: completed
+    completed_at: 2026-10-28
   - id: repro-check
     type: srun
     wait_for: wait-repro
     command: srun --partition=CPU --nodelist=nodecpu12 --cpus-per-task=2 --mem=8G --time=00:30:00 ~/anaconda3/envs/five-bench/bin/python evaluation/r60_repro_check.py
     output_paths:
       - evaluation/csv/r60_repro_check.csv
-    status: pending
-  - id: render-chain
+    status: completed
+    completed_at: 2026-10-28
+  - id: render-base
     type: local
     wait_for: repro-check
-    command: bash slurm_scripts/five_bench/r60_chain.sh
+    command: bash slurm_scripts/five_bench/r60_chain.sh --only base
     sets_status: running
-    status: pending
+    status: completed
+    completed_at: 2026-10-28
+    job_id: "1071118"
   - id: wait-chain
     type: manual
-    wait_for: render-chain
-    check_hint: "no r60 job in squeue; grep -h failures logs/r60_*.out | sort | uniq -c -> all 'failures: 0'; base tasks 0-11 report 190 dirs and 12-15 report 415; 415 attention + latent npz (all novp), 2 x 415 divergence, 415 field npz, 415 r60_max_novp_correct clips"
+    wait_for: [render-max, render-base]
+    check_hint: "both parts submitted (logs/r60_chain_jobs.txt lists base, stage1, div, field, render); no r60 job in squeue; grep -h failures logs/r60_*.out | sort | uniq -c -> all 'failures: 0'; base tasks 0-11 report 190 dirs and 12-15 report 415; 415 attention + latent npz (all novp), 2 x 415 divergence, 415 field npz, 415 r60_max_novp_correct clips"
     sets_status: finished
-    status: pending
+    status: completed
+    completed_at: 2026-11-01
   - id: merge-renders
     type: sbatch
     wait_for: wait-chain
@@ -154,31 +166,34 @@ FiVE-Bench-Correct is the paper's main benchmark (supervisor, 2026-10-23). This 
 |---|---|---|---|---|
 | — | *(prep)* stage1-anno-flag · stage3-anno-flag · cases-script · render-sbatch · stage1-sbatch · div-sbatch · field-sbatch · stage3-sbatch · chain-driver · repro-check-script · merge-script · merge-sbatch · eval-launcher · score-script | todos | — | `implemented` |
 | 1 | `build-cases` | local | — | — |
-| 2 | `repro-render` | sbatch (L40S, array 0-1) | build-cases | — |
-| 3 | `wait-repro` | manual | repro-render | — |
-| 4 | `repro-check` | srun (CPU, nodecpu12) | wait-repro | — |
-| 5 | `render-chain` | local (submits 21 tasks) | repro-check | `running` |
-| 6 | `wait-chain` | manual | render-chain | `finished` |
-| 7 | `merge-renders` | sbatch (CPU, nodecpu12) | wait-chain | — |
-| 8 | `wait-merge-renders` | manual | merge-renders | — |
-| 9 | `eval` | local (batches; needs R57 `adopt`) | wait-merge-renders | — |
-| 10 | `wait-eval` | manual | eval | — |
-| 11 | `score` | local | wait-eval | — |
-| 12 | `analyze` | manual | score | `analyzed` |
+| 2 | `render-max` | local (submits 5 tasks: se_max_novp chain, 415 pairs; no gate) | — | `running` |
+| 3 | `repro-render` | sbatch (L40S, array 0-1) | build-cases | — |
+| 4 | `wait-repro` | manual | repro-render | — |
+| 5 | `repro-check` | srun (CPU, nodecpu12) | wait-repro | — |
+| 6 | `render-base` | local (submits 16 tasks: uniform-ρ renders; needs the gate PASS) | repro-check | `running` |
+| 7 | `wait-chain` | manual | render-max, render-base | `finished` |
+| 8 | `merge-renders` | sbatch (CPU, nodecpu12) | wait-chain | — |
+| 9 | `wait-merge-renders` | manual | merge-renders | — |
+| 10 | `eval` | local (batches; needs R57 `adopt`) | wait-merge-renders | — |
+| 11 | `wait-eval` | manual | eval | — |
+| 12 | `score` | local | wait-eval | — |
+| 13 | `analyze` | manual | score | `analyzed` |
 
 ```
 /build-step build-cases R60
 /build-step repro-render R60
 /build-step repro-check R60
-/build-step render-chain R60
+/build-step render-max R60
+/build-step render-base R60
 /build-step merge-renders R60
 /build-step eval R60
 /build-step score R60
 /run-step R60 build-cases
+/run-step R60 render-max
 /run-step R60 repro-render
 /run-step R60 wait-repro
 /run-step R60 repro-check
-/run-step R60 render-chain
+/run-step R60 render-base
 /run-step R60 wait-chain
 /run-step R60 merge-renders
 /run-step R60 wait-merge-renders
@@ -232,10 +247,18 @@ srun --partition=CPU --nodelist=nodecpu12 --cpus-per-task=2 --mem=8G --time=00:3
   ~/anaconda3/envs/five-bench/bin/python evaluation/r60_repro_check.py
 ```
 
-### render-chain
+### render-max
 ```bash
-bash slurm_scripts/five_bench/r60_chain.sh --dry-run
-bash slurm_scripts/five_bench/r60_chain.sh            # or --only base / --only max if the queue is busy
+bash slurm_scripts/five_bench/r60_chain.sh --only max --dry-run
+bash slurm_scripts/five_bench/r60_chain.sh --only max
+cat logs/r60_chain_jobs.txt
+```
+
+### render-base
+```bash
+# only after repro-check printed PASS
+bash slurm_scripts/five_bench/r60_chain.sh --only base --dry-run
+bash slurm_scripts/five_bench/r60_chain.sh --only base
 cat logs/r60_chain_jobs.txt
 ```
 

@@ -777,6 +777,8 @@ class EditCausalInferencePipeline(torch.nn.Module):
                 trg_prompts[0] if isinstance(trg_prompts, list) else trg_prompts,
                 add_special_tokens=True)["input_ids"])
             idx_src, idx_trg = tok_src[0], tok_trg[0]
+            # one empty side is allowed (nothing to record there, see model.py); both empty is not
+            assert len(idx_src) + len(idx_trg) > 0, "R48 attn recorder: no trigger token on either side"
             f_lat_total = output.shape[1]
             # window = draft calls with sigma in [0.55, 0.9]; fixed given a fixed
             # denoising_step_list, so computed once here rather than re-derived per

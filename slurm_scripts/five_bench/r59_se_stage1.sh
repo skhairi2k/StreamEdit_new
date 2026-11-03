@@ -19,6 +19,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:1
+#SBATCH --cpus-per-task=16
 #SBATCH --hint=nomultithread
 #SBATCH --mem=64G
 #SBATCH --time=12:00:00
@@ -55,8 +56,13 @@ TOTAL=0; for n in "${EXPECT[@]}"; do TOTAL=$((TOTAL + n)); done
 echo "[r59_se_stage1] job=${SLURM_JOB_ID} cases=${CASES} expect per type: ${EXPECT[*]} (total ${TOTAL}) VP, ${STEPS}-step draft, ${SCHED}, edit_json_dir=${EDIT_JSON_DIR}"
 echo "[r59_se_stage1] node=$(hostname)"; nvidia-smi -L 2>&1 | head -2
 
+# RERUN: R59_TYPES="3 4 5 6" renders only those edit types (job 1066777 died on a broken streamgve env after edit1 + edit2). The post-run guards
+# below still check all six types, so the finished ones must be on disk. Default: all six.
+TYPES=${R59_TYPES:-1 2 3 4 5 6}
+echo "[r59_se_stage1] edit types to render: ${TYPES}"
 FAILED=0
-for T in 1 2 3 4 5 6; do
+for T in $TYPES; do
+  [[ "$T" =~ ^[1-6]$ ]] || { echo "[r59_se_stage1] FATAL: bad edit type '${T}' in R59_TYPES"; exit 1; }
   [ "${EXPECT[$((T - 1))]}" -eq 0 ] && continue
   echo "--- [r59_se_stage1] edit${T} (expect ${EXPECT[$((T - 1))]}) $(date '+%F %T') ---"
   $PY_SG evaluation/r31_stage1.py \

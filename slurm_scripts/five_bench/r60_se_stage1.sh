@@ -18,6 +18,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:1
+#SBATCH --cpus-per-task=16
 #SBATCH --hint=nomultithread
 #SBATCH --mem=64G
 #SBATCH --time=12:00:00
@@ -54,7 +55,8 @@ echo "[r60_se_stage1] job=${SLURM_JOB_ID} cases=${CASES} expect per type: ${EXPE
 echo "[r60_se_stage1] node=$(hostname)"; nvidia-smi -L 2>&1 | head -2
 
 FAILED=0
-for T in 1 2 3 4 5 6; do
+# EDIT_TYPES (default all): rerun only some types, e.g. EDIT_TYPES="5 6"; the guards below still check all six.
+for T in ${EDIT_TYPES:-1 2 3 4 5 6}; do
   [ "${EXPECT[$((T - 1))]}" -eq 0 ] && continue
   echo "--- [r60_se_stage1] edit${T} (expect ${EXPECT[$((T - 1))]}) $(date '+%F %T') ---"
   $PY_SG evaluation/r31_stage1.py \

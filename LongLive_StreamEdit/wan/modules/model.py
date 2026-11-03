@@ -315,7 +315,11 @@ class WanT2VCrossAttention(WanSelfAttention):
                 qh, kh, vh = q[half], k[half], v[half]
                 idx = rec_state[idx_key]
                 nprompt = rec_state[nprompt_key]
-                assert len(idx) > 0, f"R48 attn recorder: empty trigger-token index list for {idx_key}"
+                #✨ R61 (port of SF R59's fix): an empty side (FiVE-Bench-Correct: no source object
+                # on an addition, no target object on a removal) has no attention to record: its
+                # accumulators stay at zero / zero maps.
+                if len(idx) == 0:
+                    continue
                 # per-token maps: one flash_attention call per trigger token, mask_value
                 # = 1 at that single key position, 0 elsewhere -- the attention-weighted
                 # mass the query places on exactly that token (mean over heads).
