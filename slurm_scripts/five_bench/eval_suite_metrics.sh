@@ -21,11 +21,11 @@
 # Time: ~7-9 h per method on 415 pairs (estimate, 2026-11-03), so 24 h (the L40S partition maximum) holds two methods.
 #SBATCH --job-name=suite_metrics
 #SBATCH --partition=L40S
-#SBATCH --exclude=node52
+#SBATCH --exclude=node52,node51
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:1
-#SBATCH --cpus-per-task=16
+#SBATCH --cpus-per-task=4
 #SBATCH --hint=nomultithread
 #SBATCH --mem=64G
 #SBATCH --time=24:00:00

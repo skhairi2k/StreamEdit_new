@@ -12,7 +12,7 @@
 # imageio-ffmpeg's static 7.0.2 build; it is linked as `ffmpeg` into a per-job directory placed first on PATH.
 #SBATCH --job-name=suite_cf
 #SBATCH --partition=L40S
-#SBATCH --exclude=node52
+#SBATCH --exclude=node52,node51
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --gres=gpu:4
