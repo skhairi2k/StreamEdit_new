@@ -172,6 +172,33 @@ def add_common_args(p: argparse.ArgumentParser) -> None:
     p.add_argument("--out", required=True, help="per-pair CSV")
 
 
+SRC_WINDOWS = ("full", "render")
+
+
+def add_src_window_arg(p: argparse.ArgumentParser) -> None:
+    """--src_window for the scorers that read the source video themselves (PSC, CF)."""
+    p.add_argument("--src_window", default="full", choices=SRC_WINDOWS,
+                   help="source frames used: full = the whole source clip (default); render = its first len(render) "
+                        "frames, the window the harness, CLIP-D and EditReward use (they truncate to the shorter)")
+
+
+def source_window(src: Sequence[str], tgt: Sequence[str], mode: str) -> List[str]:
+    """Source frame paths of a pair: all of them (full) or the first len(tgt) (render)."""
+    if mode not in SRC_WINDOWS:
+        raise ValueError(f"src_window '{mode}' not in {SRC_WINDOWS}")
+    return list(src[:len(tgt)] if mode == "render" else src)
+
+
+def check_window(store: ResultStore, mode: str, name: str) -> bool:
+    """A resumed CSV must have been scored with the same --src_window (rows written before the column existed = full)."""
+    other = sorted({str(r.get("src_window") or "full") for r in store.rows.values()} - {mode})
+    if other:
+        print(f"Error: {name}: {store.path} holds rows scored with --src_window {', '.join(other)}, this run uses {mode}; "
+              f"use another --tag (or --out) instead of mixing windows in one table", flush=True)
+        return False
+    return True
+
+
 def finish(store: ResultStore, expected: int, name: str) -> int:
     """Exit code of a scoring script: 1 on any missing / NaN pair, after the CSV was written."""
     bad = [k for k in store.nan_pairs()]

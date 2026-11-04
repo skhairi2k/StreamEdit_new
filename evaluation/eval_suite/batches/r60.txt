@@ -1,0 +1,21 @@
+# R60 -- StreamEdit text-only (no VP) on FiVE-Bench-Correct: merged 415-clip trees built by r60_merge_renders.py on /scratch, 17 settings.
+# `NAME ROOT`; a relative ROOT is taken under --root_base /scratch/PERSO/skhairi/five_bench. Headline settings first.
+# Common R57 procedure (R57 plan, "Common evaluation procedure"):
+#   bash slurm_scripts/five_bench/eval_suite.sh --batch evaluation/eval_suite/batches/r60.txt --root_base /scratch/PERSO/skhairi/five_bench --per_job 2 --tag r60 --layout edit_video --src_window render --part metrics|cf
+r60_n15_rho2_correct   r60_correct/n15_rho2
+r60_max_novp_correct   r60_correct/max_novp
+r60_n15_rho3_correct   r60_correct/n15_rho3
+r60_n15_rho4_correct   r60_correct/n15_rho4
+r60_n15_rho6_correct   r60_correct/n15_rho6
+r60_n15_rho8_correct   r60_correct/n15_rho8
+r60_n15_rho10_correct  r60_correct/n15_rho10
+r60_n15_rho20_correct  r60_correct/n15_rho20
+r60_n15_rho50_correct  r60_correct/n15_rho50
+r60_n20_rho2_correct   r60_correct/n20_rho2
+r60_n20_rho3_correct   r60_correct/n20_rho3
+r60_n20_rho4_correct   r60_correct/n20_rho4
+r60_n20_rho6_correct   r60_correct/n20_rho6
+r60_n20_rho8_correct   r60_correct/n20_rho8
+r60_n20_rho10_correct  r60_correct/n20_rho10
+r60_n20_rho20_correct  r60_correct/n20_rho20
+r60_n20_rho50_correct  r60_correct/n20_rho50

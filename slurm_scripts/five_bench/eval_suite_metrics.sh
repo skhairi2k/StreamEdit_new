@@ -40,7 +40,7 @@ cd "$REPO" || exit 1
 mkdir -p logs evaluation/csv
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True PYTHONUNBUFFERED=1 HF_HUB_OFFLINE=1
 suite_expect || exit 1
-echo "[eval_suite] metrics job=${JOB} tag=${TAG} layout=${LAYOUT} methods=${#UNITS[@]}: ${UNITS[*]%%=*}"
+echo "[eval_suite] metrics job=${JOB} tag=${TAG} layout=${LAYOUT} src_window=${SRC_WINDOW} methods=${#UNITS[@]}: ${UNITS[*]%%=*}"
 echo "[eval_suite] cases=${CASES:-<every pair of $EDIT_JSON_DIR>} expect per type: ${EXPECT[*]}"
 echo "[eval_suite] node=$(hostname)"; nvidia-smi -L 2>&1 | head -2
 
@@ -114,9 +114,10 @@ for U in "${UNITS[@]}"; do
     echo "=== [eval_suite] ${METHOD} ${STAGE} $(date '+%F %T')"
     OUT="evaluation/csv/suite_${STAGE}_${TAG}_${METHOD}.csv"
     LOG="logs/eval_suite_${JOB}_${METHOD}_${STAGE}.run.log"
-    if [ "$STAGE" = editreward ]; then PY=$PY_ER; else PY=$PY_FB; fi
+    # PSC takes --src_window (its s_src); EditReward pairs source and render frames positionally already
+    if [ "$STAGE" = editreward ]; then PY=$PY_ER; WIN=(); else PY=$PY_FB; WIN=("${SRC_WINDOW_PY[@]}"); fi
     $PY -I "$SUITE_DIR/${STAGE}_score.py" --root "$ROOT" --layout "$LAYOUT" --edit_json_dir "$EDIT_JSON_DIR" \
-      --data_root "$DATA_ROOT" "${CASES_PY[@]}" --out "$OUT" > "$LOG" 2>&1
+      --data_root "$DATA_ROOT" "${CASES_PY[@]}" "${WIN[@]}" --out "$OUT" > "$LOG" 2>&1
     RC=$?
     stage_gate "${METHOD} ${STAGE}" "$RC" "$LOG" || UF=1
     check_keyed_rows "$OUT" "${METHOD} ${STAGE}" || UF=1

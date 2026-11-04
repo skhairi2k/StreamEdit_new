@@ -10,12 +10,13 @@ Inputs (all in --csv_dir, produced by slurm_scripts/five_bench/eval_suite_{metri
 The harness CSVs carry no video name, only ``file_id`` = the index inside edit{T}_FiVE.json of --edit_json_dir; that file
 maps it back.
 
-Outputs
-  suite_{tag}_{method}.csv            one row per pair (edit_type, video_name, every metric)
-  suite_{tag}_{method}_per_type.csv   plain per-clip means per edit type and overall (never the harness's _avg.csv, whose
-                                      columns are rescaled). PSC: ``psc`` is the mean over edit types 1-5 only; edit type
-                                      6 (removal) is reported as ``psc_removal`` and never averaged with them. CF and the
-                                      rest are averaged over all pairs.
+Outputs (three tables per method, R57 "Common evaluation procedure")
+  suite_{tag}_{method}.csv            per clip: one row per pair (edit_type, video_name, every metric)
+  suite_{tag}_{method}_per_type.csv   per edit type: plain per-clip means, one row per edit type (edit1 .. edit6)
+  suite_{tag}_{method}_overall.csv    overall: plain per-clip mean over all pairs, one row (each clip counts once, as
+                                      FiVE-Bench averages), same columns as _per_type
+  Never the harness's _avg.csv (rescaled columns). PSC: ``psc`` is the mean over edit types 1-5 only; edit type 6
+  (removal) is reported as ``psc_removal`` and never averaged with them. CF and the rest are averaged over all pairs.
 
 Exit 1 (before writing) on a missing file / metric column, a pair set that differs from the expected one, or duplicated
 rows; exit 1 (after writing) when any metric cell is NaN, unless its column is listed in --allow_nan (none needs it
@@ -211,10 +212,14 @@ def main() -> int:
         rem = [float(r["psc"]) for r in sel if r["edit_type"] == 6]  # type: ignore[arg-type]
         line["psc_removal"] = mean(rem) if rem else ""
         lines.append(line)
-    write_atomic(out_type, type_fields, [{k: fmt(v) for k, v in ln.items()} for ln in lines])
+    # three tables: per clip (above), per edit type, overall (same columns as per edit type, one row)
+    write_atomic(out_type, type_fields, [{k: fmt(v) for k, v in ln.items()} for ln in lines if ln["scope"] != "overall"])
+    out_all = csv_dir / f"suite_{a.tag}_{a.method}_overall.csv"
+    write_atomic(out_all, type_fields, [{k: fmt(v) for k, v in ln.items()} for ln in lines if ln["scope"] == "overall"])
 
     print(f"[merge_suite] {len(table)} pairs -> {out_pair}")
     print(f"[merge_suite] per-type means -> {out_type}")
+    print(f"[merge_suite] overall means -> {out_all}")
     if a.without_cf:
         print("[merge_suite] --without_cf: CF not merged, its columns are empty (rerun the merge after eval_suite.sh --part cf)")
     for ln in lines:

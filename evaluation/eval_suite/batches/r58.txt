@@ -1,0 +1,15 @@
+# R58 -- Wan-Edit on FiVE-Bench-Correct: the 12 assembled trees (415 clips each, fetched to lab /scratch by jz/r58_fetch_renders.sh).
+# `NAME ROOT`; a relative ROOT is taken under --root_base /scratch/PERSO/skhairi/five_bench. Headline configs first.
+# Use with:  bash slurm_scripts/five_bench/eval_suite.sh --batch evaluation/eval_suite/batches/r58.txt --root_base /scratch/PERSO/skhairi/five_bench --per_job 2 --tag r58 --part metrics
+wan_native_s0p92_correct       r58_wan_correct/native_s0.92
+wan_native_s0p978_correct      r58_wan_correct/native_s0.978
+wan_matched59_s0p92_correct    r58_wan_correct/matched59_s0.92
+wan_max_s5_correct             r58_wan_correct/max_s5
+wan_native_s0p95_correct       r58_wan_correct/native_s0.95
+wan_native_s0p85_correct       r58_wan_correct/native_s0.85
+wan_native_s0p75_correct       r58_wan_correct/native_s0.75
+wan_native_s0p6_correct        r58_wan_correct/native_s0.6
+wan_native_s0p4_correct        r58_wan_correct/native_s0.4
+wan_matched59_s0p95_correct    r58_wan_correct/matched59_s0.95
+wan_matched59_s0p85_correct    r58_wan_correct/matched59_s0.85
+wan_matched59_s0p978_correct   r58_wan_correct/matched59_s0.978

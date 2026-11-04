@@ -1,0 +1,5 @@
+# R63 -- UniEdit-Flow (Wan2.1) on FiVE-Bench-Correct, 1 setting.
+# `NAME ROOT`; a relative ROOT is taken under --root_base /scratch/PERSO/skhairi/five_bench. Headline settings first.
+# Common R57 procedure (R57 plan, "Common evaluation procedure"):
+#   bash slurm_scripts/five_bench/eval_suite.sh --batch evaluation/eval_suite/batches/r63.txt --root_base /scratch/PERSO/skhairi/five_bench --per_job 2 --tag r63 --layout edit_video --src_window render --part metrics|cf
+r63_uniedit_flow   r63_uniedit_flow/full

@@ -1,0 +1,21 @@
+# R59 -- StreamEdit (VP) on FiVE-Bench-Correct: native rho sweep (N=15, N=20) + se_max, 17 settings, 415 clips each.
+# `NAME ROOT`; a relative ROOT is taken under --root_base /scratch/PERSO/skhairi/five_bench. Headline settings first.
+# Common R57 procedure (R57 plan, "Common evaluation procedure"):
+#   bash slurm_scripts/five_bench/eval_suite.sh --batch evaluation/eval_suite/batches/r59.txt --root_base /scratch/PERSO/skhairi/five_bench --per_job 2 --tag r59 --layout edit_video --src_window render --part metrics|cf
+r59_n15_rho2_vp      r59_rho_sweep/r59_n15_rho2_vp
+r59_max_full         r59_se_arms/r59_max_full/step14
+r59_n15_rho3_vp      r59_rho_sweep/r59_n15_rho3_vp
+r59_n15_rho4_vp      r59_rho_sweep/r59_n15_rho4_vp
+r59_n15_rho6_vp      r59_rho_sweep/r59_n15_rho6_vp
+r59_n15_rho8_vp      r59_rho_sweep/r59_n15_rho8_vp
+r59_n15_rho10_vp     r59_rho_sweep/r59_n15_rho10_vp
+r59_n15_rho20_vp     r59_rho_sweep/r59_n15_rho20_vp
+r59_n15_rho50_vp     r59_rho_sweep/r59_n15_rho50_vp
+r59_n20_rho2_vp      r59_rho_sweep/r59_n20_rho2_vp
+r59_n20_rho3_vp      r59_rho_sweep/r59_n20_rho3_vp
+r59_n20_rho4_vp      r59_rho_sweep/r59_n20_rho4_vp
+r59_n20_rho6_vp      r59_rho_sweep/r59_n20_rho6_vp
+r59_n20_rho8_vp      r59_rho_sweep/r59_n20_rho8_vp
+r59_n20_rho10_vp     r59_rho_sweep/r59_n20_rho10_vp
+r59_n20_rho20_vp     r59_rho_sweep/r59_n20_rho20_vp
+r59_n20_rho50_vp     r59_rho_sweep/r59_n20_rho50_vp

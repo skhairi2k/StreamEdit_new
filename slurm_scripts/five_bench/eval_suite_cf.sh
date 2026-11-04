@@ -30,7 +30,7 @@ cd "$REPO" || exit 1
 mkdir -p logs evaluation/csv
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True PYTHONUNBUFFERED=1 HF_HUB_OFFLINE=1
 suite_expect || exit 1
-echo "[eval_suite] cf job=${JOB} tag=${TAG} layout=${LAYOUT} methods=${#UNITS[@]}: ${UNITS[*]%%=*}"
+echo "[eval_suite] cf job=${JOB} tag=${TAG} layout=${LAYOUT} src_window=${SRC_WINDOW} methods=${#UNITS[@]}: ${UNITS[*]%%=*}"
 echo "[eval_suite] cases=${CASES:-<every pair of $EDIT_JSON_DIR>} expect per type: ${EXPECT[*]}"
 echo "[eval_suite] node=$(hostname)"; nvidia-smi -L 2>&1
 
@@ -49,8 +49,8 @@ for U in "${UNITS[@]}"; do
   OUT="evaluation/csv/suite_cf_${TAG}_${METHOD}.csv"
   LOG="logs/eval_suite_${JOB}_${METHOD}_cf.run.log"
   echo "=== [eval_suite] ${METHOD} cf $(date '+%F %T') root=${ROOT}"
-  $PY_FB -I "$SUITE_DIR/cf_score.py" --root "$ROOT" --layout "$LAYOUT" --edit_json_dir "$EDIT_JSON_DIR" \
-    --data_root "$DATA_ROOT" "${CASES_PY[@]}" --ivebench_dir ~/Code/IVEBench \
+  $PY_CF -I "$SUITE_DIR/cf_score.py" --root "$ROOT" --layout "$LAYOUT" --edit_json_dir "$EDIT_JSON_DIR" \
+    --data_root "$DATA_ROOT" "${CASES_PY[@]}" "${SRC_WINDOW_PY[@]}" --ivebench_dir ~/Code/IVEBench \
     --model_path "$QWEN72B_DIR" --out "$OUT" > "$LOG" 2>&1
   RC=$?
   UF=0

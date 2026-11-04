@@ -1,0 +1,5 @@
+# R65 -- AnyV2V on FiVE-Bench-Correct (its own first min(32, n) frames, source-resolution copy), 1 setting.
+# `NAME ROOT`; a relative ROOT is taken under --root_base /scratch/PERSO/skhairi/five_bench. Headline settings first.
+# Common R57 procedure (R57 plan, "Common evaluation procedure"):
+#   bash slurm_scripts/five_bench/eval_suite.sh --batch evaluation/eval_suite/batches/r65.txt --root_base /scratch/PERSO/skhairi/five_bench --per_job 2 --tag r65 --layout edit_video --src_window render --part metrics|cf
+r65_anyv2v   r65_anyv2v/correct_srcres

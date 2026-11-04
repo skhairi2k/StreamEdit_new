@@ -1,0 +1,5 @@
+# R66 -- ContextFlow on FiVE-Bench-Correct (41-frame renders fetched from Jean Zay), 1 setting.
+# `NAME ROOT`; a relative ROOT is taken under --root_base /scratch/PERSO/skhairi/five_bench. Headline settings first.
+# Common R57 procedure (R57 plan, "Common evaluation procedure"):
+#   bash slurm_scripts/five_bench/eval_suite.sh --batch evaluation/eval_suite/batches/r66.txt --root_base /scratch/PERSO/skhairi/five_bench --per_job 2 --tag r66 --layout edit_video --src_window render --part metrics|cf
+r66_contextflow   r66_contextflow/correct/n41

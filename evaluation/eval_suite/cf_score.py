@@ -23,6 +23,9 @@ start.
 
 Frames of both videos are first symlinked into temp directories as ``%05d.<ext>``, the pattern IVEBench's ffmpeg call
 reads (renders are 0-indexed, FiVE sources 1-indexed; a gap in the numbering would otherwise cut the video short).
+--src_window render (R58-R66): only the first len(render) source frames are linked, so the judge compares the render with
+the part of the source it edited (the window the harness, CLIP-D and EditReward use); full (default) links the whole
+source clip. Every row records the window in ``src_window``; a resumed CSV scored with the other window is refused.
 
 Columns: cf (1-5), cf_raw (the judge's full answer). IVEBench's parse failure (score -1) is stored as NaN with the raw
 answer kept; exit 1 when any pair is missing or NaN (the CSV is still written).
@@ -117,6 +120,7 @@ def make_evaluator(ivebench_dir: Path, model_path: Path):
 def main() -> int:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sc.add_common_args(p)
+    sc.add_src_window_arg(p)
     p.add_argument("--ivebench_dir", default="~/Code/IVEBench")
     p.add_argument("--model_path", default="/work/PERSO/skhairi/weights/Qwen2.5-VL-72B-Instruct")
     a = p.parse_args()
@@ -127,20 +131,25 @@ def main() -> int:
           f"ffmpeg {check_ffmpeg()}", flush=True)
 
     pairs = sc.load_pairs(a.edit_json_dir, a.cases)
-    store = sc.ResultStore(a.out, ("edit_type", "video_name", "cf_raw"), METRICS)
+    store = sc.ResultStore(a.out, ("edit_type", "video_name", "cf_raw", "src_window"), METRICS)
+    if not sc.check_window(store, a.src_window, "cf"):
+        return 1
 
     todo = [q for q in pairs if not store.done(q)]
-    print(f"[cf] {len(pairs)} pairs, {len(pairs) - len(todo)} already scored (resume), {len(todo)} to do", flush=True)
+    print(f"[cf] {len(pairs)} pairs, {len(pairs) - len(todo)} already scored (resume), {len(todo)} to do, "
+          f"src_window={a.src_window}", flush=True)
     if todo:
         ev = make_evaluator(Path(a.ivebench_dir).expanduser(), Path(a.model_path).expanduser())
         for q in todo:
             t = int(q["edit_type"])
             name = f"edit{t}/{q['video_name']}"
             t0 = time.time()
-            row = {"edit_type": t, "video_name": q["video_name"], "cf_raw": "", "cf": float("nan")}
+            row = {"edit_type": t, "video_name": q["video_name"], "cf_raw": "", "src_window": a.src_window,
+                   "cf": float("nan")}
             try:
-                src = sc.list_images(sc.source_dir(a.data_root, str(q["video_name"])))
+                src_all = sc.list_images(sc.source_dir(a.data_root, str(q["video_name"])))
                 tgt = sc.ensure_render_frames(sc.render_dir(a.root, a.layout, t, str(q["video_name"])))
+                src = sc.source_window(src_all, tgt, a.src_window)
                 if not src or not tgt:
                     raise FileNotFoundError(f"{len(src)} source / {len(tgt)} render frames")
                 with tempfile.TemporaryDirectory(prefix="cf_frames_") as tmp:
@@ -151,7 +160,8 @@ def main() -> int:
                 if score == -1.0:
                     raise ValueError(f"unparseable judge answer: {row['cf_raw'][:200]}")
                 row["cf"] = float(score)
-                print(f"[cf] {name:<32} cf={score:.0f} ({time.time() - t0:.1f}s) :: {row['cf_raw'][:160]}", flush=True)
+                print(f"[cf] {name:<32} cf={score:.0f} frames render={len(tgt)} source={len(src)}/{len(src_all)} "
+                      f"({time.time() - t0:.1f}s) :: {row['cf_raw'][:160]}", flush=True)
             except Exception as e:  # noqa: BLE001 -- recorded as NaN, makes the run exit 1, never swallowed silently
                 print(f"Error: cf {name}: {type(e).__name__}: {e}", flush=True)
                 traceback.print_exc()

@@ -7,6 +7,10 @@ package with the real ``__path__``), because it imports IVEBench's other metrics
 
 Frames: IVEBench's sampling on the clip's full frame list, not the harness's every-8th-frame list -- VideoCLIP-XL-v2 is
 validated on 8 frames. Both videos are scored from their frame directories (source: FiVE ``images/<video>``).
+--src_window render (R58-R66): the source is scored from a temporary directory of links to its first len(render) frames
+(same file names, so IVEBench's sorted listing keeps the order), so its 8 sampled frames span the time window of the
+render's 8; full (default) scores the whole source clip. Only s_src depends on it (the type-6 psc); every row records the
+window in ``src_window`` and a resumed CSV scored with the other window is refused.
 
 Per pair, with ``phrase`` = target_object (edit types 1-5) or source_object (edit type 6, which has no target phrase):
   s_edit = s(V_edit, phrase)        s_src = s(V_src, phrase)
@@ -23,6 +27,7 @@ from __future__ import annotations
 import argparse
 import os
 import sys
+import tempfile
 import time
 import traceback
 import types
@@ -53,36 +58,57 @@ def phrase_of(pair) -> str:
     return phrase
 
 
+def source_similarity(ev, src_dir: str, n_render: int, mode: str, phrase: str):
+    """(s_src, source frames used, source frames available). render: the first n_render source frames only."""
+    src_all = sc.list_images(src_dir)
+    src = sc.source_window(src_all, [None] * n_render, mode)
+    if not src:
+        raise FileNotFoundError(f"no source frames under {src_dir}")
+    if len(src) == len(src_all):
+        return ev.compute_similarity(src_dir, phrase), len(src), len(src_all)
+    with tempfile.TemporaryDirectory(prefix="psc_src_") as tmp:
+        for f in src:
+            os.symlink(os.path.abspath(f), os.path.join(tmp, os.path.basename(f)))
+        return ev.compute_similarity(tmp, phrase), len(src), len(src_all)
+
+
 def main() -> int:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sc.add_common_args(p)
+    sc.add_src_window_arg(p)
     p.add_argument("--ivebench_dir", default="~/Code/IVEBench")
     p.add_argument("--model_file", default="~/Data/weights/VideoCLIP-XL-v2/VideoCLIP-XL-v2.bin")
     p.add_argument("--device", default="cuda")
     a = p.parse_args()
 
     pairs = sc.load_pairs(a.edit_json_dir, a.cases)
-    store = sc.ResultStore(a.out, ("edit_type", "video_name", "psc_rule"), METRICS)
+    store = sc.ResultStore(a.out, ("edit_type", "video_name", "psc_rule", "src_window"), METRICS)
+    if not sc.check_window(store, a.src_window, "psc"):
+        return 1
     todo = [q for q in pairs if not store.done(q)]
-    print(f"[psc] {len(pairs)} pairs, {len(pairs) - len(todo)} already scored (resume), {len(todo)} to do", flush=True)
+    print(f"[psc] {len(pairs)} pairs, {len(pairs) - len(todo)} already scored (resume), {len(todo)} to do, "
+          f"src_window={a.src_window}", flush=True)
     if todo:
         ev = load_evaluator(Path(a.ivebench_dir).expanduser(), Path(a.model_file).expanduser(), a.device)
         for q in todo:
             t = int(q["edit_type"])
             name = f"edit{t}/{q['video_name']}"
             t0 = time.time()
-            row = {"edit_type": t, "video_name": q["video_name"],
-                   "psc_rule": "removal_drop" if t == 6 else "target", **{m: float("nan") for m in METRICS}}
+            row = {"edit_type": t, "video_name": q["video_name"], "psc_rule": "removal_drop" if t == 6 else "target",
+                   "src_window": a.src_window, **{m: float("nan") for m in METRICS}}
             try:
                 phrase = phrase_of(q)
                 edit_dir = sc.render_dir(a.root, a.layout, t, str(q["video_name"]))
-                if not sc.ensure_render_frames(edit_dir):
+                tgt = sc.ensure_render_frames(edit_dir)
+                if not tgt:
                     raise FileNotFoundError(f"no render frames under {edit_dir}")
                 s_edit = ev.compute_similarity(edit_dir, phrase)
-                s_src = ev.compute_similarity(sc.source_dir(a.data_root, str(q["video_name"])), phrase)
+                s_src, n_src, n_src_all = source_similarity(ev, sc.source_dir(a.data_root, str(q["video_name"])),
+                                                            len(tgt), a.src_window, phrase)
                 row.update(s_edit=s_edit, s_src=s_src, psc=(s_src - s_edit) if t == 6 else s_edit)
-                print(f"[psc] {name:<32} {row['psc_rule']:<12} phrase='{phrase}' s_edit={s_edit:+.4f} "
-                      f"s_src={s_src:+.4f} psc={row['psc']:+.4f} ({time.time() - t0:.1f}s)", flush=True)
+                print(f"[psc] {name:<32} {row['psc_rule']:<12} phrase='{phrase}' frames render={len(tgt)} "
+                      f"source={n_src}/{n_src_all} s_edit={s_edit:+.4f} s_src={s_src:+.4f} psc={row['psc']:+.4f} "
+                      f"({time.time() - t0:.1f}s)", flush=True)
             except Exception as e:  # noqa: BLE001 -- recorded as NaN, makes the run exit 1, never swallowed silently
                 print(f"Error: psc {name}: {type(e).__name__}: {e}", flush=True)
                 traceback.print_exc()

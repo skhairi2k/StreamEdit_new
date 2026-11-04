@@ -1,7 +1,7 @@
 #!/bin/bash
 # R57 unified metric suite, the merge job (CPU): join the harness, FiVE-Acc, CLIP-D, EditReward, PSC and CF CSVs of each method
-# into evaluation/csv/suite_{tag}_{method}.csv (one row per pair) and suite_{tag}_{method}_per_type.csv (plain per-clip
-# means). Submitted by eval_suite.sh with --dependency=afterok on the metrics and cf jobs; to run it alone:
+# into evaluation/csv/suite_{tag}_{method}.csv (one row per pair), suite_{tag}_{method}_per_type.csv and
+# suite_{tag}_{method}_overall.csv (plain per-clip means per edit type / over all pairs). Submitted by eval_suite.sh with --dependency=afterok on the metrics and cf jobs; to run it alone:
 #   sbatch slurm_scripts/five_bench/eval_suite_merge.sh --method M --tag T [--root R] [--cases C] [--allow_nan COL...]
 # Exit 1 on a missing file / column / pair, or on any NaN outside --allow_nan (merge_suite.py).
 #SBATCH --job-name=suite_merge

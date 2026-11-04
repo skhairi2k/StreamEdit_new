@@ -17,12 +17,17 @@
 #   --part all|metrics|cf  (launcher) which GPU job(s) to submit, default all. metrics = the 1-GPU job + a merge without CF,
 #                          cf = the 4-GPU CF job + a full merge (needs the metrics CSVs from an earlier --part metrics run)
 #   --without_cf           (merge) build the tables without CF: its columns are left empty, not NaN (set by --part metrics)
+#   --src_window full|render   source frames seen by PSC and CF (default full = the whole source clip). render: the source
+#                          cut to the render's frame count, the window the harness / CLIP-D / EditReward already use (they
+#                          pair source and render frames after truncating to the shorter). R58-R66 use render (R57 plan,
+#                          "Common evaluation procedure")
 #
 # Output names (evaluation/csv/):
 #   edit{T}_FiVE_suite_{tag}_{method}_frame_stride8.csv         harness, one file per edit type
 #   edit{T}_FiVE_suite_fiveacc_{tag}_{method}_frame_stride8.csv FiVE-Acc
 #   suite_clipd_{tag}_{method}.csv  suite_editreward_...csv  suite_psc_...csv  suite_cf_...csv
-#   suite_{tag}_{method}.csv  suite_{tag}_{method}_per_type.csv     (merge)
+#   suite_{tag}_{method}.csv  suite_{tag}_{method}_per_type.csv  suite_{tag}_{method}_overall.csv   (merge: per clip,
+#                          per edit type, overall; plain per-clip means)
 
 REPO=/home/ids/skhairi/Code/StreamEdit_bigchantier
 DATA_ROOT=~/Data/FiVE-Fine-Grained-Video-Editing-Benchmark
@@ -31,10 +36,13 @@ WEIGHTS_DIR=~/Data/weights
 QWEN72B_DIR=${QWEN72B_DIR:-/work/PERSO/skhairi/weights/Qwen2.5-VL-72B-Instruct}
 PY_FB=/home/ids/skhairi/anaconda3/envs/five-bench/bin/python
 PY_ER=/home/ids/skhairi/anaconda3/envs/editreward/bin/python
+# CF runs in IVEBench's own env (its ivebench.yml: transformers 4.55.0, torch 2.8.0): under five-bench's transformers 5.3
+# the 72B judge outputs NaN from its first language-model layer (R57, 2026-11-04). Built by evaluation/eval_suite/make_cf_env.sh
+PY_CF=/home/ids/skhairi/anaconda3/envs/ivebench/bin/python
 SUITE_DIR=evaluation/eval_suite
 
 METHOD=""; ROOT=""; LAYOUT=edit_video; EDIT_JSON_DIR=evaluation/five_bench_correct; CASES=""; TAG=""; ALLOW_NAN=()
-PART=all; WITHOUT_CF=0; UNITS=()
+PART=all; WITHOUT_CF=0; UNITS=(); SRC_WINDOW=full
 
 suite_parse_args() {
   while [ $# -gt 0 ]; do
@@ -49,10 +57,13 @@ suite_parse_args() {
       --part) PART=$2; shift 2 ;;
       --without_cf) WITHOUT_CF=1; shift ;;
       --unit) UNITS+=("$2"); shift 2 ;;
+      --src_window) SRC_WINDOW=$2; shift 2 ;;
       *) echo "[eval_suite] unknown argument: $1"; return 1 ;;
     esac
   done
   case "$PART" in all|metrics|cf) ;; *) echo "[eval_suite] --part must be all, metrics or cf"; return 1 ;; esac
+  case "$SRC_WINDOW" in full|render) ;; *) echo "[eval_suite] --src_window must be full or render"; return 1 ;; esac
+  SRC_WINDOW_PY=(--src_window "$SRC_WINDOW")
   local c
   for c in "${ALLOW_NAN[@]}"; do
     [[ "$c" =~ ^[a-z0-9_]+$ ]] || { echo "[eval_suite] --allow_nan: bad column name '$c'"; return 1; }

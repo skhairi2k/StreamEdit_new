@@ -1,0 +1,9 @@
+# R62 -- R51's demand ablation on FiVE-Bench-Correct: 4 StreamEdit arms (former r62_se.txt) + the Wan-Edit A4 arm (former r62_wan.txt), 5 settings.
+# `NAME ROOT`; a relative ROOT is taken under --root_base /scratch/PERSO/skhairi/five_bench. Headline settings first.
+# Common R57 procedure (R57 plan, "Common evaluation procedure"):
+#   bash slurm_scripts/five_bench/eval_suite.sh --batch evaluation/eval_suite/batches/r62.txt --root_base /scratch/PERSO/skhairi/five_bench --per_job 2 --tag r62 --layout edit_video --src_window render --part metrics|cf
+r62_nodiv_full         r62_se_arms/r62_nodiv_full/step14
+r62_dino_full          r62_se_arms/r62_dino_full/step14
+r62_lpips_full         r62_se_arms/r62_lpips_full/step14
+r62_nosupp_full        r62_se_arms/r62_nosupp_full/step14
+wan_nosupp_s5_correct  r62_wan_correct/nosupp_s5
