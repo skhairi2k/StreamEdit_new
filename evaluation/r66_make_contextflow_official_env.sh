@@ -19,7 +19,7 @@
 #
 # Clone: ContextFlow at a9b903edf4 with r66_contextflow_frames.patch in CF_DIR. An existing clone must already be at that
 # commit and patched; an empty CF_DIR is cloned from GitHub, checked out and patched here. Weights: CF_WEIGHTS must hold
-# Wan2.1-I2V-14B-480P (lab: downloaded by r66_make_contextflow_env.sh; Jean Zay: sent by jz/r66_push.sh).
+# Wan2.1-I2V-14B-480P (lab: downloaded earlier by the deleted r66_make_contextflow_env.sh (git history); Jean Zay: sent by jz/r66_push.sh).
 # The lab's earlier single-GPU env (torch 2.5.1, no xfuser) also used the name `contextflow`; it was removed by hand on
 # 2026-11-01 for disk space (its freeze: r66_contextflow_env_freeze.txt) and this env takes the name. Never touches an
 # existing env: refuses if ENV_PREFIX exists (remove it yourself to rebuild). Every pip call goes through the new env's

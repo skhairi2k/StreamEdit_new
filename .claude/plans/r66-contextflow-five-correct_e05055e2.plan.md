@@ -5,7 +5,7 @@ task_id: R66
 todos:
   # ---- lab L40S phase (history; completed or superseded) -------------------------------------------------------------
   - id: cf-env-script
-    content: "SUPERSEDED (single-GPU env, removed 2026-11-01). evaluation/r66_make_contextflow_env.sh -- clone yyChen233/ContextFlow to ~/Code/ContextFlow at commit a9b903edf4; conda env contextflow: python 3.10, torch 2.5.1 + torchvision 0.20.1 (cu121), flash-attn 2.7.4.post1 wheel, the repo's requirements.txt (numpy<2) without gradio and dashscope; Wan2.1-I2V-14B-480P to $CF_WEIGHTS (/work/PERSO/skhairi/weights/Wan2.1-I2V-14B-480P); applies evaluation/r66_contextflow_frames.patch; freeze evaluation/r66_contextflow_env_freeze.txt"
+    content: "SUPERSEDED (single-GPU env, removed 2026-11-01; script deleted 2026-11-05, in git history). evaluation/r66_make_contextflow_env.sh -- clone yyChen233/ContextFlow to ~/Code/ContextFlow at commit a9b903edf4; conda env contextflow: python 3.10, torch 2.5.1 + torchvision 0.20.1 (cu121), flash-attn 2.7.4.post1 wheel, the repo's requirements.txt (numpy<2) without gradio and dashscope; Wan2.1-I2V-14B-480P to $CF_WEIGHTS (/work/PERSO/skhairi/weights/Wan2.1-I2V-14B-480P); applies evaluation/r66_contextflow_frames.patch; freeze evaluation/r66_contextflow_env_freeze.txt"
     needed_by: [setup-env]
     status: completed
   - id: cf-official-env-script
@@ -33,7 +33,7 @@ todos:
     needed_by: [jz-smoke, jz-render]
     status: completed
   - id: smoke-sbatch
-    content: "SUPERSEDED (lab L40S). slurm_scripts/five_bench/r66_smoke.sh -- 1 GPU, then 2 L40S (--exclude=node52,node51, 16 CPUs, 192G, NCCL_P2P_DISABLE=1, OMP_NUM_THREADS=8), torchrun, 41 then 81 frames; jobs 1074397, 1076785, 1080609, 1080618, 1080831"
+    content: "SUPERSEDED (lab L40S; script deleted 2026-11-05, in git history). slurm_scripts/five_bench/r66_smoke.sh -- 1 GPU, then 2 L40S (--exclude=node52,node51, 16 CPUs, 192G, NCCL_P2P_DISABLE=1, OMP_NUM_THREADS=8), torchrun, 41 then 81 frames; jobs 1074397, 1076785, 1080609, 1080618, 1080831"
     needed_by: [smoke]
     status: completed
   - id: smoke-sbatch-2gpu
@@ -76,20 +76,12 @@ todos:
   - id: fetch-script
     content: "jz/r66_fetch_renders.sh -- ON THE LAB FRONTAL (gpu-gw), in tmux, modelled on jz/r62_fetch_renders.sh (r50_jz.env, SSH ControlMaster, $SCRATCH lookup): rsync -rL --partial --size-only --no-perms --no-owner --no-group (NO -t: the 30-day /scratch purge counts from the copy date; no --delete) of zay:$SCRATCH/five_bench_out/r66_contextflow/correct/n41/ (frames only; latents and manifests stay on Jean Zay, the manifests' CSVs are fetched to evaluation/csv/r66_render_manifest_shard{i}.csv) -> $R66_DEST/n41/, default R66_DEST=/scratch/PERSO/skhairi/five_bench/r66_contextflow/correct (next to R58_DEST / R62_DEST); readlink -m the destination and refuse anything outside /scratch (never $HOME, ~/Data, /work or /store); pre-check: 415 clip dirs on Jean Zay; post-check: 415 clip dirs locally and each holds exactly its n41 PNGs (evaluation/r66_cases_correct.json); >= 15 GB free; --check sends nothing; '[r66_fetch] failures: N'. Never deletes on either side"
     needed_by: [fetch-renders]
-    status: pending
+    status: completed
   - id: eval-batch
     content: "evaluation/eval_suite/batches/r66.txt -- 1 line(s) `NAME ROOT`, ROOT relative to --root_base /scratch/PERSO/skhairi/five_bench, headline settings first: r66_contextflow r66_contextflow/correct/n41 (R57 batch format; the only input of the common eval procedure: no per-task wrapper, no second batch file)"
     needed_by: [wait-r57, eval, eval-cf]
     status: completed
     completed_at: 2026-11-04
-  - id: score-script
-    content: "evaluation/r66_score.py -- reads evaluation/csv/suite_r66_r66_contextflow.csv; plain per-clip means (never _avg.csv) overall and per edit type, types 3/4 flagged 'swap mode', plus the frames scored per clip (mean / min / max, from evaluation/r66_cases_correct.json n41) so the table states the length as is -> evaluation/csv/r66_table.csv; prints it Means are read from the suite's three common tables (suite_<tag>_<NAME>.csv per clip, _per_type.csv, _overall.csv; R57) and not recomputed; no bootstrap."
-    needed_by: [score]
-    status: pending
-  - id: archive-script
-    content: "jz/r66_archive.sh -- ON THE LAB FRONTAL, after verdict and store-copy: (1) re-checks the archive: /store/PERSO/skhairi/Outputs/jz_five_bench/r66_contextflow/correct/n41 has 415 clip dirs and the same PNG count as the /scratch copy while it still exists, else as evaluation/r66_cases_correct.json's n41 (refuse unless [ -d /store/PERSO/skhairi/Outputs/jz_five_bench ]; never mkdir -p the store root); nothing is moved, copied or linked on the lab (no ~/Data or /work copy; the /scratch copy is left to the 30-day purge); (2) prints, and with --cleanup-jz runs over ssh, the removal of the Jean Zay copies: $SCRATCH/five_bench_out/r66_contextflow (renders + latents + smoke) and the link in $WORK/Data; weights / env on Jean Zay only with --cleanup-jz-model; every deletion only after check (1) passed and only with its explicit flag; '[r66_archive] failures: N'"
-    needed_by: [archive]
-    status: pending
 steps:
   # ---- lab L40S phase (history) --------------------------------------------------------------------------------------
   - id: probe-paths
@@ -168,7 +160,9 @@ steps:
     wait_for: gate
     check_hint: "User, on Jean Zay: `cd $WORK/StreamEdit_new && sbatch slurm_scripts/five_bench/r66_render_jz.sh`; record the array job id"
     sets_status: running
-    status: pending
+    status: completed
+    completed_at: 2026-11-04
+    job_id: "1942747"
   - id: jz-wait-render
     type: manual
     wait_for: jz-render
@@ -183,11 +177,11 @@ steps:
   - id: store-copy
     type: manual
     wait_for: fetch-renders
-    check_hint: "User, on gpu-gw, in tmux (the evaluation can start in parallel; it reads /scratch only; /store is mounted on the frontal only): `S=/store/PERSO/skhairi/Outputs/jz_five_bench; [ -d $S ] || { echo '/store not mounted here'; exit 1; }; mkdir -p $S/r66_contextflow/correct/n41 && rsync -a --size-only /scratch/PERSO/skhairi/five_bench/r66_contextflow/correct/n41/ $S/r66_contextflow/correct/n41/` (real PNGs, ~10 GB; never mkdir -p /store itself), then `echo $(ls -d $S/r66_contextflow/correct/n41/edit*/*/ | wc -l) $(find /scratch/PERSO/skhairi/five_bench/r66_contextflow/correct/n41 -name '*.png' | wc -l) $(find $S/r66_contextflow/correct/n41 -name '*.png' | wc -l)` -> 415 clip dirs and the two PNG counts equal. After this step every ContextFlow render exists in BOTH lab /scratch (read by the evaluation) and /store (archive); nothing is kept under ~/Data or /work"
+    check_hint: "User, on gpu-gw in tmux (the evaluation can start in parallel; it reads /scratch only; /store is mounted on the frontal only): (1) `S=/store/PERSO/skhairi/Outputs/jz_five_bench; [ -d $S ] || { echo '/store not mounted here'; exit 1; }; mkdir -p $S/r66_contextflow/correct/n41 && rsync -a --size-only /scratch/PERSO/skhairi/five_bench/r66_contextflow/correct/n41/ $S/r66_contextflow/correct/n41/` (real PNGs, ~10 GB; never mkdir -p /store itself); (2) `~/anaconda3/envs/five-bench/bin/python -I evaluation/check_store_renders.py r66` -> '[check_store] failures: 0' (415 clips on /store, PNG count equal to /scratch; the same checker as R58-R65). After this step every ContextFlow render exists in BOTH lab /scratch (read by the evaluation) and /store (archive); nothing is kept under ~/Data or /work"
     status: pending
   - id: wait-r57
     type: manual
-    check_hint: "Common R57 eval procedure (R57 plan, section Common evaluation procedure). (1) R57 metrics part validated (lab smoke 2026-10-26, resume test 2026-11-03): eval_suite.sh accepts --batch, --root_base and --part; (2) R57 step suite-v1 completed: the suite is at git tag eval-suite-v1 (--src_window, three result tables; `git describe --tags --exact-match eval-suite-v1` or `git diff eval-suite-v1 -- evaluation/eval_suite slurm_scripts/five_bench/eval_suite*.sh` empty) and is not edited until R58-R66 are scored; (3) every root of evaluation/eval_suite/batches/r66.txt is staged as real files under /scratch/PERSO/skhairi/five_bench (never ~/Data, /work or /store; no compute node mounts /store): `bash slurm_scripts/five_bench/eval_suite.sh --batch evaluation/eval_suite/batches/r66.txt --root_base /scratch/PERSO/skhairi/five_bench --per_job 2 --tag r66 --layout edit_video --src_window render --part metrics --dry_run` passes the preflight and ends 'DRY RUN, nothing submitted: part=metrics, 1 method(s)'"
+    check_hint: "Common R57 eval procedure (R57 plan, section Common evaluation procedure). (1) R57 metrics part validated (lab smoke 2026-10-26, resume test 2026-11-03): eval_suite.sh accepts --batch, --root_base and --part; (2) R57 step suite-v1 completed: the metrics-part files are at git tag eval-suite-v1 (--src_window, three result tables): `git diff --stat eval-suite-v1 -- evaluation/eval_suite slurm_scripts/five_bench/eval_suite*.sh` lists at most cf_score.py, make_cf_env.sh, freeze/ivebench.txt (the CF files of eval-suite-v1.1); (3) every root of evaluation/eval_suite/batches/r66.txt is staged as real files under /scratch/PERSO/skhairi/five_bench (never ~/Data, /work or /store; no compute node mounts /store): `bash slurm_scripts/five_bench/eval_suite.sh --batch evaluation/eval_suite/batches/r66.txt --root_base /scratch/PERSO/skhairi/five_bench --per_job 2 --tag r66 --layout edit_video --src_window render --part metrics --dry_run` passes the preflight and ends 'DRY RUN, nothing submitted: part=metrics, 1 method(s)'"
     status: pending
   - id: eval
     type: local
@@ -197,7 +191,7 @@ steps:
     status: pending
   - id: wait-r57-cf
     type: manual
-    check_hint: "R57 check-smoke-lab completed: CF with the Qwen2.5-VL-72B judge works on the lab smoke"
+    check_hint: "R57 step check-cf completed: CF runs in its own env ivebench (IVEBench's ivebench.yml, transformers 4.55.0), the lab smoke gives cf in [1,5], suite at tag eval-suite-v1.1 (CF files only changed since eval-suite-v1)"
     status: pending
   - id: eval-cf
     type: local
@@ -210,31 +204,27 @@ steps:
     wait_for: eval-cf
     check_hint: "every eval_suite metrics / cf job of this task ended (nothing left in `squeue -u $USER -h -o '%i %k' | grep 'eval_suite|r66|'`) and its logs/eval_suite_{metrics,cf}_<id>.out ends with 'failures: 0' (a job stopped at 24 h is relaunched with the same command: it resumes); 1 file(s) evaluation/csv/suite_r66_<NAME>.csv + _per_type.csv + _overall.csv (the three common tables), one set per line of evaluation/eval_suite/batches/r66.txt, 415 rows each, every metric finite, the cf column filled; all scored before the 30-day /scratch purge of the staged copies (else re-stage from /store)"
     status: pending
-  - id: score
-    type: local
-    wait_for: wait-eval
-    command: ~/anaconda3/envs/five-bench/bin/python -I evaluation/r66_score.py
-    output_paths: [evaluation/csv/r66_table.csv]
-    status: pending
   - id: verdict
     type: manual
-    wait_for: score
-    check_hint: "Read r66_table.csv with the user next to AnyV2V (r65_table.csv) and the full-length StreamEdit rows of R59 (native, se_max), per edit type, swap-mode types 3/4 separately, with the frames scored stated as is (ContextFlow 41, AnyV2V 32, StreamEdit its full clip); record in daily.md Progress / outcomes"
+    wait_for: wait-eval
+    check_hint: "Read evaluation/csv/suite_r66_r66_contextflow_per_type.csv and _overall.csv (plain per-clip means; the suite's own common tables, no extra script) next to AnyV2V (suite_r65_r65_anyv2v_*.csv) and the full-length StreamEdit rows of R59 (native r59_n15_rho2_vp, se_max r59_max_full), per edit type, swap-mode types 3/4 separately, with the frames scored stated as is (ContextFlow 41, 25-37 for the 7 short videos; AnyV2V 32; StreamEdit its full clip). Check the vertical-stripe artifact seen on edit2 (L40S n41 render, H100 n81 render) across the 415 renders if it matters for the readout (not scripted). Record the readout in the Run log and daily.md Progress / outcomes"
     sets_status: analyzed
     status: pending
   - id: archive
     type: manual
     wait_for: [verdict, store-copy]
-    check_hint: "User, on gpu-gw in tmux: `bash jz/r66_archive.sh` (re-checks the /store copy: 415 clip dirs, PNG count; moves nothing), then, once satisfied, `bash jz/r66_archive.sh --cleanup-jz` (Jean Zay renders, latents, smoke); `--cleanup-jz-model` only when no rerun is planned; paste '[r66_archive] failures: 0'. /store is the only long-term copy; the lab /scratch evaluation copy is disposable (30-day purge) and nothing is ever kept under ~/Data or /work"
+    check_hint: "User, on gpu-gw in tmux: `~/anaconda3/envs/five-bench/bin/python -I evaluation/check_store_renders.py r66` -> '[check_store] failures: 0' (again, right before deleting). Only then, on Jean Zay, delete the renders of this task: `rm -rf $SCRATCH/five_bench_out/r66_contextflow` (renders, latents, smoke; the smoke sheet and timing CSV are already in the repo) and `rm $WORK/Data/dataggen/outputs/five_bench/r66_contextflow` (the symlink); `rm -rf $WORK/envs/contextflow $WORK/code/ContextFlow $WORK/weights/Wan2.1-I2V-14B-480P` only when no rerun is planned (the env freeze is in the repo; the weights can be downloaded from Hugging Face again). /store is the only long-term copy; the lab /scratch evaluation copy is disposable (30-day purge, re-stage from /store) and nothing is ever kept under ~/Data or /work"
     status: pending
 isProject: true
 ---
 
 # R66: ContextFlow Baseline on FiVE-Correct
 
+> **Closing steps simplified 2026-11-05:** no `score` step and no `r66_score.py` (the suite's `_per_type.csv` / `_overall.csv` already hold the plain per-clip means; the frames scored are stated from the case file), no `r66_archive.sh` (`check_store_renders.py r66` plus a by-hand Jean Zay cleanup, as R58); the superseded L40S scripts `r66_make_contextflow_env.sh` and `r66_smoke.sh` are deleted. Where the text below says otherwise, this note wins.
+
 > **Evaluation = the common R57 procedure (2026-11-04, identical in R58–R66):** `wait-r57` → `eval` (`--part metrics`) → `wait-r57-cf` → `eval-cf` (`--part cf`) → `wait-eval`, on ONE batch file `evaluation/eval_suite/batches/r66.txt` (1 setting(s), `NAME ROOT`, roots relative to `--root_base /scratch/PERSO/skhairi/five_bench`), tag `r66`, common arguments `--per_job 2 --layout edit_video --src_window render`, all 415 Correct pairs (default `--edit_json_dir evaluation/five_bench_correct`, no `--cases`). The evaluation reads `/scratch` only (staged copies, 30-day purge; `/store` is the archive, checked by `evaluation/check_store_renders.py r66` on gpu-gw). Defined once in the R57 plan, section *Common evaluation procedure*; where the text below says otherwise (wrapper scripts, other tags or batch files, `--cases`, `--allow_nan`, merge jobs, node pinning, split per-host or per-group eval steps), that section and the frontmatter win.
 >
-> **Evaluation and storage updated 2026-11-03 (R57 suite as built, /scratch-only eval roots, as R58–R65):** `fetch-renders` → `store-copy` (archive, in parallel with the evaluation) and `wait-r57` → `eval` (metrics, tag `r66`) → `wait-r57-cf` → `eval-cf` → `wait-eval` → `score` → `verdict` → `archive` (Jean Zay cleanup only). **The evaluation reads `/scratch` only**: the ContextFlow renders are fetched from Jean Zay straight to `/scratch/PERSO/skhairi/five_bench/r66_contextflow/correct/n41`, never `~/Data`, `/work` or `/store` (no compute node mounts `/store`). **No window control rows** (dropped 2026-11-03, user): no `r66w` rows, no `r66_window/` links, no paired window deltas; ContextFlow is scored on its own 41-frame output, StreamEdit on its full clip (R59's rows), and the lengths are stated as is. `--src_window render` stays (it cuts the *source* to the render's frame count for ContextFlow's own row). The setting is listed in `evaluation/eval_suite/batches/r66.txt` (`NAME ROOT`, root relative to `--root_base /scratch/PERSO/skhairi/five_bench`); `eval_suite.sh --batch ... --per_job 2 --part metrics` runs once the deps are met, `--part cf` once R57's CF works. There is no per-task eval wrapper (`r66_eval.sh` is dropped) and no merge job (each job writes a method's tables when it finishes it), a job stopped at 24 h is relaunched with the same command and resumes, every node reads `/scratch` (no node pinning or `SBATCH_EXCLUDE`), and `--allow_nan motion_fidelity_score_edit_part` is gone (the column was dropped from the suite, as in FiVE-Bench's Table 2). The archive is `/store/PERSO/skhairi/Outputs/jz_five_bench/r66_contextflow` (Jean Zay-rendered outputs, as R58 / R62), made by copy, not by move. `/work` keeps only the L40S-phase leftovers removed at `lab-cleanup`. Where the text below says otherwise, this note and the frontmatter win.
+> **Evaluation and storage updated 2026-11-03 (R57 suite as built, /scratch-only eval roots, as R58–R65):** `fetch-renders` → `store-copy` (archive, in parallel with the evaluation) and `wait-r57` → `eval` (metrics, tag `r66`) → `wait-r57-cf` → `eval-cf` → `wait-eval` → `verdict` (reads the suite's own tables; no `r66_score.py`) → `archive` (Jean Zay cleanup only, by hand after `check_store_renders.py r66`). **The evaluation reads `/scratch` only**: the ContextFlow renders are fetched from Jean Zay straight to `/scratch/PERSO/skhairi/five_bench/r66_contextflow/correct/n41`, never `~/Data`, `/work` or `/store` (no compute node mounts `/store`). **No window control rows** (dropped 2026-11-03, user): no `r66w` rows, no `r66_window/` links, no paired window deltas; ContextFlow is scored on its own 41-frame output, StreamEdit on its full clip (R59's rows), and the lengths are stated as is. `--src_window render` stays (it cuts the *source* to the render's frame count for ContextFlow's own row). The setting is listed in `evaluation/eval_suite/batches/r66.txt` (`NAME ROOT`, root relative to `--root_base /scratch/PERSO/skhairi/five_bench`); `eval_suite.sh --batch ... --per_job 2 --part metrics` runs once the deps are met, `--part cf` once R57's CF works. There is no per-task eval wrapper (`r66_eval.sh` is dropped) and no merge job (each job writes a method's tables when it finishes it), a job stopped at 24 h is relaunched with the same command and resumes, every node reads `/scratch` (no node pinning or `SBATCH_EXCLUDE`), and `--allow_nan motion_fidelity_score_edit_part` is gone (the column was dropped from the suite, as in FiVE-Bench's Table 2). The archive is `/store/PERSO/skhairi/Outputs/jz_five_bench/r66_contextflow` (Jean Zay-rendered outputs, as R58 / R62), made by copy, not by move. `/work` keeps only the L40S-phase leftovers removed at `lab-cleanup`. Where the text below says otherwise, this note and the frontmatter win.
 
 ## Context
 
@@ -266,11 +256,10 @@ Done when: the Jean Zay smoke gate is passed, the 415 Correct pairs are rendered
 | `wait-r57-cf` | manual | lab | R57 CF smoke | — |
 | `eval-cf` | local (eval_suite `--part cf`) | **lab L40S** | `eval`, `wait-r57-cf` | — |
 | `wait-eval` | manual | lab | `eval-cf` | — |
-| `score` | local | lab | `wait-eval` | — |
-| `verdict` | manual | — | `score` | `analyzed` |
+| `verdict` | manual | — | `wait-eval` | `analyzed` |
 | `archive` | manual | lab frontal (+ ssh JZ) | `verdict`, `store-copy` | — |
 
-*(prep)* `/build-step build-cases R66` · `/build-step jz-push R66` · `/build-step jz-env R66` · `/build-step jz-smoke R66` · `/build-step jz-smoke-check R66` · `/build-step jz-render R66` · `/build-step fetch-renders R66` · `/build-step eval R66` (batch file) · `/build-step score R66` · `/build-step archive R66`
+*(prep)* `/build-step build-cases R66` · `/build-step jz-push R66` · `/build-step jz-env R66` · `/build-step jz-smoke R66` · `/build-step jz-smoke-check R66` · `/build-step jz-render R66` · `/build-step fetch-renders R66` · `/build-step eval R66` (batch file)
 
 ```
 /run-step R66 build-cases
@@ -290,7 +279,6 @@ Done when: the Jean Zay smoke gate is passed, the 415 Correct pairs are rendered
 /run-step R66 wait-r57-cf
 /run-step R66 eval-cf
 /run-step R66 wait-eval
-/run-step R66 score
 /run-step R66 verdict
 /run-step R66 archive
 ```
@@ -316,7 +304,7 @@ Every Jean Zay step is run by the user (only the lab frontal can `ssh zay`; Clau
 | Inversion | Once per video at n41, z_T kept on Jean Zay `$SCRATCH` (`r66_contextflow/correct/latents/n41/`, ~22 MB each) and reused on resume; never fetched |
 | Smoke | 4 Correct pairs (first pair with ≥ 81 source frames of types 2, 3, 5, 6), each at 41 frames (render setting) then 81 frames (diagnostic of the patch at the authors' length, for the supplementary), on 2 H100. Reference from the L40S (job 1080831): inversion 402 s, edit 1345 s per pair at 41 frames |
 | Failure handling | An OOM / error inside FSDP's forward leaves the model unusable, so the driver stops after the first failure (manifest row + exit-code file); a resubmit resumes |
-| Sharding | By video, video j → shard j mod K, `--array=0-(K-1)`, < 18 h per task (20 h qos); K from the gate |
+| Sharding | By video, video j → shard j mod K, `--array=0-3`, < 18 h per task (20 h qos); **K = 4** from the gate (2026-11-04: 25 videos and 103-105 pairs per shard, ~15.6 h with ×1.3) |
 | Paths | Jean Zay: repo `$WORK/StreamEdit_new`, env `$WORK/envs/contextflow`, clone `$WORK/code/ContextFlow`, weights `$WORK/weights/Wan2.1-I2V-14B-480P`, data `$WORK/Data` (= `~/Data`), outputs `~/Data/dataggen/outputs/five_bench/r66_contextflow` → `$SCRATCH/five_bench_out/r66_contextflow`. Lab (`B = /scratch/PERSO/skhairi/five_bench`): fetched renders `B/r66_contextflow/correct/n41` (eval copy), archive `/store/PERSO/skhairi/Outputs/jz_five_bench/r66_contextflow/correct/n41` |
 | Scoring | R57 suite, tag `r66`, `--layout edit_video --src_window render` (needs R65's suite edits), all 415 Correct pairs (default `--edit_json_dir evaluation/five_bench_correct`, no `--cases`); renders scored at their own 832×480 size like the Wan and StreamEdit rows; plain per-clip means |
 | Frame-count difference | **Stated as is, no window control rows** (decided 2026-11-03 with the user): the main table mixes 41-frame (Wan baselines, ContextFlow), 32-frame (AnyV2V) and 69–81-frame (StreamEdit) rows; each is scored on its own output and the table states the frames scored per row. No re-scoring of StreamEdit on a shorter window, no paired window deltas |
@@ -415,7 +403,7 @@ bash slurm_scripts/five_bench/eval_suite.sh --batch evaluation/eval_suite/batche
 
 ### wait-r57-cf
 ```bash
-# R57 check-smoke-lab completed: CF with the Qwen2.5-VL-72B judge works on the lab smoke
+# R57 check-cf completed: CF in the ivebench env gives cf in [1,5] on the lab smoke; suite at tag eval-suite-v1.1
 ```
 
 ### eval-cf
@@ -430,20 +418,16 @@ ls evaluation/csv/suite_r66_*_overall.csv | wc -l                         # 1 (o
 ls evaluation/csv/suite_r66_*.csv | grep -v -e _per_type -e _overall | xargs wc -l   # 416 lines each (header + 415)
 ```
 
-### score
-```bash
-~/anaconda3/envs/five-bench/bin/python -I evaluation/r66_score.py
-```
-
 ### verdict
 ```bash
-cat evaluation/csv/r66_table.csv
+column -s, -t evaluation/csv/suite_r66_r66_contextflow_per_type.csv | cut -c1-220
+column -s, -t evaluation/csv/suite_r66_r66_contextflow_overall.csv | cut -c1-220
 ```
 
 ### archive
 ```bash
-bash jz/r66_archive.sh                 # gpu-gw: re-check the /store copy (moves nothing)
-bash jz/r66_archive.sh --cleanup-jz    # then: Jean Zay renders, latents, smoke
+~/anaconda3/envs/five-bench/bin/python -I evaluation/check_store_renders.py r66     # gpu-gw: '[check_store] failures: 0'
+# then on Jean Zay (by hand): rm -rf $SCRATCH/five_bench_out/r66_contextflow; rm $WORK/Data/dataggen/outputs/five_bench/r66_contextflow
 ```
 
 ## Pipeline
@@ -463,8 +447,8 @@ flowchart LR
   R --> F[r66_fetch_renders.sh<br/>JZ SCRATCH -> lab /scratch]
   F --> ST[store-copy<br/>/scratch -> /store jz_five_bench]
   F --> EV[eval_suite.sh --batch r66<br/>--root_base /scratch, metrics then cf]
-  EV --> SC[r66_score.py<br/>table, frames scored stated]
-  SC --> AR[r66_archive.sh<br/>check /store, JZ cleanup]
+  EV --> VD[verdict: suite tables<br/>frames scored stated]
+  VD --> AR[archive: check_store_renders.py r66<br/>then JZ cleanup by hand]
   ST --> AR
 ```
 
@@ -472,7 +456,7 @@ flowchart LR
 
 | File | Change | Todo |
 |---|---|---|
-| `evaluation/r66_make_contextflow_env.sh` | Superseded single-GPU env script (kept for its record) | `cf-env-script` |
+| `evaluation/r66_make_contextflow_env.sh` | **Deleted 2026-11-05** (superseded single-GPU env script; its freeze `r66_contextflow_env_freeze.txt` stays as the record) | `cf-env-script` |
 | `evaluation/r66_make_contextflow_official_env.sh` | Official-recipe env (lab, 2026-11-01) | `cf-official-env-script` |
 | `evaluation/r66_make_contextflow_official_env.sh` | Runs unchanged on Jean Zay: `ENV_PREFIX`, `CONDA_BIN`, `FREEZE_OUT` overridable; clones + patches ContextFlow when `CF_DIR` is empty; `$WORK` file-quota check | `jz-env-script` |
 | `evaluation/r66_contextflow_frames.patch` | Hard-coded 81 / 49 frames → F = `frame_num` | `cf-frames-patch` |
@@ -481,12 +465,12 @@ flowchart LR
 | `evaluation/r66_contextflow_run.py` | Single-GPU driver → 2-GPU torchrun driver (authors' setup) | `driver-script`, `cf-bf16-linears` (superseded), `driver-usp` |
 | `evaluation/r66_contextflow_run.py` | `--data_dir`; OOM message printed; stop after the first OOM / error | `driver-jz` |
 | `jz/r66_push.sh` *(new)* | Weights + anchors lab → Jean Zay, rsync once, verify | `jz-push-script` |
-| `slurm_scripts/five_bench/r66_smoke.sh` | Lab L40S smoke (history) | `smoke-sbatch`, `smoke-sbatch-2gpu` |
+| `slurm_scripts/five_bench/r66_smoke.sh` | **Deleted 2026-11-05** (lab L40S smoke, superseded by `r66_smoke_jz.sh`) | `smoke-sbatch`, `smoke-sbatch-2gpu` |
+| `evaluation/r66_nccl_probe.py`, `slurm_scripts/five_bench/r66_nccl_probe.sh` | Kept: NCCL diagnostic for other L40S nodes (see the NCCL P2P note) | — |
 | `slurm_scripts/five_bench/r66_smoke_jz.sh` *(new)* | Jean Zay smoke: 2 H100, authors' command, 41 then 81 frames | `smoke-jz-sbatch` |
 | `evaluation/r66_smoke_check.py` | Contact sheet + timing CSV + projection | `smoke-check-script` |
 | `evaluation/r66_smoke_check.py` | Runs on Jean Zay; `--smoke_root` / `--data_dir`; H100-hours, 18 h per job, 76 GB flag | `smoke-check-jz` |
 | `slurm_scripts/five_bench/r66_render_jz.sh` *(new)* | Jean Zay array over K video shards at 41 frames, per-shard guard | `render-jz-sbatch` |
 | `jz/r66_fetch_renders.sh` *(new)* | JZ `$SCRATCH` renders → lab `/scratch` (refuses any other destination), once, verified | `fetch-script` |
+| `evaluation/check_store_renders.py` | Already lists r66 (`/store/.../jz_five_bench/r66_contextflow/...`); used by `store-copy` and `archive`, nothing to change | — |
 | `evaluation/eval_suite/batches/r66.txt` *(new)* | R57 batch file (`NAME ROOT`, relative to `--root_base /scratch/PERSO/skhairi/five_bench`); no per-task eval wrapper | `eval-batch` |
-| `evaluation/r66_score.py` *(new)* | Per-clip means overall / per type (3/4 flagged), frames scored (mean / min / max) | `score-script` |
-| `jz/r66_archive.sh` *(new)* | Re-check the `/store` copy (moves nothing); Jean Zay cleanup behind explicit flags | `archive-script` |
