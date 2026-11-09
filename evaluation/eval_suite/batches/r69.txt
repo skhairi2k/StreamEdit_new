@@ -1,0 +1,4 @@
+# R69 -- Wan-Edit equal-step (matched-59) point s = 0.5 on FiVE-Bench-Correct (415 clips, fetched to lab /scratch by jz/r69_fetch_renders.sh).
+# `NAME ROOT`; a relative ROOT is taken under --root_base /scratch/PERSO/skhairi/five_bench.
+# Use with:  bash slurm_scripts/five_bench/eval_suite.sh --batch evaluation/eval_suite/batches/r69.txt --root_base /scratch/PERSO/skhairi/five_bench --tag r69 --layout edit_video --src_window render --part core --per_job 1
+wan_matched59_s0p5_correct     r69_wan_correct/matched59_s0.5
