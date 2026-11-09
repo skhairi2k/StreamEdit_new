@@ -3,6 +3,8 @@
 Configs (ONE per invocation; the sbatch array maps array index -> config):
   max_s9 / max_s5          adaptive: sample_steps 50, loop from step 9 / 5 (= s_min), per-token start step from
                            {field_root}/wan_max_s{9,5}/edit{T}/{video}.npy (written by r49_field.py); s = 50 = never edited
+  nosupp_s5 / nodiv_s5 / dino_s5 / lpips_s5   demand ablations (R51 A4 / R68 A1-A3), same loop start as max_s5, start maps
+                           {field_root}/wan_{config}/edit{T}/{video}.npy (written by r51_field.py)
   matched59_s{0.95,0.92,0.85,0.978,0.5}  global start sigma with sample_steps chosen so exactly 59 steps are active (the max_s5
                            budget: 14 draft + 45 final), N/skip = r48_wan_sched.matched_n(sg, 59) = 75/16, 85/26, 111/52, 66/7, 354/295
                            (0.978 is appended last: indices 0-2 are the original curve; its real start sigma is 0.9766; 0.5 is R69's
@@ -30,7 +32,8 @@ import r48_wan_common as C  # noqa: E402
 import r48_wan_sched as SCH  # noqa: E402
 
 D = Path.home() / "Data/dataggen/outputs/five_bench"
-ADAPT = {"max_s9": 9, "max_s5": 5, "nosupp_s5": 5}      # arm -> loop start (= the arm's s_min); nosupp_s5 = R51's A4
+# arm -> loop start (= the arm's s_min); nosupp_s5 = R51's A4; nodiv_s5 / dino_s5 / lpips_s5 = R68's A1 / A2 / A3 (q = S, S*m_dino, S*m_lpips)
+ADAPT = {"max_s9": 9, "max_s5": 5, "nosupp_s5": 5, "nodiv_s5": 5, "dino_s5": 5, "lpips_s5": 5}
 A_ACTIVE_59 = 59                                         # max_s5's worst case: 14 draft + 45 final active steps
 # 0.978 appended: subset indices 0-2 are unchanged. 0.5 appended (R69): an equal-step point more faithful than max_s5 on
 # PSNR / SSIM / LPIPS, so FiVE-Acc at matched background fidelity can be interpolated; N/skip = 354/295 (start sigma 0.4997).
