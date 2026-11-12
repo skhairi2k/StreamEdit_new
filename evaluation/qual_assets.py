@@ -10,6 +10,8 @@ Wan-Edit / FlowDirector / UniEdit-Flow / ContextFlow = first 41 frames, AnyV2V =
         AnyV2V's grey frame on 40/415 clips, checked NOT grey on the four picked clips). Baseline row = StreamEdit rho=2, N=20.
         The visual prompt (edited first frame) is saved as <edit>_<video>_prompt.jpg and drawn next to each column
         title (not on the frames).
+Frames (user, 2026-11-12): 4 and 28 for every clip of both figures (was 4 and 31; at 31 the butterfly's pale/dark
+        wings, faithful to the source shading, read as off at page size; 28 <= 31 keeps AnyV2V in range).
 Picks: text (user, 2026-11-11) = edit2/0081 horse->car, edit3/0045 butterfly blue->pink (replaced twirl), edit5/0036 camel+basket,
         edit6/0078 remove toy; all at frames 4/31 (user, 2026-11-11: same frames as the vp figure, no per-clip choice).
         A clip may still override the pair as (edit, video, (f0, f1)).
@@ -31,11 +33,11 @@ ANCH = os.path.expanduser("~/Data/dataggen/outputs/five_bench/anchors_r43_correc
 W, H = 640, 368
 
 FIGS = {
-    "text": dict(frames=(4, 31), clips=[(2, "0081_A_horse"), (3, "0045_butterfly"), (5, "0036_camel"),
+    "text": dict(frames=(4, 28), clips=[(2, "0081_A_horse"), (3, "0045_butterfly"), (5, "0036_camel"),
                                          (6, "0078_A_cat")],
                  rows=[("fd", f"{B}/r64_flowdirector/correct_full"), ("uef", f"{B}/r63_uniedit_flow/full"),
                        ("base", f"{B}/r71_wan_correct/matched63_s0.92"), ("ours", f"{B}/r71_wan_correct/max_s1")]),
-    "vp": dict(frames=(4, 31), clips=[(2, "0089_A_dog"), (2, "0095_A_crow"), (2, "0011_lucia"), (5, "0007_guitar-violin")],
+    "vp": dict(frames=(4, 28), clips=[(2, "0089_A_dog"), (2, "0095_A_crow"), (2, "0011_lucia"), (5, "0007_guitar-violin")],
                rows=[("anyv2v", f"{B}/r65_anyv2v/correct_srcres"), ("cf", f"{B}/r66_contextflow/correct/n41"),
                      ("base", f"{B}/r59_rho_sweep/r59_n20_rho2_vp"), ("ours", f"{B}/r59_se_arms/r59_max_full/step14")]),
 }
