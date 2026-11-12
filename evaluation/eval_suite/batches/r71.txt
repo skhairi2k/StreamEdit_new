@@ -1,0 +1,15 @@
+# R71 -- Wan-Edit with the range-normalized mapping (m = round(49 q), s_min 1) on FiVE-Bench-Correct: adaptive A0-A4 + the equal-step
+# (matched-63) uniform curve, 415 clips each, fetched to lab /scratch by jz/r71_fetch_renders.sh.
+# `NAME ROOT`; a relative ROOT is taken under --root_base /scratch/PERSO/skhairi/five_bench. Headline config first.
+# Use with:  bash slurm_scripts/five_bench/eval_suite.sh --batch evaluation/eval_suite/batches/r71.txt --root_base /scratch/PERSO/skhairi/five_bench --tag r71 --layout edit_video --src_window render --part core --per_job 2
+wan_max_s1_correct                r71_wan_correct/max_s1
+wan_nosupp_s1_correct             r71_wan_correct/nosupp_s1
+wan_nodiv_s1_correct              r71_wan_correct/nodiv_s1
+wan_dino_s1_correct               r71_wan_correct/dino_s1
+wan_lpips_s1_correct              r71_wan_correct/lpips_s1
+wan_matched63_s0p996_correct      r71_wan_correct/matched63_s0.996
+wan_matched63_s0p978_correct      r71_wan_correct/matched63_s0.978
+wan_matched63_s0p95_correct       r71_wan_correct/matched63_s0.95
+wan_matched63_s0p92_correct       r71_wan_correct/matched63_s0.92
+wan_matched63_s0p85_correct       r71_wan_correct/matched63_s0.85
+wan_matched63_s0p5_correct        r71_wan_correct/matched63_s0.5

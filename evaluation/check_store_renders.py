@@ -2,7 +2,7 @@
 
 Run ON THE LAB FRONTAL (gpu-gw): /store is mounted there only.
 
-    ~/anaconda3/envs/five-bench/bin/python -I evaluation/check_store_renders.py            # every batch file r58..r66, r69
+    ~/anaconda3/envs/five-bench/bin/python -I evaluation/check_store_renders.py            # every batch file r58..r66, r69, r71
     ~/anaconda3/envs/five-bench/bin/python -I evaluation/check_store_renders.py r60 r62    # some tasks only
 
 The settings are read from evaluation/eval_suite/batches/<task>.txt (`NAME ROOT`, ROOT relative to the /scratch root
@@ -10,7 +10,7 @@ base), the same files the evaluation uses. For each setting and each of its clip
 /store copy is compared with the PNG count of the /scratch copy (the one the evaluation reads, checked 2026-11-04:
 415 clips, 0 links). Where the /store copy lives:
 
-  r58_wan_correct/*, r62_wan_correct/*, r66_contextflow/*, r69_wan_correct/* /store/.../jz_five_bench/<ROOT> (Jean Zay renders)
+  r58_wan_correct/*, r62_wan_correct/*, r66_contextflow/*, r69_wan_correct/*, r71_wan_correct/* /store/.../jz_five_bench/<ROOT> (Jean Zay renders)
   r60_correct/<config>      no merged tree on /store: per clip, the source given by evaluation/csv/r60_merge_renders.csv
                             (new -> five_bench/r60_rho_sweep/r60_<config>_novp, or r60_se_arms/r60_max_novp_correct/step14
                             for max_novp; reused -> five_bench/r44_rho_sweep/r44_<config>_novp)
@@ -37,8 +37,8 @@ BATCHES = REPO / "evaluation/eval_suite/batches"
 SCRATCH = Path("/scratch/PERSO/skhairi/five_bench")
 STORE = Path("/store/PERSO/skhairi/Outputs/five_bench")
 STORE_JZ = Path("/store/PERSO/skhairi/Outputs/jz_five_bench")
-JZ_ROOTS = ("r58_wan_correct/", "r62_wan_correct/", "r66_contextflow/", "r69_wan_correct/")
-TASKS = ("r58", "r59", "r60", "r61", "r62", "r63", "r64", "r65", "r66", "r69")
+JZ_ROOTS = ("r58_wan_correct/", "r62_wan_correct/", "r66_contextflow/", "r69_wan_correct/", "r71_wan_correct/")
+TASKS = ("r58", "r59", "r60", "r61", "r62", "r63", "r64", "r65", "r66", "r69", "r71")
 
 
 def read_batch(task: str) -> List[Tuple[str, str]]:
@@ -129,7 +129,7 @@ def check(task: str, name: str, root: str) -> Tuple[bool, str]:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("tasks", nargs="*", default=list(TASKS), help="tasks to check (default: r58..r66, r69)")
+    ap.add_argument("tasks", nargs="*", default=list(TASKS), help="tasks to check (default: r58..r66, r69, r71)")
     ap.add_argument("--workers", type=int, default=8, help="settings checked in parallel (NFS listing is the cost)")
     a = ap.parse_args()
     if not STORE.is_dir():

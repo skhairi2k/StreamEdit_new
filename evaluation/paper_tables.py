@@ -6,14 +6,14 @@ cross-checked against ``suite_<stem>_overall.csv``; never ``_avg.csv``) and writ
 * ``tab_main_t2v.tex`` / ``tab_main_i2v.tex`` -- one table per editor family (supervisor, 2026-11-09), StreamEdit-
   style columns, no colour scale; best and second best of each table in bold / underline (ranked on the displayed,
   rounded values, ties share the mark).
-* ``tab_ablation.tex`` -- demand and mapping ablations on both hosts, with gains over each host's equal-NFE uniform
+* ``tab_ablation.tex`` -- demand and mapping ablations on both hosts, with gains over each host's equal-step uniform
   curve at matched preservation / matched alignment (linear interpolation between the two neighbouring curve points;
   if several segments bracket the value, the one most favourable to the baseline; outside the curve range -> "out",
   no extrapolation; paper_strategy.md section 3).
 
 A cell without a value -- missing table, empty column, or a whole ablation block whose uniform curve is incomplete --
 prints the paper's gray placeholder ``\ph`` (defined in the paper's preamble.tex); CF is a placeholder column until it is
-scored; WE's steps / NFE are placeholders until R71's cost is audited. WE rows read R71 (normalized mapping
+scored; WE's steps are a placeholder until R71's cost is audited. No NFE column: the paper matches steps only. WE rows read R71 (normalized mapping
 m = round(49 q)). The paper \input's these files verbatim (sec/4_experiments.tex), so they are the only copy of the tables:
 
     python -I evaluation/paper_tables.py --out_dir 6ae3275401185b12182f9f41/tables
@@ -112,8 +112,8 @@ MAIN_COLS: Tuple[Col, ...] = (
     Col("five_acc", 1e2, 2, True),
 )
 
-MAIN_HEADER = r"""        \multirow{2}{*}{\textbf{Method}} & \multirow{2}{*}{\textbf{Backbone}} & \multirow{2}{*}{\textbf{Steps}} & \multirow{2}{*}{\textbf{NFE}} & \textbf{Struc.} & \multicolumn{5}{c|}{\textbf{Background Preservation}} & \multicolumn{3}{c|}{\textbf{Text Alignment}} & \textbf{IQA} & \textbf{Temp.} & \textbf{FiVE} \\
-        & & & & Dist.$_{\times 10^3}\!\downarrow$ & PSNR$\uparrow$ & LPIPS$_{\times 10^3}\!\downarrow$ & MSE$_{\times 10^4}\!\downarrow$ & SSIM$_{\times 10^2}\!\uparrow$ & CF$\uparrow$ & CLIP-T$\uparrow$ & EditRwd.$\uparrow$ & PSC$_{\times 10^2}\!\uparrow$ & NIQE$\downarrow$ & MF$_{\times 10^2}\!\uparrow$ & Acc$\uparrow$ \\"""
+MAIN_HEADER = r"""        \multirow{2}{*}{\textbf{Method}} & \multirow{2}{*}{\textbf{Backbone}} & \multirow{2}{*}{\textbf{Steps}} & \textbf{Struc.} & \multicolumn{5}{c|}{\textbf{Background Preservation}} & \multicolumn{3}{c|}{\textbf{Text Alignment}} & \textbf{IQA} & \textbf{Temp.} & \textbf{FiVE} \\
+        & & & Dist.$_{\times 10^3}\!\downarrow$ & PSNR$\uparrow$ & LPIPS$_{\times 10^3}\!\downarrow$ & MSE$_{\times 10^4}\!\downarrow$ & SSIM$_{\times 10^2}\!\uparrow$ & CF$\uparrow$ & CLIP-T$\uparrow$ & EditRwd.$\uparrow$ & PSC$_{\times 10^2}\!\uparrow$ & NIQE$\downarrow$ & MF$_{\times 10^2}\!\uparrow$ & Acc$\uparrow$ \\"""
 
 
 @dataclass(frozen=True)
@@ -122,7 +122,7 @@ class MainRow:
     stem: str
     backbone: str
     steps: str           # solver steps per clip, inversion and our draft included (per chunk for StreamEdit)
-    nfe: str             # backbone forward passes per clip (provenance in the comment above MainTable)
+    nfe: str             # backbone forward passes per clip (provenance below); NOT printed: the paper matches steps only (user, 2026-11-12)
     ours: bool = False
 
 
@@ -159,7 +159,6 @@ WE_STEPS, WE_NFE = r"\ph[xx]", r"\ph[xxx]"   # R71 cost (63 / 252 per its plan) 
 
 COST_CAPTION = (
     r"Steps: solver steps per clip, inversion and the \method draft included (per chunk for SE). "
-    r"NFE: network evaluations per clip, all branches counted (mean over clips for SE, whose cost grows with clip length). "
 )
 CAPTION_TAIL = (
     r"Background metrics use FiVE's reference frames, so LPIPS is not comparable to the values in~\cite{streamedit2026}. "
@@ -224,7 +223,7 @@ def rank_marks(values: Sequence[Optional[str]], higher_better: bool) -> List[str
 
 
 def main_table(table: MainTable) -> str:
-    ncols = 4 + len(MAIN_COLS)
+    ncols = 3 + len(MAIN_COLS)
     rows = table.rows
     data = [load(r.stem) for r in rows]
     cells = [[fmt(d.get(c.key) if d else None, c) for c in MAIN_COLS] for d in data]
@@ -238,7 +237,7 @@ def main_table(table: MainTable) -> str:
         r"    \centering",
         rf"    \caption{{{table.caption}}}",
         r"    \resizebox{0.99\textwidth}{!}{",
-        r"    \begin{tabular}{l|c|cc|c|ccccc|ccc|c|c|c}",
+        r"    \begin{tabular}{l|c|c|c|ccccc|ccc|c|c|c}",
         r"        \toprule",
         MAIN_HEADER,
         r"        \midrule",
@@ -246,7 +245,7 @@ def main_table(table: MainTable) -> str:
     for i, (r, c) in enumerate(zip(rows, cells)):
         if r.ours and (i == 0 or not rows[i - 1].ours):  # one rule before the "Ours" rows
             lines.append(r"        \midrule")
-        lines.append(f"        {r.label} & {r.backbone} & {r.steps} & {r.nfe} & " + " & ".join(c) + r" \\")
+        lines.append(f"        {r.label} & {r.backbone} & {r.steps} & " + " & ".join(c) + r" \\")
     lines += [r"        \bottomrule", r"    \end{tabular}}", rf"    \label{{{table.label}}}", r"\end{table*}", ""]
     return "\n".join(lines)
 
@@ -265,7 +264,7 @@ ABL_COLS: Tuple[Col, ...] = (
     Col("motion_fidelity_score", 1e2, 2, True),
 )
 
-# Equal-NFE uniform curves, in knob order (StreamEdit rho ascending, Wan-Edit strength ascending).
+# Equal-step uniform curves, in knob order (StreamEdit rho ascending, Wan-Edit strength ascending).
 CURVE_KNOBS = {
     "se": ("2", "3", "4", "6", "8", "10", "20", "50"),
     "wan": ("0.5", "0.85", "0.92", "0.95", "0.978", "0.996"),   # R71 matched-63 curve
