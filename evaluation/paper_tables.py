@@ -78,6 +78,9 @@ def load(stem: str) -> Optional[Row]:
     return out
 
 
+# Motion fidelity is incomplete (0010_giant-slalom edit1-4 NaN in the motion part, user 2026-11-12): every MF cell and the
+# dMF@Acc delta print PH until the motion part is complete; set True then.
+MF_READY = False
 PH = r"\ph"   # gray placeholder cell, \newcommand{\ph}[1][xx.xx]{\textcolor{gray}{#1}} in the paper's preamble.tex
 
 
@@ -108,7 +111,7 @@ MAIN_COLS: Tuple[Col, ...] = (
     Col("editreward", 1.0, 2, True),
     Col("psc", 1e2, 2, True),
     Col("niqe_target_image", 1.0, 2, False),
-    Col("motion_fidelity_score", 1e2, 2, True),
+    Col("motion_fidelity_score", 1e2, 2, True, placeholder=not MF_READY),
     Col("five_acc", 1e2, 2, True),
 )
 
@@ -261,7 +264,7 @@ ABL_COLS: Tuple[Col, ...] = (
     Col("clip_similarity_target_image", 1.0, 2, True),
     Col("editreward", 1.0, 3, True),
     Col("psc", 1e2, 2, True),
-    Col("motion_fidelity_score", 1e2, 2, True),
+    Col("motion_fidelity_score", 1e2, 2, True, placeholder=not MF_READY),
 )
 
 # Equal-step uniform curves, in knob order (StreamEdit rho ascending, Wan-Edit strength ascending).
@@ -333,6 +336,9 @@ def deltas(d: Row, curve: Sequence[Row]) -> List[str]:
              ("five_acc", "motion_fidelity_score", 1e2))
     out = []
     for xkey, ykey, scale in specs:
+        if ykey == "motion_fidelity_score" and not MF_READY:
+            out.append(PH)
+            continue
         if d.get(xkey) is None or d.get(ykey) is None or any(p.get(k) is None for p in curve for k in (xkey, ykey)):
             out.append("--")
             continue
@@ -410,7 +416,7 @@ SHORT_COLS: Tuple[Col, ...] = (
     Col("ssim_unedit_part", 1e2, 2, True),
     Col("five_acc", 1e2, 2, True),
     Col("clip_similarity_target_image", 1.0, 2, True),
-    Col("motion_fidelity_score", 1e2, 2, True),
+    Col("motion_fidelity_score", 1e2, 2, True, placeholder=not MF_READY),
 )
 SHORT_DELTAS = (0, 3)   # indices into deltas(): dAcc @ matched PSNR, dPSNR @ matched Acc
 SHORT_HEADER = (
