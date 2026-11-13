@@ -119,11 +119,10 @@ FULL_HEADER = r"""        \multirow{2}{*}{\textbf{Method}} & \multirow{2}{*}{\te
         & & & Dist.$_{\times 10^3}\!\downarrow$ & PSNR$\uparrow$ & LPIPS$_{\times 10^3}\!\downarrow$ & MSE$_{\times 10^4}\!\downarrow$ & SSIM$_{\times 10^2}\!\uparrow$ & CF$\uparrow$ & CLIP-T$\uparrow$ & EditRwd.$\uparrow$ & PSC$_{\times 10^2}\!\uparrow$ & NIQE$\downarrow$ & MF$_{\times 10^2}\!\uparrow$ & Acc$\uparrow$ \\"""
 FULL_SPEC = r"l|c|c|c|ccccc|ccc|c|c|c"
 
-# Main paper (user, 2026-11-13): one metric family per role -- preservation PSNR, SSIM, LPIPS (FiVE) + CF (IVEBench);
-# semantic alignment FiVE-Acc, CLIP-T (FiVE) + PSC (IVEBench); temporal MF. Structure distance, MSE, NIQE and
-# EditReward are in the full supplementary table only.
+# Main paper (user, 2026-11-13): preservation SSIM, LPIPS (FiVE) + CF (IVEBench); semantic alignment FiVE-Acc,
+# CLIP-T (FiVE) + PSC (IVEBench); temporal MF. No PSNR anywhere in the main paper (SSIM is the preservation axis of
+# Fig. tradeoff); PSNR, MSE, structure distance, NIQE and EditReward are in the full supplementary tables only.
 MAIN_COLS: Tuple[Col, ...] = (
-    Col("psnr_unedit_part", 1.0, 2, True),
     Col("ssim_unedit_part", 1e2, 2, True),
     Col("lpips_unedit_part", 1e3, 2, False),
     Col("cf", 1.0, 2, True),
@@ -132,9 +131,9 @@ MAIN_COLS: Tuple[Col, ...] = (
     Col("psc", 1e2, 2, True),
     Col("motion_fidelity_score", 1e2, 2, True, placeholder=not MF_READY),
 )
-MAIN_HEADER = r"""        \multirow{2}{*}{\textbf{Method}} & \multirow{2}{*}{\textbf{Backbone}} & \multirow{2}{*}{\textbf{Steps}} & \multicolumn{4}{c|}{\textbf{Background Preservation}} & \multicolumn{3}{c|}{\textbf{Semantic Alignment}} & \textbf{Temp.} \\
-        & & & PSNR$\uparrow$ & SSIM$_{\times 10^2}\!\uparrow$ & LPIPS$_{\times 10^3}\!\downarrow$ & CF$\uparrow$ & FiVE-Acc$\uparrow$ & CLIP-T$\uparrow$ & PSC$_{\times 10^2}\!\uparrow$ & MF$_{\times 10^2}\!\uparrow$ \\"""
-MAIN_SPEC = r"l|c|c|cccc|ccc|c"
+MAIN_HEADER = r"""        \multirow{2}{*}{\textbf{Method}} & \multirow{2}{*}{\textbf{Backbone}} & \multirow{2}{*}{\textbf{Steps}} & \multicolumn{3}{c|}{\textbf{Background Preservation}} & \multicolumn{3}{c|}{\textbf{Semantic Alignment}} & \textbf{Temp.} \\
+        & & & SSIM$_{\times 10^2}\!\uparrow$ & LPIPS$_{\times 10^3}\!\downarrow$ & CF$\uparrow$ & FiVE-Acc$\uparrow$ & CLIP-T$\uparrow$ & PSC$_{\times 10^2}\!\uparrow$ & MF$_{\times 10^2}\!\uparrow$ \\"""
+MAIN_SPEC = r"l|c|c|ccc|ccc|c"
 
 
 @dataclass(frozen=True)
@@ -181,9 +180,8 @@ WE_STEPS, WE_NFE = "63", r"\ph[xxx]"   # R71 cost audited 2026-11-13: 14 draft +
 
 COST_CAPTION = (
     r"Steps: solver steps per clip, inversion and the \method draft included (per chunk for SE). "
-    r"$\Delta$: \method minus its base editor. "
 )
-MAIN_CAPTION_EXTRA = (r" Structure distance, MSE, NIQE and EditReward are reported in the supplementary material.")
+MAIN_CAPTION_EXTRA = (r" PSNR, MSE, structure distance, NIQE and EditReward are reported in the supplementary material.")
 CAPTION_TAIL = (
     r"Background metrics use FiVE's reference frames, so LPIPS is not comparable to the values in~\cite{streamedit2026}. "
     r"Best and second best in \textbf{bold} and \underline{underlined}."
@@ -264,7 +262,7 @@ def delta_cells(d: Optional[Row], b: Optional[Row], cols: Sequence[Col]) -> List
 
 
 def main_table(table: MainTable, cols: Sequence[Col] = MAIN_COLS, header: str = MAIN_HEADER, spec: str = MAIN_SPEC,
-               label_suffix: str = "", caption_extra: str = "", deltas_rows: bool = True) -> str:
+               label_suffix: str = "", caption_extra: str = "", deltas_rows: bool = False) -> str:
     MAIN_COLS = cols  # noqa: N806 (local alias: the body below predates the parameter)
     rows = table.rows
     data = [load(r.stem) for r in rows]
@@ -359,6 +357,9 @@ ABL_BLOCKS: Tuple[Tuple[str, str, Tuple[AblRow, ...]], ...] = (
 )
 
 
+LOWER_BETTER = {"lpips_unedit_part", "mse_unedit_part", "structure_distance", "niqe_target_image"}
+
+
 def matched(curve: Sequence[Row], xkey: str, ykey: str, x: float) -> Optional[float]:
     """Baseline y at x on the curve: linear interpolation between neighbouring points; the value most favourable to
     the baseline (max, all y used here are higher-is-better) if several segments bracket x; None outside the range.
@@ -367,17 +368,20 @@ def matched(curve: Sequence[Row], xkey: str, ykey: str, x: float) -> Optional[fl
     vals = [y0 + (x - x0) * (y1 - y0) / (x1 - x0)
             for (x0, y0), (x1, y1) in zip(pts, pts[1:])
             if x1 != x0 and min(x0, x1) <= x <= max(x0, x1)]
-    return max(vals) if vals else None
+    if not vals:
+        return None
+    return min(vals) if ykey in LOWER_BETTER else max(vals)
 
 
 def deltas(d: Row, curve: Sequence[Row]) -> List[str]:
-    """[dAcc @ matched PSNR, dAcc @ matched LPIPS, dCLIP-T @ matched PSNR, dPSNR @ matched Acc, dMF @ matched Acc];
+    """[dAcc @ SSIM, dAcc @ LPIPS, dCLIP-T @ SSIM, dSSIM @ Acc, dMF @ Acc, dAcc @ PSNR, dPSNR @ Acc] (matched);
     'out' outside the curve range, '--' if the row or any curve point lacks a value. CLIP-T = target prompt vs whole
     edited frame (the paper reports CLIP-T, not CLIP-D: user, 2026-11-09); MF = FiVE motion fidelity, read at matched
     alignment."""
-    specs = (("psnr_unedit_part", "five_acc", 1e2), ("lpips_unedit_part", "five_acc", 1e2),
-             ("psnr_unedit_part", "clip_similarity_target_image", 1.0), ("five_acc", "psnr_unedit_part", 1.0),
-             ("five_acc", "motion_fidelity_score", 1e2))
+    specs = (("ssim_unedit_part", "five_acc", 1e2), ("lpips_unedit_part", "five_acc", 1e2),
+             ("ssim_unedit_part", "clip_similarity_target_image", 1.0), ("five_acc", "ssim_unedit_part", 1e2),
+             ("five_acc", "motion_fidelity_score", 1e2), ("psnr_unedit_part", "five_acc", 1e2),
+             ("five_acc", "psnr_unedit_part", 1.0))   # last two: PSNR-matched, supplementary table only
     out = []
     for xkey, ykey, scale in specs:
         if ykey == "motion_fidelity_score" and not MF_READY:
@@ -397,7 +401,7 @@ ABL_CAPTION = (
     r"(Eq.~\ref{eq:div}). Bottom: control assignment on SE\,+\,\method (image-guided, Self-Forcing). Each row changes one "
     r"component and keeps the rest fixed. The last five columns compare each row with the uniform-control sweep at the "
     r"same step count, at matched background preservation ($\Delta$Acc; $\Delta$CLIP-T) or matched FiVE-Acc "
-    r"($\Delta$PSNR in dB; $\Delta$MF), interpolated linearly between neighbouring sweep points (out: outside the sweep, "
+    r"($\Delta$SSIM, $\Delta$MF, $\Delta$PSNR in dB), interpolated linearly between neighbouring sweep points (out: outside the sweep, "
     r"not extrapolated). Uniform: the sweep point closest to the full method in LPIPS."
 )
 
@@ -418,7 +422,7 @@ def block_rows(host: str, rows: Sequence[AblRow]) -> List[Tuple[AblRow, str, Opt
             i = min(range(len(curve)), key=lambda k: abs(curve[k]["lpips_unedit_part"] - full["lpips_unedit_part"]))
             d, label = curve[i], r.label.replace("<knob>", CURVE_KNOBS[host][i])
             r = AblRow(r.label, r.demand, r.stem, r.reference, r.ours, r.short.replace("<knob>", CURVE_KNOBS[host][i]))
-        dl = (["--"] * 5 if r.reference else deltas(d, curve)) if d is not None else [PH] * 5
+        dl = (["--"] * 7 if r.reference else deltas(d, curve)) if d is not None else [PH] * 7
         out.append((r, label, d, dl))
     return out
 
@@ -429,17 +433,17 @@ def knob_ph(label: str) -> str:
 
 def ablation_table() -> str:
     """Full ablation (every metric, both blocks, full-width): supplementary material."""
-    ncols = 2 + len(ABL_COLS) + 5
+    ncols = 2 + len(ABL_COLS) + 7
     lines = [
         r"% Generated by evaluation/paper_tables.py from the R57 suite _overall tables -- do not edit numbers by hand.",
         r"\begin{table*}[t]",
         r"    \centering",
         rf"    \caption{{{ABL_CAPTION}}}",
         r"    \resizebox{0.99\textwidth}{!}{",
-        r"    \begin{tabular}{ll|ccc|cccc|c|ccccc}",
+        r"    \begin{tabular}{ll|ccc|cccc|c|ccccccc}",
         r"        \toprule",
-        r"        \multirow{2}{*}{\textbf{Variant}} & \multirow{2}{*}{\textbf{Configuration}} & \multicolumn{3}{c|}{\textbf{Background Preservation}} & \multicolumn{4}{c|}{\textbf{Text Alignment}} & \textbf{Temp.} & \multicolumn{5}{c}{\textbf{vs.\ uniform sweep, same steps}} \\",
-        r"        & & PSNR$\uparrow$ & LPIPS$_{\times 10^3}\!\downarrow$ & SSIM$_{\times 10^2}\!\uparrow$ & FiVE Acc$\uparrow$ & CLIP-T$\uparrow$ & EditRwd.$\uparrow$ & PSC$_{\times 10^2}\!\uparrow$ & MF$_{\times 10^2}\!\uparrow$ & $\Delta$Acc@PSNR & $\Delta$Acc@LPIPS & $\Delta$CLIP-T@PSNR & $\Delta$PSNR@Acc & $\Delta$MF@Acc \\",
+        r"        \multirow{2}{*}{\textbf{Variant}} & \multirow{2}{*}{\textbf{Configuration}} & \multicolumn{3}{c|}{\textbf{Background Preservation}} & \multicolumn{4}{c|}{\textbf{Text Alignment}} & \textbf{Temp.} & \multicolumn{7}{c}{\textbf{vs.\ uniform sweep, same steps}} \\",
+        r"        & & PSNR$\uparrow$ & LPIPS$_{\times 10^3}\!\downarrow$ & SSIM$_{\times 10^2}\!\uparrow$ & FiVE Acc$\uparrow$ & CLIP-T$\uparrow$ & EditRwd.$\uparrow$ & PSC$_{\times 10^2}\!\uparrow$ & MF$_{\times 10^2}\!\uparrow$ & $\Delta$Acc@SSIM & $\Delta$Acc@LPIPS & $\Delta$CLIP-T@SSIM & $\Delta$SSIM@Acc & $\Delta$MF@Acc & $\Delta$Acc@PSNR & $\Delta$PSNR@Acc \\",
     ]
     for host, title, rows in ABL_BLOCKS:
         lines += [r"        \midrule", rf"        \multicolumn{{{ncols}}}{{l}}{{{title}}} \\", r"        \midrule"]
@@ -456,19 +460,19 @@ def ablation_table() -> str:
 # (primary metrics of paper_strategy.md section 3 + MF + one matched delta per side of the claim), never re-picked
 # from the results; the full table above goes to the supplementary.
 SHORT_COLS: Tuple[Col, ...] = (
-    Col("psnr_unedit_part", 1.0, 2, True),
     Col("ssim_unedit_part", 1e2, 2, True),
+    Col("lpips_unedit_part", 1e3, 1, False),
     Col("five_acc", 1e2, 2, True),
     Col("clip_similarity_target_image", 1.0, 2, True),
     Col("motion_fidelity_score", 1e2, 2, True, placeholder=not MF_READY),
 )
-SHORT_DELTAS = (0, 3)   # indices into deltas(): dAcc @ matched PSNR, dPSNR @ matched Acc
+SHORT_DELTAS = (0, 3)   # indices into deltas(): dAcc @ matched SSIM, dSSIM @ matched Acc (PSNR dropped, user 2026-11-13)
 SHORT_HEADER = (
-    r"        & PSNR$\uparrow$ & SSIM$_{\times 10^2}\!\uparrow$ & Acc$\uparrow$ & CLIP-T$\uparrow$ & "
-    r"MF$_{\times 10^2}\!\uparrow$ & $\Delta$Acc & $\Delta$PSNR \\"
+    r"        & SSIM$_{\times 10^2}\!\uparrow$ & LPIPS$_{\times 10^3}\!\downarrow$ & Acc$\uparrow$ & CLIP-T$\uparrow$ & "
+    r"MF$_{\times 10^2}\!\uparrow$ & $\Delta$Acc & $\Delta$SSIM \\"
 )
 DELTA_CAPTION = (
-    r"$\Delta$: gain over the uniform-control sweep at the same step count, in FiVE-Acc at matched PSNR and in PSNR (dB) "
+    r"$\Delta$: gain over the uniform-control sweep at the same step count, in FiVE-Acc at matched SSIM and in SSIM "
     r"at matched FiVE-Acc, interpolated linearly between neighbouring sweep points (out: outside the sweep, not "
     r"extrapolated). All metrics are in the supplementary material."
 )
@@ -521,13 +525,14 @@ MATCHED_ROWS: Tuple[Tuple[str, str, Tuple[str, ...]], ...] = (
     (r"SE, image (SF)", "r59_r59_max_full", tuple(f"r59_r59_n20_rho{r}_vp" for r in RHOS_SWEEP)),
     (r"SE, image (LL)", "r61_r61_max_ll", tuple(f"r61_r61_ll_rho{r}_n20" for r in RHOS_SWEEP)),
 )
-MATCHED_SPECS = (("psnr_unedit_part", "five_acc", 1e2), ("ssim_unedit_part", "five_acc", 1e2),
-                 ("lpips_unedit_part", "five_acc", 1e2), ("five_acc", "psnr_unedit_part", 1.0),
+MATCHED_SPECS = (("ssim_unedit_part", "five_acc", 1e2), ("lpips_unedit_part", "five_acc", 1e2),
+                 ("five_acc", "ssim_unedit_part", 1e2), ("five_acc", "lpips_unedit_part", 1e3),
                  ("five_acc", "motion_fidelity_score", 1e2))
 MATCHED_CAPTION = (
     r"\textbf{Spatial \vs global control.} Gain of \method over the uniform sweep of the same editor's global "
     r"control at the same number of solver steps (Fig.~\ref{fig:tradeoff}): FiVE-Acc points at matched background "
-    r"PSNR, SSIM or LPIPS, and PSNR (dB) or MF ($\times 10^2$) at matched FiVE-Acc, interpolated linearly between "
+    r"SSIM or LPIPS, and SSIM ($\times 10^2$), LPIPS ($\times 10^3$, lower is better) or MF ($\times 10^2$) at "
+    r"matched FiVE-Acc, interpolated linearly between "
     r"neighbouring sweep points (out: outside the sweep, not extrapolated). FiVE-Bench-C, 415 pairs."
 )
 
@@ -539,11 +544,11 @@ def matched_table() -> str:
         r"    \centering",
         rf"    \caption{{{MATCHED_CAPTION}}}",
         r"    \resizebox{\columnwidth}{!}{",
-        r"    \begin{tabular}{l|ccc|cc}",
+        r"    \begin{tabular}{l|cc|ccc}",
         r"        \toprule",
-        r"        \multirow{2}{*}{\textbf{Editor}} & \multicolumn{3}{c|}{$\Delta$FiVE-Acc at matched} & "
-        r"\multicolumn{2}{c}{at matched FiVE-Acc} \\",
-        r"        & PSNR & SSIM & LPIPS & $\Delta$PSNR & $\Delta$MF \\",
+        r"        \multirow{2}{*}{\textbf{Editor}} & \multicolumn{2}{c|}{$\Delta$FiVE-Acc at matched} & "
+        r"\multicolumn{3}{c}{at matched FiVE-Acc} \\",
+        r"        & SSIM & LPIPS & $\Delta$SSIM$\uparrow$ & $\Delta$LPIPS$\downarrow$ & $\Delta$MF$\uparrow$ \\",
         r"        \midrule",
     ]
     for label, ours, stems in MATCHED_ROWS:
@@ -572,7 +577,7 @@ def main() -> None:
     outputs = ([(t.filename, main_table(t, caption_extra=MAIN_CAPTION_EXTRA)) for t in MAIN_TABLES]
                + [("supp_" + t.filename, main_table(t, FULL_COLS, FULL_HEADER, FULL_SPEC, label_suffix="_full",
                                                     deltas_rows=False)) for t in MAIN_TABLES]
-               + [("tab_matched.tex", matched_table())]
+               # tab_matched.tex dropped (user 2026-11-13): the dAcc @ matched SSIM is an arrow in Fig. tradeoff instead
                + [(t[0], short_table(*t)) for t in SHORT_TABLES]
                + [("supp_tab_ablation.tex", ablation_table())])
     args.out_dir.mkdir(parents=True, exist_ok=True)

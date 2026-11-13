@@ -50,6 +50,7 @@ class Editor:
     ours: str
     ours_label: str
     annotate: Dict[str, Tuple[float, float, str]]   # knob value -> label offset (points) and alignment, equal-step sweep
+    arrow_label_at_star: bool = False                 # Delta FiVE-Acc label above the star (above the arrow's middle hits a curve)
 
 
 RHOS = ("2", "3", "4", "6", "8", "10", "20", "50")
@@ -59,7 +60,7 @@ EDITORS: Dict[str, Editor] = {
         tuple((r, f"r61_r61_ll_rho{r}_n20") for r in RHOS), r"Uniform, $N{=}20$",
         tuple((r, f"r61_r61_ll_rho{r}_n15") for r in RHOS), r"Uniform, $N{=}15$",
         "r61_r61_ll_rho2_n15", "r61_r61_max_ll", "SE + SNaC",
-        {"2": (4, 5, "left"), "6": (-4, -4, "right"), "50": (-5, -1, "right")}),
+        {"2": (4, 5, "left"), "6": (-4, -4, "right"), "50": (-5, -1, "right")}, arrow_label_at_star=True),
     "we": Editor(
         "Wan-Edit", "t_s",
         tuple((s, f"r71_wan_matched63_s{s.replace('.', 'p')}_correct")
@@ -108,6 +109,19 @@ def draw(ed: Editor, out: Path, width: float, height: float) -> None:
     # named by its direct label on the sweep (t_s = 0.92, rho = 2). ed.official is only printed below.
     ax.plot([ux], [uy], ls="none", marker="*", ms=8.5, color=ORANGE, mec="white", mew=0.5, label=ed.ours_label,
             zorder=5)
+    # Delta FiVE-Acc at matched SSIM (user, 2026-11-13; replaces the matched-gains table): horizontal arrow at SNaC's
+    # SSIM from the equal-step sweep (linear interpolation, paper_tables.matched, as in the ablation tables) to the star.
+    base = pt.matched([pt.load(s) for _, s in ed.equal], Y_KEY, X_KEY, pt.load(ed.ours)[Y_KEY])
+    if base is None:
+        raise SystemExit(f"[paper_fig_tradeoff] {ed.title}: SNaC's SSIM is outside the equal-step sweep, no arrow")
+    bx = base * X_SCALE
+    ax.plot([bx], [uy], ls="none", marker="o", ms=2.6, mfc="white", mec=ORANGE, mew=0.7, zorder=4)
+    ax.annotate("", xy=(ux, uy), xytext=(bx, uy), zorder=4,
+                arrowprops=dict(arrowstyle="-|>", color=ORANGE, lw=0.8, mutation_scale=5, shrinkA=1.5, shrinkB=4.5))
+    at_star = ed.arrow_label_at_star
+    ax.annotate(rf"$\Delta$FiVE-Acc $={ux - bx:+.1f}$", (ux if at_star else (bx + ux) / 2, uy),
+                xytext=(0, 5.0 if at_star else 3.0), textcoords="offset points", ha="center", va="bottom", fontsize=5.5,
+                color=ORANGE)
     for k, x, y in eq:   # selective direct labels on the reference sweep
         if k in ed.annotate:
             dx, dy, ha = ed.annotate[k]
