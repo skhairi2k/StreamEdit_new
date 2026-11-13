@@ -5,7 +5,7 @@ One small PDF per editor (sized for half a CVPR column), read from the R57 suite
 
   * equal-step uniform sweep (solid, the fair reference: same number of solver steps as SNaC, draft included);
   * native uniform sweep (dashed grey, the editor's own step count);
-  * the editor's official setting (open ring on the native sweep);
+  * no marker for the official setting (removed 2026-11-13); its knob value is labelled on the equal-step sweep;
   * SNaC (orange star, the colour of the qualitative figures' "ours" row).
 
 Axes: x = FiVE-Acc (x100), y = background SSIM (x100); both higher-is-better, so up-right is better.
@@ -104,8 +104,8 @@ def draw(ed: Editor, out: Path, width: float, height: float) -> None:
             mfc=GREY, mec="white", mew=0.3, label=ed.native_label, zorder=2)
     ax.plot([p[1] for p in eq], [p[2] for p in eq], lw=1.2, color=BLUE, marker="o", ms=2.8, mfc=BLUE, mec="white",
             mew=0.4, label=ed.equal_label, zorder=3)
-    ax.plot([ox], [oy], ls="none", marker="o", ms=5.5, mfc="none", mec=INK, mew=0.7, label="Official",
-            zorder=4)
+    # No "Official" ring (user, 2026-11-13: confusing next to the equal-step sweep); the official setting is still
+    # named by its direct label on the sweep (t_s = 0.92, rho = 2). ed.official is only printed below.
     ax.plot([ux], [uy], ls="none", marker="*", ms=8.5, color=ORANGE, mec="white", mew=0.5, label=ed.ours_label,
             zorder=5)
     for k, x, y in eq:   # selective direct labels on the reference sweep
