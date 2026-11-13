@@ -99,7 +99,8 @@ def fmt(v: Optional[float], col: Col) -> str:
 # ----------------------------------------------------------------------------------------------------------------
 # Main table
 # ----------------------------------------------------------------------------------------------------------------
-MAIN_COLS: Tuple[Col, ...] = (
+# Full FiVE-style table (12 metrics): supplementary (supp_tab_main_{t2v,i2v}.tex).
+FULL_COLS: Tuple[Col, ...] = (
     Col("structure_distance", 1e3, 2, False),
     Col("psnr_unedit_part", 1.0, 2, True),
     Col("lpips_unedit_part", 1e3, 2, False),
@@ -114,8 +115,26 @@ MAIN_COLS: Tuple[Col, ...] = (
     Col("five_acc", 1e2, 2, True),
 )
 
-MAIN_HEADER = r"""        \multirow{2}{*}{\textbf{Method}} & \multirow{2}{*}{\textbf{Backbone}} & \multirow{2}{*}{\textbf{Steps}} & \textbf{Struc.} & \multicolumn{5}{c|}{\textbf{Background Preservation}} & \multicolumn{3}{c|}{\textbf{Text Alignment}} & \textbf{IQA} & \textbf{Temp.} & \textbf{FiVE} \\
+FULL_HEADER = r"""        \multirow{2}{*}{\textbf{Method}} & \multirow{2}{*}{\textbf{Backbone}} & \multirow{2}{*}{\textbf{Steps}} & \textbf{Struc.} & \multicolumn{5}{c|}{\textbf{Background Preservation}} & \multicolumn{3}{c|}{\textbf{Text Alignment}} & \textbf{IQA} & \textbf{Temp.} & \textbf{FiVE} \\
         & & & Dist.$_{\times 10^3}\!\downarrow$ & PSNR$\uparrow$ & LPIPS$_{\times 10^3}\!\downarrow$ & MSE$_{\times 10^4}\!\downarrow$ & SSIM$_{\times 10^2}\!\uparrow$ & CF$\uparrow$ & CLIP-T$\uparrow$ & EditRwd.$\uparrow$ & PSC$_{\times 10^2}\!\uparrow$ & NIQE$\downarrow$ & MF$_{\times 10^2}\!\uparrow$ & Acc$\uparrow$ \\"""
+FULL_SPEC = r"l|c|c|c|ccccc|ccc|c|c|c"
+
+# Main paper (user, 2026-11-13): one metric family per role -- preservation PSNR, SSIM, LPIPS (FiVE) + CF (IVEBench);
+# semantic alignment FiVE-Acc, CLIP-T (FiVE) + PSC (IVEBench); temporal MF. Structure distance, MSE, NIQE and
+# EditReward are in the full supplementary table only.
+MAIN_COLS: Tuple[Col, ...] = (
+    Col("psnr_unedit_part", 1.0, 2, True),
+    Col("ssim_unedit_part", 1e2, 2, True),
+    Col("lpips_unedit_part", 1e3, 2, False),
+    Col("cf", 1.0, 2, True),
+    Col("five_acc", 1e2, 2, True),
+    Col("clip_similarity_target_image", 1.0, 2, True),
+    Col("psc", 1e2, 2, True),
+    Col("motion_fidelity_score", 1e2, 2, True, placeholder=not MF_READY),
+)
+MAIN_HEADER = r"""        \multirow{2}{*}{\textbf{Method}} & \multirow{2}{*}{\textbf{Backbone}} & \multirow{2}{*}{\textbf{Steps}} & \multicolumn{4}{c|}{\textbf{Background Preservation}} & \multicolumn{3}{c|}{\textbf{Semantic Alignment}} & \textbf{Temp.} \\
+        & & & PSNR$\uparrow$ & SSIM$_{\times 10^2}\!\uparrow$ & LPIPS$_{\times 10^3}\!\downarrow$ & CF$\uparrow$ & FiVE-Acc$\uparrow$ & CLIP-T$\uparrow$ & PSC$_{\times 10^2}\!\uparrow$ & MF$_{\times 10^2}\!\uparrow$ \\"""
+MAIN_SPEC = r"l|c|c|cccc|ccc|c"
 
 
 @dataclass(frozen=True)
@@ -126,6 +145,7 @@ class MainRow:
     steps: str           # solver steps per clip, inversion and our draft included (per chunk for StreamEdit)
     nfe: str             # backbone forward passes per clip (provenance below); NOT printed: the paper matches steps only (user, 2026-11-12)
     ours: bool = False
+    base: str = ""       # ours rows: stem of the base editor; the main table prints a grey Delta line (ours - base) after the row
 
 
 # Cost columns, audited in the code on 2026-11-09 (one pass = one backbone evaluation of one input stream; a forward on a
@@ -161,7 +181,9 @@ WE_STEPS, WE_NFE = "63", r"\ph[xxx]"   # R71 cost audited 2026-11-13: 14 draft +
 
 COST_CAPTION = (
     r"Steps: solver steps per clip, inversion and the \method draft included (per chunk for SE). "
+    r"$\Delta$: \method minus its base editor. "
 )
+MAIN_CAPTION_EXTRA = (r" Structure distance, MSE, NIQE and EditReward are reported in the supplementary material.")
 CAPTION_TAIL = (
     r"Background metrics use FiVE's reference frames, so LPIPS is not comparable to the values in~\cite{streamedit2026}. "
     r"Best and second best in \textbf{bold} and \underline{underlined}."
@@ -177,9 +199,11 @@ MAIN_TABLES: Tuple[MainTable, ...] = (
             MainRow(r"FlowDirector~\cite{flowdirector}", "r64_r64_flowdirector", "Wan-1.3B", "40", "640"),
             MainRow(r"UniEdit-Flow~\cite{unieditflow}", "r63_r63_uniedit_flow", "Wan-1.3B", "40", "60"),
             MainRow(r"Wan-Edit~\cite{five2025}", "r71_wan_matched63_s0p92_correct", "Wan-1.3B", WE_STEPS, WE_NFE),
+            MainRow(r"WE\,+\,\method", "r71_wan_max_s1_correct", "Wan-1.3B", WE_STEPS, WE_NFE, ours=True,
+                    base="r71_wan_matched63_s0p92_correct"),
             MainRow(r"StreamEdit~\cite{streamedit2026}", "r60_r60_n20_rho2_correct", "SF-1.3B", "20", "249"),
-            MainRow(r"WE\,+\,\method", "r71_wan_max_s1_correct", "Wan-1.3B", WE_STEPS, WE_NFE, ours=True),
-            MainRow(r"SE\,+\,\method", "r60_r60_max_novp_correct", "SF-1.3B", "20", "261", ours=True),
+            MainRow(r"SE\,+\,\method", "r60_r60_max_novp_correct", "SF-1.3B", "20", "261", ours=True,
+                    base="r60_r60_n20_rho2_correct"),
         ),
     ),
     MainTable(
@@ -191,9 +215,11 @@ MAIN_TABLES: Tuple[MainTable, ...] = (
             MainRow(r"AnyV2V~\cite{anyv2v}", "r65_r65_anyv2v", "I2VGen-XL", "550", "650"),
             MainRow(r"ContextFlow~\cite{contextflow}", "r66_r66_contextflow", "Wan-I2V-14B", "100", "400"),
             MainRow(r"StreamEdit~\cite{streamedit2026} (SF)", "r59_r59_n20_rho2_vp", "SF-1.3B", "20", "251"),
+            MainRow(r"SE\,+\,\method (SF)", "r59_r59_max_full", "SF-1.3B", "20", "266", ours=True,
+                    base="r59_r59_n20_rho2_vp"),
             MainRow(r"StreamEdit~\cite{streamedit2026} (LL)", "r61_r61_ll_rho2_n20", "LL-1.3B", "20", "251"),
-            MainRow(r"SE\,+\,\method (SF)", "r59_r59_max_full", "SF-1.3B", "20", "266", ours=True),
-            MainRow(r"SE\,+\,\method (LL)", "r61_r61_max_ll", "LL-1.3B", "20", "264", ours=True),
+            MainRow(r"SE\,+\,\method (LL)", "r61_r61_max_ll", "LL-1.3B", "20", "264", ours=True,
+                    base="r61_r61_ll_rho2_n20"),
         ),
     ),
 )
@@ -224,12 +250,26 @@ def rank_marks(values: Sequence[Optional[str]], higher_better: bool) -> List[str
     return out
 
 
-def main_table(table: MainTable) -> str:
-    ncols = 3 + len(MAIN_COLS)
+def delta_cells(d: Optional[Row], b: Optional[Row], cols: Sequence[Col]) -> List[str]:
+    """Grey signed difference ours - base per column, in displayed units (rounded values subtracted, so the line
+    agrees with the two rows above it); no colour judgement (sign meaning depends on the column's arrow)."""
+    out = []
+    for c in cols:
+        if d is None or b is None or d.get(c.key) is None or b.get(c.key) is None or c.placeholder:
+            out.append(PH)
+            continue
+        diff = round(d[c.key] * c.scale, c.digits) - round(b[c.key] * c.scale, c.digits)
+        out.append(rf"\textcolor{{gray}}{{{diff:+.{c.digits}f}}}")
+    return out
+
+
+def main_table(table: MainTable, cols: Sequence[Col] = MAIN_COLS, header: str = MAIN_HEADER, spec: str = MAIN_SPEC,
+               label_suffix: str = "", caption_extra: str = "", deltas_rows: bool = True) -> str:
+    MAIN_COLS = cols  # noqa: N806 (local alias: the body below predates the parameter)
     rows = table.rows
     data = [load(r.stem) for r in rows]
     cells = [[fmt(d.get(c.key) if d else None, c) for c in MAIN_COLS] for d in data]
-    for j, col in enumerate(MAIN_COLS):  # rank each column over the whole table
+    for j, col in enumerate(MAIN_COLS):  # rank each column over the method rows (Delta lines are not ranked)
         marked = rank_marks([cells[i][j] for i in range(len(rows))], col.higher_better)
         for i in range(len(rows)):
             cells[i][j] = marked[i]
@@ -237,18 +277,23 @@ def main_table(table: MainTable) -> str:
         r"% Generated by evaluation/paper_tables.py from the R57 suite _overall tables -- do not edit numbers by hand.",
         r"\begin{table*}[t]",
         r"    \centering",
-        rf"    \caption{{{table.caption}}}",
+        rf"    \caption{{{table.caption}{caption_extra}}}",
         r"    \resizebox{0.99\textwidth}{!}{",
-        r"    \begin{tabular}{l|c|c|c|ccccc|ccc|c|c|c}",
+        rf"    \begin{{tabular}}{{{spec}}}",
         r"        \toprule",
-        MAIN_HEADER,
+        header,
         r"        \midrule",
     ]
+    by_stem = dict(zip((r.stem for r in rows), data))
     for i, (r, c) in enumerate(zip(rows, cells)):
-        if r.ours and (i == 0 or not rows[i - 1].ours):  # one rule before the "Ours" rows
+        nxt = rows[i + 1] if i + 1 < len(rows) else None
+        if nxt is not None and nxt.base == r.stem:   # one rule before each (base editor, + SNaC) pair
             lines.append(r"        \midrule")
         lines.append(f"        {r.label} & {r.backbone} & {r.steps} & " + " & ".join(c) + r" \\")
-    lines += [r"        \bottomrule", r"    \end{tabular}}", rf"    \label{{{table.label}}}", r"\end{table*}", ""]
+        if r.ours and r.base and deltas_rows:
+            lines.append(r"        \quad\textcolor{gray}{$\Delta$} & & & "
+                         + " & ".join(delta_cells(by_stem[r.stem], load(r.base), MAIN_COLS)) + r" \\")
+    lines += [r"        \bottomrule", r"    \end{tabular}}", rf"    \label{{{table.label}{label_suffix}}}", r"\end{table*}", ""]
     return "\n".join(lines)
 
 
@@ -466,11 +511,69 @@ def short_table(filename: str, label: str, host: str, head: str, caption: str) -
     return "\n".join(lines)
 
 
+# Gains over each editor's equal-step uniform sweep (Sec. 4.2, Fig. tradeoff), for every editor/mode with a sweep.
+# Columns fixed by paper_strategy.md section 3 (alignment at matched PSNR and LPIPS, preservation at matched Acc,
+# motion always) + SSIM, the axis of Fig. tradeoff; rows = every configuration we have a sweep for (none left out).
+RHOS_SWEEP = ("2", "3", "4", "6", "8", "10", "20", "50")
+MATCHED_ROWS: Tuple[Tuple[str, str, Tuple[str, ...]], ...] = (
+    (r"WE, text (Wan)", "r71_wan_max_s1_correct", CURVES["wan"]),
+    (r"SE, text (SF)", "r60_r60_max_novp_correct", tuple(f"r60_r60_n20_rho{r}_correct" for r in RHOS_SWEEP)),
+    (r"SE, image (SF)", "r59_r59_max_full", tuple(f"r59_r59_n20_rho{r}_vp" for r in RHOS_SWEEP)),
+    (r"SE, image (LL)", "r61_r61_max_ll", tuple(f"r61_r61_ll_rho{r}_n20" for r in RHOS_SWEEP)),
+)
+MATCHED_SPECS = (("psnr_unedit_part", "five_acc", 1e2), ("ssim_unedit_part", "five_acc", 1e2),
+                 ("lpips_unedit_part", "five_acc", 1e2), ("five_acc", "psnr_unedit_part", 1.0),
+                 ("five_acc", "motion_fidelity_score", 1e2))
+MATCHED_CAPTION = (
+    r"\textbf{Spatial \vs global control.} Gain of \method over the uniform sweep of the same editor's global "
+    r"control at the same number of solver steps (Fig.~\ref{fig:tradeoff}): FiVE-Acc points at matched background "
+    r"PSNR, SSIM or LPIPS, and PSNR (dB) or MF ($\times 10^2$) at matched FiVE-Acc, interpolated linearly between "
+    r"neighbouring sweep points (out: outside the sweep, not extrapolated). FiVE-Bench-C, 415 pairs."
+)
+
+
+def matched_table() -> str:
+    lines = [
+        r"% Generated by evaluation/paper_tables.py from the R57 suite tables -- do not edit numbers by hand.",
+        r"\begin{table}[t]",
+        r"    \centering",
+        rf"    \caption{{{MATCHED_CAPTION}}}",
+        r"    \resizebox{\columnwidth}{!}{",
+        r"    \begin{tabular}{l|ccc|cc}",
+        r"        \toprule",
+        r"        \multirow{2}{*}{\textbf{Editor}} & \multicolumn{3}{c|}{$\Delta$FiVE-Acc at matched} & "
+        r"\multicolumn{2}{c}{at matched FiVE-Acc} \\",
+        r"        & PSNR & SSIM & LPIPS & $\Delta$PSNR & $\Delta$MF \\",
+        r"        \midrule",
+    ]
+    for label, ours, stems in MATCHED_ROWS:
+        curve = [load(s) for s in stems]
+        d = load(ours)
+        if d is None or any(c is None for c in curve):
+            cells = [PH] * len(MATCHED_SPECS)
+        else:
+            cells = []
+            for xkey, ykey, scale in MATCHED_SPECS:
+                if ykey == "motion_fidelity_score" and not MF_READY:
+                    cells.append(PH)
+                    continue
+                base = matched(curve, xkey, ykey, d[xkey])
+                v = (d[ykey] - base) * scale if base is not None else None
+                cells.append("out" if v is None else ("0.00" if abs(v) < 0.005 else f"{v:+.2f}"))
+        lines.append(f"        {label} & " + " & ".join(cells) + r" \\")
+    lines += [r"        \bottomrule", r"    \end{tabular}}", r"    \label{tab:matched}", r"\end{table}", ""]
+    return "\n".join(lines)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--out_dir", type=Path, default=Path("."), help="where the .tex files are written")
     args = ap.parse_args()
-    outputs = ([(t.filename, main_table(t)) for t in MAIN_TABLES] + [(t[0], short_table(*t)) for t in SHORT_TABLES]
+    outputs = ([(t.filename, main_table(t, caption_extra=MAIN_CAPTION_EXTRA)) for t in MAIN_TABLES]
+               + [("supp_" + t.filename, main_table(t, FULL_COLS, FULL_HEADER, FULL_SPEC, label_suffix="_full",
+                                                    deltas_rows=False)) for t in MAIN_TABLES]
+               + [("tab_matched.tex", matched_table())]
+               + [(t[0], short_table(*t)) for t in SHORT_TABLES]
                + [("supp_tab_ablation.tex", ablation_table())])
     args.out_dir.mkdir(parents=True, exist_ok=True)
     for name, text in outputs:
