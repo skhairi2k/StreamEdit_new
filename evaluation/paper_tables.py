@@ -115,9 +115,9 @@ FULL_COLS: Tuple[Col, ...] = (
     Col("five_acc", 1e2, 2, True),
 )
 
-FULL_HEADER = r"""        \multirow{2}{*}{\textbf{Method}} & \multirow{2}{*}{\textbf{Steps}} & \textbf{Struc.} & \multicolumn{5}{c|}{\textbf{Background Preservation}} & \multicolumn{3}{c|}{\textbf{Text Alignment}} & \textbf{IQA} & \textbf{Temp.} & \textbf{FiVE} \\
-        & & Dist.$_{\times 10^3}\!\downarrow$ & PSNR$\uparrow$ & LPIPS$_{\times 10^3}\!\downarrow$ & MSE$_{\times 10^4}\!\downarrow$ & SSIM$_{\times 10^2}\!\uparrow$ & CF$\uparrow$ & CLIP-T$\uparrow$ & EditRwd.$\uparrow$ & PSC$_{\times 10^2}\!\uparrow$ & NIQE$\downarrow$ & MF$_{\times 10^2}\!\uparrow$ & Acc$\uparrow$ \\"""
-FULL_SPEC = r"l|c|c|ccccc|ccc|c|c|c"
+FULL_HEADER = r"""        \multirow{2}{*}{\textbf{Backbone}} & \multirow{2}{*}{\textbf{Method}} & \multirow{2}{*}{\textbf{Steps}} & \textbf{Struc.} & \multicolumn{5}{c|}{\textbf{Background Preservation}} & \multicolumn{3}{c|}{\textbf{Text Alignment}} & \textbf{IQA} & \textbf{Temp.} & \textbf{FiVE} \\
+        & & & Dist.$_{\times 10^3}\!\downarrow$ & PSNR$\uparrow$ & LPIPS$_{\times 10^3}\!\downarrow$ & MSE$_{\times 10^4}\!\downarrow$ & SSIM$_{\times 10^2}\!\uparrow$ & CF$\uparrow$ & CLIP-T$\uparrow$ & EditRwd.$\uparrow$ & PSC$_{\times 10^2}\!\uparrow$ & NIQE$\downarrow$ & MF$_{\times 10^2}\!\uparrow$ & Acc$\uparrow$ \\"""
+FULL_SPEC = r"l|l|c|c|ccccc|ccc|c|c|c"
 
 # Main paper (user, 2026-11-13): preservation SSIM, LPIPS (FiVE) + CF (IVEBench); semantic alignment FiVE-Acc,
 # CLIP-T (FiVE) + PSC (IVEBench); temporal MF. No PSNR anywhere in the main paper (SSIM is the preservation axis of
@@ -131,9 +131,9 @@ MAIN_COLS: Tuple[Col, ...] = (
     Col("psc", 1e2, 2, True),
     Col("motion_fidelity_score", 1e2, 2, True, placeholder=not MF_READY),
 )
-MAIN_HEADER = r"""        \multirow{2}{*}{\textbf{Method}} & \multirow{2}{*}{\textbf{Steps}} & \multicolumn{3}{c|}{\textbf{Background Preservation}} & \multicolumn{3}{c|}{\textbf{Semantic Alignment}} & \textbf{Temp.} \\
-        & & SSIM$_{\times 10^2}\!\uparrow$ & LPIPS$_{\times 10^3}\!\downarrow$ & CF$\uparrow$ & FiVE-Acc$\uparrow$ & CLIP-T$\uparrow$ & PSC$_{\times 10^2}\!\uparrow$ & MF$_{\times 10^2}\!\uparrow$ \\"""
-MAIN_SPEC = r"l|c|ccc|ccc|c"
+MAIN_HEADER = r"""        \multirow{2}{*}{\textbf{Backbone}} & \multirow{2}{*}{\textbf{Method}} & \multirow{2}{*}{\textbf{Steps}} & \multicolumn{3}{c|}{\textbf{Background Preservation}} & \multicolumn{3}{c|}{\textbf{Semantic Alignment}} & \textbf{Temp.} \\
+        & & & SSIM$_{\times 10^2}\!\uparrow$ & LPIPS$_{\times 10^3}\!\downarrow$ & CF$\uparrow$ & FiVE-Acc$\uparrow$ & CLIP-T$\uparrow$ & PSC$_{\times 10^2}\!\uparrow$ & MF$_{\times 10^2}\!\uparrow$ \\"""
+MAIN_SPEC = r"l|l|c|ccc|ccc|c"
 
 
 @dataclass(frozen=True)
@@ -145,7 +145,6 @@ class MainRow:
     nfe: str             # backbone forward passes per clip (provenance below); NOT printed: the paper matches steps only (user, 2026-11-12)
     ours: bool = False
     base: str = ""       # ours rows: stem of the base editor (grey Delta line after the row if deltas_rows)
-    block: str = ""      # backbone block header printed before this row (user 2026-11-13: rows grouped by backbone)
 
 
 # Cost columns, audited in the code on 2026-11-09 (one pass = one backbone evaluation of one input stream; a forward on a
@@ -196,14 +195,12 @@ MAIN_TABLES: Tuple[MainTable, ...] = (
         r"official strength with the step count of their \method variant. Each method is scored on its own output "
         r"(41 frames for the Wan-based editors, up to 117 for SE). " + COST_CAPTION + CAPTION_TAIL,
         (
-            MainRow(r"FlowDirector~\cite{flowdirector}", "r64_r64_flowdirector", "Wan-1.3B", "40", "640",
-                    block="Wan2.1-1.3B"),
+            MainRow(r"FlowDirector~\cite{flowdirector}", "r64_r64_flowdirector", "Wan-1.3B", "40", "640"),
             MainRow(r"UniEdit-Flow~\cite{unieditflow}", "r63_r63_uniedit_flow", "Wan-1.3B", "40", "60"),
             MainRow(r"Wan-Edit~\cite{five2025}", "r71_wan_matched63_s0p92_correct", "Wan-1.3B", WE_STEPS, WE_NFE),
             MainRow(r"WE\,+\,\method", "r71_wan_max_s1_correct", "Wan-1.3B", WE_STEPS, WE_NFE, ours=True,
                     base="r71_wan_matched63_s0p92_correct"),
-            MainRow(r"StreamEdit~\cite{streamedit2026}", "r60_r60_n20_rho2_correct", "SF-1.3B", "20", "249",
-                    block="Self-Forcing-1.3B"),
+            MainRow(r"StreamEdit~\cite{streamedit2026}", "r60_r60_n20_rho2_correct", "SF-1.3B", "20", "249"),
             MainRow(r"SE\,+\,\method", "r60_r60_max_novp_correct", "SF-1.3B", "20", "261", ours=True,
                     base="r60_r60_n20_rho2_correct"),
         ),
@@ -214,15 +211,12 @@ MAIN_TABLES: Tuple[MainTable, ...] = (
         r"Self-Forcing (SF) or LongLive (LL) at its official strength with the step count of \method. Each method is scored on "
         r"its own output (41 frames for ContextFlow, 32 for AnyV2V, up to 117 for SE). " + COST_CAPTION + CAPTION_TAIL,
         (
-            MainRow(r"AnyV2V~\cite{anyv2v} (I2VGen-XL)", "r65_r65_anyv2v", "I2VGen-XL", "550", "650",
-                    block="Other backbones"),
-            MainRow(r"ContextFlow~\cite{contextflow} (Wan2.1-I2V-14B)", "r66_r66_contextflow", "Wan-I2V-14B", "100", "400"),
-            MainRow(r"StreamEdit~\cite{streamedit2026}", "r59_r59_n20_rho2_vp", "SF-1.3B", "20", "251",
-                    block="Self-Forcing-1.3B"),
+            MainRow(r"AnyV2V~\cite{anyv2v}", "r65_r65_anyv2v", "I2VGen-XL", "550", "650"),
+            MainRow(r"ContextFlow~\cite{contextflow}", "r66_r66_contextflow", "Wan-I2V-14B", "100", "400"),
+            MainRow(r"StreamEdit~\cite{streamedit2026}", "r59_r59_n20_rho2_vp", "SF-1.3B", "20", "251"),
             MainRow(r"SE\,+\,\method", "r59_r59_max_full", "SF-1.3B", "20", "266", ours=True,
                     base="r59_r59_n20_rho2_vp"),
-            MainRow(r"StreamEdit~\cite{streamedit2026}", "r61_r61_ll_rho2_n20", "LL-1.3B", "20", "251",
-                    block="LongLive-1.3B"),
+            MainRow(r"StreamEdit~\cite{streamedit2026}", "r61_r61_ll_rho2_n20", "LL-1.3B", "20", "251"),
             MainRow(r"SE\,+\,\method", "r61_r61_max_ll", "LL-1.3B", "20", "264", ours=True,
                     base="r61_r61_ll_rho2_n20"),
         ),
@@ -290,14 +284,20 @@ def main_table(table: MainTable, cols: Sequence[Col] = MAIN_COLS, header: str = 
         r"        \midrule",
     ]
     by_stem = dict(zip((r.stem for r in rows), data))
-    ncols = 2 + len(MAIN_COLS)
+    # Rows grouped by backbone (user 2026-11-13): consecutive rows with the same backbone form a group, one merged
+    # backbone cell per group drawn in its LAST row (negative \multirow, so the shaded SNaC row cannot paint over it),
+    # a rule between groups; the backbone cell itself is never shaded.
+    starts = [i for i in range(len(rows)) if i == 0 or rows[i].backbone != rows[i - 1].backbone]
     for i, (r, c) in enumerate(zip(rows, cells)):
-        if r.block:   # backbone block: rule (except under the header) + italic header row spanning the table
-            if i > 0:
-                lines.append(r"        \midrule")
-            lines.append(rf"        \textit{{{r.block}}}" + " &" * (ncols - 1) + r" \\")   # empty cells keep the vertical rules
-        shade = r"\rowcolor{oursbg} " if r.ours else ""   # SNaC rows shaded (oursbg: paper preamble.tex)
-        lines.append(f"        {shade}{r.label} & {r.steps} & " + " & ".join(c) + r" \\")
+        if i in starts and i > 0:
+            lines.append(r"        \midrule")
+        g0 = max(k for k in starts if k <= i)
+        g1 = min([k for k in starts if k > i] + [len(rows)])          # group = rows g0 .. g1-1
+        bb = "" if i != g1 - 1 else (r.backbone if g1 - g0 == 1 else rf"\multirow{{-{g1 - g0}}}{{*}}{{{r.backbone}}}")
+        if r.ours:   # SNaC rows shaded (oursbg: paper preamble.tex)
+            lines.append(rf"        \rowcolor{{oursbg}}\cellcolor{{white}}{bb} & {r.label} & {r.steps} & " + " & ".join(c) + r" \\")
+        else:
+            lines.append(f"        {bb} & {r.label} & {r.steps} & " + " & ".join(c) + r" \\")
         if r.ours and r.base and deltas_rows:
             lines.append(r"        \quad\textcolor{gray}{$\Delta$} & & & "
                          + " & ".join(delta_cells(by_stem[r.stem], load(r.base), MAIN_COLS)) + r" \\")
