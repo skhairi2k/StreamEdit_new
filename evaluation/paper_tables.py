@@ -12,8 +12,7 @@ cross-checked against ``suite_<stem>_overall.csv``; never ``_avg.csv``) and writ
   no extrapolation; paper_strategy.md section 3).
 
 A cell without a value -- missing table, empty column, or a whole ablation block whose uniform curve is incomplete --
-prints the paper's gray placeholder ``\ph`` (defined in the paper's preamble.tex); CF is a placeholder column until it is
-scored; WE's steps are a placeholder until R71's cost is audited. No NFE column: the paper matches steps only. WE rows read R71 (normalized mapping
+prints the paper's gray placeholder ``\ph`` (defined in the paper's preamble.tex); WE's 63 steps = 14 draft + 49 final (audited 2026-11-13). No NFE column: the paper matches steps only. WE rows read R71 (normalized mapping
 m = round(49 q)). The paper \input's these files verbatim (sec/4_experiments.tex), so they are the only copy of the tables:
 
     python -I evaluation/paper_tables.py --out_dir 6ae3275401185b12182f9f41/tables
@@ -35,7 +34,7 @@ Row = Dict[str, Optional[float]]
 # suite columns the tables use (five_acc is derived from its two parts)
 USED_KEYS = ("structure_distance", "psnr_unedit_part", "lpips_unedit_part", "mse_unedit_part", "ssim_unedit_part",
              "clip_similarity_target_image", "editreward", "psc", "niqe_target_image", "motion_fidelity_score",
-             "five_acc_yes_no", "five_acc_multi_choice")
+             "cf", "five_acc_yes_no", "five_acc_multi_choice")
 
 
 def _num(v: str) -> Optional[float]:
@@ -80,7 +79,7 @@ def load(stem: str) -> Optional[Row]:
 
 # Motion fidelity is incomplete (0010_giant-slalom edit1-4 NaN in the motion part, user 2026-11-12): every MF cell and the
 # dMF@Acc delta print PH until the motion part is complete; set True then.
-MF_READY = False
+MF_READY = True   # 2026-11-13: giant-slalom filled; the remaining NaN cells are single clips (<= 2 per arm), left out of the mean
 PH = r"\ph"   # gray placeholder cell, \newcommand{\ph}[1][xx.xx]{\textcolor{gray}{#1}} in the paper's preamble.tex
 
 
@@ -90,7 +89,7 @@ class Col:
     scale: float         # displayed value = raw * scale
     digits: int
     higher_better: bool
-    placeholder: bool = False   # not shown yet (CF: user, 2026-11-12): always PH, never read
+    placeholder: bool = False   # not shown yet: always PH, never read (was CF until 2026-11-13)
 
 
 def fmt(v: Optional[float], col: Col) -> str:
@@ -106,7 +105,7 @@ MAIN_COLS: Tuple[Col, ...] = (
     Col("lpips_unedit_part", 1e3, 2, False),
     Col("mse_unedit_part", 1e4, 2, False),
     Col("ssim_unedit_part", 1e2, 2, True),
-    Col("cf", 1.0, 2, True, placeholder=True),
+    Col("cf", 1.0, 2, True),   # IVEBench CF, Qwen2.5-VL-72B int8 judge (R57 cf part, complete 2026-11-12)
     Col("clip_similarity_target_image", 1.0, 2, True),
     Col("editreward", 1.0, 2, True),
     Col("psc", 1e2, 2, True),
@@ -158,7 +157,7 @@ class MainTable:
     rows: Tuple[MainRow, ...]   # baselines first, "Ours" rows last (one rule above them), as in StreamEdit's table
 
 
-WE_STEPS, WE_NFE = r"\ph[xx]", r"\ph[xxx]"   # R71 cost (63 / 252 per its plan) not audited yet: placeholders
+WE_STEPS, WE_NFE = "63", r"\ph[xxx]"   # R71 cost audited 2026-11-13: 14 draft + 49 final steps (r49_wan_render A_ACTIVE_63; matched-63 baseline: N/skip 90/27); NFE not printed
 
 COST_CAPTION = (
     r"Steps: solver steps per clip, inversion and the \method draft included (per chunk for SE). "
@@ -292,25 +291,25 @@ class AblRow:
 # Main paper (user, 2026-11-12): ESM components on WE, control assignment on SE. StreamEdit's ESM components (R62:
 # r62_r62_{nodiv,dino,lpips,nosupp}_full) go to the supplementary.
 ABL_BLOCKS: Tuple[Tuple[str, str, Tuple[AblRow, ...]], ...] = (
-    ("wan", r"\textit{ESM components: WE\,+\,\method, " + WE_STEPS + r" steps, control $s$}", (
-        AblRow(r"Uniform $s{=}<knob>$", r"--", AUTO, reference=True, short=r"Uniform $s{=}<knob>$"),
+    ("wan", r"\textit{ESM components: WE\,+\,\method, " + WE_STEPS + r" steps, control $m$}", (
+        AblRow(r"Uniform $t_s{=}<knob>$", r"--", AUTO, reference=True, short=r"Uniform $t_s{=}<knob>$"),
         # R71 (batch r71.txt, tag r71): A1-A4 and A0 at s_min 1.
-        AblRow(r"w/o divergence", r"$\mathbf S$", "r71_wan_nodiv_s1_correct", short=r"$\mathbf S$"),
+        AblRow(r"w/o divergence", r"$\mathbf S$", "r71_wan_nodiv_s1_correct", short=r"$\mathbf S$ only"),
         AblRow(r"DINO only", r"$\mathbf S\odot\mathbf D^{\mathrm{sem}}$", "r71_wan_dino_s1_correct",
                short=r"$\mathbf S\odot\mathbf D^{\mathrm{sem}}$"),
         AblRow(r"LPIPS only", r"$\mathbf S\odot\mathbf D^{\mathrm{per}}$", "r71_wan_lpips_s1_correct",
                short=r"$\mathbf S\odot\mathbf D^{\mathrm{per}}$"),
-        AblRow(r"w/o support", r"$\mathbf D$", "r71_wan_nosupp_s1_correct", short=r"$\mathbf D$"),
+        AblRow(r"w/o support", r"$\mathbf D$", "r71_wan_nosupp_s1_correct", short=r"$\mathbf D$ only"),
         AblRow(r"\textbf{Full}", r"$\mathbf S\odot\mathbf D$", "r71_wan_max_s1_correct", ours=True,
                short=r"$\mathbf S\odot\mathbf D$ (\textbf{full})"),
     )),
     ("se", r"\textit{Control assignment: SE\,+\,\method, 20 steps, control $\rho$}", (
         AblRow(r"Uniform $\rho{=}6$", r"--", "r59_r59_n20_rho6_vp", reference=True, short=r"Uniform $\rho{=}6$"),
-        # R68 B1 (not scored yet): adjust the stem to R68's batch name once it exists.
-        AblRow(r"Linear", r"$\rho_i{=}\rho^{\min}{+}(\rho^{\max}{-}\rho^{\min})\,d_i$", "r68_r68_linrho_full",
+        # R68 B1, scored 2026-11-13 (batch r68.txt: r68_max_linrho_full).
+        AblRow(r"Linear", r"$\rho_i{=}\rho^{\min}{+}(\rho^{\max}{-}\rho^{\min})\,\mathrm{ESM}_i$", "r68_r68_max_linrho_full",
                short=r"Linear"),
-        AblRow(r"\textbf{Full}", r"exposure-matched, Eq.~\ref{eq:stream_mapping}", "r59_r59_max_full", ours=True,
-               short=r"Exposure-matched (\textbf{full})"),
+        AblRow(r"\textbf{Full}", r"analytic, Eq.~\ref{eq:stream_mapping}", "r59_r59_max_full", ours=True,
+               short=r"Analytic (\textbf{full})"),
     )),
 )
 
@@ -380,7 +379,7 @@ def block_rows(host: str, rows: Sequence[AblRow]) -> List[Tuple[AblRow, str, Opt
 
 
 def knob_ph(label: str) -> str:
-    return label.replace("$s{=}<knob>$", "$s{=}$" + PH + "[x.xx]").replace("<knob>", PH + "[x.xx]")
+    return label.replace("$t_s{=}<knob>$", "$t_s{=}$" + PH + "[x.xx]").replace("<knob>", PH + "[x.xx]")
 
 
 def ablation_table() -> str:
@@ -426,8 +425,7 @@ SHORT_HEADER = (
 DELTA_CAPTION = (
     r"$\Delta$: gain over the uniform-control sweep at the same step count, in FiVE-Acc at matched PSNR and in PSNR (dB) "
     r"at matched FiVE-Acc, interpolated linearly between neighbouring sweep points (out: outside the sweep, not "
-    r"extrapolated). Uniform: the sweep point closest to the full method in LPIPS. All metrics are in the supplementary "
-    r"material."
+    r"extrapolated). All metrics are in the supplementary material."
 )
 SHORT_TABLES = (
     ("tab_abl_esm.tex", "tab:abl_esm", "wan", r"\textbf{ESM}",
@@ -436,8 +434,8 @@ SHORT_TABLES = (
      + DELTA_CAPTION),
     ("tab_abl_assign.tex", "tab:abl_assign", "se", r"\textbf{Assignment}",
      r"\textbf{Control assignment} (SE\,+\,\method, image-guided, Self-Forcing, 20 steps, FiVE-Bench-C). Linear: "
-     r"$\rho_i{=}\rho^{\min}{+}(\rho^{\max}{-}\rho^{\min})\,d_i$; exposure-matched: Eq.~\ref{eq:stream_mapping}. "
-     r"$\Delta$ and Uniform as in Tab.~\ref{tab:abl_esm}."),
+     r"$\rho_i{=}\rho^{\min}{+}(\rho^{\max}{-}\rho^{\min})\,\mathrm{ESM}_i$; analytic: Eq.~\ref{eq:stream_mapping}. "
+     r"$\Delta$ as in Tab.~\ref{tab:abl_esm}."),
 )
 
 
@@ -456,7 +454,10 @@ def short_table(filename: str, label: str, host: str, head: str, caption: str) -
         SHORT_HEADER,
         r"        \midrule",
     ]
+    # The uniform reference row is not printed in the main paper (user, 2026-11-12); the deltas still use its curve.
     for r, _, d, dl in block_rows(host, [r for r in rows if r.short]):
+        if r.reference:
+            continue
         if r.ours:
             lines.append(r"        \midrule")
         vals = [fmt(d.get(c.key) if d else None, c) for c in SHORT_COLS]

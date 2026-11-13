@@ -56,18 +56,18 @@ RHOS = ("2", "3", "4", "6", "8", "10", "20", "50")
 EDITORS: Dict[str, Editor] = {
     "se_ll": Editor(
         "StreamEdit (LongLive)", r"\rho",
-        tuple((r, f"r61_r61_ll_rho{r}_n20") for r in RHOS), "Uniform, 20 steps",
-        tuple((r, f"r61_r61_ll_rho{r}_n15") for r in RHOS), "Uniform, 15 steps",
+        tuple((r, f"r61_r61_ll_rho{r}_n20") for r in RHOS), r"Uniform, $N{=}20$",
+        tuple((r, f"r61_r61_ll_rho{r}_n15") for r in RHOS), r"Uniform, $N{=}15$",
         "r61_r61_ll_rho2_n15", "r61_r61_max_ll", "SE + SNaC",
         {"2": (4, 5, "left"), "6": (-4, -4, "right"), "50": (-5, -1, "right")}),
     "we": Editor(
-        "Wan-Edit", "s",
+        "Wan-Edit", "t_s",
         tuple((s, f"r71_wan_matched63_s{s.replace('.', 'p')}_correct")
-              for s in ("0.996", "0.978", "0.95", "0.92", "0.85", "0.5")), "Uniform, 63 steps",
+              for s in ("0.996", "0.978", "0.95", "0.92", "0.85", "0.5")), r"Uniform, $N{=}63$",
         tuple((s, f"r58_wan_native_s{s.replace('.', 'p')}_correct")
-              for s in ("0.978", "0.95", "0.92", "0.85", "0.75", "0.6", "0.4")), "Uniform, 50 steps",
+              for s in ("0.978", "0.95", "0.92", "0.85", "0.75", "0.6", "0.4")), r"Uniform, $N{=}50$",
         "r58_wan_native_s0p92_correct", "r71_wan_max_s1_correct", "WE + SNaC",
-        {"0.996": (4, 5, "left"), "0.92": (-4, -4, "right"), "0.5": (-4, -1, "right")}),
+        {"0.996": (4, 5, "left"), "0.92": (-4, -4, "right"), "0.5": (2, -6, "left")}),   # 0.5 below its point: left of it hits the y label
 }
 
 
